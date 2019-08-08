@@ -1,7 +1,539 @@
 <% include partials/header %>
 
-<div>
-	Hello!
+<nav class="navbar navbar-dark bg-dark">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">Navbar</a>
+	</div>
+</nav>
+
+<div class="container-fluid content">
+	<div class="sidebar"></div>
+	<div class="info-div">
+		<div class="settings-div">
+			<h1 class="font-header page-header">Settings</h1>
+			<div class="font-content">
+				<form class="font-form" id="options-form">
+					<div id="options-form-div">
+						<div class="input-div" id="gear-level-div">
+							<div class="input-header">Equip Level</div>
+							<input class="input-number" type="number" id="gear-level" min="1" max="275" required>
+						</div>
+						<div class="input-div" id="gear-type-div">
+							<div class="input-header">Equip Type</div>
+							<div class="radio-select-div">
+								<div class="radio-select leftmost-radio">Normal</div>
+								<div class="radio-select rightmost-radio">Boss</div>
+							</div>
+						</div>
+						<div class="input-div" id="base-wa-ma-div">
+							<div class="input-header" id="long-header">Weapon Base WA/MA</div>
+							<input class="input-number" type="number" id="base-wa-ma" min="0" required>
+						</div>
+						<div class="input-div" id="flame-type-div">
+							<div class="input-header">Flame Type</div>
+							<div class="radio-select-div">
+								<div class="radio-select flame-radio leftmost-radio"></div>
+								<div class="radio-select flame-radio"></div>
+								<div class="radio-select flame-radio"></div>
+								<div class="radio-select flame-radio rightmost-radio"></div>
+							</div>
+						</div>
+						<div class="input-div" id="stat-type-div">
+							<div class="input-header">Stat Type</div>
+							<div class="radio-select-div">
+								<div class="radio-select stat-radio leftmost-radio">STR</div>
+								<div class="radio-select stat-radio">DEX</div>
+								<div class="radio-select stat-radio">INT</div>
+								<div class="radio-select stat-radio rightmost-radio">LUK</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-outline-primary" id="flame-submit-btn">Show Possible Flame Values</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<hr class="horz-divider">
+		<div class="flame-values-div">
+			<h1 class="font-header page-header"><!--Possible Flame--> Values</h1>
+			<div class="font-content" id="flame-values-table">
+				<div class="single-table" id="weapon-wa-ma">
+					<table class="table table-sm table-bordered">
+						<thead>
+							<tr>
+								<th scope="col" colspan="2"><!--Weapon WA/MA-->Header</th>
+							</tr>
+							<tr>
+								<th scope="col">Tier</th>
+								<th scope="col">Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>x</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="single-table" id="boss-dmg-percent">
+					<table class="table table-sm table-bordered">
+						<thead>
+							<tr>
+								<th scope="col" colspan="2"><!--Weapon WA/MA-->Header</th>
+							</tr>
+							<tr>
+								<th scope="col">Tier</th>
+								<th scope="col">Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>x</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="single-table" id="all-stats-percent">
+					<table class="table table-sm table-bordered">
+						<thead>
+							<tr>
+								<th scope="col" colspan="2"><!--Weapon WA/MA-->Header</th>
+							</tr>
+							<tr>
+								<th scope="col">Tier</th>
+								<th scope="col">Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>x</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="single-table" id="pure-stats">
+					<table class="table table-sm table-bordered">
+						<thead>
+							<tr>
+								<th scope="col" colspan="2"><!--Weapon WA/MA-->Header</th>
+							</tr>
+							<tr>
+								<th scope="col">Tier</th>
+								<th scope="col">Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>x</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="single-table" id="mixed-stats">
+					<table class="table table-sm table-bordered">
+						<thead>
+							<tr>
+								<th scope="col" colspan="2"><!--Weapon WA/MA-->Header</th>
+							</tr>
+							<tr>
+								<th scope="col">Tier</th>
+								<th scope="col">Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>x</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="single-table" id="damage-percent">
+					<table class="table table-sm table-bordered">
+						<thead>
+							<tr>
+								<th scope="col" colspan="2"><!--Weapon WA/MA-->Header</th>
+							</tr>
+							<tr>
+								<th scope="col">Tier</th>
+								<th scope="col">Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>x</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="single-table" id="armor-wa-ma">
+					<table class="table table-sm table-bordered">
+						<thead>
+							<tr>
+								<th scope="col" colspan="2"><!--Weapon WA/MA-->Header</th>
+							</tr>
+							<tr>
+								<th scope="col">Tier</th>
+								<th scope="col">Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>x</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="single-table" id="hp-mp">
+					<table class="table table-sm table-bordered">
+						<thead>
+							<tr>
+								<th scope="col" colspan="2"><!--Weapon WA/MA-->Header</th>
+							</tr>
+							<tr>
+								<th scope="col">Tier</th>
+								<th scope="col">Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>x</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="single-table" id="defense">
+					<table class="table table-sm table-bordered">
+						<thead>
+							<tr>
+								<th scope="col" colspan="2"><!--Weapon WA/MA-->Header</th>
+							</tr>
+							<tr>
+								<th scope="col">Tier</th>
+								<th scope="col">Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>x</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="single-table" id="level-reduce">
+					<table class="table table-sm table-bordered">
+						<thead>
+							<tr>
+								<th scope="col" colspan="2"><!--Weapon WA/MA-->Header</th>
+							</tr>
+							<tr>
+								<th scope="col">Tier</th>
+								<th scope="col">Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>x</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="single-table" id="speed-jump">
+					<table class="table table-sm table-bordered">
+						<thead>
+							<tr>
+								<th scope="col" colspan="2"><!--Weapon WA/MA-->Header</th>
+							</tr>
+							<tr>
+								<th scope="col">Tier</th>
+								<th scope="col">Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>x</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>x</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <% include partials/footer %>

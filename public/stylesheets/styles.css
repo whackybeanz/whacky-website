@@ -1,0 +1,193 @@
+html, body {
+	height: 100%;
+	font-size: 16px;
+	font-family: "Varela Round", sans-serif;
+}
+
+input[type="number"] {
+	height: 32px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+input[type="radio"] {
+	visibility: hidden;
+}
+
+.font-header {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.font-content {
+	font-size: 1rem;
+}
+
+.font-form {
+	font-size: 0.875rem;
+}
+
+.container-fluid {
+	width: 1280px;
+}
+
+.navbar {
+	position: fixed;
+	width: 100%;
+}
+
+.content {
+	height: 100%;
+	display: flex;
+	padding-top: 56px;
+}
+
+.sidebar {
+	width: 240px;
+	height: 100%;
+	border-right: 2px solid #666;
+}
+
+.info-div {
+	padding: 32px 16px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: auto;
+}
+
+.page-header {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 32px;
+}
+
+.settings-div {
+	width: 100%;
+	padding: 0 32px;
+}
+
+#options-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#options-form-div {
+	display: grid;
+	grid-template-areas:
+		"level level gear gear base base"
+		"flame flame flame stat stat stat";
+	grid-gap: 16px 32px;
+	margin-bottom: 24px;
+}
+
+#gear-level-div {
+	grid-area: level;
+}
+
+#gear-type-div {
+	grid-area: gear;
+}
+
+#base-wa-ma-div {
+	grid-area: base;
+}
+
+#flame-type-div {
+	grid-area: flame;
+}
+
+#stat-type-div {
+	grid-area: stat;
+}
+
+.input-div {
+	height: 32px;
+	display: flex;
+	align-items: center;
+	padding: 0 8px;
+}
+
+.input-header {
+	margin-right: 16px;
+	font-weight: bold;
+}
+
+.input-number {
+	width: 75px;
+}
+
+.radio-select-div {
+	height: 32px;
+	position: relative;
+	display: flex;
+}
+
+.radio-select {
+	width: 75px;
+	height: 32px;
+	border: 1px solid black;
+	border-left: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.radio-select:hover,
+.radio-select.active {
+	background-color: #000;
+	color: #FFF;
+	font-weight: bold;
+}
+
+.leftmost-radio {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-left: 1px solid black;
+}
+
+.rightmost-radio {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.flame-radio,
+.stat-radio {
+	width: 56px;
+	height: 32px;
+	padding: 0 8px;
+}
+
+#flame-submit-btn {
+	height: 32px;
+	width: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	font-weight: bold;
+	font-size: 0.875rem;
+}
+
+.horz-divider {
+	width: 160px;
+	margin: 32px 0;
+}
+
+#flame-values-table {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+}
+
+.single-table {
+	width: 200px;
+	margin: 0 24px 16px 24px;
+	text-align: center;
+}
