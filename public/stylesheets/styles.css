@@ -87,14 +87,29 @@ input[type="radio"] {
 
 #gear-level-div {
 	grid-area: level;
+	padding-bottom: 16px;
 }
 
 #gear-type-div {
 	grid-area: gear;
+	height: 40px;
+	display: flex;
+	flex-direction: column;
+}
+
+#gear-type-div > div {
+	display: flex;
+	align-items: center;
+}
+
+.notes-small {
+	margin-top: 6px;
+	font-size: 10px;
 }
 
 #base-wa-ma-div {
 	grid-area: base;
+	padding-bottom: 16px;
 }
 
 #flame-type-div {
@@ -106,7 +121,7 @@ input[type="radio"] {
 }
 
 .input-div {
-	height: 32px;
+	height: 48px;
 	display: flex;
 	align-items: center;
 	padding: 0 8px;
@@ -136,6 +151,7 @@ input[type="radio"] {
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
+	transition: all 0.2s;
 }
 
 .radio-select:hover,
@@ -143,20 +159,28 @@ input[type="radio"] {
 	background-color: #000;
 	color: #FFF;
 	font-weight: bold;
+	transition: all 0.2s;
 }
 
 .leftmost-radio {
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 	border-left: 1px solid black;
+	position: relative;
 }
 
 .rightmost-radio {
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
+	position: relative;
 }
 
-.flame-radio,
+.flame-radio {
+	width: 80px;
+	height: 32px;
+	padding: 0 8px;
+}
+
 .stat-radio {
 	width: 56px;
 	height: 32px;
@@ -180,14 +204,24 @@ input[type="radio"] {
 }
 
 #flame-values-table {
+	font-size: 0.875rem;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	width: 100%;
 }
 
-.single-table {
-	width: 200px;
-	margin: 0 24px 16px 24px;
+tr th.table-cols,
+tr td.table-cols {
+	padding: 5px 10px;
 	text-align: center;
+}
+
+tr th.table-cols-header {
+	padding: 5px 10px;
+	text-align: right;
+}
+
+.rrf {
+	background-color: #C9F8C2;
 }
