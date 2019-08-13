@@ -1,0 +1,21 @@
+.sidebar-btn {
+	height: 48px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	line-height: 1.1;
+	cursor: pointer;
+	border: 2px solid #666;
+	border-right: none;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding: 8px 16px;
+	margin-bottom: 16px;
+}
+
+.sidebar-btn:hover,
+.sidebar-btn.active {
+	font-weight: bold;
+	text-decoration: underline;
+}

@@ -1,0 +1,50 @@
+html, body {
+	height: 100%;
+	font-size: 16px;
+	font-family: "Varela Round", sans-serif;
+}
+
+input[type="number"] {
+	height: 32px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+input[type="radio"] {
+	visibility: hidden;
+}
+
+.font-header {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.font-content {
+	font-size: 1rem;
+}
+
+.font-sidebar, .font-form, .font-table {
+	font-size: 0.875rem;
+}
+
+.container-fluid {
+	width: 1280px;
+}
+
+.navbar {
+	position: fixed;
+	width: 100%;
+}
+
+.content {
+	height: 100%;
+	display: flex;
+	padding-top: 56px;
+}
+
+.sidebar {
+	width: 240px;
+	height: 100%;
+	border-right: 2px solid #666;
+	padding-top: 32px;
+}
