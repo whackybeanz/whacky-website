@@ -1,3 +1,13 @@
+$(".sidebar-btn").on("click", function() {
+	var tabToShow = $(this).data("tab");
+
+	$(".sidebar-btn").removeClass("active");
+	$(this).addClass("active");
+
+	$(".info-div").fadeOut("fast");
+	$(`#flame-${tabToShow}`).fadeIn("fast");
+})
+
 $(".equip-type-input").on("click", function() {
 	$(".equip-type-input").removeClass("active");
 	$(this).addClass("active");
@@ -37,7 +47,7 @@ function displayOutput(inputWAMA, pureStatsFactor, mixedStatsFactor, hpMpFactor)
 	var flameType = $(".flame-type-input.active").data("flameType");
 	var statType = $(".stat-type-input.active").data("statType");
 
-	var normalWAMA = [1, 2.2, 3.65, 5.35, 7.3, 8.8, 10.25];
+	var normalWAMA = [1, 2.2, 3.625, 5.325, 7.3, 8.8, 10.25];
 	var bossWAMA = [0, 0, 3, 4.4, 6.05, 8, 10.25];
 
 	var typeOfWAMA;

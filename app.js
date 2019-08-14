@@ -11,7 +11,7 @@ app.use(express.static(__dirname + "/public"));
 app.use("/", indexRoutes);
 
 app.get("*", function(req, res) {
-	req.flash("error", "Invalid route accessed.")
+	//req.flash("error", "Invalid route accessed.")
 	res.redirect("back");
 })
 

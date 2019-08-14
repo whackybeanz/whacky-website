@@ -1,6 +1,15 @@
+/****************
+
+	GENERAL
+
+*****************/
+.main-content-div {
+	position: relative;
+}
+
 .info-div {
-	padding: 32px 16px;
-	width: 100%;
+	padding: 32px 0px;
+	width: 1024px;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -14,6 +23,11 @@
 	margin-bottom: 32px;
 }
 
+/****************
+
+	CALCULATOR
+
+*****************/
 .settings-div {
 	width: 100%;
 	padding: 0 32px;
@@ -174,4 +188,14 @@ tr th.table-cols-header {
 
 .rrf {
 	background-color: #C9F8C2;
+}
+
+/****************
+
+	INFO CORNER
+	
+*****************/
+#flame-info {
+	display: flex;
+	display: none;
 }
