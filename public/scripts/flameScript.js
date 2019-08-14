@@ -4,8 +4,8 @@ $(".sidebar-btn").on("click", function() {
 	$(".sidebar-btn").removeClass("active");
 	$(this).addClass("active");
 
-	$(".info-div").fadeOut("fast");
-	$(`#flame-${tabToShow}`).fadeIn("fast");
+	$(".info-div").removeClass("active");
+	$(`#flame-${tabToShow}`).addClass("active");
 })
 
 $(".equip-type-input").on("click", function() {

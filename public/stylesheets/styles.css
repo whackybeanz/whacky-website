@@ -15,12 +15,37 @@
 	flex-direction: column;
 	align-items: center;
 	overflow: auto;
+	opacity: 0;
+	transition: all 0.3s;
+	position: absolute;
+	top: 0;
+}
+
+.info-div.active {
+	opacity: 1;
+	transition: all 0.3s;
 }
 
 .page-header {
 	width: 100%;
 	text-align: center;
 	margin-bottom: 32px;
+}
+
+.info-header-box {
+	border-top: 1px solid black;
+	position: relative;
+	width: 400px;
+	display: flex;
+	justify-content: center;
+}
+
+.info-header {
+	text-transform: uppercase;
+	padding: 0 16px;
+	position: absolute;
+	top: -16px;
+	background-color: white;
 }
 
 /****************
@@ -196,6 +221,5 @@ tr th.table-cols-header {
 	
 *****************/
 #flame-info {
-	display: flex;
-	display: none;
+	position: absolute;
 }
