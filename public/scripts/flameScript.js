@@ -1,3 +1,7 @@
+$(function() {
+	$('[data-toggle="tooltip"]').tooltip();
+})
+
 $(".sidebar-btn").on("click", function() {
 	var tabToShow = $(this).data("tab");
 

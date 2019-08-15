@@ -2,7 +2,6 @@ html, body {
 	height: 100%;
 	font-size: 16px;
 	font-family: "Varela Round", sans-serif;
-	overflow: hidden;
 }
 
 input[type="number"] {
@@ -53,4 +52,8 @@ input[type="radio"] {
 	border-right: 2px solid #666;
 	padding-top: 32px;
 	margin-right: 16px;
+}
+
+.table {
+	margin-bottom: 0;
 }
