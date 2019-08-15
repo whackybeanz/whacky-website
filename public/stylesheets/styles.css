@@ -8,44 +8,36 @@
 }
 
 .info-div {
-	padding: 32px 0px;
+	padding: 48px 0 32px 0;
 	width: 1024px;
 	height: 100%;
-	display: flex;
+	display: none;
 	flex-direction: column;
 	align-items: center;
 	overflow: auto;
-	opacity: 0;
-	transition: all 0.3s;
 	position: absolute;
 	top: 0;
 }
 
-.info-div.active {
-	opacity: 1;
-	transition: all 0.3s;
+.page-header-box {
+	position: relative;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 16px;
+}
+
+.horz-line {
+	height: 1px;
+	width: 75px;
+	background-color: black;
 }
 
 .page-header {
-	width: 100%;
-	text-align: center;
-	margin-bottom: 32px;
-}
-
-.info-header-box {
-	border-top: 1px solid black;
-	position: relative;
-	width: 400px;
-	display: flex;
-	justify-content: center;
-}
-
-.info-header {
+	margin-bottom: 0;
 	text-transform: uppercase;
 	padding: 0 16px;
-	position: absolute;
-	top: -16px;
-	background-color: white;
 }
 
 /****************
@@ -53,9 +45,18 @@
 	CALCULATOR
 
 *****************/
-.settings-div {
+#flame-calculator {
+	display: flex;
+}
+
+#settings-div, #flame-values-div {
 	width: 100%;
 	padding: 0 32px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-bottom: 32px;
 }
 
 #options-form {
@@ -187,17 +188,12 @@
 	font-size: 0.875rem;
 }
 
-.horz-divider {
-	width: 160px;
-	margin: 32px 0;
-}
-
 #flame-values-table {
 	font-size: 0.875rem;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	width: 100%;
+	max-width: 720px;
 }
 
 tr th.table-cols,
@@ -208,7 +204,7 @@ tr td.table-cols {
 
 tr th.table-cols-header {
 	padding: 5px 10px;
-	text-align: right;
+	text-align: center;
 }
 
 .rrf {
@@ -222,4 +218,17 @@ tr th.table-cols-header {
 *****************/
 #flame-info {
 	position: absolute;
+}
+
+.info-section {
+	margin-bottom: 16px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.info-section-details {
+	width: 720px;
 }

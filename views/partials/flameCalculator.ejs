@@ -1,6 +1,10 @@
 <div class="info-div active" id="flame-calculator">
-	<div class="settings-div">
-		<h1 class="font-header page-header">Settings</h1>
+	<div id="settings-div">
+		<div class="page-header-box">
+			<div class="horz-line"></div>
+			<h1 class="font-header page-header">Settings</h1>
+			<div class="horz-line"></div>
+		</div>
 		<div>
 			<form class="font-form" id="options-form">
 				<div id="options-form-div">
@@ -45,10 +49,13 @@
 			</form>
 		</div>
 	</div>
-	<hr class="horz-divider">
-	<div class="flame-values-div">
-		<h1 class="font-header page-header">Possible Flame Values</h1>
-		<div class="font-content" id="flame-values-table">
+	<div id="flame-values-div">
+		<div class="page-header-box">
+			<div class="horz-line"></div>
+			<h1 class="font-header page-header">Possible Flame Values</h1>
+			<div class="horz-line"></div>
+		</div>
+		<div class="font-table" id="flame-values-table">
 			<table class="table table-sm table-bordered table-hover">
 				<thead>
 					<tr>
@@ -64,7 +71,7 @@
 				</thead>
 				<tbody>
 					<tr>
-						<th class="table-cols-header">Weapon WA/MA</th>
+						<th class="table-cols-header text-right">Weapon WA/MA</th>
 						<td class="table-cols"><span class="weapon-wa-ma-output flame-tier-1"></span></td>
 						<td class="table-cols"><span class="weapon-wa-ma-output flame-tier-2"></span></td>
 						<td class="table-cols"><span class="weapon-wa-ma-output flame-tier-3"></span></td>
@@ -74,7 +81,7 @@
 						<td class="table-cols"><span class="weapon-wa-ma-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
-						<th class="table-cols-header">Boss%</th>
+						<th class="table-cols-header text-right">Boss%</th>
 						<td class="table-cols"><span class="boss-dmg-output flame-tier-1"></span></td>
 						<td class="table-cols"><span class="boss-dmg-output flame-tier-2"></span></td>
 						<td class="table-cols"><span class="boss-dmg-output flame-tier-3"></span></td>
@@ -84,7 +91,7 @@
 						<td class="table-cols"><span class="boss-dmg-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
-						<th class="table-cols-header">Pure Stats</th>
+						<th class="table-cols-header text-right">Pure Stats</th>
 						<td class="table-cols"><span class="pure-stats-output flame-tier-1"></span></td>
 						<td class="table-cols"><span class="pure-stats-output flame-tier-2"></span></td>
 						<td class="table-cols"><span class="pure-stats-output flame-tier-3"></span></td>
@@ -94,7 +101,7 @@
 						<td class="table-cols"><span class="pure-stats-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
-						<th class="table-cols-header">All Stats%</th>
+						<th class="table-cols-header text-right">All Stats%</th>
 						<td class="table-cols"><span class="all-stats-output flame-tier-1"></span></td>
 						<td class="table-cols"><span class="all-stats-output flame-tier-2"></span></td>
 						<td class="table-cols"><span class="all-stats-output flame-tier-3"></span></td>
@@ -104,7 +111,7 @@
 						<td class="table-cols"><span class="all-stats-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
-						<th class="table-cols-header">Mixed Stats</th>
+						<th class="table-cols-header text-right">Mixed Stats</th>
 						<td class="table-cols"><span class="mixed-stats-output flame-tier-1"></span></td>
 						<td class="table-cols"><span class="mixed-stats-output flame-tier-2"></span></td>
 						<td class="table-cols"><span class="mixed-stats-output flame-tier-3"></span></td>
@@ -114,7 +121,7 @@
 						<td class="table-cols"><span class="mixed-stats-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
-						<th class="table-cols-header">Damage%</th>
+						<th class="table-cols-header text-right">Damage%</th>
 						<td class="table-cols"><span class="damage-output flame-tier-1"></span></td>
 						<td class="table-cols"><span class="damage-output flame-tier-2"></span></td>
 						<td class="table-cols"><span class="damage-output flame-tier-3"></span></td>
@@ -124,7 +131,7 @@
 						<td class="table-cols"><span class="damage-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
-						<th class="table-cols-header">Armor WA/MA</th>
+						<th class="table-cols-header text-right">Armor WA/MA</th>
 						<td class="table-cols"><span class="armor-wa-ma-output flame-tier-1"></span></td>
 						<td class="table-cols"><span class="armor-wa-ma-output flame-tier-2"></span></td>
 						<td class="table-cols"><span class="armor-wa-ma-output flame-tier-3"></span></td>
@@ -134,7 +141,7 @@
 						<td class="table-cols"><span class="armor-wa-ma-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
-						<th class="table-cols-header">HP/MP</th>
+						<th class="table-cols-header text-right">HP/MP</th>
 						<td class="table-cols"><span class="hp-mp-output flame-tier-1"></span></td>
 						<td class="table-cols"><span class="hp-mp-output flame-tier-2"></span></td>
 						<td class="table-cols"><span class="hp-mp-output flame-tier-3"></span></td>
@@ -144,7 +151,7 @@
 						<td class="table-cols"><span class="hp-mp-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
-						<th class="table-cols-header">Defense</th>
+						<th class="table-cols-header text-right">Defense</th>
 						<td class="table-cols"><span class="defense-output flame-tier-1"></span></td>
 						<td class="table-cols"><span class="defense-output flame-tier-2"></span></td>
 						<td class="table-cols"><span class="defense-output flame-tier-3"></span></td>
@@ -154,7 +161,7 @@
 						<td class="table-cols"><span class="defense-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
-						<th class="table-cols-header">Equip Level Reduction</th>
+						<th class="table-cols-header text-right">Equip Level Reduction</th>
 						<td class="table-cols"><span class="level-reduce-output flame-tier-1"></span></td>
 						<td class="table-cols"><span class="level-reduce-output flame-tier-2"></span></td>
 						<td class="table-cols"><span class="level-reduce-output flame-tier-3"></span></td>
@@ -164,7 +171,7 @@
 						<td class="table-cols"><span class="level-reduce-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
-						<th class="table-cols-header">Speed/Jump</th>
+						<th class="table-cols-header text-right">Speed/Jump</th>
 						<td class="table-cols"><span class="speed-jump-output flame-tier-1"></span></td>
 						<td class="table-cols"><span class="speed-jump-output flame-tier-2"></span></td>
 						<td class="table-cols"><span class="speed-jump-output flame-tier-3"></span></td>
