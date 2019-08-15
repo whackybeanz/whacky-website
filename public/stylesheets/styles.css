@@ -197,14 +197,9 @@
 }
 
 tr th.table-cols,
-tr td.table-cols {
-	padding: 5px 10px;
-	text-align: center;
-}
-
+tr td.table-cols,
 tr th.table-cols-header {
 	padding: 5px 10px;
-	text-align: center;
 }
 
 .rrf {
@@ -231,4 +226,17 @@ tr th.table-cols-header {
 
 .info-section-details {
 	width: 720px;
+}
+
+.list-items {
+	height: 32px;
+}
+
+.table-cols-desc {
+	width: 220px;
+}
+
+.item-img {
+	width: 28px;
+	margin: 0 4px;
 }

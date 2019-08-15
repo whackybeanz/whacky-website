@@ -28,6 +28,10 @@ input[type="radio"] {
 	font-size: 0.875rem;
 }
 
+.font-small {
+	font-size: 0.75rem;
+}
+
 .container-fluid {
 	width: 1280px;
 }
