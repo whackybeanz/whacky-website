@@ -248,3 +248,8 @@ tr th.table-cols-header {
 	margin: 4px;
 	cursor: help;
 }
+
+.item-img-inline {
+	margin: 0 4px;
+	cursor: help;
+}
