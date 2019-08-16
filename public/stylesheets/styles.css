@@ -25,7 +25,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-bottom: 16px;
 }
 
 .horz-line {
@@ -222,11 +221,11 @@ tr th.table-cols-header {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	margin-bottom: 32px;
 }
 
 .info-section-details {
 	width: 720px;
+	margin-bottom: 32px;
 }
 
 .list-items {
@@ -235,6 +234,14 @@ tr th.table-cols-header {
 
 .table-cols-desc {
 	width: 220px;
+}
+
+.table-cols-100 {
+	width: 100px;
+}
+
+.table-cols-150 {
+	width: 150px;
 }
 
 .item-img {

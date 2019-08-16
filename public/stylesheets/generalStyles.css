@@ -19,6 +19,13 @@ input[type="radio"] {
 	font-weight: bold;
 }
 
+.font-subheader {
+	font-size: 1rem;
+	font-weight: bold;
+	text-decoration: underline;
+	margin-bottom: 0;
+}
+
 .font-content {
 	font-size: 1rem;
 }
@@ -56,4 +63,8 @@ input[type="radio"] {
 
 .table {
 	margin-bottom: 0;
+}
+
+.tooltip {
+	font-size: 0.75rem;
 }
