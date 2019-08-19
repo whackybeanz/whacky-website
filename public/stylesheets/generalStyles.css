@@ -5,9 +5,8 @@ html, body {
 }
 
 input[type="number"] {
-	height: 32px;
+	width: 100px;
 	border-radius: 5px;
-	text-align: center;
 }
 
 input[type="radio"] {
@@ -30,7 +29,7 @@ input[type="radio"] {
 	font-size: 1rem;
 }
 
-.font-sidebar, .font-form, .font-table {
+.font-sidebar, .font-form, .font-table, .font-button {
 	font-size: 0.875rem;
 }
 
@@ -51,14 +50,6 @@ input[type="radio"] {
 	height: 100%;
 	display: flex;
 	padding: 56px 0 0 0;
-}
-
-.sidebar {
-	width: 240px;
-	height: 100%;
-	border-right: 2px solid #666;
-	padding-top: 32px;
-	margin-right: 16px;
 }
 
 .table {

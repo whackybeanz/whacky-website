@@ -8,7 +8,7 @@ $(".sidebar-btn").on("click", function() {
 	$(".sidebar-btn").removeClass("active");
 	$(this).addClass("active");
 
-	$(".info-div").fadeOut();
+	$(".single-info-page").fadeOut();
 	$(`#flame-${tabToShow}`).css({"display": "flex"}).hide().fadeIn();
 })
 

@@ -3,28 +3,37 @@
 	GENERAL
 
 *****************/
-.main-content-div {
-	position: relative;
-	margin-left: 256px;
+.single-info-page {
+	padding-top: 32px;
+	width: 100%;
 }
 
-.info-div {
-	padding: 32px 0;
-	width: 1024px;
-	height: 100%;
-	display: none;
-	flex-direction: column;
-	align-items: center;
-	position: absolute;
-	top: 0;
+@media (min-width: 768px) {
+	.single-info-page {
+		padding: 32px;
+		display: none;
+		position: absolute;
+		top: 0;
+	}
+}
+
+.single-info-page.active {
+	display: flex;
+}
+
+.info-section {
+	margin-bottom: 16px;
+	max-width: 720px;
+	width: 100%;
+}
+
+.info-section-details {
+	width: 100%;
+	margin-bottom: 32px;
 }
 
 .page-header-box {
-	position: relative;
 	height: 40px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .horz-line {
@@ -35,7 +44,6 @@
 
 .page-header {
 	margin-bottom: 0;
-	text-transform: uppercase;
 	padding: 0 16px;
 }
 
@@ -44,101 +52,14 @@
 	CALCULATOR
 
 *****************/
-#flame-calculator {
-	display: flex;
-}
-
-#settings-div, #flame-values-div {
-	width: 100%;
-	padding: 0 32px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	margin-bottom: 32px;
-}
-
 #options-form {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-#options-form-div {
-	display: grid;
-	grid-template-areas:
-		"level level gear gear base base"
-		"flame flame flame stat stat stat";
-	grid-gap: 16px 32px;
-	margin-bottom: 24px;
-}
-
-#gear-level-div {
-	grid-area: level;
-	padding-bottom: 16px;
-}
-
-#gear-type-div {
-	grid-area: gear;
-	height: 40px;
-	display: flex;
-	flex-direction: column;
-}
-
-#gear-type-div > div {
-	display: flex;
-	align-items: center;
-}
-
-.notes-small {
-	margin-top: 6px;
-	font-size: 10px;
-}
-
-#base-wa-ma-div {
-	grid-area: base;
-	padding-bottom: 16px;
-}
-
-#flame-type-div {
-	grid-area: flame;
-}
-
-#stat-type-div {
-	grid-area: stat;
-}
-
-.input-div {
-	height: 48px;
-	display: flex;
-	align-items: center;
-	padding: 0 8px;
-}
-
-.input-header {
-	margin-right: 16px;
-	font-weight: bold;
-}
-
-.input-number {
-	width: 75px;
-}
-
-.radio-select-div {
-	height: 32px;
-	position: relative;
-	display: flex;
+	width: 100%;
 }
 
 .radio-select {
-	width: 75px;
 	height: 32px;
 	border: 1px solid black;
 	border-left: none;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	cursor: pointer;
 	transition: all 0.2s;
 }
@@ -164,35 +85,8 @@
 	position: relative;
 }
 
-.flame-radio {
-	width: 80px;
-	height: 32px;
-	padding: 0 8px;
-}
-
-.stat-radio {
-	width: 56px;
-	height: 32px;
-	padding: 0 8px;
-}
-
-#flame-submit-btn {
-	height: 32px;
-	width: 250px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 0;
-	font-weight: bold;
-	font-size: 0.875rem;
-}
-
-#flame-values-table {
-	font-size: 0.875rem;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	max-width: 720px;
+.small-img {
+	height: 24px;
 }
 
 tr th.table-cols,
@@ -201,33 +95,11 @@ tr th.table-cols-header {
 	padding: 5px 10px;
 }
 
-.rrf {
-	background-color: #C9F8C2;
-}
-
 /****************
 
 	INFO CORNER
 	
 *****************/
-#flame-info {
-	position: absolute;
-}
-
-.info-section {
-	margin-bottom: 16px;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
-
-.info-section-details {
-	width: 720px;
-	margin-bottom: 32px;
-}
-
 .list-items {
 	height: 32px;
 }
