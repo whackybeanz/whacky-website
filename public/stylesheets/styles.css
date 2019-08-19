@@ -10,7 +10,6 @@
 
 @media (min-width: 768px) {
 	.single-info-page {
-		padding: 32px;
 		display: none;
 		position: absolute;
 		top: 0;
@@ -62,6 +61,7 @@
 	border-left: none;
 	cursor: pointer;
 	transition: all 0.2s;
+	line-height: 1.25;
 }
 
 .radio-select:hover,
@@ -124,4 +124,15 @@ tr th.table-cols-header {
 .item-img-inline {
 	margin: 0 4px;
 	cursor: help;
+}
+
+.border-img {
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+.standard-img-size {
+	width: 30px;
+	height: 30px;
+	object-fit: scale-down;
 }

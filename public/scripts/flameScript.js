@@ -58,7 +58,7 @@ function displayOutput(inputWAMA, pureStatsFactor, mixedStatsFactor, hpMpFactor)
 	var minFlameTier = 0;
 	var maxFlameTier = 0;
 
-	if(equipType === "normal") {
+	if(equipType === "normal" || equipType === "eb") {
 		if(flameType === "crimson") {
 			minFlameTier = 1;
 			maxFlameTier = 4;

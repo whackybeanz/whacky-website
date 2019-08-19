@@ -5,7 +5,6 @@ html, body {
 }
 
 input[type="number"] {
-	width: 100px;
 	border-radius: 5px;
 }
 
