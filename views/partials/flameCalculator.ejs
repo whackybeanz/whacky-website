@@ -3,7 +3,7 @@
 		<div class="page-header-box w-100 d-flex justify-content-center align-items-center position-relative border-top border-dark mb-4">
 			<h1 class="font-header page-header d-flex align-items-center text-uppercase position-absolute px-3">Settings</h1>
 		</div>
-		<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+		<div class="font-content w-100 mb-4">
 			<form class="font-form d-flex justify-content-center align-items-center flex-column flex-lg-row" id="options-form">
 				<div class="col-12 col-lg-6">
 					<div class="form-group row d-flex align-items-center">
@@ -21,7 +21,7 @@
 				</div>
 				<div class="col-12 col-lg-6">
 					<div class="form-group row d-flex align-items-center">
-						<label for="equip-level" class="col-4 col-lg-5 col-form-label font-weight-bold text-left text-lg-right">Equip Type <i class="far fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Zero weapons, CRA boss helmets, Horntail pendants are considered Normal type. See Item Types section for more details."></i></label>
+						<label for="equip-level" class="col-4 col-lg-5 col-form-label font-weight-bold text-left text-lg-right">Equip Type <sup class="text-info">[1]</sup></label>
 						<div class="col-8 col-lg-7 d-flex justify-content-center">
 							<div class="font-small radio-select equip-type-input leftmost-radio active d-flex flex-fill justify-content-center align-items-center px-2" data-equip-type="normal">Normal</div>
 							<div class="font-small radio-select equip-type-input d-flex flex-fill justify-content-center align-items-center text-center px-2" data-equip-type="eb">Elite Boss</div>
@@ -41,14 +41,15 @@
 					</div>
 				</div>
 			</form>
+			<p class="font-small text-justify"><strong class="text-info">[1]</strong> For Equip Type, please be informed that Zero weapons and Chaos Root Abyss boss helmets are considered Normal type. Most unique equipment dropped by bosses are Special type. See more examples and information under 'About Flames - Item Types' section.</p>
 		</div>
 	</div>
 	<div class="info-section w-100 d-flex justify-content-center align-items-center flex-column mb-3">
 		<div class="page-header-box w-100 d-flex justify-content-center align-items-center position-relative border-top border-dark mb-4">
 			<h1 class="font-header page-header d-flex align-items-center text-uppercase position-absolute px-3">Possible Flame Values</h1>
 		</div>
-		<div class="font-table w-100 mb-4">
-			<table class="table table-sm table-bordered table-hover mb-0">
+		<div class="w-100 mb-4">
+			<table class="font-table table table-sm table-bordered table-hover mb-2">
 				<thead>
 					<tr>
 						<th></th>
@@ -103,7 +104,7 @@
 						<td class="text-center"><span class="all-stats-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
-						<th class="table-cols-header text-right">Mixed Stats</th>
+						<th class="table-cols-header text-right">Mixed Stats <sup class="text-info">[2]</sup></th>
 						<td class="text-center"><span class="mixed-stats-output flame-tier-1"></span></td>
 						<td class="text-center"><span class="mixed-stats-output flame-tier-2"></span></td>
 						<td class="text-center"><span class="mixed-stats-output flame-tier-3"></span></td>
@@ -174,6 +175,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<p class="font-small text-justify"><strong class="text-info">[2]</strong> Mixed Stats represents a mix of two possible stats picked between STR, DEX, INT and LUK (e.g. STR+DEX). The values displayed in Mixed Stats represent the amount given for each of the two stats (e.g. if the mixed stats chosen was STR+DEX, "10" in the table would mean +10 to STR and +10 to DEX).</p>
 		</div>
 	</div>
 </div>
