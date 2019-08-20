@@ -3,11 +3,6 @@
 	GENERAL
 
 *****************/
-.single-info-page {
-	padding-top: 32px;
-	width: 100%;
-}
-
 @media (min-width: 768px) {
 	.single-info-page {
 		display: none;
@@ -21,29 +16,11 @@
 }
 
 .info-section {
-	margin-bottom: 16px;
 	max-width: 720px;
-	width: 100%;
-}
-
-.info-section-details {
-	width: 100%;
-	margin-bottom: 32px;
-}
-
-.page-header-box {
-	height: 40px;
-}
-
-.horz-line {
-	height: 1px;
-	width: 75px;
-	background-color: black;
 }
 
 .page-header {
-	margin-bottom: 0;
-	padding: 0 16px;
+	background-color: white;
 }
 
 /****************
@@ -76,23 +53,15 @@
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 	border-left: 1px solid black;
-	position: relative;
 }
 
 .rightmost-radio {
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
-	position: relative;
 }
 
 .small-img {
 	height: 24px;
-}
-
-tr th.table-cols,
-tr td.table-cols,
-tr th.table-cols-header {
-	padding: 5px 10px;
 }
 
 /****************
@@ -100,30 +69,27 @@ tr th.table-cols-header {
 	INFO CORNER
 	
 *****************/
-.list-items {
-	height: 32px;
+.table-cols-header {
+	min-width: 75px;
+	max-width: 150px;
 }
 
-.table-cols-desc {
-	width: 220px;
+.table-cols-50 {
+	min-width: 50px;
 }
 
-.table-cols-100 {
-	width: 100px;
-}
-
-.table-cols-150 {
-	width: 150px;
+.table-cols-125 {
+	min-width: 125px;
+	max-width: 300px;
 }
 
 .item-img {
-	margin: 4px;
 	cursor: help;
 }
 
 .item-img-inline {
-	margin: 0 4px;
 	cursor: help;
+	height: 25px;
 }
 
 .border-img {

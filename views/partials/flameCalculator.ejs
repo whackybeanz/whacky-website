@@ -1,181 +1,176 @@
-<div class="single-info-page active align-items-center flex-column" id="flame-calculator">
-	<div class="info-section d-flex justify-content-center align-items-center flex-column">
-		<div class="page-header-box d-flex justify-content-center align-items-center position-relative">
-			<div class="horz-line"></div>
-			<h1 class="font-header page-header text-uppercase">Settings</h1>
-			<div class="horz-line"></div>
+<div class="single-info-page active w-100 align-items-center flex-column px-4 pt-4 px-lg-0 pt-lg-4" id="flame-calculator">
+	<div class="info-section w-100 d-flex justify-content-center align-items-center flex-column mb-3">
+		<div class="page-header-box w-100 d-flex justify-content-center align-items-center position-relative border-top border-dark mb-4">
+			<h1 class="font-header page-header d-flex align-items-center text-uppercase position-absolute px-3">Settings</h1>
 		</div>
-		<div class="font-content info-section-details d-flex justify-content-center align-items-center flex-column">
-			<form class="font-form d-flex justify-content-center align-items-center" id="options-form">
-				<div class="col-12 col-md-6">
+		<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+			<form class="font-form d-flex justify-content-center align-items-center flex-column flex-lg-row" id="options-form">
+				<div class="col-12 col-lg-6">
 					<div class="form-group row d-flex align-items-center">
-						<label for="gear-level" class="col-8 col-form-label font-weight-bold text-right">Equip Level</label>
-						<div class="col-4 d-flex">
+						<label for="gear-level" class="col-4 col-lg-8 col-form-label font-weight-bold text-left text-lg-right">Equip Level</label>
+						<div class="col-8 col-lg-4 d-flex">
 							<input class="font-small form-control text-center" type="number" id="gear-level" min=0 max=275 value=0>
 						</div>
 					</div>
 					<div class="form-group row d-flex align-items-center">
-						<label for="base-wa-ma" class="col-8 col-form-label font-weight-bold text-right">Weapon Base WA/MA</label>
-						<div class="col-4 d-flex">
+						<label for="base-wa-ma" class="col-4 col-lg-8 col-form-label font-weight-bold text-left text-lg-right">Weapon Base WA/MA</label>
+						<div class="col-8 col-lg-4 d-flex">
 							<input class="font-small form-control text-center" type="number" id="base-wa-ma" min=0 value=0>
 						</div>
 					</div>
 				</div>
-				<div class="col-12 col-md-6">
+				<div class="col-12 col-lg-6">
 					<div class="form-group row d-flex align-items-center">
-						<label for="equip-level" class="col-5 col-form-label font-weight-bold text-right">Equip Type <i class="far fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Zero weapons, CRA boss helmets are considered Normal type."></i></label>
-						<div class="col-7 d-flex justify-content-center">
-							<div class="font-small radio-select equip-type-input col-4 leftmost-radio active d-flex justify-content-center align-items-center px-2" data-equip-type="normal">Normal</div>
-							<div class="font-small radio-select equip-type-input col-4 d-flex justify-content-center align-items-center text-center px-2" data-equip-type="eb">Elite Boss</div>
-							<div class="font-small radio-select equip-type-input col-4 rightmost-radio d-flex justify-content-center align-items-center px-2" data-equip-type="boss">Special</div>
+						<label for="equip-level" class="col-4 col-lg-5 col-form-label font-weight-bold text-left text-lg-right">Equip Type <i class="far fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Zero weapons, CRA boss helmets, Horntail pendants are considered Normal type. See Item Types section for more details."></i></label>
+						<div class="col-8 col-lg-7 d-flex justify-content-center">
+							<div class="font-small radio-select equip-type-input leftmost-radio active d-flex flex-fill justify-content-center align-items-center px-2" data-equip-type="normal">Normal</div>
+							<div class="font-small radio-select equip-type-input d-flex flex-fill justify-content-center align-items-center text-center px-2" data-equip-type="eb">Elite Boss</div>
+							<div class="font-small radio-select equip-type-input rightmost-radio d-flex flex-fill justify-content-center align-items-center px-2" data-equip-type="boss">Special</div>
 						</div>
 					</div>
 					<div class="form-group row d-flex align-items-center">
-						<label for="equip-level" class="col-5 col-form-label font-weight-bold text-right">Flame Type</label>
-						<div class="col-7 d-flex justify-content-center">
-							<div class="font-small radio-select flame-type-input leftmost-radio active col-6 d-flex justify-content-center align-items-center px-2" data-flame-type="crimson" data-toggle="tooltip" data-placement="bottom" title="Crimson / Obsidian Resurrection Flames">
+						<label for="equip-level" class="col-4 col-lg-5 col-form-label font-weight-bold text-left text-lg-right">Flame Type</label>
+						<div class="col-8 col-lg-7 d-flex justify-content-center">
+							<div class="font-small radio-select flame-type-input leftmost-radio active d-flex flex-fill justify-content-center align-items-center px-2" data-flame-type="crimson" data-toggle="tooltip" data-placement="bottom" title="Crimson / Obsidian Resurrection Flames">
 								<img src="/images/flames/flame-crimson.png" class="small-img">
 							</div>
-							<div class="font-small radio-select flame-type-input rightmost-radio col-6 d-flex justify-content-center align-items-center px-2" data-flame-type="rainbow" data-toggle="tooltip" data-placement="bottom" title="Rainbow / Black Resurrection Flame">
+							<div class="font-small radio-select flame-type-input rightmost-radio d-flex flex-fill justify-content-center align-items-center px-2" data-flame-type="rainbow" data-toggle="tooltip" data-placement="bottom" title="Rainbow / Black Resurrection Flame">
 								<img src="/images/flames/flame-rainbow.png" class="small-img">
 							</div>
 						</div>
 					</div>
 				</div>
 			</form>
-			<button type="submit" class="font-button btn btn-outline-primary d-flex justify-content-center align-items-center font-weight-bold" id="flame-submit-btn">Show Possible Flame Values</button>
 		</div>
 	</div>
-	<div class="info-section d-flex justify-content-center align-items-center flex-column">
-		<div class="page-header-box d-flex justify-content-center align-items-center position-relative">
-			<div class="horz-line"></div>
-			<h1 class="font-header page-header text-uppercase">Possible Flame Values</h1>
-			<div class="horz-line"></div>
+	<div class="info-section w-100 d-flex justify-content-center align-items-center flex-column mb-3">
+		<div class="page-header-box w-100 d-flex justify-content-center align-items-center position-relative border-top border-dark mb-4">
+			<h1 class="font-header page-header d-flex align-items-center text-uppercase position-absolute px-3">Possible Flame Values</h1>
 		</div>
-		<div class="font-table info-section-details">
-			<table class="table table-sm table-bordered table-hover">
+		<div class="font-table w-100 mb-4">
+			<table class="table table-sm table-bordered table-hover mb-0">
 				<thead>
 					<tr>
 						<th></th>
-						<th class="table-cols text-center" scope="col">Tier 1</th>
-						<th class="table-cols text-center" scope="col">Tier 2</th>
-						<th class="table-cols text-center" scope="col">Tier 3</th>
-						<th class="table-cols text-center" scope="col">Tier 4</th>
-						<th class="table-cols text-center" scope="col">Tier 5</th>
-						<th class="table-cols text-center" scope="col">Tier 6</th>
-						<th class="table-cols text-center" scope="col">Tier 7</th>
+						<th class="text-center" scope="col">Tier 1</th>
+						<th class="text-center" scope="col">Tier 2</th>
+						<th class="text-center" scope="col">Tier 3</th>
+						<th class="text-center" scope="col">Tier 4</th>
+						<th class="text-center" scope="col">Tier 5</th>
+						<th class="text-center" scope="col">Tier 6</th>
+						<th class="text-center" scope="col">Tier 7</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<th class="table-cols-header text-right">Weapon WA/MA</th>
-						<td class="table-cols text-center"><span class="weapon-wa-ma-output flame-tier-1"></span></td>
-						<td class="table-cols text-center"><span class="weapon-wa-ma-output flame-tier-2"></span></td>
-						<td class="table-cols text-center"><span class="weapon-wa-ma-output flame-tier-3"></span></td>
-						<td class="table-cols text-center"><span class="weapon-wa-ma-output flame-tier-4"></span></td>
-						<td class="table-cols text-center"><span class="weapon-wa-ma-output flame-tier-5"></span></td>
-						<td class="table-cols text-center"><span class="weapon-wa-ma-output flame-tier-6"></span></td>
-						<td class="table-cols text-center"><span class="weapon-wa-ma-output flame-tier-7"></span></td>
+						<td class="text-center"><span class="weapon-wa-ma-output flame-tier-1"></span></td>
+						<td class="text-center"><span class="weapon-wa-ma-output flame-tier-2"></span></td>
+						<td class="text-center"><span class="weapon-wa-ma-output flame-tier-3"></span></td>
+						<td class="text-center"><span class="weapon-wa-ma-output flame-tier-4"></span></td>
+						<td class="text-center"><span class="weapon-wa-ma-output flame-tier-5"></span></td>
+						<td class="text-center"><span class="weapon-wa-ma-output flame-tier-6"></span></td>
+						<td class="text-center"><span class="weapon-wa-ma-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
 						<th class="table-cols-header text-right">Boss%</th>
-						<td class="table-cols text-center"><span class="boss-dmg-output flame-tier-1"></span></td>
-						<td class="table-cols text-center"><span class="boss-dmg-output flame-tier-2"></span></td>
-						<td class="table-cols text-center"><span class="boss-dmg-output flame-tier-3"></span></td>
-						<td class="table-cols text-center"><span class="boss-dmg-output flame-tier-4"></span></td>
-						<td class="table-cols text-center"><span class="boss-dmg-output flame-tier-5"></span></td>
-						<td class="table-cols text-center"><span class="boss-dmg-output flame-tier-6"></span></td>
-						<td class="table-cols text-center"><span class="boss-dmg-output flame-tier-7"></span></td>
+						<td class="text-center"><span class="boss-dmg-output flame-tier-1"></span></td>
+						<td class="text-center"><span class="boss-dmg-output flame-tier-2"></span></td>
+						<td class="text-center"><span class="boss-dmg-output flame-tier-3"></span></td>
+						<td class="text-center"><span class="boss-dmg-output flame-tier-4"></span></td>
+						<td class="text-center"><span class="boss-dmg-output flame-tier-5"></span></td>
+						<td class="text-center"><span class="boss-dmg-output flame-tier-6"></span></td>
+						<td class="text-center"><span class="boss-dmg-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
 						<th class="table-cols-header text-right">Pure Stats</th>
-						<td class="table-cols text-center"><span class="pure-stats-output flame-tier-1"></span></td>
-						<td class="table-cols text-center"><span class="pure-stats-output flame-tier-2"></span></td>
-						<td class="table-cols text-center"><span class="pure-stats-output flame-tier-3"></span></td>
-						<td class="table-cols text-center"><span class="pure-stats-output flame-tier-4"></span></td>
-						<td class="table-cols text-center"><span class="pure-stats-output flame-tier-5"></span></td>
-						<td class="table-cols text-center"><span class="pure-stats-output flame-tier-6"></span></td>
-						<td class="table-cols text-center"><span class="pure-stats-output flame-tier-7"></span></td>
+						<td class="text-center"><span class="pure-stats-output flame-tier-1"></span></td>
+						<td class="text-center"><span class="pure-stats-output flame-tier-2"></span></td>
+						<td class="text-center"><span class="pure-stats-output flame-tier-3"></span></td>
+						<td class="text-center"><span class="pure-stats-output flame-tier-4"></span></td>
+						<td class="text-center"><span class="pure-stats-output flame-tier-5"></span></td>
+						<td class="text-center"><span class="pure-stats-output flame-tier-6"></span></td>
+						<td class="text-center"><span class="pure-stats-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
 						<th class="table-cols-header text-right">All Stats%</th>
-						<td class="table-cols text-center"><span class="all-stats-output flame-tier-1"></span></td>
-						<td class="table-cols text-center"><span class="all-stats-output flame-tier-2"></span></td>
-						<td class="table-cols text-center"><span class="all-stats-output flame-tier-3"></span></td>
-						<td class="table-cols text-center"><span class="all-stats-output flame-tier-4"></span></td>
-						<td class="table-cols text-center"><span class="all-stats-output flame-tier-5"></span></td>
-						<td class="table-cols text-center"><span class="all-stats-output flame-tier-6"></span></td>
-						<td class="table-cols text-center"><span class="all-stats-output flame-tier-7"></span></td>
+						<td class="text-center"><span class="all-stats-output flame-tier-1"></span></td>
+						<td class="text-center"><span class="all-stats-output flame-tier-2"></span></td>
+						<td class="text-center"><span class="all-stats-output flame-tier-3"></span></td>
+						<td class="text-center"><span class="all-stats-output flame-tier-4"></span></td>
+						<td class="text-center"><span class="all-stats-output flame-tier-5"></span></td>
+						<td class="text-center"><span class="all-stats-output flame-tier-6"></span></td>
+						<td class="text-center"><span class="all-stats-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
 						<th class="table-cols-header text-right">Mixed Stats</th>
-						<td class="table-cols text-center"><span class="mixed-stats-output flame-tier-1"></span></td>
-						<td class="table-cols text-center"><span class="mixed-stats-output flame-tier-2"></span></td>
-						<td class="table-cols text-center"><span class="mixed-stats-output flame-tier-3"></span></td>
-						<td class="table-cols text-center"><span class="mixed-stats-output flame-tier-4"></span></td>
-						<td class="table-cols text-center"><span class="mixed-stats-output flame-tier-5"></span></td>
-						<td class="table-cols text-center"><span class="mixed-stats-output flame-tier-6"></span></td>
-						<td class="table-cols text-center"><span class="mixed-stats-output flame-tier-7"></span></td>
+						<td class="text-center"><span class="mixed-stats-output flame-tier-1"></span></td>
+						<td class="text-center"><span class="mixed-stats-output flame-tier-2"></span></td>
+						<td class="text-center"><span class="mixed-stats-output flame-tier-3"></span></td>
+						<td class="text-center"><span class="mixed-stats-output flame-tier-4"></span></td>
+						<td class="text-center"><span class="mixed-stats-output flame-tier-5"></span></td>
+						<td class="text-center"><span class="mixed-stats-output flame-tier-6"></span></td>
+						<td class="text-center"><span class="mixed-stats-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
 						<th class="table-cols-header text-right">Damage%</th>
-						<td class="table-cols text-center"><span class="damage-output flame-tier-1"></span></td>
-						<td class="table-cols text-center"><span class="damage-output flame-tier-2"></span></td>
-						<td class="table-cols text-center"><span class="damage-output flame-tier-3"></span></td>
-						<td class="table-cols text-center"><span class="damage-output flame-tier-4"></span></td>
-						<td class="table-cols text-center"><span class="damage-output flame-tier-5"></span></td>
-						<td class="table-cols text-center"><span class="damage-output flame-tier-6"></span></td>
-						<td class="table-cols text-center"><span class="damage-output flame-tier-7"></span></td>
+						<td class="text-center"><span class="damage-output flame-tier-1"></span></td>
+						<td class="text-center"><span class="damage-output flame-tier-2"></span></td>
+						<td class="text-center"><span class="damage-output flame-tier-3"></span></td>
+						<td class="text-center"><span class="damage-output flame-tier-4"></span></td>
+						<td class="text-center"><span class="damage-output flame-tier-5"></span></td>
+						<td class="text-center"><span class="damage-output flame-tier-6"></span></td>
+						<td class="text-center"><span class="damage-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
 						<th class="table-cols-header text-right">Armor WA/MA</th>
-						<td class="table-cols text-center"><span class="armor-wa-ma-output flame-tier-1"></span></td>
-						<td class="table-cols text-center"><span class="armor-wa-ma-output flame-tier-2"></span></td>
-						<td class="table-cols text-center"><span class="armor-wa-ma-output flame-tier-3"></span></td>
-						<td class="table-cols text-center"><span class="armor-wa-ma-output flame-tier-4"></span></td>
-						<td class="table-cols text-center"><span class="armor-wa-ma-output flame-tier-5"></span></td>
-						<td class="table-cols text-center"><span class="armor-wa-ma-output flame-tier-6"></span></td>
-						<td class="table-cols text-center"><span class="armor-wa-ma-output flame-tier-7"></span></td>
+						<td class="text-center"><span class="armor-wa-ma-output flame-tier-1"></span></td>
+						<td class="text-center"><span class="armor-wa-ma-output flame-tier-2"></span></td>
+						<td class="text-center"><span class="armor-wa-ma-output flame-tier-3"></span></td>
+						<td class="text-center"><span class="armor-wa-ma-output flame-tier-4"></span></td>
+						<td class="text-center"><span class="armor-wa-ma-output flame-tier-5"></span></td>
+						<td class="text-center"><span class="armor-wa-ma-output flame-tier-6"></span></td>
+						<td class="text-center"><span class="armor-wa-ma-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
 						<th class="table-cols-header text-right">HP/MP</th>
-						<td class="table-cols text-center"><span class="hp-mp-output flame-tier-1"></span></td>
-						<td class="table-cols text-center"><span class="hp-mp-output flame-tier-2"></span></td>
-						<td class="table-cols text-center"><span class="hp-mp-output flame-tier-3"></span></td>
-						<td class="table-cols text-center"><span class="hp-mp-output flame-tier-4"></span></td>
-						<td class="table-cols text-center"><span class="hp-mp-output flame-tier-5"></span></td>
-						<td class="table-cols text-center"><span class="hp-mp-output flame-tier-6"></span></td>
-						<td class="table-cols text-center"><span class="hp-mp-output flame-tier-7"></span></td>
+						<td class="text-center"><span class="hp-mp-output flame-tier-1"></span></td>
+						<td class="text-center"><span class="hp-mp-output flame-tier-2"></span></td>
+						<td class="text-center"><span class="hp-mp-output flame-tier-3"></span></td>
+						<td class="text-center"><span class="hp-mp-output flame-tier-4"></span></td>
+						<td class="text-center"><span class="hp-mp-output flame-tier-5"></span></td>
+						<td class="text-center"><span class="hp-mp-output flame-tier-6"></span></td>
+						<td class="text-center"><span class="hp-mp-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
 						<th class="table-cols-header text-right">Defense</th>
-						<td class="table-cols text-center"><span class="defense-output flame-tier-1"></span></td>
-						<td class="table-cols text-center"><span class="defense-output flame-tier-2"></span></td>
-						<td class="table-cols text-center"><span class="defense-output flame-tier-3"></span></td>
-						<td class="table-cols text-center"><span class="defense-output flame-tier-4"></span></td>
-						<td class="table-cols text-center"><span class="defense-output flame-tier-5"></span></td>
-						<td class="table-cols text-center"><span class="defense-output flame-tier-6"></span></td>
-						<td class="table-cols text-center"><span class="defense-output flame-tier-7"></span></td>
+						<td class="text-center"><span class="defense-output flame-tier-1"></span></td>
+						<td class="text-center"><span class="defense-output flame-tier-2"></span></td>
+						<td class="text-center"><span class="defense-output flame-tier-3"></span></td>
+						<td class="text-center"><span class="defense-output flame-tier-4"></span></td>
+						<td class="text-center"><span class="defense-output flame-tier-5"></span></td>
+						<td class="text-center"><span class="defense-output flame-tier-6"></span></td>
+						<td class="text-center"><span class="defense-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
 						<th class="table-cols-header text-right">Equip Level Reduction</th>
-						<td class="table-cols text-center"><span class="level-reduce-output flame-tier-1"></span></td>
-						<td class="table-cols text-center"><span class="level-reduce-output flame-tier-2"></span></td>
-						<td class="table-cols text-center"><span class="level-reduce-output flame-tier-3"></span></td>
-						<td class="table-cols text-center"><span class="level-reduce-output flame-tier-4"></span></td>
-						<td class="table-cols text-center"><span class="level-reduce-output flame-tier-5"></span></td>
-						<td class="table-cols text-center"><span class="level-reduce-output flame-tier-6"></span></td>
-						<td class="table-cols text-center"><span class="level-reduce-output flame-tier-7"></span></td>
+						<td class="text-center"><span class="level-reduce-output flame-tier-1"></span></td>
+						<td class="text-center"><span class="level-reduce-output flame-tier-2"></span></td>
+						<td class="text-center"><span class="level-reduce-output flame-tier-3"></span></td>
+						<td class="text-center"><span class="level-reduce-output flame-tier-4"></span></td>
+						<td class="text-center"><span class="level-reduce-output flame-tier-5"></span></td>
+						<td class="text-center"><span class="level-reduce-output flame-tier-6"></span></td>
+						<td class="text-center"><span class="level-reduce-output flame-tier-7"></span></td>
 					</tr>
 					<tr>
 						<th class="table-cols-header text-right">Speed/Jump</th>
-						<td class="table-cols text-center"><span class="speed-jump-output flame-tier-1"></span></td>
-						<td class="table-cols text-center"><span class="speed-jump-output flame-tier-2"></span></td>
-						<td class="table-cols text-center"><span class="speed-jump-output flame-tier-3"></span></td>
-						<td class="table-cols text-center"><span class="speed-jump-output flame-tier-4"></span></td>
-						<td class="table-cols text-center"><span class="speed-jump-output flame-tier-5"></span></td>
-						<td class="table-cols text-center"><span class="speed-jump-output flame-tier-6"></span></td>
-						<td class="table-cols text-center"><span class="speed-jump-output flame-tier-7"></span></td>
+						<td class="text-center"><span class="speed-jump-output flame-tier-1"></span></td>
+						<td class="text-center"><span class="speed-jump-output flame-tier-2"></span></td>
+						<td class="text-center"><span class="speed-jump-output flame-tier-3"></span></td>
+						<td class="text-center"><span class="speed-jump-output flame-tier-4"></span></td>
+						<td class="text-center"><span class="speed-jump-output flame-tier-5"></span></td>
+						<td class="text-center"><span class="speed-jump-output flame-tier-6"></span></td>
+						<td class="text-center"><span class="speed-jump-output flame-tier-7"></span></td>
 					</tr>
 				</tbody>
 			</table>

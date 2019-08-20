@@ -1,7 +1,57 @@
 html, body {
 	height: 100%;
-	font-size: 16px;
+	font-size: 12px;
 	font-family: "Varela Round", sans-serif;
+}
+
+.font-header {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.font-subheader {
+	font-size: 1rem;
+	text-decoration: underline;
+}
+
+.font-content {
+	font-size: 1rem;
+}
+
+.font-sidebar, .font-form, .font-button {
+	font-size: 1rem;
+}
+
+.font-table, .font-small {
+	font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+	html, body {
+		font-size: 14px;
+	}
+
+	.font-sidebar, .font-form, .font-button {
+		font-size: 0.9rem;
+	}
+
+	.font-table, .font-small {
+		font-size: 0.875rem;
+	}
+}
+
+@media (min-width: 992px) {
+	html, body {
+		font-size: 16px;
+	}
+
+	.font-sidebar, .font-form, .font-table, .font-button, .font-small {
+		font-size: 0.875rem;
+	}
+
+	.font-small {
+		font-size: 0.75rem;
+	}
 }
 
 input[type="number"] {
@@ -12,34 +62,6 @@ input[type="radio"] {
 	visibility: hidden;
 }
 
-.font-header {
-	font-size: 1.5rem;
-	font-weight: bold;
-}
-
-.font-subheader {
-	font-size: 1rem;
-	font-weight: bold;
-	text-decoration: underline;
-	margin-bottom: 0;
-}
-
-.font-content {
-	font-size: 1rem;
-}
-
-.font-sidebar, .font-form, .font-table, .font-button {
-	font-size: 0.875rem;
-}
-
-.font-small {
-	font-size: 0.75rem;
-}
-
-.container-fluid {
-	width: 1280px;
-}
-
 .navbar {
 	position: fixed;
 	width: 100%;
@@ -47,14 +69,21 @@ input[type="radio"] {
 
 .content {
 	height: 100%;
-	display: flex;
 	padding: 56px 0 0 0;
 }
 
-.table {
-	margin-bottom: 0;
+.tooltip {
+	font-size: 1rem;
 }
 
-.tooltip {
-	font-size: 0.75rem;
+@media (min-width: 768px) {
+	.tooltip {
+		font-size: 0.9rem;
+	}
+}
+
+@media (min-width: 992px) {
+	.tooltip {
+		font-size: 0.75rem;
+	}
 }

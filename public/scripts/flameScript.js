@@ -22,14 +22,15 @@ $(".flame-type-input").on("click", function() {
 	$(this).addClass("active");
 })
 
-$(".stat-type-input").on("click", function() {
-	$(".stat-type-input").removeClass("active");
-	$(this).addClass("active");
+$("#gear-level, #base-wa-ma").on("input", function() {
+	updateTable();
 })
 
-$("#flame-submit-btn").on("click", function(event) {
-	event.preventDefault();
+$(".equip-type-input, .flame-type-input").on("click", function() {
+	updateTable();
+})
 
+function updateTable() {
 	var itemLevel = Number($("#gear-level").val());
 	var inputWAMA = Number($("#base-wa-ma").val());
 
@@ -44,12 +45,11 @@ $("#flame-submit-btn").on("click", function(event) {
 	}
 
 	displayOutput(inputWAMA, pureStatsFactor, mixedStatsFactor, hpMpFactor);
-})
+}
 
 function displayOutput(inputWAMA, pureStatsFactor, mixedStatsFactor, hpMpFactor) {
 	var equipType = $(".equip-type-input.active").data("equipType");
 	var flameType = $(".flame-type-input.active").data("flameType");
-	var statType = $(".stat-type-input.active").data("statType");
 
 	var normalWAMA = [1, 2.2, 3.625, 5.325, 7.3, 8.8, 10.25];
 	var bossWAMA = [0, 0, 3, 4.4, 6.05, 8, 10.25];

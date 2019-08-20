@@ -1,263 +1,265 @@
-<div class="single-info-page align-items-center flex-column" id="flame-info">
-	<div class="info-section d-flex justify-content-center align-items-center flex-column">
-		<div class="page-header-box d-flex justify-content-center align-items-center position-relative">
-			<div class="horz-line"></div>
-			<h1 class="font-header page-header text-uppercase">Introduction</h1>
-			<div class="horz-line"></div>
+<div class="single-info-page w-100 align-items-center flex-column px-4 px-lg-0 pt-lg-4" id="flame-info">
+	<div class="info-section w-100 d-flex justify-content-center align-items-center flex-column mb-3">
+		<div class="page-header-box w-100 d-flex justify-content-center align-items-center position-relative border-top border-dark mb-4">
+			<h1 class="font-header page-header d-flex align-items-center text-uppercase position-absolute px-3">Introduction</h1>
 		</div>
-		<div class="font-content info-section-details d-flex justify-content-center align-items-center flex-column">
-			<p class="text-justify">Bonus stats are displayed as green numbers on your equipment. You can use Resurrection Flames to reroll the item's bonus stats. Double click on a flame and your inventory's Equip tab will be shown, then click on an item to apply the flame on it. Note that certain equipment types <strong>cannot</strong> receive bonus stats (indicated with a red background when flaming). These types are detailed in the next section.</p>
+		<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+			<p class="text-justify">Bonus stats are displayed as green numbers on your equipment. You can use Resurrection Flames to reroll the item's bonus stats. Double click on a flame and your inventory's Equip tab will be shown, then click on an item to apply the flame on it. Note that certain equipment types <strong class="text-danger">cannot</strong> receive bonus stats (indicated with a red background when flaming). These types are detailed in the next section.</p>
 
 			<p class="text-justify">The number of bonus stats lines and the value of the bonus stats depends on 1) what item you are flaming, and 2) what flame is being used. Items can get up to 4 lines of bonus stats, and there are 7 possible flame tiers. Each bonus stat line is rolled separately, so it is possible to get different tiers for each bonus stat.</p>
 
-			<table class="font-table table table-sm table-bordered table-hover">
+			<table class="font-table table table-sm table-bordered table-hover mb-0">
 				<thead>
 					<tr>
-						<th></th>
-						<th class="table-cols text-center">"Normal" Equips</th>
-						<th class="table-cols text-center">"Elite Boss" Equips</th>
-						<th class="table-cols text-center">"Boss" Equips</th>
+						<th rowspan="2"></th>
+						<th rowspan="2" class="table-cols-50 text-center align-middle">No. of Bonus Stat Lines</th>
+						<th colspan="3" class="table-cols-50 text-center">Possible Tiers</th>
+					</tr>
+					<tr>
+						<th class="table-cols-50 text-center align-middle">Upon Looting</th>
+						<th class="table-cols-50 text-center align-middle">Level / Crimson / Obsidian Flames</th>
+						<th class="table-cols-50 text-center align-middle">Rainbow / Black Flames</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th class="table-cols-header text-center">No. of Bonus Stat Lines</th>
-						<td class="table-cols text-center align-middle font-small">1 to 4</td>
-						<td class="table-cols text-center align-middle font-small">1 to 4</td>
-						<td class="table-cols text-center align-middle font-small">4</td>
+						<th class="table-cols-header text-center align-middle">"Normal" Equips</th>
+						<td class="table-cols-50 text-center align-middle font-small">1 to 4 Lines</td>
+						<td class="table-cols-50 text-center align-middle font-small">Tiers 1 to 5</td>
+						<td class="table-cols-50 text-center align-middle font-small">Tiers 1 to 4</td>
+						<td class="table-cols-50 text-center align-middle font-small">Tiers 2 to 5</td>
 					</tr>
 					<tr>
-						<th class="table-cols-header text-center">Possible Tiers<br/>(upon looting item)</th>
-						<td class="table-cols text-center align-middle font-small">1 to 5</td>
-						<td class="table-cols text-center align-middle font-small">3 to 7</td>
-						<td class="table-cols text-center align-middle font-small">3 to 7</td>
+						<th class="table-cols-header text-center align-middle">"Elite Boss" Equips</th>
+						<td class="table-cols-50 text-center align-middle font-small">1 to 4 Lines</td>
+						<td class="table-cols-50 text-center align-middle font-small">Tiers 3 to 7</td>
+						<td class="table-cols-50 text-center align-middle font-small">Tiers 1 to 4</td>
+						<td class="table-cols-50 text-center align-middle font-small">Tiers 2 to 5</td>
 					</tr>
 					<tr>
-						<th class="table-cols-header text-center">Possible Tiers<br/>(Level / Crimson / Obsidian Flames)</th>
-						<td class="table-cols text-center align-middle font-small">1 to 4</td>
-						<td class="table-cols text-center align-middle font-small">1 to 4</td>
-						<td class="table-cols text-center align-middle font-small">3 to 6</td>
-					</tr>
-					<tr>
-						<th class="table-cols-header text-center">Possible Tiers<br/>(Rainbow / Black Flames)</th>
-						<td class="table-cols text-center align-middle font-small">2 to 5</td>
-						<td class="table-cols text-center align-middle font-small">2 to 5</td>
-						<td class="table-cols text-center align-middle font-small">4 to 7</td>
+						<th class="table-cols-header text-center align-middle">"Special" Equips</th>
+						<td class="table-cols-50 text-center align-middle font-small">4 Lines</td>
+						<td class="table-cols-50 text-center align-middle font-small">Tiers 3 to 7</td>
+						<td class="table-cols-50 text-center align-middle font-small">Tiers 3 to 6</td>
+						<td class="table-cols-50 text-center align-middle font-small">Tiers 4 to 7</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<div class="info-section d-flex justify-content-center align-items-center flex-column">
-		<div class="page-header-box d-flex justify-content-center align-items-center position-relative">
-			<div class="horz-line"></div>
-			<div class="font-header page-header text-uppercase">Item Types</div>
-			<div class="horz-line"></div>
+	<div class="info-section w-100 d-flex justify-content-center align-items-center flex-column mb-3">
+		<div class="page-header-box w-100 d-flex justify-content-center align-items-center position-relative border-top border-dark mb-4">
+			<h1 class="font-header page-header d-flex align-items-center text-uppercase position-absolute px-3">Item Types</h1>
 		</div>
-		<div class="font-content info-section-details d-flex flex-column">
-			<p>Several item categories <strong>cannot</strong> receive bonus stats and cannot be flamed, namely:</p>
+		<div class="font-content w-100 d-flex flex-column mb-4">
+			<p>Several item categories <strong class="text-danger">cannot</strong> receive bonus stats and cannot be flamed, namely:</p>
 			<ul>
-				<li class="list-items">Rings</li>
-				<li class="list-items">Shoulderpads except <img class="item-img-inline" src="/images/equips/scarlet-pad.png"> Scarlet Shoulderpads</li>
-				<li class="list-items">Emblems</li>
-				<li class="list-items">Badges</li>
-				<li class="list-items">Medals</li>
-				<li class="list-items">Android & Android Hearts</li>
-				<li class="list-items">Secondary Weapons (shield and katara included)</li>
+				<li class="my-2">Rings</li>
+				<li class="my-2">Shoulderpads except <img class="item-img-inline mx-1" src="/images/equips/scarlet-pad.png"> Scarlet Shoulderpads</li>
+				<li class="my-2">Emblems</li>
+				<li class="my-2">Badges</li>
+				<li class="my-2">Medals</li>
+				<li class="my-2">Android & Android Hearts</li>
+				<li class="my-2">Secondary Weapons (shield and katara included)</li>
 			</ul>
 			<p class="text-justify">When hovering over equipment, you may notice that on the top left corner of the zoomed-in item, certain items have transparent dots, while others have white dots. Any flame can be used on items with a transparent dot, while only non-level restricted flames can be used on items with a white dot.</p>
 
-			<p class="text-justify">The table below describes each item type and several examples of such items. Mouse over each item image for more information.</p>
-			<table class="font-table table table-sm table-bordered table-hover">
+			<p class="text-justify">The table below describes each item type and several examples of such items. <span class="d-none d-md-inline">Mouse over</span><span class="d-inline d-md-none">Tap on</span> each item image for more information.</p>
+			<table class="font-table table table-sm table-bordered table-hover mb-0">
 				<thead>
 					<tr>
 						<th></th>
-						<th class="table-cols table-cols-desc text-center">"Normal" Equips</th>
+						<th class="table-cols-125 align-middle text-center">Description</th>
+						<th class="table-cols-header align-middle text-center">Examples</th>
+
+						<!--<th class="table-cols table-cols-desc text-center">"Normal" Equips</th>
 						<th class="table-cols table-cols-desc text-center">"Elite Boss" Equips</th>
-						<th class="table-cols table-cols-desc text-center">"Special" Equips</th>
+						<th class="table-cols table-cols-desc text-center">"Special" Equips</th>-->
 					</tr>
 				</thead>
 				<tbody>
 					<tr class="table-rows">
-						<th class="table-cols-header align-middle text-center">Description</th>
-						<td class="table-cols table-cols-desc align-middle text-center font-small">Most equipment dropped by regular monsters fall into this category. Zero class weapons are also considered "Normal" weapons. Chaos Root Abyss boss helmets are "Normal" items as well.</td>
-						<td class="table-cols table-cols-desc align-middle text-center font-small">Equipment collected during the Bonus Stage after killing Elite Bosses fall into this category.</td>
-						<td class="table-cols table-cols-desc align-middle text-center font-small">Most unique equipment dropped directly by bosses and equipment crafted by shards/materials obtained from these bosses are considered "Special" items. There are also certain items not obtainable through bosses that belong to this category.</td>
+						<th class="table-cols-header align-middle text-center">"Normal" Equips</th>
+						<td class="table-cols-125 align-middle text-center font-small">Most equipment dropped by regular monsters fall into this category. Zero class weapons are also considered "Normal" weapons. Chaos Root Abyss boss helmets are "Normal" items as well.</td>
+						<td class="table-cols-50 align-middle text-center">
+							<img class="item-img m-1" src="/images/equips/zero-abso.png" data-toggle="tooltip" data-placement="bottom" title="Zero class weapons">
+							<img class="item-img m-1" src="/images/equips/chaos-bellum.png" data-toggle="tooltip" data-placement="bottom" title="Chaos Root Abyss boss helmets">
+							<img class="item-img m-1" src="/images/equips/meister-symbol.png" data-toggle="tooltip" data-placement="bottom" title="Meister Symbols">
+							<img class="item-img m-1" src="/images/equips/chaos-horntail-necklace.png" data-toggle="tooltip" data-placement="bottom" title="Horntail Necklace (both types)">
+							<img class="item-img m-1" src="/images/equips/fens-glove.png" data-toggle="tooltip" data-placement="bottom" title="Fensalir items">
+						</td>
 					</tr>
 					<tr class="table-rows">
-						<th class="table-cols-header align-middle text-center">Examples</th>
-						<td class="table-cols table-cols-desc align-middle text-center">
-							<img class="item-img" src="/images/equips/zero-abso.png" data-toggle="tooltip" data-placement="bottom" title="Zero class weapons">
-							<img class="item-img" src="/images/equips/chaos-bellum.png" data-toggle="tooltip" data-placement="bottom" title="Chaos Root Abyss boss helmets">
-							<img class="item-img" src="/images/equips/meister-symbol.png" data-toggle="tooltip" data-placement="bottom" title="Meister Symbols">
-							<img class="item-img" src="/images/equips/chaos-horntail-necklace.png" data-toggle="tooltip" data-placement="bottom" title="Horntail Necklace (both types)">
-							<img class="item-img" src="/images/equips/fens-glove.png" data-toggle="tooltip" data-placement="bottom" title="Fensalir items">
+						<th class="table-cols-header align-middle text-center">"Elite Boss" Equips</th>
+						<td class="table-cols-125 align-middle text-center font-small">Equipment collected during the Bonus Stage after killing Elite Bosses fall into this category.</td>
+						<td class="table-cols-50 align-middle text-center font-small">
+							N/A, see Description
 						</td>
-						<td class="table-cols table-cols-desc align-middle text-center font-small">
-							N/A, see description above
-						</td>
-						<td class="table-cols table-cols-desc align-middle text-center">
-							<img class="item-img" src="/images/equips/genesis-staff.png" data-toggle="tooltip" data-placement="bottom" title="Genesis weapons">
-							<img class="item-img" src="/images/equips/acs-warrior-hat.png" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade items">
-							<img class="item-img" src="/images/equips/abs-mage-hat.png" data-toggle="tooltip" data-placement="bottom" title="Absolabs items">
-							<img class="item-img" src="/images/equips/faf-fan.png" data-toggle="tooltip" data-placement="bottom" title="Chaos Root Abyss set items">
-							<img class="item-img" src="/images/equips/cursed-magic-book.png" data-toggle="tooltip" data-placement="bottom" title="Hard Boss set accessories">
-							<img class="item-img" src="/images/equips/papulatus-mark.png" data-toggle="tooltip" data-placement="bottom" title="Boss set accessories">
+					</tr>
+					<tr class="table-rows">
+						<th class="table-cols-header align-middle text-center">"Special" Equips</th>
+						<td class="table-cols-125 align-middle text-center font-small">Most unique equipment dropped directly by bosses and equipment crafted by shards/materials obtained from these bosses are considered "Special" items. There are also certain items not obtainable through bosses that belong to this category.</td>
+						<td class="table-cols-50 align-middle text-center">
+							<img class="item-img m-1" src="/images/equips/genesis-staff.png" data-toggle="tooltip" data-placement="bottom" title="Genesis weapons">
+							<img class="item-img m-1" src="/images/equips/acs-warrior-hat.png" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade items">
+							<img class="item-img m-1" src="/images/equips/abs-mage-hat.png" data-toggle="tooltip" data-placement="bottom" title="Absolabs items">
+							<img class="item-img m-1" src="/images/equips/faf-fan.png" data-toggle="tooltip" data-placement="bottom" title="Chaos Root Abyss set items">
+							<img class="item-img m-1" src="/images/equips/cursed-magic-book.png" data-toggle="tooltip" data-placement="bottom" title="Hard Boss set accessories">
+							<img class="item-img m-1" src="/images/equips/papulatus-mark.png" data-toggle="tooltip" data-placement="bottom" title="Boss set accessories">
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<div class="info-section d-flex justify-content-center align-items-center flex-column">
-		<div class="page-header-box d-flex justify-content-center align-items-center position-relative">
-			<div class="horz-line"></div>
-			<div class="font-header page-header text-uppercase">Flame Types</div>
-			<div class="horz-line"></div>
+	<div class="info-section w-100 d-flex justify-content-center align-items-center flex-column mb-3">
+		<div class="page-header-box w-100 d-flex justify-content-center align-items-center position-relative border-top border-dark mb-4">
+			<h1 class="font-header page-header d-flex align-items-center text-uppercase position-absolute px-3">Flame Types</h1>
 		</div>
-		<div class="font-content info-section-details d-flex flex-column">
-			<h2 class="font-subheader">Level-restricted Flames</h2>
-			<p>Flames shown in the table below can only be used on equipment up to a certain level. Also, these flames can only be applied on equipment that have transparent dots.</p>
-			<table class="font-table table table-sm table-bordered table-hover">
+		<div class="font-content w-100 d-flex flex-column mb-4">
+			<h2 class="font-subheader font-weight-bold mb-0">Level-restricted Flames</h2>
+			<p class="text-justify">Flames shown in the table below can only be used on equipment up to a certain level as displayed in the respective item names. Also, these flames can only be applied on equipment that have transparent dots. <span class="d-inline d-md-none">Tap on the images for more information.</span></p>
+			<table class="font-table table table-sm table-bordered table-hover mb-0">
 				<thead>
 					<tr>
 						<th></th>
-						<th class="table-cols table-cols-100 text-center"><img src="/images/flames/flame-100.png"></th>
-						<th class="table-cols table-cols-100 text-center"><img src="/images/flames/flame-110.png"></th>
-						<th class="table-cols table-cols-100 text-center"><img src="/images/flames/flame-120.png"></th>
-						<th class="table-cols table-cols-100 text-center"><img src="/images/flames/flame-130.png"></th>
-						<th class="table-cols table-cols-100 text-center"><img src="/images/flames/flame-140.png"></th>
-						<th class="table-cols table-cols-100 text-center"><img src="/images/flames/flame-150.png"></th>
+						<th class="text-center align-middle d-none d-md-table-cell">Item Name</th>
+						<th class="text-center align-middle">Where to get?</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr class="table-rows">
-						<th class="table-cols text-center align-middle">Item Name</th>
-						<td class="table-cols table-cols-100 text-center align-middle font-small">Resurrection Flame Level 100</td>
-						<td class="table-cols table-cols-100 text-center align-middle font-small">Resurrection Flame Level 110</td>
-						<td class="table-cols table-cols-100 text-center align-middle font-small">Resurrection Flame Level 120</td>
-						<td class="table-cols table-cols-100 text-center align-middle font-small">Resurrection Flame Level 130</td>
-						<td class="table-cols table-cols-100 text-center align-middle font-small">Resurrection Flame Level 140</td>
-						<td class="table-cols table-cols-100 text-center align-middle font-small">Resurrection Flame Level 150</td>
+						<th class="text-center align-middle"><img src="/images/flames/flame-100.png" data-toggle="tooltip" data-placement="bottom" title="Resurrection Flame Level 100"></th>
+						<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Flame Level 100</td>
+						<td class="text-center align-middle">
+							<img class="item-img m-1" src="/images/items/gachapon.png" data-toggle="tooltip" data-placement="bottom" title="Gachapon">
+						</td>
 					</tr>
 					<tr class="table-rows">
-						<th class="table-cols text-center align-middle">Usable on items up to level</th>
-						<td class="table-cols table-cols-100 text-center align-middle font-small">100</td>
-						<td class="table-cols table-cols-100 text-center align-middle font-small">110</td>
-						<td class="table-cols table-cols-100 text-center align-middle font-small">120</td>
-						<td class="table-cols table-cols-100 text-center align-middle font-small">130</td>
-						<td class="table-cols table-cols-100 text-center align-middle font-small">140</td>
-						<td class="table-cols table-cols-100 text-center align-middle font-small">150</td>
+						<th class="text-center align-middle"><img src="/images/flames/flame-110.png" data-toggle="tooltip" data-placement="bottom" title="Resurrection Flame Level 110"></th>
+						<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Flame Level 110</td>
+						<td class="text-center align-middle">
+							<img class="item-img border-img m-1" src="/images/boss/zakum.png" data-toggle="tooltip" data-placement="bottom" title="Zakum (Normal, Chaos)">
+							<img class="item-img border-img m-1" src="/images/boss/vellum.png" data-toggle="tooltip" data-placement="bottom" title="Root Abyss bosses (Normal)">
+							<img class="item-img border-img m-1" src="/images/boss/kawoong.png" data-toggle="tooltip" data-placement="bottom" title="Kawoong (Normal)">
+							<img class="item-img border-img m-1" src="/images/boss/magnus-1.png" data-toggle="tooltip" data-placement="bottom" title="Magnus (Easy, Normal)">
+						</td>
 					</tr>
 					<tr class="table-rows">
-						<th class="table-cols text-center align-middle">Where to get?</th>
-						<td class="table-cols text-center align-middle">
-							<img class="item-img" src="/images/items/gachapon.png" data-toggle="tooltip" data-placement="bottom" title="Gachapon">
+						<th class="text-center align-middle"><img src="/images/flames/flame-120.png" data-toggle="tooltip" data-placement="bottom" title="Resurrection Flame Level 120"></th>
+						<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Flame Level 120</td>
+						<td class="text-center align-middle">
+							<img class="item-img border-img m-1" src="/images/boss/hilla.png" data-toggle="tooltip" data-placement="bottom" title="Hilla (Normal)">
+							<img class="item-img border-img m-1" src="/images/boss/von-leon.png" data-toggle="tooltip" data-placement="bottom" title="Von Leon (Easy, Normal)">
+							<img class="item-img border-img m-1" src="/images/boss/horntail.png" data-toggle="tooltip" data-placement="bottom" title="Horntail (Easy, Normal, Chaos)">
+							<img class="item-img border-img m-1" src="/images/boss/pink-bean.png" data-toggle="tooltip" data-placement="bottom" title="Pink Bean (Normal)">
 						</td>
-						<td class="table-cols text-center align-middle">
-							<img class="item-img border-img" src="/images/boss/zakum.png" data-toggle="tooltip" data-placement="bottom" title="Zakum (Normal, Chaos)">
-							<img class="item-img border-img" src="/images/boss/vellum.png" data-toggle="tooltip" data-placement="bottom" title="Root Abyss bosses (Normal)">
-							<img class="item-img border-img" src="/images/boss/kawoong.png" data-toggle="tooltip" data-placement="bottom" title="Kawoong (Normal)">
-							<img class="item-img border-img" src="/images/boss/magnus-1.png" data-toggle="tooltip" data-placement="bottom" title="Magnus (Easy, Normal)">
+					</tr>
+					<tr class="table-rows">
+						<th class="text-center align-middle"><img src="/images/flames/flame-130.png" data-toggle="tooltip" data-placement="bottom" title="Resurrection Flame Level 130"></th>
+						<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Flame Level 130</td>
+						<td class="text-center align-middle">
+							<img class="item-img border-img m-1" src="/images/boss/hilla.png" data-toggle="tooltip" data-placement="bottom" title="Hilla (Hard)">
+							<img class="item-img border-img m-1" src="/images/boss/von-leon.png" data-toggle="tooltip" data-placement="bottom" title="Von Leon (Hard)">
+							<img class="item-img border-img m-1" src="/images/boss/pink-bean.png" data-toggle="tooltip" data-placement="bottom" title="Pink Bean (Chaos)">
+							<img class="item-img border-img m-1" src="/images/boss/arkarium.png" data-toggle="tooltip" data-placement="bottom" title="Arkarium (Easy, Normal)">
 						</td>
-						<td class="table-cols text-center align-middle">
-							<img class="item-img border-img" src="/images/boss/hilla.png" data-toggle="tooltip" data-placement="bottom" title="Hilla (Normal)">
-							<img class="item-img border-img" src="/images/boss/von-leon.png" data-toggle="tooltip" data-placement="bottom" title="Von Leon (Easy, Normal)">
-							<img class="item-img border-img" src="/images/boss/horntail.png" data-toggle="tooltip" data-placement="bottom" title="Horntail (Easy, Normal, Chaos)">
-							<img class="item-img border-img" src="/images/boss/pink-bean.png" data-toggle="tooltip" data-placement="bottom" title="Pink Bean (Normal)">
+					</tr>
+					<tr class="table-rows">
+						<th class="text-center align-middle"><img src="/images/flames/flame-140.png" data-toggle="tooltip" data-placement="bottom" title="Resurrection Flame Level 140"></th>
+						<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Flame Level 140</td>
+						<td class="text-center align-middle">
+							<img class="item-img border-img m-1" src="/images/boss/cygnus.png" data-toggle="tooltip" data-placement="bottom" title="Cygnus (Easy, Normal)">
 						</td>
-						<td class="table-cols text-center align-middle">
-							<img class="item-img border-img" src="/images/boss/hilla.png" data-toggle="tooltip" data-placement="bottom" title="Hilla (Hard)">
-							<img class="item-img border-img" src="/images/boss/von-leon.png" data-toggle="tooltip" data-placement="bottom" title="Von Leon (Hard)">
-							<img class="item-img border-img" src="/images/boss/pink-bean.png" data-toggle="tooltip" data-placement="bottom" title="Pink Bean (Chaos)">
-							<img class="item-img border-img" src="/images/boss/arkarium.png" data-toggle="tooltip" data-placement="bottom" title="Arkarium (Easy, Normal)">
-						</td>
-						<td class="table-cols text-center align-middle">
-							<img class="item-img border-img" src="/images/boss/cygnus.png" data-toggle="tooltip" data-placement="bottom" title="Cygnus (Easy, Normal)">
-						</td>
-						<td class="table-cols text-center align-middle">
-							<img class="item-img border-img" src="/images/boss/magnus-1.png" data-toggle="tooltip" data-placement="bottom" title="Magnus (Hard)">
-							<img class="item-img border-img" src="/images/boss/vellum.png" data-toggle="tooltip" data-placement="bottom" title="Root Abyss bosses (Chaos)">
-							<img class="item-img border-img" src="/images/boss/damien-1.png" data-toggle="tooltip" data-placement="bottom" title="Damien (Normal, Hard)">
-							<img class="item-img border-img" src="/images/boss/lotus-3.png" data-toggle="tooltip" data-placement="bottom" title="Lotus (Normal, Hard)">
-							<img class="item-img border-img" src="/images/boss/lucid.png" data-toggle="tooltip" data-placement="bottom" title="Lucid (Normal, Hard)">
-							<img class="item-img border-img" src="/images/boss/will-3.png" data-toggle="tooltip" data-placement="bottom" title="Will (Normal, Hard)">
+					</tr>
+					<tr class="table-rows">
+						<th class="text-center align-middle"><img src="/images/flames/flame-150.png" data-toggle="tooltip" data-placement="bottom" title="Resurrection Flame Level 150"></th>
+						<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Flame Level 150</td>
+						<td class="text-center align-middle">
+							<img class="item-img border-img m-1" src="/images/boss/magnus-1.png" data-toggle="tooltip" data-placement="bottom" title="Magnus (Hard)">
+							<img class="item-img border-img m-1" src="/images/boss/vellum.png" data-toggle="tooltip" data-placement="bottom" title="Root Abyss bosses (Chaos)">
+							<img class="item-img border-img m-1" src="/images/boss/damien-1.png" data-toggle="tooltip" data-placement="bottom" title="Damien (Normal, Hard)">
+							<img class="item-img border-img m-1" src="/images/boss/lotus-3.png" data-toggle="tooltip" data-placement="bottom" title="Lotus (Normal, Hard)">
+							<img class="item-img border-img m-1" src="/images/boss/lucid.png" data-toggle="tooltip" data-placement="bottom" title="Lucid (Normal, Hard)">
+							<img class="item-img border-img m-1" src="/images/boss/will-3.png" data-toggle="tooltip" data-placement="bottom" title="Will (Normal, Hard)">
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
-		<div class="font-content info-section-details">
-			<h2 class="font-subheader">Unrestricted Flames</h2>
-			<p>Flames shown in the table below can be used on any equipment (both transparent dot and white dot) of any level.</p>
-			<table class="font-table table table-sm table-bordered table-hover">
+		<div class="font-content w-100 mb-4">
+			<h2 class="font-subheader font-weight-bold mb-0">Unrestricted Flames</h2>
+			<p class="text-justify">Flames shown in the table below can be used on any equipment (both transparent dot and white dot) of any level.</p>
+			<table class="font-table table table-sm table-bordered table-hover mb-0">
 				<thead>
 					<tr>
 						<th></th>
-						<th class="table-cols table-cols-150 text-center"><img src="/images/flames/flame-crimson.png"></th>
-						<th class="table-cols table-cols-150 text-center"><img src="/images/flames/flame-obsidian.png"></th>
-						<th class="table-cols table-cols-150 text-center"><img src="/images/flames/flame-rainbow.png"></th>
-						<th class="table-cols table-cols-150 text-center"><img src="/images/flames/flame-black.png"></th>
+						<th class="text-center align-middle d-none d-md-table-cell">Item Name</th>
+						<th class="text-center align-middle">Where to get?</th>
+						<th class="text-center align-middle">Crafting Materials</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr class="table-rows">
-						<th class="table-cols text-center align-middle">Item Name</th>
-						<td class="table-cols table-cols-150 text-center align-middle font-small">Crimson Resurrection Flame</td>
-						<td class="table-cols table-cols-150 text-center align-middle font-small">Obsidian Resurrection Flame</td>
-						<td class="table-cols table-cols-150 text-center align-middle font-small">Rainbow Resurrection Flame</td>
-						<td class="table-cols table-cols-150 text-center align-middle font-small">Black Resurrection Flame</td>
-					</tr>
-					<tr class="table-rows">
-						<th class="table-cols text-center align-middle">Where to get?</th>
-						<td class="table-cols table-cols-150 text-center align-middle font-small">
-							<img class="item-img standard-img-size" src="/images/items/accessory-recipe.png" data-toggle="tooltip" data-placement="bottom" title="Accessory Crafting (Master Craftsman)">
-							<img class="item-img standard-img-size" src="/images/items/union-coin.png" data-toggle="tooltip" data-placement="bottom" title="Union coin shop">
-							<img class="item-img standard-img-size" src="/images/maps/dojo.png" data-toggle="tooltip" data-placement="bottom" title="Mu Lung Dojo shop">
-							<img class="item-img border-img" src="/images/boss/ursus.png" data-toggle="tooltip" data-placement="bottom" title="Ursus shop">
-							<img class="item-img standard-img-size" src="/images/items/advanced-pouch.png" data-toggle="tooltip" data-placement="bottom" title="Bounty Hunter Pouches (Advanced, Premium)">
-							<img class="item-img standard-img-size" src="/images/items/treasure-chest.png" data-toggle="tooltip" data-placement="bottom" title="Rare Treasure Chests from Elite Bosses">
-							<img class="item-img standard-img-size" src="/images/items/alicia-box-4.png" data-toggle="tooltip" data-placement="bottom" title="The Seed boxes (rank 4 and better)">
-							<img class="item-img standard-img-size" src="/images/items/wonky-buff.png" data-toggle="tooltip" data-placement="bottom" title="Fairy Bros Daily Gift - Day 11">
-							<img class="item-img standard-img-size" src="/images/items/good-explore-box.png" data-toggle="tooltip" data-placement="bottom" title="Monster Collection exploration rewards (6 hours, 24 hours)"><br/>
+						<th class="text-center align-middle"><img src="/images/flames/flame-crimson.png" data-toggle="tooltip" data-placement="bottom" title="Crimson Resurrection Flame"></th>
+						<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Crimson Resurrection Flame</td>
+						<td class="text-center align-middle font-small">
+							<img class="item-img standard-img-size m-1" src="/images/items/accessory-recipe.png" data-toggle="tooltip" data-placement="bottom" title="Accessory Crafting (Master Craftsman)">
+							<img class="item-img standard-img-size m-1" src="/images/items/union-coin.png" data-toggle="tooltip" data-placement="bottom" title="Union coin shop">
+							<img class="item-img standard-img-size m-1" src="/images/maps/dojo.png" data-toggle="tooltip" data-placement="bottom" title="Mu Lung Dojo shop">
+							<img class="item-img border-img m-1" src="/images/boss/ursus.png" data-toggle="tooltip" data-placement="bottom" title="Ursus shop">
+							<img class="item-img standard-img-size m-1" src="/images/items/advanced-pouch.png" data-toggle="tooltip" data-placement="bottom" title="Bounty Hunter Pouches (Advanced, Premium)">
+							<img class="item-img standard-img-size m-1" src="/images/items/treasure-chest.png" data-toggle="tooltip" data-placement="bottom" title="Rare Treasure Chests from Elite Bosses">
+							<img class="item-img standard-img-size m-1" src="/images/items/alicia-box-4.png" data-toggle="tooltip" data-placement="bottom" title="The Seed boxes (rank 4 and better)">
+							<img class="item-img standard-img-size m-1" src="/images/items/wonky-buff.png" data-toggle="tooltip" data-placement="bottom" title="Fairy Bros Daily Gift - Day 11">
+							<img class="item-img standard-img-size m-1" src="/images/items/good-explore-box.png" data-toggle="tooltip" data-placement="bottom" title="Monster Collection exploration rewards (6 hours, 24 hours)"><br/>
 							Sudden Missions, Event coin shops
 						</td>
-						<td class="table-cols table-cols-150 text-center align-middle font-small">
-							<img class="item-img" src="/images/items/gachapon.png" data-toggle="tooltip" data-placement="bottom" title="Gachapon"><br/>
+						<td class="table-cols-50 text-center align-middle font-small">
+							30 x <img class="item-img m-1" src="/images/items/magic-crystal.png" data-toggle="tooltip" data-placement="bottom" title="Magic Crystal"><br/>
+							5 x <img class="item-img m-1" src="/images/flames/flame-fragment.png" data-toggle="tooltip" data-placement="bottom" title="Resurrection Fragment"><br/>
+							30 x <img class="item-img m-1" src="/images/items/mid-spell-essence.png" data-toggle="tooltip" data-placement="bottom" title="Mid Spell Essence"><br/>
+							5 x <img class="item-img m-1" src="/images/flames/flame-unextinguished.png" data-toggle="tooltip" data-placement="bottom" title="Unextinguished Flame">
+						</td>
+					</tr>
+					<tr class="table-rows">
+						<th class="text-center align-middle"><img src="/images/flames/flame-obsidian.png" data-toggle="tooltip" data-placement="bottom" title="Obsidian Resurrection Flame"></th>
+						<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Obsidian Resurrection Flame</td>
+						<td class="text-center align-middle font-small">
+							<img class="item-img m-1" src="/images/items/gachapon.png" data-toggle="tooltip" data-placement="bottom" title="Gachapon"><br/>
 							Cash shop
 						</td>
-						<td class="table-cols table-cols-150 text-center align-middle font-small">
-							<img class="item-img standard-img-size" src="/images/items/accessory-recipe.png" data-toggle="tooltip" data-placement="bottom" title="Accessory Crafting (Meister)">
-							<img class="item-img standard-img-size" src="/images/items/premium-pouch.png" data-toggle="tooltip" data-placement="bottom" title="Bounty Hunter Pouches (Premium)">
-							<img class="item-img standard-img-size" src="/images/items/treasure-chest.png" data-toggle="tooltip" data-placement="bottom" title="Rare Treasure Chests from Elite Bosses">
-							<img class="item-img standard-img-size" src="/images/items/alicia-box-2.png" data-toggle="tooltip" data-placement="bottom" title="The Seed boxes (rank 2 and better)">
-							<img class="item-img standard-img-size" src="/images/items/wonky-buff.png" data-toggle="tooltip" data-placement="bottom" title="Fairy Bros Daily Gift - Day 25">
-							<img class="item-img standard-img-size" src="/images/items/best-explore-box.png" data-toggle="tooltip" data-placement="bottom" title="Monster Collection exploration rewards (24 hours)"><br/>
-							Sudden Missions, Event coin shops
-						</td>
-						<td class="table-cols table-cols-150 text-center align-middle font-small">
-							Event coin shops
+						<td class="table-cols table-cols-50 text-center align-middle font-small">
+							-
 						</td>
 					</tr>
 					<tr class="table-rows">
-						<th class="table-cols text-center align-middle">Crafting Materials</th>
-						<td class="table-cols table-cols-150 text-center align-middle font-small">
-							30 x <img class="item-img" src="/images/items/magic-crystal.png" data-toggle="tooltip" data-placement="bottom" title="Magic Crystal"><br/>
-							5 x <img class="item-img" src="/images/flames/flame-fragment.png" data-toggle="tooltip" data-placement="bottom" title="Resurrection Fragment"><br/>
-							30 x <img class="item-img" src="/images/items/mid-spell-essence.png" data-toggle="tooltip" data-placement="bottom" title="Mid Spell Essence"><br/>
-							5 x <img class="item-img" src="/images/flames/flame-unextinguished.png" data-toggle="tooltip" data-placement="bottom" title="Unextinguished Flame">
+						<th class="text-center align-middle"><img src="/images/flames/flame-rainbow.png" data-toggle="tooltip" data-placement="bottom" title="Rainbow Resurrection Flame"></th>
+						<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Rainbow Resurrection Flame</td>
+						<td class="text-center align-middle font-small">
+							<img class="item-img standard-img-size m-1" src="/images/items/accessory-recipe.png" data-toggle="tooltip" data-placement="bottom" title="Accessory Crafting (Meister)">
+							<img class="item-img standard-img-size m-1" src="/images/items/premium-pouch.png" data-toggle="tooltip" data-placement="bottom" title="Bounty Hunter Pouches (Premium)">
+							<img class="item-img standard-img-size m-1" src="/images/items/treasure-chest.png" data-toggle="tooltip" data-placement="bottom" title="Rare Treasure Chests from Elite Bosses">
+							<img class="item-img standard-img-size m-1" src="/images/items/alicia-box-2.png" data-toggle="tooltip" data-placement="bottom" title="The Seed boxes (rank 2 and better)">
+							<img class="item-img standard-img-size m-1" src="/images/items/wonky-buff.png" data-toggle="tooltip" data-placement="bottom" title="Fairy Bros Daily Gift - Day 25">
+							<img class="item-img standard-img-size m-1" src="/images/items/best-explore-box.png" data-toggle="tooltip" data-placement="bottom" title="Monster Collection exploration rewards (24 hours)"><br/>
+							Sudden Missions, Event coin shops
 						</td>
-						<td class="table-cols table-cols-150 text-center align-middle font-small">
-							-
+						<td class="table-cols-50 text-center align-middle font-small">
+							40 x <img class="item-img m-1" src="/images/items/magic-crystal.png" data-toggle="tooltip" data-placement="bottom" title="Magic Crystal"><br/>
+							10 x <img class="item-img m-1" src="/images/flames/flame-fragment.png" data-toggle="tooltip" data-placement="bottom" title="Resurrection Fragment"><br/>
+							20 x <img class="item-img m-1" src="/images/items/high-spell-essence.png" data-toggle="tooltip" data-placement="bottom" title="High Spell Essence"><br/>
+							5 x <img class="item-img m-1" src="/images/flames/flame-never-extinguishing.png" data-toggle="tooltip" data-placement="bottom" title="Never Extinguishing Flame">
 						</td>
-						<td class="table-cols table-cols-150 text-center align-middle font-small">
-							40 x <img class="item-img" src="/images/items/magic-crystal.png" data-toggle="tooltip" data-placement="bottom" title="Magic Crystal"><br/>
-							10 x <img class="item-img" src="/images/flames/flame-fragment.png" data-toggle="tooltip" data-placement="bottom" title="Resurrection Fragment"><br/>
-							20 x <img class="item-img" src="/images/items/high-spell-essence.png" data-toggle="tooltip" data-placement="bottom" title="High Spell Essence"><br/>
-							5 x <img class="item-img" src="/images/flames/flame-never-extinguishing.png" data-toggle="tooltip" data-placement="bottom" title="Never Extinguishing Flame">
+					</tr>
+					<tr class="table-rows">
+						<th class="text-center align-middle"><img src="/images/flames/flame-black.png" data-toggle="tooltip" data-placement="bottom" title="Black Resurrection Flame"></th>
+						<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Black Resurrection Flame</td>
+						<td class="text-center align-middle font-small">
+							Event coin shops
 						</td>
-						<td class="table-cols table-cols-150 text-center align-middle font-small">
+						<td class="table-cols-50 text-center align-middle font-small">
 							-
 						</td>
 					</tr>
