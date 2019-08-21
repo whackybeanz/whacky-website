@@ -10,8 +10,12 @@ html, body {
 }
 
 .font-subheader {
-	font-size: 1rem;
+	font-size: 1.25rem;
 	text-decoration: underline;
+}
+
+.font-subsubheader {
+	font-size: 1rem;
 }
 
 .font-content {
@@ -24,6 +28,10 @@ html, body {
 
 .font-table, .font-small {
 	font-size: 0.9rem;
+}
+
+.font-footnote {
+	font-size: 0.75rem;
 }
 
 @media (min-width: 768px) {
@@ -55,7 +63,21 @@ html, body {
 }
 
 input[type="number"] {
+	-moz-appearance: textfield;
 	border-radius: 5px;
+	width: 100%;
+}
+
+@media(min-width: 992px) {
+	input[type="number"] {
+		width: 75px;
+	}
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 input[type="radio"] {
