@@ -4,6 +4,10 @@
 
 *****************/
 @media (min-width: 768px) {
+	.main-content-div {
+		overflow: auto;
+	}
+
 	.single-info-page {
 		display: none;
 		position: absolute;

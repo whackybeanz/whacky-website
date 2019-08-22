@@ -2,6 +2,7 @@ html, body {
 	height: 100%;
 	font-size: 12px;
 	font-family: "Varela Round", sans-serif;
+	overflow: auto;
 }
 
 .font-header {
@@ -37,6 +38,7 @@ html, body {
 @media (min-width: 768px) {
 	html, body {
 		font-size: 14px;
+		overflow: hidden;
 	}
 
 	.font-sidebar, .font-form, .font-button {
