@@ -1,3 +1,11 @@
 .navbar {
 	z-index: 1;
 }
+
+.toggle-mode {
+	cursor: pointer;
+}
+
+.fa-moon {
+	transform: scaleX(-1);
+}

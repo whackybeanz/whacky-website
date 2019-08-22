@@ -5,6 +5,10 @@ html, body {
 	overflow: auto;
 }
 
+body {
+	background-size: cover;
+}
+
 .font-header {
 	font-size: 1.5rem;
 	font-weight: bold;

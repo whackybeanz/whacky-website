@@ -9,6 +9,7 @@
 	}
 
 	.single-info-page {
+		min-height: 100%;
 		display: none;
 		position: absolute;
 		top: 0;
@@ -21,10 +22,6 @@
 
 .info-section {
 	max-width: 840px;
-}
-
-.page-header {
-	background-color: white;
 }
 
 /****************

@@ -1,0 +1,33 @@
+body.dark-mode {
+	background-image: url('/images/dark.jpg');
+}
+
+.table-bordered.dark-mode td, 
+.table-bordered.dark-mode th {
+	border: 1px solid #666;
+}
+
+.sidebar.dark-mode {
+	border-right: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.sidebar.dark-mode > .sidebar-btn {
+	background-color: rgba(0, 0, 0, 0.8);
+	color: rgba(255, 255, 255, 0.8);
+	border: 2px solid rgba(0, 0, 0, 0.8);
+	border-right: none;
+}
+
+.sidebar.dark-mode > .sidebar-btn:hover,
+.sidebar.dark-mode > .sidebar-btn.active {
+	border: 2px solid rgba(255, 255, 255, 0.8);
+	background-color: rgba(255, 255, 255, 0.8);
+	color: rgba(0, 0, 0, 0.8);
+	border: 2px solid rgba(255, 255, 255, 0.8);
+	border-right: none;
+	transition: all 0.3s;
+}
+
+.single-info-page.dark-mode {
+	background-color: rgba(255, 255, 255, 0.8);
+}

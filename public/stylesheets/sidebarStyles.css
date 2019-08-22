@@ -11,10 +11,11 @@
 	border-right: none;
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
+	transition: all 0.3s;
 }
 
 .sidebar-btn:hover,
 .sidebar-btn.active {
 	font-weight: bold;
-	text-decoration: underline;
+	transition: all 0.3s;
 }
