@@ -38,7 +38,7 @@
 	border: 1px solid black;
 	border-left: none;
 	cursor: pointer;
-	transition: all 0.2s;
+	transition: all 0.3s;
 	line-height: 1.25;
 }
 
@@ -47,7 +47,7 @@
 	background-color: #000;
 	color: #FFF;
 	font-weight: bold;
-	transition: all 0.2s;
+	transition: all 0.3s;
 }
 
 .leftmost-radio {

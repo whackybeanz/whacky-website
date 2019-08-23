@@ -1,14 +1,20 @@
 body.dark-mode {
 	background-image: url('/images/dark.jpg');
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.form-control.dark-mode {
+	background-color: rgba(52, 58, 64, 0.8);
+	color: rgba(255, 255, 255, 0.8);
 }
 
 .table-bordered.dark-mode td, 
 .table-bordered.dark-mode th {
-	border: 1px solid #666;
+	color: rgba(255, 255, 255, 0.8);
 }
 
 .sidebar.dark-mode {
-	border-right: 2px solid rgba(255, 255, 255, 0.8);
+	border-right: 2px solid rgba(52, 58, 64, 0.8);
 }
 
 .sidebar.dark-mode > .sidebar-btn {
@@ -20,14 +26,22 @@ body.dark-mode {
 
 .sidebar.dark-mode > .sidebar-btn:hover,
 .sidebar.dark-mode > .sidebar-btn.active {
-	border: 2px solid rgba(255, 255, 255, 0.8);
-	background-color: rgba(255, 255, 255, 0.8);
-	color: rgba(0, 0, 0, 0.8);
-	border: 2px solid rgba(255, 255, 255, 0.8);
+	background-color: rgba(52, 58, 64, 0.8);
+	color: rgba(255, 255, 255, 0.8);
+	border: 2px solid rgba(69, 77, 85, 0.8);
 	border-right: none;
-	transition: all 0.3s;
 }
 
 .single-info-page.dark-mode {
-	background-color: rgba(255, 255, 255, 0.8);
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.radio-select.dark-mode {
+	border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.radio-select.dark-mode:hover,
+.radio-select.dark-mode.active {
+	background-color: rgba(52, 58, 64, 0.8);
+	color: rgba(255, 255, 255, 0.8);
 }
