@@ -36,7 +36,7 @@ body {
 	font-size: 0.9rem;
 }
 
-.font-footnote {
+.font-caption, .font-footnote {
 	font-size: 0.75rem;
 }
 
@@ -89,6 +89,10 @@ input::-webkit-inner-spin-button {
 
 input[type="radio"] {
 	visibility: hidden;
+}
+
+.size-350 {
+	max-width: 350px;
 }
 
 .size-720 {
