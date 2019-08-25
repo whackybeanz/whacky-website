@@ -1,13 +1,15 @@
 .sidebar {
 	height: 100%;
-	border-right: 2px solid #666;
+	border-right: 2px solid rgba(222, 226, 230, 0.8);
 }
 
 .sidebar-btn {
 	height: 48px;
 	line-height: 1.1;
 	cursor: pointer;
-	border: 2px solid #666;
+	border: 2px solid rgba(255, 255, 255, 0.8);
+	background-color: rgba(255, 255, 255, 0.8);
+	color: rgba(0, 0, 0, 0.8);
 	border-right: none;
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
@@ -18,4 +20,8 @@
 .sidebar-btn.active {
 	font-weight: bold;
 	transition: all 0.3s;
+	background-color: rgba(0, 0, 0, 0.075);
+	color: rgba(0, 0, 0, 0.8);
+	border: 2px solid rgba(222, 226, 230, 0.8);
+	border-right: none;
 }

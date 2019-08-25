@@ -6,6 +6,7 @@ html, body {
 }
 
 body {
+	background-image: url("/images/light.jpg");
 	background-size: cover;
 }
 

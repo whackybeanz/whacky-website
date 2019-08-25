@@ -6,6 +6,7 @@ body.dark-mode {
 .form-control.dark-mode {
 	background-color: rgba(52, 58, 64, 0.8);
 	color: rgba(255, 255, 255, 0.8);
+	border: 1px solid rgba(69, 77, 85, 1.0);
 }
 
 .table-bordered.dark-mode td, 
@@ -26,9 +27,9 @@ body.dark-mode {
 
 .sidebar.dark-mode > .sidebar-btn:hover,
 .sidebar.dark-mode > .sidebar-btn.active {
-	background-color: rgba(52, 58, 64, 0.8);
+	background-color: rgba(52, 58, 64);
 	color: rgba(255, 255, 255, 0.8);
-	border: 2px solid rgba(69, 77, 85, 0.8);
+	border: 2px solid rgba(69, 77, 85);
 	border-right: none;
 }
 
@@ -37,7 +38,7 @@ body.dark-mode {
 }
 
 .radio-select.dark-mode {
-	border: 1px solid rgba(255, 255, 255, 0.8);
+	border: 1px solid rgba(69, 77, 85, 1.0);
 }
 
 .radio-select.dark-mode:hover,
