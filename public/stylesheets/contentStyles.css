@@ -3,6 +3,14 @@
 	GENERAL
 
 *****************/
+.size-350 {
+	max-width: 350px;
+}
+
+.size-720 {
+	max-width: 720px;
+}
+
 .single-info-page {
 	background-color: rgba(255, 255, 255, 0.8);
 }
@@ -30,13 +38,9 @@
 
 /****************
 
-	CALCULATOR
+	Custom radio buttons
 
 *****************/
-#options-form {
-	width: 100%;
-}
-
 .radio-select {
 	height: 32px;
 	border: 1px solid rgba(206, 212, 218, 1.0);
@@ -65,13 +69,9 @@
 	border-bottom-right-radius: 5px;
 }
 
-.small-img {
-	height: 24px;
-}
-
 /****************
 
-	INFO CORNER
+	Tables
 	
 *****************/
 .table-cols-header {
@@ -88,6 +88,11 @@
 	max-width: 300px;
 }
 
+/****************
+
+	Images
+	
+*****************/
 .item-img {
 	cursor: help;
 }
@@ -100,6 +105,10 @@
 .border-img {
 	border-radius: 5px;
 	border: 1px solid black;
+}
+
+.small-img {
+	height: 24px;
 }
 
 .standard-img-size {

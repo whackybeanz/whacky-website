@@ -1,7 +1,7 @@
 html, body {
 	height: 100%;
 	font-size: 12px;
-	font-family: "Varela Round", sans-serif;
+	/*font-family: "Varela Round", sans-serif;*/
 	overflow: auto;
 }
 
@@ -89,14 +89,6 @@ input::-webkit-inner-spin-button {
 
 input[type="radio"] {
 	visibility: hidden;
-}
-
-.size-350 {
-	max-width: 350px;
-}
-
-.size-720 {
-	max-width: 720px;
 }
 
 .tooltip {

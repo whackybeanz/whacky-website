@@ -5,4 +5,8 @@ router.get("/", function(req, res) {
 	res.render("index");
 })
 
+router.get("/bonus-stats", function(req, res) {
+	res.render("flameIndex");
+})
+
 module.exports = router;
