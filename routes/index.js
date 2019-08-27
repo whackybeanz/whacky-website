@@ -9,4 +9,8 @@ router.get("/bonus-stats", function(req, res) {
 	res.render("flameIndex");
 })
 
+router.get("/set-items", function(req, res) {
+	res.render("setItemIndex");
+})
+
 module.exports = router;
