@@ -88,11 +88,22 @@
 	max-width: 300px;
 }
 
+.table-item-img,
+.table-user-controls {
+	width: 50px;
+	height: 50px;
+}
+
 /****************
 
 	Images
 	
 *****************/
+.item-img-div {
+	min-width: 50px;
+	max-width: 50px;
+}
+
 .item-img {
 	cursor: help;
 }
@@ -115,4 +126,19 @@
 	width: 30px;
 	height: 30px;
 	object-fit: scale-down;
+}
+
+/****************
+
+	User Input Rows
+	
+*****************/
+.item-category {
+	top: 2px;
+	right: 5px;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+.icons {
+	font-size: 1rem;
 }
