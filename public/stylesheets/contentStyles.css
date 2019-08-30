@@ -201,12 +201,20 @@
 .carousel-inner {
 	min-height: 300px;
 	max-height: 300px;
-	overflow: auto;
+	overflow-y: auto;
 	background-color: rgba(255, 255, 255, 0.8);
 }
 
 .carousel-item {
 	min-height: 300px;
+}
+
+.carousel-caption {
+	position: initial;
+	right: initial;
+	bottom: initial;
+	left: initial;
+	color: black;
 }
 
 .carousel-control {
@@ -250,4 +258,14 @@
 .equip-choice > div {
 	min-width: 50px;
 	max-width: 50px;
+}
+
+.carousel.carousel-fade .carousel-item {
+    display: block;
+    opacity: 0;
+    transition: opacity ease-out .7s;
+}
+
+.carousel.carousel-fade .carousel-item.active {
+    opacity: 1 !important;
 }
