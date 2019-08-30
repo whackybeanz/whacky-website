@@ -169,7 +169,7 @@
 }
 
 .equip-slot:hover {
-	border: 1px solid black;
+	background-color: rgba(213, 93, 77, 0.5);
 }
 
 #ring-1-slot { grid-area: ring1; }
@@ -236,8 +236,8 @@
 	height: 18px;
 }
 
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
+.carousel-control-prev:hover, .carousel-control-prev:focus,
+.carousel-control-next:hover, .carousel-control-next:focus {
 	color: initial;
 }
 
