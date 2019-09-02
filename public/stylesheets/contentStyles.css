@@ -269,3 +269,19 @@
 .carousel.carousel-fade .carousel-item.active {
     opacity: 1 !important;
 }
+
+.set-item-effect-div {
+	height: 225px;
+	flex: auto;
+}
+
+.set-item-effect-div .set-items div,
+.set-item-effect-div .num-wearing-div div {
+	color: #CCC;
+}
+
+.set-item-effect-div .set-items div.active,
+.set-item-effect-div .num-wearing-div div.active {
+	color: #000;
+	font-weight: bold;
+}
