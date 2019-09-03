@@ -54,14 +54,14 @@
 								<h2 class="font-carousel-header w-100 text-center"><%= equipType %></h2>
 								<div class="font-content w-100 d-flex flex-wrap">
 								<% jobTypes.forEach(function(jobType) { %>
-									<% if(equipsPerJobType[equipType][jobType]) { %> 
-										<% equipsPerJobType[equipType][jobType].forEach(function(equips) { %>
+									<% if(allSetItems[equipType][jobType]) { %> 
+										<% allSetItems[equipType][jobType].forEach(function(equips) { %>
 										<div class="col-12 col-lg-6 w-100 mb-2 px-2">
-											<div class="equip-choice <%= equipType %>-choice border rounded-lg d-flex align-items-center" data-set-type="<%= equips.setType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= equips.image %>">
+											<div class="equip-choice <%= equipType %>-choice border rounded-lg d-flex align-items-center" data-equip-name="<%= equips.name %>" data-set-type="<%= equips.setType %>" data-job-type="<%= jobType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= equips.image %>">
 												<div class="h-100 border-right mr-2 d-flex justify-content-center align-items-center">
 													<img src="<%= equips.image %>" class="m-2">
 												</div>
-												<p class="m-0 mr-2"><%= equips.name %></p>
+												<p class="equip-name m-0 mr-2"><%= equips.name %></p>
 											</div>
 										</div>
 										<% }) %>
@@ -200,51 +200,29 @@
 		<div class="w-100 mb-3">
 			<h2 class="font-subheader w-100 font-weight-bold mb-2">Set Effects Breakdown</h2>
 			<div class="font-table w-100 d-flex flex-wrap justify-content-center align-items-center mb-4">
-				<div class="set-item-effect-div acs w-100 d-flex col-3 col-lg-4 flex-column border border-dark rounded-lg">
+				<% Object.keys(allSetEffects).forEach(function(setName) { %>
+				<div class="set-item-effect-div <%= setName %>-set w-100 d-flex col-3 col-lg-4 flex-column border border-dark rounded-lg">
 					<div class="set-items">
-						<div class="hat">ACS Hat</div>
-						<div class="glove">ACS Glove</div>
+						<% Object.keys(allSetEffects[setName].items).forEach(function(itemType) { %> 
+						<% Object.keys(allSetEffects[setName].items[itemType]).forEach(function(jobType) { %>
+						<% if(typeof allSetEffects[setName].items[itemType][jobType] === "string") { %>
+						<div class="<%= jobType %> <%= itemType %>"><%= allSetEffects[setName].items[itemType][jobType] %></div>
+						<% } else { %>
+							<% allSetEffects[setName].items[itemType][jobType].forEach(function(item) { %>
+							<div class="<%= jobType %> <%= itemType %>"><%= item %></div>
+							<% }) %>
+						<% } %>
+						<% }) %>
+						<% }) %>
 					</div>
 					<hr>
 					<div class="num-wearing-div">
-						<div class="wearing-1">At least 1 equipped</div>
+						<% Object.keys(allSetEffects[setName].effects).forEach(function(numEquipped) { %> 
+						<div class="wearing-<%= numEquipped %>">At least <%= numEquipped %> equipped</div>
+						<% }) %>
 					</div>
 				</div>
-				<div class="set-item-effect-div abs w-100 d-flex col-3 col-lg-4 flex-column border border-dark rounded-lg">
-					<div class="set-items">
-						<div class="hat">ABS Hat</div>
-						<div class="glove">ABS Glove</div>
-					</div>
-					<hr>
-					<div class="num-wearing-div">
-						<div class="wearing-1">At least 1 equipped</div>
-					</div>
-				</div>
-				<div class="set-item-effect-div hardBossAcc w-100 col-3 col-lg-4 d-flex flex-column border border-dark rounded-lg">
-					<div class="set-items">
-						<div class="face">Loose Control Machine Mark</div>
-						<div class="eye">Magical Eye Patch</div>
-					</div>
-					<hr>
-					<div class="num-wearing-div">
-						<div class="wearing-1">At least 1 equipped</div>
-					</div>
-				</div>
-				<div class="set-item-effect-div bossAcc w-100 col-3 col-lg-4 d-flex flex-column border border-dark rounded-lg">
-					<div class="set-items">
-						<div class="face">Condensed Strength Crystalline</div>
-						<div class="eye">Papulatus Mark</div>
-						<div class="eye">Black Bean Mark</div>
-						<div class="eye">Aqua Letter Eye Decoration</div>
-					</div>
-					<hr>
-					<div class="num-wearing-div">
-						<div class="wearing-1">At least 1 equipped</div>
-						<div class="wearing-3">At least 3 equipped</div>
-						<div class="wearing-5">At least 5 equipped</div>
-						<div class="wearing-7">At least 7 equipped</div>
-					</div>
-				</div>
+				<% }) %>
 			</div>
 		</div>
 	</div>
