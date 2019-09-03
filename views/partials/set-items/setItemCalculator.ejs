@@ -48,24 +48,20 @@
 						
 					</div>
 					<div class="carousel-inner">
-						<% equipTypes.forEach(function(equipType, index) { %>
+						<% Object.keys(allSetItems).forEach(function(equipType, index) { %>
 						<div class="equip-select-div carousel-item p-3 <% if(index ===0) { %>active<% } %>">
 							<div class="carousel-caption w-100 p-0">
 								<h2 class="font-carousel-header w-100 text-center"><%= equipType %></h2>
 								<div class="font-content w-100 d-flex flex-wrap">
-								<% jobTypes.forEach(function(jobType) { %>
-									<% if(allSetItems[equipType][jobType]) { %> 
-										<% allSetItems[equipType][jobType].forEach(function(equips) { %>
-										<div class="col-12 col-lg-6 w-100 mb-2 px-2">
-											<div class="equip-choice <%= equipType %>-choice border rounded-lg d-flex align-items-center" data-equip-name="<%= equips.name %>" data-set-type="<%= equips.setType %>" data-job-type="<%= jobType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= equips.image %>">
-												<div class="h-100 border-right mr-2 d-flex justify-content-center align-items-center">
-													<img src="<%= equips.image %>" class="m-2">
-												</div>
-												<p class="equip-name m-0 mr-2"><%= equips.name %></p>
+								<% allSetItems[equipType].forEach(function(equips) { %>
+									<div class="col-12 col-lg-6 w-100 mb-2 px-2">
+										<div class="equip-choice <%= equipType %>-choice border rounded-lg d-flex align-items-center" data-equip-name="<%= equips.name %>" data-set-type="<%= equips.setType %>" data-job-type="<%= equips.jobType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= equips.image %>" data-item-id="<%= equips.id %>">
+											<div class="h-100 border-right mr-2 d-flex justify-content-center align-items-center">
+												<img src="<%= equips.image %>" class="m-2">
 											</div>
+											<p class="equip-name m-0 mr-2"><%= equips.name %></p>
 										</div>
-										<% }) %>
-									<% } %>
+									</div>
 								<% }) %>
 								</div>
 							</div>
@@ -202,23 +198,22 @@
 			<div class="font-table w-100 d-flex flex-wrap justify-content-center align-items-center mb-4">
 				<% Object.keys(allSetEffects).forEach(function(setName) { %>
 				<div class="set-item-effect-div <%= setName %>-set w-100 d-flex col-3 col-lg-4 flex-column border border-dark rounded-lg">
+					<h1><%= setName.title %></h1>
 					<div class="set-items">
 						<% Object.keys(allSetEffects[setName].items).forEach(function(itemType) { %> 
 						<% Object.keys(allSetEffects[setName].items[itemType]).forEach(function(jobType) { %>
-						<% if(typeof allSetEffects[setName].items[itemType][jobType] === "string") { %>
-						<div class="<%= jobType %> <%= itemType %>"><%= allSetEffects[setName].items[itemType][jobType] %></div>
-						<% } else { %>
-							<% allSetEffects[setName].items[itemType][jobType].forEach(function(item) { %>
-							<div class="<%= jobType %> <%= itemType %>"><%= item %></div>
-							<% }) %>
-						<% } %>
+						<% allSetEffects[setName].items[itemType][jobType].forEach(function(item) { %>
+						<div class="<%= jobType %> <%= itemType %>" id="item-<%= item.id %>"><%= item.name %></div>
+						<% }) %>
 						<% }) %>
 						<% }) %>
 					</div>
 					<hr>
 					<div class="num-wearing-div">
-						<% Object.keys(allSetEffects[setName].effects).forEach(function(numEquipped) { %> 
-						<div class="wearing-<%= numEquipped %>">At least <%= numEquipped %> equipped</div>
+						<% Object.keys(allSetEffects[setName].effects).forEach(function(jobType) { %> 
+						<% Object.keys(allSetEffects[setName].effects[jobType]).forEach(function(numEquipped) { %>
+						<div class="<%= jobType %> wearing-<%= numEquipped %>">At least <%= numEquipped %> equipped</div>
+						<% }) %>
 						<% }) %>
 					</div>
 				</div>

@@ -7,22 +7,23 @@ $(".equip-choice").on("click", function() {
 	var newSetType = $(this).data("setType");
 	var jobType = $(this).data("jobType");
 	var choiceImage = $(this).data("choiceImg");
+	var equipId = $(this).data("itemId");
 
 	$(`.${equipType}-choice`).removeClass("active");
 	$(this).addClass("active");
 	$(`#${equipType}-slot`).css("background-image", `url(${choiceImage})`);
-	updateSetEffects(newSetType, jobType, equipType, currSetType);
+	updateSetEffects(newSetType, jobType, equipType, currSetType, equipId);
 })
 
 // Possible scenarios when a user selects an item:
 // 1) Brand new item selected, does not belong to any existing set
 // 2) Item type (e.g. shoe) was already factored in another set, so both this and the
 // new set need to have set effects updated
-function updateSetEffects(newSetType, jobType, equipType, currSetType) {
+function updateSetEffects(newSetType, jobType, equipType, currSetType, equipId) {
 	if(newSetType !== "none") {
 		// Update any sets affected by user selection
 		$(`.${equipType}`).removeClass("active");
-		$(`.${newSetType}-set .set-items .${jobType}.${equipType}`).addClass("active");
+		$(`#item-${equipId}`).addClass("active");
 
 		// If currSetType exists, there was a previously selected item in that equip slot
 		// Update number of active set effects in curr set
@@ -31,7 +32,7 @@ function updateSetEffects(newSetType, jobType, equipType, currSetType) {
 			$(`.${currSetType}-set .num-wearing-div div`).removeClass("active");
 
 			for(var i = 1; i <= numItemsEquipped; i++) {
-				$(`.${currSetType}-set .num-wearing-div .wearing-${i}`).addClass("active");
+				$(`.${currSetType}-set .num-wearing-div .${jobType}.wearing-${i}`).addClass("active");
 			}
 		}
 
@@ -39,7 +40,7 @@ function updateSetEffects(newSetType, jobType, equipType, currSetType) {
 		var newSetNumItemsEquipped = $(`.${newSetType}-set .set-items .${jobType}.active`).length;
 
 		for(var i = 1; i <= newSetNumItemsEquipped; i++) {
-			$(`.${newSetType}-set .num-wearing-div .wearing-${i}`).addClass("active");
+			$(`.${newSetType}-set .num-wearing-div .${jobType}.wearing-${i}`).addClass("active");
 		}		
 	}
 }		

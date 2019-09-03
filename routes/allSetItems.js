@@ -1,39 +1,29 @@
 var allSetItems = {
-	hat: {
-		warrior: [
-			{image: "/images/equips/acs-knight-hat.png", name: "Arcaneshade Knight Hat", setType: "acs"},
-			{image: "/images/equips/abs-bastion-helm.png", name: "Absolabs Bastion Helm", setType: "abs"},
-		],
-		mage: [
-			{image: "/images/equips/acs-mage-hat.png", name: "Arcaneshade Mage Hat", setType: "acs"},
-			{image: "/images/equips/abs-cabalist-crown.png", name: "Absolabs Cabalist Crown", setType: "abs"},
-		],
-		archer: [
-			{image: "/images/equips/acs-archer-hat.png", name: "Arcaneshade Archer Hat", setType: "acs"},
-			{image: "/images/equips/abs-trueshot-hood.png", name: "Absolabs Trueshot Hood", setType: "abs"},
-		],
-		thief: [
-			{image: "/images/equips/acs-bandit-hat.png", name: "Arcaneshade Bandit Hat", setType: "acs"},
-			{image: "/images/equips/abs-shadow-beret.png", name: "Absolabs Shadow Beret", setType: "abs"},
-		],
-		pirate: [
-			{image: "/images/equips/acs-pirate-hat.png", name: "Arcaneshade Pirate Hat", setType: "acs"},
-			{image: "/images/equips/abs-brigadier-fedora.png", name: "Absolabs Brigadier Fedora", setType: "abs"},
-		]
-	},
-	face: {
-		all: [
-			{image: "/images/equips/meister-symbol.png", name: "Meister Symbol", setType: "none"},
-			{image: "/images/equips/condensed-crystal.png", name: "Condensed Strength Crystalline", setType: "bossAcc"},
-		]
-	},
-	eye: {
-		all: [
-			{image: "/images/equips/papulatus-mark.png", name: "Papulatus Mark", setType: "bossAcc"},
-			{image: "/images/equips/black-bean-mark.png", name: "Black Bean Mark", setType: "bossAcc"},
-			{image: "/images/equips/aqua-letter.png", name: "Aqua Letter Eye Decoration", setType: "bossAcc"},
-		]
-	}
+	hat: [
+		{ jobType: "warrior", setType: "acs", id: "acs-warrior-hat", image: "/images/equips/acs-knight-hat.png", name: "Arcaneshade Knight Hat" },
+		{ jobType: "warrior", setType: "abs", id: "abs-warrior-hat", image: "/images/equips/abs-bastion-helm.png", name: "Absolabs Bastion Helm" },
+
+		{ jobType: "mage", setType: "acs", id: "acs-mage-hat", image: "/images/equips/acs-mage-hat.png", name: "Arcaneshade Mage Hat" },
+		{ jobType: "mage", setType: "abs", id: "abs-mage-hat", image: "/images/equips/abs-cabalist-crown.png", name: "Absolabs Cabalist Crown" },
+
+		{ jobType: "archer", setType: "acs", id: "acs-archer-hat", image: "/images/equips/acs-archer-hat.png", name: "Arcaneshade Archer Hat" },
+		{ jobType: "archer", setType: "abs", id: "abs-archer-hat", image: "/images/equips/abs-trueshot-hood.png", name: "Absolabs Trueshot Hood" },
+
+		{ jobType: "thief", setType: "acs", id: "acs-thief-hat", image: "/images/equips/acs-bandit-hat.png", name: "Arcaneshade Bandit Hat" },
+		{ jobType: "thief", setType: "abs", id: "abs-thief-hat", image: "/images/equips/abs-shadow-beret.png", name: "Absolabs Shadow Beret" },
+
+		{ jobType: "pirate", setType: "acs", id: "acs-pirate-hat", image: "/images/equips/acs-pirate-hat.png", name: "Arcaneshade Pirate Hat" },
+		{ jobType: "pirate", setType: "abs", id: "abs-pirate-hat", image: "/images/equips/abs-brigadier-fedora.png", name: "Absolabs Brigadier Fedora" },
+	],
+	face: [
+		{ jobType: "warrior", setType: "none", id: "meister-symbol", image: "/images/equips/meister-symbol.png", name: "Meister Symbol" },
+		{ jobType: "common", setType: "bossAcc", id: "bossAcc-face-1", image: "/images/equips/condensed-crystal.png", name: "Condensed Strength Crystalline" },
+	],
+	eye: [
+		{ jobType: "common", setType: "bossAcc", id: "bossAcc-eye-1", image: "/images/equips/papulatus-mark.png", name: "Papulatus Mark" },
+		{ jobType: "common", setType: "bossAcc", id: "bossAcc-eye-2", image: "/images/equips/black-bean-mark.png", name: "Black Bean Mark" },
+		{ jobType: "common", setType: "bossAcc", id: "bossAcc-eye-3", image: "/images/equips/aqua-letter.png", name: "Aqua Letter Eye Decoration" },
+	],
 }
 
 module.exports = allSetItems;
