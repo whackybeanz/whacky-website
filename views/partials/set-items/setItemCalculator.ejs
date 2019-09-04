@@ -44,19 +44,31 @@
 			</div>
 			<div class="col-12">
 				<div id="carousel-fade" class="carousel carousel-fade border rounded-lg" data-ride="carousel" data-interval="false">
-					<div class="carousel-job-select">
-						
+					<div class="carousel-job-select w-100 d-flex justify-content-center align-items-center flex-column border-bottom position-relative">
+						<div class="carousel-blocker w-100 h-100 d-none justify-content-center align-items-center position-absolute">
+							<p class="m-0">Selected class: <span class="selected-job"></span></p>
+						</div>
+						<div class="w-100 d-flex justify-content-center align-items-center flex-column py-3">
+							<p class="mb-1">Select your character's class to begin.</p>
+							<div class="d-flex">
+								<div class="single-job-choice border border-dark rounded-lg py-1 px-2 mx-2" data-job-select="warrior">Warrior</div>
+								<div class="single-job-choice border border-dark rounded-lg py-1 px-2 mx-2" data-job-select="mage">Mage</div>
+								<div class="single-job-choice border border-dark rounded-lg py-1 px-2 mx-2" data-job-select="archer">Archer</div>
+								<div class="single-job-choice border border-dark rounded-lg py-1 px-2 mx-2" data-job-select="thief">Thief</div>
+								<div class="single-job-choice border border-dark rounded-lg py-1 px-2 mx-2" data-job-select="pirate">Pirate</div>
+							</div>
+						</div>
 					</div>
-					<div class="carousel-inner">
+					<div class="carousel-inner position-relative d-none">
 						<% Object.keys(allSetItems).forEach(function(equipType, index) { %>
-						<div class="equip-select-div carousel-item p-3 <% if(index ===0) { %>active<% } %>">
+						<div class="equip-select-div carousel-item pt-2 pb-3 px-3 <% if(index ===0) { %>active<% } %>">
 							<div class="carousel-caption w-100 p-0">
-								<h2 class="font-carousel-header w-100 text-center"><%= equipType %></h2>
+								<h2 class="font-carousel-header w-100 text-center text-capitalize"><%= equipType %></h2>
 								<div class="font-content w-100 d-flex flex-wrap">
 								<% allSetItems[equipType].forEach(function(equips) { %>
-									<div class="col-12 col-lg-6 w-100 mb-2 px-2">
-										<div class="equip-choice <%= equipType %>-choice border rounded-lg d-flex align-items-center" data-equip-name="<%= equips.name %>" data-set-type="<%= equips.setType %>" data-job-type="<%= equips.jobType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= equips.image %>" data-item-id="<%= equips.id %>">
-											<div class="h-100 border-right mr-2 d-flex justify-content-center align-items-center">
+									<div class="equip-choice equip-<%= equips.jobType %> col-12 col-lg-6 w-100 mb-2 px-2 d-none">
+										<div class="single-equip-choice single-equip-<%= equipType %> w-100 d-flex align-items-center border rounded-lg" data-equip-name="<%= equips.name %>" data-set-type="<%= equips.setType %>" data-job-type="<%= equips.jobType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= equips.image %>" data-item-id="<%= equips.id %>">
+											<div class="equip-choice-img-div h-100 border-right mr-2 d-flex justify-content-center align-items-center">
 												<img src="<%= equips.image %>" class="m-2">
 											</div>
 											<p class="equip-name m-0 mr-2"><%= equips.name %></p>
@@ -68,7 +80,7 @@
 						</div>
 						<% }) %>
 					</div>
-					<div class="carousel-control">
+					<div class="carousel-control w-100 border-top d-none">
 						<a class="carousel-control-prev w-auto px-2" href="#carousel-fade" role="button" data-slide="prev">
 							<i class="fas fa-angle-double-left d-flex align-items-center mr-1"></i>
 							<span class="sr-only">Previous</span>
@@ -195,15 +207,15 @@
 		</div>
 		<div class="w-100 mb-3">
 			<h2 class="font-subheader w-100 font-weight-bold mb-2">Set Effects Breakdown</h2>
-			<div class="font-table w-100 d-flex flex-wrap justify-content-center align-items-center mb-4">
+			<div class="font-table w-100 d-flex flex-wrap justify-content-center align-items-start mb-4">
 				<% Object.keys(allSetEffects).forEach(function(setName) { %>
-				<div class="set-item-effect-div <%= setName %>-set w-100 d-flex col-3 col-lg-4 flex-column border border-dark rounded-lg">
-					<h1><%= setName.title %></h1>
+				<div class="set-item-effect-div <%= setName %>-set w-100 d-none col-3 col-lg-4 flex-column border border-dark rounded-lg">
+					<h3 class="set-name font-subsubheader text-center"><%= allSetEffects[setName].title %></h1>
 					<div class="set-items">
-						<% Object.keys(allSetEffects[setName].items).forEach(function(itemType) { %> 
-						<% Object.keys(allSetEffects[setName].items[itemType]).forEach(function(jobType) { %>
-						<% allSetEffects[setName].items[itemType][jobType].forEach(function(item) { %>
-						<div class="<%= jobType %> <%= itemType %>" id="item-<%= item.id %>"><%= item.name %></div>
+						<% Object.keys(allSetEffects[setName].items).forEach(function(equipType) { %> 
+						<% Object.keys(allSetEffects[setName].items[equipType]).forEach(function(jobType) { %>
+						<% allSetEffects[setName].items[equipType][jobType].forEach(function(item) { %>
+						<div class="set-effect set-effect-<%= jobType %> wearing-<%= equipType %>" id="item-<%= item.id %>"><%= item.name %></div>
 						<% }) %>
 						<% }) %>
 						<% }) %>
@@ -212,7 +224,7 @@
 					<div class="num-wearing-div">
 						<% Object.keys(allSetEffects[setName].effects).forEach(function(jobType) { %> 
 						<% Object.keys(allSetEffects[setName].effects[jobType]).forEach(function(numEquipped) { %>
-						<div class="<%= jobType %> wearing-<%= numEquipped %>">At least <%= numEquipped %> equipped</div>
+						<div class="set-effect set-effect-<%= jobType %> wearing-<%= numEquipped %>">At least <%= numEquipped %> equipped</div>
 						<% }) %>
 						<% }) %>
 					</div>

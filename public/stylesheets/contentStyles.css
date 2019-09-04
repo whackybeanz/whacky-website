@@ -198,15 +198,33 @@
 #cape-slot { grid-area: cape; }
 #heart-slot { grid-area: heart; }
 
+.carousel-blocker {
+	background-color: rgba(255, 255, 255, 1.0);
+	z-index: 9999;
+}
+
+.single-job-choice {
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.single-job-choice:hover,
+.single-job-choice.active {
+	background-color: rgba(0, 0, 0, 0.075);
+	color: rgba(0, 0, 0, 0.8);
+	font-weight: bold;
+	transition: all 0.3s;
+}
+
 .carousel-inner {
 	min-height: 300px;
 	max-height: 300px;
 	overflow-y: auto;
-	background-color: rgba(255, 255, 255, 0.8);
 }
 
 .carousel-item {
 	min-height: 300px;
+	background-color: rgba(255, 255, 255, 0.8);
 }
 
 .carousel-caption {
@@ -241,21 +259,21 @@
 	color: initial;
 }
 
-.equip-choice {
+.single-equip-choice {
 	height: 50px;
 	cursor: pointer;
 	transition: background-color 0.3s;
 }
 
-.equip-choice:hover,
-.equip-choice.active {
+.single-equip-choice:hover,
+.single-equip-choice.active {
 	background-color: rgba(0, 0, 0, 0.075);
 	color: rgba(0, 0, 0, 0.8);
 	font-weight: bold;
 	transition: background-color 0.3s;
 }
 
-.equip-choice > div {
+.equip-choice-img-div {
 	min-width: 50px;
 	max-width: 50px;
 }
@@ -283,4 +301,8 @@
 .set-item-effect-div .num-wearing-div div.active {
 	color: #000;
 	font-weight: bold;
+}
+
+.set-name {
+	text-decoration: underline;
 }

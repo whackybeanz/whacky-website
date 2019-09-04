@@ -16,7 +16,11 @@ var allSetItems = {
 		{ jobType: "pirate", setType: "abs", id: "abs-pirate-hat", image: "/images/equips/abs-brigadier-fedora.png", name: "Absolabs Brigadier Fedora" },
 	],
 	face: [
-		{ jobType: "warrior", setType: "none", id: "meister-symbol", image: "/images/equips/meister-symbol.png", name: "Meister Symbol" },
+		{ jobType: "warrior", setType: "none", id: "meister-symbol", image: "/images/equips/meister-symbol.png", name: "Shiny Red Warrior Meister Symbol" },
+		{ jobType: "mage", setType: "none", id: "meister-symbol", image: "/images/equips/meister-symbol.png", name: "Shiny Red Magician Meister Symbol" },
+		{ jobType: "archer", setType: "none", id: "meister-symbol", image: "/images/equips/meister-symbol.png", name: "Shiny Red Archer Meister Symbol" },
+		{ jobType: "thief", setType: "none", id: "meister-symbol", image: "/images/equips/meister-symbol.png", name: "Shiny Red Thief Meister Symbol" },
+		{ jobType: "pirate", setType: "none", id: "meister-symbol", image: "/images/equips/meister-symbol.png", name: "Shiny Red Pirate Meister Symbol" },
 		{ jobType: "common", setType: "bossAcc", id: "bossAcc-face-1", image: "/images/equips/condensed-crystal.png", name: "Condensed Strength Crystalline" },
 	],
 	eye: [

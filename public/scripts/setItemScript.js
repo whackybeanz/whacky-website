@@ -1,52 +1,78 @@
 var allItemTypes = ["Hat", "Face Accessory", "Eye Accessory"];
 var currIndex = 0;
 
-$(".equip-choice").on("click", function() {
+$(".single-job-choice").on("click", function() {
+	var jobType = $(this).data("jobSelect");
+	$(".selected-job").text(jobType);
+	$(".single-job-choice").removeClass("active");
+	$(this).addClass("active");
+	$(`.equip-choice, .set-effect`).removeClass("d-flex").addClass("d-none");
+	$(`.carousel-blocker, .carousel-inner, .carousel-control, .equip-${jobType}, .equip-common, .set-effect-${jobType}, .set-effect-common`).removeClass("d-none").addClass("d-flex");
+})
+
+$(".single-equip-choice").on("click", function() {
 	var equipType = $(this).data("equipType");
-	var currSetType = $(`.${equipType}-choice.active`).data("setType");
+	var oldSetType = $(`.single-equip-${equipType}.active`).data("setType");
 	var newSetType = $(this).data("setType");
 	var jobType = $(this).data("jobType");
 	var choiceImage = $(this).data("choiceImg");
 	var equipId = $(this).data("itemId");
 
-	$(`.${equipType}-choice`).removeClass("active");
+	$(`.single-equip-${equipType}`).removeClass("active");
 	$(this).addClass("active");
 	$(`#${equipType}-slot`).css("background-image", `url(${choiceImage})`);
-	updateSetEffects(newSetType, jobType, equipType, currSetType, equipId);
+	updateSetEffects(newSetType, jobType, equipType, oldSetType, equipId);
 })
 
 // Possible scenarios when a user selects an item:
 // 1) Brand new item selected, does not belong to any existing set
 // 2) Item type (e.g. shoe) was already factored in another set, so both this and the
 // new set need to have set effects updated
-function updateSetEffects(newSetType, jobType, equipType, currSetType, equipId) {
-	if(newSetType !== "none") {
-		// Update any sets affected by user selection
-		$(`.${equipType}`).removeClass("active");
-		$(`#item-${equipId}`).addClass("active");
+function updateSetEffects(newSetType, jobType, equipType, oldSetType, equipId) {
+	// Update any sets affected by user selection
+	$(`.wearing-${equipType}`).removeClass("active");
+	$(`#item-${equipId}`).addClass("active");
 
-		// If currSetType exists, there was a previously selected item in that equip slot
-		// Update number of active set effects in curr set
-		if(currSetType) {
-			var numItemsEquipped = $(`.${currSetType}-set .set-items .${jobType}.active`).length;
-			$(`.${currSetType}-set .num-wearing-div div`).removeClass("active");
+	updateOldSetEffect(oldSetType, newSetType, jobType);
+	updateNewSetEffect(newSetType, jobType);
+}
 
-			for(var i = 1; i <= numItemsEquipped; i++) {
-				$(`.${currSetType}-set .num-wearing-div .${jobType}.wearing-${i}`).addClass("active");
-			}
+// If oldSetType exists, there was a previously selected item in that equip slot
+// Update number of active set effects in old set
+function updateOldSetEffect(oldSetType, newSetType, jobType) {
+	if(oldSetType) {
+		// Recalculate number of items equipped in old set and hide set effect if none equipped
+		var numItemsEquipped = $(`.${oldSetType}-set .set-items .active`).length;
+		if(numItemsEquipped === 0) {
+			$(`.${oldSetType}-set`).removeClass("d-flex").addClass("d-none");
+		} 
+
+		$(`.${oldSetType}-set .num-wearing-div div`).removeClass("active");
+		for(var i = 1; i <= numItemsEquipped; i++) {
+			$(`.${oldSetType}-set .num-wearing-div .wearing-${i}`).addClass("active");
 		}
+	}
+}
 
-		// Update number of active set effects in new set
-		var newSetNumItemsEquipped = $(`.${newSetType}-set .set-items .${jobType}.active`).length;
+// If newSetType is none, then there are no set effects to update
+function updateNewSetEffect(newSetType, jobType) {
+	if(newSetType !== "none") {
+		// Recalculate number of items equipped in new set and reveal set effect
+		var newSetNumItemsEquipped = $(`.${newSetType}-set .set-items .set-effect-${jobType}.active`).length;
+		$(`.${newSetType}-set`).removeClass("d-none").addClass("d-flex");
 
 		for(var i = 1; i <= newSetNumItemsEquipped; i++) {
-			$(`.${newSetType}-set .num-wearing-div .${jobType}.wearing-${i}`).addClass("active");
+			$(`.${newSetType}-set .num-wearing-div .set-effect-${jobType}.wearing-${i}`).addClass("active");
 		}		
 	}
-}		
+}
 
 $(".carousel-control-prev").on("click", function() {
 	currIndex--;
+
+	if(currIndex < 0) {
+		currIndex = allItemTypes.length -1;
+	}
 	updateCarouselNavText(currIndex);
 })
 
