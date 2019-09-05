@@ -297,21 +297,13 @@
 	border-right: 1px solid rgba(206, 212, 218, 1.0);
 }
 
-.set-item-effect-div {
-	flex: auto;
-}
-
 .set-item-effect-div .set-items div,
 .set-item-effect-div .num-wearing-div div {
-	color: #CCC;
+	opacity: 0.3;
 }
 
 .set-item-effect-div .set-items div.active,
 .set-item-effect-div .num-wearing-div div.active {
-	color: #000;
+	opacity: 1.0;
 	font-weight: bold;
-}
-
-.set-name {
-	text-decoration: underline;
 }

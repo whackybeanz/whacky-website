@@ -14,8 +14,11 @@ $(".job-choice-div").on("click", ".single-job-choice.clickable", function() {
 
 $(".equip-slot").on("click", function() {
 	var equipType = $(this).data("equipType");
+	currIndex = $(this).data("equipTypeIndex");
 	$(`.equip-select-div`).removeClass("active");
 	$(`.equip-select-${equipType}`).addClass("active");
+
+	updateCarouselNavText(currIndex);
 })
 
 $(".single-equip-choice").on("click", function() {
@@ -43,6 +46,13 @@ function updateSetEffects(newSetType, jobType, equipType, oldSetType, equipId) {
 
 	updateOldSetEffect(oldSetType, newSetType, jobType);
 	updateNewSetEffect(newSetType, jobType);
+
+	var numSetsActive = $(".set-item-effect-div.d-flex").length;
+	if(numSetsActive > 0) {
+		$(".no-set-effect-msg").removeClass("d-flex").addClass("d-none");
+	} else {
+		$(".no-set-effect-msg").removeClass("d-none").addClass("d-flex");
+	}
 }
 
 // If oldSetType exists, there was a previously selected item in that equip slot
