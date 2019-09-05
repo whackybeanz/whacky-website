@@ -1,13 +1,13 @@
 var allItemTypes = ["Hat", "Face Accessory", "Eye Accessory"];
 var currIndex = 0;
 
-$(".single-job-choice").on("click", function() {
+$(".job-choice-div").on("click", ".single-job-choice.clickable", function() {
 	var jobType = $(this).data("jobSelect");
-	$(".selected-job").text(jobType);
-	$(".single-job-choice").removeClass("active");
+	$(".single-job-choice").removeClass("clickable");
 	$(this).addClass("active");
+	$(".job-select-blocker").removeClass("d-none").addClass("d-flex");
 	$(`.equip-choice, .set-effect`).removeClass("d-flex").addClass("d-none");
-	$(`.carousel-blocker, .carousel-inner, .carousel-control, .equip-${jobType}, .equip-common, .set-effect-${jobType}, .set-effect-common`).removeClass("d-none").addClass("d-flex");
+	$(`.carousel-inner, .carousel-control, .equip-${jobType}, .equip-common, .set-effect-${jobType}, .set-effect-common`).removeClass("d-none").addClass("d-flex");
 })
 
 $(".single-equip-choice").on("click", function() {
