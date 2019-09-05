@@ -6,8 +6,16 @@ $(".job-choice-div").on("click", ".single-job-choice.clickable", function() {
 	$(".single-job-choice").removeClass("clickable");
 	$(this).addClass("active");
 	$(".job-select-blocker").removeClass("d-none").addClass("d-flex");
+
+	$(".step-2-div").removeClass("d-none").addClass("d-flex").hide().fadeIn();
 	$(`.equip-choice, .set-effect`).removeClass("d-flex").addClass("d-none");
-	$(`.carousel-inner, .carousel-control, .equip-${jobType}, .equip-common, .set-effect-${jobType}, .set-effect-common`).removeClass("d-none").addClass("d-flex");
+	$(`.equip-${jobType}, .equip-common, .set-effect-${jobType}, .set-effect-common`).removeClass("d-none").addClass("d-flex");
+})
+
+$(".equip-slot").on("click", function() {
+	var equipType = $(this).data("equipType");
+	$(`.equip-select-div`).removeClass("active");
+	$(`.equip-select-${equipType}`).addClass("active");
 })
 
 $(".single-equip-choice").on("click", function() {
