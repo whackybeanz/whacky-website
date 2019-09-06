@@ -187,7 +187,7 @@
 				<p class="no-set-effect-msg font-content w-100 d-flex justify-content-center">- No active set effects -</p>
 				<% Object.keys(allSetEffects).forEach(function(setName) { %>
 				<div class="set-item-effect-div <%= setName %>-set col-6 col-lg-4 d-none mb-3">
-					<div class="w-100 d-flex flex-column border border-dark rounded-lg py-2 px-3">
+					<div class="w-100 d-flex flex-column rounded-lg py-2 px-3">
 						<h3 class="font-subsubheader text-center">&lt;<%= allSetEffects[setName].title %>&gt;</h3>
 						<div class="set-items">
 							<% Object.keys(allSetEffects[setName].items).forEach(function(equipType) { %> 
@@ -202,7 +202,14 @@
 						<div class="num-wearing-div">
 							<% Object.keys(allSetEffects[setName].effects).forEach(function(jobType) { %> 
 							<% Object.keys(allSetEffects[setName].effects[jobType]).forEach(function(numEquipped) { %>
-							<div class="set-effect set-effect-<%= jobType %> wearing-<%= numEquipped %>">At least <%= numEquipped %> equipped</div>
+							<div class="set-effect set-effect-<%= jobType %> wearing-<%= numEquipped %> d-flex flex-column mb-2">
+								<p class="mb-0"><%= numEquipped %> set effect:</p>
+								<% allSetEffects[setName].effects[jobType][numEquipped].forEach(function(effect) { %>
+									<div>
+										<%= effect.statName %> +<%= effect.val %>
+									</div>
+								<% }) %>
+							</div>
 							<% }) %>
 							<% }) %>
 						</div>

@@ -297,13 +297,17 @@
 	border-right: 1px solid rgba(206, 212, 218, 1.0);
 }
 
-.set-item-effect-div .set-items div,
-.set-item-effect-div .num-wearing-div div {
+.set-item-effect-div > div {
+	border: 1px solid rgba(206, 212, 218, 1.0);
+}
+
+.set-item-effect-div .set-items .set-effect,
+.set-item-effect-div .num-wearing-div .set-effect {
 	opacity: 0.3;
 }
 
-.set-item-effect-div .set-items div.active,
-.set-item-effect-div .num-wearing-div div.active {
+.set-item-effect-div .set-items .set-effect.active,
+.set-item-effect-div .num-wearing-div .set-effect.active {
 	opacity: 1.0;
 	font-weight: bold;
 }
