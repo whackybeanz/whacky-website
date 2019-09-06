@@ -14,6 +14,8 @@ router.get("/set-items", function(req, res) {
 	var jobTypes = ["warrior", "mage", "archer", "thief", "pirate", "all"];
 	var allSetItems = require("./allSetItems");
 	var allSetEffects = require("./allSetEffects");
+	var possibleStatTypes = ["str", "dex", "int", "luk", "allStats", "maxHpMp", "maxHpMpPercent", "def", "acc", "avoid",
+							"wa", "ma", "bossPercent", "iedPercent"];
 
 	res.render("setItemIndex", {equipTypes: equipTypes, jobTypes: jobTypes, allSetItems: allSetItems, allSetEffects: allSetEffects});
 })

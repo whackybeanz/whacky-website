@@ -53,6 +53,8 @@ function updateSetEffects(newSetType, jobType, equipType, oldSetType, equipId) {
 	} else {
 		$(".no-set-effect-msg").removeClass("d-none").addClass("d-flex");
 	}
+
+	updateTotalSetEffect();
 }
 
 // If oldSetType exists, there was a previously selected item in that equip slot
@@ -83,6 +85,24 @@ function updateNewSetEffect(newSetType, jobType) {
 			$(`.${newSetType}-set .num-wearing-div .set-effect-${jobType}.wearing-${i}`).addClass("active");
 		}		
 	}
+}
+
+function updateTotalSetEffect() {
+	var allStatTypes = { str: 0, dex: 0, int: 0, luk: 0, allStats: 0,
+						maxHpMp: 0, maxHpMpPercent: 0, def: 0, acc: 0, avoid: 0, 
+						wa: 0, ma: 0, bossPercent: 0, iedPercent: 0 }
+
+	$(".num-wearing-div .set-effect.active .single-effect").map(function() {
+		var statToUpdate = $(this).data("statId");
+		allStatTypes[statToUpdate] += $(this).data("statVal");
+	})
+
+	$(".total-stat").removeClass("d-flex").addClass("d-none");
+	Object.keys(allStatTypes).forEach(function(statType) { 
+		if(allStatTypes[statType] !== 0) {
+			$(`.total-stat-${statType}`).removeClass("d-none").addClass("d-flex");
+		}
+	});
 }
 
 $(".carousel-control-prev").on("click", function() {
