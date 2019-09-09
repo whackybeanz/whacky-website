@@ -101,6 +101,7 @@ function updateTotalSetEffect() {
 	Object.keys(allStatTypes).forEach(function(statType) { 
 		if(allStatTypes[statType] !== 0) {
 			$(`.total-stat-${statType}`).removeClass("d-none").addClass("d-flex");
+			$(`.total-stat-${statType}-val`).text(allStatTypes[statType])
 		}
 	});
 }

@@ -131,57 +131,15 @@
 		</div>
 		<div class="w-100 mb-3">
 			<h2 class="font-subheader w-100 font-weight-bold mb-2">Total Set Effects</h2>
-			<div class="font-content w-100 d-flex justify-content-center align-items-center mb-4">
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
 				<p class="no-set-effect-msg font-content w-100 d-flex justify-content-center">- No active set effects -</p>
-				<div class="d-flex">
-					<div class="total-stat total-stat-str col-4 d-none justify-content-between">
-						<div>STR</div>
-						<div>+20</div>
-					</div>
-					<div class="total-stat total-stat-dex col-4 d-none justify-content-between">
-						<div>DEX</div>
-						<div>+20</div>
-					</div>
-					<div class="total-stat total-stat-int col-4 d-none justify-content-between">
-						<div>INT</div>
-						<div>+20</div>
-					</div>
-					<div class="total-stat total-stat-luk col-4 d-none justify-content-between">
-						<div>LUK</div>
-						<div>+40</div>
-					</div>
-					<div class="total-stat total-stat-maxHpMpPercent col-4 d-none justify-content-between">
-						<div>Max HP / Max MP</div>
-						<div>+20%</div>
-					</div>
-					<div class="total-stat total-stat-wa col-4 d-none justify-content-between">
-						<div>ATT</div>
-						<div>+50</div>
-					</div>
-					<div class="total-stat total-stat-ma col-4 d-none justify-content-between">
-						<div>MATT</div>
-						<div>+50</div>
-					</div>
-					<div class="total-stat total-stat-bossPercent col-4 d-none justify-content-between">
-						<div>Boss Damage %</div>
-						<div>+30%</div>
-					</div>
-					<div class="total-stat total-stat-iedPercent col-4 d-none justify-content-between">
-						<div>IED %</div>
-						<div>+27</div>
-					</div>
-					<div class="total-stat total-stat-acc col-4 d-none justify-content-between">
-						<div>Accuracy</div>
-						<div>+10</div>
-					</div>
-					<div class="total-stat total-stat-avoid col-4 d-none justify-content-between">
-						<div>Avoidability</div>
-						<div>+10</div>
-					</div>
-					<div class="total-stat total-stat-allStats col-4 d-none justify-content-between">
-						<div>All Stats</div>
-						<div>+5</div>
-					</div>
+				<div class="font-table w-100 d-flex flex-wrap">
+					<% statTypes.forEach(function(stat) { %>
+						<div class="total-stat total-stat-<%= stat.key %> col-6 col-lg-4 d-none justify-content-between align-items-center p-0 my-1">
+							<div class="col-7 font-weight-bold text-right p-0"><%= stat.name %></div>
+							<div class="col-5 pl-3">+<span class="total-stat-<%= stat.key %>-val"></span><%= stat.symbol %></div>
+						</div>
+					<% }) %>
 				</div>
 			</div>
 		</div>
@@ -210,7 +168,7 @@
 								<p class="mb-0"><%= numEquipped %> set effect:</p>
 								<% allSetEffects[setName].effects[jobType][numEquipped].forEach(function(effect) { %>
 									<div class="single-effect" data-stat-id="<%= effect.statId %>" data-stat-val="<%= effect.val %>">
-										<%= effect.statName %> +<%= effect.val %>
+										<%= effect.statName %> +<%= effect.val %><%= effect.symbol %>
 									</div>
 								<% }) %>
 							</div>
