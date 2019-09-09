@@ -89,12 +89,19 @@ function updateNewSetEffect(newSetType, jobType) {
 
 function updateTotalSetEffect() {
 	var allStatTypes = { str: 0, dex: 0, int: 0, luk: 0, allStats: 0,
-						maxHpMp: 0, maxHpMpPercent: 0, def: 0, acc: 0, avoid: 0, 
-						wa: 0, ma: 0, bossPercent: 0, iedPercent: 0 }
+						maxHp: 0, maxHpMp: 0, maxHpMpPercent: 0, def: 0, acc: 0, avoid: 0, 
+						wama: 0, wa: 0, ma: 0, bossPercent: 0, iedPercent: 0 }
+	var currIed = 0;
 
 	$(".num-wearing-div .set-effect.active .single-effect").map(function() {
 		var statToUpdate = $(this).data("statId");
-		allStatTypes[statToUpdate] += $(this).data("statVal");
+
+		if(statToUpdate !== "iedPercent") {
+			allStatTypes[statToUpdate] += $(this).data("statVal");
+		} else {
+			allStatTypes[statToUpdate] = currIed + $(this).data("statVal") * (1 - currIed/100);
+			currIed = allStatTypes[statToUpdate];
+		}
 	})
 
 	$(".total-stat").removeClass("d-flex").addClass("d-none");

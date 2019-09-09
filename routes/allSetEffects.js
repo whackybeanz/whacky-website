@@ -26,24 +26,18 @@ var allSetEffects = {
 				2: [{ statId: "int", statName: "INT", val: "80" }]
 			},
 			archer: {
-				1: [{ statId: "wa", statName: "ATT", val: "30" }, 
-					{ statId: "ma", statName: "MATT", val: "30" }, 
+				1: [{ statId: "wama", statName: "ATT/MATT", val: "30" }, 
 					{ statId: "maxHpMp", statName: "Max HP/MP", val: "2000" }],
-				2: [{ statId: "wa", statName: "ATT", val: "35" }, 
-					{ statId: "ma", statName: "MATT", val: "35" },
+				2: [{ statId: "wama", statName: "ATT/MATT", val: "35" }, 
 					{ statId: "allStats", statName: "All Stats", val: "50" }],
-				3: [{ statId: "wa", statName: "ATT", val: "40" }, 
-					{ statId: "ma", statName: "MATT", val: "40" },
+				3: [{ statId: "wama", statName: "ATT/MATT", val: "40" }, 
 					{ statId: "iedPercent", statName: "Ignore Enemy DEF %", val: "10", symbol: "%" }, 
 					{ statId: "def", statName: "DEF", val: "400" }],
-				4: [{ statId: "wa", statName: "ATT", val: "30" }, 
-					{ statId: "ma", statName: "MATT", val: "30" },
+				4: [{ statId: "wama", statName: "ATT/MATT", val: "30" }, 
 					{ statId: "bossPercent", statName: "Boss Damage %", val: "30", symbol: "%" }],
-				5: [{ statId: "wa", statName: "ATT", val: "30" }, 
-					{ statId: "ma", statName: "MATT", val: "30" },
+				5: [{ statId: "wama", statName: "ATT/MATT", val: "30" }, 
 					{ statId: "maxHpMpPercent", statName: "Max HP/MP %", val: "30", symbol: "%" }],
-				6: [{ statId: "wa", statName: "ATT", val: "30" }, 
-					{ statId: "ma", statName: "MATT", val: "30" },
+				6: [{ statId: "wama", statName: "ATT/MATT", val: "30" }, 
 					{ statId: "iedPercent", statName: "Ignore Enemy DEF %", val: "10", symbol: "%" }],
 			},
 			thief: {
@@ -100,12 +94,45 @@ var allSetEffects = {
 			},
 			eye: {
 				common: [{ id: "damien-mask", image: "", name: "Magical Eye Patch" }]
+			},
+			heart: {
+				common: [{ id: "black-heart", image: "", name: "Black Heart" }]
+			},
+			belt: {
+				common: [{ id: "fantasy-belt", image: "", name: "Fantasy Belt" }]
+			},
+			pendant: {
+				common: [{ id: "hilla-pendant", image: "", name: "Source of Pain" }]
+			},
+			pocket: {
+				common: [{ id: "will-book-red", image: "", name: "Cursed Enemy Magic Book" },
+						{ id: "will-book-yellow", image: "", name: "Cursed Yellow Magic Book" },
+						{ id: "will-book-green", image: "", name: "Cursed Green Magic Book" },
+						{ id: "will-book-blue", image: "", name: "Cursed Blue Magic Book" }]
+			},
+			badge: {
+				common: [{ id: "genesis-badge", image: "", name: "Genesis Badge" }]
 			}
 		},
 		effects: { 
 			common: {
-				1: [{ statId: "str", statName: "STR", val: 40 }],
-				2: [{ statId: "int", statName: "INT", val: 40 }]
+				1: [{ statId: "wama", statName: "ATT/MATT", val: "10" }, 
+					{ statId: "bossPercent", statName: "Boss Damage %", val: "10", symbol: "%" }, 
+					{ statId: "maxHp", statName: "Max HP", val: "250" }, 
+					{ statId: "allStats", statName: "All Stats", val: "10" }],
+				2: [{ statId: "wama", statName: "ATT/MATT", val: "10" }, 
+					{ statId: "iedPercent", statName: "Ignore Enemy DEF %", val: "10", symbol: "%" }, 
+					{ statId: "maxHp", statName: "Max HP", val: "250" }, 
+					{ statId: "allStats", statName: "All Stats", val: "10" },
+					{ statId: "def", statName: "DEF", val: "250" }],
+				3: [{ statId: "wama", statName: "ATT/MATT", val: "15" }, 
+					{ statId: "critDmgPercent", statName: "Critical Damage %", val: "5", symbol: "%" }, 
+					{ statId: "maxHp", statName: "Max HP", val: "375" }, 
+					{ statId: "allStats", statName: "All Stats", val: "15" }],
+				4: [{ statId: "wama", statName: "ATT/MATT", val: "15" }, 
+					{ statId: "bossPercent", statName: "Boss Damage %", val: "10", symbol: "%" },  
+					{ statId: "maxHp", statName: "Max HP", val: "375" }, 
+					{ statId: "allStats", statName: "All Stats", val: "15" }],
 			}
 		}
 	},
@@ -113,31 +140,54 @@ var allSetEffects = {
 		title: "Boss Accessory Set",
 		items: {
 			face: {
-				common: [{ id: "bossAcc-face-1", image: "/images/equips/condensed-crystal.png", name: "Condensed Strength Crystalline" }],
+				common: [{ id: "condense-crystal", image: "/images/equips/condensed-crystal.png", name: "Condensed Strength Crystalline" }],
 			},
 			eye: {
-				common: [{ id: "bossAcc-eye-1", image: "/images/equips/papulatus-mark.png", name: "Papulatus Mark" },
-						{ id: "bossAcc-eye-2", image: "/images/equips/black-bean-mark.png", name: "Black Bean Mark" },
-						{ id: "bossAcc-eye-3", image: "/images/equips/aqua-letter.png", name: "Aqua Letter Eye Decoration" }]
+				common: [{ id: "bbm", image: "/images/equips/black-bean-mark.png", name: "Black Bean Mark" },
+						{ id: "aqua-eye", image: "/images/equips/aqua-letter.png", name: "Aqua Letter Eye Decoration" }]
+			},
+			earring: {
+				common: [{ id: "will-o-wisp", image: "", name: "Will o' the Wisps" },
+						{ id: "dea-sidus", image: "", name: "Dea Sidus Earrings" }]
+			},
+			ring: {
+				common: [{ id: "sbr", image: "", name: "Silver Blossom Ring" },
+						{ id: "ifia-ring", image: "", name: "Elegant Ifia's Ring" }]
+			},
+			belt: {
+				common: [{ id: "zakum-belt", image: "", name: "Angry Zakum's Belt" },
+						{ id: "clover-belt", image: "", name: "Golden Clover Belt" }],
+			},
+			pendant: {
+				common: [{ id: "ht-pendant", image: "", name: "Horned Tail Necklace" },
+						{ id: "cht-pendant", image: "", name: "Chaos Horntail Necklace" },
+						{ id: "mach-pendant", image: "", name: "Machinator Necklace" },
+						{ id: "dom-pendant", image: "", name: "Dominator Necklace" }]
+			},
+			shoulder: {
+				common: [{ id: "magnus-shoulder", image: "", name: "Royal Black Metal Shoulder" }]
+			},
+			pocket: {
+				common: [{ id: "phg", image: "", name: "Pink Holy Grail" },
+						{ id: "hilla-stone", image: "", name: "Stone of Eternal Life" }],
+			},
+			badge: {
+				common: [{ id: "ventus-badge", image: "", name: "Crystal Ventus Badge" }],
 			}
 		},
 		effects: { 
 			common: {
-				1: [{ statId: "wa", statName: "ATT", val: "5" }, 
-					{ statId: "ma", statName: "MATT", val: "5" },
-					{ statId: "maxHpMpPercent", statName: "Max HP/MP %", val: "5" }, 
+				1: [{ statId: "wama", statName: "ATT/MATT", val: "5" }, 
+					{ statId: "maxHpMpPercent", statName: "Max HP/MP %", val: "5", symbol: "%" }, 
 					{ statId: "allStats", statName: "All Stats", val: "10" }],
-				2: [{ statId: "wa", statName: "ATT", val: "5" }, 
-					{ statId: "ma", statName: "MATT", val: "5" },
-					{ statId: "maxHpMpPercent", statName: "Max HP/MP %", val: "5" }, 
+				2: [{ statId: "wama", statName: "ATT/MATT", val: "5" },
+					{ statId: "maxHpMpPercent", statName: "Max HP/MP %", val: "5", symbol: "%" }, 
 					{ statId: "allStats", statName: "All Stats", val: "10" }],
-				3: [{ statId: "wa", statName: "ATT", val: "10" }, 
-					{ statId: "ma", statName: "MATT", val: "10" },
+				3: [{ statId: "wama", statName: "ATT/MATT", val: "10" }, 
 					{ statId: "iedPercent", statName: "Ignore Enemy DEF %", val: "10", symbol: "%" }, 
 					{ statId: "allStats", statName: "All Stats", val: "10" },
 					{ statId: "def", statName: "DEF", val: "80" }],
-				4: [{ statId: "wa", statName: "ATT", val: "10" }, 
-					{ statId: "ma", statName: "MATT", val: "10" },
+				4: [{ statId: "wama", statName: "ATT/MATT", val: "10" }, 
 					{ statId: "bossPercent", statName: "Boss Damage %", val: "10", symbol: "%" }, 
 					{ statId: "allStats", statName: "All Stats", val: "15" },
 					{ statId: "def", statName: "DEF", val: "100" }],

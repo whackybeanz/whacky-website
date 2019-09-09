@@ -21,12 +21,12 @@ var allSetItems = {
 		{ jobType: "archer", setType: "none", id: "meister-symbol", image: "/images/equips/meister-symbol.png", name: "Shiny Red Archer Meister Symbol" },
 		{ jobType: "thief", setType: "none", id: "meister-symbol", image: "/images/equips/meister-symbol.png", name: "Shiny Red Thief Meister Symbol" },
 		{ jobType: "pirate", setType: "none", id: "meister-symbol", image: "/images/equips/meister-symbol.png", name: "Shiny Red Pirate Meister Symbol" },
-		{ jobType: "common", setType: "bossAcc", id: "bossAcc-face-1", image: "/images/equips/condensed-crystal.png", name: "Condensed Strength Crystalline" },
+		{ jobType: "common", setType: "bossAcc", id: "condense-crystal", image: "/images/equips/condensed-crystal.png", name: "Condensed Strength Crystalline" },
 	],
 	eye: [
-		{ jobType: "common", setType: "bossAcc", id: "bossAcc-eye-1", image: "/images/equips/papulatus-mark.png", name: "Papulatus Mark" },
-		{ jobType: "common", setType: "bossAcc", id: "bossAcc-eye-2", image: "/images/equips/black-bean-mark.png", name: "Black Bean Mark" },
-		{ jobType: "common", setType: "bossAcc", id: "bossAcc-eye-3", image: "/images/equips/aqua-letter.png", name: "Aqua Letter Eye Decoration" },
+		{ jobType: "common", setType: "none", id: "papu-mark", image: "/images/equips/papulatus-mark.png", name: "Papulatus Mark" },
+		{ jobType: "common", setType: "bossAcc", id: "bbm", image: "/images/equips/black-bean-mark.png", name: "Black Bean Mark" },
+		{ jobType: "common", setType: "bossAcc", id: "aqua-eye", image: "/images/equips/aqua-letter.png", name: "Aqua Letter Eye Decoration" },
 	],
 }
 
