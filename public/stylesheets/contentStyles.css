@@ -163,6 +163,10 @@
 	transition: all 0.3s;
 }
 
+.single-job-choice a:hover {
+	text-decoration: none;
+}
+
 .item-category {
 	top: 2px;
 	right: 5px;

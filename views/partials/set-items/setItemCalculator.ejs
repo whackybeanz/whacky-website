@@ -16,15 +16,25 @@
 					<div class="job-select-blocker w-100 h-100 d-none position-absolute">
 					</div>
 					<div class="job-choice-div w-100 d-flex justify-content-center align-items-center py-3">
-						<div class="single-job-choice clickable rounded-lg py-1 px-2 mx-2" data-job-select="warrior">Warrior</div>
-						<div class="single-job-choice clickable rounded-lg py-1 px-2 mx-2" data-job-select="mage">Mage</div>
-						<div class="single-job-choice clickable rounded-lg py-1 px-2 mx-2" data-job-select="archer">Archer</div>
-						<div class="single-job-choice clickable rounded-lg py-1 px-2 mx-2" data-job-select="thief">Thief</div>
-						<div class="single-job-choice clickable rounded-lg py-1 px-2 mx-2" data-job-select="pirate">Pirate</div>
+						<div class="single-job-choice clickable rounded-lg position-relative py-1 px-2 mx-2 <% if(jobType === "warrior") { %>active<% } %>" data-job-select="warrior">
+							<a href="/set-items/warrior" class="stretched-link">Warrior</a>
+						</div>
+						<div class="single-job-choice clickable rounded-lg position-relative py-1 px-2 mx-2 <% if(jobType === "mage") { %>active<% } %>" data-job-select="mage">
+							<a href="/set-items/mage" class="stretched-link">Mage</a>
+						</div>
+						<div class="single-job-choice clickable rounded-lg position-relative py-1 px-2 mx-2 <% if(jobType === "archer") { %>active<% } %>" data-job-select="archer">
+							<a href="/set-items/archer" class="stretched-link">Archer</a>
+						</div>
+						<div class="single-job-choice clickable rounded-lg position-relative py-1 px-2 mx-2 <% if(jobType === "thief") { %>active<% } %>" data-job-select="thief">
+							<a href="/set-items/thief" class="stretched-link">Thief</a>
+						</div>
+						<div class="single-job-choice clickable rounded-lg position-relative py-1 px-2 mx-2 <% if(jobType === "pirate") { %>active<% } %>" data-job-select="pirate">
+							<a href="/set-items/pirate" class="stretched-link">Pirate</a>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="step-2-div font-content w-100 d-none justify-content-center align-items-center flex-column mb-4">
+			<div class="step-2-div font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
 				<h3 class="w-100 font-subsubheader font-italic mb-0">Step 2: Fill in your equipment setup</h3>
 				<p>Click on any of the squares on the equipment window to begin. A popup will appear for selection of equipment sorted by item type. Once selection is complete, close the window and scroll down for the calculated values.</p>
 				<div class="w-100 d-flex justify-content-center">
@@ -62,9 +72,6 @@
 							<div class="equip-slot" id="heart-slot"></div>
 						</div>
 					</div>
-				</div>
-				<div class="col-12">
-					
 				</div>
 			</div>
 			<!--<table class="font-table col-12 col-lg-6 table table-sm table-bordered table-hover mb-0 rounded-sm">
@@ -147,36 +154,34 @@
 			<h2 class="font-subheader w-100 font-weight-bold mb-2">Set Effects Breakdown</h2>
 			<div class="font-small w-100 d-flex flex-wrap justify-content-start align-items-start mb-4">
 				<p class="no-set-effect-msg font-content w-100 d-flex justify-content-center">- No active set effects -</p>
-				<% Object.keys(allSetEffects).forEach(function(setName) { %>
-				<div class="set-item-effect-div <%= setName %>-set col-6 col-lg-4 d-none mb-3">
-					<div class="w-100 d-flex flex-column rounded-lg py-2 px-3">
-						<h3 class="font-subsubheader text-center">&lt;<%= allSetEffects[setName].title %>&gt;</h3>
-						<div class="set-items">
-							<% Object.keys(allSetEffects[setName].items).forEach(function(equipType) { %> 
-							<% Object.keys(allSetEffects[setName].items[equipType]).forEach(function(jobType) { %>
-							<% allSetEffects[setName].items[equipType][jobType].forEach(function(item) { %>
-							<div class="set-effect set-effect-<%= jobType %> wearing-<%= equipType %>" id="item-<%= item.id %>"><%= item.name %></div>
-							<% }) %>
-							<% }) %>
-							<% }) %>
-						</div>
-						<hr>
-						<div class="num-wearing-div">
-							<% Object.keys(allSetEffects[setName].effects).forEach(function(jobType) { %> 
-							<% Object.keys(allSetEffects[setName].effects[jobType]).forEach(function(numEquipped) { %>
-							<div class="set-effect set-effect-<%= jobType %> wearing-<%= numEquipped %> d-flex flex-column mb-2">
-								<p class="mb-0"><%= numEquipped %> set effect:</p>
-								<% allSetEffects[setName].effects[jobType][numEquipped].forEach(function(effect) { %>
-									<div class="single-effect" data-stat-id="<%= effect.statId %>" data-stat-val="<%= effect.val %>">
-										<%= effect.statName %> +<%= effect.val %><%= effect.symbol %>
-									</div>
+				<% Object.keys(allSetEffects).forEach(function(jobType) { %>
+				<% Object.keys(allSetEffects[jobType]).forEach(function(setName) { %>
+					<div class="set-item-effect-div <%= setName %>-set col-6 col-lg-4 d-none mb-3">
+						<div class="w-100 d-flex flex-column rounded-lg py-2 px-3">
+							<h3 class="font-subsubheader text-center">&lt;<%= allSetEffects[jobType][setName].title %>&gt;</h3>
+							<div class="set-items">
+								<% Object.keys(allSetEffects[jobType][setName].items).forEach(function(equipType) { %> 
+								<% allSetEffects[jobType][setName].items[equipType].forEach(function(item) { %>
+									<div class="set-effect wearing-<%= equipType %>" id="item-<%= item.id %>"><%= item.name %></div>
+								<% }) %>
 								<% }) %>
 							</div>
-							<% }) %>
-							<% }) %>
+							<hr>
+							<div class="num-wearing-div">
+								<% Object.keys(allSetEffects[jobType][setName].effects).forEach(function(numEquipped) { %> 
+								<div class="set-effect wearing-<%= numEquipped %> d-flex flex-column mb-2">
+									<p class="mb-0"><%= numEquipped %> set effect:</p>
+									<% allSetEffects[jobType][setName].effects[numEquipped].forEach(function(effect) { %>
+										<div class="single-effect" data-stat-id="<%= effect.statId %>" data-stat-val="<%= effect.val %>">
+											<%= effect.statName %> +<%= effect.val %><%= effect.symbol %>
+										</div>
+									<% }) %>
+								</div>
+								<% }) %>
+							</div>
 						</div>
 					</div>
-				</div>
+				<% }) %>
 				<% }) %>
 			</div>
 		</div>

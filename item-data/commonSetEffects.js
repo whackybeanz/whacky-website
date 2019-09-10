@@ -1,0 +1,76 @@
+var commonSetEffects = {
+	hardBossAcc: {
+		title: "Hard Boss Accessory Set",
+		items: {
+			face: [{ id: "lotus-mark", image: "", name: "Loose Control Machine Mark" }],
+			eye: [{ id: "damien-mask", image: "", name: "Magical Eye Patch" }],
+			heart: [{ id: "black-heart", image: "", name: "Black Heart" }],
+			belt: [{ id: "fantasy-belt", image: "", name: "Fantasy Belt" }],
+			pendant: [{ id: "hilla-pendant", image: "", name: "Source of Pain" }],
+			pocket: [{ id: "will-book-red", image: "", name: "Cursed Enemy Magic Book" },
+					{ id: "will-book-yellow", image: "", name: "Cursed Yellow Magic Book" },
+					{ id: "will-book-green", image: "", name: "Cursed Green Magic Book" },
+					{ id: "will-book-blue", image: "", name: "Cursed Blue Magic Book" }],
+			badge: [{ id: "genesis-badge", image: "", name: "Genesis Badge" }]
+		},
+		effects: { 
+			1: [{ statId: "wama", statName: "ATT/MATT", val: "10" }, 
+				{ statId: "bossPercent", statName: "Boss Damage %", val: "10", symbol: "%" }, 
+				{ statId: "maxHp", statName: "Max HP", val: "250" }, 
+				{ statId: "allStats", statName: "All Stats", val: "10" }],
+			2: [{ statId: "wama", statName: "ATT/MATT", val: "10" }, 
+				{ statId: "iedPercent", statName: "Ignore Enemy DEF %", val: "10", symbol: "%" }, 
+				{ statId: "maxHp", statName: "Max HP", val: "250" }, 
+				{ statId: "allStats", statName: "All Stats", val: "10" },
+				{ statId: "def", statName: "DEF", val: "250" }],
+			3: [{ statId: "wama", statName: "ATT/MATT", val: "15" }, 
+				{ statId: "critDmgPercent", statName: "Critical Damage %", val: "5", symbol: "%" }, 
+				{ statId: "maxHp", statName: "Max HP", val: "375" }, 
+				{ statId: "allStats", statName: "All Stats", val: "15" }],
+			4: [{ statId: "wama", statName: "ATT/MATT", val: "15" }, 
+				{ statId: "bossPercent", statName: "Boss Damage %", val: "10", symbol: "%" },  
+				{ statId: "maxHp", statName: "Max HP", val: "375" }, 
+				{ statId: "allStats", statName: "All Stats", val: "15" }],
+		}
+	},
+	bossAcc: {
+		title: "Boss Accessory Set",
+		items: {
+			face: [{ id: "condense-crystal", image: "/images/equips/condensed-crystal.png", name: "Condensed Strength Crystalline" }],
+			eye: [{ id: "bbm", image: "/images/equips/black-bean-mark.png", name: "Black Bean Mark" },
+				{ id: "aqua-eye", image: "/images/equips/aqua-letter.png", name: "Aqua Letter Eye Decoration" }],
+			earring: [{ id: "will-o-wisp", image: "", name: "Will o' the Wisps" },
+					{ id: "dea-sidus", image: "", name: "Dea Sidus Earrings" }],
+			ring: [{ id: "sbr", image: "", name: "Silver Blossom Ring" },
+					{ id: "ifia-ring", image: "", name: "Elegant Ifia's Ring" }],
+			belt: [{ id: "zakum-belt", image: "", name: "Angry Zakum's Belt" },
+					{ id: "clover-belt", image: "", name: "Golden Clover Belt" }],
+			pendant: [{ id: "ht-pendant", image: "", name: "Horned Tail Necklace" },
+						{ id: "cht-pendant", image: "", name: "Chaos Horntail Necklace" },
+						{ id: "mach-pendant", image: "", name: "Machinator Necklace" },
+						{ id: "dom-pendant", image: "", name: "Dominator Necklace" }],
+			shoulder: [{ id: "magnus-shoulder", image: "", name: "Royal Black Metal Shoulder" }],
+			pocket: [{ id: "phg", image: "", name: "Pink Holy Grail" },
+						{ id: "hilla-stone", image: "", name: "Stone of Eternal Life" }],
+			badge: [{ id: "ventus-badge", image: "", name: "Crystal Ventus Badge" }],
+		},
+		effects: { 
+			1: [{ statId: "wama", statName: "ATT/MATT", val: "5" }, 
+				{ statId: "maxHpMpPercent", statName: "Max HP/MP %", val: "5", symbol: "%" }, 
+				{ statId: "allStats", statName: "All Stats", val: "10" }],
+			2: [{ statId: "wama", statName: "ATT/MATT", val: "5" },
+				{ statId: "maxHpMpPercent", statName: "Max HP/MP %", val: "5", symbol: "%" }, 
+				{ statId: "allStats", statName: "All Stats", val: "10" }],
+			3: [{ statId: "wama", statName: "ATT/MATT", val: "10" }, 
+				{ statId: "iedPercent", statName: "Ignore Enemy DEF %", val: "10", symbol: "%" }, 
+				{ statId: "allStats", statName: "All Stats", val: "10" },
+				{ statId: "def", statName: "DEF", val: "80" }],
+			4: [{ statId: "wama", statName: "ATT/MATT", val: "10" }, 
+				{ statId: "bossPercent", statName: "Boss Damage %", val: "10", symbol: "%" }, 
+				{ statId: "allStats", statName: "All Stats", val: "15" },
+				{ statId: "def", statName: "DEF", val: "100" }],
+		}
+	}
+};
+
+module.exports = commonSetEffects;
