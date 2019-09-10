@@ -137,24 +137,13 @@
 	max-width: 720px;
 }
 
-.job-select-blocker {
-	opacity: 0;
-	z-index: 1;
-}
-
 .single-job-choice {
 	opacity: 0.3;
-	cursor: default;
+	cursor: pointer;
 	border: 1px solid rgba(206, 212, 218, 1.0);
 }
 
-.single-job-choice.clickable {
-	opacity: 1.0;
-	cursor: pointer;
-	transition: all 0.3s;
-}
-
-.single-job-choice.clickable:hover,
+.single-job-choice:hover,
 .single-job-choice.active {
 	opacity: 1.0;
 	background-color: rgba(0, 0, 0, 0.075);
@@ -163,7 +152,11 @@
 	transition: all 0.3s;
 }
 
-.single-job-choice a:hover {
+.single-job-choice a {
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.single-job-choice:hover a {
 	text-decoration: none;
 }
 
