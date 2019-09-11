@@ -15,7 +15,10 @@ router.get("/set-items", function(req, res) {
 
 router.get("/set-items/:jobType", function(req, res) {
 	var jobType = req.params.jobType;
-	var allEquipTypes = ["hat", "face", "eye"];
+	var allEquipTypes = ["ring", "pocket", "pendant", "weapon", "belt", 
+						"hat", "face", "eye", "top", "bottom", "shoes", 
+						"earring", "shoulder", "gloves", "android",
+						"emblem", "badge", "medal", "secondary", "cape", "heart"];
 	var allSetItems = require("../item-data/allSetItems");
 	var allSetEffects = require("../item-data/allSetEffects");
 
@@ -32,7 +35,7 @@ router.get("/set-items/:jobType", function(req, res) {
 							{ key: "def", name: "DEF" }, { key: "acc", name: "Accuracy" }, { key: "avoid", name: "Avoidability" }, 
 							{ key: "wa", name: "ATT" }, { key: "ma", name: "MATT" }, { key: "wama", name: "ATT/MATT" }, 
 							{ key: "bossPercent", name: "Boss Damage %", symbol: "%" }, { key: "iedPercent", name: "Ignore Enemy DEF %", symbol: "%" }, 
-							{ key: "critDmgPercent", name: "Critical Damage %" }];
+							{ key: "critDmgPercent", name: "Critical Damage %", symbol: "%" }];
 
 	res.render("setItemIndexActive", {allEquipTypes: allEquipTypes, allSetItems: compiledSetItems, allSetEffects: compiledSetEffects, jobType: jobType, statTypes: possibleStatTypes});
 })

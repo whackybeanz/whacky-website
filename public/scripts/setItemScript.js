@@ -1,4 +1,7 @@
-var allItemTypes = ["Hat", "Face Accessory", "Eye Accessory"];
+var allItemTypes = ["Ring", "Pocket", "Pendant", "Weapon", "Belt", 
+					"Hat", "Face Accessory", "Eye Accessory", "Top / Overall", "Bottom", "Shoes",
+					"Earring", "Shoulder", "Gloves", "Android",
+					"Emblem", "Badge", "Medal", "Secondary Weapon", "Cape", "Heart"];
 var currIndex = 0;
 
 /*$(".job-choice-div").on("click", ".single-job-choice.clickable", function() {
@@ -24,15 +27,21 @@ $(".equip-slot").on("click", function() {
 
 $(".carousel-control-prev").on("click", function() {
 	currIndex--;
-
 	if(currIndex < 0) {
 		currIndex = allItemTypes.length -1;
 	}
+
+	$(".carousel-header").text(allItemTypes[currIndex])
 	updateCarouselNavText(currIndex);
 })
 
 $(".carousel-control-next").on("click", function() {
 	currIndex++;
+	if(currIndex >= allItemTypes.length) {
+		currIndex = 0;
+	}
+
+	$(".carousel-header").text(allItemTypes[currIndex])
 	updateCarouselNavText(currIndex);
 })
 
@@ -119,7 +128,7 @@ function updateNewSetEffect(newSetType) {
 function updateTotalSetEffect() {
 	var allStatTypes = { str: 0, dex: 0, int: 0, luk: 0, allStats: 0,
 						maxHp: 0, maxHpMp: 0, maxHpMpPercent: 0, def: 0, acc: 0, avoid: 0, 
-						wama: 0, wa: 0, ma: 0, bossPercent: 0, iedPercent: 0 }
+						wama: 0, wa: 0, ma: 0, bossPercent: 0, iedPercent: 0, critDmgPercent: 0 }
 	var currIed = 0;
 
 	$(".num-wearing-div .set-effect.active .single-effect").map(function() {
