@@ -66,32 +66,44 @@ $(".single-equip-choice").on("click", function() {
 	var equipId = $(this).data("itemId");
 	var isLuckyItem = $(this).data("isLuckyItem");
 
-	$(`.single-equip-${equipType}`).removeClass("active");
-	$(this).addClass("active");
-	$(`#${equipType}-slot`).css("background-image", `url(${choiceImage})`);
-	updateSetEffects(newSetType, equipType, oldSetType, equipId);
+	if($(this).hasClass("active")) {
+		removeSetItem(oldSetType, equipType, equipId);
+	} else {
+		addSetItem(oldSetType, newSetType, equipType, equipId, choiceImage);
+	}
 })
+
+function removeSetItem(oldSetType, equipType, equipId) {
+	$(this).removeClass("active");
+	$(`#${equipType}-slot`).css("background-image", "");
+	$(`#item-${equipId}`).removeClass("active");
+
+	updateSetEffects(oldSetType, "none")
+}
 
 // Possible scenarios when a user selects an item:
 // 1) Brand new item selected, does not belong to any existing set
 // 2) Item type (e.g. shoe) was already factored in another set, so both this and the
 // new set need to have set effects updated
-function updateSetEffects(newSetType, equipType, oldSetType, equipId) {
+function addSetItem(oldSetType, newSetType, equipType, equipId, choiceImage) {
+	// Toggle newly selected item on carousel
+	// Add selected item image to equip window
+	$(`.single-equip-${equipType}`).removeClass("active");
+	$(this).addClass("active");
+	$(`#${equipType}-slot`).css("background-image", `url(${choiceImage})`);
+
 	// For non-lucky items, un-highlight set effects affected by user selection
 	// Highlight newly active item from user selection
 	$(`.wearing-${equipType}`).removeClass("active");
 	$(`#item-${equipId}`).addClass("active");
 
+	updateSetEffects(oldSetType, newSetType);
+}
+
+function updateSetEffects(oldSetType, newSetType) {
 	updateOldSetEffect(oldSetType);
 	updateNewSetEffect(newSetType);
-
-	var numSetsActive = $(".set-item-effect-div.d-flex").length;
-	if(numSetsActive > 0) {
-		$(".no-set-effect-msg").removeClass("d-flex").addClass("d-none");
-	} else {
-		$(".no-set-effect-msg").removeClass("d-none").addClass("d-flex");
-	}
-
+	updateSetEffectMessage();
 	updateTotalSetEffect();
 }
 
@@ -125,6 +137,15 @@ function updateNewSetEffect(newSetType) {
 	}
 }
 
+function updateSetEffectMessage() {
+	var numSetsDisplayed = $(".set-item-effect-div.d-flex").length;
+	if(numSetsDisplayed > 0) {
+		$(".no-active-set-msg").removeClass("d-flex").addClass("d-none");
+	} else {
+		$(".no-active-set-msg").removeClass("d-none").addClass("d-flex");
+	}
+}
+
 function updateTotalSetEffect() {
 	var allStatTypes = { str: 0, dex: 0, int: 0, luk: 0, allStats: 0,
 						maxHp: 0, maxHpMp: 0, maxHpMpPercent: 0, def: 0, acc: 0, avoid: 0, 
@@ -149,4 +170,11 @@ function updateTotalSetEffect() {
 			$(`.total-stat-${statType}-val`).text(allStatTypes[statType])
 		}
 	});
+
+	var numSetEffectDisplayed = $(".total-stat.d-flex").length;
+	if(numSetEffectDisplayed > 0) {
+		$(".no-set-effect-msg").removeClass("d-flex").addClass("d-none");
+	} else {
+		$(".no-set-effect-msg").removeClass("d-none").addClass("d-flex");
+	}
 }

@@ -72,67 +72,6 @@
 					</div>
 				</div>
 			</div>
-			<!--<table class="font-table col-12 col-lg-6 table table-sm table-bordered table-hover mb-0 rounded-sm">
-				<tbody>
-					<tr class="table-rows">
-						<th class="table-item-img align-middle text-center">
-							<img src="/images/equips/acs-warrior-hat.png">
-						</th>
-						<td class="flex-grow-1 align-middle text-center position-relative">
-							<p class="font-footnote item-category position-absolute font-weight-bold text-uppercase m-0">Hat</p>
-							<p class="m-0 text-center">Arcaneshade Warrior Hat</p>
-						</td>
-						<td class="table-user-controls align-middle text-center">
-							<div class="d-flex justify-content-center align-items-center">
-								<i class="fas fa-pen icons"></i>
-							</div>
-						</td>
-						<td class="table-user-controls align-middle text-center">
-							<div class="d-flex justify-content-center align-items-center">
-								<i class="fas fa-pen icons"></i>
-							</div>
-						</td>
-					</tr>
-					<tr class="table-rows">
-						<th class="table-item-img align-middle text-center">
-							<img src="/images/equips/meister-symbol.png">
-						</th>
-						<td class="flex-grow-1 align-middle text-center position-relative">
-							<p class="font-footnote item-category position-absolute font-weight-bold text-uppercase m-0">Face</p>
-							<p class="m-0 text-center">Special Red Magician Meister Symbol</p>
-						</td>
-						<td class="table-user-controls align-middle text-center">
-							<div class="d-flex justify-content-center align-items-center">
-								<i class="fas fa-pen icons"></i>
-							</div>
-						</td>
-						<td class="table-user-controls align-middle text-center">
-							<div class="user-controls d-flex justify-content-center align-items-center">
-								<i class="fas fa-pen icons"></i>
-							</div>
-						</td>
-					</tr>
-					<tr class="table-rows">
-						<th class="table-item-img align-middle text-center">
-							<img src="/images/equips/papulatus-mark.png">
-						</th>
-						<td class="flex-grow-1 align-middle text-center position-relative">
-							<p class="font-footnote item-category position-absolute font-weight-bold text-uppercase m-0">Eye</p>
-							<p class="m-0 text-center">Papulatus Mark</p>
-						</td>
-						<td class="table-user-controls align-middle text-center">
-							<div class="d-flex justify-content-center align-items-center">
-								<i class="fas fa-pen icons"></i>
-							</div>
-						</td>
-						<td class="table-user-controls align-middle text-center">
-							<div class="user-controls d-flex justify-content-center align-items-center">
-								<i class="fas fa-pen icons"></i>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>-->
 		</div>
 		<div class="w-100 mb-3">
 			<h2 class="font-subheader w-100 font-weight-bold mb-2">Total Set Effects</h2>
@@ -151,7 +90,7 @@
 		<div class="w-100 mb-3">
 			<h2 class="font-subheader w-100 font-weight-bold mb-2">Set Effects Breakdown</h2>
 			<div class="font-small w-100 d-flex flex-wrap justify-content-start align-items-start mb-4">
-				<p class="no-set-effect-msg font-content w-100 d-flex justify-content-center">- No active set effects -</p>
+				<p class="no-active-set-msg font-content w-100 d-flex justify-content-center">- No active sets -</p>
 				<% Object.keys(allSetEffects).forEach(function(jobType) { %>
 				<% Object.keys(allSetEffects[jobType]).forEach(function(setName) { %>
 					<div class="set-item-effect-div <%= setName %>-set col-6 col-lg-4 d-none mb-3">
