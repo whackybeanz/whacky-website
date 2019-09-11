@@ -2,7 +2,7 @@ var archerSetEffects = {
 	acs: {
 		title: "Arcaneshade Set",
 		items: {
-			hat: [{ id: "acs-archer-hat", image: "/images/equips/acs-archer-hat.png", name: "Arcaneshade Archer Hat" }],
+			hat: [{ id: "acs-archer-hat", image: "/images/equips/hat/acs-archer-hat.png", name: "Arcaneshade Archer Hat" }],
 			overall: [{ id: "acs-archer-suit", image: "", name: "Arcaneshade Archer Suit" }],
 			shoes: [{ id: "acs-archer-shoes", image: "", name: "Arcaneshade Archer Shoes" }],
 			gloves: [{ id: "acs-archer-mitts", image: "", name: "Arcaneshade Archer Mitts" }],
@@ -29,7 +29,7 @@ var archerSetEffects = {
 	abs: {
 		title: "Absolabs Set",
 		items: {
-			hat: [{ id: "abs-archer-hat", image: "/images/equips/abs-trueshot-hood.png", name: "Absolabs Trueshot Hood" }],
+			hat: [{ id: "abs-archer-hat", image: "/images/equips/hat/abs-trueshot-hood.png", name: "Absolabs Trueshot Hood" }],
 			overall: [{ id: "", image: "", name: "" }],
 			shoes: [{ id: "", image: "", name: "" }],
 			gloves: [{ id: "", image: "", name: "" }],

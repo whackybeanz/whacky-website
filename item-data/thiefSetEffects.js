@@ -2,7 +2,7 @@ var thiefSetEffects = {
 	acs: {
 		title: "Arcaneshade Set",
 		items: {
-			hat: [{ id: "acs-thief-hat", image: "/images/equips/acs-bandit-hat.png", name: "Arcaneshade Bandit Hat" }],
+			hat: [{ id: "acs-thief-hat", image: "/images/equips/hat/acs-bandit-hat.png", name: "Arcaneshade Bandit Hat" }],
 			overall: [{ id: "", image: "", name: "" }],
 			shoes: [{ id: "", image: "", name: "" }],
 			gloves: [{ id: "", image: "", name: "" }],
@@ -18,7 +18,7 @@ var thiefSetEffects = {
 	abs: {
 		title: "Absolabs Set",
 		items: {
-			hat: [{ id: "abs-thief-hat", image: "/images/equips/abs-shadow-beret.png", name: "Absolabs Shadow Beret" }],
+			hat: [{ id: "abs-thief-hat", image: "/images/equips/hat/abs-shadow-beret.png", name: "Absolabs Shadow Beret" }],
 			overall: [{ id: "", image: "", name: "" }],
 			shoes: [{ id: "", image: "", name: "" }],
 			gloves: [{ id: "", image: "", name: "" }],

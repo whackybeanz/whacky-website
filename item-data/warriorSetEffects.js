@@ -2,7 +2,7 @@ var warriorSetEffects = {
 	acs: {
 		title: "Arcaneshade Set",
 		items: {
-			hat: [{ id: "acs-warrior-hat", image: "/images/equips/acs-knight-hat.png", name: "Arcaneshade Knight Hat" }],
+			hat: [{ id: "acs-warrior-hat", image: "/images/equips/hat/acs-knight-hat.png", name: "Arcaneshade Knight Hat" }],
 			overall: [{ id: "", image: "", name: "" }],
 			shoes: [{ id: "", image: "", name: "" }],
 			gloves: [{ id: "", image: "", name: "" }],
@@ -18,7 +18,7 @@ var warriorSetEffects = {
 	abs: {
 		title: "Absolabs Set",
 		items: {
-			hat: [{ id: "abs-warrior-hat", image: "/images/equips/abs-bastion-helm.png", name: "Absolabs Bastion Helm" }],
+			hat: [{ id: "abs-warrior-hat", image: "/images/equips/hat/abs-bastion-helm.png", name: "Absolabs Bastion Helm" }],
 			overall: [{ id: "", image: "", name: "" }],
 			shoes: [{ id: "", image: "", name: "" }],
 			gloves: [{ id: "", image: "", name: "" }],

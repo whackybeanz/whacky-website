@@ -2,7 +2,7 @@ var pirateSetEffects = {
 	acs: {
 		title: "Arcaneshade Set",
 		items: {
-			hat: [{ id: "acs-pirate-hat", image: "/images/equips/acs-pirate-hat.png", name: "Arcaneshade Pirate Hat" }],
+			hat: [{ id: "acs-pirate-hat", image: "/images/equips/hat/acs-pirate-hat.png", name: "Arcaneshade Pirate Hat" }],
 			overall: [{ id: "", image: "", name: "" }],
 			shoes: [{ id: "", image: "", name: "" }],
 			gloves: [{ id: "", image: "", name: "" }],
@@ -18,7 +18,7 @@ var pirateSetEffects = {
 	abs: {
 		title: "Absolabs Set",
 		items: {
-			hat: [{ id: "abs-pirate-hat", image: "/images/equips/abs-brigadier-fedora.png", name: "Absolabs Brigadier Fedora" }],
+			hat: [{ id: "abs-pirate-hat", image: "/images/equips/hat/abs-brigadier-fedora.png", name: "Absolabs Brigadier Fedora" }],
 			overall: [{ id: "", image: "", name: "" }],
 			shoes: [{ id: "", image: "", name: "" }],
 			gloves: [{ id: "", image: "", name: "" }],

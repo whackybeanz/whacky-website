@@ -2,7 +2,7 @@ var mageSetEffects = {
 	acs: {
 		title: "Arcaneshade Set",
 		items: {
-			hat: [{ id: "acs-mage-hat", image: "/images/equips/acs-mage-hat.png", name: "Arcaneshade Mage Hat" }],
+			hat: [{ id: "acs-mage-hat", image: "/images/equips/hat/acs-mage-hat.png", name: "Arcaneshade Mage Hat" }],
 			overall: [{ id: "", image: "", name: "" }],
 			shoes: [{ id: "", image: "", name: "" }],
 			gloves: [{ id: "", image: "", name: "" }],
@@ -18,7 +18,7 @@ var mageSetEffects = {
 	abs: {
 		title: "Absolabs Set",
 		items: {
-			hat: [{ id: "abs-mage-hat", image: "/images/equips/abs-cabalist-crown.png", name: "Absolabs Cabalist Crown" }],
+			hat: [{ id: "abs-mage-hat", image: "/images/equips/hat/abs-cabalist-crown.png", name: "Absolabs Cabalist Crown" }],
 			overall: [{ id: "", image: "", name: "" }],
 			shoes: [{ id: "", image: "", name: "" }],
 			gloves: [{ id: "", image: "", name: "" }],

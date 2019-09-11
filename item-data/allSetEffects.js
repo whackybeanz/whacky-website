@@ -1,9 +1,9 @@
-var warriorSetEffects = require("../item-data/warriorSetEffects");
-var mageSetEffects = require("../item-data/mageSetEffects");
-var archerSetEffects = require("../item-data/archerSetEffects");
-var thiefSetEffects = require("../item-data/thiefSetEffects");
-var pirateSetEffects = require("../item-data/pirateSetEffects");
-var commonSetEffects = require("../item-data/commonSetEffects");
+var warriorSetEffects = require("./warriorSetEffects");
+var mageSetEffects = require("./mageSetEffects");
+var archerSetEffects = require("./archerSetEffects");
+var thiefSetEffects = require("./thiefSetEffects");
+var pirateSetEffects = require("./pirateSetEffects");
+var commonSetEffects = require("./commonSetEffects");
 
 var allSetEffects = {};
 allSetEffects.warrior = warriorSetEffects;

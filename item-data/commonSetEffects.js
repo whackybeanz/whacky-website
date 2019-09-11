@@ -11,7 +11,7 @@ var commonSetEffects = {
 					{ id: "will-book-yellow", image: "", name: "Cursed Yellow Magic Book" },
 					{ id: "will-book-green", image: "", name: "Cursed Green Magic Book" },
 					{ id: "will-book-blue", image: "", name: "Cursed Blue Magic Book" }],
-			badge: [{ id: "genesis-badge", image: "", name: "Genesis Badge" }]
+			badge: [{ id: "genesis-badge", image: "", name: "Badge of Beginning" }]
 		},
 		effects: { 
 			1: [{ statId: "wama", statName: "ATT/MATT", val: "10" }, 
@@ -36,9 +36,9 @@ var commonSetEffects = {
 	bossAcc: {
 		title: "Boss Accessory Set",
 		items: {
-			face: [{ id: "condense-crystal", image: "/images/equips/condensed-crystal.png", name: "Condensed Strength Crystalline" }],
-			eye: [{ id: "bbm", image: "/images/equips/black-bean-mark.png", name: "Black Bean Mark" },
-				{ id: "aqua-eye", image: "/images/equips/aqua-letter.png", name: "Aqua Letter Eye Decoration" }],
+			face: [{ id: "condense-crystal", image: "/images/equips/face/condensed-crystal.png", name: "Condensed Strength Crystalline" }],
+			eye: [{ id: "bbm", image: "/images/equips/eye/black-bean-mark.png", name: "Black Bean Mark" },
+				{ id: "aqua-eye", image: "/images/equips/eye/aqua-letter.png", name: "Aqua Letter Eye Decoration" }],
 			earring: [{ id: "will-o-wisp", image: "", name: "Will o' the Wisps" },
 					{ id: "dea-sidus", image: "", name: "Dea Sidus Earrings" }],
 			ring: [{ id: "sbr", image: "", name: "Silver Blossom Ring" },
