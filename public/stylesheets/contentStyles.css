@@ -213,7 +213,7 @@
 #eye-slot { grid-area: eye; }
 #top-slot { grid-area: top; }
 #bottom-slot { grid-area: bottom; }
-#shoe-slot { grid-area: shoes; }
+#shoes-slot { grid-area: shoes; }
 #earring-slot { grid-area: earring; }
 #shoulder-slot { grid-area: shoulder; }
 #gloves-slot { grid-area: gloves; }

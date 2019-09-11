@@ -3,12 +3,12 @@ var archerSetEffects = {
 		title: "Arcaneshade Set",
 		items: {
 			hat: [{ id: "acs-archer-hat", image: "/images/equips/hat/acs-archer-hat.png", name: "Arcaneshade Archer Hat" }],
-			overall: [{ id: "acs-archer-suit", image: "/images/equips/top/acs-archer-suit.png", name: "Arcaneshade Archer Suit" }],
+			top: [{ id: "acs-archer-suit", image: "/images/equips/top/acs-archer-suit.png", name: "Arcaneshade Archer Suit" }],
 			shoes: [{ id: "acs-archer-shoes", image: "/images/equips/shoes/acs-archer-shoes.png", name: "Arcaneshade Archer Shoes" }],
 			gloves: [{ id: "acs-archer-glove", image: "/images/equips/gloves/acs-archer-glove.png", name: "Arcaneshade Archer Mitts" }],
 			cape: [{ id: "acs-archer-cape", image: "/images/equips/cape/acs-archer-cape.png", name: "Arcaneshade Archer Cape" }], 
 			shoulder: [{ id: "acs-archer-shoulder", image: "/images/equips/shoulder/acs-archer-shoulder.png", name: "Arcaneshade Archer Shoulder" }],
-			weapon: [{ id: "acs-bow", image: "/images/equips/weapon/acs-bow.png", name: "Arcaneshade Bow" }]
+			weapon: [{ id: "acs-archer-bow", image: "/images/equips/weapon/acs-bow.png", name: "Arcaneshade Bow" }]
 		},
 		effects: {
 			2: [{ statId: "wama", statName: "ATT/MATT", val: "30" }, 
@@ -30,7 +30,7 @@ var archerSetEffects = {
 		title: "Absolabs Set",
 		items: {
 			hat: [{ id: "abs-archer-hat", image: "/images/equips/hat/abs-trueshot-hood.png", name: "Absolabs Trueshot Hood" }],
-			overall: [{ id: "", image: "", name: "" }],
+			top: [{ id: "", image: "", name: "" }],
 			shoes: [{ id: "", image: "", name: "" }],
 			gloves: [{ id: "", image: "", name: "" }],
 			cape: [{ id: "", image: "", name: "" }], 
@@ -40,6 +40,23 @@ var archerSetEffects = {
 		effects: {
 			1: [{ statId: "dex", statName: "DEX", val: 40 }],
 			2: [{ statId: "dex", statName: "DEX", val: 80 }]
+		}
+	},
+	faf: {
+		title: "Root Abyss Set",
+		items: {
+			hat: [{ id: "faf-archer-hat", image: "/images/equips/hat/faf-archer-hat.png", name: "Highness Ranger Beret" }],
+			top: [{ id: "faf-archer-top", image: "/images/equips/top/faf-archer-top.png", name: "Eagle Eye Ranger Hood" }],
+			bottom: [{ id: "faf-archer-bottom", image: "/images/equips/bottom/faf-archer-bottom.png", name: "Trickster Ranger Pants" }],
+			weapon: [{ id: "faf-archer-bow", image: "/images/equips/weapon/faf-archer-bow.png", name: "Fafnir Bow" }],
+		},
+		effects: {
+			2: [{ statId: "str", statName: "STR", val: 20 },
+				{ statId: "dex", statName: "DEX", val: 20 },
+				{ statId: "maxHpMp", statName: "Max HP/MP", val: 1000 }],
+			3: [{ statId: "wa", statName: "ATT", val: 50 },
+				{ statId: "maxHpMpPercent", statName: "Max HP/MP %", val: 10, symbol: "%" }],
+			4: [{ statId: "bossPercent", statName: "Boss Damage %", val: 30, symbol: "%" }],
 		}
 	}
 };
