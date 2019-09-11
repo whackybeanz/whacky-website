@@ -178,8 +178,8 @@
 	display: grid;
 	grid-template-areas:
 		"ring1 	. 		 hat 	. 		 emblem"
-		"ring2 	pendant1 face 	. 		 badge"
-		"ring3 	pendant2 eye 	earring  medal"
+		"ring2 	pendant2 face 	. 		 badge"
+		"ring3 	pendant1 eye 	earring  medal"
 		"ring4 	weapon 	 top 	shoulder secondary"
 		"pocket belt 	 bottom gloves 	 cape"
 		". 		. 		 shoes 	android  heart";
@@ -224,6 +224,11 @@
 #secondary-slot { grid-area: secondary; }
 #cape-slot { grid-area: cape; }
 #heart-slot { grid-area: heart; }
+
+.slot-exceed-msg {
+	left: 0;
+	bottom: 5px;
+}
 
 .carousel-inner {
 	min-height: 300px;

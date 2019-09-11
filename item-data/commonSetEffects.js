@@ -45,7 +45,7 @@ var commonSetEffects = {
 					{ id: "ifia-ring", image: "", name: "Elegant Ifia's Ring" }],
 			belt: [{ id: "zakum-belt", image: "", name: "Angry Zakum's Belt" },
 					{ id: "clover-belt", image: "", name: "Golden Clover Belt" }],
-			pendant: [{ id: "ht-pendant", image: "", name: "Horned Tail Necklace" },
+			pendant: [{ id: "ht-pendant", image: "/images/equips/pendant/ht-pendant.png", name: "Horned Tail Necklace" },
 					{ id: "cht-pendant", image: "/images/equips/pendant/cht-pendant.png", name: "Chaos Horntail Necklace" },
 					{ id: "mach-pendant", image: "", name: "Machinator Necklace" },
 					{ id: "dom-pendant", image: "", name: "Dominator Necklace" }],

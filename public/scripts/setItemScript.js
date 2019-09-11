@@ -2,7 +2,19 @@ var allItemTypes = ["Ring", "Pocket", "Pendant", "Weapon", "Belt",
 					"Hat", "Face Accessory", "Eye Accessory", "Top / Overall", "Bottom", "Shoes",
 					"Earring", "Shoulder", "Gloves", "Android",
 					"Emblem", "Badge", "Medal", "Secondary Weapon", "Cape", "Heart"];
-var currIndex = 0;
+var currNavIndex = 0;
+var pendantRingDetails = {
+	pendant: {
+		MAX_NUM_EQUIPPED: 2,
+		currSlotNum: 1,
+		itemIds: []
+	},
+	ring: {
+		MAX_NUM_EQUIPPED: 4,
+		currSlotNum: 2,
+		itemIds: []
+	}
+}
 
 /*$(".job-choice-div").on("click", ".single-job-choice.clickable", function() {
 	var jobType = $(this).data("jobSelect");
@@ -17,48 +29,48 @@ var currIndex = 0;
 
 $(".equip-slot").on("click", function() {
 	var equipType = $(this).data("equipType");
-	currIndex = $(this).data("equipTypeIndex");
-	$(".carousel-header").text(allItemTypes[currIndex])
+	currNavIndex = $(this).data("equipTypeIndex");
+	$(".carousel-header").text(allItemTypes[currNavIndex])
 	$(`.equip-select-div`).removeClass("active");
 	$(`.equip-select-${equipType}`).addClass("active");
 
-	updateCarouselNavText(currIndex);
+	updateCarouselNavText(currNavIndex);
 })
 
 $(".carousel-control-prev").on("click", function() {
-	currIndex--;
-	if(currIndex < 0) {
-		currIndex = allItemTypes.length -1;
+	currNavIndex--;
+	if(currNavIndex < 0) {
+		currNavIndex = allItemTypes.length -1;
 	}
 
-	$(".carousel-header").text(allItemTypes[currIndex])
-	updateCarouselNavText(currIndex);
+	$(".carousel-header").text(allItemTypes[currNavIndex])
+	updateCarouselNavText(currNavIndex);
 })
 
 $(".carousel-control-next").on("click", function() {
-	currIndex++;
-	if(currIndex >= allItemTypes.length) {
-		currIndex = 0;
+	currNavIndex++;
+	if(currNavIndex >= allItemTypes.length) {
+		currNavIndex = 0;
 	}
 
-	$(".carousel-header").text(allItemTypes[currIndex])
-	updateCarouselNavText(currIndex);
+	$(".carousel-header").text(allItemTypes[currNavIndex])
+	updateCarouselNavText(currNavIndex);
 })
 
-function updateCarouselNavText(currIndex) {
-	var nextIndex = (currIndex + 1) % allItemTypes.length;
+function updateCarouselNavText(currNavIndex) {
+	var nextIndex = (currNavIndex + 1) % allItemTypes.length;
 
-	if(currIndex - 1 < 0) {
+	if(currNavIndex - 1 < 0) {
 		var prevIndex = allItemTypes.length - 1;
 	} else {
-		var prevIndex = currIndex - 1;
+		var prevIndex = currNavIndex - 1;
 	}
 
 	$(".carousel-control-prev-text").text(allItemTypes[prevIndex]);
 	$(".carousel-control-next-text").text(allItemTypes[nextIndex]);
 }
 
-$(".single-equip-choice").on("click", function() {
+$(".single-equip-choice").on("click", function(event) {
 	var equipType = $(this).data("equipType");
 	var oldSetType = $(`.single-equip-${equipType}.active`).data("setType");
 	var newSetType = $(this).data("setType");
@@ -69,7 +81,7 @@ $(".single-equip-choice").on("click", function() {
 	if($(this).hasClass("active")) {
 		removeSetItem(oldSetType, equipType, equipId);
 	} else {
-		addSetItem(oldSetType, newSetType, equipType, equipId, choiceImage);
+		addSetItem($(this), oldSetType, newSetType, equipType, equipId, choiceImage);
 	}
 })
 
@@ -85,19 +97,46 @@ function removeSetItem(oldSetType, equipType, equipId) {
 // 1) Brand new item selected, does not belong to any existing set
 // 2) Item type (e.g. shoe) was already factored in another set, so both this and the
 // new set need to have set effects updated
-function addSetItem(oldSetType, newSetType, equipType, equipId, choiceImage) {
+// 3) Item type is pendant/ring and can have up to 2/4 equipped at once
+function addSetItem(selectedItem, oldSetType, newSetType, equipType, equipId, choiceImage) {
+	if(equipType === "ring" || equipType === "pendant") {
+		addRingPendant(selectedItem, pendantRingDetails[equipType], equipType, equipId, choiceImage);
+	} else {
+		addNonRingPendant(selectedItem, equipType, equipId, choiceImage);
+	}
+
+	updateSetEffects(oldSetType, newSetType);
+}
+
+function addRingPendant(selectedItem, itemDetails, equipType, equipId, choiceImage) {
+	if(itemDetails.itemIds.length < itemDetails.MAX_NUM_EQUIPPED) {
+		// As long as slot permits, allow user to add items
+		// Highlight selected item on carousel and add item image to respective slot number
+		selectedItem.addClass("active");
+		$(`#${equipType}-${itemDetails.currSlotNum}-slot`).css("background-image", `url(${choiceImage})`);
+
+		// Highlight newly active items in item sets
+		// Update necessary object with added item
+		$(`#item-${equipId}`).addClass("active");
+		itemDetails.itemIds.push(equipId);
+		itemDetails.currSlotNum++;
+	} else {
+		$(".slot-exceed-msg").text(`Up to ${itemDetails.MAX_NUM_EQUIPPED} ${equipType}s can be selected. Unselect at least one ${equipType} first.`)
+		$(".slot-exceed-msg").addClass("d-flex");
+	}
+}
+
+function addNonRingPendant(selectedItem, equipType, equipId, choiceImage) {
 	// Toggle newly selected item on carousel
 	// Add selected item image to equip window
 	$(`.single-equip-${equipType}`).removeClass("active");
-	$(this).addClass("active");
+	selectedItem.addClass("active");
 	$(`#${equipType}-slot`).css("background-image", `url(${choiceImage})`);
 
 	// For non-lucky items, un-highlight set effects affected by user selection
 	// Highlight newly active item from user selection
 	$(`.wearing-${equipType}`).removeClass("active");
 	$(`#item-${equipId}`).addClass("active");
-
-	updateSetEffects(oldSetType, newSetType);
 }
 
 function updateSetEffects(oldSetType, newSetType) {

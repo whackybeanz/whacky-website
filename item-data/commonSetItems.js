@@ -19,6 +19,7 @@ var commonSetItems = {
 	pendant: [
 		{ setType: "hardBossAcc", id: "hilla-pendant", image: "/images/equips/pendant/hilla-pendant.png", name: "Source of Pain" },
 		{ setType: "bossAcc", id: "cht-pendant", image: "/images/equips/pendant/cht-pendant.png", name: "Chaos Horntail Necklace" },
+		{ setType: "bossAcc", id: "ht-pendant", image: "/images/equips/pendant/ht-pendant.png", name: "Horned Tail Necklace" },
 	],
 	belt: [
 		{ setType: "hardBossAcc", id: "fantasy-belt", image: "/images/equips/belt/fantasy-belt.png", name: "Fantasy Belt" },
