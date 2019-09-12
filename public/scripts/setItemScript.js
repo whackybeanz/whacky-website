@@ -6,13 +6,13 @@ var currNavIndex = 0;
 var pendantRingDetails = {
 	pendant: {
 		MAX_NUM_EQUIPPED: 2,
-		currSlotNum: 1,
-		itemIds: []
+		currIndex: 0,
+		itemIds: ["", ""]
 	},
 	ring: {
 		MAX_NUM_EQUIPPED: 4,
-		currSlotNum: 2,
-		itemIds: []
+		currIndex: 0,
+		itemIds: ["", "", "", ""]
 	}
 }
 
@@ -27,6 +27,11 @@ var pendantRingDetails = {
 	$(`.equip-${jobType}, .equip-common, .set-effect-${jobType}, .set-effect-common`).removeClass("d-none").addClass("d-flex");
 })*/
 
+/***************************
+
+	Carousel Navigation
+
+***************************/
 $(".equip-slot").on("click", function() {
 	var equipType = $(this).data("equipType");
 	currNavIndex = $(this).data("equipTypeIndex");
@@ -70,27 +75,51 @@ function updateCarouselNavText(currNavIndex) {
 	$(".carousel-control-next-text").text(allItemTypes[nextIndex]);
 }
 
+/***************************
+
+	Carousel Item Selection
+
+***************************/
 $(".single-equip-choice").on("click", function(event) {
 	var equipType = $(this).data("equipType");
-	var oldSetType = $(`.single-equip-${equipType}.active`).data("setType");
-	var newSetType = $(this).data("setType");
 	var choiceImage = $(this).data("choiceImg");
 	var equipId = $(this).data("itemId");
 	var isLuckyItem = $(this).data("isLuckyItem");
 
 	if($(this).hasClass("active")) {
-		removeSetItem(oldSetType, equipType, equipId);
+		removeSetItem($(this), equipType, equipId);
 	} else {
-		addSetItem($(this), oldSetType, newSetType, equipType, equipId, choiceImage);
+		addSetItem($(this), equipType, equipId, choiceImage);
 	}
 })
 
-function removeSetItem(oldSetType, equipType, equipId) {
-	$(this).removeClass("active");
-	$(`#${equipType}-slot`).css("background-image", "");
-	$(`#item-${equipId}`).removeClass("active");
+function removeSetItem(selectedItem, equipType, equipId) {
+	var oldSetType;
+
+	if(equipType === "ring" || equipType === "pendant") {
+		oldSetType = selectedItem.data("setType");
+		removeRingPendant(selectedItem, pendantRingDetails[equipType], equipType, equipId);
+	} else {
+		oldSetType = $(`.single-equip-${equipType}.active`).data("setType");
+		removeNonRingPendant(selectedItem, equipType, equipId);
+	}
 
 	updateSetEffects(oldSetType, "none")
+}
+
+function removeRingPendant(selectedItem, itemDetails, equipType, equipId) {
+	selectedItem.removeClass("active");
+	var arrIndexToUpdate = itemDetails.itemIds.indexOf(equipId);
+	itemDetails.itemIds[arrIndexToUpdate] = "";
+	itemDetails.currIndex = findNearestEmptySlot(itemDetails);
+	$(`#${equipType}-${arrIndexToUpdate+1}-slot`).css("background-image", "");
+	$(`#item-${equipId}`).removeClass("active");
+}
+
+function removeNonRingPendant(selectedItem, equipType, equipId) {
+	selectedItem.removeClass("active");
+	$(`#${equipType}-slot`).css("background-image", "");
+	$(`#item-${equipId}`).removeClass("active");
 }
 
 // Possible scenarios when a user selects an item:
@@ -98,31 +127,38 @@ function removeSetItem(oldSetType, equipType, equipId) {
 // 2) Item type (e.g. shoe) was already factored in another set, so both this and the
 // new set need to have set effects updated
 // 3) Item type is pendant/ring and can have up to 2/4 equipped at once
-function addSetItem(selectedItem, oldSetType, newSetType, equipType, equipId, choiceImage) {
+function addSetItem(selectedItem, equipType, equipId, choiceImage) {
+	var oldSetType = $(`.single-equip-${equipType}.active`).data("setType");
+	var newSetType = selectedItem.data("setType");
+
 	if(equipType === "ring" || equipType === "pendant") {
 		addRingPendant(selectedItem, pendantRingDetails[equipType], equipType, equipId, choiceImage);
+		updateSetEffects("", newSetType);
 	} else {
 		addNonRingPendant(selectedItem, equipType, equipId, choiceImage);
+		updateSetEffects(oldSetType, newSetType);
 	}
-
-	updateSetEffects(oldSetType, newSetType);
 }
 
 function addRingPendant(selectedItem, itemDetails, equipType, equipId, choiceImage) {
-	if(itemDetails.itemIds.length < itemDetails.MAX_NUM_EQUIPPED) {
+	if(itemDetails.currIndex < itemDetails.MAX_NUM_EQUIPPED) {
 		// As long as slot permits, allow user to add items
 		// Highlight selected item on carousel and add item image to respective slot number
 		selectedItem.addClass("active");
-		$(`#${equipType}-${itemDetails.currSlotNum}-slot`).css("background-image", `url(${choiceImage})`);
+		selectedItem.data("slotNum", itemDetails.currIndex+1);
+		$(`#${equipType}-${itemDetails.currIndex+1}-slot`).css("background-image", `url(${choiceImage})`);
 
 		// Highlight newly active items in item sets
 		// Update necessary object with added item
 		$(`#item-${equipId}`).addClass("active");
-		itemDetails.itemIds.push(equipId);
-		itemDetails.currSlotNum++;
+		itemDetails.itemIds[itemDetails.currIndex] = equipId;
+		itemDetails.currIndex = findNearestEmptySlot(itemDetails);
 	} else {
 		$(".slot-exceed-msg").text(`Up to ${itemDetails.MAX_NUM_EQUIPPED} ${equipType}s can be selected. Unselect at least one ${equipType} first.`)
-		$(".slot-exceed-msg").addClass("d-flex");
+
+		window.setTimeout(function() {
+			$(".slot-exceed-msg").fadeOut(1000);
+		}, 2000);
 	}
 }
 
@@ -139,6 +175,19 @@ function addNonRingPendant(selectedItem, equipType, equipId, choiceImage) {
 	$(`#item-${equipId}`).addClass("active");
 }
 
+function findNearestEmptySlot(itemDetails) {
+	if(itemDetails.itemIds.indexOf("") === -1) {
+		return itemDetails.itemIds.length;
+	} else {
+		return itemDetails.itemIds.indexOf("");
+	}
+}
+
+/***************************
+
+	Set Effect Display Updates
+
+***************************/
 function updateSetEffects(oldSetType, newSetType) {
 	updateOldSetEffect(oldSetType);
 	updateNewSetEffect(newSetType);
@@ -149,7 +198,7 @@ function updateSetEffects(oldSetType, newSetType) {
 // If oldSetType exists, there was a previously selected item in that equip slot
 // Update number of active set effects in old set
 function updateOldSetEffect(oldSetType) {
-	if(oldSetType) {
+	if(!!oldSetType) {
 		// Recalculate number of items equipped in old set and hide set effect if none equipped
 		var numItemsEquipped = $(`.${oldSetType}-set .set-items .active`).length;
 		if(numItemsEquipped === 0) {
