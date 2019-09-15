@@ -1,6 +1,6 @@
 var commonSetItems = {
 	hat: [
-		{ setType: "none", id: "cvell-hat", image: "/images/equips/hat/chaos-bellum.png", name: "Chaos Bellum Hat", isLuckyItem: true },
+		{ setType: "none", id: "cvell-hat", image: "/images/equips/hat/chaos-bellum.png", name: "Chaos Bellum Hat", isLuckyItem: true, itemPriority: 0 },
 	],
 	face: [
 		{ setType: "hardBossAcc", id: "lotus-mark", image: "/images/equips/face/lotus-mark.png", name: "Loose Control Machine Mark" },
@@ -18,6 +18,7 @@ var commonSetItems = {
 	],
 	earring: [
 		{ setType: "meister", id: "meister-studs", image: "/images/equips/earring/meister-studs.png", name: "Meister Ear Studs" },
+		{ setType: "none", id: "scarlet-earring", image: "/images/equips/earring/scarlet-earring.png", name: "Scarlet Earring", isLuckyItem: true, itemPriority: 10 },
 		{ setType: "bossAcc", id: "dea-sidus", image: "/images/equips/earring/dea-sidus.png", name: "Dea Sidus Earrings" },
 	],
 	pendant: [
@@ -29,7 +30,7 @@ var commonSetItems = {
 		{ setType: "meister", id: "meister-signet", image: "/images/equips/ring/meister-signet.png", name: "Meister Signet" },
 		{ setType: "sengoku", id: "kanna-ring", image: "/images/equips/ring/kanna-ring.png", name: "Kanna's Treasure" },
 		{ setType: "none", id: "hekaton-signet", image: "/images/equips/ring/hekaton-signet.png", name: "Hekaton Signet" },
-		{ setType: "none", id: "scarlet-ring", image: "/images/equips/ring/scarlet-ring.png", name: "Scarlet Ring", isLuckyItem: true },
+		{ setType: "none", id: "scarlet-ring", image: "/images/equips/ring/scarlet-ring.png", name: "Scarlet Ring", isLuckyItem: true, itemPriority: 20 },
 		{ setType: "bossAcc", id: "elegant-ifia-ring", image: "/images/equips/ring/elegant-ifia-ring.png", name: "Elegant Ifia Ring" },
 		{ setType: "bossAcc", id: "sbr", image: "/images/equips/ring/sbr.png", name: "Silver Blossom Ring" },
 		{ setType: "none", id: "magnus-fury", image: "/images/equips/ring/magnus-fury.png", name: "Magnus' Fury" },
@@ -48,7 +49,7 @@ var commonSetItems = {
 	shoulder: [
 		{ setType: "meister", id: "meister-spaulders", image: "/images/equips/shoulder/meister-spaulders.png", name: "Meister Spaulders" },
 		{ setType: "sengoku", id: "hayato-shoulder", image: "/images/equips/shoulder/hayato-shoulder.png", name: "Hayato's Treasure" },
-		{ setType: "none", id: "scarlet-pad", image: "/images/equips/shoulder/scarlet-pad.png", name: "Scarlet Shoulderpads", isLuckyItem: true },
+		{ setType: "none", id: "scarlet-pad", image: "/images/equips/shoulder/scarlet-pad.png", name: "Scarlet Shoulderpads", isLuckyItem: true, itemPriority: 30 },
 		{ setType: "bossAcc", id: "magnus-shoulder", image: "/images/equips/shoulder/magnus-shoulder.png", name: "Royal Black Metal Shoulder" },
 	],
 	heart: [

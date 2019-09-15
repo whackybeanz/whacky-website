@@ -15,6 +15,8 @@ var pendantRingDetails = {
 		itemIds: ["", "", "", ""]
 	}
 }
+var currLuckyItemPriority;
+
 const MIN_NUM_ITEMS_FOR_LUCKY_EFFECT = 3;
 
 /*$(".job-choice-div").on("click", ".single-job-choice.clickable", function() {
@@ -135,7 +137,15 @@ function addSetItem(selectedItem, equipType, equipId, choiceImage) {
 
 	if(equipType === "ring" || equipType === "pendant") {
 		addRingPendant(selectedItem, equipType, equipId, choiceImage);
-		updateSetEffects("", newSetType);
+		if(isLuckyItem) {
+			var setsToUpdate = addLuckyItem(selectedItem, equipType);
+
+			setsToUpdate.forEach(function(set) {
+				updateSetEffects("", set);
+			})
+		} else {
+			updateSetEffects("", newSetType);
+		}
 	} else {
 		addNonRingPendant(selectedItem, equipType, equipId, choiceImage);
 		if(isLuckyItem) {
@@ -165,6 +175,8 @@ function addRingPendant(selectedItem, equipType, equipId, choiceImage) {
 		$(`#item-${equipId}`).addClass("active");
 		itemDetails.itemIds[itemDetails.currIndex] = equipId;
 		itemDetails.currIndex = findNearestEmptySlot(itemDetails);
+
+		checkLuckyItemEffect(selectedItem);
 	} else {
 		$(".slot-exceed-msg").text(`Up to ${itemDetails.MAX_NUM_EQUIPPED} ${equipType}s can be selected. Unselect at least one ${equipType} first.`)
 
@@ -185,6 +197,8 @@ function addNonRingPendant(selectedItem, equipType, equipId, choiceImage) {
 	// Highlight newly active item from user selection
 	$(`.wearing-${equipType}`).removeClass("active");
 	$(`#item-${equipId}`).addClass("active");
+
+	checkLuckyItemEffect(selectedItem);
 }
 
 function findNearestEmptySlot(itemDetails) {
@@ -193,6 +207,17 @@ function findNearestEmptySlot(itemDetails) {
 	} else {
 		return itemDetails.itemIds.indexOf("");
 	}
+}
+
+function checkLuckyItemEffect(selectedItem) {
+	// Check if newly added item causes any equipped lucky item to take effect
+	var itemSetType = selectedItem.data("setType");
+	var numCurrActiveSetItems = $(`.set-item-effect-div.${itemSetType}-set .set-items .set-effect.active`).length;
+	var luckyItem = $(`.set-item-effect-div.${itemSetType}-set .set-items .lucky-item`);
+	if(numCurrActiveSetItems >= 3 && luckyItem.text() !== ""){
+		luckyItem.removeClass("d-none").addClass("d-flex active");
+		currLuckyItemPriority = Number(luckyItem.data("itemPriority"));
+	}	
 }
 
 function addLuckyItem(selectedItem, equipType) {
@@ -207,9 +232,8 @@ function addLuckyItem(selectedItem, equipType) {
 			if($(`.set-items .set-effect.active`, this).length >= MIN_NUM_ITEMS_FOR_LUCKY_EFFECT) {
 				$(".set-items .lucky-item", this).addClass('d-flex active');
 				setsAffected.push($(this).data("setName"));
+				currLuckyItemPriority = Number(selectedItem.data("itemPriority"));
 			}
-		} else {
-			console.log(`${equipType} does not exist in set`)
 		}
 	})
 
@@ -217,7 +241,7 @@ function addLuckyItem(selectedItem, equipType) {
 	$(".set-items .lucky-item").text("");
 	$(".set-item-effect-div").each(function() {
 		if($(`.set-items .wearing-${equipType}`, this).length > 0) {
-			$(".set-items .lucky-item", this).text(selectedItem.data("equipName"));
+			$(".set-items .lucky-item", this).text(selectedItem.data("equipName")).data("itemPriority", selectedItem.data("itemPriority"));
 		}
 	})
 
