@@ -15,6 +15,7 @@ var pendantRingDetails = {
 		itemIds: ["", "", "", ""]
 	}
 }
+const MIN_NUM_ITEMS_FOR_LUCKY_EFFECT = 3;
 
 /*$(".job-choice-div").on("click", ".single-job-choice.clickable", function() {
 	var jobType = $(this).data("jobSelect");
@@ -130,17 +131,28 @@ function removeNonRingPendant(selectedItem, equipType, equipId) {
 function addSetItem(selectedItem, equipType, equipId, choiceImage) {
 	var oldSetType = $(`.single-equip-${equipType}.active`).data("setType");
 	var newSetType = selectedItem.data("setType");
+	var isLuckyItem = selectedItem.data("isLuckyItem");
 
 	if(equipType === "ring" || equipType === "pendant") {
-		addRingPendant(selectedItem, pendantRingDetails[equipType], equipType, equipId, choiceImage);
+		addRingPendant(selectedItem, equipType, equipId, choiceImage);
 		updateSetEffects("", newSetType);
 	} else {
 		addNonRingPendant(selectedItem, equipType, equipId, choiceImage);
-		updateSetEffects(oldSetType, newSetType);
+		if(isLuckyItem) {
+			var setsToUpdate = addLuckyItem(selectedItem, equipType);
+
+			setsToUpdate.forEach(function(set) {
+				updateSetEffects(oldSetType, set);
+			})
+		} else {
+			updateSetEffects(oldSetType, newSetType);
+		}
 	}
 }
 
-function addRingPendant(selectedItem, itemDetails, equipType, equipId, choiceImage) {
+function addRingPendant(selectedItem, equipType, equipId, choiceImage) {
+	var itemDetails = pendantRingDetails[equipType];
+
 	if(itemDetails.currIndex < itemDetails.MAX_NUM_EQUIPPED) {
 		// As long as slot permits, allow user to add items
 		// Highlight selected item on carousel and add item image to respective slot number
@@ -181,6 +193,35 @@ function findNearestEmptySlot(itemDetails) {
 	} else {
 		return itemDetails.itemIds.indexOf("");
 	}
+}
+
+function addLuckyItem(selectedItem, equipType) {
+	var setsAffected = [];
+
+	// For each active set effect, check if lucky item type exists in set
+	// If it exists, activate lucky item if it meets minimum equipped items requirement
+	$(".set-item-effect-div.d-flex").each(function() {
+		if($(`.set-items .wearing-${equipType}`, this).length > 0) {
+			console.log(`has matching equip type ${equipType} in set`);
+
+			if($(`.set-items .set-effect.active`, this).length >= MIN_NUM_ITEMS_FOR_LUCKY_EFFECT) {
+				$(".set-items .lucky-item", this).addClass('d-flex active');
+				setsAffected.push($(this).data("setName"));
+			}
+		} else {
+			console.log(`${equipType} does not exist in set`)
+		}
+	})
+
+	// Empty all lucky item names, then re-add to relevant sets new lucky item name
+	$(".set-items .lucky-item").text("");
+	$(".set-item-effect-div").each(function() {
+		if($(`.set-items .wearing-${equipType}`, this).length > 0) {
+			$(".set-items .lucky-item", this).text(selectedItem.data("equipName"));
+		}
+	})
+
+	return setsAffected;
 }
 
 /***************************
