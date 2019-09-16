@@ -98,31 +98,60 @@ $(".single-equip-choice").on("click", function(event) {
 
 function removeSetItem(selectedItem, equipType, equipId) {
 	var oldSetType;
+	var isLuckyItem = selectedItem.data("isLuckyItem");
 
 	if(equipType === "ring" || equipType === "pendant") {
 		oldSetType = selectedItem.data("setType");
-		removeRingPendant(selectedItem, pendantRingDetails[equipType], equipType, equipId);
+		removeRingPendant(selectedItem, equipType, equipId);
 	} else {
 		oldSetType = $(`.single-equip-${equipType}.active`).data("setType");
 		removeNonRingPendant(selectedItem, equipType, equipId);
 	}
 
-	updateSetEffects(oldSetType, "none")
+	if(isLuckyItem) {
+		var setsToUpdate = removeLuckyItem(selectedItem, equipType);
+
+		setsToUpdate.forEach(function(set) {
+			updateSetEffects(set, "none");
+		})
+	} else {
+		updateSetEffects(oldSetType, "none");
+	}
 }
 
-function removeRingPendant(selectedItem, itemDetails, equipType, equipId) {
+function removeRingPendant(selectedItem, equipType, equipId) {
+	var itemDetails = pendantRingDetails[equipType];
+
 	selectedItem.removeClass("active");
 	var arrIndexToUpdate = itemDetails.itemIds.indexOf(equipId);
 	itemDetails.itemIds[arrIndexToUpdate] = "";
 	itemDetails.currIndex = findNearestEmptySlot(itemDetails);
 	$(`#${equipType}-${arrIndexToUpdate+1}-slot`).css("background-image", "");
 	$(`#item-${equipId}`).removeClass("active");
+
+	checkLuckyItemEffect(selectedItem, false);
 }
 
 function removeNonRingPendant(selectedItem, equipType, equipId) {
 	selectedItem.removeClass("active");
 	$(`#${equipType}-slot`).css("background-image", "");
 	$(`#item-${equipId}`).removeClass("active");
+
+	checkLuckyItemEffect(selectedItem, false);
+}
+
+function removeLuckyItem(selectedItem, equipType) {
+	var setsAffected = [];
+
+	// For each active set effect, check if lucky item exists in set and deactivate item if exists
+	$(".set-item-effect-div.d-flex").each(function() {
+		if($(".set-items .lucky-item", this).text() === selectedItem.data("equipName")) {
+			$(".set-items .lucky-item", this).removeClass("d-flex active").text("");
+			setsAffected.push($(this).data("setName"));
+		}
+	})
+
+	return setsAffected;
 }
 
 // Possible scenarios when a user selects an item:
@@ -137,6 +166,7 @@ function addSetItem(selectedItem, equipType, equipId, choiceImage) {
 
 	if(equipType === "ring" || equipType === "pendant") {
 		addRingPendant(selectedItem, equipType, equipId, choiceImage);
+
 		if(isLuckyItem) {
 			var setsToUpdate = addLuckyItem(selectedItem, equipType);
 
@@ -148,6 +178,7 @@ function addSetItem(selectedItem, equipType, equipId, choiceImage) {
 		}
 	} else {
 		addNonRingPendant(selectedItem, equipType, equipId, choiceImage);
+
 		if(isLuckyItem) {
 			var setsToUpdate = addLuckyItem(selectedItem, equipType);
 
@@ -176,7 +207,7 @@ function addRingPendant(selectedItem, equipType, equipId, choiceImage) {
 		itemDetails.itemIds[itemDetails.currIndex] = equipId;
 		itemDetails.currIndex = findNearestEmptySlot(itemDetails);
 
-		checkLuckyItemEffect(selectedItem);
+		checkLuckyItemEffect(selectedItem, true);
 	} else {
 		$(".slot-exceed-msg").text(`Up to ${itemDetails.MAX_NUM_EQUIPPED} ${equipType}s can be selected. Unselect at least one ${equipType} first.`)
 
@@ -198,7 +229,7 @@ function addNonRingPendant(selectedItem, equipType, equipId, choiceImage) {
 	$(`.wearing-${equipType}`).removeClass("active");
 	$(`#item-${equipId}`).addClass("active");
 
-	checkLuckyItemEffect(selectedItem);
+	checkLuckyItemEffect(selectedItem, true);
 }
 
 function findNearestEmptySlot(itemDetails) {
@@ -209,15 +240,19 @@ function findNearestEmptySlot(itemDetails) {
 	}
 }
 
-function checkLuckyItemEffect(selectedItem) {
-	// Check if newly added item causes any equipped lucky item to take effect
-	var itemSetType = selectedItem.data("setType");
-	var numCurrActiveSetItems = $(`.set-item-effect-div.${itemSetType}-set .set-items .set-effect.active`).length;
-	var luckyItem = $(`.set-item-effect-div.${itemSetType}-set .set-items .lucky-item`);
-	if(numCurrActiveSetItems >= 3 && luckyItem.text() !== ""){
-		luckyItem.removeClass("d-none").addClass("d-flex active");
-		currLuckyItemPriority = Number(luckyItem.data("itemPriority"));
-	}	
+function checkLuckyItemEffect(selectedItem, isAddItem) {
+	if(isAddItem) {
+		// Check if newly added item causes any equipped lucky item to take effect
+		var itemSetType = selectedItem.data("setType");
+		var numCurrActiveSetItems = $(`.set-item-effect-div.${itemSetType}-set .set-items .set-effect.active`).length;
+		var luckyItem = $(`.set-item-effect-div.${itemSetType}-set .set-items .lucky-item`);
+		if(numCurrActiveSetItems >= 3 && luckyItem.text() !== ""){
+			luckyItem.removeClass("d-none").addClass("d-flex active");
+			currLuckyItemPriority = Number(luckyItem.data("itemPriority"));
+		}	
+	} else {
+		// Check if newly removed item causes any equipped lucky item to lose effect
+	}
 }
 
 function addLuckyItem(selectedItem, equipType) {
@@ -227,21 +262,13 @@ function addLuckyItem(selectedItem, equipType) {
 	// If it exists, activate lucky item if it meets minimum equipped items requirement
 	$(".set-item-effect-div.d-flex").each(function() {
 		if($(`.set-items .wearing-${equipType}`, this).length > 0) {
-			console.log(`has matching equip type ${equipType} in set`);
-
 			if($(`.set-items .set-effect.active`, this).length >= MIN_NUM_ITEMS_FOR_LUCKY_EFFECT) {
-				$(".set-items .lucky-item", this).addClass('d-flex active');
+				$(".set-items .lucky-item", this).addClass('d-flex active')
+												.text(selectedItem.data("equipName"))
+												.data("itemPriority", selectedItem.data("itemPriority"));
 				setsAffected.push($(this).data("setName"));
 				currLuckyItemPriority = Number(selectedItem.data("itemPriority"));
 			}
-		}
-	})
-
-	// Empty all lucky item names, then re-add to relevant sets new lucky item name
-	$(".set-items .lucky-item").text("");
-	$(".set-item-effect-div").each(function() {
-		if($(`.set-items .wearing-${equipType}`, this).length > 0) {
-			$(".set-items .lucky-item", this).text(selectedItem.data("equipName")).data("itemPriority", selectedItem.data("itemPriority"));
 		}
 	})
 
