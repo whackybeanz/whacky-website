@@ -15,7 +15,9 @@ var pendantRingDetails = {
 		itemIds: ["", "", "", ""]
 	}
 }
+var equippedLuckyItems = {};
 var currLuckyItemPriority;
+var priorityList = [];
 
 const MIN_NUM_ITEMS_FOR_LUCKY_EFFECT = 3;
 
@@ -166,29 +168,18 @@ function addSetItem(selectedItem, equipType, equipId, choiceImage) {
 
 	if(equipType === "ring" || equipType === "pendant") {
 		addRingPendant(selectedItem, equipType, equipId, choiceImage);
-
-		if(isLuckyItem) {
-			var setsToUpdate = addLuckyItem(selectedItem, equipType);
-
-			setsToUpdate.forEach(function(set) {
-				updateSetEffects("", set);
-			})
-		} else {
-			updateSetEffects("", newSetType);
-		}
 	} else {
 		addNonRingPendant(selectedItem, equipType, equipId, choiceImage);
-
-		if(isLuckyItem) {
-			var setsToUpdate = addLuckyItem(selectedItem, equipType);
-
-			setsToUpdate.forEach(function(set) {
-				updateSetEffects(oldSetType, set);
-			})
-		} else {
-			updateSetEffects(oldSetType, newSetType);
-		}
 	}
+
+	if(isLuckyItem) {
+		addLuckyItem(selectedItem, equipType);
+		activateLuckyItem(selectedItem, equipType);
+	}
+
+	updateSetEffects();
+	updateSetEffectMessage();
+	updateTotalSetEffect();
 }
 
 function addRingPendant(selectedItem, equipType, equipId, choiceImage) {
@@ -247,10 +238,11 @@ function checkLuckyItemEffect(selectedItem) {
 	var numActiveLuckyItem = $(`.set-item-effect-div.${itemSetType}-set .set-items .lucky-item.active`).length;
 
 	// Check if newly added item causes any equipped lucky item to take effect
+	// Only applicable to regular items (lucky items are "none" set, so condition insta-fails)
 	if(numCurrActiveSetItems - numActiveLuckyItem >= MIN_NUM_ITEMS_FOR_LUCKY_EFFECT){
 		if(luckyItem.text() !== "") {
 			luckyItem.removeClass("d-none").addClass("d-flex active");
-			currLuckyItemPriority = Number(luckyItem.data("itemPriority"));
+			currLuckyItemPriority = luckyItem.data("itemPriority");
 		}
 	} else {
 		luckyItem.removeClass("d-flex active").addClass("d-none");
@@ -258,24 +250,45 @@ function checkLuckyItemEffect(selectedItem) {
 }
 
 function addLuckyItem(selectedItem, equipType) {
-	var setsAffected = [];
+	var selectedItemPriority = Number(selectedItem.data("itemPriority"));
+	priorityList.push(selectedItemPriority);
+	priorityList.sort((a, b) => a - b);
 
-	// For each active set effect, check if lucky item type exists in set and fill in lucky item name
-	// If it exists, activate lucky item if it meets minimum equipped items requirement
+	equippedLuckyItems[selectedItemPriority] = {
+		name: selectedItem.data("equipName"), 
+		type: selectedItem.data("equipType")
+	}
+}
+
+function activateLuckyItem(selectedItem, equipType) {
+	var hasActiveLuckyItem = false;
+
+	// Erase all lucky item names
 	$(".set-item-effect-div.d-flex").each(function() {
-		if($(`.set-items .wearing-${equipType}`, this).length > 0) {
-			$(".set-items .lucky-item", this).text(selectedItem.data("equipName"))
-											 .data("itemPriority", selectedItem.data("itemPriority"));
-
-			if($(`.set-items .set-effect.active`, this).length >= MIN_NUM_ITEMS_FOR_LUCKY_EFFECT) {
-				$(".set-items .lucky-item", this).addClass('d-flex active');
-				setsAffected.push($(this).data("setName"));
-				currLuckyItemPriority = Number(selectedItem.data("itemPriority"));
-			}
-		}
+		$(".set-items .lucky-item").removeClass("d-flex active").text("");
 	})
 
-	return setsAffected;
+	// Starting from the highest priority (smallest number) lucky item, go down list of all and
+	// equipped lucky items and activate the first possible lucky item in the list
+	// For each active set effect, check if lucky item type exists in set and fill in lucky item name
+	// If it exists, activate lucky item if it meets minimum equipped items requirement
+	// Stop looking through list upon first lucky item's activation
+	priorityList.forEach(function(priority) {
+		if(hasActiveLuckyItem) {
+			return false;
+		}
+
+		$(".set-item-effect-div.d-flex").each(function() {
+			if($(`.set-items .wearing-${equippedLuckyItems[priority].type}`, this).length > 0) {
+				if($(`.set-items .set-effect.active`, this).length >= MIN_NUM_ITEMS_FOR_LUCKY_EFFECT) {
+					$(".set-items .lucky-item", this).addClass('d-flex active')
+													 .text(equippedLuckyItems[priority].name)
+													 .data("itemPriority", priority);
+					hasActiveLuckyItem = true;
+				}
+			}
+		})
+	})
 }
 
 /***************************
@@ -283,41 +296,22 @@ function addLuckyItem(selectedItem, equipType) {
 	Set Effect Display Updates
 
 ***************************/
-function updateSetEffects(oldSetType, newSetType) {
-	updateOldSetEffect(oldSetType);
-	updateNewSetEffect(newSetType);
-	updateSetEffectMessage();
-	updateTotalSetEffect();
-}
+function updateSetEffects() {
+	$(".set-item-effect-div").each(function() {
+		var setName = $(this).data("setName");
+		var numItemsEquipped = $(`.${setName}-set .set-items .active`).length;
 
-// If oldSetType exists, there was a previously selected item in that equip slot
-// Update number of active set effects in old set
-function updateOldSetEffect(oldSetType) {
-	if(!!oldSetType) {
-		// Recalculate number of items equipped in old set and hide set effect if none equipped
-		var numItemsEquipped = $(`.${oldSetType}-set .set-items .active`).length;
 		if(numItemsEquipped === 0) {
-			$(`.${oldSetType}-set`).removeClass("d-flex").addClass("d-none");
-		} 
-
-		$(`.${oldSetType}-set .num-wearing-div div`).removeClass("active");
-		for(var i = 1; i <= numItemsEquipped; i++) {
-			$(`.${oldSetType}-set .num-wearing-div .wearing-${i}`).addClass("active");
+			$(`.${setName}-set`).removeClass("d-flex").addClass("d-none");
+		} else {
+			$(`.${setName}-set`).removeClass("d-none").addClass("d-flex");
 		}
-	}
-}
 
-// If newSetType is none, then there are no set effects to update
-function updateNewSetEffect(newSetType) {
-	if(newSetType !== "none") {
-		// Recalculate number of items equipped in new set and reveal set effect
-		var newSetNumItemsEquipped = $(`.${newSetType}-set .set-items .active`).length;
-		$(`.${newSetType}-set`).removeClass("d-none").addClass("d-flex");
-
-		for(var i = 1; i <= newSetNumItemsEquipped; i++) {
-			$(`.${newSetType}-set .num-wearing-div .wearing-${i}`).addClass("active");
-		}		
-	}
+		$(`.${setName}-set .num-wearing-div div`).removeClass("active");
+		for(var i = 1; i <= numItemsEquipped; i++) {
+			$(`.${setName}-set .num-wearing-div .wearing-${i}`).addClass("active");
+		}
+	})
 }
 
 function updateSetEffectMessage() {
