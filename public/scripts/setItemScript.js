@@ -129,7 +129,7 @@ function removeRingPendant(selectedItem, equipType, equipId) {
 	$(`#${equipType}-${arrIndexToUpdate+1}-slot`).css("background-image", "");
 	$(`#item-${equipId}`).removeClass("active");
 
-	checkLuckyItemEffect(selectedItem, false);
+	checkLuckyItemEffect(selectedItem);
 }
 
 function removeNonRingPendant(selectedItem, equipType, equipId) {
@@ -137,7 +137,7 @@ function removeNonRingPendant(selectedItem, equipType, equipId) {
 	$(`#${equipType}-slot`).css("background-image", "");
 	$(`#item-${equipId}`).removeClass("active");
 
-	checkLuckyItemEffect(selectedItem, false);
+	checkLuckyItemEffect(selectedItem);
 }
 
 function removeLuckyItem(selectedItem, equipType) {
@@ -207,7 +207,7 @@ function addRingPendant(selectedItem, equipType, equipId, choiceImage) {
 		itemDetails.itemIds[itemDetails.currIndex] = equipId;
 		itemDetails.currIndex = findNearestEmptySlot(itemDetails);
 
-		checkLuckyItemEffect(selectedItem, true);
+		checkLuckyItemEffect(selectedItem);
 	} else {
 		$(".slot-exceed-msg").text(`Up to ${itemDetails.MAX_NUM_EQUIPPED} ${equipType}s can be selected. Unselect at least one ${equipType} first.`)
 
@@ -229,7 +229,7 @@ function addNonRingPendant(selectedItem, equipType, equipId, choiceImage) {
 	$(`.wearing-${equipType}`).removeClass("active");
 	$(`#item-${equipId}`).addClass("active");
 
-	checkLuckyItemEffect(selectedItem, true);
+	checkLuckyItemEffect(selectedItem);
 }
 
 function findNearestEmptySlot(itemDetails) {
@@ -240,32 +240,35 @@ function findNearestEmptySlot(itemDetails) {
 	}
 }
 
-function checkLuckyItemEffect(selectedItem, isAddItem) {
-	if(isAddItem) {
-		// Check if newly added item causes any equipped lucky item to take effect
-		var itemSetType = selectedItem.data("setType");
-		var numCurrActiveSetItems = $(`.set-item-effect-div.${itemSetType}-set .set-items .set-effect.active`).length;
-		var luckyItem = $(`.set-item-effect-div.${itemSetType}-set .set-items .lucky-item`);
-		if(numCurrActiveSetItems >= 3 && luckyItem.text() !== ""){
+function checkLuckyItemEffect(selectedItem) {
+	var itemSetType = selectedItem.data("setType");
+	var numCurrActiveSetItems = $(`.set-item-effect-div.${itemSetType}-set .set-items .set-effect.active`).length;
+	var luckyItem = $(`.set-item-effect-div.${itemSetType}-set .set-items .lucky-item`);
+	var numActiveLuckyItem = $(`.set-item-effect-div.${itemSetType}-set .set-items .lucky-item.active`).length;
+
+	// Check if newly added item causes any equipped lucky item to take effect
+	if(numCurrActiveSetItems - numActiveLuckyItem >= MIN_NUM_ITEMS_FOR_LUCKY_EFFECT){
+		if(luckyItem.text() !== "") {
 			luckyItem.removeClass("d-none").addClass("d-flex active");
 			currLuckyItemPriority = Number(luckyItem.data("itemPriority"));
-		}	
+		}
 	} else {
-		// Check if newly removed item causes any equipped lucky item to lose effect
+		luckyItem.removeClass("d-flex active").addClass("d-none");
 	}
 }
 
 function addLuckyItem(selectedItem, equipType) {
 	var setsAffected = [];
 
-	// For each active set effect, check if lucky item type exists in set
+	// For each active set effect, check if lucky item type exists in set and fill in lucky item name
 	// If it exists, activate lucky item if it meets minimum equipped items requirement
 	$(".set-item-effect-div.d-flex").each(function() {
 		if($(`.set-items .wearing-${equipType}`, this).length > 0) {
+			$(".set-items .lucky-item", this).text(selectedItem.data("equipName"))
+											 .data("itemPriority", selectedItem.data("itemPriority"));
+
 			if($(`.set-items .set-effect.active`, this).length >= MIN_NUM_ITEMS_FOR_LUCKY_EFFECT) {
-				$(".set-items .lucky-item", this).addClass('d-flex active')
-												.text(selectedItem.data("equipName"))
-												.data("itemPriority", selectedItem.data("itemPriority"));
+				$(".set-items .lucky-item", this).addClass('d-flex active');
 				setsAffected.push($(this).data("setName"));
 				currLuckyItemPriority = Number(selectedItem.data("itemPriority"));
 			}
