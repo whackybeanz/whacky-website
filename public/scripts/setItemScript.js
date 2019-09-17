@@ -16,7 +16,6 @@ var pendantRingDetails = {
 	}
 }
 var equippedLuckyItems = {};
-var currLuckyItemPriority;
 var priorityList = [];
 
 const MIN_NUM_ITEMS_FOR_LUCKY_EFFECT = 3;

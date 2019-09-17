@@ -233,11 +233,11 @@
 .carousel-inner {
 	min-height: 300px;
 	max-height: 300px;
-	overflow-y: auto;
 }
 
 .carousel.carousel-fade .carousel-item {
-	min-height: 300px;
+	max-height: 300px;
+	overflow: auto;
     display: block;
     opacity: 0;
     transition: opacity ease-out .7s;
