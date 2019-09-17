@@ -137,7 +137,14 @@ function removeRingPendant(selectedItem, equipType, equipId) {
 function removeNonRingPendant(selectedItem, equipType, equipId) {
 	selectedItem.removeClass("active");
 	$(`#${equipType}-slot`).css("background-image", "");
-	$(`#item-${equipId}`).removeClass("active");
+
+	if(equipType === "weapon") {
+		var setType = selectedItem.data("setType");
+		$(`.${setType}-set .set-items .choose-weapon-text`).removeClass("d-none");
+		$(`#item-${equipId}`).removeClass("active").addClass("d-none");
+	} else {
+		$(`#item-${equipId}`).removeClass("active");
+	}
 }
 
 function addSetItem(selectedItem, equipType, equipId, choiceImage) {
@@ -203,11 +210,19 @@ function addNonRingPendant(selectedItem, equipType, equipId, choiceImage) {
 
 	// For non-lucky items, un-highlight set effects affected by user selection
 	// Highlight newly active item from user selection
-	$(`.wearing-${equipType}`).removeClass("active");
-	$(`#item-${equipId}`).addClass("active");
-
-	// If previous item was a lucky item of the same item type, remove it from list of equipped lucky items
 	var setType = selectedItem.data("setType");
+	
+	if(equipType === "weapon") {
+		$(`.wearing-${equipType}`).removeClass("active").addClass("d-none");
+		$(`.wearing-${equipType}.choose-weapon-text`).removeClass("d-none");
+		$(`.${setType}-set .set-items .wearing-${equipType}.choose-weapon-text`).addClass("d-none");
+		$(`#item-${equipId}`).addClass("active").removeClass("d-none");
+	} else {
+		$(`.wearing-${equipType}`).removeClass("active");
+		$(`#item-${equipId}`).addClass("active");
+	}
+	
+	// If previous item was a lucky item of the same item type, remove it from list of equipped lucky items
 	var isLuckyItemActive = ($(`.${setType}-set .set-items .lucky-item.active`).length === 1);
 	var isLuckyItemSameType = (equipType === $(`.${setType}-set .set-items .lucky-item.active`).data("equipType"))
 

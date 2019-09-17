@@ -100,8 +100,11 @@
 							<div class="set-items">
 								<div class="set-effect lucky-item text-success d-none"></div>
 								<% Object.keys(allSetEffects[jobType][setName].items).forEach(function(equipType) { %> 
+								<% if(equipType === "weapon") { %>
+									<div class="set-effect wearing-<%= equipType %> choose-weapon-text">Choose 1 weapon</div>
+								<% } %>
 								<% allSetEffects[jobType][setName].items[equipType].forEach(function(item) { %>
-									<div class="set-effect wearing-<%= equipType %>" id="item-<%= item.id %>"><%= item.name %></div>
+								<div class="set-effect wearing-<%= equipType %> <% if(equipType === "weapon") { %>d-none<% } %>" id="item-<%= item.id %>"><%= item.name %></div>
 								<% }) %>
 								<% }) %>
 							</div>
