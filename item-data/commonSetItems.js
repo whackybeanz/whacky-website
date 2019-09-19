@@ -8,21 +8,26 @@ var commonSetItems = {
 	],
 	eye: [
 		{ setType: "hardBossAcc", id: "damien-eye", image: "/images/equips/eye/damien-eye.png", name: "Magical Eye Patch" },
-		{ setType: "none", id: "papu-mark", image: "/images/equips/eye/papulatus-mark.png", name: "Papulatus Mark" },
+		{ setType: "bossAcc", id: "papu-mark", image: "/images/equips/eye/papulatus-mark.png", name: "Papulatus Mark" },
 		{ setType: "bossAcc", id: "bbm", image: "/images/equips/eye/black-bean-mark.png", name: "Black Bean Mark" },
 		{ setType: "bossAcc", id: "aqua-eye", image: "/images/equips/eye/aqua-letter.png", name: "Aqua Letter Eye Decoration" },
 	],
 	badge: [
 		{ setType: "hardBossAcc", id: "genesis-badge", image: "/images/equips/badge/genesis-badge.png", name: "Badge of Beginning" },
 		{ setType: "bossAcc", id: "ventus-badge", image: "/images/equips/badge/ventus-badge.png", name: "Crystal Ventus Badge" },
+		{ setType: "none", id: "hospital-badge", image: "/images/equips/badge/hospital-director-badge.png", name: "Hospital Director's Badge" },
 	],
 	earring: [
 		{ setType: "meister", id: "meister-studs", image: "/images/equips/earring/meister-studs.png", name: "Meister Ear Studs" },
 		{ setType: "none", id: "scarlet-earring", image: "/images/equips/earring/scarlet-earring.png", name: "Scarlet Earring", isLuckyItem: true, itemPriority: 10 },
 		{ setType: "bossAcc", id: "dea-sidus", image: "/images/equips/earring/dea-sidus.png", name: "Dea Sidus Earrings" },
+		{ setType: "bossAcc", id: "will-o-wisps", image: "/images/equips/earring/will-o-wisps.png", name: "Will o' the Wisps" },
 	],
 	pendant: [
 		{ setType: "hardBossAcc", id: "hilla-pendant", image: "/images/equips/pendant/hilla-pendant.png", name: "Source of Pain" },
+		{ setType: "none", id: "frontier-c-pendant", image: "/images/equips/pendant/frontier-c-pendant.png", name: "Frontier C White Pendant" },
+		{ setType: "bossAcc", id: "dom-pendant", image: "/images/equips/pendant/dom-pendant.png", name: "Dominator Pendant" },
+		{ setType: "bossAcc", id: "mach-pendant", image: "/images/equips/pendant/machinator-pendant.png", name: "Machinator Pendant" },
 		{ setType: "bossAcc", id: "cht-pendant", image: "/images/equips/pendant/cht-pendant.png", name: "Chaos Horntail Necklace" },
 		{ setType: "bossAcc", id: "ht-pendant", image: "/images/equips/pendant/ht-pendant.png", name: "Horned Tail Necklace" },
 	],
@@ -38,6 +43,9 @@ var commonSetItems = {
 	],
 	belt: [
 		{ setType: "hardBossAcc", id: "fantasy-belt", image: "/images/equips/belt/fantasy-belt.png", name: "Fantasy Belt" },
+		{ setType: "bossAcc", id: "angry-zakum-belt", image: "/images/equips/belt/angry-zakum-belt.png", name: "Angry Zakum's Belt" },
+		{ setType: "sengoku", id: "ayame-belt", image: "/images/equips/belt/ayame-belt.png", name: "Ayame's Treasure" },
+		{ setType: "bossAcc", id: "golden-clover-belt", image: "/images/equips/belt/golden-clover-belt.png", name: "Golden Clover Belt" },
 	],
 	pocket: [
 		{ setType: "hardBossAcc", id: "will-red-book", image: "/images/equips/pocket/will-red-book.png", name: "Cursed Enemy Magic Book" },
@@ -45,6 +53,8 @@ var commonSetItems = {
 		{ setType: "hardBossAcc", id: "will-green-book", image: "/images/equips/pocket/will-green-book.png", name: "Cursed Green Magic Book" },
 		{ setType: "hardBossAcc", id: "will-yellow-book", image: "/images/equips/pocket/will-yellow-book.png", name: "Cursed Yellow Magic Book" },
 		{ setType: "bossAcc", id: "phg", image: "/images/equips/pocket/phg.png", name: "Pink Holy Grail" },
+		{ setType: "bossAcc", id: "hilla-stone", image: "/images/equips/pocket/hilla-stone.png", name: "Stone of Eternal Life" },
+		{ setType: "none", id: "gold-richie-handkerchief", image: "/images/equips/pocket/gold-richie-handkerchief.png", name: "Gold Richie's Handkerchief" },
 	],
 	shoulder: [
 		{ setType: "meister", id: "meister-spaulders", image: "/images/equips/shoulder/meister-spaulders.png", name: "Meister Spaulders" },

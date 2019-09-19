@@ -254,7 +254,7 @@ function activateLuckyItem() {
 
 	// Starting from the highest priority (smallest number) lucky item, go down list of all and
 	// equipped lucky items and activate the first possible lucky item in the list
-	// For each active set effect, check if lucky item type exists in set and fill in lucky item name
+	// For each active set effect, check if lucky item type exists in set
 	// If it exists, activate lucky item if it meets minimum equipped items requirement
 	// Stop looking through list upon first lucky item's activation
 	priorityList.forEach(function(priority) {
@@ -262,12 +262,23 @@ function activateLuckyItem() {
 			return false;
 		}
 
+		var luckyItemType = equippedLuckyItems[priority].type;
+
 		$(".set-item-effect-div.d-flex").each(function() {
-			if($(`.set-items .wearing-${equippedLuckyItems[priority].type}`, this).length > 0) {
+			var numWearableItemsOfType = $(`.set-items .wearing-${luckyItemType}`, this).length;
+			var numItemsOfTypeWorn = $(`.set-items .wearing-${luckyItemType}.active`, this).length;
+
+			if(numWearableItemsOfType > 0) {
+				if(luckyItemType === "ring" || luckyItemType === "pendant") {
+					if(numWearableItemsOfType <= numItemsOfTypeWorn) {
+						return false;
+					}
+				}
+
 				if($(`.set-items .set-effect.active`, this).length >= MIN_NUM_ITEMS_FOR_LUCKY_EFFECT) {
 					$(".set-items .lucky-item", this).addClass('d-flex active')
 													 .text(equippedLuckyItems[priority].name)
-													 .data({"itemPriority": priority, "equipType": equippedLuckyItems[priority].type});
+													 .data({"itemPriority": priority, "equipType": luckyItemType});
 					hasActiveLuckyItem = true;
 				}
 			}
