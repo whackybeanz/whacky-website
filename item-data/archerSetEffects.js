@@ -8,10 +8,10 @@ var archerSetEffects = {
 			gloves: [{ id: "acs-archer-glove", image: "/images/equips/gloves/acs-archer-glove.png", name: "Arcaneshade Archer Mitts" }],
 			cape: [{ id: "acs-archer-cape", image: "/images/equips/cape/acs-archer-cape.png", name: "Arcaneshade Archer Cape" }], 
 			shoulder: [{ id: "acs-archer-shoulder", image: "/images/equips/shoulder/acs-archer-shoulder.png", name: "Arcaneshade Archer Shoulder" }],
-			weapon: [{ id: "acs-archer-abow", image: "/images/equips/weapon/acs-archer-abow.png", name: "Arcaneshade Ancient Bow" },
-					{ id: "acs-archer-bow", image: "/images/equips/weapon/acs-archer-bow.png", name: "Arcaneshade Bow" },
-					{ id: "acs-archer-dbg", image: "/images/equips/weapon/acs-archer-dbg.png", name: "Arcaneshade Dual Bowguns" },
-					{ id: "acs-archer-xbow", image: "/images/equips/weapon/acs-archer-xbow.png", name: "Arcaneshade Crossbow" }]
+			weapon: [{ id: "acs-abow", image: "/images/equips/weapon/acs-archer-abow.png", name: "Arcaneshade Ancient Bow" },
+					{ id: "acs-bow", image: "/images/equips/weapon/acs-archer-bow.png", name: "Arcaneshade Bow" },
+					{ id: "acs-dbg", image: "/images/equips/weapon/acs-archer-dbg.png", name: "Arcaneshade Dual Bowguns" },
+					{ id: "acs-xbow", image: "/images/equips/weapon/acs-archer-xbow.png", name: "Arcaneshade Crossbow" }]
 		},
 		effects: {
 			2: [{ statId: "wama", statName: "ATT/MATT", val: "30" }, 
