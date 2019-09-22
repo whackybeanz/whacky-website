@@ -16,12 +16,15 @@ var archerSetItems = {
 	],
 	shoes: [
 		{ setType: "acs", id: "acs-archer-shoes", image: "/images/equips/shoes/acs-shoes.png", name: "Arcaneshade Archer Shoes" },
+		{ setType: "none", id: "tyrant-shoes", image: "/images/equips/shoes/tyrant-shoes.png", name: "Tyrant Charon Boots" },
 	],
 	gloves: [
 		{ setType: "acs", id: "acs-archer-glove", image: "/images/equips/gloves/acs-glove.png", name: "Arcaneshade Archer Mitts" },
+		{ setType: "none", id: "tyrant-gloves", image: "/images/equips/gloves/tyrant-gloves.png", name: "Tyrant Charon Gloves" },
 	],
 	cape: [
 		{ setType: "acs", id: "acs-archer-cape", image: "/images/equips/cape/acs-cape.png", name: "Arcaneshade Archer Cape" },
+		{ setType: "none", id: "tyrant-cape", image: "/images/equips/cape/tyrant-cape.png", name: "Tyrant Charon Cloak" },
 	],
 	shoulder: [
 		{ setType: "acs", id: "acs-archer-shoulder", image: "/images/equips/shoulder/acs-shoulder.png", name: "Arcaneshade Archer Shoulder" },
@@ -35,7 +38,11 @@ var archerSetItems = {
 		{ setType: "faf", id: "faf-bow", image: "/images/equips/weapon/faf-bow.png", name: "Fafnir Bow" },
 		{ setType: "faf", id: "faf-dbg", image: "/images/equips/weapon/faf-dbg.png", name: "Fafnir Dual Bowguns" },
 		{ setType: "faf", id: "faf-xbow", image: "/images/equips/weapon/faf-xbow.png", name: "Fafnir Crossbow" },
-	]
+	],
+	secondary: [],
+	belt: [
+		{ setType: "none", id: "tyrant-belt", image: "/images/equips/belt/tyrant-belt.png", name: "Tyrant Charon Belt" },
+	],
 }
 
 module.exports = archerSetItems;

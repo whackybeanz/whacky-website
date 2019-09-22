@@ -15,6 +15,7 @@ var commonSetItems = {
 	badge: [
 		{ setType: "hardBossAcc", id: "genesis-badge", image: "/images/equips/badge/genesis-badge.png", name: "Badge of Beginning" },
 		{ setType: "bossAcc", id: "ventus-badge", image: "/images/equips/badge/ventus-badge.png", name: "Crystal Ventus Badge" },
+		{ setType: "none", id: "lord-skull-badge", image: "/images/equips/badge/lord-skull-badge.png", name: "Lord Skull Badge" },
 		{ setType: "none", id: "hospital-badge", image: "/images/equips/badge/hospital-director-badge.png", name: "Hospital Director's Badge" },
 	],
 	earring: [

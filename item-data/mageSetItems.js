@@ -16,12 +16,15 @@ var mageSetItems = {
 	],
 	shoes: [
 		{ setType: "acs", id: "acs-mage-shoes", image: "/images/equips/shoes/acs-shoes.png", name: "Arcaneshade Mage Shoes" },
+		{ setType: "none", id: "tyrant-shoes", image: "/images/equips/shoes/tyrant-shoes.png", name: "Tyrant Hermes Boots" },
 	],
 	gloves: [
 		{ setType: "acs", id: "acs-mage-glove", image: "/images/equips/gloves/acs-glove.png", name: "Arcaneshade Mage Mitts" },
+		{ setType: "none", id: "tyrant-gloves", image: "/images/equips/gloves/tyrant-gloves.png", name: "Tyrant Hermes Gloves" },
 	],
 	cape: [
 		{ setType: "acs", id: "acs-mage-cape", image: "/images/equips/cape/acs-cape.png", name: "Arcaneshade Mage Cape" },
+		{ setType: "none", id: "tyrant-cape", image: "/images/equips/cape/tyrant-cape.png", name: "Tyrant Hermes Cloak" },
 	],
 	shoulder: [
 		{ setType: "acs", id: "acs-mage-shoulder", image: "/images/equips/shoulder/acs-shoulder.png", name: "Arcaneshade Mage Shoulder" },
@@ -33,7 +36,13 @@ var mageSetItems = {
 		{ setType: "acs", id: "acs-psy-limiter", image: "/images/equips/weapon/acs-psy-limiter.png", name: "Arcaneshade Psy-Limiter" },
 		{ setType: "acs", id: "acs-magic-gauntlet", image: "/images/equips/weapon/acs-magic-gauntlet.png", name: "Arcaneshade Magic Gauntlet" },
 		{ setType: "acs", id: "acs-fan", image: "/images/equips/weapon/acs-fan.png", name: "Arcaneshade Fan" },
-	]
+	],
+	secondary: [
+		{ setType: "none", id: "deimos-sage-shield", image: "/imgaes/equips/secondary/deimos-sage-shield.png", name: "Deimos Sage Shield" },
+	],
+	belt: [
+		{ setType: "none", id: "tyrant-belt", image: "/images/equips/belt/tyrant-belt.png", name: "Tyrant Hermes Belt" },
+	],
 }
 
 module.exports = mageSetItems;

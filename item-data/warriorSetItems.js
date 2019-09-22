@@ -16,12 +16,15 @@ var warriorSetItems = {
 	],
 	shoes: [
 		{ setType: "acs", id: "acs-warrior-shoes", image: "/images/equips/shoes/acs-shoes.png", name: "Arcaneshade Knight Shoes" },
+		{ setType: "none", id: "tyrant-shoes", image: "/images/equips/shoes/tyrant-shoes.png", name: "Tyrant Hyades Boots" },
 	],
 	gloves: [
 		{ setType: "acs", id: "acs-warrior-glove", image: "/images/equips/gloves/acs-glove.png", name: "Arcaneshade Knight Mitts" },
+		{ setType: "none", id: "tyrant-gloves", image: "/images/equips/gloves/tyrant-gloves.png", name: "Tyrant Hyades Gloves" },
 	],
 	cape: [
 		{ setType: "acs", id: "acs-warrior-cape", image: "/images/equips/cape/acs-cape.png", name: "Arcaneshade Knight Cape" },
+		{ setType: "none", id: "tyrant-cape", image: "/images/equips/cape/tyrant-cape.png", name: "Tyrant Hyades Cloak" },
 	],
 	shoulder: [
 		{ setType: "acs", id: "acs-warrior-shoulder", image: "/images/equips/shoulder/acs-shoulder.png", name: "Arcaneshade Knight Shoulder" },
@@ -39,7 +42,13 @@ var warriorSetItems = {
 		{ setType: "acs", id: "acs-elaha", image: "/images/equips/weapon/acs-elaha.png", name: "Arcaneshade Elaha" },
 		{ setType: "acs", id: "acs-lapis", image: "/images/equips/weapon/acs-lapis.png", name: "Lapis Type 9" },
 		{ setType: "acs", id: "acs-katana", image: "/images/equips/weapon/acs-katana.png", name: "Arcaneshade Katana" },
-	]
+	],
+	secondary: [
+		{ setType: "none", id: "deimos-warrior-shield", image: "/imgaes/equips/secondary/deimos-warrior-shield.png", name: "Deimos Warrior Shield" },
+	],
+	belt: [
+		{ setType: "none", id: "tyrant-belt", image: "/images/equips/belt/tyrant-belt.png", name: "Tyrant Hyades Belt" },
+	],
 }
 
 module.exports = warriorSetItems;

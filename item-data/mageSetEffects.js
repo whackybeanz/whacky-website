@@ -43,8 +43,36 @@ var mageSetEffects = {
 			weapon: [{ id: "", image: "", name: "" }]
 		},
 		effects: {
-			1: [{ statId: "int", statName: "INT", val: 40 }],
-			2: [{ statId: "int", statName: "INT", val: 80 }]
+			2: [{ statId: "wama", statName: "ATT/MATT", val: "20" }, 
+				{ statId: "maxHpMp", statName: "Max HP/MP", val: "1500" }],
+			3: [{ statId: "wama", statName: "ATT/MATT", val: "25" }, 
+				{ statId: "allStats", statName: "All Stats", val: "30" }],
+			4: [{ statId: "wama", statName: "ATT/MATT", val: "30" }, 
+				{ statId: "iedPercent", statName: "Ignore Enemy DEF %", val: "10", symbol: "%" }, 
+				{ statId: "def", statName: "DEF", val: "200" }],
+			5: [{ statId: "wama", statName: "ATT/MATT", val: "20" }, 
+				{ statId: "bossPercent", statName: "Boss Damage %", val: "30", symbol: "%" }],
+			6: [{ statId: "wama", statName: "ATT/MATT", val: "20" }, 
+				{ statId: "maxHpMpPercent", statName: "Max HP/MP %", val: "20", symbol: "%" }],
+			7: [{ statId: "wama", statName: "ATT/MATT", val: "20" }, 
+				{ statId: "iedPercent", statName: "Ignore Enemy DEF %", val: "10", symbol: "%" }],
+		}
+	},
+	faf: {
+		title: "Root Abyss Set",
+		items: {
+			hat: [{ id: "", image: "", name: "" }],
+			top: [{ id: "", image: "", name: "" }],
+			bottom: [{ id: "", image: "", name: "" }],
+			weapon: [{ id: "", image: "", name: "" }],
+		},
+		effects: {
+			2: [{ statId: "int", statName: "INT", val: 20 },
+				{ statId: "luk", statName: "LUK", val: 20 },
+				{ statId: "maxHpMp", statName: "Max HP/MP", val: 1000 }],
+			3: [{ statId: "ma", statName: "MATT", val: 50 },
+				{ statId: "maxHpMpPercent", statName: "Max HP/MP %", val: 10, symbol: "%" }],
+			4: [{ statId: "bossPercent", statName: "Boss Damage %", val: 30, symbol: "%" }],
 		}
 	}
 };
