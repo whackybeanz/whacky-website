@@ -71,7 +71,7 @@ var commonSetItems = {
 		{ setType: "none", id: "broid", image: "/images/equips/android/broid.png", name: "Battle-roid" },
 	],
 	emblem: [
-		{ setType: "none", id: "evan-gold-emblem", image: "/images/equips/emblem/evan-gold-emblem.png", name: "Gold Heroic Emblem (Evan)" },
+		
 	],
 	medal: [
 		{ setType: "none", id: "chef-medal", image: "/images/equips/medal/chef-medal.png", name: "Absolute Palate Legendary Chef Medal" },

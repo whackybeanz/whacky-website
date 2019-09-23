@@ -44,7 +44,7 @@ var warriorSetItems = {
 		{ setType: "acs", id: "acs-katana", image: "/images/equips/weapon/acs-katana.png", name: "Arcaneshade Katana" },
 	],
 	secondary: [
-		{ setType: "none", id: "deimos-warrior-shield", image: "/imgaes/equips/secondary/deimos-warrior-shield.png", name: "Deimos Warrior Shield" },
+		{ setType: "none", id: "deimos-warrior-shield", image: "/images/equips/secondary/deimos-warrior-shield.png", name: "Deimos Warrior Shield" },
 	],
 	belt: [
 		{ setType: "none", id: "tyrant-belt", image: "/images/equips/belt/tyrant-belt.png", name: "Tyrant Hyades Belt" },

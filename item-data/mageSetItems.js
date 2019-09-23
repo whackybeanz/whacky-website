@@ -38,10 +38,13 @@ var mageSetItems = {
 		{ setType: "acs", id: "acs-fan", image: "/images/equips/weapon/acs-fan.png", name: "Arcaneshade Fan" },
 	],
 	secondary: [
-		{ setType: "none", id: "deimos-sage-shield", image: "/imgaes/equips/secondary/deimos-sage-shield.png", name: "Deimos Sage Shield" },
+		{ setType: "none", id: "deimos-sage-shield", image: "/images/equips/secondary/deimos-sage-shield.png", name: "Deimos Sage Shield" },
 	],
 	belt: [
 		{ setType: "none", id: "tyrant-belt", image: "/images/equips/belt/tyrant-belt.png", name: "Tyrant Hermes Belt" },
+	],
+	emblem: [
+		{ setType: "none", id: "evan-gold-emblem", image: "/images/equips/emblem/evan-gold-emblem.png", name: "Gold Heroic Emblem (Evan)" },
 	],
 }
 

@@ -32,13 +32,13 @@ var thiefSetItems = {
 	weapon: [
 		{ setType: "acs", id: "acs-dagger", image: "/images/equips/weapon/acs-dagger.png", name: "Arcaneshade Dagger" },
 		{ setType: "acs", id: "acs-cane", image: "/images/equips/weapon/acs-cane.png", name: "Arcaneshade Cane" },
-		{ setType: "acs", id: "acs-baghnakhs", image: "/images/equips/weapon/acs-baghnakhs.png", name: "Arcaneshade Baghnakhs" },
+		{ setType: "acs", id: "acs-guards", image: "/images/equips/weapon/acs-guards.png", name: "Arcaneshade Guards" },
 		{ setType: "acs", id: "acs-energy-sword", image: "/images/equips/weapon/acs-energy-sword.png", name: "Arcaneshade Energy Sword" },
 		{ setType: "acs", id: "acs-energy-chain", image: "/images/equips/weapon/acs-energy-chain.png", name: "Arcaneshade Energy Chain" },
 	],
 	secondary: [
 		{ setType: "acs", id: "acs-blade", image: "/images/equips/weapon/acs-blade.png", name: "Arcaneshade Blade" },
-		{ setType: "none", id: "deimos-darkness-shield", image: "/imgaes/equips/secondary/deimos-darkness-shield.png", name: "Deimos Darkness Shield" },
+		{ setType: "none", id: "deimos-darkness-shield", image: "/images/equips/secondary/deimos-darkness-shield.png", name: "Deimos Darkness Shield" },
 	],
 	belt: [
 		{ setType: "none", id: "tyrant-belt", image: "/images/equips/belt/tyrant-belt.png", name: "Tyrant Lycaon Belt" },

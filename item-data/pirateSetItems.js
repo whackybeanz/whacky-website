@@ -30,7 +30,7 @@ var pirateSetItems = {
 		{ setType: "acs", id: "acs-pirate-shoulder", image: "/images/equips/shoulder/acs-shoulder.png", name: "Arcaneshade Pirate Shoulder" },
 	],
 	weapon: [
-		{ setType: "acs", id: "acs-guards", image: "/images/equips/weapon/acs-guards.png", name: "Arcaneshade Guards" },
+		{ setType: "acs", id: "acs-baghnakhs", image: "/images/equips/weapon/acs-baghnakhs.png", name: "Arcaneshade Baghnakhs" },
 		{ setType: "acs", id: "acs-pistol", image: "/images/equips/weapon/acs-pistol.png", name: "Arcaneshade Pistol" },
 		{ setType: "acs", id: "acs-energy-sword", image: "/images/equips/weapon/acs-energy-sword.png", name: "Arcaneshade Energy Sword" },
 		{ setType: "acs", id: "acs-siege-gun", image: "/images/equips/weapon/acs-siege-gun.png", name: "Arcaneshade Siege Gun" },

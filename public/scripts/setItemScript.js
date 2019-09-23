@@ -243,11 +243,13 @@ function addSelectedItem(selectedItem, equipType, equipId, choiceImage) {
 	}
 	
 	// If previous item was a lucky item of the same item type, remove it from list of equipped lucky items
-	var isLuckyItemActive = ($(`.${setType}-set .set-items .lucky-item.active`).length === 1);
-	var isLuckyItemSameType = (equipType === $(`.${setType}-set .set-items .lucky-item.active`).data("equipType"))
+	// As activated lucky item will be the same type/priority regardless of which set it is in, no need to
+	// retrieve individual equip types/priorities
+	var isLuckyItemActive = ($(`.set-items .lucky-item.active`).length > 0);
+	var isLuckyItemSameType = (equipType === $(`.set-items .lucky-item.active`).data("equipType"));
 
 	if(isLuckyItemActive && isLuckyItemSameType) {
-		var itemPriorityToRemove = $(`.${setType}-set .set-items .lucky-item`).data("itemPriority");
+		var itemPriorityToRemove = $(`.set-items .lucky-item.active`).data("itemPriority");
 		removeLuckyItem(itemPriorityToRemove);
 	}
 
