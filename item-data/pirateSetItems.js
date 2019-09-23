@@ -8,7 +8,7 @@ var pirateSetItems = {
 		{ setType: "none", id: "meister-symbol", image: "/images/equips/face/meister-symbol.png", name: "Shiny Red Pirate Meister Symbol" },
 	],
 	top: [
-		{ setType: "acs", id: "acs-pirate-suit", image: "/images/equips/overall/acs-pirate-suit.png", name: "Arcaneshade Pirate Suit" },
+		{ setType: "acs", id: "acs-pirate-suit", image: "/images/equips/overall/acs-pirate-suit.png", name: "Arcaneshade Pirate Suit", isOverall: true },
 		{ setType: "faf", id: "faf-pirate-top", image: "/images/equips/top/faf-pirate-top.png", name: "Eagle Eye Wanderer Coat" },
 	],
 	bottom: [

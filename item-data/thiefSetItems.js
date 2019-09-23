@@ -8,7 +8,7 @@ var thiefSetItems = {
 		{ setType: "none", id: "meister-symbol", image: "/images/equips/face/meister-symbol.png", name: "Shiny Red Thief Meister Symbol" },
 	],
 	top: [
-		{ setType: "acs", id: "acs-bandit-suit", image: "/images/equips/overall/acs-bandit-suit.png", name: "Arcaneshade Bandit Suit" },
+		{ setType: "acs", id: "acs-bandit-suit", image: "/images/equips/overall/acs-bandit-suit.png", name: "Arcaneshade Bandit Suit", isOverall: true },
 		{ setType: "faf", id: "faf-thief-top", image: "/images/equips/top/faf-thief-top.png", name: "Eagle Eye Assassin Shirt" },
 	],
 	bottom: [

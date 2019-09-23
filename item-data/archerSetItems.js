@@ -8,7 +8,7 @@ var archerSetItems = {
 		{ setType: "none", id: "meister-symbol", image: "/images/equips/face/meister-symbol.png", name: "Shiny Red Archer Meister Symbol" },
 	],
 	top: [
-		{ setType: "acs", id: "acs-archer-suit", image: "/images/equips/overall/acs-archer-suit.png", name: "Arcaneshade Archer Suit" },
+		{ setType: "acs", id: "acs-archer-suit", image: "/images/equips/overall/acs-archer-suit.png", name: "Arcaneshade Archer Suit", isOverall: true },
 		{ setType: "faf", id: "faf-archer-top", image: "/images/equips/top/faf-archer-top.png", name: "Eagle Eye Ranger Hood" },
 	],
 	bottom: [

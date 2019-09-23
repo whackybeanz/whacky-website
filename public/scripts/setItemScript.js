@@ -17,6 +17,7 @@ var pendantRingDetails = {
 }
 var equippedLuckyItems = {};
 var priorityList = [];
+var isEquippedOverall = false;
 
 const MIN_NUM_ITEMS_FOR_LUCKY_EFFECT = 3;
 
@@ -201,6 +202,22 @@ function addRingPendant(selectedItem, equipType, equipId, choiceImage) {
 }
 
 function addNonRingPendant(selectedItem, equipType, equipId, choiceImage) {
+	if(equipType === "bottom") {
+		if(isEquippedOverall) {
+			$(".slot-exceed-msg").text(`An overall has been equipped. Unselect the overall first to enable selection in this item category.`)
+
+			window.setTimeout(function() {
+				$(".slot-exceed-msg").fadeOut(1000);
+			}, 2000);
+		} else {
+			addSelectedItem(selectedItem, equipType, equipId, choiceImage);
+		}
+	} else {
+		addSelectedItem(selectedItem, equipType, equipId, choiceImage);
+	}
+}
+
+function addSelectedItem(selectedItem, equipType, equipId, choiceImage) {
 	// Toggle newly selected item on carousel
 	// Add selected item image to equip window
 	$(`.single-equip-${equipType}`).removeClass("active");
@@ -219,6 +236,10 @@ function addNonRingPendant(selectedItem, equipType, equipId, choiceImage) {
 	} else {
 		$(`.wearing-${equipType}`).removeClass("active");
 		$(`#item-${equipId}`).addClass("active");
+	}
+
+	if(equipType === "top") {
+		isEquippedOverall = selectedItem.data("isOverall") || false;
 	}
 	
 	// If previous item was a lucky item of the same item type, remove it from list of equipped lucky items

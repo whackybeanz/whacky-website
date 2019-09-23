@@ -8,7 +8,7 @@ var warriorSetItems = {
 		{ setType: "none", id: "meister-symbol", image: "/images/equips/face/meister-symbol.png", name: "Shiny Red Warrior Meister Symbol" },
 	],
 	top: [
-		{ setType: "acs", id: "acs-knight-suit", image: "/images/equips/overall/acs-knight-suit.png", name: "Arcaneshade Knight Suit" },
+		{ setType: "acs", id: "acs-knight-suit", image: "/images/equips/overall/acs-knight-suit.png", name: "Arcaneshade Knight Suit", isOverall: true },
 		{ setType: "faf", id: "faf-warrior-top", image: "/images/equips/top/faf-warrior-top.png", name: "Eagle Eye Warrior Armor" },
 	],
 	bottom: [

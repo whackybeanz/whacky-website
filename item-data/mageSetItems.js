@@ -8,7 +8,7 @@ var mageSetItems = {
 		{ setType: "none", id: "meister-symbol", image: "/images/equips/face/meister-symbol.png", name: "Shiny Red Magician Meister Symbol" },
 	],
 	top: [
-		{ setType: "acs", id: "acs-mage-suit", image: "/images/equips/overall/acs-mage-suit.png", name: "Arcaneshade Mage Suit" },
+		{ setType: "acs", id: "acs-mage-suit", image: "/images/equips/overall/acs-mage-suit.png", name: "Arcaneshade Mage Suit", isOverall: true },
 		{ setType: "faf", id: "faf-mage-top", image: "/images/equips/top/faf-mage-top.png", name: "Eagle Eye Dunwitch Robe" },
 	],
 	bottom: [
