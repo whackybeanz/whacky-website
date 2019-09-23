@@ -54,8 +54,17 @@ var thiefSetItems = {
 		{ setType: "abs", id: "abs-energy-chain", image: "/images/equips/weapon/abs-energy-chain.png", name: "Absolabs Energy Chain" },
 	],
 	secondary: [
-		{ setType: "acs", id: "acs-blade", image: "/images/equips/weapon/acs-blade.png", name: "Arcaneshade Blade" },
+		{ setType: "genesis", id: "genesis-katara", image: "/images/equips/weapon/genesis-katara.png", name: "Genesis Blade" },
+		{ setType: "acs", id: "acs-katara", image: "/images/equips/weapon/acs-katara.png", name: "Arcaneshade Blade" },
+		{ setType: "abs", id: "abs-katara", image: "/images/equips/weapon/abs-katara.png", name: "Absolabs Katara" },
 		{ setType: "none", id: "deimos-darkness-shield", image: "/images/equips/secondary/deimos-darkness-shield.png", name: "Deimos Darkness Shield" },
+		{ setType: "none", id: "pnou-purple-shadow", image: "/images/equips/secondary/pnou-.png", name: "Princess Nou's Purple Shadow (Shadower)" },
+		{ setType: "none", id: "pnou-charm", image: "/images/equips/secondary/pnou-charm.png", name: "Princess Nou's Charm (Night Lord)" },
+		{ setType: "none", id: "pnou-katara", image: "/images/equips/secondary/pnou-katara.png", name: "Princess Nou's Poisoned Sword (Dual Blade)" },
+		{ setType: "none", id: "pnou-floral-jewel", image: "/images/equips/secondary/pnou-floral-jewel.png", name: "Princess Nou's Floral Jewel (Cygnus Knights)" },
+		{ setType: "none", id: "pnou-controller", image: "/images/equips/secondary/pnou-controller.png", name: "Princess Nou's Controller (Xenon)" },
+		{ setType: "none", id: "pnou-carte", image: "/images/equips/secondary/pnou-carte.png", name: "Princess Nou's Carte (Phantom)" },
+		{ setType: "none", id: "pnou-transmitter", image: "/images/equips/secondary/pnou-transmitter.png", name: "Princess Nou's Transmitter (Cadena)" },
 	],
 	belt: [
 		{ setType: "none", id: "tyrant-belt", image: "/images/equips/belt/tyrant-belt.png", name: "Tyrant Lycaon Belt" },

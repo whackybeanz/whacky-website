@@ -75,7 +75,18 @@ var warriorSetItems = {
 		{ setType: "abs", id: "abs-katana", image: "/images/equips/weapon/abs-katana.png", name: "Absolabs Kogarasumaru" },
 	],
 	secondary: [
+		{ setType: "none", id: "ruin-force-shield", image: "/images/equips/secondary/ruin-force-shield.png", name: "Ruin Force Shield" },
 		{ setType: "none", id: "deimos-warrior-shield", image: "/images/equips/secondary/deimos-warrior-shield.png", name: "Deimos Warrior Shield" },
+		{ setType: "none", id: "pnou-medal", image: "/images/equips/secondary/pnou-medal.png", name: "Princess Nou's Medal (Hero)" },
+		{ setType: "none", id: "pnou-rosario", image: "/images/equips/secondary/pnou-rosario.png", name: "Princess Nou's Rosario (Paladin)" },
+		{ setType: "none", id: "pnou-flower-chain", image: "/images/equips/secondary/pnou-flower-chain.png", name: "Princess Nou's Flower Chain (Dark Knight)" },
+		{ setType: "none", id: "pnou-floral-jewel", image: "/images/equips/secondary/pnou-floral-jewel.png", name: "Princess Nou's Floral Jewel (Cygnus Knights)" },
+		{ setType: "none", id: "pnou-soul-shield", image: "/images/equips/secondary/pnou-soul-shield.png", name: "Princess Nou's Soul Shield (Mihile)" },
+		{ setType: "none", id: "pnou-megaton-charges", image: "/images/equips/secondary/pnou-megaton-charges.png", name: "Princess Nou's Megaton Charges (Blaster)" },
+		{ setType: "none", id: "pnou-demon-aegis", image: "/images/equips/secondary/pnou-demon-aegis.png", name: "Princess Nou's Demon Aegis (Demon)" },
+		{ setType: "none", id: "pnou-pendulum", image: "/images/equips/secondary/pnou-pendulum.png", name: "Princess Nou's Pendulum (Aran)" },
+		{ setType: "none", id: "pnou-dragon-essence", image: "/images/equips/secondary/pnou-dragon-essence.png", name: "Princess Nou's Dragon Essence (Kaiser)" },
+		{ setType: "none", id: "pnou-wakizashi", image: "/images/equips/secondary/pnou-wakizashi.png", name: "Princess Nou's Wakizashi (Hayato)" },
 	],
 	belt: [
 		{ setType: "none", id: "tyrant-belt", image: "/images/equips/belt/tyrant-belt.png", name: "Tyrant Hyades Belt" },

@@ -55,7 +55,14 @@ var archerSetItems = {
 		{ setType: "faf", id: "faf-dbg", image: "/images/equips/weapon/faf-dbg.png", name: "Fafnir Dual Bowguns" },
 		{ setType: "faf", id: "faf-xbow", image: "/images/equips/weapon/faf-xbow.png", name: "Fafnir Crossbow" },
 	],
-	secondary: [],
+	secondary: [
+		{ setType: "none", id: "pnou-feather", image: "/images/equips/secondary/pnou-feather.png", name: "Princess Nou's Feather (Bowmaster)" },
+		{ setType: "none", id: "pnou-wreath", image: "/images/equips/secondary/pnou-wreath.png", name: "Princess Nou's Wreath (Crossbow Master)" },
+		{ setType: "none", id: "pnou-relic", image: "/images/equips/secondary/pnou-relic.png", name: "Princess Nou's Relic (Pathfinder)" },
+		{ setType: "none", id: "pnou-floral-jewel", image: "/images/equips/secondary/pnou-floral-jewel.png", name: "Princess Nou's Floral Jewel (Cygnus Knights)" },
+		{ setType: "none", id: "pnou-arrowhead", image: "/images/equips/secondary/pnou-arrowhead.png", name: "Princess Nou's Relic (Wild Hunter)" },
+		{ setType: "none", id: "pnou-arrow", image: "/images/equips/secondary/pnou-arrow.png", name: "Princess Nou's Black Magic Arrow (Mercedes)" },
+	],
 	belt: [
 		{ setType: "none", id: "tyrant-belt", image: "/images/equips/belt/tyrant-belt.png", name: "Tyrant Charon Belt" },
 	],

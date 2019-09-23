@@ -58,6 +58,15 @@ var mageSetItems = {
 	],
 	secondary: [
 		{ setType: "none", id: "deimos-sage-shield", image: "/images/equips/secondary/deimos-sage-shield.png", name: "Deimos Sage Shield" },
+		{ setType: "none", id: "pnou-flaming-book", image: "/images/equips/secondary/pnou-flaming-book.png", name: "Princess Nou's Flaming Book (Fire/Poison Mage)" },
+		{ setType: "none", id: "pnou-damp-book", image: "/images/equips/secondary/pnou-damp-book.png", name: "Princess Nou's Damp Book (Ice/Lightning Mage)" },
+		{ setType: "none", id: "pnou-golden-book", image: "/images/equips/secondary/pnou-golden-book.png", name: "Princess Nou's Golden Book (Bishop)" },
+		{ setType: "none", id: "pnou-floral-jewel", image: "/images/equips/secondary/pnou-floral-jewel.png", name: "Princess Nou's Floral Jewel (Cygnus Knights)" },
+		{ setType: "none", id: "pnou-accursed-marble", image: "/images/equips/secondary/pnou-accursed-marble.png", name: "Princess Nou's Accursed Marble (Battle Mage)" },
+		{ setType: "none", id: "pnou-dragon-legacy", image: "/images/equips/secondary/pnou-dragon-legacy.png", name: "Princess Nou's Dragon Legacy (Evan)" },
+		{ setType: "none", id: "pnou-soul-orb", image: "/images/equips/secondary/pnou-soul-orb.png", name: "Princess Nou's Soul Orb (Luminous)" },
+		{ setType: "none", id: "pnou-lucent-wings", image: "/images/equips/secondary/pnou-lucent-wings.png", name: "Princess Nou's Lucent Wings (Illium)" },
+		{ setType: "none", id: "pnou-kinesis", image: "/images/equips/secondary/pnou-kinesis.png", name: "Princess Nou's Oriental King Chess Piece (Kinesis)" },
 	],
 	belt: [
 		{ setType: "none", id: "tyrant-belt", image: "/images/equips/belt/tyrant-belt.png", name: "Tyrant Hermes Belt" },

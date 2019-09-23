@@ -53,7 +53,17 @@ var pirateSetItems = {
 		{ setType: "abs", id: "abs-siege-gun", image: "/images/equips/weapon/abs-siege-gun.png", name: "Arcaneshade Blast Cannon" },
 		{ setType: "abs", id: "abs-soul-shooter", image: "/images/equips/weapon/abs-soul-shooter.png", name: "Arcaneshade Draconic Arm" },
 	],
-	secondary: [],
+	secondary: [
+		{ setType: "none", id: "pnou-skull-armor", image: "/images/equips/secondary/pnou-skull-armor.png", name: "Princess Nou's Skull Armor (Viper)" },
+		{ setType: "none", id: "pnou-falcon-eye", image: "/images/equips/secondary/pnou-falcon-eye.png", name: "Princess Nou's Falcon Eye (Captain)" },
+		{ setType: "none", id: "pnou-fire-bomb", image: "/images/equips/secondary/pnou-fire-bomb.png", name: "Princess Nou's Fire Bomb (Cannon Shooter)" },
+		{ setType: "none", id: "pnou-floral-jewel", image: "/images/equips/secondary/pnou-floral-jewel.png", name: "Princess Nou's Floral Jewel (Cygnus Knights)" },
+		{ setType: "none", id: "pnou-magnum", image: "/images/equips/secondary/pnou-magnum.png", name: "Princess Nou's Magnum (Mechanic)" },
+		{ setType: "none", id: "pnou-controller", image: "/images/equips/secondary/pnou-controller.png", name: "Princess Nou's Controller (Xenon)" },
+		{ setType: "none", id: "pnou-fox-marble", image: "/images/equips/secondary/pnou-fox-marble.png", name: "Princess Nou's Fox Marble (Eunwol)" },
+		{ setType: "none", id: "pnou-soul-ring", image: "/images/equips/secondary/pnou-soul-ring.png", name: "Princess Nou's Soul Ring (Angelic Buster)" },
+		{ setType: "none", id: "pnou-path", image: "/images/equips/secondary/pnou-path.png", name: "Princess Nou's Path (Ark)" },
+	],
 	belt: [
 		{ setType: "none", id: "tyrant-belt", image: "/images/equips/belt/tyrant-belt.png", name: "Tyrant Altair Belt" },
 	],
