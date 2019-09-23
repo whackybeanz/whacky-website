@@ -3,7 +3,7 @@ var thiefSetEffects = {
 		title: "Arcaneshade Set",
 		items: {
 			hat: [{ id: "acs-thief-hat", image: "/images/equips/hat/acs-bandit-hat.png", name: "Arcaneshade Bandit Hat" }],
-			overall: [{ id: "acs-bandit-suit", image: "/images/equips/overall/acs-bandit-suit.png", name: "Arcaneshade Bandit Suit" }],
+			top: [{ id: "acs-bandit-suit", image: "/images/equips/overall/acs-bandit-suit.png", name: "Arcaneshade Bandit Suit" }],
 			shoes: [{ id: "acs-bandit-shoes", image: "/images/equips/shoes/acs-shoes.png", name: "Arcaneshade Bandit Shoes" }],
 			gloves: [{ id: "acs-bandit-glove", image: "/images/equips/gloves/acs-glove.png", name: "Arcaneshade Bandit Mitts" }],
 			cape: [{ id: "acs-bandit-cape", image: "/images/equips/cape/acs-cape.png", name: "Arcaneshade Bandit Cape" }], 
@@ -34,12 +34,16 @@ var thiefSetEffects = {
 		title: "Absolabs Set",
 		items: {
 			hat: [{ id: "abs-thief-hat", image: "/images/equips/hat/abs-shadow-beret.png", name: "Absolabs Shadow Beret" }],
-			overall: [{ id: "", image: "", name: "" }],
-			shoes: [{ id: "", image: "", name: "" }],
-			gloves: [{ id: "", image: "", name: "" }],
-			cape: [{ id: "", image: "", name: "" }], 
-			shoulder: [{ id: "", image: "", name: "" }],
-			weapon: [{ id: "", image: "", name: "" }]
+			top: [{ id: "abs-thief-overall", image: "/images/equips/overall/abs-thief-overall.png", name: "Absolabs Shadow Suit" }],
+			shoes: [{ id: "abs-thief-shoes", image: "/images/equips/shoes/abs-shoes.png", name: "Absolabs Shadow Boots" }],
+			gloves: [{ id: "abs-thief-glove", image: "/images/equips/gloves/abs-glove.png", name: "Absolabs Shadow Vambracers" }],
+			cape: [{ id: "abs-thief-cape", image: "/images/equips/cape/abs-cape.png", name: "Absolabs Shadow Cloak" }], 
+			shoulder: [{ id: "abs-thief-shoulder", image: "/images/equips/shoulder/abs-shoulder.png", name: "Absolabs Shadow Pauldron" }],
+			weapon: [{ id: "abs-dagger", image: "/images/equips/weapon/abs-dagger.png", name: "Absolabs Shredder" },
+					{ id: "abs-cane", image: "/images/equips/weapon/abs-cane.png", name: "Absolabs Sceptre" },
+					{ id: "abs-claw", image: "/images/equips/weapon/abs-claw.png", name: "Absolabs Tarantula" },
+					{ id: "abs-energy-sword", image: "/images/equips/weapon/abs-energy-sword.png", name: "Absolabs Electro Saber" },
+					{ id: "abs-energy-chain", image: "/images/equips/weapon/abs-energy-chain.png", name: "Absolabs Energy Chain" }]
 		},
 		effects: {
 			2: [{ statId: "wama", statName: "ATT/MATT", val: "20" }, 

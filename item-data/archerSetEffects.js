@@ -33,12 +33,15 @@ var archerSetEffects = {
 		title: "Absolabs Set",
 		items: {
 			hat: [{ id: "abs-archer-hat", image: "/images/equips/hat/abs-trueshot-hood.png", name: "Absolabs Trueshot Hood" }],
-			top: [{ id: "", image: "", name: "" }],
-			shoes: [{ id: "", image: "", name: "" }],
-			gloves: [{ id: "", image: "", name: "" }],
-			cape: [{ id: "", image: "", name: "" }], 
-			shoulder: [{ id: "", image: "", name: "" }],
-			weapon: [{ id: "", image: "", name: "" }]
+			top: [{ id: "abs-archer-overall", image: "/images/equips/overall/abs-archer-overall.png", name: "Absolabs Trueshot Coat" }],
+			shoes: [{ id: "abs-archer-shoes", image: "/images/equips/shoes/abs-shoes.png", name: "Absolabs Trueshot Boots" }],
+			gloves: [{ id: "abs-archer-glove", image: "/images/equips/gloves/abs-glove.png", name: "Absolabs Trueshot Gloves" }],
+			cape: [{ id: "abs-archer-cape", image: "/images/equips/cape/abs-cape.png", name: "Absolabs Trueshot Cloak" }], 
+			shoulder: [{ id: "abs-archer-shoulder", image: "/images/equips/shoulder/abs-shoulder.png", name: "Absolabs Trueshot Pauldron" }],
+			weapon: [{ id: "abs-abow", image: "/images/equips/weapon/abs-abow.png", name: "Absolabs Ancient Bow" },
+					{ id: "abs-bow", image: "/images/equips/weapon/abs-bow.png", name: "Absolabs Ichaival" },
+					{ id: "abs-dbg", image: "/images/equips/weapon/abs-dbg.png", name: "Absolabs Twin Astras" },
+					{ id: "abs-xbow", image: "/images/equips/weapon/abs-xbow.png", name: "Absolabs Astra Wing" }]
 		},
 		effects: {
 			2: [{ statId: "wama", statName: "ATT/MATT", val: "20" }, 

@@ -3,7 +3,7 @@ var warriorSetEffects = {
 		title: "Arcaneshade Set",
 		items: {
 			hat: [{ id: "acs-warrior-hat", image: "/images/equips/hat/acs-knight-hat.png", name: "Arcaneshade Knight Hat" }],
-			overall: [{ id: "acs-knight-suit", image: "/images/equips/overall/acs-knight-suit.png", name: "Arcaneshade Knight Suit" }],
+			top: [{ id: "acs-knight-suit", image: "/images/equips/overall/acs-knight-suit.png", name: "Arcaneshade Knight Suit" }],
 			shoes: [{ id: "acs-warrior-shoes", image: "/images/equips/shoes/acs-shoes.png", name: "Arcaneshade Knight Shoes" }],
 			gloves: [{ id: "acs-warrior-glove", image: "/images/equips/gloves/acs-glove.png", name: "Arcaneshade Knight Mitts" }],
 			cape: [{ id: "acs-warrior-cape", image: "/images/equips/cape/acs-cape.png", name: "Arcaneshade Knight Cape" }], 
@@ -41,12 +41,23 @@ var warriorSetEffects = {
 		title: "Absolabs Set",
 		items: {
 			hat: [{ id: "abs-warrior-hat", image: "/images/equips/hat/abs-bastion-helm.png", name: "Absolabs Bastion Helm" }],
-			overall: [{ id: "", image: "", name: "" }],
-			shoes: [{ id: "", image: "", name: "" }],
-			gloves: [{ id: "", image: "", name: "" }],
-			cape: [{ id: "", image: "", name: "" }], 
-			shoulder: [{ id: "", image: "", name: "" }],
-			weapon: [{ id: "", image: "", name: "" }]
+			top: [{ id: "abs-warrior-overall", image: "/images/equips/overall/abs-warrior-overall.png", name: "Absolabs Bastion Hauberk" }],
+			shoes: [{ id: "abs-warrior-shoes", image: "/images/equips/shoes/abs-shoes.png", name: "Absolabs Bastion Greaves" }],
+			gloves: [{ id: "abs-warrior-glove", image: "/images/equips/gloves/abs-glove.png", name: "Absolabs Bastion Gauntlets" }],
+			cape: [{ id: "abs-warrior-cape", image: "/images/equips/cape/abs-cape.png", name: "Absolabs Bastion Cloak" }], 
+			shoulder: [{ id: "abs-warrior-shoulder", image: "/images/equips/shoulder/abs-shoulder.png", name: "Absolabs Bastion Pauldron" }],
+			weapon: [{ id: "abs-1h-sword", image: "/images/equips/weapon/abs-1h-sword.png", name: "Absolabs Durandal" },
+					{ id: "abs-2h-sword", image: "/images/equips/weapon/abs-2h-sword.png", name: "Absolabs Balmung" },
+					{ id: "abs-1h-axe", image: "/images/equips/weapon/abs-1h-axe.png", name: "Absolabs Rampage" },
+					{ id: "abs-2h-axe", image: "/images/equips/weapon/abs-2h-axe.png", name: "Absolabs Onslaught" },
+					{ id: "abs-1h-hammer", image: "/images/equips/weapon/abs-1h-hammer.png", name: "Absolabs Gavel" },
+					{ id: "abs-2h-hammer", image: "/images/equips/weapon/abs-2h-hammer.png", name: "Absolabs Truncheon" },
+					{ id: "abs-spear", image: "/images/equips/weapon/abs-spear.png", name: "Absolabs Assagai" },
+					{ id: "abs-polearm", image: "/images/equips/weapon/abs-polearm.png", name: "Absolabs Lochaber" },
+					{ id: "abs-desperado", image: "/images/equips/weapon/abs-desperado.png", name: "Absolabs Blood Seeker" },
+					{ id: "abs-elaha", image: "/images/equips/weapon/abs-elaha.png", name: "Absolabs Kusanagi" },
+					{ id: "abs-lapis", image: "/images/equips/weapon/abs-lapis.png", name: "Lapis Type 8" },
+					{ id: "abs-katana", image: "/images/equips/weapon/abs-katana.png", name: "Absolabs Kogarasumaru" }]
 		},
 		effects: {
 			2: [{ statId: "wama", statName: "ATT/MATT", val: "20" }, 

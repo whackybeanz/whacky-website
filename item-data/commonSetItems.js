@@ -4,6 +4,7 @@ var commonSetItems = {
 	],
 	face: [
 		{ setType: "hardBossAcc", id: "lotus-mark", image: "/images/equips/face/lotus-mark.png", name: "Loose Control Machine Mark" },
+		{ setType: "none", id: "frontier-b-chicle", image: "/images/equips/face/frontier-b-chicle.png", name: "Frontier B Black Chicle" },
 		{ setType: "bossAcc", id: "condense-crystal", image: "/images/equips/face/condensed-crystal.png", name: "Condensed Strength Crystalline" },
 	],
 	eye: [
@@ -16,9 +17,12 @@ var commonSetItems = {
 		{ setType: "hardBossAcc", id: "genesis-badge", image: "/images/equips/badge/genesis-badge.png", name: "Badge of Beginning" },
 		{ setType: "bossAcc", id: "ventus-badge", image: "/images/equips/badge/ventus-badge.png", name: "Crystal Ventus Badge" },
 		{ setType: "none", id: "lord-skull-badge", image: "/images/equips/badge/lord-skull-badge.png", name: "Lord Skull Badge" },
+		{ setType: "none", id: "lania-badge", image: "/images/equips/badge/lania-box.png", name: "Lania's Triple Lunch Box" },
 		{ setType: "none", id: "hospital-badge", image: "/images/equips/badge/hospital-director-badge.png", name: "Hospital Director's Badge" },
 	],
 	earring: [
+		{ setType: "none", id: "ocean-glow-earring", image: "/images/equips/earring/ocean-glow-earring.png", name: "Ocean Glow Earrings" },
+		{ setType: "inverse", id: "inverse-earrings", image: "/images/equips/earring/inverse-jewel-earring.png", name: "Inverse Jewel Earring" },
 		{ setType: "meister", id: "meister-studs", image: "/images/equips/earring/meister-studs.png", name: "Meister Ear Studs" },
 		{ setType: "none", id: "scarlet-earring", image: "/images/equips/earring/scarlet-earring.png", name: "Scarlet Earring", isLuckyItem: true, itemPriority: 10 },
 		{ setType: "bossAcc", id: "dea-sidus", image: "/images/equips/earring/dea-sidus.png", name: "Dea Sidus Earrings" },
@@ -28,11 +32,14 @@ var commonSetItems = {
 		{ setType: "hardBossAcc", id: "hilla-pendant", image: "/images/equips/pendant/hilla-pendant.png", name: "Source of Pain" },
 		{ setType: "none", id: "frontier-c-pendant", image: "/images/equips/pendant/frontier-c-pendant.png", name: "Frontier C White Pendant" },
 		{ setType: "bossAcc", id: "dom-pendant", image: "/images/equips/pendant/dom-pendant.png", name: "Dominator Pendant" },
+		{ setType: "none", id: "frontier-b-pendant", image: "/images/equips/pendant/frontier-b-pendant.png", name: "Frontier B Black Pendant" },
+		{ setType: "none", id: "rising-sun-pendant", image: "/images/equips/pendant/rising-sun-pendant.png", name: "Rising Sun Pendant" },
 		{ setType: "bossAcc", id: "mach-pendant", image: "/images/equips/pendant/machinator-pendant.png", name: "Machinator Pendant" },
 		{ setType: "bossAcc", id: "cht-pendant", image: "/images/equips/pendant/cht-pendant.png", name: "Chaos Horntail Necklace" },
 		{ setType: "bossAcc", id: "ht-pendant", image: "/images/equips/pendant/ht-pendant.png", name: "Horned Tail Necklace" },
 	],
 	ring: [
+		{ setType: "none", id: "breath-of-divinity", image: "/images/equips/ring/breath-of-divinity.png", name: "Breath of Divinity" },
 		{ setType: "meister", id: "meister-signet", image: "/images/equips/ring/meister-signet.png", name: "Meister Signet" },
 		{ setType: "sengoku", id: "kanna-ring", image: "/images/equips/ring/kanna-ring.png", name: "Kanna's Treasure" },
 		{ setType: "none", id: "hekaton-signet", image: "/images/equips/ring/hekaton-signet.png", name: "Hekaton Signet" },
@@ -53,11 +60,13 @@ var commonSetItems = {
 		{ setType: "hardBossAcc", id: "will-blue-book", image: "/images/equips/pocket/will-blue-book.png", name: "Cursed Blue Magic Book" },
 		{ setType: "hardBossAcc", id: "will-green-book", image: "/images/equips/pocket/will-green-book.png", name: "Cursed Green Magic Book" },
 		{ setType: "hardBossAcc", id: "will-yellow-book", image: "/images/equips/pocket/will-yellow-book.png", name: "Cursed Yellow Magic Book" },
+		{ setType: "inverse", id: "inverse-codex", image: "/images/equips/pocket/inverse-codex.png", name: "Inverse Codex" },
 		{ setType: "bossAcc", id: "phg", image: "/images/equips/pocket/phg.png", name: "Pink Holy Grail" },
 		{ setType: "bossAcc", id: "hilla-stone", image: "/images/equips/pocket/hilla-stone.png", name: "Stone of Eternal Life" },
 		{ setType: "none", id: "gold-richie-handkerchief", image: "/images/equips/pocket/gold-richie-handkerchief.png", name: "Gold Richie's Handkerchief" },
 	],
 	shoulder: [
+		{ setType: "inverse", id: "inverse-shoulder", image: "/images/equips/shoulder/inverse-shoulder.png", name: "Inverse Metal Shoulders" },
 		{ setType: "meister", id: "meister-spaulders", image: "/images/equips/shoulder/meister-spaulders.png", name: "Meister Spaulders" },
 		{ setType: "sengoku", id: "hayato-shoulder", image: "/images/equips/shoulder/hayato-shoulder.png", name: "Hayato's Treasure" },
 		{ setType: "none", id: "scarlet-pad", image: "/images/equips/shoulder/scarlet-pad.png", name: "Scarlet Shoulderpads", isLuckyItem: true, itemPriority: 30 },
@@ -66,12 +75,17 @@ var commonSetItems = {
 	heart: [
 		{ setType: "none", id: "outlaw-heart", image: "/images/equips/heart/outlaw-heart.png", name: "Outlaw Heart" },
 		{ setType: "hardBossAcc", id: "black-heart", image: "/images/equips/heart/black-heart.png", name: "Black Heart" },
+		{ setType: "none", id: "liquid-metal-heart", image: "/images/equips/heart/liquid-metal-heart.png", name: "Liquid Metal Heart" },
+		{ setType: "none", id: "beautyroid-heart", image: "/images/equips/heart/beautyroid-heart.png", name: "Sincere Beautyroid Heart" },
+		{ setType: "none", id: "titanium-heart", image: "/images/equips/heart/titanium-heart.png", name: "Titanium Heart" },
 	],
 	android: [
 		{ setType: "none", id: "broid", image: "/images/equips/android/broid.png", name: "Battle-roid" },
 	],
 	emblem: [
-		
+		{ setType: "none", id: "seed-legend", image: "/images/equips/emblem/seed-legend-emblem.png", name: "The Seed Legend Emblem" },
+		{ setType: "none", id: "seed-master", image: "/images/equips/emblem/seed-master-emblem.png", name: "The Seed Master Emblem" },
+		{ setType: "none", id: "seed-expert", image: "/images/equips/emblem/seed-expert-emblem.png", name: "The Seed Expert Emblem" },
 	],
 	medal: [
 		{ setType: "none", id: "chef-medal", image: "/images/equips/medal/chef-medal.png", name: "Absolute Palate Legendary Chef Medal" },

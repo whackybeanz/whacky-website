@@ -3,7 +3,7 @@ var pirateSetEffects = {
 		title: "Arcaneshade Set",
 		items: {
 			hat: [{ id: "acs-pirate-hat", image: "/images/equips/hat/acs-pirate-hat.png", name: "Arcaneshade Pirate Hat" }],
-			overall: [{ id: "acs-pirate-suit", image: "/images/equips/overall/acs-pirate-suit.png", name: "Arcaneshade Pirate Suit" }],
+			top: [{ id: "acs-pirate-suit", image: "/images/equips/overall/acs-pirate-suit.png", name: "Arcaneshade Pirate Suit" }],
 			shoes: [{ id: "acs-pirate-shoes", image: "/images/equips/shoes/acs-shoes.png", name: "Arcaneshade Pirate Shoes" }],
 			gloves: [{ id: "acs-pirate-glove", image: "/images/equips/gloves/acs-glove.png", name: "Arcaneshade Pirate Mitts" }],
 			cape: [{ id: "acs-pirate-cape", image: "/images/equips/cape/acs-cape.png", name: "Arcaneshade Pirate Cape" }], 
@@ -34,12 +34,16 @@ var pirateSetEffects = {
 		title: "Absolabs Set",
 		items: {
 			hat: [{ id: "abs-pirate-hat", image: "/images/equips/hat/abs-brigadier-fedora.png", name: "Absolabs Brigadier Fedora" }],
-			overall: [{ id: "", image: "", name: "" }],
-			shoes: [{ id: "", image: "", name: "" }],
-			gloves: [{ id: "", image: "", name: "" }],
-			cape: [{ id: "", image: "", name: "" }], 
-			shoulder: [{ id: "", image: "", name: "" }],
-			weapon: [{ id: "", image: "", name: "" }]
+			top: [{ id: "abs-pirate-overall", image: "/images/equips/overall/abs-pirate-overall.png", name: "Absolabs Brigadier Cuirass" }],
+			shoes: [{ id: "abs-pirate-shoes", image: "/images/equips/shoes/abs-shoes.png", name: "Absolabs Brigadier Sabatons" }],
+			gloves: [{ id: "abs-pirate-glove", image: "/images/equips/gloves/abs-glove.png", name: "Absolabs Brigadier Clench" }],
+			cape: [{ id: "abs-pirate-cape", image: "/images/equips/cape/abs-cape.png", name: "Absolabs Brigadier Cloak" }], 
+			shoulder: [{ id: "abs-pirate-shoulder", image: "/images/equips/shoulder/abs-shoulder.png", name: "Absolabs Brigadier Pauldron" }],
+			weapon: [{ id: "abs-knuckle", image: "/images/equips/weapon/abs-knuckle.png", name: "Arcaneshade Ashen Fist" },
+					{ id: "abs-pistol", image: "/images/equips/weapon/abs-pistol.png", name: "Arcaneshade Elite Magnum" },
+					{ id: "abs-energy-sword", image: "/images/equips/weapon/abs-energy-sword.png", name: "Arcaneshade Electro Saber" },
+					{ id: "abs-siege-gun", image: "/images/equips/weapon/abs-siege-gun.png", name: "Arcaneshade Blast Cannon" },
+					{ id: "abs-soul-shooter", image: "/images/equips/weapon/abs-soul-shooter.png", name: "Arcaneshade Draconic Arm" }]
 		},
 		effects: {
 			2: [{ statId: "wama", statName: "ATT/MATT", val: "20" }, 

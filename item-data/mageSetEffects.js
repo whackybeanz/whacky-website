@@ -3,7 +3,7 @@ var mageSetEffects = {
 		title: "Arcaneshade Set",
 		items: {
 			hat: [{ id: "acs-mage-hat", image: "/images/equips/hat/acs-mage-hat.png", name: "Arcaneshade Mage Hat" }],
-			overall: [{ id: "acs-mage-suit", image: "/images/equips/overall/acs-mage-suit.png", name: "Arcaneshade Mage Suit" }],
+			top: [{ id: "acs-mage-suit", image: "/images/equips/overall/acs-mage-suit.png", name: "Arcaneshade Mage Suit" }],
 			shoes: [{ id: "acs-mage-shoes", image: "/images/equips/shoes/acs-shoes.png", name: "Arcaneshade Mage Shoes" }],
 			gloves: [{ id: "acs-mage-glove", image: "/images/equips/gloves/acs-glove.png", name: "Arcaneshade Mage Mitts" }],
 			cape: [{ id: "acs-mage-cape", image: "/images/equips/cape/acs-cape.png", name: "Arcaneshade Mage Cape" }], 
@@ -35,12 +35,17 @@ var mageSetEffects = {
 		title: "Absolabs Set",
 		items: {
 			hat: [{ id: "abs-mage-hat", image: "/images/equips/hat/abs-cabalist-crown.png", name: "Absolabs Cabalist Crown" }],
-			overall: [{ id: "", image: "", name: "" }],
-			shoes: [{ id: "", image: "", name: "" }],
-			gloves: [{ id: "", image: "", name: "" }],
-			cape: [{ id: "", image: "", name: "" }], 
-			shoulder: [{ id: "", image: "", name: "" }],
-			weapon: [{ id: "", image: "", name: "" }]
+			top: [{ id: "abs-mage-overall", image: "/images/equips/overall/abs-mage-overall.png", name: "Absolabs Cabalist Gown" }],
+			shoes: [{ id: "abs-mage-shoes", image: "/images/equips/shoes/abs-shoes.png", name: "Absolabs Cabalist Shoes" }],
+			gloves: [{ id: "abs-mage-glove", image: "/images/equips/gloves/abs-glove.png", name: "Absolabs Cabalist Gloves" }],
+			cape: [{ id: "abs-mage-cape", image: "/images/equips/cape/abs-cape.png", name: "Absolabs Cabalist Cloak" }], 
+			shoulder: [{ id: "abs-mage-shoulder", image: "/images/equips/shoulder/abs-shoulder.png", name: "Absolabs Cabalist Pauldron" }],
+			weapon: [{ id: "abs-staff", image: "/images/equips/weapon/abs-staff.png", name: "Absolabs Sage Staff" },
+					{ id: "abs-wand", image: "/images/equips/weapon/abs-wand.png", name: "Absolabs Force Wand" },
+					{ id: "abs-shining-rod", image: "/images/equips/weapon/abs-shining-rod.png", name: "Absolabs Aether Rod" },
+					{ id: "abs-psy-limiter", image: "/images/equips/weapon/abs-psy-limiter.png", name: "Absolabs Psy-Limiter" },
+					{ id: "abs-magic-gauntlet", image: "/images/equips/weapon/abs-magic-gauntlet.png", name: "Absolabs Magic Gauntlet" },
+					{ id: "abs-fan", image: "/images/equips/weapon/abs-fan.png", name: "Absolabs Incarnadine" }]
 		},
 		effects: {
 			2: [{ statId: "wama", statName: "ATT/MATT", val: "20" }, 

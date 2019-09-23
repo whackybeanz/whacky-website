@@ -94,10 +94,26 @@ var commonSetEffects = {
 			belt: [{ id: "ayame-belt", image: "/images/equips/belt/ayame-belt.png", name: "Ayame's Treasure" }],
 		},
 		effects: {
-			2: [{ statId: "wama", statName: "ATT/MATT", val: "3" }, {statId: "damagePercent", statName: "Damage %", val: "3", symbol: "%"},
-				{ statId: "allStats", statName: "All Stats", val: "2" }, {statId: "def", statName: "DEF", val: "20"}],
-			3: [{ statId: "wama", statName: "ATT/MATT", val: "12" }, {statId: "damagePercent", statName: "Damage %", val: "6", symbol: "%"},
-				{ statId: "allStats", statName: "All Stats", val: "8" }, {statId: "def", statName: "DEF", val: "80"}],
+			2: [{ statId: "wama", statName: "ATT/MATT", val: "3" }, 
+				{ statId: "damagePercent", statName: "Damage %", val: "3", symbol: "%" },
+				{ statId: "allStats", statName: "All Stats", val: "2" }, 
+				{ statId: "def", statName: "DEF", val: "20" }],
+			3: [{ statId: "wama", statName: "ATT/MATT", val: "12" }, 
+				{ statId: "damagePercent", statName: "Damage %", val: "6", symbol: "%"},
+				{ statId: "allStats", statName: "All Stats", val: "8" }, 
+				{ statId: "def", statName: "DEF", val: "80" }],
+		}
+	},
+	inverse: {
+		title: "Kritias Set",
+		items: {
+			earring: [{ id: "inverse-earrings", image: "/images/equips/earring/inverse-jewel-earring.png", name: "Inverse Jewel Earring" }],
+			shoulder: [{ id: "inverse-shoulder", image: "/images/equips/shoulder/inverse-shoulder.png", name: "Inverse Metal Shoulders" }],
+			pocket: [{ id: "inverse-codex", image: "/images/equips/pocket/inverse-codex.png", name: "Inverse Codex" }],
+		},
+		effects: {
+			3: [{ statId: "wama", statName: "ATT/MATT", val: "20" }, 
+				{ statId: "bossPercent", statName: "Boss Damage %", val: "20", symbol: "%" }],
 		}
 	}
 };
