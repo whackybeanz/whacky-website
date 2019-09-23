@@ -50,6 +50,10 @@ body.dark-mode {
 	border-right: none;
 }
 
+.sidebar.dark-mode > .sidebar-btn > a {
+	color: rgba(255, 255, 255, 0.8);
+}
+
 .sidebar.dark-mode > .sidebar-btn:hover,
 .sidebar.dark-mode > .sidebar-btn.active {
 	background-color: rgba(52, 58, 64);
@@ -68,13 +72,17 @@ body.dark-mode {
 	border: 1px solid rgba(69, 77, 85, 1.0);
 }
 
+.job-choice-div.dark-mode .single-job-choice a {
+	color: rgba(255, 255, 255, 0.8);
+}
+
 .dark-mode .equip-choice-img-div {
 	border-right: 1px solid rgba(69, 77, 85, 1.0);
 }
 
 .radio-select.dark-mode:hover,
 .radio-select.dark-mode.active,
-.job-choice-div.dark-mode .single-job-choice.clickable:hover,
+.job-choice-div.dark-mode .single-job-choice:hover,
 .job-choice-div.dark-mode .single-job-choice.active,
 .dark-mode .single-equip-choice:hover,
 .dark-mode .single-equip-choice.active {
