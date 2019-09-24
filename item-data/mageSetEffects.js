@@ -66,10 +66,15 @@ var mageSetEffects = {
 	faf: {
 		title: "Root Abyss Set",
 		items: {
-			hat: [{ id: "", image: "", name: "" }],
-			top: [{ id: "", image: "", name: "" }],
-			bottom: [{ id: "", image: "", name: "" }],
-			weapon: [{ id: "", image: "", name: "" }],
+			hat: [{ id: "faf-mage-hat", image: "/images/equips/hat/faf-mage-hat.png", name: "Highness Dunwitch Hat" }],
+			top: [{ id: "faf-mage-top", image: "/images/equips/top/faf-mage-top.png", name: "Eagle Eye Dunwitch Robe" }],
+			bottom: [{ id: "faf-mage-bottom", image: "/images/equips/bottom/faf-mage-bottom.png", name: "Trickster Dunwitch Pants" }],
+			weapon: [{ id: "faf-staff", image: "/images/equips/weapon/faf-staff.png", name: "Fafnir Mana Crown" },
+					{ id: "faf-wand", image: "/images/equips/weapon/faf-wand.png", name: "Fafnir Mana Taker" },
+					{ id: "faf-shining-rod", image: "/images/equips/weapon/faf-shining-rod.png", name: "Fafnir Mana Cradle" },
+					{ id: "faf-psy-limiter", image: "/images/equips/weapon/faf-psy-limiter.png", name: "Fafnir Psy-Limiter" },
+					{ id: "faf-magic-gauntlet", image: "/images/equips/weapon/faf-magic-gauntlet.png", name: "Fafnir Magic Gauntlet" },
+					{ id: "faf-fan", image: "/images/equips/weapon/faf-fan.png", name: "Fafnir Indigo Flash" }],
 		},
 		effects: {
 			2: [{ statId: "int", statName: "INT", val: 20 },

@@ -55,6 +55,13 @@ var mageSetItems = {
 		{ setType: "abs", id: "abs-psy-limiter", image: "/images/equips/weapon/abs-psy-limiter.png", name: "Absolabs Psy-Limiter" },
 		{ setType: "abs", id: "abs-magic-gauntlet", image: "/images/equips/weapon/abs-magic-gauntlet.png", name: "Absolabs Magic Gauntlet" },
 		{ setType: "abs", id: "abs-fan", image: "/images/equips/weapon/abs-fan.png", name: "Absolabs Incarnadine" },
+
+		{ setType: "faf", id: "faf-staff", image: "/images/equips/weapon/faf-staff.png", name: "Fafnir Mana Crown" },
+		{ setType: "faf", id: "faf-wand", image: "/images/equips/weapon/faf-wand.png", name: "Fafnir Mana Taker" },
+		{ setType: "faf", id: "faf-shining-rod", image: "/images/equips/weapon/faf-shining-rod.png", name: "Fafnir Mana Cradle" },
+		{ setType: "faf", id: "faf-psy-limiter", image: "/images/equips/weapon/faf-psy-limiter.png", name: "Fafnir Psy-Limiter" },
+		{ setType: "faf", id: "faf-magic-gauntlet", image: "/images/equips/weapon/faf-magic-gauntlet.png", name: "Fafnir Magic Gauntlet" },
+		{ setType: "faf", id: "faf-fan", image: "/images/equips/weapon/faf-fan.png", name: "Fafnir Indigo Flash" },
 	],
 	secondary: [
 		{ setType: "none", id: "deimos-sage-shield", image: "/images/equips/secondary/deimos-sage-shield.png", name: "Deimos Sage Shield" },

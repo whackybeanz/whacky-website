@@ -64,10 +64,14 @@ var pirateSetEffects = {
 	faf: {
 		title: "Root Abyss Set",
 		items: {
-			hat: [{ id: "", image: "", name: "" }],
-			top: [{ id: "", image: "", name: "" }],
-			bottom: [{ id: "", image: "", name: "" }],
-			weapon: [{ id: "", image: "", name: "" }],
+			hat: [{ id: "faf-pirate-hat", image: "/images/equips/hat/faf-pirate-hat.png", name: "Highness Wanderer Hat" }],
+			top: [{ id: "faf-pirate-top", image: "/images/equips/top/faf-pirate-top.png", name: "Eagle Eye Wanderer Coat" }],
+			bottom: [{ id: "faf-pirate-bottom", image: "/images/equips/bottom/faf-pirate-bottom.png", name: "Trickster Wanderer Pants" }],
+			weapon: [{ id: "faf-knuckle", image: "/images/equips/weapon/faf-knuckle.png", name: "Fafnir Fenrir Talon" },
+					{ id: "faf-pistol", image: "/images/equips/weapon/faf-pistol.png", name: "Fafnir Zeliska" },
+					{ id: "faf-energy-sword", image: "/images/equips/weapon/faf-energy-sword.png", name: "Fafnir Split Edge" },
+					{ id: "faf-siege-gun", image: "/images/equips/weapon/faf-siege-gun.png", name: "Fafnir Luster Cannon" },
+					{ id: "faf-soul-shooter", image: "/images/equips/weapon/faf-soul-shooter.png", name: "Fafnir Angelic Shooter" }],
 		},
 		effects: {
 			2: [{ statId: "str", statName: "STR", val: 20 },

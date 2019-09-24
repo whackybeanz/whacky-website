@@ -64,10 +64,14 @@ var thiefSetEffects = {
 	faf: {
 		title: "Root Abyss Set",
 		items: {
-			hat: [{ id: "", image: "", name: "" }],
-			top: [{ id: "", image: "", name: "" }],
-			bottom: [{ id: "", image: "", name: "" }],
-			weapon: [{ id: "", image: "", name: "" }],
+			hat: [{ id: "faf-thief-hat", image: "/images/equips/hat/faf-thief-hat.png", name: "Highness Assassin Bonnet" }],
+			top: [{ id: "faf-thief-top", image: "/images/equips/top/faf-thief-top.png", name: "Eagle Eye Assassin Shirt" }],
+			bottom: [{ id: "faf-thief-bottom", image: "/images/equips/bottom/faf-thief-bottom.png", name: "Trickster Assassin Pants" }],
+			weapon: [{ id: "faf-dagger", image: "/images/equips/weapon/faf-dagger.png", name: "Fafnir Damascus" },
+					{ id: "faf-cane", image: "/images/equips/weapon/faf-cane.png", name: "Fafnir Clair Ciel" },
+					{ id: "faf-claw", image: "/images/equips/weapon/faf-claw.png", name: "Fafnir Risk Holder" },
+					{ id: "faf-energy-sword", image: "/images/equips/weapon/faf-energy-sword.png", name: "Fafnir Split Edge" },
+					{ id: "faf-energy-chain", image: "/images/equips/weapon/faf-energy-chain.png", name: "Fafnir Energy Chain" }],
 		},
 		effects: {
 			2: [{ statId: "dex", statName: "DEX", val: 20 },

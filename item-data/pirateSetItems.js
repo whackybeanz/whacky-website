@@ -52,6 +52,12 @@ var pirateSetItems = {
 		{ setType: "abs", id: "abs-energy-sword", image: "/images/equips/weapon/abs-energy-sword.png", name: "Arcaneshade Electro Saber" },
 		{ setType: "abs", id: "abs-siege-gun", image: "/images/equips/weapon/abs-siege-gun.png", name: "Arcaneshade Blast Cannon" },
 		{ setType: "abs", id: "abs-soul-shooter", image: "/images/equips/weapon/abs-soul-shooter.png", name: "Arcaneshade Draconic Arm" },
+
+		{ setType: "faf", id: "faf-knuckle", image: "/images/equips/weapon/faf-knuckle.png", name: "Fafnir Fenrir Talon" },
+		{ setType: "faf", id: "faf-pistol", image: "/images/equips/weapon/faf-pistol.png", name: "Fafnir Zeliska" },
+		{ setType: "faf", id: "faf-energy-sword", image: "/images/equips/weapon/faf-energy-sword.png", name: "Fafnir Split Edge" },
+		{ setType: "faf", id: "faf-siege-gun", image: "/images/equips/weapon/faf-siege-gun.png", name: "Fafnir Luster Cannon" },
+		{ setType: "faf", id: "faf-soul-shooter", image: "/images/equips/weapon/faf-soul-shooter.png", name: "Fafnir Angelic Shooter" },
 	],
 	secondary: [
 		{ setType: "none", id: "pnou-skull-armor", image: "/images/equips/secondary/pnou-skull-armor.png", name: "Princess Nou's Skull Armor (Viper)" },
