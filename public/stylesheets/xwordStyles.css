@@ -1,0 +1,10 @@
+.crossword-board {
+	width: 700px
+	height: 700px;
+	display: grid;
+	grid-template: repeat(20, 35px) / repeat(20, 35px);
+}
+
+.board-square {
+	text-align: center;
+}

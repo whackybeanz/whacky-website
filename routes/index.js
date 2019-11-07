@@ -40,4 +40,8 @@ router.get("/set-items/:jobType", function(req, res) {
 	res.render("setItemIndexActive", {allEquipTypes: allEquipTypes, allSetItems: compiledSetItems, allSetEffects: compiledSetEffects, jobType: jobType, statTypes: possibleStatTypes});
 })
 
+router.get("/xwrdpzl", function(req, res) {
+	res.render("xword");
+})
+
 module.exports = router;
