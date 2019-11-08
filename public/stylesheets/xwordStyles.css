@@ -5,6 +5,8 @@
 	grid-template: repeat(20, 35px) / repeat(20, 35px);
 }
 
-.board-square {
-	text-align: center;
+.board-clue-num {
+	top: 0;
+	padding-left: 3px;
+	font-size: 0.7rem;
 }
