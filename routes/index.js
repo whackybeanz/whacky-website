@@ -44,4 +44,22 @@ router.get("/xwrdpzl", function(req, res) {
 	res.render("xword");
 })
 
+router.post("/xwrdpzl/answers", function(req, res) {
+	var submittedAnswers = req.body.allAnswers;
+	var correctAnswers = ["colossus", "kritias", "lilynouch", "skelosaurus", "magatia", "velderoth", "dolphin", "esfera", "twilight", "nine", "muto", "asteria", "karupa", "creation", "areda", "verdel", "nanuke", "taeng", "maya", "thanatos"]
+	var wrongAnswers = []
+
+	submittedAnswers.forEach((answer, index) => {
+		if(answer !== correctAnswers[index]) {
+			wrongAnswers.push(index+1);
+		}
+	});
+
+	if(wrongAnswers.length) {
+		res.send({isAnswerCorrect: false, wrongAnswers: wrongAnswers})
+	} else {
+		res.send({isAnswerCorrect: true})
+	}
+})
+
 module.exports = router;

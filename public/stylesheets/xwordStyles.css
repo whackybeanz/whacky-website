@@ -2,17 +2,23 @@
 	text-decoration: underline;
 }
 
+.crossword-board-form {
+	width: 425px;
+	height: 475px;
+}
+
 .crossword-board {
 	display: grid;
-	width: 425px
-	height: 475px;
 	grid-template: repeat(19, 25px) / repeat(17, 25px);
 }
 
 @media (min-width: 992px) {
-	.crossword-board {
-		width: 595px
+	.crossword-board-form {
+		width: 595px;
 		height: 665px;
+	}
+
+	.crossword-board {
 		grid-template: repeat(19, 35px) / repeat(17, 35px);
 	}
 }
@@ -23,4 +29,21 @@
 	font-size: 0.7rem;
 	pointer-events: none;
 	color: black;
+}
+
+.submit-ans-btn {
+	top: 5px;
+	right: 5px;
+}
+
+.crossword-board-blocker {
+	top: 0;
+}
+
+.color-clue-single {
+	height: 35px;
+}
+
+.color-clue-single div {
+	width: 35px;
 }
