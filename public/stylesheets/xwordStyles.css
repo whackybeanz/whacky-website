@@ -1,12 +1,26 @@
+.text-underline {
+	text-decoration: underline;
+}
+
 .crossword-board {
-	width: 700px
-	height: 700px;
 	display: grid;
-	grid-template: repeat(20, 35px) / repeat(20, 35px);
+	width: 425px
+	height: 475px;
+	grid-template: repeat(19, 25px) / repeat(17, 25px);
+}
+
+@media (min-width: 992px) {
+	.crossword-board {
+		width: 595px
+		height: 665px;
+		grid-template: repeat(19, 35px) / repeat(17, 35px);
+	}
 }
 
 .board-clue-num {
 	top: 0;
 	padding-left: 3px;
 	font-size: 0.7rem;
+	pointer-events: none;
+	color: black;
 }
