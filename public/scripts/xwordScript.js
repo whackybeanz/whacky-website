@@ -1,4 +1,7 @@
 const NUM_CLUES = 20;
+const NUM_ROWS = 19;
+const NUM_COLS = 17;
+var currDirection = "";
 
 var grid = [[0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
 			[0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -83,6 +86,10 @@ var colorBoard = [ 0, 0, 0, 0, "#848482", 0, 0, 0, "#2B65EC", 0, 0, 0, 0, 0, 0, 
 var allClueNums = Array.from(Array(NUM_CLUES)).map((e, i) => i + 1);
 
 $(function() {
+	$('[data-toggle="tooltip"]').tooltip({
+		html: true
+	});
+
 	grid.forEach(function(row, xIndex) {
 		row.forEach(function(col, yIndex) {
 			if(col === 0) {
@@ -116,7 +123,7 @@ $(function() {
 
 				if(isClueNumFirstInstance) {
 					var html = `<div class="w-100 h-100 position-relative">`;
-					html += `<input type="text" class="single-square board-square ${clueClass} w-100 h-100 border border-dark font-weight-bold text-center text-uppercase" minlength="1" maxlength="1" required="required" `;
+					html += `<input type="text" class="single-square board-square ${clueClass} w-100 h-100 border border-dark font-weight-bold text-center text-uppercase" id="square-num-${xIndex*NUM_COLS + yIndex+1}" minlength="1" maxlength="1" required="required" `;
 					if(xClue) {
 						html += `data-xclue=${xClue} `;
 					}
@@ -130,7 +137,7 @@ $(function() {
 					$(".crossword-board").append(html);
 				} else {
 					$(".crossword-board").append(
-						$(`<input type="text" class="single-square board-square ${clueClass} border border-dark font-weight-bold text-center text-uppercase" minlength="1" maxlength="1" required="required">`).attr({"data-xclue": xClue, "data-yclue": yClue})
+						$(`<input type="text" class="single-square board-square ${clueClass} w-100 h-100 border border-dark font-weight-bold text-center text-uppercase" id="square-num-${xIndex*NUM_COLS + yIndex+1}" minlength="1" maxlength="1" required="required">`).attr({"data-xclue": xClue, "data-yclue": yClue})
 					)
 				}
 			}
@@ -138,9 +145,43 @@ $(function() {
 	})
 })
 
-$(".crossword-board").on("mouseenter", ".board-square", function() {
+$(".crossword-board").on("focus", ".board-square", function() {
+	highlightClue($(this));
 	var xClueNum = $(this).data("xclue");
 	var yClueNum = $(this).data("yclue");
+
+	if(currDirection === "") {
+		if(xClueNum && yClueNum || xClueNum) {
+			currDirection = "horz";
+		} else if(yClueNum) {
+			currDirection = "vert"
+		}
+	} else {
+		
+	}
+})
+
+$(".crossword-board").on("blur", ".board-square", function() {
+	unhighlightClue($(this));	
+	var squareId = $(this).attr("id");
+	var squareIdNum = Number(squareId.split("-")[2]);
+
+	if(currDirection === "horz") {
+		if(squareIdNum % NUM_COLS === 0 || $(`#square-num-${squareIdNum+1}`).length === 0) {
+			currDirection = "";
+		}
+	}
+
+	if(currDirection === "vert") {
+		if($(`#square-num-${squareIdNum+NUM_COLS}`).length === 0) {
+			currDirection = "";
+		}
+	}
+})
+
+function highlightClue(elem) {
+	var xClueNum = elem.data("xclue");
+	var yClueNum = elem.data("yclue");
 
 	if(xClueNum) {
 		$(`.clue-${xClueNum}`).addClass("bg-info text-white");
@@ -149,11 +190,11 @@ $(".crossword-board").on("mouseenter", ".board-square", function() {
 	if(yClueNum) {
 		$(`.clue-${yClueNum}`).addClass("bg-info text-white");
 	}
-})
+}
 
-$(".crossword-board").on("mouseleave", ".board-square", function() {
-	var xClueNum = $(this).data("xclue");
-	var yClueNum = $(this).data("yclue");
+function unhighlightClue(event) {
+	var xClueNum = $(event).data("xclue");
+	var yClueNum = $(event).data("yclue");
 
 	if(xClueNum) {
 		$(`.clue-${xClueNum}`).removeClass("bg-info text-white");
@@ -162,13 +203,54 @@ $(".crossword-board").on("mouseleave", ".board-square", function() {
 	if(yClueNum) {
 		$(`.clue-${yClueNum}`).removeClass("bg-info text-white");
 	}
+}
+
+$(".crossword-board").on("keyup", ".board-square", function(event) {
+	var squareId = $(this).attr("id");
+	var squareIdNum = Number(squareId.split("-")[2]);
+
+	if(event.which === 8) {
+		if(currDirection === "horz") {
+			if(squareIdNum-1 % NUM_COLS === 0 || $(`#square-num-${squareIdNum-1}`).length === 0) {
+				$(this).blur();
+				currDirection = "";
+			} else {
+				$(".crossword-board").find(`#square-num-${squareIdNum-1}`).focus();
+			}
+		}
+
+		if(currDirection === "vert") {
+			if($(`#square-num-${squareIdNum-NUM_COLS}`).length === 0) {
+				$(this).blur();
+				currDirection = "";
+			} else {
+				$(".crossword-board").find(`#square-num-${squareIdNum-NUM_COLS}`).focus();
+			}
+		}
+	} else {
+		if($(this).val()) {
+			if(currDirection === "horz") {
+				if(squareIdNum % NUM_COLS === 0 || $(`#square-num-${squareIdNum+1}`).length === 0) {
+					$(this).blur();
+					currDirection = "";
+				} else {
+					$(".crossword-board").find(`#square-num-${squareIdNum+1}`).focus();
+				}
+			}
+
+			if(currDirection === "vert") {
+				if($(`#square-num-${squareIdNum+NUM_COLS}`).length === 0) {
+					$(this).blur();
+					currDirection = "";
+				} else {
+					$(".crossword-board").find(`#square-num-${squareIdNum+NUM_COLS}`).focus();
+				}
+			}
+		}
+	}
 })
 
 $(".crossword-board-form").on("submit", function(event) {
-	event.preventDefault();
-})
-
-$(".submit-ans-btn").on("click", function(event) {
 	var allAnswers = [];
 	$(".clue").removeClass("text-danger font-weight-bold");
 	$(".answer-prompt").removeClass("text-danger");
@@ -204,4 +286,16 @@ $(".submit-ans-btn").on("click", function(event) {
 			})
 		}
 	})
+})
+
+$(".clue").on("mouseenter", function() {
+	var clueNum = $(this).data("clueNum");
+	$(this).addClass("bg-info text-white");
+	$(`.answer-${clueNum}`).addClass("bg-info text-white");
+});
+
+$(".clue").on("mouseleave", function() {
+	var clueNum = $(this).data("clueNum");
+	$(this).removeClass("bg-info text-white");
+	$(`.answer-${clueNum}`).removeClass("bg-info text-white");
 })
