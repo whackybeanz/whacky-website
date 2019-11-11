@@ -251,6 +251,8 @@ $(".crossword-board").on("keyup", ".board-square", function(event) {
 })
 
 $(".crossword-board-form").on("submit", function(event) {
+	event.preventDefault();
+
 	var allAnswers = [];
 	$(".clue").removeClass("text-danger font-weight-bold");
 	$(".answer-prompt").removeClass("text-danger");
