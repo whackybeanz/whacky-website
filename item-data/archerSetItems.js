@@ -54,6 +54,10 @@ var archerSetItems = {
 		{ setType: "faf", id: "faf-bow", image: "/images/equips/weapon/faf-bow.png", name: "Fafnir Bow" },
 		{ setType: "faf", id: "faf-dbg", image: "/images/equips/weapon/faf-dbg.png", name: "Fafnir Dual Bowguns" },
 		{ setType: "faf", id: "faf-xbow", image: "/images/equips/weapon/faf-xbow.png", name: "Fafnir Crossbow" },
+
+		{ setType: "none", id: "scarlet-bow", image: "/images/equips/weapon/scarlet-bow.png", name: "Scarlet Battle Bow", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-dbg", image: "/images/equips/weapon/scarlet-dbg.png", name: "Scarlet Eagle Wing", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-xbow", image: "/images/equips/weapon/scarlet-xbow.png", name: "Scarlet Crossbow", isLuckyItem: true, itemPriority: 100 },
 	],
 	secondary: [
 		{ setType: "none", id: "pnou-feather", image: "/images/equips/secondary/pnou-feather.png", name: "Princess Nou's Feather (Bowmaster)" },

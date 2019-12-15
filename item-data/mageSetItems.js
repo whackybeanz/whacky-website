@@ -62,6 +62,11 @@ var mageSetItems = {
 		{ setType: "faf", id: "faf-psy-limiter", image: "/images/equips/weapon/faf-psy-limiter.png", name: "Fafnir Psy-Limiter" },
 		{ setType: "faf", id: "faf-magic-gauntlet", image: "/images/equips/weapon/faf-magic-gauntlet.png", name: "Fafnir Magic Gauntlet" },
 		{ setType: "faf", id: "faf-fan", image: "/images/equips/weapon/faf-fan.png", name: "Fafnir Indigo Flash" },
+
+		{ setType: "none", id: "scarlet-staff", image: "/images/equips/weapon/scarlet-staff.png", name: "Scarlet Battle Staff", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-wand", image: "/images/equips/weapon/scarlet-wand.png", name: "Scarlet Evil Wand", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-shining-rod", image: "/images/equips/weapon/scarlet-shining-rod.png", name: "Scarlet Thanatos", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-fan", image: "/images/equips/weapon/scarlet-fan.png", name: "Scarlet Fan", isLuckyItem: true, itemPriority: 100 },
 	],
 	secondary: [
 		{ setType: "none", id: "deimos-sage-shield", image: "/images/equips/secondary/deimos-sage-shield.png", name: "Deimos Sage Shield" },

@@ -58,6 +58,12 @@ var pirateSetItems = {
 		{ setType: "faf", id: "faf-energy-sword", image: "/images/equips/weapon/faf-energy-sword.png", name: "Fafnir Split Edge" },
 		{ setType: "faf", id: "faf-siege-gun", image: "/images/equips/weapon/faf-siege-gun.png", name: "Fafnir Luster Cannon" },
 		{ setType: "faf", id: "faf-soul-shooter", image: "/images/equips/weapon/faf-soul-shooter.png", name: "Fafnir Angelic Shooter" },
+
+		{ setType: "none", id: "scarlet-knuckle", image: "/images/equips/weapon/scarlet-knuckle.png", name: "Scarlet Gryphon Claw", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-pistol", image: "/images/equips/weapon/scarlet-pistol.png", name: "Scarlet Infinity", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-energy-sword", image: "/images/equips/weapon/scarlet-energy-sword.png", name: "Scarlet Split Edge", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-siege-gun", image: "/images/equips/weapon/scarlet-siege-gun.png", name: "Scarlet Crash", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-soul-shooter", image: "/images/equips/weapon/scarlet-soul-shooter.png", name: "Scarlet Angelic Shooter", isLuckyItem: true, itemPriority: 100 },		
 	],
 	secondary: [
 		{ setType: "none", id: "pnou-skull-armor", image: "/images/equips/secondary/pnou-skull-armor.png", name: "Princess Nou's Skull Armor (Viper)" },

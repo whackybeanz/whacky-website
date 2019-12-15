@@ -86,6 +86,17 @@ var warriorSetItems = {
 		{ setType: "faf", id: "faf-elaha", image: "/images/equips/weapon/faf-elaha.png", name: "Fafnir Gigastein" },
 		{ setType: "faf", id: "faf-lapis", image: "/images/equips/weapon/faf-lapis.png", name: "Lapis Type 7" },
 		{ setType: "faf", id: "faf-katana", image: "/images/equips/weapon/faf-katana.png", name: "Fafnir Raven Ring" },
+
+		{ setType: "none", id: "scarlet-1h-sword", image: "/images/equips/weapon/scarlet-1h-sword.png", name: "Scarlet Gladius", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-2h-sword", image: "/images/equips/weapon/scarlet-2h-sword.png", name: "Scarlet Claymore", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-1h-axe", image: "/images/equips/weapon/scarlet-1h-axe.png", name: "Scarlet War Cleaver", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-2h-axe", image: "/images/equips/weapon/scarlet-2h-axe.png", name: "Scarlet Battle Axe", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-1h-hammer", image: "/images/equips/weapon/scarlet-1h-hammer.png", name: "Scarlet War Hammer", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-2h-hammer", image: "/images/equips/weapon/scarlet-2h-hammer.png", name: "Scarlet Battle Hammer", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-spear", image: "/images/equips/weapon/scarlet-spear.png", name: "Scarlet Battle Spear", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-polearm", image: "/images/equips/weapon/scarlet-polearm.png", name: "Scarlet Halberd", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "scarlet-desperado", image: "/images/equips/weapon/scarlet-desperado.png", name: "Scarlet Death Bringer", isLuckyItem: true, itemPriority: 100 },		
+		{ setType: "none", id: "scarlet-katana", image: "/images/equips/weapon/scarlet-katana.png", name: "Scarlet Katana", isLuckyItem: true, itemPriority: 100 },
 	],
 	secondary: [
 		{ setType: "none", id: "ruin-force-shield", image: "/images/equips/secondary/ruin-force-shield.png", name: "Ruin Force Shield" },
