@@ -18,3 +18,11 @@
 	max-width: 50px;
 	border-right: 1px solid rgba(206, 212, 218, 1.0);
 }
+
+.maple-logos {
+	object-fit: contain;
+	object-position: center;
+	max-width: 130px;
+	width: 100%;
+	border-right: 1px solid rgba(206, 212, 218, 1.0);
+}
