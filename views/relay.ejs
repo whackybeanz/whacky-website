@@ -6,30 +6,34 @@
 		<div class="single-info-page w-100 d-flex justify-content-start align-items-center flex-column px-4 pt-4 px-lg-0 pt-lg-4">
 			<h1 class="font-header w-100 text-center m-0 mb-2">Tactical Relay</h1>
 
+			<form class="relay-form">
+				<div class="form-group row">
+					<label for="select-date" class="col-sm-4 col-form-label">Start Date</label>
+					<div class="col-sm-8">
+						<input type="date" class="form-control" id="select-date" value="2020-03-18">
+					</div>
+				</div>
+			</form>
+
 			<table class="table table-bordered font-table">
 				<thead>
 					<tr>
 						<th scope="col" class="mission-desc align-middle" rowspan="2">Mission</th>
 						<th scope="col" class="text-center position-relative py-1" colspan="7">
-							<div>Week 1</div>
+							<div class="next-week">Week 1 <i class="fas fa-angle-double-right"></i></div>
+							<div class="prev-week d-none"><i class="fas fa-angle-double-left"></i> Week 2</div>
 						</th>
 					</tr>
-					<tr>
-						<th scope="col" class="date"></th>
-						<th scope="col" class="date"></th>
-						<th scope="col" class="date"></th>
-						<th scope="col" class="date"></th>
-						<th scope="col" class="date"></th>
-						<th scope="col" class="date"></th>
-						<th scope="col" class="date"></th>
-					</tr>
+					<tr class="date-range"></tr>
 				</thead>
 				<tbody>
 					<% missionList.forEach(function(mission, missionIndex) { %>
 					<tr>
 						<th scope="row" class="mission-desc"><%= mission %></th>
-						<% for(var i = missionIndex; i < 7 + missionIndex; i++) { %>
-							<td class="class-type text-center align-middle p-1 <%= classSelect[i % classSelect.length] %> <%= classSelect[i % classSelect.length] %>-<% if(missionIndex >= 5) { %>2<% } else { %>1<% } %>">
+						<% for(var i = missionIndex; i < 14 + missionIndex; i++) { %>
+							<td class="class-type text-center align-middle p-1 
+								<%= classSelect[i % classSelect.length] %> <%= classSelect[i % classSelect.length] %>-<% if(missionIndex >= 5) { %>2<% } else { %>1<% } %>
+								<% if(i < missionIndex + 7) { %>week-1<% } else { %>week-2 d-none<% } %>">
 								<%= classSelect[i % classSelect.length] %>
 								<% if(missionIndex >= 5) { %> 2 <% } else { %> 1 <% } %>
 							</td>
@@ -42,4 +46,5 @@
 	</div>
 </div>
 
+<script type="text/javascript" src="/scripts/relayScript.js"></script>
 <% include partials/footer %>
