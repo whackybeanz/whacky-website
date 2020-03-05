@@ -62,4 +62,14 @@ router.post("/xwrdpzl/answers", function(req, res) {
 	}
 })
 
+router.get("/relay", function(req, res) {
+	var missionList = ["300 level-range mobs", "100 combo kills", "Defeat 1 daily boss",
+						"300 star force mobs", "Monster Park once", "Activate 1 Rune",
+						"3 Elite Monsters", "100 Multi-kills", "300 Arcane River mobs"];
+
+	var classSelect = ["pirate", "warrior", "mage", "archer", "thief"];
+
+	res.render("relay", {missionList: missionList, classSelect: classSelect});
+})
+
 module.exports = router;

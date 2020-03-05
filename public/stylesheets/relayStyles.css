@@ -1,0 +1,30 @@
+.mission-desc {
+	width: 200px;
+	line-height: 1;
+}
+
+.date,
+.class-type {
+	width: 100px;
+	line-height: 1;
+}
+
+.class-type.warrior {
+	background-color: #FFC9D5;
+}
+
+.class-type.mage {
+	background-color: #B2EDE9;
+}
+
+.class-type.archer {
+	background-color: #BAD39A;
+}
+
+.class-type.thief {
+	background-color: #C1A1FF;
+}
+
+.class-type.pirate {
+	background-color: #D5D5D5;
+}

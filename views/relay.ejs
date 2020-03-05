@@ -1,0 +1,45 @@
+<% include partials/header %>
+<% include partials/navbar %>
+
+<div class="container content h-100 d-flex p-0 pt-5">
+	<div class="main-content-div w-100 p-0 mt-2 position-relative">
+		<div class="single-info-page w-100 d-flex justify-content-start align-items-center flex-column px-4 pt-4 px-lg-0 pt-lg-4">
+			<h1 class="font-header w-100 text-center m-0 mb-2">Tactical Relay</h1>
+
+			<table class="table table-bordered font-table">
+				<thead>
+					<tr>
+						<th scope="col" class="mission-desc align-middle" rowspan="2">Mission</th>
+						<th scope="col" class="text-center position-relative py-1" colspan="7">
+							<div>Week 1</div>
+						</th>
+					</tr>
+					<tr>
+						<th scope="col" class="date"></th>
+						<th scope="col" class="date"></th>
+						<th scope="col" class="date"></th>
+						<th scope="col" class="date"></th>
+						<th scope="col" class="date"></th>
+						<th scope="col" class="date"></th>
+						<th scope="col" class="date"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% missionList.forEach(function(mission, missionIndex) { %>
+					<tr>
+						<th scope="row" class="mission-desc"><%= mission %></th>
+						<% for(var i = missionIndex; i < 7 + missionIndex; i++) { %>
+							<td class="class-type text-center align-middle p-1 <%= classSelect[i % classSelect.length] %> <%= classSelect[i % classSelect.length] %>-<% if(missionIndex >= 5) { %>2<% } else { %>1<% } %>">
+								<%= classSelect[i % classSelect.length] %>
+								<% if(missionIndex >= 5) { %> 2 <% } else { %> 1 <% } %>
+							</td>
+						<% } %>
+					</tr>
+					<% }) %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<% include partials/footer %>
