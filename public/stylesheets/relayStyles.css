@@ -1,14 +1,41 @@
-.mission-desc {
-	width: 200px;
-	line-height: 1;
+.relay-form {
+	min-width: 300px;
+	max-width: 500px;
 }
 
 .next-week, .prev-week {
 	cursor: pointer;
 }
 
+.single-class-type-list {
+	min-width: 200px;
+	max-width: 200px;
+}
+
+.class-input {
+	min-height: 30px;
+}
+
+.class-input::-webkit-input-placeholder {
+	text-transform: capitalize;
+}
+
+.add-character-btn {
+	height: 30px;
+	cursor: pointer;
+}
+
+.input-horz-divider {
+	width: 150px;
+}
+
 .date, .class-type {
 	width: 100px;
+	line-height: 1;
+}
+
+.mission-desc {
+	width: 200px;
 	line-height: 1;
 }
 
