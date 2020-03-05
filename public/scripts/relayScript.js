@@ -13,6 +13,12 @@ $(function() {
 	}
 })
 
+$(".section-show-hide").on("click", function() {
+	var sectionType = $(this).data("section");
+	$(this).find(".far").toggleClass("d-none");
+	$(`.relay-${sectionType}`).toggleClass("d-none");
+})
+
 $(".next-week").on("click", function() {
 	$(this).toggleClass("d-none");
 	$(".prev-week, .week-1, .week-2").toggleClass("d-none");

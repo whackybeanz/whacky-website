@@ -1,3 +1,7 @@
+.section-show-hide {
+	cursor: pointer;
+}
+
 .relay-form {
 	min-width: 300px;
 	max-width: 500px;
@@ -9,7 +13,6 @@
 
 .single-class-type-list {
 	min-width: 200px;
-	max-width: 200px;
 }
 
 .class-input {
