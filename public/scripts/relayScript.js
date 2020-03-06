@@ -88,12 +88,129 @@ $(".add-character-btn").on("click", function() {
 	</div>`)
 })
 
-$(".perfect-score-btn").on("click", function() {
-	$(".class-input").map(function(index, elem) {
-		var classType = $(elem).data("class");
-		var characterNum = $(elem).data("num");
-		var ign = $(elem).val();
+$(".generate-score-btn").on("click", function() {
+	if($("#is-perfect-score").prop("checked")) {
 
-		$(`.class-type.${classType}-${characterNum}`).text(ign);
-	})
+		var setupPlanner = new Promise((resolve, reject) => {
+				$(".class-input").each(function(index, elem) {
+				var classType = $(elem).data("class");
+				var characterNum = $(elem).data("num");
+				var ign = $(elem).val();
+				
+				if(ign !== "") {
+					$(`.class-type.${classType}-${characterNum}`).html(`<div data-class="${classType}" data-level-bonus=true>${ign}</div>`);
+					resolve();
+				}
+			})
+		})
+
+		setupPlanner.then(() => {
+			generateScore();
+		})
+	} else {
+		var charList = {
+			warrior: {
+				notOver200: [],
+				over200: [],
+			},
+			mage: {
+				notOver200: [],
+				over200: [],
+			},
+			archer: {
+				notOver200: [],
+				over200: [],
+			},
+			thief: {
+				notOver200: [],
+				over200: [],
+			},
+			pirate: {
+				notOver200: [],
+				over200: [],
+			}
+		}
+
+		var setupCharList = new Promise((resolve, reject) => {
+			$(".class-input").each(function(index, elem) {
+				var classType = $(elem).data("class");
+				var isOver200 = $(elem).next().prop("checked");
+				var ign = $(elem).val();
+
+				if(ign !== "") {
+					if(isOver200) {
+						charList[classType]['over200'].push(ign);
+						console.log(charList[classType])
+						
+						resolve();
+					} else {
+						charList[classType]['notOver200'].push(ign);
+						resolve();
+					}
+				} else {
+					resolve();
+				}
+			})
+		})
+		
+		setupCharList.then(() => {
+			planRelay(charList);
+			generateScore();
+		})
+	}
 })
+
+function planRelay(charList) {
+	for(let i = 1; i <= 14; i++) {
+		var tempCharList = charList;
+
+		for(let j = 1; j <= 9; j++) {
+			var requiredClass = $(`.planned-characters.mission-${j}.day-${i}`).data("class");
+			var plannedIgn = "";
+			var isOver200 = false;
+
+			if(tempCharList[requiredClass]['over200'].length > 0) {
+				plannedIgn = tempCharList[requiredClass]['over200'].shift();
+				isOver200 = true;
+				$(`.planned-characters.mission-${j}.day-${i}`).html(`<div data-class="${requiredClass}" data-level-bonus=${isOver200}>${plannedIgn}</div>`)
+			} else {
+				if(tempCharList[requiredClass]['notOver200'].length > 0) {
+					plannedIgn = tempCharList[requiredClass]['notOver200'].shift();
+					$(`.planned-characters.mission-${j}.day-${i}`).html(`<div data-class="${requiredClass}" data-level-bonus=${isOver200}>${plannedIgn}</div>`)
+				}
+			}
+		}
+	}
+}
+
+function generateScore() {
+	var totalScore = 0;
+
+	for(var i = 1; i <= 14; i++) {
+		var dayScore = 0;
+
+		$(`.planned-characters.day-${i}`).map(function(index, elem) {
+			var expectedClassType = $(elem).data("class");
+
+			if($(elem).children().length !== 0) {
+				dayScore += 50;
+				totalScore += 50;
+
+				var inputClassType = $(elem).children().data("class");
+				var isOver200 = $(elem).children().data("level-bonus");
+
+				if(expectedClassType === inputClassType) {
+					dayScore += 10;
+					totalScore += 10;
+				}
+
+				if(isOver200) {
+					dayScore += 20;
+					totalScore += 20;
+				}
+			}
+		})
+		$(`.day-${i}-score`).text(dayScore);
+	}
+	$(`.grand-total-score`).text(totalScore);
+}

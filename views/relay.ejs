@@ -19,6 +19,7 @@
 						<ul class="relay-summary d-none">
 							<li class="mb-2">Each day, you have nine (9) missions to complete</li>
 							<li class="mb-2">Each character can complete only <span class="font-weight-bold">one mission a day</span></li>
+							<li claas="mb-2">Missions must be completed <span class="font-weight-bold">in sequence</span></li>
 							<li class="mb-2">Completing each mission gives 50 points</li>
 							<li class="mb-2">Each mission gives bonus points (20 per mission) if you complete it on a character level 200 (and above)</li>
 							<li>Each mission gives bonus points (10 per mission) for completing it using a specified class type (warrior / mage / archer / etc.)</li>
@@ -52,11 +53,11 @@
 							</ul>
 							<li>For Non-Perfect Score:</li>
 							<ul class="mb-2">
-								<li>Fill in characters you wish to use below according to their class type</li>
+								<li>Fill in all characters you intend to use in the relay below according to their class type</li>
 								<li>Click on the + button to add characters under each class type</li>
-								<li>Check the box inside the respective input box <span class="font-weight-bold">if the character is level 200 and above</span></li>
+								<li>Check the box inside the respective text inputs <span class="font-weight-bold">if the character is level 200 and above</span> (the calculator will assume it can also access the Arcane River)</li>
 							</ul>
-							<li>Click on Generate and the recommended characters to use per day will be displayed, along with the total score you will obtain per day and the entire event</li>
+							<li>Click on Generate and the recommended characters to use per day will be displayed, along with the total score you will obtain per day and the entire event. Note: the calculator will generate data based on the first 10 inputs. To make additional changes, refer to Advanced Instructions.</li>
 						</ul>
 
 						<div class="section-show-hide w-100 text-justify font-weight-bold mb-1" data-section="adv-inst"><i class="far fa-plus-square"></i><i class="far fa-minus-square d-none"></i> Advanced Instructions (Changing specific table data)</div>
@@ -163,7 +164,7 @@
 						</button>
 					</div>
 					<div class="w-100 row d-flex justify-content-center flex-column align-items-center p-0 m-0">
-						<button class="font-table perfect-score-btn btn btn-small btn-outline-secondary font-weight-bold border border-dark rounded-lg px-3 py-1">Generate</button>
+						<button class="generate-score-btn btn btn-small btn-outline-secondary font-weight-bold border border-dark rounded-lg px-3 py-1">Generate Relay Planner</button>
 					</div>
 				</div>
 
@@ -187,15 +188,19 @@
 							<tr>
 								<th scope="row" class="mission-desc"><%= mission %></th>
 								<% for(var i = missionIndex; i < 14 + missionIndex; i++) { %>
-									<td class="class-type text-center align-middle p-1 
-										<%= classSelect[i % classSelect.length] %> <%= classSelect[i % classSelect.length] %>-<% if(missionIndex >= 5) { %>2<% } else { %>1<% } %>
-										<% if(i < missionIndex + 7) { %>week-1<% } else { %>week-2 d-none<% } %>">
-									</td>
+									<td class="class-type planned-characters text-center align-middle p-1 mission-<%= missionIndex+1 %> <% if(i < missionIndex+7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 - missionIndex %> <%= classSelect[i % classSelect.length] %> <%= classSelect[i % classSelect.length] %>-<% if(missionIndex >= 5) { %>2<% } else { %>1<% } %>" data-class="<%= classSelect[i % classSelect.length] %>"></td>
 								<% } %>
 							</tr>
 							<% }) %>
+							<tr>
+								<th scope="row">Total Score</th>
+								<% for(var i = 0; i < 14; i++) { %>
+									<td class="class-type text-center align-middle p-1 font-weight-bold <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>-score"></td>
+								<% } %>
+							</tr>
 						</tbody>
 					</table>
+					<div class="font-header text-center">Grand Total: <span class="grand-total-score">0</span></div>
 				</div>
 			</div>
 		</div>
