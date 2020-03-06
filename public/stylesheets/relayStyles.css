@@ -13,6 +13,12 @@
 
 .single-class-type-list {
 	min-width: 200px;
+	max-width: 200px;
+}
+
+.over-200-checkbox {
+	right: 0px;
+	top: -2px;
 }
 
 .class-input {

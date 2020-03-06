@@ -19,6 +19,53 @@ $(".section-show-hide").on("click", function() {
 	$(`.relay-${sectionType}`).toggleClass("d-none");
 })
 
+// Settings
+$("#is-perfect-score").change(function() {
+	if($(this).prop("checked")) {
+		$(".class-input").map(function(index, elem) {
+			var classType = $(elem).data("class");
+			var characterNum = $(elem).data("num");
+			var extraPlaceholderText = "";
+
+			if(characterNum === 1) {
+				extraPlaceholderText = " (Level 200+)";
+			} else if(characterNum === 2) {
+				extraPlaceholderText = " (Arcane River)";
+			}
+			
+			$(elem).attr("placeholder", `${classType} ${characterNum}${extraPlaceholderText}`)
+		})
+		$(".level-200-form-checkbox").addClass("d-none");
+	} else {
+		$(".class-input").map(function(index, elem) {
+			var classType = $(elem).data("class");
+			var characterNum = $(elem).data("num");
+			$(elem).attr("placeholder", `${classType} ${characterNum}`);
+		})
+		$(".level-200-form-checkbox").removeClass("d-none");
+	}
+
+	$(".over-200-checkbox").toggleClass("d-none");
+})
+
+$("#all-level-200").change(function() {
+	$(".over-200-checkbox").prop("checked", this.checked);
+})
+
+$(".over-200-checkbox").change(function() {
+	if($(this).prop("checked")) {
+		var numChecked = $(".over-200-checkbox:checked").length;
+		var numCheckboxes = $(".over-200-checkbox").length;
+
+		if(numChecked === numCheckboxes) {
+			$("#all-level-200").prop("checked", true);
+		}
+	} else {
+		$("#all-level-200").prop("checked", false);
+	}
+})
+
+// Generated table
 $(".next-week").on("click", function() {
 	$(this).toggleClass("d-none");
 	$(".prev-week, .week-1, .week-2").toggleClass("d-none");
@@ -31,9 +78,14 @@ $(".prev-week").on("click", function() {
 
 $(".add-character-btn").on("click", function() {
 	var addClassType = $(this).data("class");
-	var numCharacters = $(`.input-${addClassType}-list input`).length;
+	var numCharacters = $(`.input-${addClassType}-list .class-input`).length;
+	var isPerfectScore = $("#is-perfect-score").prop("checked") ? "d-none" : ""
+	var isAll200 = $("#all-level-200").prop("checked") ? "checked" : "";
 	
-	$(`.input-${addClassType}-list`).append(`<input type="text" placeholder="${addClassType} ${numCharacters+1}" class="class-input w-100 border rounded-lg text-center mb-0" data-class="${addClassType}" data-num="${numCharacters+1}">`)
+	$(`.input-${addClassType}-list`).append(`<div class="position-relative">
+		<input type="text" placeholder="${addClassType} ${numCharacters+1}" class="class-input w-100 border text-center mb-0" data-class="${addClassType}" data-num="${numCharacters+1}">
+		<input type="checkbox" class="form-check-input over-200-checkbox ${isPerfectScore} position-absolute" data-class="${addClassType}" data-num="${numCharacters+1}" ${isAll200}>
+	</div>`)
 })
 
 $(".perfect-score-btn").on("click", function() {

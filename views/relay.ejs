@@ -12,10 +12,10 @@
 				</div>
 
 				<div class="w-100 mb-3">
-					<h2 class="font-subheader w-100 font-weight-bold mb-2">Event Information</h2>
+					<h2 class="font-subheader w-100 font-weight-bold mb-2">Page Information</h2>
 
 					<div class="font-content w-100 d-flex justify-content-center flex-column">
-						<p class="section-show-hide w-100 text-justify font-weight-bold mb-1" data-section="summary"><i class="far fa-plus-square"></i><i class="far fa-minus-square d-none"></i> Event Summary</p>
+						<div class="section-show-hide w-100 text-justify font-weight-bold mb-1" data-section="summary"><i class="far fa-plus-square"></i><i class="far fa-minus-square d-none"></i> Event Summary</div>
 						<ul class="relay-summary d-none">
 							<li class="mb-2">Each day, you have nine (9) missions to complete</li>
 							<li class="mb-2">Each character can complete only <span class="font-weight-bold">one mission a day</span></li>
@@ -24,7 +24,7 @@
 							<li>Each mission gives bonus points (10 per mission) for completing it using a specified class type (warrior / mage / archer / etc.)</li>
 						</ul>
 
-						<p class="section-show-hide w-100 text-justify font-weight-bold mb-1" data-section="strategies"><i class="far fa-plus-square"></i><i class="far fa-minus-square d-none"></i> Strategies</p>
+						<div class="section-show-hide w-100 text-justify font-weight-bold mb-1" data-section="strategies"><i class="far fa-plus-square"></i><i class="far fa-minus-square d-none"></i> Strategies</div>
 						<ul class="relay-strategies d-none">
 							<li class="mb-2">The final mission per day is to kill <span class="font-weight-bold">300 Arcane River monsters</span> -- you need at least one character that can access Arcane River.</li>
 							<li class="mb-2">Each day, four of the five class types will be repeated (e.g. Day 1 needs two pirates, warriors, mages and archers). The repeated classes will rotate daily.</li>
@@ -40,25 +40,35 @@
 							</ul>
 						</ul>
 
-						<p class="section-show-hide w-100 text-justify font-weight-bold mb-1" data-section="basic-inst"><i class="far fa-plus-square"></i><i class="far fa-minus-square d-none"></i> Basic Instructions</p>
+						<div class="section-show-hide w-100 text-justify font-weight-bold mb-1" data-section="basic-inst"><i class="far fa-plus-square"></i><i class="far fa-minus-square d-none"></i> Basic Instructions</div>
 						<ul class="relay-basic-inst d-none">
-							<li class="mb-2">Fill in ten (10) characters you wish to use below according to their class type</li>
-							<li class="mb-2">The first input for each class type has no restriction</li>
-							<li class="mb-2">The second input for each class type should be <span class="font-weight-bold">a character that can access the Arcane River</span></li>
-							<li class="mb-2">If you wish to add more characters under certain class types, click on the + button to add more</li>
-							<li>Select your desired option - Perfect Score or 7,000 Points - and the characters to use per day will be displayed, along with the total score you will obtain per day (as well as the total score at the end of the event)</li>
+							<li class="mb-2">Uncheck the checkbox if you are not aiming for Perfect Score</li>
+							<li>For Perfect Score:</li>
+							<ul class="mb-2">
+								<li>Fill in at least ten (10) characters you wish to use below according to their class type</li>
+								<li>The first input for each class type should be a character <span class="font-weight-bold">level 200+</span></li>
+								<li>The second input for each class type should be <span class="font-weight-bold">a character that can access the Arcane River</span></li>
+								<li>If you wish to add more characters under certain class types, click on the + button to add more</li>
+							</ul>
+							<li>For Non-Perfect Score:</li>
+							<ul class="mb-2">
+								<li>Fill in characters you wish to use below according to their class type</li>
+								<li>Click on the + button to add characters under each class type</li>
+								<li>Check the box inside the respective input box <span class="font-weight-bold">if the character is level 200 and above</span></li>
+							</ul>
+							<li>Click on Generate and the recommended characters to use per day will be displayed, along with the total score you will obtain per day and the entire event</li>
 						</ul>
 
-						<p class="section-show-hide w-100 text-justify font-weight-bold mb-1" data-section="adv-inst"><i class="far fa-plus-square"></i><i class="far fa-minus-square d-none"></i> Advanced Instructions (Changing specific table data)</p>
+						<div class="section-show-hide w-100 text-justify font-weight-bold mb-1" data-section="adv-inst"><i class="far fa-plus-square"></i><i class="far fa-minus-square d-none"></i> Advanced Instructions (Changing specific table data)</div>
 						<ul class="relay-adv-inst d-none mb-0">
-							<li class="mb-2"><span class="font-weight-bold">IMPORTANT:</span> Do not click on the Perfect Score / 7,000 points button as data will be regenerated in the table, causing you to lose all changes made</li> 
+							<li class="mb-2"><span class="font-weight-bold">IMPORTANT:</span> Do not click on the Generate button as data will be refreshed in the table, causing you to lose all changes made</li> 
 							<li class="mb-2">If you wish to make changes to the table, select from the dropdown list in each cell to select the character you wish to use</li>
 							<li>The total points will update accordingly to reflect the changes you have made</li>
 						</ul>
 					</div>
 				</div>
 
-				<hr class="w-100">
+				<hr class="mt-0">
 
 				<div class="w-100 mb-3">
 					<h2 class="font-subheader w-100 font-weight-bold mb-2">Settings</h2>
@@ -70,59 +80,94 @@
 								<input type="date" class="form-control text-center" id="select-date" value="2020-03-18">
 							</div>
 						</div>
+						<div class="form-group form-check-inline">
+							<input type="checkbox" class="form-check-input" id="is-perfect-score" checked>
+							<label class="form-check-label" for="is-perfect-score">Aiming for Perfect Score?</label>
+						</div>
+						<div class="level-200-form-checkbox form-group form-check-inline d-none">
+							<input type="checkbox" class="form-check-input" id="all-level-200" checked>
+							<label class="form-check-label" for="all-level-200">All level 200+?</label>
+						</div>
 					</form>
 
-					<div class="font-table w-100 mb-3">
-						<div class="w-100 row d-flex justify-content-center text-center p-0 m-0">
-							<div class="col single-class-type-list warrior-list d-flex flex-column text-center mb-3 pl-0">
-								<p class="class-type warrior w-100 font-weight-bold rounded-top mb-0 py-2">Warriors</p>
-								<div class="input-list input-warrior-list w-100">
-									<input type="text" placeholder="Warrior 1 (Any)" class="class-input w-100 border text-center mb-0" data-class="warrior" data-num="1">
-									<input type="text" placeholder="Warrior 2 (Level 200+)" class="class-input w-100 border text-center mb-0" data-class="warrior" data-num="2">
+					<div class="font-table w-100 row d-flex justify-content-center text-center p-0 m-0">
+						<div class="col single-class-type-list warrior-list d-flex flex-column text-center mb-3">
+							<p class="class-type warrior w-100 font-weight-bold rounded-top mb-0 py-2">Warriors</p>
+							<div class="input-list input-warrior-list w-100">
+								<div class="position-relative">
+									<input type="text" placeholder="Warrior 1 (Level 200+)" class="class-input w-100 border text-center mb-0" data-class="warrior" data-num="1">
+									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="warrior" data-num="1" checked>
 								</div>
-								<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="warrior">Add Warrior</button>
+								<div class="position-relative">
+									<input type="text" placeholder="Warrior 2 (Arcane River)" class="class-input w-100 border text-center mb-0" data-class="warrior" data-num="2">
+									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="warrior" data-num="2" checked>
+								</div>
 							</div>
-							<div class="col single-class-type-list mage-list font-table d-flex flex-column text-center mb-3">
-								<p class="class-type mage w-100 font-weight-bold rounded-top mb-0 py-2">Mages</p>
-								<div class="input-list input-mage-list w-100">
-									<input type="text" placeholder="Mage 1 (Any)" class="class-input w-100 border text-center mb-0" data-class="mage" data-num="1">
-									<input type="text" placeholder="Mage 2 (Level 200+)" class="class-input w-100 border text-center mb-0" data-class="mage" data-num="2">
-								</div>
-								<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="mage">Add Mage</div>
-							</button>
-							<div class="col single-class-type-list archer-list font-table d-flex flex-column text-center mb-3">
-								<p class="class-type archer w-100 font-weight-bold rounded-top mb-0 py-2">Archers</p>
-								<div class="input-list input-archer-list w-100">
-									<input type="text" placeholder="Archer 1 (Any)" class="class-input w-100 border text-center mb-0" data-class="archer" data-num="1">
-									<input type="text" placeholder="Archer 2 (Level 200+)" class="class-input w-100 border text-center mb-0" data-class="archer" data-num="2">
-								</div>
-								<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="archer">Add Archer</div>
-							</button>
-							<div class="col single-class-type-list thief-list font-table d-flex flex-column text-center mb-3">
-								<p class="class-type thief w-100 font-weight-bold rounded-top mb-0 py-2">Thieves</p>
-								<div class="input-list input-thief-list w-100">
-									<input type="text" placeholder="Thief 1 (Any)" class="class-input w-100 border text-center mb-0" data-class="thief" data-num="1">
-									<input type="text" placeholder="Thief 2 (Level 200+)" class="class-input w-100 border text-center mb-0" data-class="thief" data-num="2">
-								</div>
-								<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="thief">Add Thief</div>
-							</button>
-							<div class="col single-class-type-list pirate-list font-table d-flex flex-column text-center mb-3 pr-0">
-								<p class="class-type pirate w-100 font-weight-bold rounded-top mb-0 py-2">Pirates</p>
-								<div class="input-list input-pirate-list w-100">
-									<input type="text" placeholder="Pirate 1 (Any)" class="class-input w-100 border text-center mb-0" data-class="pirate" data-num="1">
-									<input type="text" placeholder="Pirate 2 (Level 200+)" class="class-input w-100 border text-center mb-0" data-class="pirate" data-num="2">
-								</div>
-								<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="pirate">Add Pirate</div>
-							</button>
+							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="warrior"><i class="fas fa-plus"></i></button>
 						</div>
-						<div class="w-100 row d-flex justify-content-center flex-column align-items-center p-0 m-0">
-							<button class="font-table perfect-score-btn btn btn-small btn-outline-secondary font-weight-bold border border-dark rounded-lg px-3 py-1">Perfect Score (Tactical Relay Grandmaster)</button>
-							<!--<div>7,000 Points (Typhoon Growth Potion)</div>-->
-						</div>
+						<div class="col single-class-type-list mage-list d-flex flex-column text-center mb-3">
+							<p class="class-type mage w-100 font-weight-bold rounded-top mb-0 py-2">Mages</p>
+							<div class="input-list input-mage-list w-100">
+								<div class="position-relative">
+									<input type="text" placeholder="Mage 1 (Level 200+)" class="class-input w-100 border text-center mb-0" data-class="mage" data-num="1">
+									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="mage" data-num="1" checked>
+								</div>
+								<div class="position-relative">
+									<input type="text" placeholder="Mage 2 (Arcane River)" class="class-input w-100 border text-center mb-0" data-class="mage" data-num="2">
+									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="mage" data-num="2" checked>
+								</div>
+							</div>
+							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="mage"><i class="fas fa-plus"></i></div>
+						</button>
+						<div class="col single-class-type-list archer-list d-flex flex-column text-center mb-3">
+							<p class="class-type archer w-100 font-weight-bold rounded-top mb-0 py-2">Archers</p>
+							<div class="input-list input-archer-list w-100">
+								<div class="position-relative">
+									<input type="text" placeholder="Archer 1 (Level 200+)" class="class-input w-100 border text-center mb-0" data-class="archer" data-num="1">
+									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="archer" data-num="1" checked>
+								</div>
+								<div class="position-relative">
+									<input type="text" placeholder="Archer 2 (Arcane River)" class="class-input w-100 border text-center mb-0" data-class="archer" data-num="2">
+									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="archer" data-num="2" checked>
+								</div>
+							</div>
+							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="archer"><i class="fas fa-plus"></i></div>
+						</button>
+						<div class="col single-class-type-list thief-list d-flex flex-column text-center mb-3">
+							<p class="class-type thief w-100 font-weight-bold rounded-top mb-0 py-2">Thieves</p>
+							<div class="input-list input-thief-list w-100">
+								<div class="position-relative">
+									<input type="text" placeholder="Thief 1 (Level 200+)" class="class-input w-100 border text-center mb-0" data-class="thief" data-num="1">
+									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="thief" data-num="1" checked>
+								</div>
+								<div class="position-relative">
+									<input type="text" placeholder="Thief 2 (Arcane River)" class="class-input w-100 border text-center mb-0" data-class="thief" data-num="2">
+									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="thief" data-num="1" checked>
+								</div>
+							</div>
+							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="thief"><i class="fas fa-plus"></i></div>
+						</button>
+						<div class="col single-class-type-list pirate-list d-flex flex-column text-center mb-3">
+							<p class="class-type pirate w-100 font-weight-bold rounded-top mb-0 py-2">Pirates</p>
+							<div class="input-list input-pirate-list w-100">
+								<div class="position-relative">
+									<input type="text" placeholder="Pirate 1 (Level 200+)" class="class-input w-100 border text-center mb-0" data-class="pirate" data-num="1">
+									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="pirate" data-num="1" checked>
+								</div>
+								<div class="position-relative">
+									<input type="text" placeholder="Pirate 2 (Arcane River)" class="class-input w-100 border text-center mb-0" data-class="pirate" data-num="2">
+									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="pirate" data-num="2" checked>
+								</div>
+							</div>
+							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="pirate"><i class="fas fa-plus"></i></div>
+						</button>
+					</div>
+					<div class="w-100 row d-flex justify-content-center flex-column align-items-center p-0 m-0">
+						<button class="font-table perfect-score-btn btn btn-small btn-outline-secondary font-weight-bold border border-dark rounded-lg px-3 py-1">Generate</button>
 					</div>
 				</div>
 
-				<hr class="w-100 mt-0">
+				<hr class="mt-0">
 
 				<div class="w-100 mb-3">
 					<h2 class="font-subheader w-100 font-weight-bold mb-2">Tatical Relay Planning</h2>
