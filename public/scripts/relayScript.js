@@ -88,7 +88,7 @@ $(".add-character-btn").on("click", function() {
 	</div>`)
 })
 
-$(".generate-score-btn").on("click", function() {
+$(".generate-score-btn").on("click", async function() {
 	if($("#is-perfect-score").prop("checked")) {
 
 		var setupPlanner = new Promise((resolve, reject) => {
@@ -108,79 +108,90 @@ $(".generate-score-btn").on("click", function() {
 			generateScore();
 		})
 	} else {
-		var charList = {
-			warrior: {
-				notOver200: [],
-				over200: [],
-			},
-			mage: {
-				notOver200: [],
-				over200: [],
-			},
-			archer: {
-				notOver200: [],
-				over200: [],
-			},
-			thief: {
-				notOver200: [],
-				over200: [],
-			},
-			pirate: {
-				notOver200: [],
-				over200: [],
-			}
-		}
+		//let allInputs = document.querySelectorAll(".class-input");
 
-		var setupCharList = new Promise((resolve, reject) => {
-			$(".class-input").each(function(index, elem) {
-				var classType = $(elem).data("class");
-				var isOver200 = $(elem).next().prop("checked");
-				var ign = $(elem).val();
+		var charList = generateCharList();
+		planRelay(charList);
 
-				if(ign !== "") {
-					if(isOver200) {
-						charList[classType]['over200'].push(ign);
-						console.log(charList[classType])
-						
-						resolve();
-					} else {
-						charList[classType]['notOver200'].push(ign);
-						resolve();
-					}
-				} else {
-					resolve();
-				}
-			})
-		})
-		
-		setupCharList.then(() => {
+		/*generateCharList(charList).then((charList) => {
+			console.log("received char list");
+			console.log(charList);
 			planRelay(charList);
-			generateScore();
-		})
+		}).then((isComplete) => console.log(isComplete));*/
 	}
 })
 
+function generateCharList() {
+	var charList = [];
+
+	$(".class-input").each(function(index, elem) {
+		let classType = $(elem).data("class");
+		let isOver200 = $(elem).next().prop("checked");
+		let ign = $(elem).val();
+
+		if(ign !== "") {
+			charList.push({
+				classType: classType,
+				isOver200: isOver200,
+				ign: ign
+			})
+		}
+	})
+
+	return charList;
+}
+
 function planRelay(charList) {
 	for(let i = 1; i <= 14; i++) {
-		var tempCharList = charList;
+		let tempCharList = [...charList];
 
 		for(let j = 1; j <= 9; j++) {
 			var requiredClass = $(`.planned-characters.mission-${j}.day-${i}`).data("class");
-			var plannedIgn = "";
-			var isOver200 = false;
+			var plannedIgn = ""; //tempCharList.pop().ign;
+			var indexToRemove;
+			let foundIgnObj;
 
-			if(tempCharList[requiredClass]['over200'].length > 0) {
-				plannedIgn = tempCharList[requiredClass]['over200'].shift();
-				isOver200 = true;
-				$(`.planned-characters.mission-${j}.day-${i}`).html(`<div data-class="${requiredClass}" data-level-bonus=${isOver200}>${plannedIgn}</div>`)
+			if(j == 9) {
+				foundIgnObj = tempCharList.find((charObj, index) => {
+					if(charObj.classType === requiredClass && charObj.isOver200) {
+						indexToRemove = index;
+						return charObj;
+					} else {
+						indexToRemove = -1;
+						//console.log("no over 200 candidates!")
+					}
+				});
 			} else {
-				if(tempCharList[requiredClass]['notOver200'].length > 0) {
-					plannedIgn = tempCharList[requiredClass]['notOver200'].shift();
-					$(`.planned-characters.mission-${j}.day-${i}`).html(`<div data-class="${requiredClass}" data-level-bonus=${isOver200}>${plannedIgn}</div>`)
+				foundIgnObj = tempCharList.find((charObj, index) => {
+					if(charObj.classType === requiredClass && !charObj.isOver200) {
+						indexToRemove = index;
+						return charObj
+					}
+				})
+
+				if(!foundIgnObj) {
+					foundIgnObj = tempCharList.find((charObj, index) => {
+						if(charObj.classType === requiredClass && charObj.isOver200) {
+							indexToRemove = index;
+							return charObj
+						}
+					})
 				}
+
+				if(!foundIgnObj) {
+					indexToRemove = -1;
+				}
+			}
+
+			if(indexToRemove !== -1) {
+				tempCharList.splice(indexToRemove, 1);
+				$(`.planned-characters.mission-${j}.day-${i}`).html(`<div data-class="${foundIgnObj.classType}" data-level-bonus=true>${foundIgnObj.ign}</div>`)
+			} else {
+				$(`.planned-characters.mission-${j}.day-${i}`).html("")
 			}
 		}
 	}
+	generateScore();
 }
 
 function generateScore() {
