@@ -11,7 +11,63 @@ $(function() {
 			$(".date-range").append(`<th class="week-2 text-center p-1 d-none">${new Date(newDate).toLocaleDateString('en-US', {month: "short", day: "numeric", timeZone: "Asia/Singapore"})}</th>`)
 		}
 	}
+
+	generateSavedInputs();
 })
+
+function generateSavedInputs() {
+	var classTypes = ["warrior", "mage", "archer", "thief", "pirate"];
+	var savedCharList = JSON.parse(localStorage.getItem("savedCharList"));
+
+	if(savedCharList !== null) {
+		var storageIsPerfectScore = localStorage.getItem("isPerfectScore");
+		var storageIsAll200 = localStorage.getItem("isAll200");
+		var perfectScoreSettings;
+
+		// Check/uncheck is perfect score box
+		if(storageIsPerfectScore === null || storageIsPerfectScore === "true") {
+			$("#is-perfect-score").prop("checked", true);
+			perfectScoreSettings = "d-none";
+			$(".level-200-form-checkbox").addClass("d-none");
+		} else {
+			$("#is-perfect-score").prop("checked", false);
+			perfectScoreSettings = "";
+			$(".level-200-form-checkbox").removeClass("d-none");
+		}		
+
+		// Check/uncheck all level 200 box
+		if(storageIsAll200 === null || storageIsAll200 === "true") {
+			$("#all-level-200").prop("checked", true);
+		} else {
+			$("#all-level-200").prop("checked", false);
+		}
+
+
+		Object.keys(savedCharList).forEach(function(classType) {
+			//var numExtraClassInputs = localStorage.getItem(`${classType}NumExtraInputs`);
+
+			savedCharList[classType].forEach(function(charData) {
+				if(charData.characterNum <= 2) {
+					$(`#input-${classType}-${charData.characterNum}`).val(charData.ign);
+					$(`#input-${classType}-${charData.characterNum}`).next().prop("checked", charData.isOver200);
+
+					if(perfectScoreSettings === "") {
+						$(`#input-${classType}-${charData.characterNum}`).next().removeClass("d-none");
+					} else {
+						$(`#input-${classType}-${charData.characterNum}`).next().addClass("d-none");
+					}
+				} else {
+					var charIsOver200 = charData.isOver200 ? "checked" : ""
+
+					$(`.input-${classType}-list`).append(`<div class="position-relative">
+						<input type="text" placeholder="${classType} ${charData.characterNum}" class="class-input w-100 border text-center mb-0" data-class="${classType}" data-num="${charData.characterNum}">
+						<input type="checkbox" class="form-check-input over-200-checkbox ${perfectScoreSettings} position-absolute" data-class="${classType}" data-num="${charData.characterNum}" ${charIsOver200}>
+					</div>`)
+				}
+			})
+		})
+	}
+}
 
 $(".section-show-hide").on("click", function() {
 	var sectionType = $(this).data("section");
@@ -22,6 +78,8 @@ $(".section-show-hide").on("click", function() {
 // Settings
 $("#is-perfect-score").change(function() {
 	if($(this).prop("checked")) {
+		localStorage.setItem("isPerfectScore", true);
+
 		$(".class-input").map(function(index, elem) {
 			var classType = $(elem).data("class");
 			var characterNum = $(elem).data("num");
@@ -37,6 +95,8 @@ $("#is-perfect-score").change(function() {
 		})
 		$(".level-200-form-checkbox").addClass("d-none");
 	} else {
+		localStorage.setItem("isPerfectScore", false);
+
 		$(".class-input").map(function(index, elem) {
 			var classType = $(elem).data("class");
 			var characterNum = $(elem).data("num");
@@ -49,31 +109,23 @@ $("#is-perfect-score").change(function() {
 })
 
 $("#all-level-200").change(function() {
+	localStorage.setItem("isAll200", this.checked);
 	$(".over-200-checkbox").prop("checked", this.checked);
 })
 
-$(".over-200-checkbox").change(function() {
+$(".input-list").on("change", ".over-200-checkbox", function() {
 	if($(this).prop("checked")) {
 		var numChecked = $(".over-200-checkbox:checked").length;
 		var numCheckboxes = $(".over-200-checkbox").length;
 
 		if(numChecked === numCheckboxes) {
 			$("#all-level-200").prop("checked", true);
+			localStorage.setItem("isAll200", true);
 		}
 	} else {
 		$("#all-level-200").prop("checked", false);
+		localStorage.setItem("isAll200", false);
 	}
-})
-
-// Generated table
-$(".next-week").on("click", function() {
-	$(this).toggleClass("d-none");
-	$(".prev-week, .week-1, .week-2").toggleClass("d-none");
-})
-
-$(".prev-week").on("click", function() {
-	$(this).toggleClass("d-none");
-	$(".next-week, .week-1, .week-2").toggleClass("d-none");
 })
 
 $(".add-character-btn").on("click", function() {
@@ -86,39 +138,29 @@ $(".add-character-btn").on("click", function() {
 		<input type="text" placeholder="${addClassType} ${numCharacters+1}" class="class-input w-100 border text-center mb-0" data-class="${addClassType}" data-num="${numCharacters+1}">
 		<input type="checkbox" class="form-check-input over-200-checkbox ${isPerfectScore} position-absolute" data-class="${addClassType}" data-num="${numCharacters+1}" ${isAll200}>
 	</div>`)
+
+	localStorage.setItem(`${addClassType}NumExtraInputs`, numCharacters+1-2);
 })
 
-$(".generate-score-btn").on("click", async function() {
+$(".generate-score-btn").on("click", function() {
 	if($("#is-perfect-score").prop("checked")) {
-
-		var setupPlanner = new Promise((resolve, reject) => {
-				$(".class-input").each(function(index, elem) {
-				var classType = $(elem).data("class");
-				var characterNum = $(elem).data("num");
-				var ign = $(elem).val();
-				
-				if(ign !== "") {
-					$(`.class-type.${classType}-${characterNum}`).html(`<div data-class="${classType}" data-level-bonus=true>${ign}</div>`);
-					resolve();
-				}
-			})
+		$(".class-input").each(function(index, elem) {
+			var classType = $(elem).data("class");
+			var characterNum = $(elem).data("num");
+			var ign = $(elem).val();
+			
+			if(ign !== "") {
+				$(`.class-type.${classType}-${characterNum}`).html(`<div data-class="${classType}" data-level-bonus=true>${ign}</div>`);
+			}
 		})
-
-		setupPlanner.then(() => {
-			generateScore();
-		})
+		generateScore();
 	} else {
-		//let allInputs = document.querySelectorAll(".class-input");
-
 		var charList = generateCharList();
 		planRelay(charList);
-
-		/*generateCharList(charList).then((charList) => {
-			console.log("received char list");
-			console.log(charList);
-			planRelay(charList);
-		}).then((isComplete) => console.log(isComplete));*/
+		generateScore();
 	}
+
+	saveData();
 })
 
 function generateCharList() {
@@ -191,7 +233,6 @@ function planRelay(charList) {
 			}
 		}
 	}
-	generateScore();
 }
 
 function generateScore() {
@@ -225,3 +266,48 @@ function generateScore() {
 	}
 	$(`.grand-total-score`).text(totalScore);
 }
+
+function saveData() {
+	var savedCharList = {
+		warrior: [],
+		mage: [],
+		archer: [],
+		thief: [],
+		pirate: []
+	};
+
+	$(".class-input").each(function(index, elem) {
+		var classType = $(elem).data("class");
+		var characterNum = $(elem).data("num");
+		let isOver200 = $(elem).next().prop("checked");
+		var ign = $(elem).val();
+
+		savedCharList[classType].push({
+			characterNum: characterNum,
+			isOver200: isOver200,
+			ign: ign
+		})
+	})
+
+	localStorage.setItem("savedCharList", JSON.stringify(savedCharList));
+}
+
+$(".restart-btn").on("click", function() {
+	var confirmRestart = window.confirm("Restarting will erase ALL saved data. Do you wish to continue?");
+
+	if(confirmRestart) {
+		localStorage.clear();
+		location.reload();
+	}
+})
+
+// Generated table
+$(".next-week").on("click", function() {
+	$(this).toggleClass("d-none");
+	$(".prev-week, .week-1, .week-2").toggleClass("d-none");
+})
+
+$(".prev-week").on("click", function() {
+	$(this).toggleClass("d-none");
+	$(".next-week, .week-1, .week-2").toggleClass("d-none");
+})
