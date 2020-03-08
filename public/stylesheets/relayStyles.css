@@ -23,6 +23,7 @@
 
 .class-input {
 	min-height: 30px;
+	height: initial;
 }
 
 .class-input::-webkit-input-placeholder {
@@ -48,22 +49,22 @@
 	line-height: 1;
 }
 
-.class-type.warrior {
-	background-color: #FFC9D5;
+.icon-class {
+	top: 0;
+	right: 0;
+	opacity: 0.2;
 }
 
-.class-type.mage {
-	background-color: #B2EDE9;
+.icon-class.active {
+	opacity: 1.0;
 }
 
-.class-type.archer {
-	background-color: #BAD39A;
+.icon-over-200 {
+	top: 0;
+	right: 14px;
+	opacity: 0.2;
 }
 
-.class-type.thief {
-	background-color: #C1A1FF;
-}
-
-.class-type.pirate {
-	background-color: #D5D5D5;
+.icon-over-200.active {
+	opacity: 1.0;
 }

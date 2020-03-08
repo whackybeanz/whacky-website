@@ -21,8 +21,8 @@
 							<li class="mb-2">Each character can complete only <span class="font-weight-bold">one mission a day</span></li>
 							<li claas="mb-2">Missions must be completed <span class="font-weight-bold">in sequence</span></li>
 							<li class="mb-2">Completing each mission gives 50 points</li>
-							<li class="mb-2">Each mission gives bonus points (20 per mission) if you complete it on a character level 200 (and above)</li>
-							<li>Each mission gives bonus points (10 per mission) for completing it using a specified class type (warrior / mage / archer / etc.)</li>
+							<li class="mb-2">Each mission gives Level Bonus points (20 per mission) if you complete it on a character level 200 (and above)</li>
+							<li>Each mission gives Job Bonus points (10 per mission) for completing it using a specified class type (warrior / mage / archer / etc.)</li>
 						</ul>
 
 						<div class="section-show-hide w-100 text-justify font-weight-bold mb-1" data-section="strategies"><i class="far fa-plus-square"></i><i class="far fa-minus-square d-none"></i> Strategies</div>
@@ -57,17 +57,17 @@
 								<li>Click on the + button to add characters under each class type</li>
 								<li>Check the box inside the respective text inputs <span class="font-weight-bold">if the character is level 200 and above</span> (the calculator will assume it can also access the Arcane River)</li>
 							</ul>
-							<li class="mb-2">Click on Generate and the recommended characters to use per day will be displayed, along with the total score you will obtain per day and the entire event.<!--To make additional changes, refer to Advanced Instructions.--></li>
+							<li class="mb-2">Click on Generate and the recommended characters to use per day will be displayed, along with its respective score breakdown.</li>
 							<li class="mb-2"><span class="font-weight-bold">IMPORTANT:</span> Data you have keyed into input boxes will not be saved unless you click the Generate button.</li>
 							<li>Click on Restart to erase all saved data and start from scratch.</li>
 						</ul>
 
-						<!--<div class="section-show-hide w-100 text-justify font-weight-bold mb-1" data-section="adv-inst"><i class="far fa-plus-square"></i><i class="far fa-minus-square d-none"></i> [Coming Soon] Advanced Instructions (Changing specific table data)</div>
-						<ul class="relay-adv-inst d-none mb-0">
-							<li class="mb-2"><span class="font-weight-bold">IMPORTANT:</span> Do not click on Generate as data will be refreshed in the table, causing you to lose all changes made</li> 
-							<li class="mb-2">To make changes to the table, select from the dropdown list in each cell to select the character you wish to use.</li>
-							<li>The total points will update accordingly to reflect the changes you have made.</li>
-						</ul>-->
+						<div class="section-show-hide w-100 text-justify font-weight-bold mb-1" data-section="adv-inst"><i class="far fa-plus-square"></i><i class="far fa-minus-square d-none"></i> Understanding Table Data</div>
+						<ul class="relay-adv-inst d-none mb-0"> 
+							<li class="mb-2">The top right corner of each cell displays the required class type icon.</li> 
+							<li class="mb-2">After table data is generated, the icon will light up if the selected class is matching and eligible for Job Bonus.</li>
+							<li class="mb-2">A separate icon will light up if the selected character is over 200 and eligible for Level Bonus.</li>
+						</ul>
 					</div>
 				</div>
 
@@ -93,76 +93,76 @@
 						</div>
 					</form>
 
-					<div class="font-table w-100 row d-flex justify-content-center text-center p-0 m-0">
+					<div class="w-100 row d-flex justify-content-center text-center p-0 m-0">
 						<div class="col single-class-type-list warrior-list d-flex flex-column text-center mb-3">
-							<p class="class-type warrior w-100 font-weight-bold rounded-top mb-0 py-2">Warriors</p>
+							<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-warrior.png" class="mr-2"> Warriors</p>
 							<div class="input-list input-warrior-list w-100">
 								<div class="position-relative">
-									<input type="text" placeholder="Warrior 1 (Level 200+)" class="class-input w-100 border text-center mb-0" id="input-warrior-1" data-class="warrior" data-num="1">
+									<input type="text" placeholder="Warrior 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" id="input-warrior-1" data-class="warrior" data-num="1">
 									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="warrior" data-num="1" checked>
 								</div>
 								<div class="position-relative">
-									<input type="text" placeholder="Warrior 2 (Arcane River)" class="class-input w-100 border text-center mb-0" id="input-warrior-2" data-class="warrior" data-num="2">
+									<input type="text" placeholder="Warrior 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" id="input-warrior-2" data-class="warrior" data-num="2">
 									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="warrior" data-num="2" checked>
 								</div>
 							</div>
-							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="warrior"><i class="fas fa-plus"></i></button>
+							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="warrior"><i class="fas fa-plus"></i></button>
 						</div>
 						<div class="col single-class-type-list mage-list d-flex flex-column text-center mb-3">
-							<p class="class-type mage w-100 font-weight-bold rounded-top mb-0 py-2">Mages</p>
+							<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-mage.png" class="mr-2"> Mages</p>
 							<div class="input-list input-mage-list w-100">
 								<div class="position-relative">
-									<input type="text" placeholder="Mage 1 (Level 200+)" class="class-input w-100 border text-center mb-0" id="input-mage-1" data-class="mage" data-num="1">
+									<input type="text" placeholder="Mage 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" id="input-mage-1" data-class="mage" data-num="1">
 									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="mage" data-num="1" checked>
 								</div>
 								<div class="position-relative">
-									<input type="text" placeholder="Mage 2 (Arcane River)" class="class-input w-100 border text-center mb-0" id="input-mage-2" data-class="mage" data-num="2">
+									<input type="text" placeholder="Mage 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" id="input-mage-2" data-class="mage" data-num="2">
 									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="mage" data-num="2" checked>
 								</div>
 							</div>
-							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="mage"><i class="fas fa-plus"></i></div>
+							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="mage"><i class="fas fa-plus"></i></div>
 						</button>
 						<div class="col single-class-type-list archer-list d-flex flex-column text-center mb-3">
-							<p class="class-type archer w-100 font-weight-bold rounded-top mb-0 py-2">Archers</p>
+							<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-archer.png" class="mr-2"> Archers</p>
 							<div class="input-list input-archer-list w-100">
 								<div class="position-relative">
-									<input type="text" placeholder="Archer 1 (Level 200+)" class="class-input w-100 border text-center mb-0" id="input-archer-1" data-class="archer" data-num="1">
+									<input type="text" placeholder="Archer 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" id="input-archer-1" data-class="archer" data-num="1">
 									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="archer" data-num="1" checked>
 								</div>
 								<div class="position-relative">
-									<input type="text" placeholder="Archer 2 (Arcane River)" class="class-input w-100 border text-center mb-0" id="input-archer-2" data-class="archer" data-num="2">
+									<input type="text" placeholder="Archer 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" id="input-archer-2" data-class="archer" data-num="2">
 									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="archer" data-num="2" checked>
 								</div>
 							</div>
-							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="archer"><i class="fas fa-plus"></i></div>
+							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="archer"><i class="fas fa-plus"></i></div>
 						</button>
 						<div class="col single-class-type-list thief-list d-flex flex-column text-center mb-3">
-							<p class="class-type thief w-100 font-weight-bold rounded-top mb-0 py-2">Thieves</p>
+							<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-thief.png" class="mr-2"> Thieves</p>
 							<div class="input-list input-thief-list w-100">
 								<div class="position-relative">
-									<input type="text" placeholder="Thief 1 (Level 200+)" class="class-input w-100 border text-center mb-0" id="input-thief-1" data-class="thief" data-num="1">
+									<input type="text" placeholder="Thief 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" id="input-thief-1" data-class="thief" data-num="1">
 									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="thief" data-num="1" checked>
 								</div>
 								<div class="position-relative">
-									<input type="text" placeholder="Thief 2 (Arcane River)" class="class-input w-100 border text-center mb-0" id="input-thief-2" data-class="thief" data-num="2">
+									<input type="text" placeholder="Thief 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" id="input-thief-2" data-class="thief" data-num="2">
 									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="thief" data-num="1" checked>
 								</div>
 							</div>
-							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="thief"><i class="fas fa-plus"></i></div>
+							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="thief"><i class="fas fa-plus"></i></div>
 						</button>
 						<div class="col single-class-type-list pirate-list d-flex flex-column text-center mb-3">
-							<p class="class-type pirate w-100 font-weight-bold rounded-top mb-0 py-2">Pirates</p>
+							<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-pirate.png" class="mr-2"> Pirates</p>
 							<div class="input-list input-pirate-list w-100">
 								<div class="position-relative">
-									<input type="text" placeholder="Pirate 1 (Level 200+)" class="class-input w-100 border text-center mb-0" id="input-pirate-1" data-class="pirate" data-num="1">
+									<input type="text" placeholder="Pirate 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" id="input-pirate-1" data-class="pirate" data-num="1">
 									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="pirate" data-num="1" checked>
 								</div>
 								<div class="position-relative">
-									<input type="text" placeholder="Pirate 2 (Arcane River)" class="class-input w-100 border text-center mb-0" id="input-pirate-2" data-class="pirate" data-num="2">
+									<input type="text" placeholder="Pirate 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" id="input-pirate-2" data-class="pirate" data-num="2">
 									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="pirate" data-num="2" checked>
 								</div>
 							</div>
-							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold border border-dark py-1" data-class="pirate"><i class="fas fa-plus"></i></div>
+							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="pirate"><i class="fas fa-plus"></i></div>
 						</button>
 					</div>
 					<div class="w-100 row d-flex justify-content-center flex-column align-items-center p-0 m-0">
@@ -191,14 +191,40 @@
 							<tr>
 								<th scope="row" class="mission-desc"><%= mission %></th>
 								<% for(var i = missionIndex; i < 14 + missionIndex; i++) { %>
-									<td class="class-type planned-characters text-center align-middle p-1 mission-<%= missionIndex+1 %> <% if(i < missionIndex+7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 - missionIndex %> <%= classSelect[i % classSelect.length] %> <%= classSelect[i % classSelect.length] %>-<% if(missionIndex >= 5) { %>2<% } else { %>1<% } %>" data-class="<%= classSelect[i % classSelect.length] %>"></td>
+									<td class="class-type planned-characters text-center align-middle position-relative p-1 mission-<%= missionIndex+1 %> <% if(i < missionIndex+7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 - missionIndex %> <%= classSelect[i % classSelect.length] %>-<% if(missionIndex >= 5) { %>2<% } else { %>1<% } %>" data-class="<%= classSelect[i % classSelect.length] %>">
+										<img src="images/event/icon-warrior.png" class="icon-class icon-warrior position-absolute <% if(classSelect[i % classSelect.length] !== 'warrior') { %>d-none<% } %>">
+										<img src="images/event/icon-mage.png" class="icon-class icon-mage position-absolute <% if(classSelect[i % classSelect.length] !== 'mage') { %>d-none<% } %>">
+										<img src="images/event/icon-archer.png" class="icon-class icon-archer position-absolute <% if(classSelect[i % classSelect.length] !== 'archer') { %>d-none<% } %>">
+										<img src="images/event/icon-thief.png" class="icon-class icon-thief position-absolute <% if(classSelect[i % classSelect.length] !== 'thief') { %>d-none<% } %>">
+										<img src="images/event/icon-pirate.png" class="icon-class icon-pirate position-absolute <% if(classSelect[i % classSelect.length] !== 'pirate') { %>d-none<% } %>">
+										<img src="images/event/icon-above-200.png" class="icon-over-200 position-absolute">
+										<div class="recommended-char"></div>
+									</td>
 								<% } %>
 							</tr>
 							<% }) %>
 							<tr>
-								<th scope="row">Total Score</th>
+								<th scope="row" class="text-info">Mission Score</th>
 								<% for(var i = 0; i < 14; i++) { %>
-									<td class="class-type text-center align-middle p-1 font-weight-bold <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>-score"></td>
+									<td class="class-type text-center text-info align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>-mission-score"></td>
+								<% } %>
+							</tr>
+							<tr>
+								<th scope="row" class="text-info">Job Bonus</th>
+								<% for(var i = 0; i < 14; i++) { %>
+									<td class="class-type text-center text-info align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>-job-score"></td>
+								<% } %>
+							</tr>
+							<tr>
+								<th scope="row" class="text-info">Level Bonus</th>
+								<% for(var i = 0; i < 14; i++) { %>
+									<td class="class-type text-center text-info align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>-level-score"></td>
+								<% } %>
+							</tr>
+							<tr>
+								<th scope="row" class="text-info">Total Score</th>
+								<% for(var i = 0; i < 14; i++) { %>
+									<td class="class-type text-center text-info align-middle p-1 font-weight-bold <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>-total-score"></td>
 								<% } %>
 							</tr>
 						</tbody>

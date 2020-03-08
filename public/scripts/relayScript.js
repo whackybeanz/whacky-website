@@ -60,7 +60,7 @@ function generateSavedInputs() {
 					var charIsOver200 = charData.isOver200 ? "checked" : ""
 
 					$(`.input-${classType}-list`).append(`<div class="position-relative">
-						<input type="text" placeholder="${classType} ${charData.characterNum}" class="class-input w-100 border text-center mb-0" data-class="${classType}" data-num="${charData.characterNum}">
+						<input type="text" placeholder="${classType} ${charData.characterNum}" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" data-class="${classType}" data-num="${charData.characterNum}">
 						<input type="checkbox" class="form-check-input over-200-checkbox ${perfectScoreSettings} position-absolute" data-class="${classType}" data-num="${charData.characterNum}" ${charIsOver200}>
 					</div>`)
 				}
@@ -135,7 +135,7 @@ $(".add-character-btn").on("click", function() {
 	var isAll200 = $("#all-level-200").prop("checked") ? "checked" : "";
 	
 	$(`.input-${addClassType}-list`).append(`<div class="position-relative">
-		<input type="text" placeholder="${addClassType} ${numCharacters+1}" class="class-input w-100 border text-center mb-0" data-class="${addClassType}" data-num="${numCharacters+1}">
+		<input type="text" placeholder="${addClassType} ${numCharacters+1}" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" data-class="${addClassType}" data-num="${numCharacters+1}">
 		<input type="checkbox" class="form-check-input over-200-checkbox ${isPerfectScore} position-absolute" data-class="${addClassType}" data-num="${numCharacters+1}" ${isAll200}>
 	</div>`)
 
@@ -150,7 +150,9 @@ $(".generate-score-btn").on("click", function() {
 			var ign = $(elem).val();
 			
 			if(ign !== "") {
-				$(`.class-type.${classType}-${characterNum}`).html(`<div data-class="${classType}" data-level-bonus=true>${ign}</div>`);
+				$(`.class-type.${classType}-${characterNum} .recommended-char`).text(`${ign}`).attr({"data-class": classType, "data-level-bonus": true});
+				$(`.class-type.${classType}-${characterNum} .icon-${classType}`).addClass("active");
+				$(`.class-type.${classType}-${characterNum} .icon-over-200`).addClass("active");
 			}
 		})
 		generateScore();
@@ -227,44 +229,61 @@ function planRelay(charList) {
 
 			if(indexToRemove !== -1) {
 				tempCharList.splice(indexToRemove, 1);
-				$(`.planned-characters.mission-${j}.day-${i}`).html(`<div data-class="${foundIgnObj.classType}" data-level-bonus=true>${foundIgnObj.ign}</div>`)
+				//$(`.planned-characters.mission-${j}.day-${i}`).html(`<div data-class="${foundIgnObj.classType}" data-level-bonus=true>${foundIgnObj.ign}</div>`)
+				$(`.planned-characters.mission-${j}.day-${i} .recommended-char`).text(`${foundIgnObj.ign}`).attr({"data-class": foundIgnObj.classType, "data-level-bonus": foundIgnObj.isOver200});
+
+				if(foundIgnObj.classType === requiredClass) {
+					$(`.planned-characters.mission-${j}.day-${i} .icon-${requiredClass}`).addClass("active");
+				}
+
+				if(foundIgnObj.isOver200) {
+					$(`.planned-characters.mission-${j}.day-${i} .icon-over-200`).addClass("active");
+				} else {
+					$(`.planned-characters.mission-${j}.day-${i} .icon-over-200`).removeClass("active");
+				}
 			} else {
-				$(`.planned-characters.mission-${j}.day-${i}`).html("")
+				$(`.planned-characters.mission-${j}.day-${i} .recommended-char`).text("")
 			}
 		}
 	}
 }
 
 function generateScore() {
-	var totalScore = 0;
+	var grandTotalScore = 0;
 
 	for(var i = 1; i <= 14; i++) {
-		var dayScore = 0;
+		var missionScore = 0;
+		var jobScore = 0;
+		var levelScore = 0;
 
 		$(`.planned-characters.day-${i}`).map(function(index, elem) {
 			var expectedClassType = $(elem).data("class");
+			var recommendedCharElem = $(elem).find(".recommended-char");
 
-			if($(elem).children().length !== 0) {
-				dayScore += 50;
-				totalScore += 50;
+			if(recommendedCharElem.text() !== "") {
+				missionScore += 50;
+				grandTotalScore += 50;
 
-				var inputClassType = $(elem).children().data("class");
-				var isOver200 = $(elem).children().data("level-bonus");
+				var inputClassType = recommendedCharElem.data("class");
+				var isOver200 = recommendedCharElem.data("level-bonus");
 
 				if(expectedClassType === inputClassType) {
-					dayScore += 10;
-					totalScore += 10;
+					jobScore += 10;
+					grandTotalScore += 10;
 				}
 
-				if(isOver200) {
-					dayScore += 20;
-					totalScore += 20;
+				if(isOver200 === true) {
+					levelScore += 20;
+					grandTotalScore += 20;
 				}
 			}
 		})
-		$(`.day-${i}-score`).text(dayScore);
+		$(`.day-${i}-mission-score`).text(missionScore);
+		$(`.day-${i}-job-score`).text(jobScore);
+		$(`.day-${i}-level-score`).text(levelScore);
+		$(`.day-${i}-total-score`).text(missionScore + jobScore + levelScore);
 	}
-	$(`.grand-total-score`).text(totalScore);
+	$(`.grand-total-score`).text(grandTotalScore);
 }
 
 function saveData() {
@@ -296,7 +315,9 @@ $(".restart-btn").on("click", function() {
 	var confirmRestart = window.confirm("Restarting will erase ALL saved data. Do you wish to continue?");
 
 	if(confirmRestart) {
+		var displayType = localStorage.getItem("pageDisplayType");
 		localStorage.clear();
+		localStorage.setItem("pageDisplayType", displayType);
 		location.reload();
 	}
 })
