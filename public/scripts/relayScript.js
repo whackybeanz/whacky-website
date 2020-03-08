@@ -1,19 +1,35 @@
 $(function() {
-	var date = new Date($("#select-date").val());
+	updateTableDates(true);
+	generateSavedInputs();
+})
+
+function updateTableDates(isNewDateCreation) {
+	var anySavedDate = localStorage.getItem("relayStartDate");
+
+	if(anySavedDate !== null) {
+		var date = new Date(anySavedDate);
+		$("#select-date").val(anySavedDate);
+	} else {
+		var date = new Date($("#select-date").val());
+		localStorage.setItem("relayStartDate", $("#select-date").val());
+	}
+	
 	var dateMilliseconds = Date.parse(date);
 
 	for(var i = 0; i < 14; i++) {
 		var newDate = dateMilliseconds + i * 24 * 60 * 60 * 1000;
 
-		if(i < 7) {
-			$(".date-range").append(`<th class="week-1 text-center p-1">${new Date(newDate).toLocaleDateString('en-US', {month: "short", day: "numeric", timeZone: "Asia/Singapore"})}</th>`)
+		if(isNewDateCreation) {
+			if(i < 7) {
+				$(".date-range").append(`<th class="single-date week-1 day-${i+1} text-center p-1">${new Date(newDate).toLocaleDateString('en-US', {month: "short", day: "numeric", timeZone: "Asia/Singapore"})}</th>`)	
+			} else {
+				$(".date-range").append(`<th class="single-date week-2 day-${i+1} text-center p-1 d-none">${new Date(newDate).toLocaleDateString('en-US', {month: "short", day: "numeric", timeZone: "Asia/Singapore"})}</th>`)	
+			}
 		} else {
-			$(".date-range").append(`<th class="week-2 text-center p-1 d-none">${new Date(newDate).toLocaleDateString('en-US', {month: "short", day: "numeric", timeZone: "Asia/Singapore"})}</th>`)
+			$(`.single-date.day-${i+1}`).text(new Date(newDate).toLocaleDateString('en-US', {month: "short", day: "numeric", timeZone: "Asia/Singapore"}));
 		}
 	}
-
-	generateSavedInputs();
-})
+}
 
 function generateSavedInputs() {
 	var classTypes = ["warrior", "mage", "archer", "thief", "pirate"];
@@ -60,7 +76,7 @@ function generateSavedInputs() {
 					var charIsOver200 = charData.isOver200 ? "checked" : ""
 
 					$(`.input-${classType}-list`).append(`<div class="position-relative">
-						<input type="text" placeholder="${classType} ${charData.characterNum}" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" data-class="${classType}" data-num="${charData.characterNum}">
+						<input type="text" placeholder="${classType} ${charData.characterNum}" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" data-class="${classType}" data-num="${charData.characterNum}" value="${charData.ign}">
 						<input type="checkbox" class="form-check-input over-200-checkbox ${perfectScoreSettings} position-absolute" data-class="${classType}" data-num="${charData.characterNum}" ${charIsOver200}>
 					</div>`)
 				}
@@ -76,7 +92,12 @@ $(".section-show-hide").on("click", function() {
 })
 
 // Settings
-$("#is-perfect-score").change(function() {
+$("#select-date").on("blur", function() {
+	localStorage.setItem("relayStartDate", $(this).val());
+	updateTableDates(false);
+})
+
+$("#is-perfect-score").on("change", function() {
 	if($(this).prop("checked")) {
 		localStorage.setItem("isPerfectScore", true);
 
@@ -135,7 +156,7 @@ $(".add-character-btn").on("click", function() {
 	var isAll200 = $("#all-level-200").prop("checked") ? "checked" : "";
 	
 	$(`.input-${addClassType}-list`).append(`<div class="position-relative">
-		<input type="text" placeholder="${addClassType} ${numCharacters+1}" class="class-input font-table form-control w-100 rounded-lg text-center p-0 mb-1" data-class="${addClassType}" data-num="${numCharacters+1}">
+		<input type="text" placeholder="${addClassType} ${numCharacters+1}" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" data-class="${addClassType}" data-num="${numCharacters+1}">
 		<input type="checkbox" class="form-check-input over-200-checkbox ${isPerfectScore} position-absolute" data-class="${addClassType}" data-num="${numCharacters+1}" ${isAll200}>
 	</div>`)
 
@@ -186,40 +207,58 @@ function generateCharList() {
 }
 
 function planRelay(charList) {
+	var totalValidInputs = $(".class-input").filter((index, elem) => !!elem.value).length;
+	var endCount;
+	var startCount;
+
+	// Fill in from first cell if less than 9 inputs
+	// Fill in backwards if 9 or more inputs
+	if(totalValidInputs < 9) {
+		startCount = 1;
+		endCount = totalValidInputs+1;
+	} else {
+		startCount = 9;
+		endCount = 0;
+	}
+
 	for(let i = 1; i <= 14; i++) {
 		let tempCharList = [...charList];
+		let currCount = startCount;
 
-		for(let j = 1; j <= 9; j++) {
-			var requiredClass = $(`.planned-characters.mission-${j}.day-${i}`).data("class");
+		do {
+			var requiredClass = $(`.planned-characters.mission-${currCount}.day-${i}`).data("class");
 			var plannedIgn = ""; //tempCharList.pop().ign;
 			var indexToRemove;
 			let foundIgnObj;
 
-			if(j == 9) {
-				foundIgnObj = tempCharList.find((charObj, index) => {
-					if(charObj.classType === requiredClass && charObj.isOver200) {
-						indexToRemove = index;
-						return charObj;
-					} else {
-						indexToRemove = -1;
-						//console.log("no over 200 candidates!")
-					}
-				});
-			} else {
-				foundIgnObj = tempCharList.find((charObj, index) => {
-					if(charObj.classType === requiredClass && !charObj.isOver200) {
-						indexToRemove = index;
-						return charObj
-					}
-				})
+			if(currCount == 9) {
+				[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, requiredClass, true);
 
 				if(!foundIgnObj) {
-					foundIgnObj = tempCharList.find((charObj, index) => {
-						if(charObj.classType === requiredClass && charObj.isOver200) {
-							indexToRemove = index;
-							return charObj
-						}
-					})
+					[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, "", true);
+				}
+
+				if(!foundIgnObj) {
+					indexToRemove = -1;
+				}
+			} else {
+				// Priority list:
+				// Find matching class and over 200, THEN
+				// Find matching class but under 200, THEN
+				// Find non-matching class and over 200, THEN
+				// Find non-matching class but under 200
+				[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, requiredClass, true)
+
+				if(!foundIgnObj) {
+					[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, requiredClass, false);
+				}
+
+				if(!foundIgnObj) {
+					[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, "", true);
+				}
+
+				if(!foundIgnObj) {
+					[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, "", false);
 				}
 
 				if(!foundIgnObj) {
@@ -229,23 +268,58 @@ function planRelay(charList) {
 
 			if(indexToRemove !== -1) {
 				tempCharList.splice(indexToRemove, 1);
-				//$(`.planned-characters.mission-${j}.day-${i}`).html(`<div data-class="${foundIgnObj.classType}" data-level-bonus=true>${foundIgnObj.ign}</div>`)
-				$(`.planned-characters.mission-${j}.day-${i} .recommended-char`).text(`${foundIgnObj.ign}`).attr({"data-class": foundIgnObj.classType, "data-level-bonus": foundIgnObj.isOver200});
+				//$(`.planned-characters.mission-${currCount}.day-${i}`).html(`<div data-class="${foundIgnObj.classType}" data-level-bonus=true>${foundIgnObj.ign}</div>`)
+				$(`.planned-characters.mission-${currCount}.day-${i} .recommended-char`).text(`${foundIgnObj.ign}`).attr({"data-class": foundIgnObj.classType, "data-level-bonus": foundIgnObj.isOver200});
 
 				if(foundIgnObj.classType === requiredClass) {
-					$(`.planned-characters.mission-${j}.day-${i} .icon-${requiredClass}`).addClass("active");
+					$(`.planned-characters.mission-${currCount}.day-${i} .icon-${requiredClass}`).addClass("active");
+				}
+
+				if(foundIgnObj.classType === "xenon" && (requiredClass === "thief" || requiredClass === "pirate")) {
+					$(`.planned-characters.mission-${currCount}.day-${i} .icon-xenon`).addClass("active");
 				}
 
 				if(foundIgnObj.isOver200) {
-					$(`.planned-characters.mission-${j}.day-${i} .icon-over-200`).addClass("active");
+					$(`.planned-characters.mission-${currCount}.day-${i} .icon-over-200`).addClass("active");
 				} else {
-					$(`.planned-characters.mission-${j}.day-${i} .icon-over-200`).removeClass("active");
+					$(`.planned-characters.mission-${currCount}.day-${i} .icon-over-200`).removeClass("active");
 				}
 			} else {
-				$(`.planned-characters.mission-${j}.day-${i} .recommended-char`).text("")
+				$(`.planned-characters.mission-${currCount}.day-${i} .recommended-char`).text("")
+			}
+
+			if(totalValidInputs < 9) {
+				currCount += 1;
+			} else {
+				currCount -= 1;
+			}
+		} while(currCount !== endCount);
+	}
+}
+
+function findMatchingChar(tempCharList, requiredClass, isNeedOver200) {
+	var indexToRemove;
+	var foundChar;
+
+	var foundChar = tempCharList.find((charObj, index) => {
+		if(charObj.classType === "xenon" && (requiredClass === "thief" || requiredClass === "pirate")) {
+			requiredClass = "xenon";
+		}
+
+		if(requiredClass === "") {
+			if(charObj.isOver200 === isNeedOver200) {
+				indexToRemove = index;
+				return charObj;
+			}
+		} else {
+			if(charObj.classType === requiredClass && charObj.isOver200 === isNeedOver200) {
+				indexToRemove = index;
+				return charObj;
 			}
 		}
-	}
+	});
+
+	return [indexToRemove, foundChar];
 }
 
 function generateScore() {
@@ -267,12 +341,12 @@ function generateScore() {
 				var inputClassType = recommendedCharElem.data("class");
 				var isOver200 = recommendedCharElem.data("level-bonus");
 
-				if(expectedClassType === inputClassType) {
+				if(expectedClassType === inputClassType || (inputClassType === "xenon" && (expectedClassType === "thief" || expectedClassType === "pirate"))) {
 					jobScore += 10;
 					grandTotalScore += 10;
 				}
 
-				if(isOver200 === true) {
+				if(isOver200) {
 					levelScore += 20;
 					grandTotalScore += 20;
 				}
@@ -292,7 +366,8 @@ function saveData() {
 		mage: [],
 		archer: [],
 		thief: [],
-		pirate: []
+		pirate: [],
+		xenon: []
 	};
 
 	$(".class-input").each(function(index, elem) {
