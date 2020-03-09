@@ -1,0 +1,26 @@
+// Colors
+$light-mode-black: rgba(33, 37, 41, 1.0);
+$light-mode-grey: rgba(206, 212, 218, 1.0);
+$light-mode-white: rgba(255, 255, 255, 0.8);
+$light-mode-light-grey: rgba(0, 0, 0, 0.075);
+$light-mode-salmon: rgba(213, 93, 77, 0.5);
+
+$dark-mode-black: rgba(0, 0, 0, 1.0);
+$dark-mode-grey: rgba(69, 77, 85, 1.0);
+$dark-mode-white: rgba(255, 255, 255, 0.8);
+$dark-mode-navy-grey: rgba(52, 58, 64, 0.8);
+
+// Media queries
+@mixin for-size($size) {
+	@if $size == xs {
+		@media (max-width: 575px) { @content }
+	} @else if $size == sm {
+		@media (min-width: 576px) { @content }
+	} @else if $size == md {
+		@media (min-width: 768px) { @content }
+	} @else if $size == lg {
+		@media (min-width: 992px) { @content }
+	} @else if $size == xl {
+		@media (min-width: 1200px) { @content }
+	}
+}

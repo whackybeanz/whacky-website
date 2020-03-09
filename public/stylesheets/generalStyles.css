@@ -1,171 +1,185 @@
-html, body {
-	height: 100%;
-	font-size: 12px;
-	/*font-family: "Varela Round", sans-serif;*/
-	overflow: auto;
-}
+/*****************
 
-body {
-	background-image: url("/images/light.jpg");
-	background-size: cover;
-	background-position: center;
-}
+	Font sizes 
 
+*****************/
 .font-header {
-	font-size: 1.5rem;
-	font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .font-subheader {
-	font-size: 1.25rem;
-	text-decoration: underline;
+  font-size: 1.25rem;
 }
 
-.font-carousel-header {
-	font-size: 1.25rem;
-}
-
-.font-subsubheader {
-	font-size: 1rem;
-}
-
-.font-content {
-	font-size: 1rem;
+.font-subsubheader, .font-content {
+  font-size: 1rem;
 }
 
 .font-sidebar, .font-form, .font-button {
-	font-size: 1rem;
+  font-size: 1rem;
+}
+@media (min-width: 768px) {
+  .font-sidebar, .font-form, .font-button {
+    font-size: 0.9rem;
+  }
+}
+@media (min-width: 1200px) {
+  .font-sidebar, .font-form, .font-button {
+    font-size: 0.875rem;
+  }
 }
 
-.font-table, .font-small {
-	font-size: 0.9rem;
+.font-table {
+  font-size: 0.9rem;
+}
+@media (min-width: 768px) {
+  .font-table {
+    font-size: 0.875rem;
+  }
+}
+
+.font-small, .tooltip {
+  font-size: 0.9rem;
+}
+@media (min-width: 768px) {
+  .font-small, .tooltip {
+    font-size: 0.875rem;
+  }
+}
+@media (min-width: 1200px) {
+  .font-small, .tooltip {
+    font-size: 0.75rem;
+  }
 }
 
 .font-caption, .font-footnote {
-	font-size: 0.75rem;
+  font-size: 0.75rem;
 }
 
+/***********************
+
+	General Utilities
+
+***********************/
+.text-underline {
+  text-decoration: underline;
+}
+
+/**********************
+
+	HTML Document
+
+**********************/
+html, body {
+  height: 100%;
+  font-size: 12px;
+  overflow: auto;
+}
+@media (min-width: 576px) {
+  html, body {
+    font-size: 13px;
+  }
+}
 @media (min-width: 768px) {
-	html, body {
-		font-size: 14px;
-		overflow: hidden;
-	}
-
-	.font-sidebar, .font-form, .font-button {
-		font-size: 0.9rem;
-	}
-
-	.font-table, .font-small {
-		font-size: 0.875rem;
-	}
+  html, body {
+    font-size: 14px;
+    overflow: hidden;
+  }
 }
-
 @media (min-width: 992px) {
-	html, body {
-		font-size: 16px;
-	}
-
-	.font-sidebar, .font-form, .font-table, .font-button {
-		font-size: 0.875rem;
-	}
-
-	.font-small {
-		font-size: 0.75rem;
-	}
+  html, body {
+    font-size: 15px;
+  }
+}
+@media (min-width: 1200px) {
+  html, body {
+    font-size: 16px;
+  }
 }
 
-input[type="number"] {
-	-moz-appearance: textfield;
-	border-radius: 5px;
-	width: 100%;
-}
-
-@media(min-width: 992px) {
-	input[type="number"] {
-		width: 75px;
-	}
+body {
+  background-image: url("/images/light.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+  -webkit-appearance: none;
 }
 
-input[type="radio"] {
-	visibility: hidden;
+input[type=number] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
 }
-
-.tooltip {
-	font-size: 1rem;
-}
-
-@media (min-width: 768px) {
-	.tooltip {
-		font-size: 0.9rem;
-	}
-}
-
 @media (min-width: 992px) {
-	.tooltip {
-		font-size: 0.75rem;
-	}
+  input[type=number] {
+    width: 75px !important;
+  }
 }
 
+input[type=radio] {
+  visibility: hidden;
+}
+
+/**********************
+
+	Modals
+
+**********************/
 .modal .modal-dialog {
-	max-width: 720px;
+  max-width: 720px;
 }
-
 .modal .modal-content {
-	border: 1px solid rgba(206, 212, 218, 1.0);
-	background-color: rgba(255, 255, 255, 1.0);
-	color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #ced4da;
+  color: #212529;
 }
 
-.carousel-inner {
-	min-height: 300px;
-	max-height: 300px;
-}
+/**********************
 
-.carousel.carousel-fade .carousel-item {
-	max-height: 300px;
-	overflow: auto;
-    display: block;
-    opacity: 0;
-    transition: opacity ease-out .7s;
-}
+	Carousel
 
-.carousel.carousel-fade .carousel-item.active {
-    opacity: 1 !important;
+**********************/
+.carousel.carousel-fade .carousel-inner {
+  min-height: 300px;
+  max-height: 300px;
 }
-
-.carousel-caption {
-	position: initial;
-	right: initial;
-	bottom: initial;
-	left: initial;
-	color: rgba(0, 0, 0, 0.8);
+.carousel.carousel-fade .carousel-inner .carousel-item {
+  max-height: 300px;
+  overflow: auto;
+  display: block;
+  opacity: 0;
+  transition: opacity ease-out 0.7s;
+}
+.carousel.carousel-fade .carousel-inner .carousel-item.active {
+  opacity: 1 !important;
+}
+.carousel.carousel-fade .carousel-inner .carousel-item .carousel-caption {
+  position: initial;
+  right: initial;
+  bottom: initial;
+  left: initial;
+  color: #212529;
 }
 
 .carousel-control {
-	height: 35px;
-	position: relative;
+  height: 35px;
+}
+.carousel-control .carousel-control-prev,
+.carousel-control .carousel-control-next {
+  width: initial;
+  top: initial;
+  color: #212529;
+}
+.carousel-control .carousel-control-prev > i,
+.carousel-control .carousel-control-next > i {
+  height: 18px;
+}
+.carousel-control .carousel-control-prev:hover, .carousel-control .carousel-control-prev:focus,
+.carousel-control .carousel-control-next:hover,
+.carousel-control .carousel-control-next:focus {
+  color: initial;
 }
 
-.carousel-control-prev,
-.carousel-control-next {
-	height: 100%;
-	width: initial;
-	top: initial;
-	color: rgba(0, 0, 0, 0.8);
-}
-
-.carousel-control-prev > i,
-.carousel-control-next > i {
-	height: 18px;
-}
-
-.carousel-control-prev:hover, .carousel-control-prev:focus,
-.carousel-control-next:hover, .carousel-control-next:focus {
-	color: initial;
-}
+/*# sourceMappingURL=generalStyles.css.map */

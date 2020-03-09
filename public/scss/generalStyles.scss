@@ -1,0 +1,160 @@
+@use '_global-styles' as globals;
+
+/*****************
+
+	Font sizes 
+
+*****************/
+.font-header {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.font-subheader {
+	font-size: 1.25rem;
+}
+
+.font-subsubheader, .font-content {
+	font-size: 1rem;
+}
+
+.font-sidebar, .font-form, .font-button {
+	font-size: 1rem;
+
+	@include globals.for-size(md) { font-size: 0.9rem; }
+	@include globals.for-size(xl) { font-size: 0.875rem; }
+}
+
+.font-table {
+	font-size: 0.9rem;
+
+	@include globals.for-size(md) { font-size: 0.875rem; }
+}
+
+.font-small, .tooltip {
+	font-size: 0.9rem;
+
+	@include globals.for-size(md) { font-size: 0.875rem; }
+	@include globals.for-size(xl) { font-size: 0.75rem; }
+}
+
+.font-caption, .font-footnote {
+	font-size: 0.75rem;
+}
+
+/***********************
+
+	General Utilities
+
+***********************/
+.text-underline {
+	text-decoration: underline;
+}
+
+/**********************
+
+	HTML Document
+
+**********************/
+html, body {
+	height: 100%;
+	font-size: 12px;
+	overflow: auto;
+
+	@include globals.for-size(sm) {	font-size: 13px; }
+	@include globals.for-size(md) { 
+		font-size: 14px;
+		overflow: hidden;
+	}
+	@include globals.for-size(lg) { font-size: 15px; }
+	@include globals.for-size(xl) { font-size: 16px; }
+}
+
+body {
+	background-image: url("/images/light.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+	-webkit-appearance: textfield;
+
+	@include globals.for-size(lg) { width: 75px !important; }
+}
+
+input[type="radio"] {
+	visibility: hidden;
+}
+
+/**********************
+
+	Modals
+
+**********************/
+.modal {
+	.modal-dialog {
+		max-width: 720px;
+	}
+
+	.modal-content {
+		border: 1px solid globals.$light-mode-grey;
+		color: globals.$light-mode-black;
+	}
+}
+
+/**********************
+
+	Carousel
+
+**********************/
+.carousel.carousel-fade {
+	.carousel-inner {
+		min-height: 300px;
+		max-height: 300px;
+
+		.carousel-item {
+			max-height: 300px;
+			overflow: auto;
+		    display: block;
+		    opacity: 0;
+		    transition: opacity ease-out .7s;
+
+		    &.active {
+		    	opacity: 1 !important;
+		    }
+
+		    .carousel-caption {
+		    	position: initial;
+				right: initial;
+				bottom: initial;
+				left: initial;
+				color: globals.$light-mode-black;
+		    }
+		}
+	}
+}
+
+.carousel-control {
+	height: 35px;
+
+	.carousel-control-prev,
+	.carousel-control-next {
+		width: initial;
+		top: initial;
+		color: globals.$light-mode-black;
+
+		& > i {
+			height: 18px;
+		}
+
+		&:hover, &:focus {
+			color: initial;
+		}
+	}
+}
