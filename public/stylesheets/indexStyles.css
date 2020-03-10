@@ -1,28 +1,26 @@
 .page-select {
-	height: 50px;
-	cursor: pointer;
-	border: 1px solid rgba(206, 212, 218, 1.0);
-	transition: background-color 0.3s;
-	color: inherit;
+  height: 50px;
+  transition: background-color 0.3s;
+  color: inherit;
 }
-
 .page-select:hover {
-	background-color: rgba(0, 0, 0, 0.075);
-	color: rgba(0, 0, 0, 0.8);
-	font-weight: bold;
-	transition: background-color 0.3s;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
 .page-select-img-div {
-	min-width: 50px;
-	max-width: 50px;
-	border-right: 1px solid rgba(206, 212, 218, 1.0);
+  min-width: 50px;
+  max-width: 50px;
 }
 
 .maple-logos {
-	object-fit: contain;
-	object-position: center;
-	max-width: 130px;
-	width: 100%;
-	border-right: 1px solid rgba(206, 212, 218, 1.0);
+  object-fit: contain;
+  object-position: center;
+  max-width: 130px;
 }
+
+.inline-div-img {
+  border-right: 1px solid #ced4da;
+}
+
+/*# sourceMappingURL=indexstyles.css.map */

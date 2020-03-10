@@ -1,97 +1,83 @@
 body.dark-mode {
-	background-image: url('/images/dark.jpg');
-	color: rgba(255, 255, 255, 0.8);
+  background-image: url("/images/dark.jpg");
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+body.dark-mode .sidebar {
+  border-right: 2px solid rgba(52, 58, 64, 0.8);
+}
+body.dark-mode .sidebar .sidebar-btn {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  border-right: none;
+}
+body.dark-mode .sidebar .sidebar-btn a {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .sidebar .sidebar-btn:hover, body.dark-mode .sidebar .sidebar-btn.active {
+  background-color: #343a40;
+  color: rgba(255, 255, 255, 0.8);
+  border: 2px solid #454d55;
+  border-right: none;
+}
+body.dark-mode .single-info-page {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+body.dark-mode form .form-control {
+  background-color: rgba(52, 58, 64, 0.8);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #454d55;
+}
+body.dark-mode .modal .modal-content {
+  border: 1px solid #454d55;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: black;
+}
+body.dark-mode .modal .modal-content .modal-header {
+  border-bottom: 1px solid #454d55;
+}
+body.dark-mode .modal .modal-content .modal-footer {
+  border-top: 1px solid #454d55;
+}
+body.dark-mode .modal .modal-content .close {
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
+}
+body.dark-mode .carousel.carousel-fade .carousel-inner .carousel-item .carousel-caption {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .carousel-control-prev, body.dark-mode .carousel-control-next {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .carousel-control-prev:hover, body.dark-mode .carousel-control-prev:focus, body.dark-mode .carousel-control-next:hover, body.dark-mode .carousel-control-next:focus {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode table.table-bordered td, body.dark-mode table.table-bordered th {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .inline-div-img {
+  border-right: 1px solid #454d55;
+}
+body.dark-mode .single-option-select {
+  border: 1px solid #454d55;
+}
+body.dark-mode .single-option-select:hover, body.dark-mode .single-option-select.active {
+  background-color: #343a40;
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .single-option-select a {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .radio-select-group .form-check .radio-select {
+  border: 1px solid #454d55;
+}
+body.dark-mode .radio-select-group .form-check .radio-select:hover, body.dark-mode .radio-select-group .form-check .radio-select.active {
+  background-color: rgba(52, 58, 64, 0.8);
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .single-set-effect {
+  background-color: rgba(52, 58, 64, 0.8) !important;
+  border: 1px solid #454d55 !important;
 }
 
-.dark-mode .form-control {
-	background-color: rgba(52, 58, 64, 0.8);
-	color: rgba(255, 255, 255, 0.8);
-	border: 1px solid rgba(69, 77, 85, 1.0);
-}
-
-.modal.dark-mode .modal-content {
-	border: 1px solid rgba(69, 77, 85, 1.0);
-	color: rgba(255, 255, 255, 0.8);
-	background-color: rgba(0, 0, 0, 1.0);
-}
-
-.modal.dark-mode .close {
-	color: rgba(255, 255, 255, 0.8);
-	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
-}
-
-.modal.dark-mode .modal-header {
-	border-bottom: 1px solid rgba(69, 77, 85, 1.0);
-}
-
-.modal.dark-mode .modal-footer {
-	border-top: 1px solid rgba(69, 77, 85, 1.0);
-}
-
-.dark-mode .carousel-caption,
-.dark-mode .carousel-control-prev,
-.dark-mode .carousel-control-next {
-	color: rgba(255, 255, 255, 0.8);
-}
-
-.table-bordered.dark-mode td, 
-.table-bordered.dark-mode th {
-	color: rgba(255, 255, 255, 0.8);
-}
-
-.sidebar.dark-mode {
-	border-right: 2px solid rgba(52, 58, 64, 0.8);
-}
-
-.sidebar.dark-mode > .sidebar-btn {
-	background-color: rgba(0, 0, 0, 0.8);
-	color: rgba(255, 255, 255, 0.8);
-	border: 2px solid rgba(0, 0, 0, 0.8);
-	border-right: none;
-}
-
-.sidebar.dark-mode > .sidebar-btn > a {
-	color: rgba(255, 255, 255, 0.8);
-}
-
-.sidebar.dark-mode > .sidebar-btn:hover,
-.sidebar.dark-mode > .sidebar-btn.active {
-	background-color: rgba(52, 58, 64);
-	color: rgba(255, 255, 255, 0.8);
-	border: 2px solid rgba(69, 77, 85);
-	border-right: none;
-}
-
-.single-info-page.dark-mode {
-	background-color: rgba(0, 0, 0, 0.8);
-}
-
-.radio-select.dark-mode,
-.job-choice-div.dark-mode .single-job-choice,
-.dark-mode .single-equip-choice {
-	border: 1px solid rgba(69, 77, 85, 1.0);
-}
-
-.job-choice-div.dark-mode .single-job-choice a {
-	color: rgba(255, 255, 255, 0.8);
-}
-
-.dark-mode .equip-choice-img-div {
-	border-right: 1px solid rgba(69, 77, 85, 1.0);
-}
-
-.radio-select.dark-mode:hover,
-.radio-select.dark-mode.active,
-.job-choice-div.dark-mode .single-job-choice:hover,
-.job-choice-div.dark-mode .single-job-choice.active,
-.dark-mode .single-equip-choice:hover,
-.dark-mode .single-equip-choice.active,
-.dark-mode .page-select:hover {
-	background-color: rgba(52, 58, 64, 0.8);
-	color: rgba(255, 255, 255, 0.8);
-}
-
-.set-item-effect-div.dark-mode > div {
-	background-color: rgba(52, 58, 64, 0.8) !important;
-	border: 1px solid rgba(69, 77, 85, 1.0) !important;
-}
+/*# sourceMappingURL=darkmodestyles.css.map */

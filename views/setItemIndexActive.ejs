@@ -31,8 +31,8 @@
 								<% if(allSetItems[jobType][equipType]) { %>
 									<% allSetItems[jobType][equipType].forEach(function(item) { %> 
 									<div class="equip-choice col-12 col-sm-6 col-lg-6 w-100 mb-2 px-2 d-flex">
-										<div class="single-equip-choice single-equip-<%= equipType %> w-100 d-flex align-items-center rounded-lg" data-equip-name="<%= item.name %>" data-set-type="<%= item.setType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= item.image %>" data-item-id="<%= item.id %>" <% if(item.isLuckyItem) { %>data-is-lucky-item="<%= item.isLuckyItem %>" data-item-priority="<%= item.itemPriority %>" <% } %> <% if(item.isOverall) { %>data-is-overall="<%= item.isOverall %>"<% } %>>
-											<div class="equip-choice-img-div h-100 mr-2 d-flex justify-content-center align-items-center">
+										<div class="single-option-select single-equip-choice single-equip-<%= equipType %> w-100 d-flex align-items-center rounded-lg" data-equip-name="<%= item.name %>" data-set-type="<%= item.setType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= item.image %>" data-item-id="<%= item.id %>" <% if(item.isLuckyItem) { %>data-is-lucky-item="<%= item.isLuckyItem %>" data-item-priority="<%= item.itemPriority %>" <% } %> <% if(item.isOverall) { %>data-is-overall="<%= item.isOverall %>"<% } %>>
+											<div class="equip-choice-img-div inline-div-img h-100 mr-2 d-flex justify-content-center align-items-center">
 												<img src="<%= item.image %>" class="m-2">
 											</div>
 											<p class="equip-name m-0 mr-2 text-left"><%= item.name %></p>

@@ -1,0 +1,45 @@
+@use '_global-styles' as globals;
+
+.crossword-board-form {
+	width: 425px;
+	height: 475px;
+
+	@include globals.for-size(lg) {
+		width: 595px;
+		height: 665px;
+	}
+
+	.crossword-board {
+		display: grid;
+		grid-template: repeat(19, 25px) / repeat(17, 25px);
+
+		@include globals.for-size(lg) {
+			grid-template: repeat(19, 35px) / repeat(17, 35px);
+		}
+
+		.board-clue-num {
+			top: 0;
+			padding-left: 3px;
+			font-size: 0.7rem;
+			pointer-events: none;
+			color: black;
+		}
+	}
+
+	.crossword-board-blocker {
+		top: 0;
+	}
+}
+
+.submit-ans-btn {
+	top: 5px;
+	right: 5px;
+}
+
+.color-clue-single {
+	height: 35px;
+
+	div {
+		width: 35px;
+	}
+}

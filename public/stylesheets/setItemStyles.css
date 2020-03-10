@@ -1,119 +1,122 @@
-.single-job-choice {
-	cursor: pointer;
-	border: 1px solid rgba(206, 212, 218, 1.0);
-}
-
-.single-job-choice:hover,
-.single-job-choice.active {
-	opacity: 1.0;
-	background-color: rgba(0, 0, 0, 0.075);
-	color: rgba(0, 0, 0, 0.8);
-	font-weight: bold;
-	transition: all 0.3s;
-}
-
-.single-job-choice a {
-	color: rgba(0, 0, 0, 0.8);
-}
-
-.single-job-choice:hover a {
-	text-decoration: none;
-}
-
-.item-category {
-	top: 2px;
-	right: 5px;
-	background-color: rgba(255, 255, 255, 0.7);
-}
-
 #equip-grid {
-	display: grid;
-	grid-template-areas:
-		"ring1 	. 		 hat 	. 		 emblem"
-		"ring2 	pendant2 face 	. 		 badge"
-		"ring3 	pendant1 eye 	earring  medal"
-		"ring4 	weapon 	 top 	shoulder secondary"
-		"pocket belt 	 bottom gloves 	 cape"
-		". 		. 		 shoes 	android  heart";
-	top: 0;
-	grid-gap: 4px;
-	padding: 6px;
+  display: grid;
+  grid-template-areas: "ring1 	. 		 hat 	. 		 emblem" "ring2 	pendant2 face 	. 		 badge" "ring3 	pendant1 eye 	earring  medal" "ring4 	weapon 	 top 	shoulder secondary" "pocket belt 	 bottom gloves 	 cape" ". 		. 		 shoes 	android  heart";
+  top: 0;
+  grid-gap: 4px;
+  padding: 6px;
+}
+#equip-grid .equip-slot {
+  border-radius: 4px;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#equip-grid .equip-slot:hover {
+  background-color: rgba(213, 93, 77, 0.5);
+}
+#equip-grid .equip-slot#ring-1-slot {
+  grid-area: ring1;
+}
+#equip-grid .equip-slot#ring-2-slot {
+  grid-area: ring2;
+}
+#equip-grid .equip-slot#ring-3-slot {
+  grid-area: ring3;
+}
+#equip-grid .equip-slot#ring-4-slot {
+  grid-area: ring4;
+}
+#equip-grid .equip-slot#pocket-slot {
+  grid-area: pocket;
+}
+#equip-grid .equip-slot#pendant-1-slot {
+  grid-area: pendant1;
+}
+#equip-grid .equip-slot#pendant-2-slot {
+  grid-area: pendant2;
+}
+#equip-grid .equip-slot#weapon-slot {
+  grid-area: weapon;
+}
+#equip-grid .equip-slot#belt-slot {
+  grid-area: belt;
+}
+#equip-grid .equip-slot#hat-slot {
+  grid-area: hat;
+}
+#equip-grid .equip-slot#face-slot {
+  grid-area: face;
+}
+#equip-grid .equip-slot#eye-slot {
+  grid-area: eye;
+}
+#equip-grid .equip-slot#top-slot {
+  grid-area: top;
+}
+#equip-grid .equip-slot#bottom-slot {
+  grid-area: bottom;
+}
+#equip-grid .equip-slot#shoes-slot {
+  grid-area: shoes;
+}
+#equip-grid .equip-slot#earring-slot {
+  grid-area: earring;
+}
+#equip-grid .equip-slot#shoulder-slot {
+  grid-area: shoulder;
+}
+#equip-grid .equip-slot#gloves-slot {
+  grid-area: gloves;
+}
+#equip-grid .equip-slot#android-slot {
+  grid-area: android;
+}
+#equip-grid .equip-slot#emblem-slot {
+  grid-area: emblem;
+}
+#equip-grid .equip-slot#badge-slot {
+  grid-area: badge;
+}
+#equip-grid .equip-slot#medal-slot {
+  grid-area: medal;
+}
+#equip-grid .equip-slot#secondary-slot {
+  grid-area: secondary;
+}
+#equip-grid .equip-slot#cape-slot {
+  grid-area: cape;
+}
+#equip-grid .equip-slot#heart-slot {
+  grid-area: heart;
 }
 
-.equip-slot {
-	border-radius: 4px;
-	cursor: pointer;
-	background-position: center;
-	background-repeat: no-repeat;
+#setItemSelectModal .slot-exceed-msg {
+  left: 0;
+  bottom: 5px;
+}
+#setItemSelectModal .single-equip-choice {
+  height: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#setItemSelectModal .single-equip-choice:hover, #setItemSelectModal .single-equip-choice.active {
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+#setItemSelectModal .single-equip-choice .equip-choice-img-div {
+  min-width: 50px;
+  max-width: 50px;
 }
 
-.equip-slot:hover {
-	background-color: rgba(213, 93, 77, 0.5);
+.set-item-effect-div .single-set-effect {
+  border: 1px solid #ced4da;
+}
+.set-item-effect-div .single-set-effect .set-items .set-effect, .set-item-effect-div .single-set-effect .num-wearing-div .set-effect {
+  opacity: 0.3;
+}
+.set-item-effect-div .single-set-effect .set-items .set-effect.active, .set-item-effect-div .single-set-effect .num-wearing-div .set-effect.active {
+  opacity: 1;
+  font-weight: bold;
 }
 
-#ring-1-slot { grid-area: ring1; }
-#ring-2-slot { grid-area: ring2; }
-#ring-3-slot { grid-area: ring3; }
-#ring-4-slot { grid-area: ring4; }
-#pocket-slot { grid-area: pocket; }
-#pendant-1-slot { grid-area: pendant1; }
-#pendant-2-slot { grid-area: pendant2; }
-#weapon-slot { grid-area: weapon; }
-#belt-slot { grid-area: belt; }
-#hat-slot { grid-area: hat; }
-#face-slot { grid-area: face; }
-#eye-slot { grid-area: eye; }
-#top-slot { grid-area: top; }
-#bottom-slot { grid-area: bottom; }
-#shoes-slot { grid-area: shoes; }
-#earring-slot { grid-area: earring; }
-#shoulder-slot { grid-area: shoulder; }
-#gloves-slot { grid-area: gloves; }
-#android-slot { grid-area: android; }
-#emblem-slot { grid-area: emblem; }
-#badge-slot { grid-area: badge; }
-#medal-slot { grid-area: medal; }
-#secondary-slot { grid-area: secondary; }
-#cape-slot { grid-area: cape; }
-#heart-slot { grid-area: heart; }
-
-.slot-exceed-msg {
-	left: 0;
-	bottom: 5px;
-}
-
-.single-equip-choice {
-	height: 50px;
-	cursor: pointer;
-	border: 1px solid rgba(206, 212, 218, 1.0);
-	transition: background-color 0.3s;
-}
-
-.single-equip-choice:hover,
-.single-equip-choice.active {
-	background-color: rgba(0, 0, 0, 0.075);
-	color: rgba(0, 0, 0, 0.8);
-	font-weight: bold;
-	transition: background-color 0.3s;
-}
-
-.equip-choice-img-div {
-	min-width: 50px;
-	max-width: 50px;
-	border-right: 1px solid rgba(206, 212, 218, 1.0);
-}
-
-.set-item-effect-div > div {
-	border: 1px solid rgba(206, 212, 218, 1.0);
-}
-
-.set-item-effect-div .set-items .set-effect,
-.set-item-effect-div .num-wearing-div .set-effect {
-	opacity: 0.3;
-}
-
-.set-item-effect-div .set-items .set-effect.active,
-.set-item-effect-div .num-wearing-div .set-effect.active {
-	opacity: 1.0;
-	font-weight: bold;
-}
+/*# sourceMappingURL=setitemstyles.css.map */

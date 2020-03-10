@@ -76,113 +76,115 @@
 				<div class="w-100 mb-3">
 					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Settings</h2>
 
-					<form class="relay-form w-100 mb-4">
-						<div class="form-group row">
-							<label for="select-date" class="col-4 col-form-label text-left font-weight-bold">Event Start Date</label>
-							<div class="col-4 col-md-5 col-lg-6">
-								<input type="date" class="form-control text-center" id="select-date" value="2020-03-18">
+					<form class="w-100">
+						<div class="relay-form-initial-inputs mb-4">
+							<div class="form-group row">
+								<label for="select-date" class="col-4 col-form-label text-left font-weight-bold">Event Start Date</label>
+								<div class="col-4 col-md-5 col-lg-6">
+									<input type="date" class="form-control text-center" id="select-date" value="2020-03-18">
+								</div>
+							</div>
+							<div class="form-group form-check-inline">
+								<input type="checkbox" class="form-check-input" id="is-perfect-score" checked>
+								<label class="form-check-label" for="is-perfect-score">Aiming for Perfect Score?</label>
+							</div>
+							<div class="level-200-form-checkbox form-group form-check-inline d-none">
+								<input type="checkbox" class="form-check-input" id="all-level-200" checked>
+								<label class="form-check-label" for="all-level-200">All level 200+?</label>
 							</div>
 						</div>
-						<div class="form-group form-check-inline">
-							<input type="checkbox" class="form-check-input" id="is-perfect-score" checked>
-							<label class="form-check-label" for="is-perfect-score">Aiming for Perfect Score?</label>
+
+						<div class="w-100 row d-flex justify-content-center text-center p-0 m-0">
+							<div class="col single-class-type-list warrior-list d-flex flex-column text-center mb-3 px-2">
+								<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-warrior.png" class="mr-2"> Warriors</p>
+								<div class="input-list input-warrior-list w-100">
+									<div class="position-relative">
+										<input type="text" placeholder="Warrior 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-warrior-1" data-class="warrior" data-num="1">
+										<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="warrior" data-num="1" checked>
+									</div>
+									<div class="position-relative">
+										<input type="text" placeholder="Warrior 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-warrior-2" data-class="warrior" data-num="2">
+										<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="warrior" data-num="2" checked>
+									</div>
+								</div>
+								<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="warrior"><i class="fas fa-plus"></i></button>
+							</div>
+							<div class="col single-class-type-list mage-list d-flex flex-column text-center mb-3 px-2">
+								<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-mage.png" class="mr-2"> Mages</p>
+								<div class="input-list input-mage-list w-100">
+									<div class="position-relative">
+										<input type="text" placeholder="Mage 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-mage-1" data-class="mage" data-num="1">
+										<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="mage" data-num="1" checked>
+									</div>
+									<div class="position-relative">
+										<input type="text" placeholder="Mage 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-mage-2" data-class="mage" data-num="2">
+										<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="mage" data-num="2" checked>
+									</div>
+								</div>
+								<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="mage"><i class="fas fa-plus"></i></button>
+							</div>
+							<div class="col single-class-type-list archer-list d-flex flex-column text-center mb-3 px-2">
+								<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-archer.png" class="mr-2"> Archers</p>
+								<div class="input-list input-archer-list w-100">
+									<div class="position-relative">
+										<input type="text" placeholder="Archer 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-archer-1" data-class="archer" data-num="1">
+										<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="archer" data-num="1" checked>
+									</div>
+									<div class="position-relative">
+										<input type="text" placeholder="Archer 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-archer-2" data-class="archer" data-num="2">
+										<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="archer" data-num="2" checked>
+									</div>
+								</div>
+								<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="archer"><i class="fas fa-plus"></i></button>
+							</div>
+							<div class="col single-class-type-list thief-list d-flex flex-column text-center mb-3 px-2">
+								<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-thief.png" class="mr-2"> Thieves</p>
+								<div class="input-list input-thief-list w-100">
+									<div class="position-relative">
+										<input type="text" placeholder="Thief 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-thief-1" data-class="thief" data-num="1">
+										<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="thief" data-num="1" checked>
+									</div>
+									<div class="position-relative">
+										<input type="text" placeholder="Thief 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-thief-2" data-class="thief" data-num="2">
+										<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="thief" data-num="1" checked>
+									</div>
+								</div>
+								<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="thief"><i class="fas fa-plus"></i></button>
+							</div>
+							<div class="col single-class-type-list pirate-list d-flex flex-column text-center mb-3 px-2">
+								<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-pirate.png" class="mr-2"> Pirates</p>
+								<div class="input-list input-pirate-list w-100">
+									<div class="position-relative">
+										<input type="text" placeholder="Pirate 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-pirate-1" data-class="pirate" data-num="1">
+										<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="pirate" data-num="1" checked>
+									</div>
+									<div class="position-relative">
+										<input type="text" placeholder="Pirate 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-pirate-2" data-class="pirate" data-num="2">
+										<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="pirate" data-num="2" checked>
+									</div>
+								</div>
+								<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="pirate"><i class="fas fa-plus"></i></button>
+							</div>
+							<div class="col single-class-type-list xenon-list d-flex flex-column text-center mb-3 px-2">
+								<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-xenon.png" class="mr-2"> Xenons</p>
+								<div class="input-list input-xenon-list w-100">
+									<div class="position-relative">
+										<input type="text" placeholder="Xenon 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-xenon-1" data-class="xenon" data-num="1">
+										<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="xenon" data-num="1" checked>
+									</div>
+									<div class="position-relative">
+										<input type="text" placeholder="Xenon 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-xenon-2" data-class="xenon" data-num="2">
+										<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="xenon" data-num="2" checked>
+									</div>
+								</div>
+								<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="xenon"><i class="fas fa-plus"></i></button>
+							</div>
 						</div>
-						<div class="level-200-form-checkbox form-group form-check-inline d-none">
-							<input type="checkbox" class="form-check-input" id="all-level-200" checked>
-							<label class="form-check-label" for="all-level-200">All level 200+?</label>
+						<div class="w-100 row d-flex justify-content-center flex-column align-items-center p-0 m-0">
+							<button class="generate-score-btn btn btn-small btn-outline-secondary font-weight-bold px-3 py-1 mb-2">Generate Relay Planner</button>
+							<button class="restart-btn btn btn-small btn-outline-danger font-weight-bold px-3 py-1">Restart</button>
 						</div>
 					</form>
-
-					<div class="w-100 row d-flex justify-content-center text-center p-0 m-0">
-						<div class="col single-class-type-list warrior-list d-flex flex-column text-center mb-3 px-2">
-							<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-warrior.png" class="mr-2"> Warriors</p>
-							<div class="input-list input-warrior-list w-100">
-								<div class="position-relative">
-									<input type="text" placeholder="Warrior 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-warrior-1" data-class="warrior" data-num="1">
-									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="warrior" data-num="1" checked>
-								</div>
-								<div class="position-relative">
-									<input type="text" placeholder="Warrior 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-warrior-2" data-class="warrior" data-num="2">
-									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="warrior" data-num="2" checked>
-								</div>
-							</div>
-							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="warrior"><i class="fas fa-plus"></i></button>
-						</div>
-						<div class="col single-class-type-list mage-list d-flex flex-column text-center mb-3 px-2">
-							<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-mage.png" class="mr-2"> Mages</p>
-							<div class="input-list input-mage-list w-100">
-								<div class="position-relative">
-									<input type="text" placeholder="Mage 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-mage-1" data-class="mage" data-num="1">
-									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="mage" data-num="1" checked>
-								</div>
-								<div class="position-relative">
-									<input type="text" placeholder="Mage 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-mage-2" data-class="mage" data-num="2">
-									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="mage" data-num="2" checked>
-								</div>
-							</div>
-							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="mage"><i class="fas fa-plus"></i></button>
-						</div>
-						<div class="col single-class-type-list archer-list d-flex flex-column text-center mb-3 px-2">
-							<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-archer.png" class="mr-2"> Archers</p>
-							<div class="input-list input-archer-list w-100">
-								<div class="position-relative">
-									<input type="text" placeholder="Archer 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-archer-1" data-class="archer" data-num="1">
-									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="archer" data-num="1" checked>
-								</div>
-								<div class="position-relative">
-									<input type="text" placeholder="Archer 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-archer-2" data-class="archer" data-num="2">
-									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="archer" data-num="2" checked>
-								</div>
-							</div>
-							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="archer"><i class="fas fa-plus"></i></button>
-						</div>
-						<div class="col single-class-type-list thief-list d-flex flex-column text-center mb-3 px-2">
-							<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-thief.png" class="mr-2"> Thieves</p>
-							<div class="input-list input-thief-list w-100">
-								<div class="position-relative">
-									<input type="text" placeholder="Thief 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-thief-1" data-class="thief" data-num="1">
-									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="thief" data-num="1" checked>
-								</div>
-								<div class="position-relative">
-									<input type="text" placeholder="Thief 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-thief-2" data-class="thief" data-num="2">
-									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="thief" data-num="1" checked>
-								</div>
-							</div>
-							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="thief"><i class="fas fa-plus"></i></button>
-						</div>
-						<div class="col single-class-type-list pirate-list d-flex flex-column text-center mb-3 px-2">
-							<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-pirate.png" class="mr-2"> Pirates</p>
-							<div class="input-list input-pirate-list w-100">
-								<div class="position-relative">
-									<input type="text" placeholder="Pirate 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-pirate-1" data-class="pirate" data-num="1">
-									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="pirate" data-num="1" checked>
-								</div>
-								<div class="position-relative">
-									<input type="text" placeholder="Pirate 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-pirate-2" data-class="pirate" data-num="2">
-									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="pirate" data-num="2" checked>
-								</div>
-							</div>
-							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="pirate"><i class="fas fa-plus"></i></button>
-						</div>
-						<div class="col single-class-type-list xenon-list d-flex flex-column text-center mb-3 px-2">
-							<p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="images/event/icon-xenon.png" class="mr-2"> Xenons</p>
-							<div class="input-list input-xenon-list w-100">
-								<div class="position-relative">
-									<input type="text" placeholder="Xenon 1 (Level 200+)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-xenon-1" data-class="xenon" data-num="1">
-									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="xenon" data-num="1" checked>
-								</div>
-								<div class="position-relative">
-									<input type="text" placeholder="Xenon 2 (Arcane River)" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" id="input-xenon-2" data-class="xenon" data-num="2">
-									<input type="checkbox" class="form-check-input over-200-checkbox d-none position-absolute" data-class="xenon" data-num="2" checked>
-								</div>
-							</div>
-							<button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class="xenon"><i class="fas fa-plus"></i></button>
-						</div>
-					</div>
-					<div class="w-100 row d-flex justify-content-center flex-column align-items-center p-0 m-0">
-						<button class="generate-score-btn btn btn-small btn-outline-secondary font-weight-bold px-3 py-1 mb-2">Generate Relay Planner</button>
-						<button class="restart-btn btn btn-small btn-outline-danger font-weight-bold px-3 py-1">Restart</button>
-					</div>
 				</div>
 
 				<hr class="mt-0">
@@ -194,8 +196,8 @@
 							<tr>
 								<th scope="col" class="mission-desc align-middle" rowspan="2">Mission</th>
 								<th scope="col" class="text-center position-relative py-1" colspan="7">
-									<div class="next-week">Week 1 <i class="fas fa-angle-double-right"></i></div>
-									<div class="prev-week d-none"><i class="fas fa-angle-double-left"></i> Week 2</div>
+									<div class="next-week cursor-pointer">Week 1 <i class="fas fa-angle-double-right"></i></div>
+									<div class="prev-week cursor-pointer d-none"><i class="fas fa-angle-double-left"></i> Week 2</div>
 								</th>
 							</tr>
 							<tr class="date-range"></tr>

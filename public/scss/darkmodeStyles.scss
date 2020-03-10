@@ -1,0 +1,129 @@
+@use '_global-styles' as globals;
+
+body.dark-mode {
+	background-image: url('/images/dark.jpg');
+	color: globals.$dark-mode-white !important;
+
+	// Sidebar
+	.sidebar {
+		border-right: 2px solid globals.$dark-mode-navy-grey;
+
+		.sidebar-btn {
+			background-color: globals.$dark-mode-black;
+			color: globals.$dark-mode-white;
+			border: 2px solid globals.$dark-mode-black;
+			border-right: none;
+
+			a {
+				color: globals.$dark-mode-white;
+			}
+
+			&:hover, &.active {
+				background-color: globals.$dark-mode-navy-grey-opaque;
+				color: globals.$dark-mode-white;
+				border: 2px solid globals.$dark-mode-grey;
+				border-right: none;
+			}
+		}
+	}
+
+	// Pages
+	.single-info-page {
+		background-color: globals.$dark-mode-black;
+	}
+
+	// Form
+	form {
+		.form-control {
+			background-color: globals.$dark-mode-navy-grey;
+			color: globals.$dark-mode-white;
+			border: 1px solid globals.$dark-mode-grey;
+		}
+	}
+	
+	// Modal
+	.modal {
+		.modal-content {
+			border: 1px solid globals.$dark-mode-grey;
+			color: globals.$dark-mode-white;
+			background-color: globals.$dark-mode-black-opaque;
+
+			.modal-header {
+				border-bottom: 1px solid globals.$dark-mode-grey;
+			}
+
+			.modal-footer {
+				border-top: 1px solid globals.$dark-mode-grey;
+			}
+
+			.close {
+				color: globals.$dark-mode-white;
+				text-shadow: 0 1px 0 globals.$dark-mode-black;
+			}
+		}	
+	}
+
+	// Carousel
+	.carousel.carousel-fade {
+		.carousel-inner {
+			.carousel-item {
+				.carousel-caption {
+					color: globals.$dark-mode-white;
+				}
+			}
+		}
+	}
+
+	.carousel-control-prev, .carousel-control-next {
+		color: globals.$dark-mode-white;
+
+		&:hover, &:focus {
+			color: globals.$dark-mode-white;
+		}
+	}
+
+	// Table
+	table {
+		&.table-bordered {
+			td, th {
+				color: globals.$dark-mode-white;
+			}
+		}
+	}
+
+	// Others
+	.inline-div-img {
+		border-right: 1px solid globals.$dark-mode-grey;
+	}
+
+	.single-option-select {
+		border: 1px solid globals.$dark-mode-grey;
+
+		&:hover, &.active {
+			background-color: globals.$dark-mode-navy-grey-opaque;
+			color: globals.$dark-mode-white;
+		}
+
+		a {
+			color: globals.$dark-mode-white;
+		}
+	}
+
+	.radio-select-group {
+		.form-check {
+			.radio-select {
+				border: 1px solid globals.$dark-mode-grey;
+
+				&:hover, &.active {
+					background-color: globals.$dark-mode-navy-grey;
+					color: globals.$dark-mode-white;
+				}
+			}
+		}
+	}
+
+	.single-set-effect {
+		background-color: globals.$dark-mode-navy-grey !important;
+		border: 1px solid globals.$dark-mode-grey !important;
+	}
+}

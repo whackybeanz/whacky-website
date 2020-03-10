@@ -66,6 +66,18 @@
   text-decoration: underline;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.size-350 {
+  max-width: 350px;
+}
+
+.size-720 {
+  max-width: 720px;
+}
+
 /**********************
 
 	HTML Document
@@ -180,6 +192,69 @@ input[type=radio] {
 .carousel-control .carousel-control-next:hover,
 .carousel-control .carousel-control-next:focus {
   color: initial;
+}
+
+/**********************
+
+	Other
+
+**********************/
+.single-option-select {
+  border: 1px solid #ced4da;
+}
+.single-option-select:hover, .single-option-select.active {
+  background-color: rgba(0, 0, 0, 0.075);
+  color: #212529;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+.single-option-select a {
+  color: #212529;
+}
+
+.single-info-page {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.single-info-page.active {
+  display: flex;
+}
+@media (min-width: 768px) {
+  .single-info-page {
+    min-height: 100%;
+    display: none;
+    position: absolute;
+    top: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-content-div {
+    overflow: auto;
+  }
+}
+.main-content-div .info-section {
+  max-width: 840px;
+}
+
+.radio-select-group .form-check:first-of-type .radio-select {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.radio-select-group .form-check:last-of-type .radio-select {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.radio-select-group .form-check .radio-select {
+  height: 32px;
+  border: 1px solid #ced4da;
+  transition: all 0.3s;
+  line-height: 1;
+}
+.radio-select-group .form-check .radio-select:hover, .radio-select-group .form-check .radio-select.active {
+  background-color: rgba(0, 0, 0, 0.075);
+  color: #212529;
+  font-weight: bold;
+  transition: all 0.3s;
 }
 
 /*# sourceMappingURL=generalStyles.css.map */

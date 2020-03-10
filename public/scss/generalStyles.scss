@@ -51,6 +51,18 @@
 	text-decoration: underline;
 }
 
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.size-350 {
+	max-width: 350px;
+}
+
+.size-720 {
+	max-width: 720px;
+}
+
 /**********************
 
 	HTML Document
@@ -155,6 +167,77 @@ input[type="radio"] {
 
 		&:hover, &:focus {
 			color: initial;
+		}
+	}
+}
+
+/**********************
+
+	Other
+
+**********************/
+.single-option-select {
+	border: 1px solid globals.$light-mode-grey;
+
+	&:hover, &.active {
+		background-color: globals.$light-mode-light-grey;
+		color: globals.$light-mode-black;
+		font-weight: bold;
+		transition: all 0.3s;
+	}
+
+	a {
+		color: globals.$light-mode-black;
+	}
+}
+
+.single-info-page {
+	background-color: globals.$light-mode-white;
+
+	&.active {
+		display: flex;
+	}
+
+	@include globals.for-size(md) { 
+		min-height: 100%;
+		display: none;
+		position: absolute;
+		top: 0;
+	}
+}
+
+.main-content-div {
+	@include globals.for-size(md) { overflow: auto; }
+
+	.info-section {
+		max-width: 840px;
+	}
+}
+
+.radio-select-group {
+	.form-check {
+		&:first-of-type .radio-select {
+			border-top-left-radius: 5px;
+			border-bottom-left-radius: 5px;
+		}
+
+		&:last-of-type .radio-select {
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;
+		}
+
+		.radio-select {
+			height: 32px;
+			border: 1px solid globals.$light-mode-grey;
+			transition: all 0.3s;
+			line-height: 1;
+
+			&:hover, &.active {
+				background-color: globals.$light-mode-light-grey;
+				color: globals.$light-mode-black;
+				font-weight: bold;
+				transition: all 0.3s;
+			}
 		}
 	}
 }
