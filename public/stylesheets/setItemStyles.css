@@ -109,7 +109,7 @@
 }
 
 .set-item-effect-div .single-set-effect {
-  border: 1px solid #ced4da;
+  border: 1px solid rgba(206, 212, 218, 0.8);
 }
 .set-item-effect-div .single-set-effect .set-items .set-effect, .set-item-effect-div .single-set-effect .num-wearing-div .set-effect {
   opacity: 0.3;

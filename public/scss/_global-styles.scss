@@ -1,7 +1,8 @@
 // Colors
 $light-mode-black: rgba(33, 37, 41, 1.0);
-$light-mode-grey: rgba(206, 212, 218, 1.0);
+$light-mode-grey: rgba(206, 212, 218, 0.8);
 $light-mode-white: rgba(255, 255, 255, 0.8);
+$light-mode-white-opaque: rgba(255, 255, 255, 1.0);
 $light-mode-light-grey: rgba(0, 0, 0, 0.075);
 $light-mode-salmon: rgba(213, 93, 77, 0.5);
 
@@ -9,6 +10,7 @@ $dark-mode-black: rgba(0, 0, 0, 0.8);
 $dark-mode-black-opaque: rgba(0, 0, 0, 1.0);
 $dark-mode-grey: rgba(69, 77, 85, 1.0);
 $dark-mode-white: rgba(255, 255, 255, 0.8);
+$dark-mode-white-opaque: rgba(255, 255, 255, 1.0);
 $dark-mode-navy-grey: rgba(52, 58, 64, 0.8);
 $dark-mode-navy-grey-opaque: rgba(52, 58, 64, 1.0);
 

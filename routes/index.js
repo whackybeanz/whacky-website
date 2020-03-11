@@ -2,15 +2,15 @@ var express = require("express");
 var router 	= express.Router();
 
 router.get("/", function(req, res) {
-	res.render("index");
+	res.render("index", {extraStylesheet: "indexStyles", currNav: { main: "index" }});
 })
 
 router.get("/bonus-stats", function(req, res) {
-	res.render("flameIndex");
+	res.render("flameIndex", {extraStylesheet: "flameStyles", currNav: { main: "index", branch: "flames" }});
 })
 
 router.get("/set-items", function(req, res) {
-	res.render("setItemIndex");
+	res.render("setItemIndex", {extraStylesheet: "setItemStyles", currNav: { main: "index", branch: "set-items" }});
 })
 
 router.get("/set-items/:jobType", function(req, res) {
@@ -37,11 +37,11 @@ router.get("/set-items/:jobType", function(req, res) {
 							{ key: "damagePercent", name: "Damage %", symbol: "%" }, { key: "bossPercent", name: "Boss Damage %", symbol: "%" }, { key: "iedPercent", name: "Ignore Enemy DEF %", symbol: "%" }, 
 							{ key: "critDmgPercent", name: "Critical Damage %", symbol: "%" }];
 
-	res.render("setItemIndexActive", {allEquipTypes: allEquipTypes, allSetItems: compiledSetItems, allSetEffects: compiledSetEffects, jobType: jobType, statTypes: possibleStatTypes});
+	res.render("setItemIndexActive", {allEquipTypes: allEquipTypes, allSetItems: compiledSetItems, allSetEffects: compiledSetEffects, jobType: jobType, statTypes: possibleStatTypes, extraStylesheet: "setItemStyles", currNav: { main: "index", branch: "set-items" }});
 })
 
 router.get("/xwrdpzl", function(req, res) {
-	res.render("xword");
+	res.render("xword", {extraStylesheet: "xwordStyles", currNav: { main: "xword" }});
 })
 
 router.post("/xwrdpzl/answers", function(req, res) {
@@ -69,7 +69,7 @@ router.get("/relay", function(req, res) {
 
 	var classSelect = ["pirate", "warrior", "mage", "archer", "thief"];
 
-	res.render("relay", {missionList: missionList, classSelect: classSelect});
+	res.render("relay", {missionList: missionList, classSelect: classSelect, extraStylesheet: "relayStyles", currNav: { main: "relay" }});
 })
 
 module.exports = router;

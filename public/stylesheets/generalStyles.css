@@ -144,7 +144,7 @@ input[type=radio] {
   max-width: 720px;
 }
 .modal .modal-content {
-  border: 1px solid #ced4da;
+  border: 1px solid rgba(206, 212, 218, 0.8);
   color: #212529;
 }
 
@@ -200,7 +200,7 @@ input[type=radio] {
 
 **********************/
 .single-option-select {
-  border: 1px solid #ced4da;
+  border: 1px solid rgba(206, 212, 218, 0.8);
 }
 .single-option-select:hover, .single-option-select.active {
   background-color: rgba(0, 0, 0, 0.075);
@@ -210,6 +210,10 @@ input[type=radio] {
 }
 .single-option-select a {
   color: #212529;
+}
+
+.inline-div-img {
+  border-right: 1px solid rgba(206, 212, 218, 0.8);
 }
 
 .single-info-page {
@@ -246,7 +250,7 @@ input[type=radio] {
 }
 .radio-select-group .form-check .radio-select {
   height: 32px;
-  border: 1px solid #ced4da;
+  border: 1px solid rgba(206, 212, 218, 0.8);
   transition: all 0.3s;
   line-height: 1;
 }

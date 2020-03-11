@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../scss/navbarStyles.scss"],"names":[],"mappings":"AAAA;EACC","file":"navbarstyles.css"}
+{"version":3,"sourceRoot":"","sources":["../scss/navbarStyles.scss","../scss/_global-styles.scss"],"names":[],"mappings":"AAKG;EACC,OCLe;;ADSjB;EACC,kBCPuB;EDQvB;;AAGC;EACC,OCfc;EDgBd,kBCZmB;;;ADmBxB;EACC","file":"navbarstyles.css"}

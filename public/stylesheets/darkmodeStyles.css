@@ -2,6 +2,20 @@ body.dark-mode {
   background-image: url("/images/dark.jpg");
   color: rgba(255, 255, 255, 0.8) !important;
 }
+body.dark-mode .navbar .nav-item .nav-link:hover, body.dark-mode .navbar .nav-item .nav-link.active {
+  color: white;
+}
+body.dark-mode .navbar .nav-item .dropdown-menu {
+  background-color: #343a40;
+  border: 1px solid #454d55;
+}
+body.dark-mode .navbar .nav-item .dropdown-menu .dropdown-item {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .navbar .nav-item .dropdown-menu .dropdown-item:hover, body.dark-mode .navbar .nav-item .dropdown-menu .dropdown-item.active {
+  color: white;
+  background-color: #454d55;
+}
 body.dark-mode .sidebar {
   border-right: 2px solid rgba(52, 58, 64, 0.8);
 }

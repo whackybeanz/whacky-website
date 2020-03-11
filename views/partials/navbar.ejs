@@ -6,16 +6,24 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active mx-3">
-					<a class="nav-link" href="/">Maple Info Corner</a>
+				<li class="nav-item dropdown mx-3 <% if(currNav.main === "index") { %>active<% } %>">
+					<a class="nav-link dropdown-toggle" href="/" id="nav-index-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Maple Info Corner</a>
+					<div class="dropdown-menu" aria-labelledby="nav-index-dropdown">
+						<a class="dropdown-item <% if(currNav.branch === "flames") { %>active<% } %>" href="/bonus-stats">Bonus Stats & Flames</a>
+						<a class="dropdown-item <% if(currNav.branch === "set-items") { %>active<% } %>" href="/set-items">Set Items</a>
+						<a class="dropdown-item <% if(currNav.branch === "star-force") { %>active<% } %>" href="#">Star Force</a>
+					</div>
 				</li>
-				<li class="nav-item mx-3">
+				<li class="nav-item mx-3 <% if(currNav.main === "relay") { %>active<% } %>">
 					<a class="nav-link" href="/relay">Tactical Relay</a>
 				</li>
-				<li class="nav-item mx-3">
+				<li class="nav-item mx-3 <% if(currNav.main === "xword") { %>active<% } %>">
+					<a class="nav-link" href="/xwrdpzl">Crossword</a>
+				</li>
+				<li class="nav-item mx-3 <% if(currNav.main === "stories") { %>active<% } %>">
 					<a class="nav-link" href="#">Stories</a>
 				</li>
-				<li class="nav-item mx-3">
+				<li class="nav-item mx-3 <% if(currNav.main === "about") { %>active<% } %>">
 					<a class="nav-link" href="#">About Me</a>
 				</li>
 			</ul>

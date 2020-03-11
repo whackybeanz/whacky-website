@@ -1,3 +1,15 @@
+.navbar .nav-item .nav-link:hover, .navbar .nav-item .nav-link.active {
+  color: #212529;
+}
+.navbar .nav-item .dropdown-menu {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+}
+.navbar .nav-item .dropdown-menu .dropdown-item:hover, .navbar .nav-item .dropdown-menu .dropdown-item.active {
+  color: #212529;
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
 .fa-moon {
   transform: scaleX(-1);
 }

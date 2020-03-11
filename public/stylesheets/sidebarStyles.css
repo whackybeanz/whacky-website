@@ -1,6 +1,6 @@
 .sidebar {
   height: 100%;
-  border-right: 2px solid #ced4da;
+  border-right: 2px solid rgba(206, 212, 218, 0.8);
 }
 .sidebar .sidebar-btn {
   height: 48px;
@@ -19,7 +19,7 @@
   transition: all 0.3s;
   background-color: rgba(0, 0, 0, 0.075);
   color: #212529;
-  border: 2px solid #ced4da;
+  border: 2px solid rgba(206, 212, 218, 0.8);
   border-right: none;
 }
 .sidebar .sidebar-btn a {

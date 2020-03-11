@@ -4,6 +4,32 @@ body.dark-mode {
 	background-image: url('/images/dark.jpg');
 	color: globals.$dark-mode-white !important;
 
+	// Navbar 
+	.navbar {
+		.nav-item {
+			.nav-link {
+				&:hover, &.active {
+					color: globals.$dark-mode-white-opaque;
+				}
+			}
+
+			.dropdown-menu {
+				background-color: globals.$dark-mode-navy-grey-opaque;
+				border: 1px solid globals.$dark-mode-grey;
+
+				.dropdown-item {
+					color: globals.$dark-mode-white;
+
+					&:hover, &.active {
+						color: globals.$dark-mode-white-opaque;
+						background-color: globals.$dark-mode-grey;
+					}
+				}
+			}
+		}
+	}
+	
+
 	// Sidebar
 	.sidebar {
 		border-right: 2px solid globals.$dark-mode-navy-grey;

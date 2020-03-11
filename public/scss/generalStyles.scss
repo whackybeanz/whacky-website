@@ -191,6 +191,10 @@ input[type="radio"] {
 	}
 }
 
+.inline-div-img {
+	border-right: 1px solid globals.$light-mode-grey;
+}
+
 .single-info-page {
 	background-color: globals.$light-mode-white;
 

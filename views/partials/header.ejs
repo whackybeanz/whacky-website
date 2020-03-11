@@ -8,12 +8,10 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheets/navbarStyles.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/generalStyles.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/sidebarStyles.css">
-	<link rel="stylesheet" type="text/css" href="/stylesheets/indexStyles.css">
-	<link rel="stylesheet" type="text/css" href="/stylesheets/flameStyles.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/darkmodeStyles.css">
-	<link rel="stylesheet" type="text/css" href="/stylesheets/setItemStyles.css">
-	<link rel="stylesheet" type="text/css" href="/stylesheets/xwordStyles.css">
-	<link rel="stylesheet" type="text/css" href="/stylesheets/relayStyles.css">
+	<% if(extraStylesheet) { %>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/<%= extraStylesheet %>.css">
+	<% } %>
 	<script type="text/javascript" src="/scripts/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="/scripts/bootstrap.bundle.min.js"></script>
 	<script src="https://kit.fontawesome.com/6d7440431d.js"></script>
