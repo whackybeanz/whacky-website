@@ -35,7 +35,7 @@
 	font-size: 0.9rem;
 
 	@include globals.for-size(md) { font-size: 0.875rem; }
-	@include globals.for-size(xl) { font-size: 0.75rem; }
+	@include globals.for-size(xl) { font-size: 0.8rem; }
 }
 
 .font-caption, .font-footnote {

@@ -1,3 +1,7 @@
+$("#gear-level, #base-wa-ma").on("click", function() {
+	$(this).select();
+})
+
 $(".equip-type-input").on("click", function() {
 	$(".equip-type-input").removeClass("active");
 	$(this).addClass("active");

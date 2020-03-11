@@ -2,15 +2,21 @@ var express = require("express");
 var router 	= express.Router();
 
 router.get("/", function(req, res) {
-	res.render("index", {extraStylesheet: "indexStyles", currNav: { main: "index" }});
+	res.locals.extraStylesheet = "indexStyles";
+	res.locals.currNav = { main: "index" };
+	res.render("index");
 })
 
 router.get("/bonus-stats", function(req, res) {
-	res.render("flameIndex", {extraStylesheet: "flameStyles", currNav: { main: "index", branch: "flames" }});
+	res.locals.extraStylesheet = "flameStyles";
+	res.locals.currNav = { main: "index", branch: "flames" };
+	res.render("flameIndex");
 })
 
 router.get("/set-items", function(req, res) {
-	res.render("setItemIndex", {extraStylesheet: "setItemStyles", currNav: { main: "index", branch: "set-items" }});
+	res.locals.extraStylesheet = "setItemStyles";
+	res.locals.currNav = { main: "index", branch: "set-items" };
+	res.render("setItemIndex");
 })
 
 router.get("/set-items/:jobType", function(req, res) {
@@ -37,10 +43,14 @@ router.get("/set-items/:jobType", function(req, res) {
 							{ key: "damagePercent", name: "Damage %", symbol: "%" }, { key: "bossPercent", name: "Boss Damage %", symbol: "%" }, { key: "iedPercent", name: "Ignore Enemy DEF %", symbol: "%" }, 
 							{ key: "critDmgPercent", name: "Critical Damage %", symbol: "%" }];
 
-	res.render("setItemIndexActive", {allEquipTypes: allEquipTypes, allSetItems: compiledSetItems, allSetEffects: compiledSetEffects, jobType: jobType, statTypes: possibleStatTypes, extraStylesheet: "setItemStyles", currNav: { main: "index", branch: "set-items" }});
+	res.locals.extraStylesheet = "setItemStyles";
+	res.locals.currNav = { main: "index", branch: "set-items" };
+	res.render("setItemIndexActive", {allEquipTypes: allEquipTypes, allSetItems: compiledSetItems, allSetEffects: compiledSetEffects, jobType: jobType, statTypes: possibleStatTypes});
 })
 
 router.get("/xwrdpzl", function(req, res) {
+	res.locals.extraStylesheet = "xwordStyles";
+	res.locals.currNav = { main: "xword" };
 	res.render("xword", {extraStylesheet: "xwordStyles", currNav: { main: "xword" }});
 })
 
@@ -69,7 +79,14 @@ router.get("/relay", function(req, res) {
 
 	var classSelect = ["pirate", "warrior", "mage", "archer", "thief"];
 
-	res.render("relay", {missionList: missionList, classSelect: classSelect, extraStylesheet: "relayStyles", currNav: { main: "relay" }});
+	res.locals.extraStylesheet = "relayStyles";
+	res.locals.currNav = { main: "relay" };
+	res.render("relay", {missionList: missionList, classSelect: classSelect});
+})
+
+router.get("/about", function(req, res) {
+	res.locals.currNav = { main: "about" };
+	res.render("about");
 })
 
 module.exports = router;
