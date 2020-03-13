@@ -85,6 +85,7 @@ router.get("/relay", function(req, res) {
 })
 
 router.get("/about", function(req, res) {
+	res.locals.extraStylesheet = "aboutStyles";
 	res.locals.currNav = { main: "about" };
 	res.render("about");
 })

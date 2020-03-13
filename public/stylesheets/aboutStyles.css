@@ -1,0 +1,26 @@
+.single-social a:hover, .single-social a.active {
+  background-color: rgba(0, 0, 0, 0.075);
+  color: #212529;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.single-logo-div {
+  height: 50px;
+}
+
+.single-logo {
+  max-height: 50px;
+}
+
+.single-logo-small {
+  max-height: 35px;
+}
+
+.horz-partition {
+  width: 75px;
+  height: 1px;
+  border-top: 1px solid rgba(206, 212, 218, 0.8);
+}
+
+/*# sourceMappingURL=aboutstyles.css.map */
