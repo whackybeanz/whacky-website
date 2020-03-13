@@ -163,7 +163,9 @@ $(".add-character-btn").on("click", function() {
 	localStorage.setItem(`${addClassType}NumExtraInputs`, numCharacters+1-2);
 })
 
-$(".generate-score-btn").on("click", function() {
+$(".generate-score-btn").on("click", function(event) {
+	event.preventDefault();
+
 	if($("#is-perfect-score").prop("checked")) {
 		$(".class-input").each(function(index, elem) {
 			var classType = $(elem).data("class");
