@@ -1,20 +1,38 @@
+.single-social a {
+  color: #212529;
+}
 .single-social a:hover, .single-social a.active {
   background-color: rgba(0, 0, 0, 0.075);
   color: #212529;
   font-weight: bold;
-  transition: all 0.3s;
 }
 
 .single-logo-div {
   height: 50px;
 }
 
-.single-logo {
+.about-logo {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.about-logo.single-logo {
   max-height: 50px;
 }
-
-.single-logo-small {
-  max-height: 35px;
+.about-logo.single-logo-med {
+  max-height: 40px;
+}
+.about-logo.single-logo-small {
+  max-height: 30px;
+}
+.about-logo.discord-logo {
+  background-image: url("../images/logos/discord.svg");
+}
+.about-logo.gmail-logo {
+  background-image: url("../images/logos/gmail-logo-light.png");
+}
+.about-logo.youtube-logo {
+  background-image: url("../images/logos/youtube-logo-light.png");
 }
 
 .horz-partition {
@@ -23,4 +41,4 @@
   border-top: 1px solid rgba(206, 212, 218, 0.8);
 }
 
-/*# sourceMappingURL=aboutstyles.css.map */
+/*# sourceMappingURL=aboutStyles.css.map */

@@ -93,5 +93,19 @@ body.dark-mode .single-set-effect {
   background-color: rgba(52, 58, 64, 0.8) !important;
   border: 1px solid #454d55 !important;
 }
+body.dark-mode .single-social a {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .single-social a:hover, body.dark-mode .single-social a.active {
+  background-color: #343a40;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+}
+body.dark-mode .about-logo.gmail-logo {
+  background-image: url("../images/logos/gmail-logo-dark.png");
+}
+body.dark-mode .about-logo.youtube-logo {
+  background-image: url("../images/logos/youtube-logo-dark.png");
+}
 
-/*# sourceMappingURL=darkmodestyles.css.map */
+/*# sourceMappingURL=darkmodeStyles.css.map */

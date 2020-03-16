@@ -2,11 +2,12 @@
 
 .single-social {
 	a {
+		color: globals.$light-mode-black;
+
 		&:hover, &.active {
 			background-color: globals.$light-mode-light-grey;
 			color: globals.$light-mode-black;
 			font-weight: bold;
-			transition: all 0.3s;
 		}
 	}
 }
@@ -15,12 +16,34 @@
 	height: 50px;
 }
 
-.single-logo {
-	max-height: 50px;
-}
+.about-logo {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 
-.single-logo-small {
-	max-height: 35px;
+	&.single-logo {
+		max-height: 50px;
+	}
+
+	&.single-logo-med {
+		max-height: 40px;
+	}
+
+	&.single-logo-small {
+		max-height: 30px;
+	}
+
+	&.discord-logo {
+		background-image: url("../images/logos/discord.svg");
+	}
+
+	&.gmail-logo {
+		background-image: url("../images/logos/gmail-logo-light.png");
+	}
+
+	&.youtube-logo {
+		background-image: url("../images/logos/youtube-logo-light.png");
+	}
 }
 
 .horz-partition {

@@ -152,4 +152,26 @@ body.dark-mode {
 		background-color: globals.$dark-mode-navy-grey !important;
 		border: 1px solid globals.$dark-mode-grey !important;
 	}
+
+	.single-social {
+		a {
+			color: globals.$dark-mode-white;
+
+			&:hover, &.active {
+				background-color: globals.$dark-mode-navy-grey-opaque;
+				color: globals.$dark-mode-white;
+				font-weight: bold;
+			}
+		}
+	}
+
+	.about-logo {
+		&.gmail-logo {
+			background-image: url("../images/logos/gmail-logo-dark.png");
+		}
+
+		&.youtube-logo {
+			background-image: url("../images/logos/youtube-logo-dark.png");
+		}
+	}
 }
