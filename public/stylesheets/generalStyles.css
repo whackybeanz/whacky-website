@@ -111,7 +111,6 @@ html, body {
 }
 
 body {
-  background-image: url("/images/light.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -143,10 +142,6 @@ input[type=radio] {
 .modal .modal-dialog {
   max-width: 720px;
 }
-.modal .modal-content {
-  border: 1px solid rgba(206, 212, 218, 0.8);
-  color: #212529;
-}
 
 /**********************
 
@@ -172,7 +167,6 @@ input[type=radio] {
   right: initial;
   bottom: initial;
   left: initial;
-  color: #212529;
 }
 
 .carousel-control {
@@ -182,7 +176,6 @@ input[type=radio] {
 .carousel-control .carousel-control-next {
   width: initial;
   top: initial;
-  color: #212529;
 }
 .carousel-control .carousel-control-prev > i,
 .carousel-control .carousel-control-next > i {
@@ -199,26 +192,11 @@ input[type=radio] {
 	Other
 
 **********************/
-.single-option-select {
-  border: 1px solid rgba(206, 212, 218, 0.8);
-}
 .single-option-select:hover, .single-option-select.active {
-  background-color: rgba(0, 0, 0, 0.075);
-  color: #212529;
   font-weight: bold;
   transition: all 0.3s;
 }
-.single-option-select a {
-  color: #212529;
-}
 
-.inline-div-img {
-  border-right: 1px solid rgba(206, 212, 218, 0.8);
-}
-
-.single-info-page {
-  background-color: rgba(255, 255, 255, 0.8);
-}
 .single-info-page.active {
   display: flex;
 }
@@ -250,13 +228,10 @@ input[type=radio] {
 }
 .radio-select-group .form-check .radio-select {
   height: 32px;
-  border: 1px solid rgba(206, 212, 218, 0.8);
   transition: all 0.3s;
   line-height: 1;
 }
 .radio-select-group .form-check .radio-select:hover, .radio-select-group .form-check .radio-select.active {
-  background-color: rgba(0, 0, 0, 0.075);
-  color: #212529;
   font-weight: bold;
   transition: all 0.3s;
 }

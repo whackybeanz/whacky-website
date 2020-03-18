@@ -1,0 +1,91 @@
+body {
+  background-image: url("/images/light.jpg");
+  background-color: white;
+  color: #212529;
+}
+body .navbar .nav-item .nav-link:hover, body .navbar .nav-item .nav-link.active {
+  color: #212529;
+}
+body .navbar .nav-item .dropdown-menu {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+}
+body .navbar .nav-item .dropdown-menu .dropdown-item {
+  color: #212529;
+}
+body .navbar .nav-item .dropdown-menu .dropdown-item:hover, body .navbar .nav-item .dropdown-menu .dropdown-item.active {
+  color: #212529;
+  background-color: rgba(0, 0, 0, 0.075);
+}
+body .sidebar {
+  border-right: 2px solid rgba(206, 212, 218, 0.8);
+}
+body .sidebar .sidebar-btn {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #212529;
+}
+body .sidebar .sidebar-btn a {
+  color: #212529;
+}
+body .sidebar .sidebar-btn:hover, body .sidebar .sidebar-btn.active {
+  background-color: rgba(0, 0, 0, 0.075);
+  color: #212529;
+  border: 2px solid rgba(206, 212, 218, 0.8);
+}
+body .single-info-page {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+body .modal .modal-content {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+  color: #212529;
+}
+body .carousel.carousel-fade .carousel-inner .carousel-item .carousel-caption {
+  color: #212529;
+}
+body .carousel-control-prev, body .carousel-control-next {
+  color: #212529;
+}
+body .inline-div-img {
+  border-right: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .single-option-select {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .single-option-select:hover, body .single-option-select.active {
+  background-color: rgba(0, 0, 0, 0.075);
+  color: #212529;
+}
+body .single-option-select a {
+  color: #212529;
+}
+body .radio-select-group .form-check .radio-select {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .radio-select-group .form-check .radio-select:hover, body .radio-select-group .form-check .radio-select.active {
+  background-color: rgba(0, 0, 0, 0.075);
+  color: #212529;
+}
+body .single-set-effect {
+  background-color: white;
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .single-social a {
+  color: #212529;
+}
+body .single-social a:hover, body .single-social a.active {
+  background-color: rgba(0, 0, 0, 0.075);
+  color: #212529;
+  font-weight: bold;
+}
+body .about-logo.gmail-logo {
+  background-image: url("../images/logos/gmail-logo-light.png");
+}
+body .about-logo.youtube-logo {
+  background-image: url("../images/logos/youtube-logo-light.png");
+}
+body .horz-partition {
+  border-top: 1px solid rgba(206, 212, 218, 0.8);
+}
+
+/*# sourceMappingURL=lightModeStyles.css.map */

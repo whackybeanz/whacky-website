@@ -1,6 +1,7 @@
 body.dark-mode {
   background-image: url("/images/dark.jpg");
-  color: rgba(255, 255, 255, 0.8) !important;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 body.dark-mode .navbar .nav-item .nav-link:hover, body.dark-mode .navbar .nav-item .nav-link.active {
   color: white;
@@ -23,7 +24,6 @@ body.dark-mode .sidebar .sidebar-btn {
   background-color: rgba(0, 0, 0, 0.8);
   color: rgba(255, 255, 255, 0.8);
   border: 2px solid rgba(0, 0, 0, 0.8);
-  border-right: none;
 }
 body.dark-mode .sidebar .sidebar-btn a {
   color: rgba(255, 255, 255, 0.8);
@@ -32,7 +32,6 @@ body.dark-mode .sidebar .sidebar-btn:hover, body.dark-mode .sidebar .sidebar-btn
   background-color: #343a40;
   color: rgba(255, 255, 255, 0.8);
   border: 2px solid #454d55;
-  border-right: none;
 }
 body.dark-mode .single-info-page {
   background-color: rgba(0, 0, 0, 0.8);
@@ -90,8 +89,8 @@ body.dark-mode .radio-select-group .form-check .radio-select:hover, body.dark-mo
   color: rgba(255, 255, 255, 0.8);
 }
 body.dark-mode .single-set-effect {
-  background-color: rgba(52, 58, 64, 0.8) !important;
-  border: 1px solid #454d55 !important;
+  background-color: rgba(52, 58, 64, 0.8);
+  border: 1px solid #454d55;
 }
 body.dark-mode .single-social a {
   color: rgba(255, 255, 255, 0.8);

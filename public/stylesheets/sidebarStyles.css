@@ -1,14 +1,10 @@
 .sidebar {
   height: 100%;
-  border-right: 2px solid rgba(206, 212, 218, 0.8);
 }
 .sidebar .sidebar-btn {
   height: 48px;
   line-height: 1.1;
   cursor: pointer;
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #212529;
   border-right: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -17,13 +13,7 @@
 .sidebar .sidebar-btn:hover, .sidebar .sidebar-btn.active {
   font-weight: bold;
   transition: all 0.3s;
-  background-color: rgba(0, 0, 0, 0.075);
-  color: #212529;
-  border: 2px solid rgba(206, 212, 218, 0.8);
   border-right: none;
 }
-.sidebar .sidebar-btn a {
-  color: initial;
-}
 
-/*# sourceMappingURL=sidebarstyles.css.map */
+/*# sourceMappingURL=sidebarStyles.css.map */

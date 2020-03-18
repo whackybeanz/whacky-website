@@ -1,17 +1,5 @@
 @use '_global-styles' as globals;
 
-.single-social {
-	a {
-		color: globals.$light-mode-black;
-
-		&:hover, &.active {
-			background-color: globals.$light-mode-light-grey;
-			color: globals.$light-mode-black;
-			font-weight: bold;
-		}
-	}
-}
-
 .single-logo-div {
 	height: 50px;
 }
@@ -36,18 +24,9 @@
 	&.discord-logo {
 		background-image: url("../images/logos/discord.svg");
 	}
-
-	&.gmail-logo {
-		background-image: url("../images/logos/gmail-logo-light.png");
-	}
-
-	&.youtube-logo {
-		background-image: url("../images/logos/youtube-logo-light.png");
-	}
 }
 
 .horz-partition {
 	width: 75px;
 	height: 1px;
-	border-top: 1px solid globals.$light-mode-grey;
 }

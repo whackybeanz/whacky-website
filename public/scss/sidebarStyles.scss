@@ -2,15 +2,11 @@
 
 .sidebar {
 	height: 100%;
-	border-right: 2px solid globals.$light-mode-grey;
 
 	.sidebar-btn {
 		height: 48px;
 		line-height: 1.1;
 		cursor: pointer;
-		border: 2px solid globals.$light-mode-white;
-		background-color: globals.$light-mode-white;
-		color: globals.$light-mode-black;
 		border-right: none;
 		border-top-left-radius: 5px;
 		border-bottom-left-radius: 5px;
@@ -19,14 +15,7 @@
 		&:hover, &.active {
 			font-weight: bold;
 			transition: all 0.3s;
-			background-color: globals.$light-mode-light-grey;
-			color: globals.$light-mode-black;
-			border: 2px solid globals.$light-mode-grey;
 			border-right: none;
-		}
-
-		a {
-			color: initial;
 		}
 	}
 }
