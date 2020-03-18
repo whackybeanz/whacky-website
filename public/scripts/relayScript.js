@@ -215,87 +215,89 @@ function planRelay(charList) {
 
 	// Fill in from first cell if less than 9 inputs
 	// Fill in backwards if 9 or more inputs
-	if(totalValidInputs < 9) {
-		startCount = 1;
-		endCount = totalValidInputs+1;
-	} else {
-		startCount = 9;
-		endCount = 0;
-	}
+	if(totalValidInputs > 0) {
+		if(totalValidInputs < 9) {
+			startCount = 1;
+			endCount = totalValidInputs+1;
+		} else {
+			startCount = 9;
+			endCount = 0;
+		}
 
-	for(let i = 1; i <= 14; i++) {
-		let tempCharList = [...charList];
-		let currCount = startCount;
+		for(let i = 1; i <= 14; i++) {
+			let tempCharList = [...charList];
+			let currCount = startCount;
 
-		do {
-			var requiredClass = $(`.planned-characters.mission-${currCount}.day-${i}`).data("class");
-			var plannedIgn = ""; //tempCharList.pop().ign;
-			var indexToRemove;
-			let foundIgnObj;
+			do {
+				var requiredClass = $(`.planned-characters.mission-${currCount}.day-${i}`).data("class");
+				var plannedIgn = ""; //tempCharList.pop().ign;
+				var indexToRemove;
+				let foundIgnObj;
 
-			if(currCount == 9) {
-				[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, requiredClass, true);
+				if(currCount == 9) {
+					[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, requiredClass, true);
 
-				if(!foundIgnObj) {
-					[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, "", true);
-				}
+					if(!foundIgnObj) {
+						[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, "", true);
+					}
 
-				if(!foundIgnObj) {
-					indexToRemove = -1;
-				}
-			} else {
-				// Priority list:
-				// Find matching class and over 200, THEN
-				// Find matching class but under 200, THEN
-				// Find non-matching class and over 200, THEN
-				// Find non-matching class but under 200
-				[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, requiredClass, true)
-
-				if(!foundIgnObj) {
-					[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, requiredClass, false);
-				}
-
-				if(!foundIgnObj) {
-					[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, "", true);
-				}
-
-				if(!foundIgnObj) {
-					[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, "", false);
-				}
-
-				if(!foundIgnObj) {
-					indexToRemove = -1;
-				}
-			}
-
-			if(indexToRemove !== -1) {
-				tempCharList.splice(indexToRemove, 1);
-				//$(`.planned-characters.mission-${currCount}.day-${i}`).html(`<div data-class="${foundIgnObj.classType}" data-level-bonus=true>${foundIgnObj.ign}</div>`)
-				$(`.planned-characters.mission-${currCount}.day-${i} .recommended-char`).text(`${foundIgnObj.ign}`).attr({"data-class": foundIgnObj.classType, "data-level-bonus": foundIgnObj.isOver200});
-
-				if(foundIgnObj.classType === requiredClass) {
-					$(`.planned-characters.mission-${currCount}.day-${i} .icon-${requiredClass}`).addClass("active");
-				}
-
-				if(foundIgnObj.classType === "xenon" && (requiredClass === "thief" || requiredClass === "pirate")) {
-					$(`.planned-characters.mission-${currCount}.day-${i} .icon-xenon`).addClass("active");
-				}
-
-				if(foundIgnObj.isOver200) {
-					$(`.planned-characters.mission-${currCount}.day-${i} .icon-over-200`).addClass("active");
+					if(!foundIgnObj) {
+						indexToRemove = -1;
+					}
 				} else {
-					$(`.planned-characters.mission-${currCount}.day-${i} .icon-over-200`).removeClass("active");
-				}
-			} else {
-				$(`.planned-characters.mission-${currCount}.day-${i} .recommended-char`).text("")
-			}
+					// Priority list:
+					// Find matching class and over 200, THEN
+					// Find matching class but under 200, THEN
+					// Find non-matching class and over 200, THEN
+					// Find non-matching class but under 200
+					[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, requiredClass, true)
 
-			if(totalValidInputs < 9) {
-				currCount += 1;
-			} else {
-				currCount -= 1;
-			}
-		} while(currCount !== endCount);
+					if(!foundIgnObj) {
+						[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, requiredClass, false);
+					}
+
+					if(!foundIgnObj) {
+						[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, "", true);
+					}
+
+					if(!foundIgnObj) {
+						[indexToRemove, foundIgnObj] = findMatchingChar(tempCharList, "", false);
+					}
+
+					if(!foundIgnObj) {
+						indexToRemove = -1;
+					}
+				}
+
+				if(indexToRemove !== -1) {
+					tempCharList.splice(indexToRemove, 1);
+					//$(`.planned-characters.mission-${currCount}.day-${i}`).html(`<div data-class="${foundIgnObj.classType}" data-level-bonus=true>${foundIgnObj.ign}</div>`)
+					$(`.planned-characters.mission-${currCount}.day-${i} .recommended-char`).text(`${foundIgnObj.ign}`).attr({"data-class": foundIgnObj.classType, "data-level-bonus": foundIgnObj.isOver200});
+
+					if(foundIgnObj.classType === requiredClass) {
+						$(`.planned-characters.mission-${currCount}.day-${i} .icon-${requiredClass}`).addClass("active");
+					}
+
+					if(foundIgnObj.classType === "xenon" && (requiredClass === "thief" || requiredClass === "pirate")) {
+						$(`.planned-characters.mission-${currCount}.day-${i} .icon-xenon`).addClass("active");
+					}
+
+					if(foundIgnObj.isOver200) {
+						$(`.planned-characters.mission-${currCount}.day-${i} .icon-over-200`).addClass("active");
+					} else {
+						$(`.planned-characters.mission-${currCount}.day-${i} .icon-over-200`).removeClass("active");
+					}
+				} else {
+					$(`.planned-characters.mission-${currCount}.day-${i} .recommended-char`).text("")
+				}
+
+				if(totalValidInputs < 9) {
+					currCount += 1;
+				} else {
+					currCount -= 1;
+				}
+			} while(currCount !== endCount);
+		}
 	}
 }
 
