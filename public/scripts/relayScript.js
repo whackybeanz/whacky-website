@@ -149,7 +149,9 @@ $(".input-list").on("change", ".over-200-checkbox", function() {
 	}
 })
 
-$(".add-character-btn").on("click", function() {
+$(".add-character-btn").on("click", function(event) {
+	event.preventDefault();
+
 	var addClassType = $(this).data("class");
 	var numCharacters = $(`.input-${addClassType}-list .class-input`).length;
 	var isPerfectScore = $("#is-perfect-score").prop("checked") ? "d-none" : ""
