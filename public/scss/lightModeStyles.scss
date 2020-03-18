@@ -1,0 +1,143 @@
+@use '_global-styles' as globals;
+
+body {
+	background-image: url("/images/light.jpg");
+	background-color: globals.$light-mode-white-opaque;
+	color: globals.$light-mode-black;
+
+	// Navbar 
+	.navbar {
+		.nav-item {
+			.nav-link {
+				&:hover, &.active {
+					color: globals.$light-mode-black;
+				}
+			}
+
+			.dropdown-menu {
+				background-color: globals.$light-mode-white-opaque;
+				border: 1px solid globals.$light-mode-light-grey;
+
+				.dropdown-item {
+					color: globals.$light-mode-black;
+
+					&:hover, &.active {
+						color: globals.$light-mode-black;
+						background-color: globals.$light-mode-light-grey;
+					}
+				}
+			}
+		}
+	}
+
+	// Sidebar
+	.sidebar {
+		border-right: 2px solid globals.$light-mode-grey;
+
+		.sidebar-btn {
+			border: 2px solid globals.$light-mode-white;
+			background-color: globals.$light-mode-white;
+			color: globals.$light-mode-black;
+
+			a {
+				color: globals.$light-mode-black;
+			}
+
+			&:hover, &.active {
+				background-color: globals.$light-mode-light-grey;
+				color: globals.$light-mode-black;
+				border: 2px solid globals.$light-mode-grey;
+			}
+		}
+	}
+
+	// Pages
+	.single-info-page {
+		background-color: globals.$light-mode-white;
+	}
+
+	// Modal
+	.modal {
+		.modal-content {
+			border: 1px solid globals.$light-mode-grey;
+			color: globals.$light-mode-black;
+		}
+	}
+
+	// Carousel
+	.carousel.carousel-fade {
+		.carousel-inner {
+			.carousel-item {
+	    		.carousel-caption {
+					color: globals.$light-mode-black;
+	    		}
+	    	}
+	    }
+	}
+
+	.carousel-control-prev, .carousel-control-next {
+		color: globals.$light-mode-black;
+	}
+
+	// Others
+	.inline-div-img {
+		border-right: 1px solid globals.$light-mode-grey;
+	}
+
+	.single-option-select {
+		border: 1px solid globals.$light-mode-grey;
+
+		&:hover, &.active {
+			background-color: globals.$light-mode-light-grey;
+			color: globals.$light-mode-black;
+		}
+
+		a {
+			color: globals.$light-mode-black;
+		}
+	}
+
+	.radio-select-group {
+		.form-check {
+			.radio-select {
+				border: 1px solid globals.$light-mode-grey;
+
+				&:hover, &.active {
+					background-color: globals.$light-mode-light-grey;
+					color: globals.$light-mode-black;
+				}
+			}
+		}
+	}
+
+	.single-set-effect {
+		background-color: globals.$light-mode-white-opaque;
+		border: 1px solid globals.$light-mode-grey;
+	}
+
+	.single-social {
+		a {
+			color: globals.$light-mode-black;
+
+			&:hover, &.active {
+				background-color: globals.$light-mode-light-grey;
+				color: globals.$light-mode-black;
+				font-weight: bold;
+			}
+		}
+	}
+
+	.about-logo {
+		&.gmail-logo {
+			background-image: url("../images/logos/gmail-logo-light.png");
+		}
+
+		&.youtube-logo {
+			background-image: url("../images/logos/youtube-logo-light.png");
+		}
+	}
+
+	.horz-partition {
+		border-top: 1px solid globals.$light-mode-grey;
+	}
+}

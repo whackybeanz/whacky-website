@@ -1,27 +1,5 @@
 @use '_global-styles' as globals;
 
-.navbar {
-	.nav-item {
-		.nav-link {
-			&:hover, &.active {
-				color: globals.$light-mode-black;
-			}
-		}
-
-		.dropdown-menu {
-			background-color: globals.$light-mode-white-opaque;
-			border: 1px solid globals.$light-mode-light-grey;
-
-			.dropdown-item {
-				&:hover, &.active {
-					color: globals.$light-mode-black;
-					background-color: globals.$light-mode-light-grey;
-				}
-			}
-		}
-	}
-}
-
 .fa-moon {
 	transform: scaleX(-1);
 }

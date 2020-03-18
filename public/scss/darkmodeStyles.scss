@@ -2,7 +2,8 @@
 
 body.dark-mode {
 	background-image: url('/images/dark.jpg');
-	color: globals.$dark-mode-white !important;
+	background-color: globals.$dark-mode-black;
+	color: globals.$dark-mode-white;
 
 	// Navbar 
 	.navbar {
@@ -29,7 +30,6 @@ body.dark-mode {
 		}
 	}
 	
-
 	// Sidebar
 	.sidebar {
 		border-right: 2px solid globals.$dark-mode-navy-grey;
@@ -38,7 +38,6 @@ body.dark-mode {
 			background-color: globals.$dark-mode-black;
 			color: globals.$dark-mode-white;
 			border: 2px solid globals.$dark-mode-black;
-			border-right: none;
 
 			a {
 				color: globals.$dark-mode-white;
@@ -48,7 +47,6 @@ body.dark-mode {
 				background-color: globals.$dark-mode-navy-grey-opaque;
 				color: globals.$dark-mode-white;
 				border: 2px solid globals.$dark-mode-grey;
-				border-right: none;
 			}
 		}
 	}
@@ -149,8 +147,8 @@ body.dark-mode {
 	}
 
 	.single-set-effect {
-		background-color: globals.$dark-mode-navy-grey !important;
-		border: 1px solid globals.$dark-mode-grey !important;
+		background-color: globals.$dark-mode-navy-grey;
+		border: 1px solid globals.$dark-mode-grey;
 	}
 
 	.single-social {
