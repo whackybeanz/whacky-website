@@ -1,0 +1,11 @@
+<div class="sidebar font-sidebar col-md-2 d-none d-md-block p-0 pt-4 mt-2" id="sidebar">
+	<div class="font-button sidebar-btn <% if(pageView === "equip-list") { %>active<% } %> d-flex justify-content-center align-items-center position-relative text-center p-2 my-3" data-tab="equip-list">
+		<a href="/admin" class="stretched-link text-decoration-none">Equipment List</a>
+	</div>
+	<div class="font-button sidebar-btn <% if(pageView === "add-set") { %>active<% } %> d-flex justify-content-center align-items-center position-relative text-center p-2 mb-3" data-tab="add-set">
+		<a href="/admin/addSet" class="stretched-link text-decoration-none">Add New Set</a>
+	</div>
+	<div class="font-button sidebar-btn <% if(pageView === "add-item") { %>active<% } %> d-flex justify-content-center align-items-center position-relative text-center p-2 mb-3" data-tab="add-item">
+		<a href="/admin/addItem" class="stretched-link text-decoration-none">Add New Item</a>
+	</div>
+</div>
