@@ -82,6 +82,8 @@ function generateSavedInputs() {
 				}
 			})
 		})
+
+		createPlanner();
 	}
 }
 
@@ -167,7 +169,11 @@ $(".add-character-btn").on("click", function(event) {
 
 $(".generate-score-btn").on("click", function(event) {
 	event.preventDefault();
+	createPlanner();
+	saveData();
+})
 
+function createPlanner() {
 	if($("#is-perfect-score").prop("checked")) {
 		$(".class-input").each(function(index, elem) {
 			var classType = $(elem).data("class");
@@ -186,9 +192,7 @@ $(".generate-score-btn").on("click", function(event) {
 		planRelay(charList);
 		generateScore();
 	}
-
-	saveData();
-})
+}
 
 function generateCharList() {
 	var charList = [];
