@@ -1,3 +1,5 @@
+@use '_global-styles' as globals;
+
 /*******************
 
 	INTRODUCTION
@@ -46,9 +48,18 @@
 	PLANNER
 
 *******************/
-.date, .class-type {
+.single-date, .class-type {
 	width: 100px;
 	line-height: 1;
+	opacity: 1.0;
+
+	&.inactive {
+		opacity: 0.25;
+	}
+
+	&.curr-day {
+		opacity: 1.0;
+	}
 }
 
 .mission-desc {
@@ -72,6 +83,18 @@
 	opacity: 0.2;
 
 	&.active {
+		opacity: 1.0;
+	}
+}
+
+.mission-score, .job-score, .level-score, .total-score {
+	opacity: 1.0;
+
+	&.inactive {
+		opacity: 0.25;
+	}
+
+	&.curr-day {
 		opacity: 1.0;
 	}
 }

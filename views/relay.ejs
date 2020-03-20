@@ -191,6 +191,7 @@
 
 				<div class="w-100 mb-3">
 					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Tactical Relay Planning</h2>
+
 					<table class="table table-bordered font-table">
 						<thead>
 							<tr>
@@ -222,25 +223,25 @@
 							<tr>
 								<th scope="row" class="text-info">Mission Score</th>
 								<% for(var i = 0; i < 14; i++) { %>
-									<td class="class-type text-center text-info align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>-mission-score"></td>
+									<td class="class-type text-center text-info align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %> mission-score"></td>
 								<% } %>
 							</tr>
 							<tr>
 								<th scope="row" class="text-info">Job Bonus</th>
 								<% for(var i = 0; i < 14; i++) { %>
-									<td class="class-type text-center text-info align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>-job-score"></td>
+									<td class="class-type text-center text-info align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %> job-score"></td>
 								<% } %>
 							</tr>
 							<tr>
 								<th scope="row" class="text-info">Level Bonus</th>
 								<% for(var i = 0; i < 14; i++) { %>
-									<td class="class-type text-center text-info align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>-level-score"></td>
+									<td class="class-type text-center text-info align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %> level-score"></td>
 								<% } %>
 							</tr>
 							<tr>
 								<th scope="row" class="text-info">Total Score</th>
 								<% for(var i = 0; i < 14; i++) { %>
-									<td class="class-type text-center text-info align-middle p-1 font-weight-bold <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>-total-score"></td>
+									<td class="class-type text-center text-info align-middle p-1 font-weight-bold <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %> total-score"></td>
 								<% } %>
 							</tr>
 						</tbody>

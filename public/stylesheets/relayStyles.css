@@ -43,9 +43,16 @@
 	PLANNER
 
 *******************/
-.date, .class-type {
+.single-date, .class-type {
   width: 100px;
   line-height: 1;
+  opacity: 1;
+}
+.single-date.inactive, .class-type.inactive {
+  opacity: 0.25;
+}
+.single-date.curr-day, .class-type.curr-day {
+  opacity: 1;
 }
 
 .mission-desc {
@@ -68,6 +75,16 @@
   opacity: 0.2;
 }
 .icon-over-200.active {
+  opacity: 1;
+}
+
+.mission-score, .job-score, .level-score, .total-score {
+  opacity: 1;
+}
+.mission-score.inactive, .job-score.inactive, .level-score.inactive, .total-score.inactive {
+  opacity: 0.25;
+}
+.mission-score.curr-day, .job-score.curr-day, .level-score.curr-day, .total-score.curr-day {
   opacity: 1;
 }
 

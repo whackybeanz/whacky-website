@@ -5,16 +5,21 @@ $(function() {
 
 function updateTableDates(isNewDateCreation) {
 	var anySavedDate = localStorage.getItem("relayStartDate");
+	var localTimezoneOffset = 0;
 
 	if(anySavedDate !== null) {
 		var date = new Date(anySavedDate);
+		localTimezoneOffset = new Date(anySavedDate).getTimezoneOffset();
 		$("#select-date").val(anySavedDate);
 	} else {
 		var date = new Date($("#select-date").val());
+		localTimezoneOffset = new Date(anySavedDate).getTimezoneOffset();
 		localStorage.setItem("relayStartDate", $("#select-date").val());
 	}
 	
 	var dateMilliseconds = Date.parse(date);
+	var todayDateMillisceonds = Date.now();
+	var todayDayNum = Math.ceil((todayDateMillisceonds - dateMilliseconds - (localTimezoneOffset * 60 * 1000)) / (1000 * 60 * 60 * 24));
 
 	for(var i = 0; i < 14; i++) {
 		var newDate = dateMilliseconds + i * 24 * 60 * 60 * 1000;
@@ -28,6 +33,11 @@ function updateTableDates(isNewDateCreation) {
 		} else {
 			$(`.single-date.day-${i+1}`).text(new Date(newDate).toLocaleDateString('en-US', {month: "short", day: "numeric", timeZone: "Asia/Singapore"}));
 		}
+	}
+
+	if(todayDayNum >= 1 && todayDayNum <= 14) {
+		$(`.single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score`).addClass("inactive");
+		$(`.day-${todayDayNum}`).removeClass("inactive").addClass("curr-day");
 	}
 }
 
@@ -362,10 +372,10 @@ function generateScore() {
 				}
 			}
 		})
-		$(`.day-${i}-mission-score`).text(missionScore);
-		$(`.day-${i}-job-score`).text(jobScore);
-		$(`.day-${i}-level-score`).text(levelScore);
-		$(`.day-${i}-total-score`).text(missionScore + jobScore + levelScore);
+		$(`.day-${i}.mission-score`).text(missionScore);
+		$(`.day-${i}.job-score`).text(jobScore);
+		$(`.day-${i}.level-score`).text(levelScore);
+		$(`.day-${i}.total-score`).text(missionScore + jobScore + levelScore);
 	}
 	$(`.grand-total-score`).text(grandTotalScore);
 }
