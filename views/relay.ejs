@@ -192,13 +192,22 @@
 				<div class="w-100 mb-3">
 					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Tactical Relay Planning</h2>
 
+					<form class="w-100 d-none" id="planner-options">
+						<div class="relay-form-initial-inputs">
+							<div class="form-group form-check-inline">
+								<input type="checkbox" class="form-check-input" id="is-focus-current-day" checked>
+								<label class="form-check-label" for="is-focus-current-day">Focus on current day</label>
+							</div>
+						</div>
+					</form>
+
 					<table class="table table-bordered font-table">
 						<thead>
 							<tr>
 								<th scope="col" class="mission-desc align-middle" rowspan="2">Mission</th>
 								<th scope="col" class="text-center position-relative py-1" colspan="7">
-									<div class="next-week cursor-pointer">Week 1 <i class="fas fa-angle-double-right"></i></div>
-									<div class="prev-week cursor-pointer d-none"><i class="fas fa-angle-double-left"></i> Week 2</div>
+									<div class="next-week week-1 cursor-pointer">Week 1 <i class="fas fa-angle-double-right"></i></div>
+									<div class="prev-week week-2 cursor-pointer d-none"><i class="fas fa-angle-double-left"></i> Week 2</div>
 								</th>
 							</tr>
 							<tr class="date-range"></tr>

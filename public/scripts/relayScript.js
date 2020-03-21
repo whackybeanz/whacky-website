@@ -38,6 +38,22 @@ function updateTableDates(isNewDateCreation) {
 	if(todayDayNum >= 1 && todayDayNum <= 14) {
 		$(`.single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score`).addClass("inactive");
 		$(`.day-${todayDayNum}`).removeClass("inactive").addClass("curr-day");
+
+		if(todayDayNum >= 8) {
+			$(".week-2").removeClass("d-none");
+			$(".week-1").addClass("d-none");
+		}
+
+		var storageIsFocusCurrentDay = localStorage.getItem("isFocusCurrentDay");
+		$("#planner-options").removeClass("d-none");
+
+		// Check/uncheck focus on current day
+		if(storageIsFocusCurrentDay === null || storageIsFocusCurrentDay === "true") {
+			$("#is-focus-current-day").prop("checked", true);
+		} else {
+			$("#is-focus-current-day").prop("checked", false);
+			$(".single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score").removeClass("inactive");
+		}
 	}
 }
 
@@ -67,7 +83,6 @@ function generateSavedInputs() {
 		} else {
 			$("#all-level-200").prop("checked", false);
 		}
-
 
 		Object.keys(savedCharList).forEach(function(classType) {
 			//var numExtraClassInputs = localStorage.getItem(`${classType}NumExtraInputs`);
@@ -418,12 +433,21 @@ $(".restart-btn").on("click", function() {
 })
 
 // Generated table
+$("#is-focus-current-day").change(function() {
+	localStorage.setItem("isFocusCurrentDay", this.checked);
+
+	if($(this).prop("checked")) {
+		$(".single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score").addClass("inactive");
+		$(".curr-day").removeClass("inactive");
+	} else {
+		$(".single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score").removeClass("inactive");
+	}
+})
+
 $(".next-week").on("click", function() {
-	$(this).toggleClass("d-none");
 	$(".prev-week, .week-1, .week-2").toggleClass("d-none");
 })
 
 $(".prev-week").on("click", function() {
-	$(this).toggleClass("d-none");
 	$(".next-week, .week-1, .week-2").toggleClass("d-none");
 })
