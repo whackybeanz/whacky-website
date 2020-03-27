@@ -12,25 +12,108 @@
 					<div class="w-100 border-top border-dark"></div>
 				</div>
 				<div class="w-100 mb-3">
-					<h2 class="font-subheader font-weight-bold text-underline mb-2">Subheader</h2>
-					<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-						<form>
+					<div class="font-content w-100 d-flex justify-content-center align-items-start flex-column mb-4">
+						<form class="font-form w-100">
+							<h2 class="font-subheader font-weight-bold text-underline mb-2">Basic Set Details</h2>
 							<div class="form-group row">
-								<label for="set-id" class="col-sm-2 col-form-label">Set Name ID Tag</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="set-id">
+								<label for="set-id" class="col-sm-3 col-form-label">Set Name ID Tag</label>
+								<div class="col-sm-3">
+									<input type="text" class="font-small form-control" id="set-id">
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="set-full-name" class="col-sm-2 col-form-label">Full Set Name</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="set-full-name">
+								<label for="set-full-name" class="col-sm-3 col-form-label">Full Set Name</label>
+								<div class="col-sm-3">
+									<input type="text" class="font-small form-control" id="set-full-name">
 								</div>
 							</div>
-							<div class="form-group row">
-								<label for="set-effects" class="col-sm-2 col-form-label">Set Effects</label>
-								<div class="col-sm-10">
-									
+							<h2 class="font-subheader font-weight-bold text-underline mb-2">Set Effects</h2>
+							<div class="form-group row set-effect-input-div" data-num-equipped="2">
+								<label for="set-effects" class="col-sm-3 col-form-label">2 pieces equipped</label>
+								<div class="col-sm-9 px-0 d-flex align-items-start flex-wrap">
+									<div class="w-50 d-flex px-3 mb-2">
+										<select class="font-small form-control select-dropdown col-6">
+											<option data-stat-type="str">STR</option>
+											<option data-stat-type="dex">DEX</option>
+											<option data-stat-type="int">INT</option>
+											<option data-stat-type="luk">LUK</option>
+											<option data-stat-type="allStats">All Stats</option>
+											<option data-stat-type="maxHp">Max HP</option>
+											<option data-stat-type="maxMp">Max MP</option>
+											<option data-stat-type="maxHpMp">Max HP/MP</option>
+											<option data-stat-type="maxHpMpPercent">Max HP/MP %</option>
+											<option data-stat-type="def">DEF</option>
+											<option data-stat-type="acc">Accuracy</option>
+											<option data-stat-type="avoid">Avoidability</option>
+											<option data-stat-type="wa">WA</option>
+											<option data-stat-type="ma">MA</option>
+											<option data-stat-type="wama">WA/MA</option>
+											<option data-stat-type="damagePercent">Damage %</option>
+											<option data-stat-type="bossPercent">Boss %</option>
+											<option data-stat-type="iedPercent">IED %</option>
+											<option data-stat-type="critDmgPercent">Crit Damage %</option>
+										</select>
+										<div class="col-4">
+											<input type="number" class="font-small form-control" placeholder="value">
+										</div>
+									</div>
+									<div class="w-50 d-flex px-3 mb-2">
+										<select class="font-small form-control select-dropdown col-6">
+											<option data-stat-type="str">STR</option>
+											<option data-stat-type="dex">DEX</option>
+											<option data-stat-type="int">INT</option>
+											<option data-stat-type="luk">LUK</option>
+											<option data-stat-type="allStats">All Stats</option>
+											<option data-stat-type="maxHp">Max HP</option>
+											<option data-stat-type="maxMp">Max MP</option>
+											<option data-stat-type="maxHpMp">Max HP/MP</option>
+											<option data-stat-type="maxHpMpPercent">Max HP/MP %</option>
+											<option data-stat-type="def">DEF</option>
+											<option data-stat-type="acc">Accuracy</option>
+											<option data-stat-type="avoid">Avoidability</option>
+											<option data-stat-type="wa">WA</option>
+											<option data-stat-type="ma">MA</option>
+											<option data-stat-type="wama">WA/MA</option>
+											<option data-stat-type="damagePercent">Damage %</option>
+											<option data-stat-type="bossPercent">Boss %</option>
+											<option data-stat-type="iedPercent">IED %</option>
+											<option data-stat-type="critDmgPercent">Crit Damage %</option>
+										</select>
+										<div class="col-4">
+											<input type="number" class="font-small form-control" placeholder="value">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row set-effect-input-div" data-num-equipped="3">
+								<label for="set-effects" class="col-sm-3 col-form-label">3 pieces equipped</label>
+								<div class="col-sm-9 px-0 d-flex align-items-center">
+									<div class="w-50 d-flex px-3 mb-2">
+										<select class="font-small form-control dropdown col-6">
+											<option data-stat-type="str">STR</option>
+											<option data-stat-type="dex">DEX</option>
+											<option data-stat-type="int">INT</option>
+											<option data-stat-type="luk">LUK</option>
+											<option data-stat-type="allStats">All Stats</option>
+											<option data-stat-type="maxHp">Max HP</option>
+											<option data-stat-type="maxMp">Max MP</option>
+											<option data-stat-type="maxHpMp">Max HP/MP</option>
+											<option data-stat-type="maxHpMpPercent">Max HP/MP %</option>
+											<option data-stat-type="def">DEF</option>
+											<option data-stat-type="acc">Accuracy</option>
+											<option data-stat-type="avoid">Avoidability</option>
+											<option data-stat-type="wa">WA</option>
+											<option data-stat-type="ma">MA</option>
+											<option data-stat-type="wama">WA/MA</option>
+											<option data-stat-type="damagePercent">Damage %</option>
+											<option data-stat-type="bossPercent">Boss %</option>
+											<option data-stat-type="iedPercent">IED %</option>
+											<option data-stat-type="critDmgPercent">Crit Damage %</option>
+										</select>
+										<div class="col-4">
+											<input type="number" class="font-small form-control" placeholder="value">
+										</div>
+									</div>
 								</div>
 							</div>
 						</form>
@@ -41,5 +124,4 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="/scripts/commonScript.js"></script>
 <% include ../partials/footer %>

@@ -6,6 +6,7 @@ router.get("/", function(req, res) {
 })
 
 router.get("/addSet", function(req, res) {
+	res.locals.extraStylesheet = "adminStyles";
 	res.render("admin/addSet", {pageView: "add-set"});
 })
 
