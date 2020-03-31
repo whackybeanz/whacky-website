@@ -13,23 +13,32 @@
 				</div>
 				<div class="w-100 mb-3">
 					<div class="font-content w-100 d-flex justify-content-center align-items-start flex-column mb-4">
-						<form class="font-form w-100">
+						<form class="font-form w-100" action="/admin/addSet" method="POST">
 							<h2 class="font-subheader font-weight-bold text-underline mb-2">Basic Set Details</h2>
 							<div class="form-group row">
 								<label for="set-id" class="col-sm-3 col-form-label">Set Name ID Tag</label>
 								<div class="col-sm-3">
-									<input type="text" class="font-small form-control" id="set-id">
+									<input type="text" class="font-small form-control" id="set-id" name="setId">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="set-full-name" class="col-sm-3 col-form-label">Full Set Name</label>
 								<div class="col-sm-3">
-									<input type="text" class="font-small form-control" id="set-full-name">
+									<input type="text" class="font-small form-control" id="set-full-name" name="setFullName">
 								</div>
 							</div>
 							<h2 class="font-subheader font-weight-bold text-underline mb-2">Set Effects</h2>
+							<input type="hidden" class="font-small" id="num-set-effects" name="numSetEffects" value="0">
 							<div class="num-equipped-container"></div>
-							<div class="add-count-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center py-1"><i class="fas fa-plus"></i>&nbsp;Increase equipment count</div>
+
+							<div class="d-flex justify-content-center">
+								<div class="add-count-btn btn btn-small btn-outline-secondary d-flex justify-content-center align-items-center cursor-pointer py-1 mx-2">
+									<i class="fas fa-plus"></i>&nbsp;Increase equipment count
+								</div>
+								<button type="submit" class="btn btn-small btn-outline-secondary justify-content-center align-items-center py-1 mx-2">
+									<i class="fas fa-plus"></i>&nbsp;Add New Set
+								</button>
+							</div>
 						</form>
 					</div>
 				</div>
