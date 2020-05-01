@@ -1,30 +1,30 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 	<div class="container px-0">
-		<a class="navbar-brand mr-4" href="/">whackybeanz</a>
+		<a class="navbar-brand mr-4" href="./">whackybeanz</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item dropdown mx-3 <% if(locals.currNav && currNav.main === "index") { %>active<% } %>">
-					<a class="nav-link dropdown-toggle" href="/" id="nav-index-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Maple Info Corner</a>
+					<a class="nav-link dropdown-toggle" href="./" id="nav-index-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Maple Info Corner</a>
 					<div class="dropdown-menu" aria-labelledby="nav-index-dropdown">
-						<a class="dropdown-item <% if(locals.currNav && currNav.branch === "flames") { %>active<% } %>" href="/bonus-stats">Bonus Stats & Flames</a>
-						<a class="dropdown-item <% if(locals.currNav && currNav.branch === "set-items") { %>active<% } %>" href="/set-items">Set Items</a>
+						<a class="dropdown-item <% if(locals.currNav && currNav.branch === "flames") { %>active<% } %>" href="./bonus-stats">Bonus Stats & Flames</a>
+						<a class="dropdown-item <% if(locals.currNav && currNav.branch === "set-items") { %>active<% } %>" href="./set-items">Set Items</a>
 						<a class="dropdown-item <% if(locals.currNav && currNav.branch === "star-force") { %>active<% } %>" href="#">Star Force</a>
 					</div>
 				</li>
 				<li class="nav-item mx-3 <% if(locals.currNav && currNav.main === "relay") { %>active<% } %>">
-					<a class="nav-link" href="/relay">Tactical Relay</a>
+					<a class="nav-link" href="./relay">Tactical Relay</a>
 				</li>
 				<li class="nav-item mx-3 <% if(locals.currNav && currNav.main === "xword") { %>active<% } %>">
-					<a class="nav-link" href="/xwrdpzl">Crossword</a>
+					<a class="nav-link" href="./xwrdpzl">Crossword</a>
 				</li>
 				<li class="nav-item mx-3 <% if(locals.currNav && currNav.main === "stories") { %>active<% } %>">
 					<a class="nav-link" href="#">Stories</a>
 				</li>
 				<li class="nav-item mx-3 <% if(locals.currNav && currNav.main === "about") { %>active<% } %>">
-					<a class="nav-link" href="/about">About Me</a>
+					<a class="nav-link" href="./about">About Me</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav">

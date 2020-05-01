@@ -1,5 +1,5 @@
 body {
-  background-image: url("/images/light.jpg");
+  background-image: url("../images/light.jpg");
   background-color: white;
   color: #212529;
 }
