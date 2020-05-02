@@ -32,12 +32,10 @@ body.dark-mode {
 	
 	// Sidebar
 	.sidebar {
-		border-right: 2px solid globals.$dark-mode-navy-grey;
+		border-right: 1px solid globals.$dark-mode-navy-grey;
 
 		.sidebar-btn {
-			background-color: globals.$dark-mode-black;
 			color: globals.$dark-mode-white;
-			border: 2px solid globals.$dark-mode-black;
 
 			a {
 				color: globals.$dark-mode-white;
@@ -46,7 +44,6 @@ body.dark-mode {
 			&:hover, &.active {
 				background-color: globals.$dark-mode-navy-grey-opaque;
 				color: globals.$dark-mode-white;
-				border: 2px solid globals.$dark-mode-grey;
 			}
 		}
 	}

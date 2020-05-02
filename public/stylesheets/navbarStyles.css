@@ -1,3 +1,7 @@
+.navbar {
+  height: 4rem;
+}
+
 .fa-moon {
   transform: scaleX(-1);
 }

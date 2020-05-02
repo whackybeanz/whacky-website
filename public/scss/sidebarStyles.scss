@@ -1,21 +1,33 @@
 @use '_global-styles' as globals;
 
 .sidebar {
-	height: 100%;
+	top: 4rem;
+	overflow: auto;
+	height: calc(100vh - 4rem);
+
+	h1 {
+		font-size: 1.25rem;
+
+		@include globals.for-size(md) {
+			font-size: 1.15rem;
+		}
+	}
+
+	h2 {
+		font-size: 1rem;
+		cursor: pointer;
+	}
+
+	h3 {
+		font-size: 0.9rem;
+	}
 
 	.sidebar-btn {
-		height: 48px;
-		line-height: 1.1;
 		cursor: pointer;
-		border-right: none;
-		border-top-left-radius: 5px;
-		border-bottom-left-radius: 5px;
 		transition: all 0.3s;
 
 		&:hover, &.active {
-			font-weight: bold;
 			transition: all 0.3s;
-			border-right: none;
 		}
 	}
 }

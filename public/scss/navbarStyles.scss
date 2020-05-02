@@ -1,5 +1,9 @@
 @use '_global-styles' as globals;
 
+.navbar {
+	height: 4rem;
+}
+
 .fa-moon {
 	transform: scaleX(-1);
 }

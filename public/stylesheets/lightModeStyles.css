@@ -18,20 +18,17 @@ body .navbar .nav-item .dropdown-menu .dropdown-item:hover, body .navbar .nav-it
   background-color: rgba(0, 0, 0, 0.075);
 }
 body .sidebar {
-  border-right: 2px solid rgba(206, 212, 218, 0.8);
+  border-right: 1px solid rgba(206, 212, 218, 0.8);
 }
 body .sidebar .sidebar-btn {
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  background-color: rgba(255, 255, 255, 0.8);
   color: #212529;
 }
 body .sidebar .sidebar-btn a {
   color: #212529;
 }
-body .sidebar .sidebar-btn:hover, body .sidebar .sidebar-btn.active {
+body .sidebar .sidebar-btn:hover {
   background-color: rgba(0, 0, 0, 0.075);
   color: #212529;
-  border: 2px solid rgba(206, 212, 218, 0.8);
 }
 body .modal .modal-content {
   border: 1px solid rgba(206, 212, 218, 0.8);

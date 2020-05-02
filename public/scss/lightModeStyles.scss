@@ -32,21 +32,18 @@ body {
 
 	// Sidebar
 	.sidebar {
-		border-right: 2px solid globals.$light-mode-grey;
+		border-right: 1px solid globals.$light-mode-grey;
 
 		.sidebar-btn {
-			border: 2px solid globals.$light-mode-white;
-			background-color: globals.$light-mode-white;
 			color: globals.$light-mode-black;
 
 			a {
 				color: globals.$light-mode-black;
 			}
 
-			&:hover, &.active {
+			&:hover {
 				background-color: globals.$light-mode-light-grey;
 				color: globals.$light-mode-black;
-				border: 2px solid globals.$light-mode-grey;
 			}
 		}
 	}

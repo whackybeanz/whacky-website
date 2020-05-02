@@ -18,11 +18,15 @@
 	font-size: 1rem;
 }
 
-.font-sidebar, .font-form, .font-button {
+.font-form, .font-button {
 	font-size: 1rem;
 
 	@include globals.for-size(md) { font-size: 0.9rem; }
 	@include globals.for-size(xl) { font-size: 0.875rem; }
+}
+
+.font-sidebar {
+	font-size: 0.9rem;
 }
 
 .font-table {
@@ -51,6 +55,10 @@
 	text-decoration: underline;
 }
 
+.list-style-type-none {
+	list-style-type: none;
+}
+
 .cursor-pointer {
 	cursor: pointer;
 }
@@ -61,6 +69,22 @@
 
 .size-720 {
 	max-width: 720px;
+}
+
+[data-toggle="collapse"]:before {
+	display: inline-block;
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	content: "\f0d7";
+	transition: all linear 0.25s;
+}
+
+[data-toggle="collapse"].collapsed:before {
+	transform: rotate(-90deg) ;
 }
 
 /**********************
@@ -169,19 +193,6 @@ input[type="radio"] {
 	&:hover, &.active {
 		font-weight: bold;
 		transition: all 0.3s;
-	}
-}
-
-.single-info-page {
-	&.active {
-		display: flex;
-	}
-
-	@include globals.for-size(md) { 
-		min-height: 100%;
-		display: none;
-		position: absolute;
-		top: 0;
 	}
 }
 
