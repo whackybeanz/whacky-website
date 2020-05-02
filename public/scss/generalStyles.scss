@@ -74,10 +74,7 @@ html, body {
 	overflow: auto;
 
 	@include globals.for-size(sm) {	font-size: 13px; }
-	@include globals.for-size(md) { 
-		font-size: 14px;
-		overflow: hidden;
-	}
+	@include globals.for-size(md) { font-size: 14px; }
 	@include globals.for-size(lg) { font-size: 15px; }
 	@include globals.for-size(xl) { font-size: 16px; }
 }
@@ -185,14 +182,6 @@ input[type="radio"] {
 		display: none;
 		position: absolute;
 		top: 0;
-	}
-}
-
-.main-content-div {
-	@include globals.for-size(md) { overflow: auto; }
-
-	.info-section {
-		max-width: 840px;
 	}
 }
 

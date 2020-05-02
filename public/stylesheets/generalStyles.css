@@ -96,7 +96,6 @@ html, body {
 @media (min-width: 768px) {
   html, body {
     font-size: 14px;
-    overflow: hidden;
   }
 }
 @media (min-width: 992px) {
@@ -207,15 +206,6 @@ input[type=radio] {
     position: absolute;
     top: 0;
   }
-}
-
-@media (min-width: 768px) {
-  .main-content-div {
-    overflow: auto;
-  }
-}
-.main-content-div .info-section {
-  max-width: 840px;
 }
 
 .radio-select-group .form-check:first-of-type .radio-select {
