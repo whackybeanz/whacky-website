@@ -112,6 +112,7 @@ html, body {
   height: 100%;
   font-size: 12px;
   overflow: auto;
+  scroll-padding-top: 3rem;
 }
 @media (min-width: 576px) {
   html, body {
@@ -156,6 +157,10 @@ input[type=number] {
 
 input[type=radio] {
   visibility: hidden;
+}
+
+.main-content-div {
+  max-width: 1200px;
 }
 
 /**********************

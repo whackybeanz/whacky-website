@@ -32,7 +32,13 @@ body {
 
 	// Sidebar
 	.sidebar {
-		border-right: 1px solid globals.$light-mode-grey;
+		&.sidebar-left {
+			border-right: 1px solid globals.$light-mode-grey;	
+		}
+		
+		&.sidebar-right {
+			border-left: 1px solid globals.$light-mode-grey;		
+		}
 
 		.sidebar-btn {
 			color: globals.$light-mode-black;

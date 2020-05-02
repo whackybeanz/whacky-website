@@ -17,8 +17,11 @@ body .navbar .nav-item .dropdown-menu .dropdown-item:hover, body .navbar .nav-it
   color: #212529;
   background-color: rgba(0, 0, 0, 0.075);
 }
-body .sidebar {
+body .sidebar.sidebar-left {
   border-right: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .sidebar.sidebar-right {
+  border-left: 1px solid rgba(206, 212, 218, 0.8);
 }
 body .sidebar .sidebar-btn {
   color: #212529;

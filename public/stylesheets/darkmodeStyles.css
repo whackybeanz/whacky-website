@@ -17,8 +17,11 @@ body.dark-mode .navbar .nav-item .dropdown-menu .dropdown-item:hover, body.dark-
   color: white;
   background-color: #454d55;
 }
-body.dark-mode .sidebar {
+body.dark-mode .sidebar.sidebar-left {
   border-right: 1px solid rgba(52, 58, 64, 0.8);
+}
+body.dark-mode .sidebar.sidebar-right {
+  border-left: 1px solid rgba(52, 58, 64, 0.8);
 }
 body.dark-mode .sidebar .sidebar-btn {
   color: rgba(255, 255, 255, 0.8);

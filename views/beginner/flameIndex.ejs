@@ -1,0 +1,16 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="container-fluid content d-flex justify-content-between p-0">
+	<%- include("../partials/sidebar") %>	
+	<div class="main-content-div col p-0 position-relative">
+		<%- include("flameCalculator") %>
+		<%- include("flameInfo") %>
+		<%- include("flameCredits") %>
+	</div>
+	<%- include("flameSidebar") %>
+</div>
+
+<script type="text/javascript" src="./public/scripts/commonScript.js"></script>
+<script type="text/javascript" src="./public/scripts/flameScript.js"></script>
+<%- include("../partials/footer") %>

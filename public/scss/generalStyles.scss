@@ -96,6 +96,7 @@ html, body {
 	height: 100%;
 	font-size: 12px;
 	overflow: auto;
+	scroll-padding-top: 3rem;
 
 	@include globals.for-size(sm) {	font-size: 13px; }
 	@include globals.for-size(md) { font-size: 14px; }
@@ -122,6 +123,10 @@ input[type="number"] {
 
 input[type="radio"] {
 	visibility: hidden;
+}
+
+.main-content-div {
+	max-width: 1200px;
 }
 
 /**********************

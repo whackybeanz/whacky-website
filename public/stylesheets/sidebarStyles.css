@@ -1,7 +1,7 @@
 .sidebar {
-  top: 4rem;
+  top: 3rem;
   overflow: auto;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 3rem);
 }
 .sidebar h1 {
   font-size: 1.25rem;

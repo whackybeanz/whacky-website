@@ -32,7 +32,13 @@ body.dark-mode {
 	
 	// Sidebar
 	.sidebar {
-		border-right: 1px solid globals.$dark-mode-navy-grey;
+		&.sidebar-left {
+			border-right: 1px solid globals.$dark-mode-navy-grey;
+		}
+
+		&.sidebar-right {
+			border-left: 1px solid globals.$dark-mode-navy-grey;
+		}
 
 		.sidebar-btn {
 			color: globals.$dark-mode-white;

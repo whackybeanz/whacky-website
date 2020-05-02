@@ -4,6 +4,7 @@ var bodyParser 				= require("body-parser");
 var mongoose				= require("mongoose");
 
 var indexRoutes 	= require("./routes/index");
+var beginnerRoutes 	= require("./routes/beginnerGuide");
 var adminRoutes 	= require("./routes/admin");
 
 var port = process.env.PORT || 3005;
@@ -16,6 +17,7 @@ app.use('/public', express.static(__dirname + '/public'));
 
 // ROUTES
 app.use("/", indexRoutes);
+app.use("/maple/newbies", beginnerRoutes);
 app.use("/admin", adminRoutes);
 
 app.get("*", function(req, res) {

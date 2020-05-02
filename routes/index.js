@@ -7,12 +7,6 @@ router.get("/", function(req, res) {
 	res.render("index");
 })
 
-router.get("/bonus-stats", function(req, res) {
-	res.locals.extraStylesheet = "flameStyles";
-	res.locals.currNav = { main: "index", branch: "flames" };
-	res.render("flames/flameCalculator");
-})
-
 router.get("/set-items", function(req, res) {
 	res.locals.extraStylesheet = "setItemStyles";
 	res.locals.currNav = { main: "index", branch: "set-items" };
