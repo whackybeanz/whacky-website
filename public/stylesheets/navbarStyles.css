@@ -9,4 +9,8 @@
   transform: scaleX(-1);
 }
 
+#sidebar-collapse-btn:focus {
+  box-shadow: none;
+}
+
 /*# sourceMappingURL=navbarStyles.css.map */

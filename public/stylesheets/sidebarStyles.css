@@ -1,7 +1,10 @@
-.sidebar {
-  top: 3rem;
-  overflow: auto;
-  height: calc(100vh - 3rem);
+@media (min-width: 768px) {
+  .sidebar {
+    top: 3rem;
+    overflow: auto;
+    height: calc(100vh - 3rem);
+    background-color: transparent;
+  }
 }
 .sidebar h1 {
   font-size: 1.25rem;
@@ -17,6 +20,9 @@
 }
 .sidebar h3 {
   font-size: 0.9rem;
+}
+.sidebar.sidebar-left {
+  border: none;
 }
 .sidebar .sidebar-btn {
   cursor: pointer;

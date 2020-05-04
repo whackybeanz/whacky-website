@@ -17,8 +17,13 @@ body .navbar .nav-item .dropdown-menu .dropdown-item:hover, body .navbar .nav-it
   color: #212529;
   background-color: rgba(0, 0, 0, 0.075);
 }
-body .sidebar.sidebar-left {
-  border-right: 1px solid rgba(206, 212, 218, 0.8);
+body .sidebar #sidebar-nav {
+  border-bottom: 1px solid rgba(206, 212, 218, 0.8);
+}
+@media (min-width: 768px) {
+  body .sidebar.sidebar-left {
+    border-right: 1px solid rgba(206, 212, 218, 0.8);
+  }
 }
 body .sidebar.sidebar-right {
   border-left: 1px solid rgba(206, 212, 218, 0.8);

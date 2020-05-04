@@ -1,9 +1,12 @@
 @use '_global-styles' as globals;
 
 .sidebar {
-	top: 3rem;
-	overflow: auto;
-	height: calc(100vh - 3rem);
+	@include globals.for-size(md) {
+		top: 3rem;
+		overflow: auto;
+		height: calc(100vh - 3rem);
+		background-color: transparent;
+	}
 
 	h1 {
 		font-size: 1.25rem;
@@ -20,6 +23,10 @@
 
 	h3 {
 		font-size: 0.9rem;
+	}
+
+	&.sidebar-left {
+		border: none;
 	}
 
 	.sidebar-btn {
