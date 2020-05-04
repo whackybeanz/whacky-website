@@ -23,6 +23,10 @@ body.dark-mode .sidebar.sidebar-left {
 body.dark-mode .sidebar.sidebar-right {
   border-left: 1px solid rgba(52, 58, 64, 0.8);
 }
+body.dark-mode .sidebar li.active {
+  background-color: #343a40;
+  color: rgba(255, 255, 255, 0.8);
+}
 body.dark-mode .sidebar .sidebar-btn {
   color: rgba(255, 255, 255, 0.8);
 }

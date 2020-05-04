@@ -4,6 +4,7 @@ var bodyParser 				= require("body-parser");
 var mongoose				= require("mongoose");
 
 var indexRoutes 	= require("./routes/index");
+var mapleRoutes 	= require("./routes/mapleIndex");
 var beginnerRoutes 	= require("./routes/beginnerGuide");
 var adminRoutes 	= require("./routes/admin");
 
@@ -15,8 +16,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use('/public', express.static(__dirname + '/public'));
 
+// MIDDLEWARE
+app.use(function(req, res, next) {
+	res.locals.url = req.originalUrl;
+	next();
+})
+
 // ROUTES
 app.use("/", indexRoutes);
+app.use("/maple", mapleRoutes);
 app.use("/maple/newbies", beginnerRoutes);
 app.use("/admin", adminRoutes);
 

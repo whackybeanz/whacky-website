@@ -11,8 +11,7 @@ router.get("/equip-guide", function(req, res) {
 
 router.get("/equip-guide/flames", function(req, res) {
 	res.locals.extraStylesheet = "flameStyles";
-	res.locals.currNav = { main: "index", branch: "flames" };
-	res.render("beginner/flameIndex", {url: req.originalUrl});
+	res.render("beginner/flameIndex");
 })
 
 module.exports = router;

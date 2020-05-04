@@ -1,40 +1,21 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar sticky-top navbar-expand navbar-light bg-light">
 	<div class="container-fluid px-0">
 		<a class="navbar-brand mr-4" href="./">whackybeanz</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item dropdown mx-3 <% if(locals.currNav && currNav.main === "index") { %>active<% } %>">
-					<a class="nav-link dropdown-toggle" href="./" id="nav-index-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Maple Info Corner</a>
-					<div class="dropdown-menu" aria-labelledby="nav-index-dropdown">
-						<a class="dropdown-item <% if(locals.currNav && currNav.branch === "flames") { %>active<% } %>" href="./bonus-stats">Bonus Stats & Flames</a>
-						<a class="dropdown-item <% if(locals.currNav && currNav.branch === "set-items") { %>active<% } %>" href="./set-items">Set Items</a>
-						<a class="dropdown-item <% if(locals.currNav && currNav.branch === "star-force") { %>active<% } %>" href="#">Star Force</a>
-					</div>
-				</li>
-				<li class="nav-item mx-3 <% if(locals.currNav && currNav.main === "relay") { %>active<% } %>">
-					<a class="nav-link" href="./relay">Tactical Relay</a>
-				</li>
-				<li class="nav-item mx-3 <% if(locals.currNav && currNav.main === "xword") { %>active<% } %>">
-					<a class="nav-link" href="./xwrdpzl">Crossword</a>
-				</li>
-				<li class="nav-item mx-3 <% if(locals.currNav && currNav.main === "stories") { %>active<% } %>">
-					<a class="nav-link" href="#">Stories</a>
-				</li>
-				<li class="nav-item mx-3 <% if(locals.currNav && currNav.main === "about") { %>active<% } %>">
-					<a class="nav-link" href="./about">About Me</a>
-				</li>
-			</ul>
-			<ul class="navbar-nav">
-				<li class="nav-item toggle-mode cursor-pointer toggle-light d-none align-items-center" data-mode="light-mode">
-					<span class="nav-link font-weight-bold p-0"><i class="fas fa-sun mr-1"></i> Light</span>
-				</li>
-				<li class="nav-item toggle-mode cursor-pointer toggle-dark d-flex align-items-center" data-mode="dark-mode">
-					<span class="nav-link font-weight-bold p-0"><i class="fas fa-moon mr-1"></i> Dark</span>
-				</li>
-			</ul>
-		</div>
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item dropdown mx-1 mx-md-2 mx-lg-3 <% if(url.includes("maple")) { %>active<% } %>">
+				<a class="nav-link" href="./maple">Maple Info Corner</a>
+			</li>
+			<li class="nav-item mx-1 mx-md-2 mx-lg-3 <% if(url.includes("about")) { %>active<% } %>">
+				<a class="nav-link" href="./about">About Me</a>
+			</li>
+		</ul>
+		<ul class="navbar-nav">
+			<li class="nav-item toggle-mode cursor-pointer toggle-light d-none align-items-center" data-mode="light-mode">
+				<span class="nav-link font-weight-bold p-0"><i class="fas fa-sun mr-1"></i> Light</span>
+			</li>
+			<li class="nav-item toggle-mode cursor-pointer toggle-dark d-flex align-items-center" data-mode="dark-mode">
+				<span class="nav-link font-weight-bold p-0"><i class="fas fa-moon mr-1"></i> Dark</span>
+			</li>
+		</ul>
 	</div>
 </nav>

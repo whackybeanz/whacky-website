@@ -23,6 +23,10 @@ body .sidebar.sidebar-left {
 body .sidebar.sidebar-right {
   border-left: 1px solid rgba(206, 212, 218, 0.8);
 }
+body .sidebar li.active {
+  background-color: rgba(0, 0, 0, 0.075);
+  color: #212529;
+}
 body .sidebar .sidebar-btn {
   color: #212529;
 }

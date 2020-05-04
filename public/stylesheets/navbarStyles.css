@@ -1,6 +1,9 @@
 .navbar {
   height: 3rem;
 }
+.navbar .nav-item.active {
+  font-weight: bold;
+}
 
 .fa-moon {
   transform: scaleX(-1);

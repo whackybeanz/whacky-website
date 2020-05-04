@@ -40,6 +40,13 @@ body {
 			border-left: 1px solid globals.$light-mode-grey;		
 		}
 
+		li {
+			&.active {
+				background-color: globals.$light-mode-light-grey;
+				color: globals.$light-mode-black;
+			}
+		}
+
 		.sidebar-btn {
 			color: globals.$light-mode-black;
 

@@ -40,6 +40,13 @@ body.dark-mode {
 			border-left: 1px solid globals.$dark-mode-navy-grey;
 		}
 
+		li {
+			&.active {
+				background-color: globals.$dark-mode-navy-grey-opaque;
+				color: globals.$dark-mode-white;
+			}
+		}
+
 		.sidebar-btn {
 			color: globals.$dark-mode-white;
 

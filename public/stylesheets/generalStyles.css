@@ -87,7 +87,7 @@
   max-width: 720px;
 }
 
-[data-toggle=collapse]:before {
+.sidebar-collapse:before {
   display: inline-block;
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -99,7 +99,7 @@
   transition: all linear 0.25s;
 }
 
-[data-toggle=collapse].collapsed:before {
+.sidebar-collapse.collapsed:before {
   transform: rotate(-90deg);
 }
 

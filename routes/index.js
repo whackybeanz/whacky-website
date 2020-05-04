@@ -2,9 +2,7 @@ var express = require("express");
 var router 	= express.Router();
 
 router.get("/", function(req, res) {
-	res.locals.extraStylesheet = "indexStyles";
-	res.locals.currNav = { main: "index" };
-	res.render("index");
+	res.redirect("/maple");
 })
 
 router.get("/set-items", function(req, res) {

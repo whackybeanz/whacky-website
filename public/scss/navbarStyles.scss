@@ -2,6 +2,12 @@
 
 .navbar {
 	height: 3rem;
+
+	.nav-item {
+		&.active {
+			font-weight: bold;
+		}
+	}
 }
 
 .fa-moon {
