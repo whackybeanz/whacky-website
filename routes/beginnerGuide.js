@@ -16,4 +16,11 @@ router.get("/equip-guide/flames", function(req, res) {
 	res.render("beginner/flameIndex");
 })
 
+router.get("/equip-guide/set-effects", function(req, res) {
+	res.locals.extraStylesheet = "setItemStyles";
+	res.locals.section = "newbies";
+	res.locals.branch = "set-effects";
+	res.render("beginner/setEffectIndex");
+})
+
 module.exports = router;

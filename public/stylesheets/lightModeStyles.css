@@ -21,6 +21,11 @@ body .sidebar #sidebar-nav {
   border-bottom: 1px solid rgba(206, 212, 218, 0.8);
 }
 @media (min-width: 768px) {
+  body .sidebar #sidebar-nav {
+    border-bottom: none;
+  }
+}
+@media (min-width: 768px) {
   body .sidebar.sidebar-left {
     border-right: 1px solid rgba(206, 212, 218, 0.8);
   }

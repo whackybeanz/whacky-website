@@ -34,6 +34,10 @@ body {
 	.sidebar {
 		#sidebar-nav {
 			border-bottom: 1px solid globals.$light-mode-grey;
+
+			@include globals.for-size(md) {
+				border-bottom: none;
+			}
 		}
 
 		&.sidebar-left {
