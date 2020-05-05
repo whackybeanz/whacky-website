@@ -11,6 +11,8 @@ router.get("/equip-guide", function(req, res) {
 
 router.get("/equip-guide/flames", function(req, res) {
 	res.locals.extraStylesheet = "flameStyles";
+	res.locals.section = "newbies";
+	res.locals.branch = "flames";
 	res.render("beginner/flameIndex");
 })
 

@@ -4,8 +4,8 @@
 			<h1 class="font-weight-bold">Maple Info Corner</h1>
 			<ul class="mb-2 pl-3 pl-md-1 pl-lg-3">
 				<div class="mb-4">
-					<h2 class="list-style-type-none sidebar-collapse mb-1 <% if(!url.includes("newbies")) { %>collapsed<% } %>" data-toggle="collapse" href="#side-begin-guide"> Beginner's Guide</h2>
-					<ul class="pl-3 collapse <% if(url.includes("newbies")) { %>show<% } %>" id="side-begin-guide">
+					<h2 class="list-style-type-none sidebar-collapse mb-1 <% if(section !== "newbies") { %>collapsed<% } %>" data-toggle="collapse" href="#side-begin-guide"> Beginner's Guide</h2>
+					<ul class="pl-3 collapse <% if(section === "newbies") { %>show<% } %>" id="side-begin-guide">
 						<h3 class="list-style-type-none d-none mb-3">&#8627; Training Maps</h3>
 						<h3 class="list-style-type-none d-none mb-3">&#8627; What class do I play?</h3>
 						<h3 class="list-style-type-none d-none">&#8627; Getting Stronger</h3>
@@ -16,28 +16,28 @@
 						</ul>
 						<h3 class="list-style-type-none mb-0">&#8627; Equipment Guide</h3>
 						<ul class="mb-0 pl-3">
-							<li class="list-style-type-none <% if(url.includes("newbies") && url.includes("summary")) { %>active<% } %> mb-0 d-none">
+							<li class="list-style-type-none <% if(branch === "equip-guide-summary") { %>active<% } %> mb-0 d-none">
 								&#8614; Summary
 							</li>
-							<li class="list-style-type-none <% if(url.includes("spell-trace")) { %>active<% } %> mb-0 d-none">
+							<li class="list-style-type-none <% if(branch === "spell-trace") { %>active<% } %> mb-0 d-none">
 								&#8614; Spell Trace<span class="d-md-none d-lg-inline"> / Scrolls</span>
 							</li>
-							<li class="list-style-type-none <% if(url.includes("star-force")) { %>active<% } %> mb-0 d-none">
+							<li class="list-style-type-none <% if(branch === "star-force") { %>active<% } %> mb-0 d-none">
 								&#8614; Star Force
 							</li>
-							<li class="list-style-type-none <% if(url.includes("potentials")) { %>active<% } %> mb-0 d-none">
+							<li class="list-style-type-none <% if(branch === "potentials") { %>active<% } %> mb-0 d-none">
 								&#8614; Potentials<span class="d-md-none d-lg-inline"> / Cubes</span>
 							</li>
-							<li class="list-style-type-none <% if(url.includes("flames")) { %>active<% } %> mb-0">
-								<a href="./newbies/equip-guide/flames" class="sidebar-btn d-block py-1 text-decoration-none">
+							<li class="list-style-type-none <% if(branch === "flames") { %>active<% } %> mb-0">
+								<a href="./maple/newbies/equip-guide/flames" class="sidebar-btn d-block py-1 text-decoration-none">
 									&#8614; Bonus Stats<span class="d-md-none d-lg-inline"> / Flames</span>
 								</a>
 							</li>
-							<li class="list-style-type-none <% if(url.includes("soul-weapons")) { %>active<% } %> mb-0 d-none">
+							<li class="list-style-type-none <% if(branch === "soul-weapons") { %>active<% } %> mb-0 d-none">
 								&#8614; Soul Weapons
 							</li>
-							<li class="list-style-type-none <% if(url.includes("set-effects")) { %>active<% } %> mb-0">
-								<a href="./newbies/equip-guide/set-items" class="sidebar-btn d-block py-1 text-decoration-none">
+							<li class="list-style-type-none <% if(branch === "set-effects") { %>active<% } %> mb-0">
+								<a href="./maple/newbies/equip-guide/set-items" class="sidebar-btn d-block py-1 text-decoration-none">
 									&#8614; Set Effects<span class="d-md-none d-lg-inline"> / Lucky Items</span>
 								</a>
 							</li>
@@ -49,8 +49,8 @@
 				</div>
 
 				<div class="mb-4">
-					<h2 class="list-style-type-none sidebar-collapse mb-1 <% if(url.includes("more-maple")) { %>collapsed<% } %>" data-toggle="collapse" href="#side-more-maple"> More Maple Stuff</h2>
-					<ul class="pl-3 collapse" id="side-more-maple">
+					<h2 class="list-style-type-none sidebar-collapse mb-1 <% if(section !== "more-maple") { %>collapsed<% } %>" data-toggle="collapse" href="#side-more-maple"> More Maple Stuff</h2>
+					<ul class="pl-3 collapse <% if(section === "more-maple") { %>show<% } %>" id="side-more-maple">
 						<h3 class="list-style-type-none d-none mb-0">&#8627; The story so far...</h3>
 						<ul class="mb-3 pl-3 d-none">
 							<li class="list-style-type-none d-none mb-2">&#8614; The Black Mage</li>
@@ -64,14 +64,14 @@
 						</ul>
 						<h3 class="list-style-type-none mb-0">&#8627; Events</h3>
 						<ul class="mb-3 pl-3">
-							<li class="list-style-type-none">
-								<a href="./events/tactical-relay" class="sidebar-btn d-block py-1 text-decoration-none">&#8614; Tactical Relay</a>
+							<li class="list-style-type-none <% if(branch === "tactical-relay") { %>active<% } %>">
+								<a href="./maple/events/tactical-relay" class="sidebar-btn d-block py-1 text-decoration-none">&#8614; Tactical Relay</a>
 							</li>
 						</ul>
 						<h3 class="list-style-type-none mb-0">&#8627; Fun Corner</h3>
 						<ul class="mb-0 pl-3">
-							<li class="list-style-type-none">
-								<a href="./fun/crossword" class="sidebar-btn d-block py-1 text-decoration-none">&#8614; Crossword</a>
+							<li class="list-style-type-none <% if(branch === "crossword") { %>active<% } %>">
+								<a href="./maple/fun/crossword" class="sidebar-btn d-block py-1 text-decoration-none">&#8614; Crossword</a>
 							</li>
 						</ul>
 					</ul>

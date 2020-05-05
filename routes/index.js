@@ -40,42 +40,6 @@ router.get("/set-items/:jobType", function(req, res) {
 	res.render("setItemIndexActive", {allEquipTypes: allEquipTypes, allSetItems: compiledSetItems, allSetEffects: compiledSetEffects, jobType: jobType, statTypes: possibleStatTypes});
 })
 
-router.get("/xwrdpzl", function(req, res) {
-	res.locals.extraStylesheet = "xwordStyles";
-	res.locals.currNav = { main: "xword" };
-	res.render("xword", {extraStylesheet: "xwordStyles", currNav: { main: "xword" }});
-})
-
-router.post("/xwrdpzl/answers", function(req, res) {
-	var submittedAnswers = req.body.allAnswers;
-	var correctAnswers = ["colossus", "kritias", "lilynouch", "skelosaurus", "magatia", "velderoth", "dolphin", "esfera", "twilight", "nine", "muto", "asteria", "karupa", "creation", "areda", "verdel", "nanuke", "taeng", "maya", "thanatos"]
-	var wrongAnswers = []
-
-	submittedAnswers.forEach((answer, index) => {
-		if(answer !== correctAnswers[index]) {
-			wrongAnswers.push(index+1);
-		}
-	});
-
-	if(wrongAnswers.length) {
-		res.send({isAnswerCorrect: false, wrongAnswers: wrongAnswers})
-	} else {
-		res.send({isAnswerCorrect: true})
-	}
-})
-
-router.get("/relay", function(req, res) {
-	var missionList = ["300 level-range mobs", "100 combo kills", "Defeat 1 daily boss",
-						"300 star force mobs", "Monster Park once", "Activate 1 Rune",
-						"3 Elite Monsters", "100 Multi-kills", "300 Arcane River mobs"];
-
-	var classSelect = ["pirate", "warrior", "mage", "archer", "thief"];
-
-	res.locals.extraStylesheet = "relayStyles";
-	res.locals.currNav = { main: "relay" };
-	res.render("relay", {missionList: missionList, classSelect: classSelect});
-})
-
 router.get("/about", function(req, res) {
 	res.locals.extraStylesheet = "aboutStyles";
 	res.locals.currNav = { main: "about" };

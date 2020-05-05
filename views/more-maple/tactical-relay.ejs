@@ -1,9 +1,10 @@
-<%- include("partials/header") %>
-<%- include("partials/navbar") %>
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
 
-<div class="container-fluid content d-flex p-0">
-	<div class="main-content-div container w-100 p-0 mt-2 position-relative">
-		<div class="single-info-page active w-100 align-items-center flex-column px-4 pt-4 px-lg-0 pt-lg-4">
+<div class="container-fluid content d-flex flex-column flex-md-row p-0">
+	<%- include("../partials/sidebar") %>
+	<div class="main-content-div col px-0 position-relative">
+		<div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
 			<div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
 				<div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
 					<div class="w-100 flex-grow-1 border-top border-dark"></div>
@@ -263,4 +264,4 @@
 </div>
 
 <script type="text/javascript" src="./public/scripts/relayScript.js"></script>
-<%- include("partials/footer") %>
+<%- include("../partials/footer") %>

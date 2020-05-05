@@ -92,6 +92,7 @@ $(function() {
 
 	grid.forEach(function(row, xIndex) {
 		row.forEach(function(col, yIndex) {
+			// If square is empty, mark with black square
 			if(col === 0) {
 				$(".crossword-board").append(`<input type="text" class="single-square border-0 bg-dark" disabled>`)
 			} else {
@@ -101,16 +102,20 @@ $(function() {
 				var clueNum;
 				var clueClass = ""
 
+				// If square is an input square along rows, get clue number
 				if(rowClueNums[xIndex][yIndex] !== 0) {
 					xClue = rowClueNums[xIndex][yIndex];
 					clueClass += `answer-${xClue} `
 
+					// If this is the first instance of this clue number being found
+					// Set clue number to found number, and remove from allClueNums
 					if(allClueNums.indexOf(xClue) !== -1) {
 						isClueNumFirstInstance = true;
 						clueNum = allClueNums.splice(allClueNums.indexOf(xClue), 1);
 					}
 				}
 
+				// If square is an input square along columns, get clue number
 				if(colClueNums[xIndex][yIndex] !== 0) {
 					yClue = colClueNums[xIndex][yIndex];
 					clueClass += `answer-${yClue}`
@@ -121,6 +126,9 @@ $(function() {
 					}
 				}
 
+				// If this is the first time clueNum was found, it is the start of the row/column input
+				// Create a HTML input that attaches the appropriate x and/or y clue number attribute to the square AND display its clue number
+				// Otherwise, create a HTML input that only attaches x/y clue number attribute
 				if(isClueNumFirstInstance) {
 					var html = `<div class="w-100 h-100 position-relative">`;
 					html += `<input type="text" class="single-square board-square ${clueClass} w-100 h-100 border border-dark font-weight-bold text-center text-uppercase" id="square-num-${xIndex*NUM_COLS + yIndex+1}" minlength="1" maxlength="1" required="required" `;
@@ -151,6 +159,8 @@ $(".crossword-board").on("focus", ".board-square", function() {
 	var yClueNum = $(this).data("yclue");
 
 	if(currDirection === "") {
+		// If both row/col clue numbers are found or if only row clue number is found
+		// Set direction to move cursor horizontally to next input box, else move vertically
 		if(xClueNum && yClueNum || xClueNum) {
 			currDirection = "horz";
 		} else if(yClueNum) {
@@ -166,6 +176,8 @@ $(".crossword-board").on("blur", ".board-square", function() {
 	var squareId = $(this).attr("id");
 	var squareIdNum = Number(squareId.split("-")[2]);
 
+	// Reset cursor direction to nothing when leaving focus from input boxes if boxes are at the edge of the crossword
+	// or if cursor meets a blank (non-input) square
 	if(currDirection === "horz") {
 		if(squareIdNum % NUM_COLS === 0 || $(`#square-num-${squareIdNum+1}`).length === 0) {
 			currDirection = "";
@@ -210,6 +222,8 @@ $(".crossword-board").on("keyup", ".board-square", function(event) {
 	var squareIdNum = Number(squareId.split("-")[2]);
 
 	if(event.which === 8) {
+		// If user hits backspace, move the cursor to the next appropriate box and focus on box based on direction
+		// or end focus if reached non-input/invalid square
 		if(currDirection === "horz") {
 			if(squareIdNum-1 % NUM_COLS === 0 || $(`#square-num-${squareIdNum-1}`).length === 0) {
 				$(this).blur();
@@ -228,6 +242,7 @@ $(".crossword-board").on("keyup", ".board-square", function(event) {
 			}
 		}
 	} else {
+		// For any other keys, move cursor to next square based on direction or end focus if reached non-input/invalid square
 		if($(this).val()) {
 			if(currDirection === "horz") {
 				if(squareIdNum % NUM_COLS === 0 || $(`#square-num-${squareIdNum+1}`).length === 0) {
@@ -265,10 +280,10 @@ $(".crossword-board-form").on("submit", function(event) {
 		allAnswers.push(answer);
 	}
 
-	$.post("/xwrdpzl/answers", {allAnswers: allAnswers}, function(data) {
+	$.post("./maple/fun/crossword/answers", {allAnswers: allAnswers}, function(data) {
 		if(data.isAnswerCorrect) {
 			$(".submit-ans-btn").hide();
-			$(".answer-prompt").text("Nice! All answers are correct! Now, unscramble each colored group of highlighted squares to form a phrase and PM me the phrase to complete this task.")
+			$(".answer-prompt").text("Nice! All answers are correct! Now, unscramble each colored group of highlighted squares to form a silly message and you're done!")
 			$(".answer-prompt").addClass("d-flex text-success");
 			$(".crossword-clues").hide();
 			$(".crossword-board-blocker").removeClass("d-none");
