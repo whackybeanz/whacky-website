@@ -71,6 +71,7 @@
 	max-width: 720px;
 }
 
+.index-collapse:before,
 .sidebar-collapse:before {
 	display: inline-block;
 	display: inline-block;
@@ -83,6 +84,7 @@
 	transition: all linear 0.25s;
 }
 
+.index-collapse.collapsed:before,
 .sidebar-collapse.collapsed:before {
 	transform: rotate(-90deg) ;
 }

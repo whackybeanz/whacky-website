@@ -1,22 +1,39 @@
+.font-index-subsubheader {
+  font-size: 1.1rem;
+}
+
+.index-subsection:nth-child(n-1) {
+  margin-bottom: 0px !important;
+}
+@media (min-width: 576px) {
+  .index-subsection:nth-child(n-2) {
+    margin-bottom: 0px !important;
+  }
+}
+@media (min-width: 768px) {
+  .index-subsection:nth-child(n-3) {
+    margin-bottom: 0px !important;
+  }
+}
+
 .page-select {
   height: 50px;
   transition: background-color 0.3s;
   color: inherit;
 }
 .page-select:hover {
-  font-weight: bold;
   transition: background-color 0.3s;
 }
 
 .page-select-img-div {
-  min-width: 50px;
-  max-width: 50px;
+  min-width: 70px;
+  max-width: 70px;
 }
 
 .maple-logos {
   object-fit: contain;
-  object-position: center;
-  max-width: 130px;
+  object-position: left;
+  max-width: 105px;
 }
 
-/*# sourceMappingURL=indexstyles.css.map */
+/*# sourceMappingURL=indexStyles.css.map */

@@ -95,13 +95,11 @@ body {
 	}
 
 	// Others
-	.inline-div-img {
-		border-right: 1px solid globals.$light-mode-grey;
+	.index-section-subheader, .index-section {
+		border: 1px solid globals.$light-mode-grey;
 	}
 
-	.single-option-select {
-		border: 1px solid globals.$light-mode-grey;
-
+	.page-select, .single-option-select {
 		&:hover, &.active {
 			background-color: globals.$light-mode-light-grey;
 			color: globals.$light-mode-black;

@@ -79,17 +79,14 @@ body.dark-mode .carousel-control-prev:hover, body.dark-mode .carousel-control-pr
 body.dark-mode table.table-bordered td, body.dark-mode table.table-bordered th {
   color: rgba(255, 255, 255, 0.8);
 }
-body.dark-mode .inline-div-img {
-  border-right: 1px solid #454d55;
-}
-body.dark-mode .single-option-select {
+body.dark-mode .index-section-subheader, body.dark-mode .index-section {
   border: 1px solid #454d55;
 }
-body.dark-mode .single-option-select:hover, body.dark-mode .single-option-select.active {
+body.dark-mode .page-select:hover, body.dark-mode .page-select.active, body.dark-mode .single-option-select:hover, body.dark-mode .single-option-select.active {
   background-color: #343a40;
   color: rgba(255, 255, 255, 0.8);
 }
-body.dark-mode .single-option-select a {
+body.dark-mode .page-select a, body.dark-mode .single-option-select a {
   color: rgba(255, 255, 255, 0.8);
 }
 body.dark-mode .radio-select-group .form-check .radio-select {

@@ -131,13 +131,11 @@ body.dark-mode {
 	}
 
 	// Others
-	.inline-div-img {
-		border-right: 1px solid globals.$dark-mode-grey;
+	.index-section-subheader, .index-section {
+		border: 1px solid globals.$dark-mode-grey;
 	}
 
-	.single-option-select {
-		border: 1px solid globals.$dark-mode-grey;
-
+	.page-select, .single-option-select {
 		&:hover, &.active {
 			background-color: globals.$dark-mode-navy-grey-opaque;
 			color: globals.$dark-mode-white;
