@@ -206,13 +206,13 @@ input[type="radio"] {
 .radio-select-group {
 	.form-check {
 		&:first-of-type .radio-select {
-			border-top-left-radius: 5px;
-			border-bottom-left-radius: 5px;
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
 		}
 
 		&:last-of-type .radio-select {
-			border-top-right-radius: 5px;
-			border-bottom-right-radius: 5px;
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
 		}
 
 		.radio-select {

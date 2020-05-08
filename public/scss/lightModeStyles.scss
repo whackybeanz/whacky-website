@@ -64,7 +64,7 @@ body {
 				color: globals.$light-mode-black;
 			}
 
-			&:hover {
+			&:hover, &.active {
 				background-color: globals.$light-mode-light-grey;
 				color: globals.$light-mode-black;
 			}
@@ -95,6 +95,20 @@ body {
 	}
 
 	// Others
+	.radio-select-group {
+		.form-check {
+			.radio-select {
+				border: 1px solid globals.$light-mode-grey;
+
+				&:hover, &.active {
+					background-color: globals.$light-mode-light-grey;
+					color: globals.$light-mode-black;
+				}
+			}
+		}
+	}
+
+	// Maple Index
 	.index-section-subheader, .index-section {
 		border: 1px solid globals.$light-mode-grey;
 	}
@@ -110,16 +124,10 @@ body {
 		}
 	}
 
-	.radio-select-group {
-		.form-check {
-			.radio-select {
-				border: 1px solid globals.$light-mode-grey;
-
-				&:hover, &.active {
-					background-color: globals.$light-mode-light-grey;
-					color: globals.$light-mode-black;
-				}
-			}
+	// Calculators
+	.job-choice-div, .equip-choice {
+		.single-option-select {
+			border: 1px solid globals.$light-mode-grey;	
 		}
 	}
 
@@ -128,6 +136,7 @@ body {
 		border: 1px solid globals.$light-mode-grey;
 	}
 
+	// About
 	.single-social {
 		a {
 			color: globals.$light-mode-black;

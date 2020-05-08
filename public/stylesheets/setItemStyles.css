@@ -1,3 +1,7 @@
+.job-choice-div .single-option-select {
+  width: 75px;
+}
+
 #equip-grid {
   display: grid;
   grid-template-areas: "ring1 	. 		 hat 	. 		 emblem" "ring2 	pendant2 face 	. 		 badge" "ring3 	pendant1 eye 	earring  medal" "ring4 	weapon 	 top 	shoulder secondary" "pocket belt 	 bottom gloves 	 cape" ". 		. 		 shoes 	android  heart";

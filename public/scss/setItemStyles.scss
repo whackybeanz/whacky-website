@@ -1,5 +1,11 @@
 @use '_global-styles' as globals;
 
+.job-choice-div {
+	.single-option-select {
+		width: 75px;
+	}
+}
+
 #equip-grid {
 	display: grid;
 	grid-template-areas:

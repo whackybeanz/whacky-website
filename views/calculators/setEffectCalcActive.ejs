@@ -20,19 +20,19 @@
 						<h3 class="w-100 font-subsubheader font-italic mb-0">Step 1: Select your character's job type</h3>
 						<div class="w-100 d-flex justify-content-center align-items-center flex-column position-relative">
 							<div class="job-choice-div w-100 d-flex justify-content-center align-items-center py-3">
-								<div class="single-option-select rounded-lg position-relative py-1 px-2 mx-2 <% if(jobType === "warrior") { %>active<% } %>" data-job-select="warrior">
+								<div class="single-option-select text-center rounded-sm position-relative py-1 px-2 mx-2 <% if(jobType === "warrior") { %>active<% } %>" data-job-select="warrior">
 									<a href="./maple/calc/set-effects/warrior" class="stretched-link text-decoration-none">Warrior</a>
 								</div>
-								<div class="single-option-select rounded-lg position-relative py-1 px-2 mx-2 <% if(jobType === "mage") { %>active<% } %>" data-job-select="mage">
+								<div class="single-option-select text-center rounded-sm position-relative py-1 px-2 mx-2 <% if(jobType === "mage") { %>active<% } %>" data-job-select="mage">
 									<a href="./maple/calc/set-effects/mage" class="stretched-link text-decoration-none">Mage</a>
 								</div>
-								<div class="single-option-select rounded-lg position-relative py-1 px-2 mx-2 <% if(jobType === "archer") { %>active<% } %>" data-job-select="archer">
+								<div class="single-option-select text-center rounded-sm position-relative py-1 px-2 mx-2 <% if(jobType === "archer") { %>active<% } %>" data-job-select="archer">
 									<a href="./maple/calc/set-effects/archer" class="stretched-link text-decoration-none">Archer</a>
 								</div>
-								<div class="single-option-select rounded-lg position-relative py-1 px-2 mx-2 <% if(jobType === "thief") { %>active<% } %>" data-job-select="thief">
+								<div class="single-option-select text-center rounded-sm position-relative py-1 px-2 mx-2 <% if(jobType === "thief") { %>active<% } %>" data-job-select="thief">
 									<a href="./maple/calc/set-effects/thief" class="stretched-link text-decoration-none">Thief</a>
 								</div>
-								<div class="single-option-select rounded-lg position-relative py-1 px-2 mx-2 <% if(jobType === "pirate") { %>active<% } %>" data-job-select="pirate">
+								<div class="single-option-select text-center rounded-sm position-relative py-1 px-2 mx-2 <% if(jobType === "pirate") { %>active<% } %>" data-job-select="pirate">
 									<a href="./maple/calc/set-effects/pirate" class="stretched-link text-decoration-none">Pirate</a>
 								</div>
 							</div>
@@ -149,7 +149,7 @@
 				<p class="slot-exceed-msg font-small w-100 position-absolute text-center text-danger m-0"></p>
 			</div>
 			<div class="modal-body p-0">
-				<div id="carousel-fade" class="carousel carousel-fade rounded-lg" data-ride="carousel" data-interval="false">
+				<div id="carousel-fade" class="carousel carousel-fade rounded-sm" data-ride="carousel" data-interval="false">
 					<div class="carousel-inner position-relative">
 						<% allEquipTypes.forEach(function(equipType, index) { %>
 						<div class="equip-select-div equip-select-<%= equipType %> carousel-item pt-2 pb-3 px-3">
@@ -160,7 +160,7 @@
 								<% if(allSetItems[jobType][equipType]) { %>
 									<% allSetItems[jobType][equipType].forEach(function(item) { %> 
 									<div class="equip-choice col-12 col-sm-6 col-lg-6 w-100 mb-2 px-2 d-flex">
-										<div class="single-option-select single-equip-choice single-equip-<%= equipType %> w-100 d-flex align-items-center rounded-lg" data-equip-name="<%= item.name %>" data-set-type="<%= item.setType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= item.image %>" data-item-id="<%= item.id %>" <% if(item.isLuckyItem) { %>data-is-lucky-item="<%= item.isLuckyItem %>" data-item-priority="<%= item.itemPriority %>" <% } %> <% if(item.isOverall) { %>data-is-overall="<%= item.isOverall %>"<% } %>>
+										<div class="single-option-select single-equip-choice single-equip-<%= equipType %> w-100 d-flex align-items-center rounded-sm" data-equip-name="<%= item.name %>" data-set-type="<%= item.setType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= item.image %>" data-item-id="<%= item.id %>" <% if(item.isLuckyItem) { %>data-is-lucky-item="<%= item.isLuckyItem %>" data-item-priority="<%= item.itemPriority %>" <% } %> <% if(item.isOverall) { %>data-is-overall="<%= item.isOverall %>"<% } %>>
 											<div class="equip-choice-img-div inline-div-img h-100 mr-2 d-flex justify-content-center align-items-center">
 												<img src="<%= item.image %>" class="m-2">
 											</div>

@@ -79,6 +79,13 @@ body.dark-mode .carousel-control-prev:hover, body.dark-mode .carousel-control-pr
 body.dark-mode table.table-bordered td, body.dark-mode table.table-bordered th {
   color: rgba(255, 255, 255, 0.8);
 }
+body.dark-mode .radio-select-group .form-check .radio-select {
+  border: 1px solid #454d55;
+}
+body.dark-mode .radio-select-group .form-check .radio-select:hover, body.dark-mode .radio-select-group .form-check .radio-select.active {
+  background-color: rgba(52, 58, 64, 0.8);
+  color: rgba(255, 255, 255, 0.8);
+}
 body.dark-mode .index-section-subheader, body.dark-mode .index-section {
   border: 1px solid #454d55;
 }
@@ -89,12 +96,8 @@ body.dark-mode .page-select:hover, body.dark-mode .page-select.active, body.dark
 body.dark-mode .page-select a, body.dark-mode .single-option-select a {
   color: rgba(255, 255, 255, 0.8);
 }
-body.dark-mode .radio-select-group .form-check .radio-select {
+body.dark-mode .job-choice-div .single-option-select, body.dark-mode .equip-choice .single-option-select {
   border: 1px solid #454d55;
-}
-body.dark-mode .radio-select-group .form-check .radio-select:hover, body.dark-mode .radio-select-group .form-check .radio-select.active {
-  background-color: rgba(52, 58, 64, 0.8);
-  color: rgba(255, 255, 255, 0.8);
 }
 body.dark-mode .single-set-effect {
   background-color: rgba(52, 58, 64, 0.8);
@@ -113,6 +116,9 @@ body.dark-mode .about-logo.gmail-logo {
 }
 body.dark-mode .about-logo.youtube-logo {
   background-image: url("../images/logos/youtube-logo-dark.png");
+}
+body.dark-mode .horz-partition {
+  border-top: 1px solid #454d55;
 }
 
 /*# sourceMappingURL=darkmodeStyles.css.map */
