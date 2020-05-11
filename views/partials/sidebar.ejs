@@ -53,37 +53,40 @@
 				</div>
 
 				<div class="mb-4">
-					<h2 class="list-style-type-none sidebar-collapse mb-1 <% if(section !== "calculators") { %>collapsed<% } %>" data-toggle="collapse" href="#side-calc"> Calculators</h2>
-					<ul class="pl-3 collapse <% if(section === "calculators") { %>show<% } %>" id="side-calc">
-						<li class="list-style-type-none <% if(branch === "calc-flames") { %>active<% } %> mb-0">
-							<a href="./maple/calc/flames" class="sidebar-btn d-block py-1 text-decoration-none">&#8627; Flames</a>
-						</li>
-						<li class="list-style-type-none <% if(branch === "calc-set-effects") { %>active<% } %> mb-0">
-							<a href="./maple/calc/set-effects" class="sidebar-btn d-block py-1 text-decoration-none">&#8627; Set Items & Effects</a>
-						</li>
+					<h2 class="list-style-type-none sidebar-collapse mb-1 <% if(section !== "extras") { %>collapsed<% } %>" data-toggle="collapse" href="#side-extras"> Extra Resources</h2>
+					<ul class="pl-3 collapse <% if(section === "extras") { %>show<% } %>" id="side-extras">
+						<h3 class="list-style-type-none mb-0">&#8627; Flames</h3>
+						<ul class="mb-3 pl-3">
+							<li class="list-style-type-none <% if(branch === "calc-flames") { %>active<% } %> mb-0">
+								<a href="./maple/extras/flames" class="sidebar-btn d-block py-1 text-decoration-none">
+									&#8614; Calculator
+								</a>
+							</li>
+						</ul>
+						<h3 class="list-style-type-none mb-0">&#8627; Set Items & Effects</h3>
 						<ul class="mb-0 pl-3">
 							<li class="list-style-type-none <% if(branch === "calc-set-effects-warrior") { %>active<% } %> mb-0">
-								<a href="./maple/calc/set-effects/warrior" class="sidebar-btn d-block py-1 text-decoration-none">
+								<a href="./maple/extras/set-effects/warrior" class="sidebar-btn d-block py-1 text-decoration-none">
 									&#8614; Warrior
 								</a>
 							</li>
 							<li class="list-style-type-none <% if(branch === "calc-set-effects-mage") { %>active<% } %> mb-0">
-								<a href="./maple/calc/set-effects/mage" class="sidebar-btn d-block py-1 text-decoration-none">
+								<a href="./maple/extras/set-effects/mage" class="sidebar-btn d-block py-1 text-decoration-none">
 									&#8614; Mage
 								</a>
 							</li>
 							<li class="list-style-type-none <% if(branch === "calc-set-effects-archer") { %>active<% } %> mb-0">
-								<a href="./maple/calc/set-effects/archer" class="sidebar-btn d-block py-1 text-decoration-none">
+								<a href="./maple/extras/set-effects/archer" class="sidebar-btn d-block py-1 text-decoration-none">
 									&#8614; Archer
 								</a>
 							</li>
 							<li class="list-style-type-none <% if(branch === "calc-set-effects-thief") { %>active<% } %> mb-0">
-								<a href="./maple/calc/set-effects/thief" class="sidebar-btn d-block py-1 text-decoration-none">
+								<a href="./maple/extras/set-effects/thief" class="sidebar-btn d-block py-1 text-decoration-none">
 									&#8614; Thief
 								</a>
 							</li>
 							<li class="list-style-type-none <% if(branch === "calc-set-effects-pirate") { %>active<% } %> mb-0">
-								<a href="./maple/calc/set-effects/pirate" class="sidebar-btn d-block py-1 text-decoration-none">
+								<a href="./maple/extras/set-effects/pirate" class="sidebar-btn d-block py-1 text-decoration-none">
 									&#8614; Pirate
 								</a>
 							</li>
@@ -121,7 +124,7 @@
 				</div>
 
 				<div class="mb-4">
-					<h2 class="list-style-type-none sidebar-collapse mb-1 collapsed" data-toggle="collapse" href="#side-others"> Other Resources</h2>
+					<h2 class="list-style-type-none sidebar-collapse mb-1 collapsed" data-toggle="collapse" href="#side-others"> Other References</h2>
 					<ul class="pl-3 collapse" id="side-others">
 						<li class="list-style-type-none mb-0">
 							<a href="https://strategywiki.org/wiki/MapleStory" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; StrategyWiki</a>

@@ -7,16 +7,16 @@ router.get("/", function(req, res) {
 
 router.get("/flames", function(req, res) {
 	res.locals.extraStylesheet = "flameStyles";
-	res.locals.section = "calculators";
+	res.locals.section = "extras";
 	res.locals.branch = "calc-flames";
-	res.render("calculators/flameCalc");
+	res.render("extras/flameCalc");
 })
 
 router.get("/set-effects", function(req, res) {
 	res.locals.extraStylesheet = "setItemStyles";
-	res.locals.section = "calculators";
+	res.locals.section = "extras";
 	res.locals.branch = "calc-set-effects";
-	res.render("calculators/setEffectCalc");
+	res.render("extras/setEffectCalc");
 })
 
 router.get("/set-effects/:jobType", function(req, res) {
@@ -44,9 +44,9 @@ router.get("/set-effects/:jobType", function(req, res) {
 							{ key: "critDmgPercent", name: "Critical Damage %", symbol: "%" }];
 
 	res.locals.extraStylesheet = "setItemStyles";
-	res.locals.section = "calculators";
+	res.locals.section = "extras";
 	res.locals.branch = `calc-set-effects-${jobType}`;
-	res.render("calculators/setEffectCalcActive", {allEquipTypes: allEquipTypes, allSetItems: compiledSetItems, allSetEffects: compiledSetEffects, jobType: jobType, statTypes: possibleStatTypes});
+	res.render("extras/setEffectCalcActive", {allEquipTypes: allEquipTypes, allSetItems: compiledSetItems, allSetEffects: compiledSetEffects, jobType: jobType, statTypes: possibleStatTypes});
 })
 
 module.exports = router;

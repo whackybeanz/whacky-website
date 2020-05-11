@@ -5,7 +5,7 @@ var mongoose				= require("mongoose");
 
 var indexRoutes 	= require("./routes/index");
 var mapleRoutes 	= require("./routes/mapleIndex");
-var calcRoutes 		= require("./routes/calcIndex");
+var extrasRoutes 	= require("./routes/extrasIndex");
 var beginnerRoutes 	= require("./routes/beginnerGuide");
 var adminRoutes 	= require("./routes/admin");
 
@@ -26,7 +26,7 @@ app.use(function(req, res, next) {
 // ROUTES
 app.use("/", indexRoutes);
 app.use("/maple", mapleRoutes);
-app.use("/maple/calc", calcRoutes);
+app.use("/maple/extras", extrasRoutes);
 app.use("/maple/newbies", beginnerRoutes);
 app.use("/admin", adminRoutes);
 
