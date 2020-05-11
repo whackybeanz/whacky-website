@@ -23,6 +23,13 @@ router.get("/equip-guide/flames", function(req, res) {
 	res.render("beginner/flames/flameIndex");
 })
 
+router.get("/equip-guide/soul-weapons", function(req, res) {
+	//res.locals.extraStylesheet = "flameStyles";
+	res.locals.section = "newbies";
+	res.locals.branch = "soul-weapons";
+	res.render("beginner/soul-weapons/soulWeaponIndex");
+})
+
 router.get("/equip-guide/set-effects", function(req, res) {
 	res.locals.extraStylesheet = "setItemStyles";
 	res.locals.section = "newbies";
