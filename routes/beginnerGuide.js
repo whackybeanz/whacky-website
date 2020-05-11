@@ -9,18 +9,25 @@ router.get("/equip-guide", function(req, res) {
 	res.redirect("/equip-guide/flames");
 })
 
+router.get("/equip-guide/star-force", function(req, res) {
+	//res.locals.extraStylesheet = "setItemStyles";
+	res.locals.section = "newbies";
+	res.locals.branch = "star-force";
+	res.render("beginner/star-force/starForceIndex");	
+})
+
 router.get("/equip-guide/flames", function(req, res) {
 	res.locals.extraStylesheet = "flameStyles";
 	res.locals.section = "newbies";
 	res.locals.branch = "flames";
-	res.render("beginner/flameIndex");
+	res.render("beginner/flames/flameIndex");
 })
 
 router.get("/equip-guide/set-effects", function(req, res) {
 	res.locals.extraStylesheet = "setItemStyles";
 	res.locals.section = "newbies";
 	res.locals.branch = "set-effects";
-	res.render("beginner/setEffectIndex");
+	res.render("beginner/set-effects/setEffectIndex");
 })
 
 module.exports = router;

@@ -1,0 +1,316 @@
+<div class="w-100 d-flex align-items-center flex-column px-4 pt-4" id="info">
+	<div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+		<div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+			<div class="w-100 border-top border-dark"></div>
+			<h1 class="font-header w-100 text-center m-0">About Star Force</h1>
+			<div class="w-100 border-top border-dark"></div>
+		</div>
+		<div class="w-100 mb-3">
+			<h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-intro">Introduction</h2>
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+				<p class="text-justify">Star Force is the next step after using up all upgrade slots on an item. Items that can be starred will display the possible number of upgrades (stars) above its name. The more stars you successfully get on an item, the more stat bonuses you receive! Starring costs mesos, and higher level items cost more per starring attempt. Each star represents 1 Star Force.</p>
+
+				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
+					<div class="d-flex">
+						<img src="./public/images/equips/star-force-1.png">
+					</div>
+					<p class="size-350 font-caption mb-0">Once upgrades available is 0, you're ready to star force! This item can be starred up to a maximum of 25*, and is currently at 18*.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="w-100 mb-3">
+			<h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-process">The Star Force Process</h2>
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+				<h3 class="w-100 font-subsubheader font-italic mb-0">Star Catcher & Chance Time</h3>
+				<p class="w-100 text-justify">For each starring attempt, you enter the Star Catcher mini game, where a star moves left and right along a bar. Hit spacebar (or click Stop) to "catch" the star within the highlighted region, and gain a very slight boost to your success rate for that attempt. The more times you star successfully (even without Star Catch), the more difficult Star Catcher will become.</p>
+				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
+					<div class="d-flex">
+						<img src="./public/images/equips/star-force-2.png">
+					</div>
+					<p class="size-350 font-caption">You can disable Star Catcher if you wish to save time and do not care for the boost.</p>
+
+					<div class="d-flex">
+						<img src="./public/images/equips/star-catch-3.png">
+					</div>
+					<p class="size-350 font-caption">Star Catcher difficulty increases when you play the mini game a certain number of times, with faster star movement and smaller highlighted region. It decreases in difficulty every 10th minute (:10, :20, etc.).</p>
+				</div>
+
+				<p class="w-100 text-justify">If you fail two consecutive starring attempts, you get Chance Time, which grants you 100% success rate for the next attempt on the item.</p>
+				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
+					<div class="d-flex">
+						<img src="./public/images/equips/star-force-4.png">
+					</div>
+					<p class="size-350 font-caption mb-0">Chance Time only works on the item you were starring. It will disappear if you star other items before using Chance Time or did not use it within 5 minutes.</p>
+				</div>
+			</div>
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+				<h3 class="w-100 font-subsubheader font-italic mb-0">Failing Star Force</h3>
+				<p class="text-justify">Success rates gradually decrease as you get more stars on the item. After reaching a certain number of stars, failing star force will result in loss of one star or even item destruction. There are also "safety checkpoints", where the number of stars cannot fall below these checkpoints even if starring fails. All these depends on whether the item is a regular (non-superior) or superior item:</p>
+				
+				<table class="font-table size-720 table table-sm table-bordered table-hover mb-3">
+					<thead>
+						<tr>
+							<th></th>
+							<th class="text-center align-middle">Item Type</th>
+							<th class="text-center align-middle">Chance of Losing 1 Star</th>
+							<th class="text-center align-middle">Chance of Item Destruction</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/equips/shoes/acs-shoes.png" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade Shoes">
+								<img src="./public/images/equips/cape/acs-cape.png" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade Cape">
+							</th>
+							<td class="text-center align-middle">Regular Items</td>
+							<td class="text-center align-middle">11* onwards<br/>Safety at 15* and 20*</td>
+							<td class="text-center align-middle">12* onwards<br/>Falls to 12* if destroyed</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/equips/shoes/tyrant-shoes.png" data-toggle="tooltip" data-placement="bottom" title="Tyrant Boots">
+								<img src="./public/images/equips/cape/tyrant-cape.png" data-toggle="tooltip" data-placement="bottom" title="Tyrant Cape">
+							</th>
+							<td class="text-center align-middle">Superior Items</td>
+							<td class="text-center align-middle">1* onwards<br/>No safety</td>
+							<td class="text-center align-middle">5* onwards<br/>Falls to 0* if destroyed</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<p class="text-justify">Regular items provide the Anti-Destruct option from 12* > 13* up till 16* > 17*, which removes destruction chance when starring at those stages at the cost of double mesos. Use this option wisely! You may only want to anti-destruct if you have mesos to spare, or if the item is in low supply that makes preventing destruction more worth it.</p>
+				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
+					<div class="d-flex">
+						<img src="./public/images/equips/star-force-5.png">
+					</div>
+					<p class="size-350 font-caption mb-0">Anti-destruct can prove very useful in your journey to 17* or higher, but costs you more.</p>
+				</div>
+			</div>
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+				<h3 class="w-100 font-subsubheader font-italic mb-0">Item Destruction</h3>
+				<p class="w-100 text-justify">Items destroyed during starring leaves an item trace which is unusable, but can be restored by having a duplicate of the same item. Note that items with the same name but have fixed potentials/star force (usually obtained from events) are not valid duplicates. The item trace retains all properties (potentials, flame stats, etc.) from your original item, as well as all bonus stats up to 12* (regular items). Upon restoring the item, it will start off at 12* for you to continue the starring process.</p>
+				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center mb-3">
+					<div class="d-flex">
+						<img src="./public/images/equips/star-force-6.png">
+					</div>
+					<p class="size-350 font-caption mb-0">A destroyed item falls back to 12* and leaves an item trace.</p>
+				</div>
+				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
+					<div class="d-flex">
+						<img src="./public/images/equips/star-force-7.png">
+					</div>
+					<p class="size-350 font-caption mb-0">Restore an item trace using a duplicate.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="w-100 mb-3">
+			<h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-superior-items">Superior Items</h2>
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+				<p class="w-100 text-justify">Superior items are special items that cost significantly more mesos per star, but also give higher boosts for each star achieved. There are only a few such items in the game:</p>
+				
+				<table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
+					<thead>
+						<tr>
+							<th></th>
+							<th class="text-center align-middle d-none d-md-table-cell">Item Name</th>
+							<th class="text-center align-middle">Coin Costs</th>
+							<th class="text-center align-middle">Boss Drops</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/equips/cape/elite-heliseum-cape.png" data-toggle="tooltip" data-placement="bottom" title="Elite Heliseum Cape">
+								<img src="./public/images/equips/shoes/elite-heliseum-shoes.png" data-toggle="tooltip" data-placement="bottom" title="Elite Heliseum Boots">
+							</th>
+							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Elite Heliseum Cape, Boots</td>
+							<td class="text-center align-middle">
+								100 x <img class="item-img m-1" src="./public/images/items/shadow-merchant-coin.png" data-toggle="tooltip" data-placement="bottom" title="Heliseum Downtown Black Market (100 Shadow Merchant Coins)">
+							</td>
+							<td class="text-center align-middle">
+								-
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/equips/belt/elite-heliseum-belt.png" data-toggle="tooltip" data-placement="bottom" title="Elite Heliseum Belt">
+							</th>
+							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Elite Heliseum Belt</td>
+							<td class="text-center align-middle">
+								150 x <img class="item-img m-1" src="./public/images/items/shadow-merchant-coin.png" data-toggle="tooltip" data-placement="bottom" title="Heliseum Downtown Black Market (150 Shadow Merchant Coins)">
+							</td>
+							<td class="text-center align-middle">
+								<img class="item-img border-img m-1" src="./public/images/boss/magnus-1.png" data-toggle="tooltip" data-placement="bottom" title="Magnus (Easy, Normal, Hard)">
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/equips/cape/nova-cape.png" data-toggle="tooltip" data-placement="bottom" title="Nova Cape">
+							</th>
+							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Nova Cape</td>
+							<td class="text-center align-middle">
+								250 x <img class="item-img m-1" src="./public/images/items/shadow-merchant-coin.png" data-toggle="tooltip" data-placement="bottom" title="Heliseum Downtown Black Market (250 Shadow Merchant Coins)">
+							</td>
+							<td class="text-center align-middle">
+								<img class="item-img border-img m-1" src="./public/images/boss/magnus-1.png" data-toggle="tooltip" data-placement="bottom" title="Magnus (Easy, Normal, Hard)">
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/equips/shoes/nova-shoes.png" data-toggle="tooltip" data-placement="bottom" title="Nova Boots">
+							</th>
+							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Nova Boots</td>
+							<td class="text-center align-middle">
+								250 x <img class="item-img m-1" src="./public/images/items/shadow-merchant-coin.png" data-toggle="tooltip" data-placement="bottom" title="Heliseum Downtown Black Market (250 Shadow Merchant Coins)">
+							</td>
+							<td class="text-center align-middle">
+								<img class="item-img border-img m-1" src="./public/images/boss/magnus-1.png" data-toggle="tooltip" data-placement="bottom" title="Magnus (Hard)">
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/equips/belt/nova-belt.png" data-toggle="tooltip" data-placement="bottom" title="Nova Belt">
+							</th>
+							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Nova Belt</td>
+							<td class="text-center align-middle">
+								-
+							</td>
+							<td class="text-center align-middle">
+								<img class="item-img border-img m-1" src="./public/images/boss/magnus-1.png" data-toggle="tooltip" data-placement="bottom" title="Magnus (Hard)">
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/equips/cape/tyrant-cape.png" data-toggle="tooltip" data-placement="bottom" title="Tyrant Cape">
+							</th>
+							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Tyrant Cape</td>
+							<td class="text-center align-middle">
+								70 x <img class="item-img m-1" src="./public/images/items/magnus-coin.png" data-toggle="tooltip" data-placement="bottom" title="Heliseum Downtown Black Market (70 Magnus Coins)">
+							</td>
+							<td class="text-center align-middle">
+								<img class="item-img border-img m-1" src="./public/images/boss/magnus-1.png" data-toggle="tooltip" data-placement="bottom" title="Magnus (Hard)">
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/equips/shoes/tyrant-shoes.png" data-toggle="tooltip" data-placement="bottom" title="Tyrant Boots">
+							</th>
+							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Tyrant Boots</td>
+							<td class="text-center align-middle">
+								70 x <img class="item-img m-1" src="./public/images/items/magnus-coin.png" data-toggle="tooltip" data-placement="bottom" title="Heliseum Downtown Black Market (70 Magnus Coins)">
+							</td>
+							<td class="text-center align-middle">
+								-
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/equips/belt/tyrant-belt.png" data-toggle="tooltip" data-placement="bottom" title="Tyrant Belt">
+							</th>
+							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Tyrant Belt</td>
+							<td class="text-center align-middle">
+								100 x <img class="item-img m-1" src="./public/images/items/magnus-coin.png" data-toggle="tooltip" data-placement="bottom" title="Heliseum Downtown Black Market (100 Magnus Coins)">
+							</td>
+							<td class="text-center align-middle">
+								-
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/equips/gloves/tyrant-gloves.png" data-toggle="tooltip" data-placement="bottom" title="Tyrant Gloves">
+							</th>
+							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Tyrant Gloves</td>
+							<td class="text-center align-middle">
+								400 x <img class="item-img m-1" src="./public/images/items/kritias-coin.png" data-toggle="tooltip" data-placement="bottom" title="Kritias Coin Shop (400 Kritias Coins)">
+							</td>
+							<td class="text-center align-middle">
+								-
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="w-100 mb-3">
+			<h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-sf-scrolls">Star Force Scrolls</h2>
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+				<p class="w-100 text-justify">There are certain scrolls that assign a fixed number of stars to your equipment. Most of these items either have certain restrictions, are difficult to come by, or have consequences if the scroll fails.</p>
+
+				<ul class="w-100 mb-0">
+					<li><img class="li-img" src="./public/images/items/ees.png"> 2 / 3 / 4 / 5 Star Enhancement Scroll</li>
+					<ul class="font-table mb-3">
+						<li>Adds 2 / 3 / 4 / 5 stars</li>
+						<li>Works only on items at 0*</li>
+					</ul>
+					<li><img class="li-img" src="./public/images/items/ees.png"> (Advanced) Equipment Enhancement Scroll (EES / AEES)</li>
+					<ul class="font-table mb-3">
+						<li>Adds 1* to an item up to 15*</li>
+						<li>Destroys item if scroll fails <span class="font-weight-bold text-underline">and does not leave an item trace</span></li>
+					</ul>
+					<li><img class="li-img" src="./public/images/items/ees.png"> High Quality Equipment Enhancement Scroll (HQEES)</li>
+					<ul class="font-table mb-3">
+						<li>Adds 1* to an item up to 15*</li>
+					</ul>
+					<li><img class="li-img" src="./public/images/items/sf-scroll.png"> 12 / 15 / 17 / 20 Star Force Enhancement Coupon</li>
+					<ul class="font-table mb-0">
+						<li>Makes an item 12* / 15* / 17* / 20*</li>
+						<li>Does not work on Superior equipment</li>
+						<li>Scrolls from events usually are level restricted (usable only on items of specific level stated in scroll name)</li>
+					</ul>
+				</ul>
+			</div>
+		</div>
+
+		<div class="w-100 mb-3">
+			<h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-sf-scrolls">How many stars should I aim for?</h2>
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+				<p class="w-100 text-justify">Meso costs for starring rise very quickly, jumping in costs at 10*, 15* and 20* while also costing more for higher level items. It can be hard to handle for a newbie, so take things slow! When starting off, consider starring the lowest level item you have for lower costs. The table below is just a recommendation, so don't worry if you find it too difficult or expensive to reach these values.</p>
+
+				<table class="font-table size-720 table table-sm table-bordered table-hover mb-3">
+					<thead>
+						<tr>
+							<th class="text-center align-middle">Level Range</th>
+							<th class="text-center align-middle">Total Star Force</th>
+							<th class="text-center align-middle">Rationale</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								Below Level 100
+							</th>
+							<td class="text-center align-middle">-</td>
+							<td class="text-center align-middle">Not a priority</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								Level 100 to 120
+							</th>
+							<td class="text-center align-middle">5* to 30*<br/>(5* to 10* per item)</td>
+							<td class="text-center align-middle">Allows training in Star Force maps (better EXP)</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								Level 120 to 140
+							</th>
+							<td class="text-center align-middle">55*++<br/>(10* to 12* per item)</td>
+							<td class="text-center align-middle">Training in Star Force maps, some stat boost for bossing</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								Level 140++
+							</th>
+							<td class="text-center align-middle">80*++<br/>(12* to 15* per item)</td>
+							<td class="text-center align-middle">Training in Star Force maps, more stat boost for bossing</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<p class="w-100 text-justify mb-0">Beyond 17*, you're probably knowledgeable enough on the risks of Star Force to understand how to proceed and what to focus on first. Starring beyond 17* gives decent stat bonuses, but item destruction risks are always present and anti-destruct is not an option. Not everyone has the mesos or resources to get a replacement item back should things go poorly. Plan well, and may starring luck be with you!</p>
+			</div>
+		</div>
+	</div>
+</div>
