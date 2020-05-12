@@ -111,6 +111,14 @@
   min-width: 50px;
   max-width: 50px;
 }
+#setItemSelectModal .carousel.carousel-fade .carousel-inner {
+  min-height: 300px;
+  max-height: 300px;
+}
+#setItemSelectModal .carousel.carousel-fade .carousel-inner .carousel-item {
+  max-height: 300px;
+  overflow: auto;
+}
 
 .set-item-effect-div .single-set-effect .set-items .set-effect, .set-item-effect-div .single-set-effect .num-wearing-div .set-effect {
   opacity: 0.3;

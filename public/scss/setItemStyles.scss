@@ -78,6 +78,18 @@
 			max-width: 50px;
 		}
 	}
+
+	.carousel.carousel-fade {
+		.carousel-inner {
+			min-height: 300px;
+			max-height: 300px;
+
+			.carousel-item {
+				max-height: 300px;
+				overflow: auto;
+			}
+		}
+	}
 }
 
 .set-item-effect-div {

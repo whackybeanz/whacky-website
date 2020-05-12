@@ -12,6 +12,13 @@ router.get("/flames", function(req, res) {
 	res.render("extras/flameCalc");
 })
 
+router.get("/soul-tier-list", function(req, res) {
+	res.locals.extraStylesheet = "soulListStyles";
+	res.locals.section = "extras";
+	res.locals.branch = "soul-tier-list";
+	res.render("extras/soulTierList");
+})
+
 router.get("/set-effects", function(req, res) {
 	res.locals.extraStylesheet = "setItemStyles";
 	res.locals.section = "extras";

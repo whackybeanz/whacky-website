@@ -1,0 +1,264 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="container-fluid content d-flex flex-column flex-md-row p-0">
+	<%- include("../partials/sidebar") %>
+	<div class="main-content-div col p-0 position-relative">
+		<div class="w-100 d-flex align-items-center flex-column px-4 pt-4" id="calculator">
+			<div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+				<div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+					<div class="w-100 flex-grow-1 border-top border-dark"></div>
+					<h1 class="font-header w-100 text-center m-0 px-0">Soul Tier List</h1>
+					<div class="w-100 flex-grow-1 border-top border-dark"></div>
+				</div>
+				<div class="w-100 mb-3">
+					<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+						<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2" id="calc-how-to">Instructions</h2>
+						<p class="w-100 text-justify">This list contains all boss souls that have been released so far, sorted into separate tiers. Click each soul to view more detailed information related to it. You can also navigate between each individual boss soul by clicking the left/right arrows. Under Skill Info, regular prefixed souls grant users the first skill, while Augmented souls grant users the second skill. There are two levels for each skill (Level 2 stats are in brackets).</p>
+					</div>
+
+					<div class="font-content w-100 d-flex flex-column flex-xl-row justify-content-xl-between align-items-center align-items-xl-start mb-4">
+						<table class="font-table size-350 table table-sm table-bordered table-hover mb-4">
+							<tbody>
+								<tr>
+									<th class="table-cols-header tier-col text-center align-middle">Tier 1</th>
+									<td class="align-middle px-3">
+										<img src="./public/images/souls/soul-magnus.png">
+										<img src="./public/images/souls/soul-cygnus.png">
+										<img src="./public/images/souls/soul-murrmurr.png">
+										<img src="./public/images/souls/soul-crimson-queen.png">
+										<img src="./public/images/souls/soul-vellum.png">
+										<img src="./public/images/souls/soul-lotus.png">
+										<img src="./public/images/souls/soul-damien.png">
+										<img src="./public/images/souls/soul-lucid.png">
+										<img src="./public/images/souls/soul-will.png">
+										<img src="./public/images/souls/soul-heretic-hilla.png">
+										<img src="./public/images/souls/soul-djunkel.png">
+									</td>
+								</tr>
+								<tr>
+									<th class="table-cols-header tier-col text-center align-middle">Tier 2</th>
+									<td class="align-middle px-3">
+										<img src="./public/images/souls/soul-pink-bean.png">
+										<img src="./public/images/souls/soul-ursus.png">
+										<img src="./public/images/souls/soul-von-bon.png">
+										<img src="./public/images/souls/soul-pierre.png">
+									</td>
+								</tr>
+								<tr>
+									<th class="table-cols-header tier-col text-center align-middle">Tier 3</th>
+									<td class="align-middle px-3">
+										<img src="./public/images/souls/soul-arkarium.png">
+										<img src="./public/images/souls/soul-bad-brawler.png">
+										<img src="./public/images/souls/soul-black-knight.png">
+										<img src="./public/images/souls/soul-mad-mage.png">
+										<img src="./public/images/souls/soul-rampant-cyborg.png">
+										<img src="./public/images/souls/soul-vicious-hunter.png">
+									</td>
+								</tr>
+								<tr>
+									<th class="table-cols-header tier-col text-center align-middle">Tier 4</th>
+									<td class="align-middle px-3">
+										<img src="./public/images/souls/soul-hilla.png">
+									</td>
+								</tr>
+								<tr>
+									<th class="table-cols-header tier-col text-center align-middle">Tier 5</th>
+									<td class="align-middle px-3">
+										<img src="./public/images/souls/soul-von-leon.png">
+										<img src="./public/images/souls/soul-papulatus.png">
+									</td>
+								</tr>
+								<tr>
+									<th class="table-cols-header tier-col text-center align-middle">Tier 6</th>
+									<td class="align-middle px-3">
+										<img src="./public/images/souls/soul-zakum.png">
+										<img src="./public/images/souls/soul-gold-dragon.png">
+										<img src="./public/images/souls/soul-red-tiger.png">
+									</td>
+								</tr>
+								<tr>
+									<th class="table-cols-header tier-col text-center align-middle">Tier 7</th>
+									<td class="align-middle px-3">
+										<img src="./public/images/souls/soul-balrog.png">
+										<img src="./public/images/souls/soul-nene.png">
+										<img src="./public/images/souls/soul-tutu.png">
+									</td>
+								</tr>
+								<tr>
+									<th class="table-cols-header tier-col text-center align-middle">Tier 8</th>
+									<td class="align-middle px-3">
+										<img src="./public/images/souls/soul-mu-gong.png">
+										<img src="./public/images/souls/soul-pianus.png">
+									</td>
+								</tr>
+								<tr>
+									<th class="table-cols-header tier-col text-center align-middle">Tier 9</th>
+									<td class="align-middle px-3">
+										<img src="./public/images/souls/soul-rex.png">
+										<img src="./public/images/souls/soul-dragon-rider.png">
+									</td>
+								</tr>
+								<tr>
+									<th class="table-cols-header tier-col text-center align-middle">Tier 10</th>
+									<td class="align-middle px-3">
+										<img src="./public/images/souls/soul-ephenia.png">
+									</td>
+								</tr>
+								<tr>
+									<th class="table-cols-header tier-col text-center align-middle">Tier 11</th>
+									<td class="align-middle px-3">
+										<img src="./public/images/souls/soul-black-slime.png">
+										<img src="./public/images/souls/soul-rock-spirit.png">
+										<img src="./public/images/souls/soul-ani.png">
+										<img src="./public/images/souls/soul-xerxes.png">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div id="carousel-fade" class="size-720 w-100 carousel carousel-fade border rounded-sm" data-ride="carousel" data-interval="false">
+							<div class="carousel-inner position-relative">
+								<div class="carousel-item active">
+									<div class="carousel-caption w-100 p-0">
+										<div class="position-relative border-bottom mb-3 py-2">
+											<a class="carousel-control-prev" href="#carousel-fade" role="button" data-slide="prev">
+												<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+												<span class="sr-only">Previous</span>
+											</a>
+											<div>
+												<h2 class="carousel-header font-subheader w-100 font-weight-bold text-center text-capitalize text-decoration-none mb-0">
+													<img src="./public/images/souls/soul-magnus.png">
+													Magnus
+												</h2>
+												<p class="font-small mb-0">+20 WA/MA above 500 souls</p>
+											</div>
+											<a class="carousel-control-next" href="#carousel-fade" role="button" data-slide="next">
+												<span class="carousel-control-next-icon" aria-hidden="true"></span>
+												<span class="sr-only">Next</span>
+											</a>
+										</div>
+										<div class="font-small d-flex flex-column align-items-center">
+											<div class="d-flex flex-column align-items-center mb-3 soul-img">
+												<div class="position-relative">
+													<div class="d-flex">
+														<div class="soul-ui soul-ui-normal cursor-pointer active"></div>
+														<div class="soul-ui soul-ui-hidden cursor-pointer"></div>
+													</div>
+												</div>
+												<div class="soul-caption-img normal-img position-relative">
+													<img src="./public/images/souls/img-magnus-1.png">
+													<div class="soul-caption-div w-100 position-absolute px-2">
+														<div class="soul-caption w-100 d-flex align-items-center justify-content-center rounded-sm px-2">
+															<div>That's me!</div>
+														</div>
+													</div>
+												</div>
+												<div class="soul-caption-img hidden-img position-relative d-none">
+													<img src="./public/images/souls/img-magnus-2.png">
+													<div class="soul-caption-div w-100 position-absolute px-2">
+														<div class="soul-caption w-100 h-100 d-flex align-items-center justify-content-center rounded-sm">
+															The lonely gentleman at Shinsoo High School. That's me.
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-12 px-3 mb-4">
+												<h3 class="font-subsubheader index-collapse w-100 text-left border px-3 py-2 mb-0 cursor-pointer" data-toggle="collapse" href="#soul-stat-info"> Stat Info</h3>
+												<div class="row text-left border mx-0 mb-0 collapse show" id="soul-stat-info">
+													<div class="d-flex flex-column flex-sm-row w-100 px-3 py-2">
+														<div class="col-12 col-sm-6 px-0 mb-0 flex-shrink-1">
+															<div class="d-flex px-0 mb-2">
+																<div class="col-6 font-weight-bold px-0">Mighty</div>
+																<div class="col-6 px-0">STR +24</div>
+															</div>
+															<div class="d-flex px-0 mb-2">
+																<div class="col-6 font-weight-bold px-0">Deft</div>
+																<div class="col-6 px-0">DEX +24</div>
+															</div>
+															<div class="d-flex px-0 mb-2">
+																<div class="col-6 font-weight-bold px-0">Enlightened</div>
+																<div class="col-6 px-0">INT +24</div>
+															</div>
+															<div class="d-flex px-0 mb-4 mb-sm-2">
+																<div class="col-6 font-weight-bold px-0">Lucky</div>
+																<div class="col-6 px-0">LUK +24</div>
+															</div>
+															<div class="d-flex px-0 mb-2">
+																<div class="col-6 font-weight-bold px-0">Glamorous</div>
+																<div class="col-6 px-0">All Stats +15</div>
+															</div>
+															<div class="d-flex px-0 mb-2">
+																<div class="col-6 font-weight-bold px-0">Sharp</div>
+																<div class="col-6 px-0">Weapon ATT +6</div>
+															</div>
+															<div class="d-flex px-0 mb-2">
+																<div class="col-6 font-weight-bold px-0">Runic</div>
+																<div class="col-6 px-0">Magic ATT +6</div>
+															</div>
+															<div class="d-flex px-0 mb-4 mb-sm-2">
+																<div class="col-6 font-weight-bold px-0">Robust</div>
+																<div class="col-6 px-0">HP +960</div>
+															</div>
+														</div>
+														<div class="d-flex col-12 col-sm-6 px-0">
+															<div class="col-6 col-sm-6 col-md-5 px-0 px-sm-3"><span class="font-weight-bold">Augmented</span><br/>(Randomly selects one)</div>
+															<div class="col-6 col-sm-6 col-md-7 d-flex px-0 flex-column">
+																<div class="mb-2">Boss Damage +7%</div>
+																<div class="mb-2">Magic ATT +3%</div>
+																<div class="mb-2">Weapon ATT +3%</div>
+																<div class="mb-2">Ignore DEF +7%</div>
+																<div class="mb-2">Critical Rate +12%</div>
+																<div class="mb-2">All Stats +5%</div>
+																<div class="mb-2">HP +2000</div>
+																<div class="mb-2">All Skill Levels +2</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-12 px-3 mb-4">
+												<h3 class="font-subsubheader index-collapse w-100 text-left border px-3 py-2 mb-0 cursor-pointer" data-toggle="collapse" href="#soul-skill-info"> Skill Info</h3>
+												<div class="row text-left border mx-0 mb-0 collapse show" id="soul-skill-info">
+													<div class="px-3 py-2">
+														<div class="d-flex flex-column text-left mb-4">
+															<div class="mb-0">
+																<img src="./public/images/skills/soul-magnus.png"> <span class="font-weight-bold">Advance! That is me.</span>
+															</div>
+															<p class="text-left mb-1">
+																Magnus, with unmatched confidence, advances after his sword. Magnus, summoned by the power of soul weapon, pushes forward and attacks with his large sword.
+															</p>
+															<p class="text-left mb-0">
+																Soul cost: 150. Attacks up to 7 (8) enemies at 3000% (3600%) damage 1 times. Cooldown: 60 seconds.
+															</p>
+														</div>
+
+														<div class="d-flex flex-column text-left mb-0">
+															<div class="mb-0">
+																<img src="./public/images/skills/soul-magnus.png"> <span class="font-weight-bold">Bombing! That is me.</span>
+															</div>
+															<p class="text-left mb-1">
+																Summons the Traitor Magnus to fight together. (Be careful not to get betrayed...) The Soul Weapon's power temporarily summons Magnus to attack nearby monsters.
+															</p>
+															<p class="text-left mb-0">
+																Soul cost: 250. Summons Magnus with 1500% (1800%) damage for 120 seconds. Cooldown: 180 seconds.
+															</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="./public/scripts/commonScript.js"></script>
+<script type="text/javascript" src="./public/scripts/soulListScript.js"></script>
+<%- include("../partials/footer") %>

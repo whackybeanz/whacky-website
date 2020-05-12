@@ -183,13 +183,7 @@ input[type=radio] {
 	Carousel
 
 **********************/
-.carousel.carousel-fade .carousel-inner {
-  min-height: 300px;
-  max-height: 300px;
-}
 .carousel.carousel-fade .carousel-inner .carousel-item {
-  max-height: 300px;
-  overflow: auto;
   display: block;
   opacity: 0;
   transition: opacity ease-out 0.7s;
