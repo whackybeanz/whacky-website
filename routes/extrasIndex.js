@@ -13,7 +13,7 @@ router.get("/flames", function(req, res) {
 })
 
 router.get("/soul-tier-list", function(req, res) {
-	var soulList = require("../item-data/soulList");
+	var soulList = require("../item-data/allSoulList");
 	res.locals.extraStylesheet = "soulListStyles";
 	res.locals.section = "extras";
 	res.locals.branch = "soul-tier-list";
