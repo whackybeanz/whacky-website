@@ -113,7 +113,7 @@ tier2SoulList.set("von-bon", {
 			name: "Spicy Chicken's Spice",
 			img: ["./public/images/skills/soul-von-bon.png"],
 			desc: "Don't underestimate him just because he looks like a chicken. Von Bon is a powerful monster. The power of a Soul Weapon summons him and he stuns monsters with powerful attacks.",
-			effect: "Soul cost: 100. Attacks up to 1 enemy at 1000% (1200%) damage. Stuns the hit enemy for 3 seconds. Cooldown: 10 seconds."
+			effect: "Soul cost: 100. Attacks up to 1 enemy at 1000% (1200%) damage 1 time. Stuns the hit enemy for 3 seconds. Cooldown: 10 seconds."
 		},
 		augmented: {
 			name: "Flying Chicken!",
@@ -148,7 +148,7 @@ tier2SoulList.set("pierre", {
 			name: "Pierre's Hat",
 			img: ["./public/images/skills/soul-pierre.png"],
 			desc: "Pierre the Weird Monster throws his hat in all directions. The power of a Soul Weapon summons Pierre and Pierre throws his hat to stun nearby enemies.",
-			effect: "Soul cost: 200. Attacks up to 15 enemies 1 time at 2000% (2400%) damage. Stuns the hit enemies for 3 seconds. Cooldown: 120 seconds."
+			effect: "Soul cost: 200. Attacks up to 15 enemies at 2000% (2400%) damage 1 time. Stuns the hit enemies for 3 seconds. Cooldown: 120 seconds."
 		},
 		augmented: {
 			name: "Pierre's Surprise!",

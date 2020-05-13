@@ -45,7 +45,7 @@ tier3SoulList.set("arkarium", {
 			name: "Arkarium Stun",
 			img: ["./public/images/skills/soul-arkarium.png"],
 			desc: "The appearance of Arkarium is shocking enough to stun everyone nearby. Arkarium, summoned by the power of the Soul Weapon, delivers stun damage to nearby enemies with his powerful eyes.",
-			effect: "Soul cost: 200. Attacks up to 15 enemies 1 time at 2500% (3000%) damage. Stuns the hit enemies for 3 seconds. Cooldown: 120 seconds."
+			effect: "Soul cost: 200. Attacks up to 15 enemies at 2500% (3000%) damage 1 time. Stuns the hit enemies for 3 seconds. Cooldown: 120 seconds."
 		}
 	},
 });

@@ -78,7 +78,7 @@ tier1SoulList.set("magnus", {
 			name: "Advance! That is me.",
 			img: ["./public/images/skills/soul-magnus.png"],
 			desc: "Magnus, with unmatched confidence, advances after his sword. Magnus, summoned by the power of the Soul Weapon, pushes forward and attacks with his large sword.",
-			effect: "Soul cost: 150. Attacks up to 7 (8) enemies at 3000% (3600%) damage 1 times. Cooldown: 60 seconds."
+			effect: "Soul cost: 150. Attacks up to 7 (8) enemies at 3000% (3600%) damage 1 time. Cooldown: 60 seconds."
 		},
 		augmented: {
 			name: "Bombing! That is me.",
@@ -150,7 +150,7 @@ tier1SoulList.set("damien", {
 			name: "Commence Hunting",
 			img: ["./public/images/skills/soul-damien.png"],
 			desc: "Damien's soul stays with you. The Soul Weapon's power temporarily summons Damien to attack nearby monsters.",
-			effect: "Soul cost: 250. Summons Magnus with 1500% (1800%) damage for 120 seconds. Hits 8 (9) enemies once per attack. Cooldown: 180 seconds."
+			effect: "Soul cost: 250. Summons Damien with 1500% (1800%) damage for 120 seconds. Hits 8 (9) enemies once per attack. Cooldown: 180 seconds."
 		},
 		augmented: {
 			name: "Sword of Destruction",
@@ -242,7 +242,7 @@ tier1SoulList.set("vellum", {
 			name: "Vellum Giga Laser",
 			img: ["./public/images/skills/soul-vellum.png"],
 			desc: "Vellum roars with sky-shattering force. It's like he is breathing out lasers. The Soul Weapon's power summons Vellum and Vellum attacks monsters in front.",
-			effect: "Soul cost: 200. Attacks up to 15 enemies at 3000% (3600%) damage 1 times. Cooldown: 120 seconds."
+			effect: "Soul cost: 200. Attacks up to 15 enemies at 3000% (3600%) damage 1 time. Cooldown: 120 seconds."
 		},
 		augmented: {
 			name: "Summon Vellum Jr.!",
@@ -431,69 +431,5 @@ tier1SoulList.set("murrmurr", {
 		}
 	},
 });
-
-
-
-
-
-// Arkarium
-
-// Black Knight
-
-// Mad Mage
-
-// Vicious Hunter
-
-// Rampant Cyborg
-
-// Bad Brawler
-
-
-
-
-// Hilla
-
-// Von Leon
-
-// Papulatus
-
-
-
-
-// Zakum
-
-// Gold Dragon
-
-// Red Tiger
-
-
-
-
-// Balrog
-
-// Nene
-
-// Tutu
-
-
-
-
-// Spirit of Rock
-
-// Ephenia
-
-// Ani
-
-// Mu Gong
-
-// Black Slime
-
-// Xerxes
-
-// Rex
-
-// Pianus
-
-// Dragon Rider
 
 module.exports = tier1SoulList;
