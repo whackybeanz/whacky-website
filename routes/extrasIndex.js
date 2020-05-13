@@ -13,10 +13,11 @@ router.get("/flames", function(req, res) {
 })
 
 router.get("/soul-tier-list", function(req, res) {
+	var soulList = require("../item-data/soulList");
 	res.locals.extraStylesheet = "soulListStyles";
 	res.locals.section = "extras";
 	res.locals.branch = "soul-tier-list";
-	res.render("extras/soulTierList");
+	res.render("extras/soulTierList", {soulList: soulList});
 })
 
 router.get("/set-effects", function(req, res) {

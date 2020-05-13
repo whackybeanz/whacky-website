@@ -119,7 +119,8 @@
 
 						<div id="carousel-fade" class="size-720 w-100 carousel carousel-fade border rounded-sm" data-ride="carousel" data-interval="false">
 							<div class="carousel-inner position-relative">
-								<div class="carousel-item active">
+								<% for (let [bossId, soulDetails] of soulList) { %>
+								<div class="carousel-item <% if(bossId === "magnus") { %>active<% } %>">
 									<div class="carousel-caption w-100 p-0">
 										<div class="position-relative border-bottom mb-3 py-2">
 											<a class="carousel-control-prev" href="#carousel-fade" role="button" data-slide="prev">
@@ -128,10 +129,13 @@
 											</a>
 											<div>
 												<h2 class="carousel-header font-subheader w-100 font-weight-bold text-center text-capitalize text-decoration-none mb-0">
-													<img src="./public/images/souls/soul-magnus.png">
-													Magnus
+													<img src="<%= soulDetails.soulImg.regular %>">
+													<% if(soulDetails.soulImg.augmented) { %>
+													<img src="<%= soulDetails.soulImg.augmented %>">
+													<% } %>
+													<%= soulDetails.bossName %>
 												</h2>
-												<p class="font-small mb-0">+20 WA/MA above 500 souls</p>
+												<p class="font-small mb-0"><%= soulDetails.soulGaugeEffect %></p>
 											</div>
 											<a class="carousel-control-next" href="#carousel-fade" role="button" data-slide="next">
 												<span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -142,78 +146,49 @@
 											<div class="d-flex flex-column align-items-center mb-3 soul-img">
 												<div class="position-relative">
 													<div class="d-flex">
-														<div class="soul-ui soul-ui-normal cursor-pointer active"></div>
-														<div class="soul-ui soul-ui-hidden cursor-pointer"></div>
+														<div class="soul-ui soul-ui-normal cursor-pointer active" id="soul-ui-normal-<%= bossId %>"></div>
+														<div class="soul-ui soul-ui-hidden cursor-pointer" id="soul-ui-hidden-<%= bossId %>"></div>
 													</div>
 												</div>
 												<div class="soul-caption-img normal-img position-relative">
-													<img src="./public/images/souls/img-magnus-1.png">
+													<img src="<%= soulDetails.caption.regular.img %>">
 													<div class="soul-caption-div w-100 position-absolute px-2">
 														<div class="soul-caption w-100 d-flex align-items-center justify-content-center rounded-sm px-2">
-															<div>That's me!</div>
+															<div><%= soulDetails.caption.regular.text %></div>
 														</div>
 													</div>
 												</div>
 												<div class="soul-caption-img hidden-img position-relative d-none">
-													<img src="./public/images/souls/img-magnus-2.png">
+													<img src="<%= soulDetails.caption.hidden.img %>">
 													<div class="soul-caption-div w-100 position-absolute px-2">
 														<div class="soul-caption w-100 h-100 d-flex align-items-center justify-content-center rounded-sm">
-															The lonely gentleman at Shinsoo High School. That's me.
+															<%= soulDetails.caption.hidden.text %>
 														</div>
 													</div>
 												</div>
 											</div>
 											<div class="col-12 px-3 mb-4">
-												<h3 class="font-subsubheader index-collapse w-100 text-left border px-3 py-2 mb-0 cursor-pointer" data-toggle="collapse" href="#soul-stat-info"> Stat Info</h3>
-												<div class="row text-left border mx-0 mb-0 collapse show" id="soul-stat-info">
+												<h3 class="font-subsubheader index-collapse w-100 text-left border px-3 py-2 mb-0 cursor-pointer" data-toggle="collapse" href="#<%= bossId %>-soul-stat-info"> Stat Info</h3>
+												<div class="row text-left border mx-0 mb-0 collapse show" id="<%= bossId%>-soul-stat-info">
 													<div class="d-flex flex-column flex-sm-row w-100 px-3 py-2">
 														<div class="col-12 col-sm-6 px-0 mb-0 flex-shrink-1">
+															<% soulDetails.stats.forEach(function(stat) { %>
 															<div class="d-flex px-0 mb-2">
-																<div class="col-6 font-weight-bold px-0">Mighty</div>
-																<div class="col-6 px-0">STR +24</div>
+																<div class="col-6 font-weight-bold px-0"><%= stat.prefix %></div>
+																<div class="col-6 px-0"><%= stat.amount %></div>
 															</div>
-															<div class="d-flex px-0 mb-2">
-																<div class="col-6 font-weight-bold px-0">Deft</div>
-																<div class="col-6 px-0">DEX +24</div>
-															</div>
-															<div class="d-flex px-0 mb-2">
-																<div class="col-6 font-weight-bold px-0">Enlightened</div>
-																<div class="col-6 px-0">INT +24</div>
-															</div>
-															<div class="d-flex px-0 mb-4 mb-sm-2">
-																<div class="col-6 font-weight-bold px-0">Lucky</div>
-																<div class="col-6 px-0">LUK +24</div>
-															</div>
-															<div class="d-flex px-0 mb-2">
-																<div class="col-6 font-weight-bold px-0">Glamorous</div>
-																<div class="col-6 px-0">All Stats +15</div>
-															</div>
-															<div class="d-flex px-0 mb-2">
-																<div class="col-6 font-weight-bold px-0">Sharp</div>
-																<div class="col-6 px-0">Weapon ATT +6</div>
-															</div>
-															<div class="d-flex px-0 mb-2">
-																<div class="col-6 font-weight-bold px-0">Runic</div>
-																<div class="col-6 px-0">Magic ATT +6</div>
-															</div>
-															<div class="d-flex px-0 mb-4 mb-sm-2">
-																<div class="col-6 font-weight-bold px-0">Robust</div>
-																<div class="col-6 px-0">HP +960</div>
-															</div>
+															<% }) %>
 														</div>
+														<% if(soulDetails.augStats) { %>
 														<div class="d-flex col-12 col-sm-6 px-0">
 															<div class="col-6 col-sm-6 col-md-5 px-0 px-sm-3"><span class="font-weight-bold">Augmented</span><br/>(Randomly selects one)</div>
 															<div class="col-6 col-sm-6 col-md-7 d-flex px-0 flex-column">
-																<div class="mb-2">Boss Damage +7%</div>
-																<div class="mb-2">Magic ATT +3%</div>
-																<div class="mb-2">Weapon ATT +3%</div>
-																<div class="mb-2">Ignore DEF +7%</div>
-																<div class="mb-2">Critical Rate +12%</div>
-																<div class="mb-2">All Stats +5%</div>
-																<div class="mb-2">HP +2000</div>
-																<div class="mb-2">All Skill Levels +2</div>
+																<% soulDetails.augStats.forEach(function(augStat) { %>
+																<div class="mb-2"><%= augStat %></div>
+																<% }) %>
 															</div>
 														</div>
+														<% } %>
 													</div>
 												</div>
 											</div>
@@ -223,33 +198,42 @@
 													<div class="px-3 py-2">
 														<div class="d-flex flex-column text-left mb-4">
 															<div class="mb-0">
-																<img src="./public/images/skills/soul-magnus.png"> <span class="font-weight-bold">Advance! That is me.</span>
+																<% soulDetails.skill.regular.img.forEach(function(skillImg) { %>
+																<img src="<%= skillImg %>">
+																<% }) %>
+																<span class="font-weight-bold"><%= soulDetails.skill.regular.name %></span>
 															</div>
 															<p class="text-left mb-1">
-																Magnus, with unmatched confidence, advances after his sword. Magnus, summoned by the power of soul weapon, pushes forward and attacks with his large sword.
+																<%= soulDetails.skill.regular.desc %>
 															</p>
 															<p class="text-left mb-0">
-																Soul cost: 150. Attacks up to 7 (8) enemies at 3000% (3600%) damage 1 times. Cooldown: 60 seconds.
+																<%= soulDetails.skill.regular.effect %>
 															</p>
 														</div>
 
+														<% if(soulDetails.skill.augmented) { %>
 														<div class="d-flex flex-column text-left mb-0">
 															<div class="mb-0">
-																<img src="./public/images/skills/soul-magnus.png"> <span class="font-weight-bold">Bombing! That is me.</span>
+																<% soulDetails.skill.augmented.img.forEach(function(augSkillImg) { %>
+																<img src="<%= augSkillImg %>">
+																<% }) %>
+																<span class="font-weight-bold"><%= soulDetails.skill.augmented.name %></span>
 															</div>
 															<p class="text-left mb-1">
-																Summons the Traitor Magnus to fight together. (Be careful not to get betrayed...) The Soul Weapon's power temporarily summons Magnus to attack nearby monsters.
+																<%= soulDetails.skill.augmented.desc %>
 															</p>
 															<p class="text-left mb-0">
-																Soul cost: 250. Summons Magnus with 1500% (1800%) damage for 120 seconds. Cooldown: 180 seconds.
+																<%= soulDetails.skill.augmented.effect %>
 															</p>
 														</div>
+														<% } %>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+								<% } %>
 							</div>
 						</div>
 					</div>
