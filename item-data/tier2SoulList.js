@@ -158,7 +158,7 @@ tier2SoulList.set("pierre", {
 				"./public/images/skills/soul-pierre-aug-purple.png",
 			],
 			desc: "Pierre is here! Which Pierre is it this time? The Soul Weapon's power temporarily summons Pierre to attack nearby monsters.",
-			effect: `Soul cost: 250. Cooldown: 200 seconds.
+			effect: `<p class="mb-1">Soul cost: 250. Cooldown: 200 seconds.</p>
 					<ul class="mb-0">
 						<li class="mb-1"><span class="font-weight-bold">[Red]</span> Summons Pierre with 1500% (1800%) damage for 120 (140) seconds. Hits 1 enemy once per attack.</li>
 						<li class="mb-1"><span class="font-weight-bold">[Blue]</span> Summons Pierre with 300% (400%) damage for 120 (140) seconds. Hits 10 enemies once per attack.</li>

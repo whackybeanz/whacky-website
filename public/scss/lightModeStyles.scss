@@ -124,10 +124,22 @@ body {
 		}
 	}
 
-	// Calculators
+	// Extras
 	.job-choice-div, .equip-choice {
 		.single-option-select {
 			border: 1px solid globals.$light-mode-grey;	
+		}
+	}
+
+	#soul-list-carousel {
+		.carousel-nav {
+			border-bottom: 1px solid globals.$light-mode-grey;
+		}
+
+		.carousel-item, 
+		.soul-skill-info, .soul-skill-info-header,
+		.soul-stat-info, .soul-stat-info-header {
+			border: 1px solid globals.$light-mode-grey;
 		}
 	}
 

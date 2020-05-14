@@ -4,6 +4,16 @@
 	min-width: 75px;
 }
 
+#soul-list-carousel {
+	.carousel-item {
+		height: 0;
+
+		&.active {
+			height: 100%;
+		}
+	}
+}
+
 .soul-img {
 	.soul-ui-normal {
 		width: 123.5px;

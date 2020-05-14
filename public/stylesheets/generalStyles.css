@@ -116,8 +116,8 @@
 **********************/
 html, body {
   height: 100%;
+  width: 100%;
   font-size: 12px;
-  overflow: auto;
   scroll-padding-top: 3rem;
 }
 @media (min-width: 576px) {
@@ -144,6 +144,7 @@ html, body {
 body {
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
 }
 
 input::-webkit-outer-spin-button,
@@ -186,7 +187,7 @@ input[type=radio] {
 .carousel.carousel-fade .carousel-inner .carousel-item {
   display: block;
   opacity: 0;
-  transition: opacity ease-out 0.7s;
+  transition: all ease-out 0.7s;
 }
 .carousel.carousel-fade .carousel-inner .carousel-item.active {
   opacity: 1 !important;

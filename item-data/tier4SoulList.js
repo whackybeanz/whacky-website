@@ -131,4 +131,44 @@ tier4SoulList.set("papulatus", {
 	},
 });
 
+// Weight of Soul
+tier4SoulList.set("weight-of-soul", {
+	bossName: "Weight of Soul", 
+	soulImg: {
+		regular: "./public/images/souls/soul-weight-of-soul.png",
+		augmented: "./public/images/souls/soul-weight-of-soul-aug.png",
+	},
+	soulGaugeEffect: soulGaugeEffect,
+	caption: {
+		regular: {
+			img: "./public/images/souls/img-weight-of-soul-1.png",
+			text: "No Soul Collector entry, so have some Eluna memories instead!",
+		},
+		hidden: {
+			img: "./public/images/souls/img-weight-of-soul-2.png",
+			text: "No Soul Collector entry, so have some Eluna memories instead!"
+		}
+	},
+	stats: stats,
+	augStats: [
+		"Boss Damage +4%", "Magic ATT +7", "Weapon ATT +7", 
+		"Ignore DEF +4%", "Critical Rate +7%", "All Stats +15", 
+		"HP +1200", "All Skill Levels +1"
+	],
+	skill: {
+		regular: {
+			name: "Press",
+			img: ["./public/images/skills/soul-weight-of-soul.png"],
+			desc: "The Weight of Soul is with you. The Weight of Soul, summoned with the power of the Soul Weapon, summons its right arm from Eluna and does damage to surrounding monsters.",
+			effect: "Soul cost: 200. Summons Weight of Soul with 400% (500%) damage for 40 seconds. Hits 8 (9) enemies once per attack. Cooldown: 150 seconds."
+		},
+		augmented: {
+			name: "Soul Twister",
+			img: ["./public/images/skills/soul-weight-of-soul-aug.png"],
+			desc: "The Weight of Soul is with you. The Weight of Soul, summoned with the power of the Soul Weapon, creates a big twister that does damage to surrounding monsters.",
+			effect: "Soul cost: 250. Summons Weight of Soul with 600% (800%) damage for 80 seconds. Hits 10 (12) enemies once per attack. Cooldown: 150 seconds."
+		}
+	},
+});
+
 module.exports = tier4SoulList;

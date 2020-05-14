@@ -189,14 +189,14 @@ tier1SoulList.set("queen", {
 				"./public/images/skills/soul-queen-normal.png",
 				"./public/images/skills/soul-queen-cry.png",
 			],
-			desc: `The stats of Crimson Queen change depending on her mood.
+			desc: `<p class="mb-1">The stats of Crimson Queen change depending on her mood.</p>
 					<ul class="mb-0">
 						<li class="mb-1"><span class="font-weight-bold">[Temptation]</span> The Soul Weapon's power summons the Crimson Queen, and she provides vampiric effects with her bloody blessings.</li>
 						<li class="mb-1"><span class="font-weight-bold">[Joy]</span> The queen summoned by the power of your Soul Weapon increases your Attack Speed with her joyful blessings.</li>
 						<li class="mb-1"><span class="font-weight-bold">[Anger]</span> The queen summoned by the power of your Soul Weapon increases your Weapon/Magic Attack with her fearsome blessings.</li>
-						<li class="mb-0"><span class="font-weight-bold">[Sadness]</span> The queen summoned by the power of your Soul Weapon increases your Defense and Max HP with her tearful blessings.</li>
+						<li class="mb-1"><span class="font-weight-bold">[Sadness]</span> The queen summoned by the power of your Soul Weapon increases your Defense and Max HP with her tearful blessings.</li>
 					</ul>`,
-			effect: `Soul cost: 200. Cooldown: 150 seconds.
+			effect: `<p class="mb-1">Soul cost: 200. Cooldown: 150 seconds.</p>
 					<ul class="mb-0">
 						<li class="mb-1"><span class="font-weight-bold">[Temptation]</span> Absorbs 10% damage as HP for 100 (120) seconds. Cannot absorb more than 10% of the character's max HP or the max HP of the target monster.</li>
 						<li class="mb-1"><span class="font-weight-bold">[Joy]</span> Increases ASPD by 1 level for 100 (120) seconds.</li>
@@ -406,12 +406,12 @@ tier1SoulList.set("murrmurr", {
 	soulGaugeEffect: soulGaugeEffect,
 	caption: {
 		regular: {
-			img: "./public/images/souls/img-default.png",
-			text: "",
+			img: "./public/images/souls/img-murrmurr-1.png",
+			text: "Not in Soul Collector; here's some Murr Murr's Dungeon memories instead!",
 		},
 		hidden: {
-			img: "./public/images/souls/img-default.png",
-			text: ""
+			img: "./public/images/souls/img-murrmurr-2.png",
+			text: "BOO!"
 		}
 	},
 	stats: stats,

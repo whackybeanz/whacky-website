@@ -100,8 +100,8 @@
 **********************/
 html, body {
 	height: 100%;
+	width: 100%;
 	font-size: 12px;
-	overflow: auto;
 	scroll-padding-top: 3rem;
 
 	@include globals.for-size(sm) {	font-size: 13px; }
@@ -113,6 +113,7 @@ html, body {
 body {
 	background-size: cover;
 	background-position: center;
+	background-attachment: fixed;
 }
 
 input::-webkit-outer-spin-button,
@@ -156,7 +157,7 @@ input[type="radio"] {
 		.carousel-item {
 		    display: block;
 		    opacity: 0;
-		    transition: opacity ease-out .7s;
+		    transition: all ease-out .7s;
 
 		    &.active {
 		    	opacity: 1 !important;

@@ -77,6 +77,14 @@ body .page-select a, body .single-option-select a {
 body .job-choice-div .single-option-select, body .equip-choice .single-option-select {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
+body #soul-list-carousel .carousel-nav {
+  border-bottom: 1px solid rgba(206, 212, 218, 0.8);
+}
+body #soul-list-carousel .carousel-item,
+body #soul-list-carousel .soul-skill-info, body #soul-list-carousel .soul-skill-info-header,
+body #soul-list-carousel .soul-stat-info, body #soul-list-carousel .soul-stat-info-header {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
 body .single-set-effect {
   background-color: white;
   border: 1px solid rgba(206, 212, 218, 0.8);
