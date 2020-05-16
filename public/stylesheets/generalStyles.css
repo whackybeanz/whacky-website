@@ -172,6 +172,56 @@ input[type=radio] {
 
 /**********************
 
+	Images
+
+**********************/
+img.item-img {
+  cursor: help;
+}
+img.item-img.standard-img-size {
+  width: 30px;
+  height: 30px;
+  object-fit: scale-down;
+}
+img.item-img-inline {
+  cursor: help;
+  height: 24px;
+}
+img.border-img {
+  border: 1px solid black;
+}
+img.small-img {
+  height: 24px;
+}
+
+/**********************
+
+	Tables
+
+**********************/
+.table-cols-header {
+  min-width: 75px;
+  max-width: 150px;
+}
+
+.table-cols-50 {
+  min-width: 50px;
+  max-width: 125px;
+}
+
+.table-cols-125 {
+  min-width: 125px;
+  max-width: 300px;
+}
+
+.table-item-img,
+.table-user-controls {
+  width: 50px;
+  height: 50px;
+}
+
+/**********************
+
 	Modals
 
 **********************/
