@@ -5,6 +5,10 @@ router.get("/", function(req, res) {
 	res.redirect("/maple");
 })
 
+router.get("/plans", function(req, res) {
+	res.render("plans");
+})
+
 router.get("/about", function(req, res) {
 	res.locals.extraStylesheet = "aboutStyles";
 	res.locals.section = "about";

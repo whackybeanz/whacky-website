@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*****************
 
 	Font sizes 
@@ -91,21 +90,13 @@
   max-width: 720px;
 }
 
-.index-collapse:before,
-.sidebar-collapse:before {
-  display: inline-block;
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
+.index-collapse svg,
+.sidebar-collapse svg {
   transition: all linear 0.25s;
 }
 
-.index-collapse.collapsed:before,
-.sidebar-collapse.collapsed:before {
+.index-collapse.collapsed svg,
+.sidebar-collapse.collapsed svg {
   transform: rotate(-90deg);
 }
 
