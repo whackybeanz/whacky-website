@@ -24,7 +24,7 @@
 			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
 				<p class="w-100 text-justify">Similar to tracing, the same upgrade window is used for Star Force. Place your fully-upgraded item inside the upgrade window (accessed via red hammer icon at the bottom of your inventory <img src="./public/images/guide/spell-trace-2.png"> or keyboard shortcut <img src="./public/images/keyboard/equip-enhance.png">) to begin.
 
-				<h3 class="w-100 font-subsubheader font-italic mb-0">Star Catcher & Chance Time</h3>
+				<h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-0">Star Catcher & Chance Time</h3>
 				<p class="w-100 text-justify">For each starring attempt, you enter the Star Catcher mini game, where a star moves left and right along a bar. Hit spacebar (or click Stop) to "catch" the star within the highlighted region, and gain a very slight boost to your success rate for that attempt. The more times you star successfully (even without Star Catch), the more difficult Star Catcher will become.</p>
 				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
 					<div class="d-flex">
@@ -47,14 +47,14 @@
 				</div>
 			</div>
 			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-				<h3 class="w-100 font-subsubheader font-italic mb-0">Failing Star Force</h3>
+				<h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-0">Failing Star Force</h3>
 				<p class="text-justify">Success rates gradually decrease as you get more stars on the item. After reaching a certain number of stars, failing star force will result in loss of one star or even item destruction. There are also "safety checkpoints", where the number of stars cannot fall below these checkpoints even if starring fails. All these depends on whether the item is a regular (non-superior) or superior item:</p>
 				
 				<table class="font-table size-720 table table-sm table-bordered table-hover mb-3">
 					<thead>
 						<tr>
 							<th></th>
-							<th class="text-center align-middle">Item Type</th>
+							<th class="text-center align-middle d-none d-sm-table-cell">Item Type</th>
 							<th class="text-center align-middle">Chance of Losing 1 Star</th>
 							<th class="text-center align-middle">Chance of Item Destruction</th>
 						</tr>
@@ -64,8 +64,9 @@
 							<th class="text-center align-middle">
 								<img src="./public/images/equips/shoes/acs-shoes.png" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade Shoes">
 								<img src="./public/images/equips/cape/acs-cape.png" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade Cape">
+								<p class="mb-0 d-block d-sm-none">Regular Items</p>
 							</th>
-							<td class="text-center align-middle">Regular Items</td>
+							<td class="text-center align-middle d-none d-sm-table-cell">Regular Items</td>
 							<td class="text-center align-middle">11* onwards<br/>Safety at 15* and 20*</td>
 							<td class="text-center align-middle">12* onwards<br/>Falls to 12* if destroyed</td>
 						</tr>
@@ -73,8 +74,9 @@
 							<th class="text-center align-middle">
 								<img src="./public/images/equips/shoes/tyrant-shoes.png" data-toggle="tooltip" data-placement="bottom" title="Tyrant Boots">
 								<img src="./public/images/equips/cape/tyrant-cape.png" data-toggle="tooltip" data-placement="bottom" title="Tyrant Cape">
+								<p class="mb-0 d-block d-sm-none">Superior Items</p>
 							</th>
-							<td class="text-center align-middle">Superior Items</td>
+							<td class="text-center align-middle d-none d-sm-table-cell">Superior Items</td>
 							<td class="text-center align-middle">1* onwards<br/>No safety</td>
 							<td class="text-center align-middle">5* onwards<br/>Falls to 0* if destroyed</td>
 						</tr>
@@ -90,7 +92,7 @@
 				</div>
 			</div>
 			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-				<h3 class="w-100 font-subsubheader font-italic mb-0">Item Destruction</h3>
+				<h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-0">Item Destruction</h3>
 				<p class="w-100 text-justify">Items destroyed during starring leaves an item trace which is unusable, but can be restored by having a duplicate of the same item. Note that items with the same name but have fixed potentials/star force (usually obtained from events) are not valid duplicates. The item trace retains all properties (potentials, flame stats, etc.) from your original item, as well as all star force stats up to 12* (regular items). Upon restoring the item, it will start off at 12* for you to continue the starring process.</p>
 				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center mb-3">
 					<div class="d-flex">
@@ -126,6 +128,7 @@
 							<th class="text-center align-middle">
 								<img src="./public/images/equips/cape/elite-heliseum-cape.png" data-toggle="tooltip" data-placement="bottom" title="Elite Heliseum Cape">
 								<img src="./public/images/equips/shoes/elite-heliseum-shoes.png" data-toggle="tooltip" data-placement="bottom" title="Elite Heliseum Boots">
+								<p class="mb-0 d-block d-md-none">Elite Heliseum Cape, Boots</p>
 							</th>
 							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Elite Heliseum Cape, Boots</td>
 							<td class="text-center align-middle">
@@ -138,6 +141,7 @@
 						<tr class="table-rows">
 							<th class="text-center align-middle">
 								<img src="./public/images/equips/belt/elite-heliseum-belt.png" data-toggle="tooltip" data-placement="bottom" title="Elite Heliseum Belt">
+								<p class="mb-0 d-block d-md-none">Elite Heliseum Belt</p>
 							</th>
 							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Elite Heliseum Belt</td>
 							<td class="text-center align-middle">
@@ -150,6 +154,7 @@
 						<tr class="table-rows">
 							<th class="text-center align-middle">
 								<img src="./public/images/equips/cape/nova-cape.png" data-toggle="tooltip" data-placement="bottom" title="Nova Cape">
+								<p class="mb-0 d-block d-md-none">Nova Cape</p>
 							</th>
 							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Nova Cape</td>
 							<td class="text-center align-middle">
@@ -162,6 +167,7 @@
 						<tr class="table-rows">
 							<th class="text-center align-middle">
 								<img src="./public/images/equips/shoes/nova-shoes.png" data-toggle="tooltip" data-placement="bottom" title="Nova Boots">
+								<p class="mb-0 d-block d-md-none">Nova Boots</p>
 							</th>
 							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Nova Boots</td>
 							<td class="text-center align-middle">
@@ -174,6 +180,7 @@
 						<tr class="table-rows">
 							<th class="text-center align-middle">
 								<img src="./public/images/equips/belt/nova-belt.png" data-toggle="tooltip" data-placement="bottom" title="Nova Belt">
+								<p class="mb-0 d-block d-md-none">Nova Belt</p>
 							</th>
 							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Nova Belt</td>
 							<td class="text-center align-middle">
@@ -186,6 +193,7 @@
 						<tr class="table-rows">
 							<th class="text-center align-middle">
 								<img src="./public/images/equips/cape/tyrant-cape.png" data-toggle="tooltip" data-placement="bottom" title="Tyrant Cape">
+								<p class="mb-0 d-block d-md-none">Tyrant Cape</p>
 							</th>
 							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Tyrant Cape</td>
 							<td class="text-center align-middle">
@@ -198,6 +206,7 @@
 						<tr class="table-rows">
 							<th class="text-center align-middle">
 								<img src="./public/images/equips/shoes/tyrant-shoes.png" data-toggle="tooltip" data-placement="bottom" title="Tyrant Boots">
+								<p class="mb-0 d-block d-md-none">Tyrant Boots</p>
 							</th>
 							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Tyrant Boots</td>
 							<td class="text-center align-middle">
@@ -210,6 +219,7 @@
 						<tr class="table-rows">
 							<th class="text-center align-middle">
 								<img src="./public/images/equips/belt/tyrant-belt.png" data-toggle="tooltip" data-placement="bottom" title="Tyrant Belt">
+								<p class="mb-0 d-block d-md-none">Tyrant Belt</p>
 							</th>
 							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Tyrant Belt</td>
 							<td class="text-center align-middle">
@@ -222,6 +232,7 @@
 						<tr class="table-rows">
 							<th class="text-center align-middle">
 								<img src="./public/images/equips/gloves/tyrant-gloves.png" data-toggle="tooltip" data-placement="bottom" title="Tyrant Gloves">
+								<p class="mb-0 d-block d-md-none">Tyrant Gloves</p>
 							</th>
 							<td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Tyrant Gloves</td>
 							<td class="text-center align-middle">
@@ -241,28 +252,68 @@
 			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
 				<p class="w-100 text-justify">There are certain scrolls that assign a fixed number of stars to your equipment. Most of these items either have certain restrictions, are difficult to come by, or have consequences if the scroll fails.</p>
 
-				<ul class="w-100 mb-0">
-					<li><img class="li-img" src="./public/images/items/ees.png"> 2 / 3 / 4 / 5 Star Enhancement Scroll</li>
-					<ul class="font-table mb-3">
-						<li>Adds 2 / 3 / 4 / 5 stars</li>
-						<li>Works only on items at 0*</li>
-					</ul>
-					<li><img class="li-img" src="./public/images/items/ees.png"> (Advanced) Equipment Enhancement Scroll (EES / AEES)</li>
-					<ul class="font-table mb-3">
-						<li>Adds 1* to an item up to 15*</li>
-						<li>Destroys item if scroll fails <span class="font-weight-bold text-underline">and does not leave an item trace</span></li>
-					</ul>
-					<li><img class="li-img" src="./public/images/items/ees.png"> High Quality Equipment Enhancement Scroll (HQEES)</li>
-					<ul class="font-table mb-3">
-						<li>Adds 1* to an item up to 15*</li>
-					</ul>
-					<li><img class="li-img" src="./public/images/items/scroll-star-force.png"> 12 / 15 / 17 / 20 Star Force Enhancement Coupon</li>
-					<ul class="font-table mb-0">
-						<li>Makes an item 12* / 15* / 17* / 20*</li>
-						<li>Does not work on Superior equipment</li>
-						<li>Scrolls from events usually are level restricted (usable only on items of specific level stated in scroll name)</li>
-					</ul>
-				</ul>
+				<table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
+					<thead>
+						<tr>
+							<th></th>
+							<th class="table-cols-125 text-center align-middle d-none d-md-table-cell">Item Name</th>
+							<th class="table-cols-125 text-left align-middle">
+								<div class="d-block d-md-none font-weight-bold">[Item Name]</div>
+								Function
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/items/ees.png" data-toggle="tooltip" data-placement="bottom" title="2 / 3 / 4 / 5 Star Enhancement Scroll">
+							</th>
+							<td class="table-cols-125 text-center align-middle font-small d-none d-md-table-cell">
+								2 / 3 / 4 / 5 Star Enhancement Scroll
+							</td>
+							<td class="table-cols-125 text-left align-middle">
+								<div class="d-block d-md-none font-weight-bold">[2 / 3 / 4 / 5 Star Enhancement Scroll]</div>
+								Adds 2 / 3 / 4 / 5 stars. Works only on items at 0*.
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/items/ees.png" data-toggle="tooltip" data-placement="bottom" title="(Advanced) Equipment Enhancement Scroll">
+							</th>
+							<td class="table-cols-125 text-center align-middle font-small d-none d-md-table-cell">
+								(Advanced) Equipment Enhancement Scroll
+							</td>
+							<td class="table-cols-125 text-left align-middle">
+								<div class="d-block d-md-none font-weight-bold">[(Advanced) Equipment Enhancement Scroll]</div>
+								Adds 1* to an item up to 15*. Destroys item if scroll fails <span class="font-weight-bold text-underline">and does not leave an item trace</span>.
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/items/ees.png" data-toggle="tooltip" data-placement="bottom" title="High Quality Equipment Enhancement Scroll">
+							</th>
+							<td class="table-cols-125 text-center align-middle font-small d-none d-md-table-cell">
+								High Quality Equipment Enhancement Scroll
+							</td>
+							<td class="table-cols-125 text-left align-middle">
+								<div class="d-block d-md-none font-weight-bold">[High Quality Equipment Enhancement Scroll]</div>
+								Adds 1* to an item up to 15*.
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="text-center align-middle">
+								<img src="./public/images/items/scroll-star-force.png" data-toggle="tooltip" data-placement="bottom" title="12 / 15 / 17 / 20 Star Force Enhancement Coupon">
+							</th>
+							<td class="table-cols-125 text-center align-middle font-small d-none d-md-table-cell">
+								12 / 15 / 17 / 20 Star Force Enhancement Coupon
+							</td>
+							<td class="table-cols-125 text-left align-middle">
+								<div class="d-block d-md-none font-weight-bold">[12 / 15 / 17 / 20 Star Force Enhancement Coupon]</div>
+								Makes an item 12* / 15* / 17* / 20*. Does not work on Superior equipment. Scrolls from events usually are level restricted (usable only on items of specific level stated in description).
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 
@@ -276,7 +327,7 @@
 						<tr>
 							<th class="text-center align-middle">Character Level</th>
 							<th class="text-center align-middle">Total Star Force</th>
-							<th class="text-center align-middle">Rationale</th>
+							<th class="text-left align-middle">Rationale</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -285,28 +336,28 @@
 								Below Level 100
 							</th>
 							<td class="text-center align-middle">-</td>
-							<td class="text-center align-middle">Not a priority</td>
+							<td class="text-left align-middle">Not a priority</td>
 						</tr>
 						<tr class="table-rows">
 							<th class="text-center align-middle">
 								Level 100 to 120
 							</th>
 							<td class="text-center align-middle">5* to 30*<br/>(5* to 10* per item)</td>
-							<td class="text-center align-middle">Allows training in Star Force maps (better EXP)</td>
+							<td class="text-left align-middle">Allows training in Star Force maps (better EXP)</td>
 						</tr>
 						<tr class="table-rows">
 							<th class="text-center align-middle">
 								Level 120 to 140
 							</th>
 							<td class="text-center align-middle">55*++<br/>(10* to 12* per item)</td>
-							<td class="text-center align-middle">Training in Star Force maps, some stat boost for bossing</td>
+							<td class="text-left align-middle">Training in Star Force maps, some stat boost for bossing</td>
 						</tr>
 						<tr class="table-rows">
 							<th class="text-center align-middle">
 								Level 140++
 							</th>
 							<td class="text-center align-middle">80*++<br/>(12* to 15* per item)</td>
-							<td class="text-center align-middle">Training in Star Force maps, more stat boost for bossing</td>
+							<td class="text-left align-middle">Training in Star Force maps, more stat boost for bossing</td>
 						</tr>
 					</tbody>
 				</table>

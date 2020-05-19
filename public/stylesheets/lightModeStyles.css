@@ -3,6 +3,9 @@ body {
   background-color: white;
   color: #212529;
 }
+body .navbar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+}
 body .navbar .nav-item .nav-link:hover, body .navbar .nav-item .nav-link.active {
   color: #212529;
 }
@@ -17,17 +20,14 @@ body .navbar .nav-item .dropdown-menu .dropdown-item:hover, body .navbar .nav-it
   color: #212529;
   background-color: rgba(0, 0, 0, 0.075);
 }
-body .sidebar #sidebar-nav {
+body .sidebar {
+  background-color: white;
   border-bottom: 1px solid rgba(206, 212, 218, 0.8);
 }
-@media (min-width: 768px) {
-  body .sidebar #sidebar-nav {
-    border-bottom: none;
-  }
-}
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .sidebar.sidebar-left {
     border-right: 1px solid rgba(206, 212, 218, 0.8);
+    border-bottom: none;
   }
 }
 body .sidebar.sidebar-right {

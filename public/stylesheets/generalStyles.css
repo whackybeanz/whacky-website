@@ -13,7 +13,11 @@
   font-size: 1.25rem;
 }
 
-.font-subsubheader, .font-content {
+.font-subsubheader {
+  font-size: 1.1rem;
+}
+
+.font-content {
   font-size: 1rem;
 }
 
@@ -115,8 +119,6 @@
 
 **********************/
 html, body {
-  height: 100%;
-  width: 100%;
   font-size: 12px;
   scroll-padding-top: 3rem;
 }

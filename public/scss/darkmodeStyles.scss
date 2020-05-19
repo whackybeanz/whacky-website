@@ -7,6 +7,8 @@ body.dark-mode {
 
 	// Navbar 
 	.navbar {
+		border-bottom: 1px solid globals.$dark-mode-grey;
+
 		.nav-item {
 			.nav-link {
 				&:hover, &.active {
@@ -32,17 +34,13 @@ body.dark-mode {
 	
 	// Sidebar
 	.sidebar {
-		#sidebar-nav {
-			border-bottom: 1px solid globals.$dark-mode-navy-grey;
-
-			@include globals.for-size(md) {
-				border-bottom: none;
-			}
-		}
+		background-color: globals.$dark-mode-black-opaque;
+		border-bottom: 1px solid globals.$dark-mode-navy-grey;
 
 		&.sidebar-left {
-			@include globals.for-size(md) {
+			@include globals.for-size(lg) {
 				border-right: 1px solid globals.$dark-mode-navy-grey;
+				border-bottom: none;
 			}
 		}
 

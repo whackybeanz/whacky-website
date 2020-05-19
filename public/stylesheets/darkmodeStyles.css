@@ -3,6 +3,9 @@ body.dark-mode {
   background-color: rgba(0, 0, 0, 0.8);
   color: rgba(255, 255, 255, 0.8);
 }
+body.dark-mode .navbar {
+  border-bottom: 1px solid #454d55;
+}
 body.dark-mode .navbar .nav-item .nav-link:hover, body.dark-mode .navbar .nav-item .nav-link.active {
   color: white;
 }
@@ -17,17 +20,14 @@ body.dark-mode .navbar .nav-item .dropdown-menu .dropdown-item:hover, body.dark-
   color: white;
   background-color: #454d55;
 }
-body.dark-mode .sidebar #sidebar-nav {
+body.dark-mode .sidebar {
+  background-color: black;
   border-bottom: 1px solid rgba(52, 58, 64, 0.8);
 }
-@media (min-width: 768px) {
-  body.dark-mode .sidebar #sidebar-nav {
-    border-bottom: none;
-  }
-}
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body.dark-mode .sidebar.sidebar-left {
     border-right: 1px solid rgba(52, 58, 64, 0.8);
+    border-bottom: none;
   }
 }
 body.dark-mode .sidebar.sidebar-right {
