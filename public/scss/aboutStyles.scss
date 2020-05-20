@@ -1,32 +1,50 @@
 @use '_global-styles' as globals;
 
-.single-logo-div {
-	height: 50px;
-}
-
-.about-logo {
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
-
-	&.single-logo {
-		max-height: 50px;
+.single-social {
+	&:nth-last-child(-n+2) {
+		margin-bottom: 0px !important;
 	}
 
-	&.single-logo-med {
-		max-height: 40px;
+	@include globals.for-size(md) {
+		&:nth-last-child(-n+3) {
+			margin-bottom: 0px !important;
+		}
 	}
 
-	&.single-logo-small {
-		max-height: 30px;
+	@include globals.for-size(lg) {
+		&:nth-last-child(-n+4) {
+			margin-bottom: 0px !important;
+		}
 	}
 
-	&.discord-logo {
-		background-image: url("../images/logos/discord.svg");
-	}
-}
+	.single-logo-div {
+		height: 50px;
 
-.horz-partition {
-	width: 75px;
-	height: 1px;
+		.about-logo {
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+
+			&.single-logo {
+				max-height: 50px;
+			}
+
+			&.single-logo-med {
+				max-height: 40px;
+			}
+
+			&.single-logo-small {
+				max-height: 30px;
+			}
+
+			&.discord-logo {
+				background-image: url("../images/logos/discord.svg");
+			}
+		}
+
+		.horz-partition {
+			width: 75px;
+			height: 1px;
+		}
+	}
 }
