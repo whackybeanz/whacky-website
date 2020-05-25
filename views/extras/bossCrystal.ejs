@@ -1,0 +1,65 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="container-fluid content d-flex flex-column flex-md-row p-0">
+	<%- include("../partials/sidebar") %>
+	<div class="main-content-div col p-0 position-relative">
+		<div class="w-100 d-flex align-items-center flex-column px-4 pt-4" id="calculator">
+			<div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+				<div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+					<div class="w-100 flex-grow-1 border-top border-dark"></div>
+					<h1 class="font-header w-100 text-center m-0 px-0">Boss Crystal Prices</h1>
+					<div class="w-100 flex-grow-1 border-top border-dark"></div>
+				</div>
+				<div class="w-100 mb-3">
+					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2" id="calc-how-to">Info Sheet Details</h2>
+					<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+						<p class="w-100 text-justify">Boss Crystals (actually named Glowing Soul Crystal) are items you acquire from defeating most bosses available through the Boss Queue. These items can be sold to the Collector in the Free Market for mesos. The amount of mesos you get is divided by the <span class="text-underline">total number of party members</span>, regardless of whether they died out/disconnected during battle.</p>
+
+						<p class="w-100 text-justify">The table below contains all Boss Crystal prices at <span class="font-weight-bold">full selling price</span> (i.e. the boss was killed in a party of 1 person), sorted alphabetically by boss.</p>
+
+						<div class="table-responsive-sm size-720 w-100">
+							<table class="font-table table table-sm table-bordered table-hover mb-0">
+								<thead>
+									<tr>
+										<th></th>
+										<th class="table-cols-50 text-center align-middle">Easy</th>
+										<th class="table-cols-50 text-center align-middle">Normal</th>
+										<th class="table-cols-50 text-center align-middle">Hard</th>
+										<th class="table-cols-50 text-center align-middle">Chaos</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% bossList.forEach(function(boss) { %>
+									<tr class="table-rows">
+										<th class="text-center text-md-left align-middle">
+											<div class="d-flex flex-column flex-md-row align-items-center">
+												<img src="<%= boss.img %>" class="small-boss-square mr-md-2">
+												<%= boss.name %>		
+											</div>
+										</th>
+										<td class="table-cols-50 text-center align-middle">
+											<%= (boss.easy !== 0) ? boss.easy.toLocaleString() : "-" %>
+										</td>
+										<td class="table-cols-50 text-center align-middle">
+											<%= (boss.normal !== 0) ? boss.normal.toLocaleString() : "-" %>
+										</td>
+										<td class="table-cols-50 text-center align-middle">
+											<%= (boss.hard !== 0) ? boss.hard.toLocaleString() : "-" %>
+										</td>
+										<td class="table-cols-50 text-center align-middle">
+											<%= (boss.chaos !== 0) ? boss.chaos.toLocaleString() : "-" %>
+										</td>
+									</tr>
+									<% }) %>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include("../partials/footer") %>
