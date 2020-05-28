@@ -19,7 +19,8 @@ var warriorSetEffects = {
 					{ id: "acs-desperado", image: "./public/images/equips/weapon/acs-desperado.png", name: "Arcaneshade Desperado" },
 					{ id: "acs-elaha", image: "./public/images/equips/weapon/acs-elaha.png", name: "Arcaneshade Elaha" },
 					{ id: "acs-lapis", image: "./public/images/equips/weapon/acs-lapis.png", name: "Lapis Type 9" },
-					{ id: "acs-katana", image: "./public/images/equips/weapon/acs-katana.png", name: "Arcaneshade Katana" }]
+					{ id: "acs-katana", image: "./public/images/equips/weapon/acs-katana.png", name: "Arcaneshade Katana" },
+					{ id: "acs-tuner", image: "./public/images/equips/weapon/acs-tuner.png", name: "Arcaneshade Tuner" }]
 		},
 		effects: {
 			2: [{ statId: "wama", statName: "ATT/MATT", val: "30" }, 
@@ -57,7 +58,8 @@ var warriorSetEffects = {
 					{ id: "abs-desperado", image: "./public/images/equips/weapon/abs-desperado.png", name: "Absolabs Blood Seeker" },
 					{ id: "abs-elaha", image: "./public/images/equips/weapon/abs-elaha.png", name: "Absolabs Kusanagi" },
 					{ id: "abs-lapis", image: "./public/images/equips/weapon/abs-lapis.png", name: "Lapis Type 8" },
-					{ id: "abs-katana", image: "./public/images/equips/weapon/abs-katana.png", name: "Absolabs Kogarasumaru" }]
+					{ id: "abs-katana", image: "./public/images/equips/weapon/abs-katana.png", name: "Absolabs Kogarasumaru" },
+					{ id: "abs-tuner", image: "./public/images/equips/weapon/abs-tuner.png", name: "Absolabs Tuner" }]
 		},
 		effects: {
 			2: [{ statId: "wama", statName: "ATT/MATT", val: "20" }, 
@@ -92,7 +94,8 @@ var warriorSetEffects = {
 					{ id: "faf-desperado", image: "./public/images/equips/weapon/faf-desperado.png", name: "Fafnir Death Bringer" },
 					{ id: "faf-elaha", image: "./public/images/equips/weapon/faf-elaha.png", name: "Fafnir Gigastein" },
 					{ id: "faf-lapis", image: "./public/images/equips/weapon/faf-lapis.png", name: "Lapis Type 7" },
-					{ id: "faf-katana", image: "./public/images/equips/weapon/faf-katana.png", name: "Fafnir Raven Ring" }],
+					{ id: "faf-katana", image: "./public/images/equips/weapon/faf-katana.png", name: "Fafnir Raven Ring" },
+					{ id: "faf-tuner", image: "./public/images/equips/weapon/faf-forgiveness.png", name: "Fafnir Forgiveness" }]
 		},
 		effects: {
 			2: [{ statId: "str", statName: "STR", val: 20 },

@@ -12,7 +12,8 @@ var thiefSetEffects = {
 					{ id: "acs-cane", image: "./public/images/equips/weapon/acs-cane.png", name: "Arcaneshade Cane" },
 					{ id: "acs-baghnakhs", image: "./public/images/equips/weapon/acs-baghnakhs.png", name: "Arcaneshade Baghnakhs" },
 					{ id: "acs-energy-sword", image: "./public/images/equips/weapon/acs-energy-sword.png", name: "Arcaneshade Energy Sword" },
-					{ id: "acs-energy-chain", image: "./public/images/equips/weapon/acs-energy-chain.png", name: "Arcaneshade Energy Chain" }]
+					{ id: "acs-energy-chain", image: "./public/images/equips/weapon/acs-energy-chain.png", name: "Arcaneshade Energy Chain" },
+					{ id: "acs-buchae", image: "./public/images/equips/weapon/acs-buchae.png", name: "Arcaneshade Transcendence Buchae" }]
 		},
 		effects: {
 			2: [{ statId: "wama", statName: "ATT/MATT", val: "30" }, 
@@ -43,7 +44,8 @@ var thiefSetEffects = {
 					{ id: "abs-cane", image: "./public/images/equips/weapon/abs-cane.png", name: "Absolabs Sceptre" },
 					{ id: "abs-claw", image: "./public/images/equips/weapon/abs-claw.png", name: "Absolabs Tarantula" },
 					{ id: "abs-energy-sword", image: "./public/images/equips/weapon/abs-energy-sword.png", name: "Absolabs Electro Saber" },
-					{ id: "abs-energy-chain", image: "./public/images/equips/weapon/abs-energy-chain.png", name: "Absolabs Energy Chain" }]
+					{ id: "abs-energy-chain", image: "./public/images/equips/weapon/abs-energy-chain.png", name: "Absolabs Energy Chain" },
+					{ id: "abs-buchae", image: "./public/images/equips/weapon/abs-buchae.png", name: "Absolabs Monster Buchae" }]
 		},
 		effects: {
 			2: [{ statId: "wama", statName: "ATT/MATT", val: "20" }, 
@@ -71,7 +73,8 @@ var thiefSetEffects = {
 					{ id: "faf-cane", image: "./public/images/equips/weapon/faf-cane.png", name: "Fafnir Clair Ciel" },
 					{ id: "faf-claw", image: "./public/images/equips/weapon/faf-claw.png", name: "Fafnir Risk Holder" },
 					{ id: "faf-energy-sword", image: "./public/images/equips/weapon/faf-energy-sword.png", name: "Fafnir Split Edge" },
-					{ id: "faf-energy-chain", image: "./public/images/equips/weapon/faf-energy-chain.png", name: "Fafnir Energy Chain" }],
+					{ id: "faf-energy-chain", image: "./public/images/equips/weapon/faf-energy-chain.png", name: "Fafnir Energy Chain" },
+					{ id: "faf-buchae", image: "./public/images/equips/weapon/faf-buchae.png", name: "Fafnir Dragon Buchae" }]
 		},
 		effects: {
 			2: [{ statId: "dex", statName: "DEX", val: 20 },

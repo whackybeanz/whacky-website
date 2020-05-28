@@ -47,6 +47,7 @@ var warriorSetItems = {
 		{ setType: "none", id: "genesis-elaha", image: "./public/images/equips/weapon/genesis-elaha.png", name: "Genesis Elaha", isLuckyItem: true, itemPriority: 100 },
 		{ setType: "none", id: "genesis-lapis", image: "./public/images/equips/weapon/genesis-lapis.png", name: "Lapis Type 10", isLuckyItem: true, itemPriority: 100 },
 		{ setType: "none", id: "genesis-katana", image: "./public/images/equips/weapon/genesis-katana.png", name: "Genesis Katana", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "genesis-tuner", image: "./public/images/equips/weapon/genesis-tuner.png", name: "Genesis Tuner", isLuckyItem: true, itemPriority: 100 },
 
 		{ setType: "acs", id: "acs-1h-sword", image: "./public/images/equips/weapon/acs-1h-sword.png", name: "Arcaneshade Saber" },
 		{ setType: "acs", id: "acs-2h-sword", image: "./public/images/equips/weapon/acs-2h-sword.png", name: "Arcaneshade Two-handed Sword" },
@@ -60,6 +61,7 @@ var warriorSetItems = {
 		{ setType: "acs", id: "acs-elaha", image: "./public/images/equips/weapon/acs-elaha.png", name: "Arcaneshade Elaha" },
 		{ setType: "acs", id: "acs-lapis", image: "./public/images/equips/weapon/acs-lapis.png", name: "Lapis Type 9" },
 		{ setType: "acs", id: "acs-katana", image: "./public/images/equips/weapon/acs-katana.png", name: "Arcaneshade Katana" },
+		{ setType: "abs", id: "acs-tuner", image: "./public/images/equips/weapon/acs-tuner.png", name: "Arcaneshade Tuner" },
 
 		{ setType: "abs", id: "abs-1h-sword", image: "./public/images/equips/weapon/abs-1h-sword.png", name: "Absolabs Durandal" },
 		{ setType: "abs", id: "abs-2h-sword", image: "./public/images/equips/weapon/abs-2h-sword.png", name: "Absolabs Balmung" },
@@ -73,6 +75,7 @@ var warriorSetItems = {
 		{ setType: "abs", id: "abs-elaha", image: "./public/images/equips/weapon/abs-elaha.png", name: "Absolabs Kusanagi" },
 		{ setType: "abs", id: "abs-lapis", image: "./public/images/equips/weapon/abs-lapis.png", name: "Lapis Type 8" },
 		{ setType: "abs", id: "abs-katana", image: "./public/images/equips/weapon/abs-katana.png", name: "Absolabs Kogarasumaru" },
+		{ setType: "abs", id: "abs-tuner", image: "./public/images/equips/weapon/abs-tuner.png", name: "Absolabs Tuner" },
 
 		{ setType: "faf", id: "faf-1h-sword", image: "./public/images/equips/weapon/faf-1h-sword.png", name: "Fafnir Mystletainn" },
 		{ setType: "faf", id: "faf-2h-sword", image: "./public/images/equips/weapon/faf-2h-sword.png", name: "Fafnir Penitencia" },
@@ -86,6 +89,7 @@ var warriorSetItems = {
 		{ setType: "faf", id: "faf-elaha", image: "./public/images/equips/weapon/faf-elaha.png", name: "Fafnir Gigastein" },
 		{ setType: "faf", id: "faf-lapis", image: "./public/images/equips/weapon/faf-lapis.png", name: "Lapis Type 7" },
 		{ setType: "faf", id: "faf-katana", image: "./public/images/equips/weapon/faf-katana.png", name: "Fafnir Raven Ring" },
+		{ setType: "faf", id: "faf-tuner", image: "./public/images/equips/weapon/faf-tuner.png", name: "Fafnir Forgiveness" },
 
 		{ setType: "none", id: "scarlet-1h-sword", image: "./public/images/equips/weapon/scarlet-1h-sword.png", name: "Scarlet Gladius", isLuckyItem: true, itemPriority: 100 },
 		{ setType: "none", id: "scarlet-2h-sword", image: "./public/images/equips/weapon/scarlet-2h-sword.png", name: "Scarlet Claymore", isLuckyItem: true, itemPriority: 100 },
@@ -111,6 +115,7 @@ var warriorSetItems = {
 		{ setType: "none", id: "pnou-pendulum", image: "./public/images/equips/secondary/pnou-pendulum.png", name: "Princess Nou's Pendulum (Aran)" },
 		{ setType: "none", id: "pnou-dragon-essence", image: "./public/images/equips/secondary/pnou-dragon-essence.png", name: "Princess Nou's Dragon Essence (Kaiser)" },
 		{ setType: "none", id: "pnou-wakizashi", image: "./public/images/equips/secondary/pnou-wakizashi.png", name: "Princess Nou's Wakizashi (Hayato)" },
+		{ setType: "none", id: "pnou-bracelet", image: "./public/images/equips/secondary/pnou-bracelet.png", name: "Princess Nou's Bracelet (Adele)" },
 	],
 	belt: [
 		{ setType: "none", id: "tyrant-belt", image: "./public/images/equips/belt/tyrant-belt.png", name: "Tyrant Hyades Belt" },
@@ -124,6 +129,7 @@ var warriorSetItems = {
 		{ setType: "none", id: "dragon-emblem", image: "./public/images/equips/emblem/dragon-emblem.png", name: "Dragon Emblem (Kaiser)" },
 		{ setType: "none", id: "eternal-time-emblem", image: "./public/images/equips/emblem/eternal-time-emblem.png", name: "Eternal Time Emblem (Zero)" },
 		{ setType: "none", id: "gold-crescent-emblem", image: "./public/images/equips/emblem/gold-crescent-emblem.png", name: "Gold Crescent Emblem (Hayato)" },
+		{ setType: "none", id: "gold-knight-emblem", image: "./public/images/equips/emblem/gold-knight-emblem.png", name: "Gold Knight Emblem (Adele)" },
 	],
 }
 
