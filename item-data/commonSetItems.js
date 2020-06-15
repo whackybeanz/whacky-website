@@ -28,6 +28,7 @@ var commonSetItems = {
 		{ setType: "none", id: "hospital-badge", image: "./public/images/equips/badge/hospital-director-badge.png", name: "Hospital Director's Badge" },
 	],
 	earring: [
+		{ setType: "hardBossAcc", id: "commander-force-earrings", image: "./public/images/equips/earring/commander-force-earrings.png", name: "Commander Force Earrings" },
 		{ setType: "none", id: "ocean-glow-earring", image: "./public/images/equips/earring/ocean-glow-earring.png", name: "Ocean Glow Earrings" },
 		{ setType: "inverse", id: "inverse-earrings", image: "./public/images/equips/earring/inverse-jewel-earring.png", name: "Inverse Jewel Earring" },
 		{ setType: "meister", id: "meister-studs", image: "./public/images/equips/earring/meister-studs.png", name: "Meister Ear Studs" },
@@ -46,6 +47,7 @@ var commonSetItems = {
 		{ setType: "bossAcc", id: "ht-pendant", image: "./public/images/equips/pendant/ht-pendant.png", name: "Horned Tail Necklace" },
 	],
 	ring: [
+		{ setType: "hardBossAcc", id: "giant-fear", image: "./public/images/equips/ring/giant-fear.png", name: "Giant Fear" },
 		{ setType: "none", id: "breath-of-divinity", image: "./public/images/equips/ring/breath-of-divinity.png", name: "Breath of Divinity" },
 		{ setType: "meister", id: "meister-signet", image: "./public/images/equips/ring/meister-signet.png", name: "Meister Signet" },
 		{ setType: "sengoku", id: "kanna-ring", image: "./public/images/equips/ring/kanna-ring.png", name: "Kanna's Treasure" },

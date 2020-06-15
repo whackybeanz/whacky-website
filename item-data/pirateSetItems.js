@@ -35,11 +35,11 @@ var pirateSetItems = {
 		{ setType: "abs", id: "abs-pirate-shoulder", image: "./public/images/equips/shoulder/abs-shoulder.png", name: "Absolabs Brigadier Pauldron" },
 	],
 	weapon: [
-		{ setType: "none", id: "genesis-knuckle", image: "./public/images/equips/weapon/genesis-knuckle.png", name: "Arcaneshade Claw", isLuckyItem: true, itemPriority: 100 },
-		{ setType: "none", id: "genesis-pistol", image: "./public/images/equips/weapon/genesis-pistol.png", name: "Arcaneshade Pistol", isLuckyItem: true, itemPriority: 100 },
-		{ setType: "none", id: "genesis-energy-sword", image: "./public/images/equips/weapon/genesis-energy-chain.png", name: "Arcaneshade Energy Chain", isLuckyItem: true, itemPriority: 100 },
-		{ setType: "none", id: "genesis-siege-gun", image: "./public/images/equips/weapon/genesis-siege-gun.png", name: "Arcaneshade Siege Gun", isLuckyItem: true, itemPriority: 100 },
-		{ setType: "none", id: "genesis-soul-shooter", image: "./public/images/equips/weapon/genesis-soul-shooter.png", name: "Arcaneshade Soul Shooter", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "genesis-knuckle", image: "./public/images/equips/weapon/genesis-knuckle.png", name: "Genesis Claw", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "genesis-pistol", image: "./public/images/equips/weapon/genesis-pistol.png", name: "Genesis Pistol", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "genesis-energy-sword", image: "./public/images/equips/weapon/genesis-energy-chain.png", name: "Genesis Energy Chain", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "genesis-siege-gun", image: "./public/images/equips/weapon/genesis-siege-gun.png", name: "Genesis Siege Gun", isLuckyItem: true, itemPriority: 100 },
+		{ setType: "none", id: "genesis-soul-shooter", image: "./public/images/equips/weapon/genesis-soul-shooter.png", name: "Genesis Soul Shooter", isLuckyItem: true, itemPriority: 100 },
 
 		{ setType: "acs", id: "acs-knuckle", image: "./public/images/equips/weapon/acs-knuckle.png", name: "Arcaneshade Baghnakhs" },
 		{ setType: "acs", id: "acs-pistol", image: "./public/images/equips/weapon/acs-pistol.png", name: "Arcaneshade Pistol" },
