@@ -16,38 +16,68 @@
 					<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
 						<p class="w-100 text-justify">Boss Crystals (actually named Glowing Soul Crystal) are items you acquire from defeating most bosses available through the Boss Queue. These items can be sold to the Collector in the Free Market for mesos. The amount of mesos you get is divided by the <span class="text-underline">total number of party members</span>, regardless of whether they died out/disconnected during battle.</p>
 
-						<p class="w-100 text-justify">The table below contains all Boss Crystal prices at <span class="font-weight-bold">full selling price</span> (i.e. the boss was killed in a party of 1 person), sorted alphabetically by boss.</p>
+						<p class="w-100 text-justify">The table below contains all Boss Crystal prices at <span class="font-weight-bold">full selling price</span> (i.e. the boss was killed in a party of 1 person), sorted alphabetically by boss. Click on any table header to sort the rows in ascending/descending order.</p>
 
 						<div class="table-responsive-sm size-720 w-100">
 							<table class="font-table table table-sm table-bordered table-hover mb-0">
 								<thead>
 									<tr>
-										<th></th>
-										<th class="table-cols-50 text-center align-middle">Easy</th>
-										<th class="table-cols-50 text-center align-middle">Normal</th>
-										<th class="table-cols-50 text-center align-middle">Hard</th>
-										<th class="table-cols-50 text-center align-middle">Chaos</th>
+										<th class="table-sort-header text-center cursor-pointer" id="sort-name">
+											<div class="d-flex justify-content-center align-items-center">
+												<i class="table-sort-icon fas fa-caret-up active" id="sort-name-ascending"></i>
+												<span class="mx-1">Boss Name</span>
+												<i class="table-sort-icon fas fa-caret-down" id="sort-name-descending"></i>
+											</div>
+										</th>
+										<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-easy">
+											<div class="d-flex justify-content-center align-items-center">
+												<i class="table-sort-icon fas fa-caret-up" id="sort-easy-ascending"></i>
+												<span class="mx-1">Easy</span>
+												<i class="table-sort-icon fas fa-caret-down" id="sort-easy-descending"></i>
+											</div>
+										</th>
+										<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-normal">
+											<div class="d-flex justify-content-center align-items-center">
+												<i class="table-sort-icon fas fa-caret-up" id="sort-normal-ascending"></i>
+												<span class="mx-1">Normal</span>
+												<i class="table-sort-icon fas fa-caret-down" id="sort-normal-descending"></i>
+											</div>
+										</th>
+										<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-hard">
+											<div class="d-flex justify-content-center align-items-center">
+												<i class="table-sort-icon fas fa-caret-up" id="sort-hard-ascending"></i>
+												<span class="mx-1">Hard</span>
+												<i class="table-sort-icon fas fa-caret-down" id="sort-hard-descending"></i>
+											</div>
+										</th>
+										<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-chaos">
+											<div class="d-flex justify-content-center align-items-center">
+												<i class="table-sort-icon fas fa-caret-up" id="sort-chaos-ascending"></i>
+												<span class="mx-1">Chaos</span>
+												<i class="table-sort-icon fas fa-caret-down" id="sort-chaos-descending"></i>
+											</div>
+										</th>
 									</tr>
 								</thead>
 								<tbody>
 									<% bossList.forEach(function(boss) { %>
 									<tr class="table-rows">
-										<th class="text-center text-md-left align-middle">
+										<th class="text-center text-md-left align-middle" data-val="<%= boss.name %>">
 											<div class="d-flex flex-column flex-md-row align-items-center">
 												<img src="<%= boss.img %>" class="small-boss-square mr-md-2">
 												<%= boss.name %>		
 											</div>
 										</th>
-										<td class="table-cols-50 text-center align-middle">
+										<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.easy !== 0) ? boss.easy : 0 %>">
 											<%= (boss.easy !== 0) ? boss.easy.toLocaleString() : "-" %>
 										</td>
-										<td class="table-cols-50 text-center align-middle">
+										<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.normal !== 0) ? boss.normal : 0 %>">
 											<%= (boss.normal !== 0) ? boss.normal.toLocaleString() : "-" %>
 										</td>
-										<td class="table-cols-50 text-center align-middle">
+										<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.hard !== 0) ? boss.hard : 0 %>">
 											<%= (boss.hard !== 0) ? boss.hard.toLocaleString() : "-" %>
 										</td>
-										<td class="table-cols-50 text-center align-middle">
+										<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.chaos !== 0) ? boss.chaos : 0 %>">
 											<%= (boss.chaos !== 0) ? boss.chaos.toLocaleString() : "-" %>
 										</td>
 									</tr>
@@ -62,4 +92,53 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+	window.onload = function() {
+		init();
+	}
+
+	const getCellValue = (tr, index) => tr.children[index].dataset.val;
+
+	// Takes two rows, passes in respective column values via IIFE and compares the two values to sort based on ascending/descending order
+	const comparer = (index, isAscending) => 
+		(row1, row2) => 
+			((val1, val2) => {
+				if(val1 !== '' && val2 !== '' && !isNaN(val1) && !isNaN(val2)) {
+					return val1 - val2;
+				} else {
+					return val1.toString().localeCompare(val2);
+				}
+			})(getCellValue(isAscending ? row1 : row2, index), getCellValue(isAscending ? row2 : row1, index));
+		
+	function init() {
+		let isAscending = [true, true, true, true, true];
+
+		document.querySelectorAll(".table-sort-header").forEach((th) => {
+			const headerIndex = Array.from(th.parentNode.children).indexOf(th);
+
+			th.addEventListener('click', () => {
+				activateCaret(th.id, isAscending[headerIndex]);
+
+				const table = th.closest("table");
+
+				Array.from(table.querySelectorAll(".table-rows"))
+					 .sort(comparer(headerIndex, isAscending[headerIndex] = !isAscending[headerIndex]))
+					 .forEach(tr => table.appendChild(tr));
+			})
+		})
+	}
+
+	function activateCaret(elemId, isAscending) {
+		Array.from(document.querySelectorAll(".table-sort-icon"))
+			 .forEach((icon) => {
+			 	icon.classList.remove("active");
+			 })
+
+		if(isAscending) {
+			document.getElementById(`${elemId}-descending`).classList.add("active");
+		} else {
+			document.getElementById(`${elemId}-ascending`).classList.add("active");
+		}
+	}
+</script>
 <%- include("../partials/footer") %>

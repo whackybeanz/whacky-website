@@ -186,6 +186,16 @@ img {
 	height: 50px;
 }
 
+.table-sort-header {
+	.table-sort-icon {
+		opacity: 0.2;
+
+		&.active {
+			opacity: 1.0;
+		}
+	}
+}
+
 /**********************
 
 	Modals
