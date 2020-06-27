@@ -213,10 +213,10 @@ img.small-img {
   height: 50px;
 }
 
-.table-sort-header .table-sort-icon {
-  opacity: 0.2;
+.table-sort-div .table-sort-header .table-sort-icon {
+  opacity: 0.3;
 }
-.table-sort-header .table-sort-icon.active {
+.table-sort-div .table-sort-header .table-sort-icon.active {
   opacity: 1;
 }
 

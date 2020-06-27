@@ -4,7 +4,7 @@
 <div class="container-fluid content d-flex flex-column flex-md-row p-0">
 	<%- include("../partials/sidebar") %>
 	<div class="main-content-div col p-0 position-relative">
-		<div class="w-100 d-flex align-items-center flex-column px-4 pt-4" id="calculator">
+		<div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
 			<div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
 				<div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
 					<div class="w-100 flex-grow-1 border-top border-dark"></div>
@@ -18,72 +18,117 @@
 
 						<p class="w-100 text-justify">The table below contains all Boss Crystal prices at <span class="font-weight-bold">full selling price</span> (i.e. the boss was killed in a party of 1 person), sorted alphabetically by boss. Click on any table header to sort the rows in ascending/descending order.</p>
 
-						<div class="table-responsive-sm size-720 w-100">
-							<table class="font-table table table-sm table-bordered table-hover mb-0">
-								<thead>
-									<tr>
-										<th class="table-sort-header text-center cursor-pointer" id="sort-name">
-											<div class="d-flex justify-content-center align-items-center">
-												<i class="table-sort-icon fas fa-caret-up active" id="sort-name-ascending"></i>
-												<span class="mx-1">Boss Name</span>
-												<i class="table-sort-icon fas fa-caret-down" id="sort-name-descending"></i>
-											</div>
-										</th>
-										<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-easy">
-											<div class="d-flex justify-content-center align-items-center">
-												<i class="table-sort-icon fas fa-caret-up" id="sort-easy-ascending"></i>
-												<span class="mx-1">Easy</span>
-												<i class="table-sort-icon fas fa-caret-down" id="sort-easy-descending"></i>
-											</div>
-										</th>
-										<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-normal">
-											<div class="d-flex justify-content-center align-items-center">
-												<i class="table-sort-icon fas fa-caret-up" id="sort-normal-ascending"></i>
-												<span class="mx-1">Normal</span>
-												<i class="table-sort-icon fas fa-caret-down" id="sort-normal-descending"></i>
-											</div>
-										</th>
-										<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-hard">
-											<div class="d-flex justify-content-center align-items-center">
-												<i class="table-sort-icon fas fa-caret-up" id="sort-hard-ascending"></i>
-												<span class="mx-1">Hard</span>
-												<i class="table-sort-icon fas fa-caret-down" id="sort-hard-descending"></i>
-											</div>
-										</th>
-										<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-chaos">
-											<div class="d-flex justify-content-center align-items-center">
-												<i class="table-sort-icon fas fa-caret-up" id="sort-chaos-ascending"></i>
-												<span class="mx-1">Chaos</span>
-												<i class="table-sort-icon fas fa-caret-down" id="sort-chaos-descending"></i>
-											</div>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<% bossList.forEach(function(boss) { %>
-									<tr class="table-rows">
-										<th class="text-center text-md-left align-middle" data-val="<%= boss.name %>">
-											<div class="d-flex flex-column flex-md-row align-items-center">
-												<img src="<%= boss.img %>" class="small-boss-square mr-md-2">
-												<%= boss.name %>		
-											</div>
-										</th>
-										<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.easy !== 0) ? boss.easy : 0 %>">
-											<%= (boss.easy !== 0) ? boss.easy.toLocaleString() : "-" %>
-										</td>
-										<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.normal !== 0) ? boss.normal : 0 %>">
-											<%= (boss.normal !== 0) ? boss.normal.toLocaleString() : "-" %>
-										</td>
-										<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.hard !== 0) ? boss.hard : 0 %>">
-											<%= (boss.hard !== 0) ? boss.hard.toLocaleString() : "-" %>
-										</td>
-										<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.chaos !== 0) ? boss.chaos : 0 %>">
-											<%= (boss.chaos !== 0) ? boss.chaos.toLocaleString() : "-" %>
-										</td>
-									</tr>
-									<% }) %>
-								</tbody>
-							</table>
+						<div class="w-100 font-form d-flex justify-content-center sort-boss-crystal-div mb-3">
+							<div class="single-option-select select-sort-type text-center rounded-sm py-1 mx-2 cursor-pointer active" id="sort-by-boss">Sort by Boss</div>
+							<div class="single-option-select select-sort-type text-center rounded-sm py-1 mx-2 cursor-pointer" id="sort-by-crystal">Sort by Price</div>
+						</div>
+
+						<div class="position-relative w-100 size-720 d-flex justify-content-center">
+							<div class="table-sort-div table-responsive-sm size-720 w-100 active" id="sort-by-boss-div">
+								<table class="font-table table table-sm table-bordered table-hover mb-0">
+									<thead>
+										<tr>
+											<th class="table-sort-header text-center cursor-pointer" id="sort-boss-name">
+												<div class="d-flex justify-content-center align-items-center">
+													<i class="table-sort-icon fas fa-caret-up active" id="sort-boss-name-ascending"></i>
+													<span class="mx-1">Boss Name</span>
+													<i class="table-sort-icon fas fa-caret-down" id="sort-boss-name-descending"></i>
+												</div>
+											</th>
+											<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-easy">
+												<div class="d-flex justify-content-center align-items-center">
+													<i class="table-sort-icon fas fa-caret-up" id="sort-easy-ascending"></i>
+													<span class="mx-1">Easy</span>
+													<i class="table-sort-icon fas fa-caret-down" id="sort-easy-descending"></i>
+												</div>
+											</th>
+											<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-normal">
+												<div class="d-flex justify-content-center align-items-center">
+													<i class="table-sort-icon fas fa-caret-up" id="sort-normal-ascending"></i>
+													<span class="mx-1">Normal</span>
+													<i class="table-sort-icon fas fa-caret-down" id="sort-normal-descending"></i>
+												</div>
+											</th>
+											<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-hard">
+												<div class="d-flex justify-content-center align-items-center">
+													<i class="table-sort-icon fas fa-caret-up" id="sort-hard-ascending"></i>
+													<span class="mx-1">Hard</span>
+													<i class="table-sort-icon fas fa-caret-down" id="sort-hard-descending"></i>
+												</div>
+											</th>
+											<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-chaos">
+												<div class="d-flex justify-content-center align-items-center">
+													<i class="table-sort-icon fas fa-caret-up" id="sort-chaos-ascending"></i>
+													<span class="mx-1">Chaos</span>
+													<i class="table-sort-icon fas fa-caret-down" id="sort-chaos-descending"></i>
+												</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% bossList.forEach(function(boss) { %>
+										<tr class="table-rows">
+											<th class="text-center text-md-left align-middle" data-val="<%= boss.name %>">
+												<div class="d-flex flex-column flex-md-row align-items-center">
+													<img src="<%= boss.img %>" class="small-boss-square mr-md-2">
+													<%= boss.name %>		
+												</div>
+											</th>
+											<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.easy !== 0) ? boss.easy : 0 %>">
+												<%= (boss.easy !== 0) ? boss.easy.toLocaleString() : "-" %>
+											</td>
+											<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.normal !== 0) ? boss.normal : 0 %>">
+												<%= (boss.normal !== 0) ? boss.normal.toLocaleString() : "-" %>
+											</td>
+											<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.hard !== 0) ? boss.hard : 0 %>">
+												<%= (boss.hard !== 0) ? boss.hard.toLocaleString() : "-" %>
+											</td>
+											<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.chaos !== 0) ? boss.chaos : 0 %>">
+												<%= (boss.chaos !== 0) ? boss.chaos.toLocaleString() : "-" %>
+											</td>
+										</tr>
+										<% }) %>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="table-sort-div table-responsive-sm size-350 w-100 position" id="sort-by-crystal-div" style="display: none">
+								<table class="font-table table table-sm table-bordered table-hover mb-0">
+									<thead>
+										<tr>
+											<th class="table-sort-header text-center cursor-pointer" id="sort-price-boss-name">
+												<div class="d-flex justify-content-center align-items-center">
+													<i class="table-sort-icon fas fa-caret-up" id="sort-price-boss-name-ascending"></i>
+													<span class="mx-1">Boss Name</span>
+													<i class="table-sort-icon fas fa-caret-down" id="sort-price-boss-name-descending"></i>
+												</div>
+											</th>
+											<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-crystal-price">
+												<div class="d-flex justify-content-center align-items-center">
+													<i class="table-sort-icon fas fa-caret-up active" id="sort-crystal-price-ascending"></i>
+													<span class="mx-1">Price</span>
+													<i class="table-sort-icon fas fa-caret-down" id="sort-crystal-price-descending"></i>
+												</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% crystalList.forEach(function(boss) { %>
+										<tr class="table-rows">
+											<th class="text-center text-md-left align-middle" data-val="<%= boss.name %>">
+												<div class="d-flex flex-column flex-md-row align-items-center">
+													<img src="<%= boss.img %>" class="small-boss-square mr-md-2">
+													<%= boss.name %>		
+												</div>
+											</th>
+											<td class="table-cols-50 text-center align-middle" data-val="<%= boss.crystalPrice %>">
+												<%= boss.crystalPrice.toLocaleString() %>
+											</td>
+										</tr>
+										<% }) %>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -92,53 +137,5 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-	window.onload = function() {
-		init();
-	}
-
-	const getCellValue = (tr, index) => tr.children[index].dataset.val;
-
-	// Takes two rows, passes in respective column values via IIFE and compares the two values to sort based on ascending/descending order
-	const comparer = (index, isAscending) => 
-		(row1, row2) => 
-			((val1, val2) => {
-				if(val1 !== '' && val2 !== '' && !isNaN(val1) && !isNaN(val2)) {
-					return val1 - val2;
-				} else {
-					return val1.toString().localeCompare(val2);
-				}
-			})(getCellValue(isAscending ? row1 : row2, index), getCellValue(isAscending ? row2 : row1, index));
-		
-	function init() {
-		let isAscending = [true, true, true, true, true];
-
-		document.querySelectorAll(".table-sort-header").forEach((th) => {
-			const headerIndex = Array.from(th.parentNode.children).indexOf(th);
-
-			th.addEventListener('click', () => {
-				activateCaret(th.id, isAscending[headerIndex]);
-
-				const table = th.closest("table");
-
-				Array.from(table.querySelectorAll(".table-rows"))
-					 .sort(comparer(headerIndex, isAscending[headerIndex] = !isAscending[headerIndex]))
-					 .forEach(tr => table.appendChild(tr));
-			})
-		})
-	}
-
-	function activateCaret(elemId, isAscending) {
-		Array.from(document.querySelectorAll(".table-sort-icon"))
-			 .forEach((icon) => {
-			 	icon.classList.remove("active");
-			 })
-
-		if(isAscending) {
-			document.getElementById(`${elemId}-descending`).classList.add("active");
-		} else {
-			document.getElementById(`${elemId}-ascending`).classList.add("active");
-		}
-	}
-</script>
+<script type="text/javascript" src="./public/scripts/bossCrystalScript.js"></script>
 <%- include("../partials/footer") %>

@@ -89,7 +89,28 @@ router.get("/boss-crystal", function(req, res) {
 		{ name: "Will", img: "./public/images/boss/will-sq.png", easy: 0, normal: 46512500, hard: 88200000, chaos: 0 },
 		{ name: "Zakum", img: "./public/images/boss/zakum-sq.png", easy: 200000, normal: 612500, hard: 0, chaos: 16200000 },
 	];
-	res.render("extras/bossCrystal", {bossList: bossList});
+
+	const pricePerCrystalList = sortByPrice(bossList);
+	res.render("extras/bossCrystal", {bossList: bossList, crystalList: pricePerCrystalList});
 })
+
+function sortByPrice(bossList) {
+	var bossPriceArr = [];
+	var difficulties = ["easy", "normal", "hard", "chaos"];
+
+	bossList.forEach(function(boss) {
+		difficulties.forEach(function(mode) {
+			if(boss[mode] !== 0) {
+				bossPriceArr.push({ name: `${boss.name} (${mode.charAt(0).toUpperCase() + mode.slice(1)})`, img: boss.img, crystalPrice: boss[mode]});
+			}
+		})
+	})
+
+	bossPriceArr.sort((boss1, boss2) => {
+		return boss1.crystalPrice - boss2.crystalPrice;
+	})
+
+	return bossPriceArr;
+}
 
 module.exports = router;
