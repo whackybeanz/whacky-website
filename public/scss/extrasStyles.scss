@@ -7,3 +7,15 @@
 .select-sort-type {
 	width: 100px;
 }
+
+.sort-arrows-div {
+	height: 20px;
+
+	.fa-caret-up {
+		top: -1px;
+	}
+
+	.fa-caret-down {
+		bottom: -1px;
+	}
+}

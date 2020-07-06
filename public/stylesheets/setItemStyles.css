@@ -120,6 +120,13 @@
   overflow: auto;
 }
 
+.total-stat {
+  opacity: 0.2;
+}
+.total-stat.active {
+  opacity: 1;
+}
+
 .set-item-effect-div .single-set-effect .set-items .set-effect, .set-item-effect-div .single-set-effect .num-wearing-div .set-effect {
   opacity: 0.3;
 }

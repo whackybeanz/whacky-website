@@ -92,6 +92,14 @@
 	}
 }
 
+.total-stat {
+	opacity: 0.2;
+
+	&.active {
+		opacity: 1.0;
+	}
+}
+
 .set-item-effect-div {
 	.single-set-effect {
 		.set-items, .num-wearing-div {

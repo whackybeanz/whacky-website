@@ -6,4 +6,14 @@
   width: 100px;
 }
 
+.sort-arrows-div {
+  height: 20px;
+}
+.sort-arrows-div .fa-caret-up {
+  top: -1px;
+}
+.sort-arrows-div .fa-caret-down {
+  bottom: -1px;
+}
+
 /*# sourceMappingURL=extrasStyles.css.map */

@@ -358,11 +358,13 @@ function updateTotalSetEffect() {
 		}
 	})
 
-	$(".total-stat").removeClass("d-flex").addClass("d-none");
+	//$(".total-stat").removeClass("d-flex").addClass("d-none");
 	Object.keys(allStatTypes).forEach(function(statType) { 
 		if(allStatTypes[statType] !== 0) {
-			$(`.total-stat-${statType}`).removeClass("d-none").addClass("d-flex");
+			$(`.total-stat-${statType}`).addClass("active");
 			$(`.total-stat-${statType}-val`).text(allStatTypes[statType])
+		} else {
+			$(`.total-stat-${statType}`).removeClass("active");
 		}
 	});
 

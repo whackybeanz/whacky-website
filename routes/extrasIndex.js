@@ -74,7 +74,7 @@ router.get("/boss-crystal", function(req, res) {
 		{ name: "Hilla", img: "./public/images/boss/hilla-sq.png", easy: 0, normal: 800000, hard: 11250000, chaos: 0 },
 		{ name: "Horntail", img: "./public/images/boss/horntail-sq.png", easy: 882000, normal: 1012500, hard: 0, chaos: 1352000 },
 		{ name: "Julieta", img: "./public/images/boss/julieta-sq.png", easy: 0, normal: 1200000, hard: 0, chaos: 0 },
-		{ name: "Kwaoong", img: "./public/images/boss/kawoong-sq.png", easy: 0, normal: 1250000, hard: 0, chaos: 0 },
+		{ name: "Kawoong", img: "./public/images/boss/kawoong-sq.png", easy: 0, normal: 1250000, hard: 0, chaos: 0 },
 		{ name: "Lotus", img: "./public/images/boss/lotus-sq.png", easy: 0, normal: 32512500, hard: 74112500, chaos: 0 },
 		{ name: "Lucid", img: "./public/images/boss/lucid-sq.png", easy: 35112500, normal: 40612500, hard: 80000000, chaos: 0 },
 		{ name: "Magnus", img: "./public/images/boss/magnus-sq.png", easy: 722000, normal: 2592000, hard: 19012500, chaos: 0 },

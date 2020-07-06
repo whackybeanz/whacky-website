@@ -10,7 +10,7 @@ var thiefSetEffects = {
 			shoulder: [{ id: "acs-bandit-shoulder", image: "./public/images/equips/shoulder/acs-shoulder.png", name: "Arcaneshade Bandit Shoulder" }],
 			weapon: [{ id: "acs-dagger", image: "./public/images/equips/weapon/acs-dagger.png", name: "Arcaneshade Dagger" },
 					{ id: "acs-cane", image: "./public/images/equips/weapon/acs-cane.png", name: "Arcaneshade Cane" },
-					{ id: "acs-baghnakhs", image: "./public/images/equips/weapon/acs-baghnakhs.png", name: "Arcaneshade Baghnakhs" },
+					{ id: "acs-claw", image: "./public/images/equips/weapon/acs-claw.png", name: "Arcaneshade Guards" },
 					{ id: "acs-energy-sword", image: "./public/images/equips/weapon/acs-energy-sword.png", name: "Arcaneshade Energy Sword" },
 					{ id: "acs-energy-chain", image: "./public/images/equips/weapon/acs-energy-chain.png", name: "Arcaneshade Energy Chain" },
 					{ id: "acs-buchae", image: "./public/images/equips/weapon/acs-buchae.png", name: "Arcaneshade Transcendence Buchae" }]

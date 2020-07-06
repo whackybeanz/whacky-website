@@ -39,21 +39,23 @@ function init() {
 
 	document.querySelectorAll(".select-sort-type").forEach((selectElem) => {
 		selectElem.addEventListener("click", () => {
-			Array.from(document.querySelectorAll(".select-sort-type"))
+			if(!selectElem.classList.contains("active")) {
+				Array.from(document.querySelectorAll(".select-sort-type"))
 				 .forEach((elem) => elem.classList.remove("active"));
 
-			Array.from(document.querySelectorAll(".table-sort-div"))
-				 .forEach((elem) => {
-				 	if(elem.classList.contains("active")) {
-				 		document.getElementById(elem.id).classList.remove("active");
-				 		fadeOut(`${elem.id}`);
-				 	}
-				 })
+				Array.from(document.querySelectorAll(".table-sort-div"))
+					 .forEach((elem) => {
+					 	if(elem.classList.contains("active")) {
+					 		document.getElementById(elem.id).classList.remove("active");
+					 		fadeOut(`${elem.id}`);
+					 	}
+					 })
 
-			setTimeout(function() {
-				document.getElementById(selectElem.id).classList.add("active");
-				fadeIn(`${selectElem.id}-div`);
-			}, 125)
+				setTimeout(function() {
+					document.getElementById(selectElem.id).classList.add("active");
+					fadeIn(`${selectElem.id}-div`);
+				}, 125)
+			}
 		})
 	})
 }
@@ -94,7 +96,9 @@ function fadeIn(elem) {
 }
 
 function activateCaret(elemId, isAscending) {
-	Array.from(document.querySelectorAll(".table-sort-icon"))
+	const affectedTable = document.getElementById(elemId).closest("table").parentNode.id;
+
+	Array.from(document.querySelectorAll(`#${affectedTable} .table-sort-icon`))
 		 .forEach((icon) => {
 		 	icon.classList.remove("active");
 		 })

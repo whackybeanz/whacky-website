@@ -8,7 +8,7 @@ var pirateSetEffects = {
 			gloves: [{ id: "acs-pirate-glove", image: "./public/images/equips/gloves/acs-glove.png", name: "Arcaneshade Pirate Mitts" }],
 			cape: [{ id: "acs-pirate-cape", image: "./public/images/equips/cape/acs-cape.png", name: "Arcaneshade Pirate Cape" }], 
 			shoulder: [{ id: "acs-pirate-shoulder", image: "./public/images/equips/shoulder/acs-shoulder.png", name: "Arcaneshade Pirate Shoulder" }],
-			weapon: [{ id: "acs-guards", image: "./public/images/equips/weapon/acs-guards.png", name: "Arcaneshade Guards" },
+			weapon: [{ id: "acs-knuckle", image: "./public/images/equips/weapon/acs-knuckle.png", name: "Arcaneshade Baghnakhs" },
 					{ id: "acs-pistol", image: "./public/images/equips/weapon/acs-pistol.png", name: "Arcaneshade Pistol" },
 					{ id: "acs-energy-sword", image: "./public/images/equips/weapon/acs-energy-sword.png", name: "Arcaneshade Energy Sword" },
 					{ id: "acs-siege-gun", image: "./public/images/equips/weapon/acs-siege-gun.png", name: "Arcaneshade Siege Gun" },

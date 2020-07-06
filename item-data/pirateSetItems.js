@@ -47,11 +47,11 @@ var pirateSetItems = {
 		{ setType: "acs", id: "acs-siege-gun", image: "./public/images/equips/weapon/acs-siege-gun.png", name: "Arcaneshade Siege Gun" },
 		{ setType: "acs", id: "acs-soul-shooter", image: "./public/images/equips/weapon/acs-soul-shooter.png", name: "Arcaneshade Soul Shooter" },
 
-		{ setType: "abs", id: "abs-knuckle", image: "./public/images/equips/weapon/abs-knuckle.png", name: "Arcaneshade Ashen Fist" },
-		{ setType: "abs", id: "abs-pistol", image: "./public/images/equips/weapon/abs-pistol.png", name: "Arcaneshade Elite Magnum" },
-		{ setType: "abs", id: "abs-energy-sword", image: "./public/images/equips/weapon/abs-energy-sword.png", name: "Arcaneshade Electro Saber" },
-		{ setType: "abs", id: "abs-siege-gun", image: "./public/images/equips/weapon/abs-siege-gun.png", name: "Arcaneshade Blast Cannon" },
-		{ setType: "abs", id: "abs-soul-shooter", image: "./public/images/equips/weapon/abs-soul-shooter.png", name: "Arcaneshade Draconic Arm" },
+		{ setType: "abs", id: "abs-knuckle", image: "./public/images/equips/weapon/abs-knuckle.png", name: "Absolabs Ashen Fist" },
+		{ setType: "abs", id: "abs-pistol", image: "./public/images/equips/weapon/abs-pistol.png", name: "Absolabs Elite Magnum" },
+		{ setType: "abs", id: "abs-energy-sword", image: "./public/images/equips/weapon/abs-energy-sword.png", name: "Absolabs Electro Saber" },
+		{ setType: "abs", id: "abs-siege-gun", image: "./public/images/equips/weapon/abs-siege-gun.png", name: "Absolabs Blast Cannon" },
+		{ setType: "abs", id: "abs-soul-shooter", image: "./public/images/equips/weapon/abs-soul-shooter.png", name: "Absolabs Draconic Arm" },
 
 		{ setType: "faf", id: "faf-knuckle", image: "./public/images/equips/weapon/faf-knuckle.png", name: "Fafnir Fenrir Talon" },
 		{ setType: "faf", id: "faf-pistol", image: "./public/images/equips/weapon/faf-pistol.png", name: "Fafnir Zeliska" },

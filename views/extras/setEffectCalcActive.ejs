@@ -84,12 +84,12 @@
 				<div class="w-100 mb-3">
 					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Total Set Effects</h2>
 					<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-						<p class="no-set-effect-msg font-content w-100 d-flex justify-content-center">- No active set effects -</p>
+						<!--<p class="no-set-effect-msg font-content w-100 d-flex justify-content-center">- No active set effects -</p>-->
 						<div class="font-table w-100 d-flex flex-wrap">
 							<% statTypes.forEach(function(stat) { %>
-								<div class="total-stat total-stat-<%= stat.key %> col-6 col-lg-4 d-none justify-content-between align-items-center p-0 my-1">
+								<div class="total-stat total-stat-<%= stat.key %> col-6 col-lg-4 d-flex justify-content-between align-items-center p-0 my-1">
 									<div class="col-7 font-weight-bold text-right p-0"><%= stat.name %></div>
-									<div class="col-5 pl-3">+<span class="total-stat-<%= stat.key %>-val"></span><%= stat.symbol %></div>
+									<div class="col-5 pl-3">+<span class="total-stat-<%= stat.key %>-val">0</span><%= stat.symbol %></div>
 								</div>
 							<% }) %>
 						</div>
