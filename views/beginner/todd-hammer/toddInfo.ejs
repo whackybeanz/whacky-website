@@ -1,0 +1,187 @@
+<div class="w-100 d-flex align-items-center flex-column px-4 pt-4" id="info">
+	<div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+		<div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+			<div class="w-100 flex-grow-1 border-top border-dark"></div>
+			<h1 class="font-header w-100 text-center m-0 px-0">About Todd's Hammer</h1>
+			<div class="w-100 flex-grow-1 border-top border-dark"></div>
+		</div>
+		<div class="w-100 mb-3">
+			<h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-intro">Introduction</h2>
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+				<p class="text-justify">Todd's Hammer is a system that allows you to transfer certain upgrades on a lower level items onto a higher level item. You can access Todd's Hammer by clicking on the blue hammer icon at the bottom of your inventory <img src="./public/images/guide/todd-1.png">.</p>
+
+				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
+					<div class="d-flex">
+						<img src="./public/images/guide/todd-2.png" class="img-fluid">
+					</div>
+					<p class="size-350 font-caption mb-0">The Todd's Hammer UI.</p>
+				</div>
+			</div>
+		</div>
+		<div class="w-100 mb-3">
+			<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2" id="info-process">The Todding Process</h2>
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+				<p class="text-justify">The UI will highlight to players items that can undergo the transfer process (commonly called "todding") on the bottom left. Once you select an item to extract, the bottom right will display items that can receive the transferred upgrades.</p>
+
+				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
+					<div class="d-flex flex-column align-items-center">
+						<img src="./public/images/guide/todd-3.png" class="img-fluid mb-1">
+						<img src="./public/images/guide/todd-4.png" class="img-fluid">
+					</div>
+					<p class="size-350 font-caption">Select an equipment to extract from the provided list (top) and the UI will display all possible equipment that can receive the extracted item's upgrades (bottom).</p>
+				</div>
+
+				<h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-0">Criteria for Todding</h3>
+				<p class="text-justify">In order to todd an item, there are a few standard criteria to meet first. For easier reference in the subsequent sections, the item being extracted is termed Extracting Equipment (EE), and the item receiving these upgrades is termed Receiving Equipment (RE).</p>
+
+				<table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
+					<thead>
+						<tr>
+							<th class="table-cols-125 text-center align-middle">Property</th>
+							<th class="align-middle">Criteria</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="table-rows">
+							<th class="table-cols-125 text-center align-middle">Item Level</th>
+							<td class="align-middle py-2">
+								<p>RE must be +1 to +20 levels of EE (for EE level 99 and below).<br/>
+								RE must be +1 to +10 levels of EE (for EE level 100 and above).</p>
+
+								<p class="mb-0">Examples:</p>
+								<ul class="mb-0">
+									<li>Okay - Blue Marine to Dragon Staff (Level 95 > 110)</li>
+									<li>Okay - Utgard Staff to Fafnir Staff (Level 140 > 150)</li>
+									<li>Not okay - Blue Varr Hat to Eclectic Coral (Level 100 > 120)</li>
+									<li>Not okay - Dea Sidus Earrings to Will o' the Wisps (Level 130 > 130)</li>
+									<li>Not okay - Fafnir Mana Taker to Arcaneshade Staff (Level 150 > 200)</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="table-cols-125 text-center align-middle">Equipment Type</th>
+							<td class="align-middle py-2">
+								<p>EE and RE must have matching item types (e.g. Hat to Hat, Staff to Staff).</p>
+								<p>EE and RE can belong to different classes (e.g. Mage hat to Warrior hat).</p>
+
+								<p class="mb-0">Certain items cannot use Todd's Hammer:</p>
+								<ul class="mb-0">
+									<li>Zero weapons</li>
+									<li>Superior equipment</li>
+									<li>Time-limited equipment</li>
+									<li>Equipment with fixed potentials/upgrades</li>
+									<li>Equipment that cannot contain potentials</li>
+									<li>Cash items</li>
+								</ul>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+				<h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-0">Item Properties</h3>
+				<p class="w-100 text-justify">The table below lists item properties that are/are not transferred during todding.</p>
+				<table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
+					<thead>
+						<tr>
+							<th class="table-cols-125 text-center align-middle">Item Property</th>
+							<th class="table-cols-125 text-center align-middle">Transferred to RE?</th>
+							<th class="align-middle">Notes</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="table-rows">
+							<th class="table-cols-125 text-center align-middle">
+								<img src="./public/images/flames/flame-crimson.png">
+								<img src="./public/images/flames/flame-rainbow.png"><br/>
+								Bonus Stats / Flame stats
+							</th>
+							<td class="table-cols-125 text-center align-middle">No</td>
+							<td class="align-middle">
+								<p class="mb-0">RE retains the flame stats that it has during todding.</p>
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="table-cols-125 text-center align-middle">
+								<img src="./public/images/items/spell-trace.png">
+								<img src="./public/images/items/scroll-chaos.png"><br/>
+								Spell Trace / Scroll upgrades
+							</th>
+							<td class="table-cols-125 text-center align-middle">No</td>
+							<td class="align-middle">
+								<p class="mb-2">If RE has upgrade slots left unused during todding, you will be given the choice to use up all upgrade slots with 100% scrolls free-of-charge.</p>
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="table-cols-125 text-center align-middle">
+								<img src="./public/images/items/star-chair.png"><br/>
+								Star Force
+							</th>
+							<td class="table-cols-125 text-center align-middle">Yes, minus 1 star</td>
+							<td class="align-middle">
+								<p>EE must have at least 1 star force.</p>
+								<p class="mb-2">RE's existing star force is replaced by EE's star force (minus one).</p>
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="table-cols-125 text-center align-middle">
+								<img src="./public/images/items/pot-scroll.png">
+								<img src="./public/images/items/pot-scroll-add.png"><br/>
+								(Additional) Potentials
+							</th>
+							<td class="table-cols-125 text-center align-middle">Yes, up to Epic potential</td>
+							<td class="align-middle">
+								<p>RE's existing potentials are replaced by EE's potentials.</p>
+								<p>If EE has Unique/Legendary potential, downgrade potential lines to Epic rank of equivalent stat type (e.g. STR +12% at Legendary becomes STR +6% at Epic for a level 100+ item) during todding.</p>
+								<p class="mb-2">If equivalent stat type does not exist (e.g. Boss Damage % does not exist on Epic potentials), randomly reroll that affected line during todding.</p>
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="table-cols-125 text-center align-middle">
+								<img src="./public/images/souls/soul-magnus.png"><br/>
+								Boss Souls
+							</th>
+							<td class="table-cols-125 text-center align-middle">Yes</td>
+							<td class="align-middle">
+								<p>RE's existing boss soul is replaced by EE's boss soul.</p>
+								<p class="mb-2">If RE was not a soul weapon, automatically transform into one and receive EE's boss soul.</p>
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="table-cols-125 text-center align-middle">Tradability</th>
+							<td class="table-cols-125 text-center align-middle">No</td>
+							<td class="align-middle">
+								<p class="mb-2">RE's tradability remains unaffected (e.g. if EE was tradable, but RE was untradable, RE remains untradable after todding).</p>
+							</td>
+						</tr>
+						<tr class="table-rows">
+							<th class="table-cols-125 text-center align-middle">
+								<img src="./public/images/items/scroll-guardian.png">
+								<img src="./public/images/items/scroll-shield.png">
+								<img src="./public/images/items/scroll-protection.png">
+								Special Scroll usage
+							</th>
+							<td class="table-cols-125 text-center align-middle">No</td>
+							<td class="align-middle">
+								<p class="mb-2">Any effects of Guardian Scrolls, Shielding Scrolls, Shielding Wards, etc. that exist on EE <span class="text-underline">will not</span> be transferred to RE.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="w-100 mb-3">
+			<h2 class="w-100 font-subheader font-weight-bold text-underline mb-2" id="info-benefits">Benefits of Todding</h2>
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+				
+			</div>
+		</div>
+		<div class="w-100 mb-3">
+			<h2 class="w-100 font-subheader font-weight-bold text-underline mb-2" id="info-sequence">Todding Sequence</h2>
+			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+				
+			</div>
+		</div>
+	</div>
+</div>

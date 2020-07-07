@@ -45,4 +45,10 @@ router.get("/equip-guide/set-effects", function(req, res) {
 	res.render("beginner/set-effects/setEffectIndex");
 })
 
+router.get("/equip-guide/todd-hammer", function(req, res) {
+	res.locals.section = "newbies";
+	res.locals.branch = "todd-hammer";
+	res.render("beginner/todd-hammer/toddIndex");
+})
+
 module.exports = router;
