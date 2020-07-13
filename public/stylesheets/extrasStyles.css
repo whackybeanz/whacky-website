@@ -19,5 +19,8 @@
 .todd-item-img-div {
   height: 35px;
 }
+.todd-item-img-div .item-img.highlight {
+  background-color: rgba(255, 0, 0, 0.5);
+}
 
 /*# sourceMappingURL=extrasStyles.css.map */
