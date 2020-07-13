@@ -146,6 +146,16 @@ body {
 		border: 1px solid globals.$light-mode-grey;
 	}
 
+	.todd-table {
+		& > thead {
+			background-color: globals.$light-mode-light-grey;
+		}
+
+		& > tbody {
+			background-color: globals.$light-mode-white-opaque;
+		}
+	}
+
 	// About
 	.single-social {
 		a {

@@ -113,4 +113,11 @@ function sortByPrice(bossList) {
 	return bossPriceArr;
 }
 
+router.get("/todd-sequence", function(req, res) {
+	res.locals.extraStylesheet = "extrasStyles";
+	res.locals.section = "extras";
+	res.locals.branch = "todd-sequence";
+	res.render("extras/toddSequence");
+})
+
 module.exports = router;

@@ -182,6 +182,18 @@ body.dark-mode {
 		border: 1px solid globals.$dark-mode-grey;
 	}
 
+	.todd-table.table-dark {
+		background-color: transparent;
+
+		& > thead {
+			background-color: globals.$dark-mode-navy-grey-opaque;
+		}
+
+		& > tbody {
+			background-color: globals.$dark-mode-grey;
+		}
+	}
+
 	// About
 	.single-social {
 		a {
