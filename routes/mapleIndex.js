@@ -1,10 +1,35 @@
 var express = require("express");
 var router 	= express.Router();
+var Homepage 	= require("../models/homepageData");
 
 router.get("/", function(req, res) {
 	res.locals.section = "maple-index";
 	res.locals.extraStylesheet = "indexStyles";
-	res.render("mapleIndex");
+
+	Homepage.find({}, function(err, foundItems) {
+		if(err) {
+			console.log(err);
+			res.redirect("back");
+		} else {
+			let homepageObj = {
+				beginner: [],
+				extras: [],
+				moreMaple: [],
+				others: [],
+				quicklinks: [],
+				default: {}
+			};
+			foundItems.forEach(function(item) {
+				if(item.category !== "default") {
+					homepageObj[item.category].push(item);
+				} else {
+					homepageObj[item.category] = item;
+				}
+			});
+
+			res.render("mapleIndex", {homepageObj: homepageObj});
+		}
+	})
 })
 
 router.get("/events", function(req, res) {

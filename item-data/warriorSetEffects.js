@@ -8,7 +8,7 @@ var warriorSetEffects = {
 			gloves: [{ id: "acs-warrior-glove", image: "./public/images/equips/gloves/acs-glove.png", name: "Arcaneshade Knight Mitts" }],
 			cape: [{ id: "acs-warrior-cape", image: "./public/images/equips/cape/acs-cape.png", name: "Arcaneshade Knight Cape" }], 
 			shoulder: [{ id: "acs-warrior-shoulder", image: "./public/images/equips/shoulder/acs-shoulder.png", name: "Arcaneshade Knight Shoulder" }],
-			weapon: [{ id: "acs-saber", image: "./public/images/equips/weapon/acs-saber.png", name: "Arcaneshade Saber" },
+			weapon: [{ id: "acs-1h-sword", image: "./public/images/equips/weapon/acs-saber.png", name: "Arcaneshade Saber" },
 					{ id: "acs-2h-sword", image: "./public/images/equips/weapon/acs-2h-sword.png", name: "Arcaneshade 2-Handed Sword" },
 					{ id: "acs-axe", image: "./public/images/equips/weapon/acs-axe.png", name: "Arcaneshade Axe" },
 					{ id: "acs-2h-axe", image: "./public/images/equips/weapon/acs-2h-axe.png", name: "Arcaneshade 2-Handed Axe" },
