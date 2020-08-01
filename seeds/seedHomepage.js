@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var Homepage = require("./models/homepageData");
+var Homepage = require("../models/homepageData");
 
 var homepageSeeds = [
 	{ category: "beginner", name: "Spell Trace / Scrolls", imgUrl: "./public/images/items/spell-trace.png", pageUrl: "./maple/newbies/equip-guide/spell-trace" },
@@ -38,22 +38,19 @@ var homepageSeeds = [
 ];
 
 function seedHomepage() {
-	homepageSeeds.forEach(function(seed) {
-		Homepage.create(seed, function(err, newHomepageData) {
-			if(err) {
-				console.log(err);
-			} else {
-				console.log(`Added new data (${newHomepageData.name}).`);
-			}
+	Homepage.deleteMany({}, function(err) {
+		console.log("All items in DB deleted");
+
+		homepageSeeds.forEach(function(seed) {
+			Homepage.create(seed, function(err, newHomepageData) {
+				if(err) {
+					console.log(err);
+				} else {
+					console.log(`Added new data (${newHomepageData.name}).`);
+				}
+			})
 		})
 	})
 }
 
-function seedData() {
-	Homepage.deleteMany({}, function(err) {
-		console.log("All items in DB deleted");
-		seedHomepage();
-	})
-}
-
-module.exports = seedData;
+module.exports = seedHomepage;

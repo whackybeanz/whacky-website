@@ -1,5 +1,6 @@
 var express = require("express");
 var router 	= express.Router();
+var Equip 	= require("../models/equipData");
 
 router.get("/", function(req, res) {
 	res.redirect("/flames");
@@ -33,28 +34,50 @@ router.get("/set-effects/:jobType", function(req, res) {
 						"hat", "face", "eye", "top", "bottom", "shoes", 
 						"earring", "shoulder", "gloves", "android",
 						"emblem", "badge", "medal", "secondary", "cape", "heart"];
-	var allSetItems = require("../item-data/allSetItems");
-	var allSetEffects = require("../item-data/allSetEffects");
+	const allSetEffects = require("../item-data/allSetEffects");
 
-	var compiledSetItems = {};
-	compiledSetItems[jobType] = allSetItems[jobType];
-	compiledSetItems.common = allSetItems.common;
+	//var compiledSetItems = {};
+	//compiledSetItems[jobType] = allSetItems[jobType];
+	//compiledSetItems.common = allSetItems.common;
 
-	var compiledSetEffects = {};
-	compiledSetEffects[jobType] = allSetEffects[jobType];
-	compiledSetEffects.common = allSetEffects.common;
+	Equip.find().or([{ jobType: jobType }, { jobType: "common" }])
+		.then(equips => {
+		 	let compiledSetItems = {};
+			let compiledSetEffects = {};
+			compiledSetEffects[jobType] = allSetEffects[jobType];
+			compiledSetEffects.common = allSetEffects.common;
 
-	var possibleStatTypes = [{ key: "str", name: "STR" }, { key: "dex", name: "DEX" }, { key: "int", name: "INT" }, { key: "luk", name: "LUK" }, { key: "allStats", name: "All Stats" }, 
+			allEquipTypes.forEach(function(type) {
+				if(!compiledSetItems[type]) {
+					compiledSetItems[type] = [];
+				}
+			})
+
+			equips.forEach(function(equip) {
+				compiledSetItems[equip.equipType].push(equip);
+			})
+
+			Object.keys(compiledSetItems).forEach(function(key) {
+				// Sort first by level (descending order), then by groupId (descending order), then by subgroupId (ascending order)
+				compiledSetItems[key].sort((a, b) => b.level - a.level || b.groupId - a.groupId || a.subgroupId - b.subgroupId);
+			})
+
+			const possibleStatTypes = [{ key: "str", name: "STR" }, { key: "dex", name: "DEX" }, { key: "int", name: "INT" }, { key: "luk", name: "LUK" }, { key: "allStats", name: "All Stats" }, 
 							{ key: "maxHp", name: "Max HP"}, { key: "maxHpMp", name: "Max HP/MP" }, { key: "maxHpMpPercent", name: "Max HP/MP %", symbol: "%" }, 
 							{ key: "def", name: "DEF" }, { key: "acc", name: "Accuracy" }, { key: "avoid", name: "Avoidability" }, 
 							{ key: "wa", name: "ATT" }, { key: "ma", name: "MATT" }, { key: "wama", name: "ATT/MATT" }, 
 							{ key: "damagePercent", name: "Damage %", symbol: "%" }, { key: "bossPercent", name: "Boss Damage %", symbol: "%" }, { key: "iedPercent", name: "Ignore Enemy DEF %", symbol: "%" }, 
 							{ key: "critDmgPercent", name: "Critical Damage %", symbol: "%" }];
 
-	res.locals.extraStylesheet = "setItemStyles";
-	res.locals.section = "extras";
-	res.locals.branch = `calc-set-effects-${jobType}`;
-	res.render("extras/setEffectCalcActive", {allEquipTypes: allEquipTypes, allSetItems: compiledSetItems, allSetEffects: compiledSetEffects, jobType: jobType, statTypes: possibleStatTypes});
+			res.locals.extraStylesheet = "setItemStyles";
+			res.locals.section = "extras";
+			res.locals.branch = `calc-set-effects-${jobType}`;
+			res.render("extras/setEffectCalcActive", {allEquipTypes: allEquipTypes, allSetItems: compiledSetItems, allSetEffects: compiledSetEffects, jobType: jobType, statTypes: possibleStatTypes});
+		})
+		.catch(err => {
+		 	console.log(err);
+			res.redirect("back");
+		})
 })
 
 router.get("/boss-crystal", function(req, res) {
