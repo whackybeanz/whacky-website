@@ -1,6 +1,7 @@
 var express = require("express");
 var router 	= express.Router();
 var Equip 	= require("../models/equipData");
+var Effect 	= require("../models/setEffectData");
 
 router.get("/", function(req, res) {
 	res.redirect("/flames");
@@ -30,37 +31,19 @@ router.get("/set-effects", function(req, res) {
 
 router.get("/set-effects/:jobType", function(req, res) {
 	var jobType = req.params.jobType.toLowerCase();
-	var allEquipTypes = ["ring", "pocket", "pendant", "weapon", "belt", 
-						"hat", "face", "eye", "top", "bottom", "shoes", 
-						"earring", "shoulder", "gloves", "android",
-						"emblem", "badge", "medal", "secondary", "cape", "heart"];
 	const allSetEffects = require("../item-data/allSetEffects");
 
 	//var compiledSetItems = {};
 	//compiledSetItems[jobType] = allSetItems[jobType];
 	//compiledSetItems.common = allSetItems.common;
 
-	Equip.find().or([{ jobType: jobType }, { jobType: "common" }])
-		.then(equips => {
-		 	let compiledSetItems = {};
-			let compiledSetEffects = {};
-			compiledSetEffects[jobType] = allSetEffects[jobType];
-			compiledSetEffects.common = allSetEffects.common;
+	let getEquips = Equip.find().or([{ jobType: jobType }, { jobType: "common" }]);
+	let getSetEffects = Effect.find().or([{ jobType: jobType }, { jobType: "common" }]);
 
-			allEquipTypes.forEach(function(type) {
-				if(!compiledSetItems[type]) {
-					compiledSetItems[type] = [];
-				}
-			})
-
-			equips.forEach(function(equip) {
-				compiledSetItems[equip.equipType].push(equip);
-			})
-
-			Object.keys(compiledSetItems).forEach(function(key) {
-				// Sort first by level (descending order), then by groupId (descending order), then by subgroupId (ascending order)
-				compiledSetItems[key].sort((a, b) => b.level - a.level || b.groupId - a.groupId || a.subgroupId - b.subgroupId);
-			})
+	Promise.all([getEquips, getSetEffects])
+		.then(([equips, setEffects]) => {
+			const setItemsByItemPart = compileSetItemsByItemPart(equips);
+			const setItemsBySetName = compileSetItemsBySetName(equips);
 
 			const possibleStatTypes = [{ key: "str", name: "STR" }, { key: "dex", name: "DEX" }, { key: "int", name: "INT" }, { key: "luk", name: "LUK" }, { key: "allStats", name: "All Stats" }, 
 							{ key: "maxHp", name: "Max HP"}, { key: "maxHpMp", name: "Max HP/MP" }, { key: "maxHpMpPercent", name: "Max HP/MP %", symbol: "%" }, 
@@ -72,13 +55,57 @@ router.get("/set-effects/:jobType", function(req, res) {
 			res.locals.extraStylesheet = "setItemStyles";
 			res.locals.section = "extras";
 			res.locals.branch = `calc-set-effects-${jobType}`;
-			res.render("extras/setEffectCalcActive", {allEquipTypes: allEquipTypes, allSetItems: compiledSetItems, allSetEffects: compiledSetEffects, jobType: jobType, statTypes: possibleStatTypes});
+			res.render("extras/setEffectCalcActive", {setItemsByItemPart: setItemsByItemPart, setItemsBySetName: setItemsBySetName, allSetEffects: setEffects, jobType: jobType, statTypes: possibleStatTypes});
 		})
 		.catch(err => {
 		 	console.log(err);
 			res.redirect("back");
-		})
+		});
 })
+
+function compileSetItemsByItemPart(equips) {
+	const allEquipTypes = [...new Set(equips.map(equip => equip.equipType))];
+	let setItemsByItemPart = {};
+	
+	// Create keys for each item part
+	// Assign items to their respective item parts
+	// For each item within their item parts, sort first by level (descending order), then by groupId (descending order), then by subgroupId (ascending order)
+	allEquipTypes.forEach(type => setItemsByItemPart[type] = []);
+	equips.forEach(equip => setItemsByItemPart[equip.equipType].push(equip));
+	Object.keys(setItemsByItemPart).forEach(key => setItemsByItemPart[key].sort((a, b) => b.level - a.level || b.groupId - a.groupId || a.subgroupId - b.subgroupId));
+
+	return setItemsByItemPart;
+}
+
+function compileSetItemsBySetName(equips) {
+	const allSetNames = [...new Set(equips.map(equip => equip.setType))];
+	const displayPriority = {
+		hat: 1, top: 2, bottom: 3, shoes: 4, gloves: 5,	cape: 6, face: 7, eye: 8, earring: 9, ring: 10, 
+		belt: 11, pendant: 12, shoulder: 13, pocket: 14, badge: 15, heart: 16, emblem: 17, weapon: 18, secondary: 19, medal: 1000, android: 1001
+	}
+
+	let setItemsBySetName = {};
+
+	// Create keys for each set name
+	allSetNames.forEach(setName => {
+		if(setName !== "none") {
+			setItemsBySetName[setName] = [];
+		}
+	});
+
+	// Assign items to their respective sets
+	equips.forEach(equip => {
+		if(equip.setType !== "none") {
+			setItemsBySetName[equip.setType].push(equip);
+		}
+	});
+
+	// For each item within their set names
+	// Sort first by item part priority (ascending order), then by item level (ascending order), then by subgroupId (ascending order)
+	Object.keys(setItemsBySetName).forEach(key => setItemsBySetName[key].sort((a, b) => displayPriority[a.equipType] - displayPriority[b.equipType] || a.level - b.level || a.subgroupId - b.subgroupId));
+
+	return setItemsBySetName;
+}
 
 router.get("/boss-crystal", function(req, res) {
 	res.locals.extraStylesheet = "extrasStyles";

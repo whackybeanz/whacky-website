@@ -8,7 +8,7 @@ var pirateSetItems = [
 	{ jobType: "pirate", setType: "none", equipType: "face", id: "meister-symbol", imgUrl: "./public/images/equips/face/meister-symbol.png", name: "Shiny Red Pirate Meister Symbol", level: 130 },
 
 	// TOP
-	{ jobType: "pirate", setType: "acs", equipType: "top", id: "acs-pirate-suit", imgUrl: "./public/images/equips/overall/acs-pirate-suit.png", name: "Arcaneshade Pirate Suit", level: 200, isOverall: true },
+	{ jobType: "pirate", setType: "acs", equipType: "top", id: "acs-pirate-overall", imgUrl: "./public/images/equips/overall/acs-pirate-suit.png", name: "Arcaneshade Pirate Suit", level: 200, isOverall: true },
 	{ jobType: "pirate", setType: "abs", equipType: "top", id: "abs-pirate-overall", imgUrl: "./public/images/equips/overall/abs-pirate-overall.png", name: "Absolabs Brigadier Cuirass", level: 160, isOverall: true },
 	{ jobType: "pirate", setType: "faf", equipType: "top", id: "faf-pirate-top", imgUrl: "./public/images/equips/top/faf-pirate-top.png", name: "Eagle Eye Wanderer Coat", level: 150 },
 

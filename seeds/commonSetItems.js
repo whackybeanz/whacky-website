@@ -1,6 +1,6 @@
 var commonSetItems = [
 	// HAT
-	{ jobType: "common", setType: "none", equipType: "hat", id: "cvell-hat", imgUrl: "./public/images/equips/hat/chaos-bellum.png", name: "Chaos Vellum Hat", level: 140, isLuckyItem: true, itemPriority: 0 },
+	{ jobType: "common", setType: "none", equipType: "hat", id: "cvell-hat", imgUrl: "./public/images/equips/hat/chaos-vellum.png", name: "Chaos Vellum Hat", level: 140, isLuckyItem: true, itemPriority: 0 },
 
 	// GLOVES
 	{ jobType: "common", setType: "none", equipType: "gloves", subgroupId: 0, id: "hero-gloves", imgUrl: "./public/images/equips/gloves/hero-gloves.png", name: "Hero's Gloves", level: 120, isLuckyItem: true, itemPriority: 20 },

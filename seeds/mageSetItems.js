@@ -8,7 +8,7 @@ var mageSetItems = [
 	{ jobType: "mage", setType: "none", equipType: "face", id: "meister-symbol", imgUrl: "./public/images/equips/face/meister-symbol.png", name: "Shiny Red Magician Meister Symbol", level: 130 },
 
 	// TOP
-	{ jobType: "mage", setType: "acs", equipType: "top", id: "acs-mage-suit", imgUrl: "./public/images/equips/overall/acs-mage-suit.png", name: "Arcaneshade Mage Suit", level: 200, isOverall: true },
+	{ jobType: "mage", setType: "acs", equipType: "top", id: "acs-mage-overall", imgUrl: "./public/images/equips/overall/acs-mage-suit.png", name: "Arcaneshade Mage Suit", level: 200, isOverall: true },
 	{ jobType: "mage", setType: "abs", equipType: "top", id: "abs-mage-overall", imgUrl: "./public/images/equips/overall/abs-mage-overall.png", name: "Absolabs Cabalist Gown", level: 160, isOverall: true },
 	{ jobType: "mage", setType: "faf", equipType: "top", id: "faf-mage-top", imgUrl: "./public/images/equips/top/faf-mage-top.png", name: "Eagle Eye Dunwitch Robe", level: 150 },
 

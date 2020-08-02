@@ -8,7 +8,7 @@ var thiefSetItems = [
 	{ jobType: "thief", setType: "none", equipType: "face", id: "meister-symbol", imgUrl: "./public/images/equips/face/meister-symbol.png", name: "Shiny Red Thief Meister Symbol", level: 130 },
 
 	// TOP
-	{ jobType: "thief", setType: "acs", equipType: "top", id: "acs-bandit-suit", imgUrl: "./public/images/equips/overall/acs-bandit-suit.png", name: "Arcaneshade Bandit Suit", level: 200, isOverall: true },
+	{ jobType: "thief", setType: "acs", equipType: "top", id: "acs-bandit-overall", imgUrl: "./public/images/equips/overall/acs-bandit-suit.png", name: "Arcaneshade Bandit Suit", level: 200, isOverall: true },
 	{ jobType: "thief", setType: "abs", equipType: "top", id: "abs-thief-overall", imgUrl: "./public/images/equips/overall/abs-thief-overall.png", name: "Absolabs Shadow Suit", level: 160, isOverall: true },
 	{ jobType: "thief", setType: "faf", equipType: "top", id: "faf-thief-top", imgUrl: "./public/images/equips/top/faf-thief-top.png", name: "Eagle Eye Assassin Shirt", level: 150 },
 

@@ -8,7 +8,7 @@ var warriorSetItems = [
 	{ jobType: "warrior", setType: "none", equipType: "face", id: "meister-symbol", imgUrl: "./public/images/equips/face/meister-symbol.png", name: "Shiny Red Warrior Meister Symbol", level: 130 },
 
 	// OVERALL & TOP
-	{ jobType: "warrior", setType: "acs", equipType: "top", id: "acs-knight-suit", imgUrl: "./public/images/equips/overall/acs-knight-suit.png", name: "Arcaneshade Knight Suit", level: 200, isOverall: true },
+	{ jobType: "warrior", setType: "acs", equipType: "top", id: "acs-knight-overall", imgUrl: "./public/images/equips/overall/acs-knight-suit.png", name: "Arcaneshade Knight Suit", level: 200, isOverall: true },
 	{ jobType: "warrior", setType: "abs", equipType: "top", id: "abs-warrior-overall", imgUrl: "./public/images/equips/overall/abs-warrior-overall.png", name: "Absolabs Bastion Hauberk", level: 160, isOverall: true },
 	{ jobType: "warrior", setType: "faf", equipType: "top", id: "faf-warrior-top", imgUrl: "./public/images/equips/top/faf-warrior-top.png", name: "Eagle Eye Warrior Armor", level: 150 },
 

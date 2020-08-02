@@ -99,38 +99,35 @@
 					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Set Effects Breakdown</h2>
 					<div class="font-small w-100 d-flex flex-wrap justify-content-start align-items-start mb-4">
 						<p class="no-active-set-msg font-content w-100 d-flex justify-content-center">- No active sets -</p>
-						<% Object.keys(allSetEffects).forEach(function(jobType) { %>
-						<% Object.keys(allSetEffects[jobType]).forEach(function(setName) { %>
-							<div class="set-item-effect-div <%= setName %>-set col-6 col-lg-4 d-none mb-3" data-set-name="<%= setName %>">
+
+						<% allSetEffects.forEach(function(singleSet) { %>
+							<div class="set-item-effect-div <%= singleSet.setType %>-set col-6 col-md-4 d-none mb-3" data-set-name="<%= singleSet.setType %>">
 								<div class="single-set-effect w-100 d-flex flex-column rounded-lg py-2 px-3">
-									<h3 class="font-subsubheader text-center">&lt;<%= allSetEffects[jobType][setName].title %>&gt;</h3>
+									<h3 class="font-subsubheader text-center">&lt;<%= singleSet.setName %>&gt;</h3>
 									<div class="set-items">
 										<div class="set-effect lucky-item text-success d-none"></div>
-										<% Object.keys(allSetEffects[jobType][setName].items).forEach(function(equipType) { %> 
-										<% if(equipType === "weapon") { %>
-											<div class="set-effect wearing-<%= equipType %> choose-weapon-text">Choose 1 weapon</div>
+										<% setItemsBySetName[singleSet.setType].forEach(function(item) { %>
+											<div class="set-effect wearing-<%= item.equipType %> <% if(item.equipType === "weapon") { %>d-none<% } %>" id="item-<%= item.id %>"><%= item.name %></div>	
+										<% }) %>
+										<% if(setItemsBySetName[singleSet.setType].some(item => item.equipType === "weapon")) { %>
+											<div class="set-effect wearing-weapon choose-weapon-text">Choose 1 weapon</div>
 										<% } %>
-										<% allSetEffects[jobType][setName].items[equipType].forEach(function(item) { %>
-										<div class="set-effect wearing-<%= equipType %> <% if(equipType === "weapon") { %>d-none<% } %>" id="item-<%= item.id %>"><%= item.name %></div>
-										<% }) %>
-										<% }) %>
 									</div>
 									<hr>
 									<div class="num-wearing-div">
-										<% Object.keys(allSetEffects[jobType][setName].effects).forEach(function(numEquipped) { %> 
-										<div class="set-effect wearing-<%= numEquipped %> d-flex flex-column mb-2">
-											<p class="mb-0"><%= numEquipped %> set effect:</p>
-											<% allSetEffects[jobType][setName].effects[numEquipped].forEach(function(effect) { %>
-												<div class="single-effect" data-stat-id="<%= effect.statId %>" data-stat-val="<%= effect.val %>">
-													<%= effect.statName %> +<%= effect.val %><%= effect.symbol %>
-												</div>
-											<% }) %>
-										</div>
+										<% singleSet.effects.forEach(function(effectGroup) { %>
+											<div class="set-effect wearing-<%= effectGroup.numEquipped %> d-flex flex-column mb-2">
+												<p class="mb-0"><%= effectGroup.numEquipped %> set effect:</p>
+												<% effectGroup.list.forEach(function(effect) { %>
+													<div class="single-effect" data-stat-id="<%= effect.statId %>" data-stat-val="<%= effect.val %>">
+														<%= statTypes.find(stat => stat.key === effect.statId).name %> +<%= effect.val %><%= statTypes.find(stat => stat.key === effect.statId).symbol %>
+													</div>
+												<% }) %>
+											</div>
 										<% }) %>
 									</div>
 								</div>
 							</div>
-						<% }) %>
 						<% }) %>
 					</div>
 				</div>
@@ -151,13 +148,13 @@
 			<div class="modal-body p-0">
 				<div id="carousel-fade" class="carousel carousel-fade rounded-sm" data-ride="carousel" data-interval="false">
 					<div class="carousel-inner position-relative">
-						<% allEquipTypes.forEach(function(equipType, index) { %>
+						<% Object.keys(setItemsByItemPart).forEach(function(equipType, index) { %>
 						<div class="equip-select-div equip-select-<%= equipType %> carousel-item pt-2 pb-3 px-3">
 							<div class="carousel-caption w-100 p-0">
 								<h2 class="carousel-header font-subheader w-100 font-weight-bold text-center text-capitalize text-decoration-none"></h2>
 								<div class="font-table w-100 d-flex flex-wrap">
-								<% if(allSetItems[equipType].length > 0) { %>
-									<% allSetItems[equipType].forEach(function(item) { %> 
+								<% if(setItemsByItemPart[equipType].length > 0) { %>
+									<% setItemsByItemPart[equipType].forEach(function(item) { %> 
 									<div class="equip-choice col-12 col-sm-6 col-lg-6 w-100 mb-2 px-2 d-flex">
 										<div class="single-option-select single-equip-choice single-equip-<%= equipType %> w-100 d-flex align-items-center rounded-sm" data-equip-name="<%= item.name %>" data-set-type="<%= item.setType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= item.imgUrl %>" data-item-id="<%= item.id %>" <% if(item.isLuckyItem) { %>data-is-lucky-item="<%= item.isLuckyItem %>" data-item-priority="<%= item.itemPriority %>" <% } %> <% if(item.isOverall) { %>data-is-overall="<%= item.isOverall %>"<% } %>>
 											<div class="equip-choice-img-div inline-div-img h-100 mr-2 d-flex justify-content-center align-items-center">

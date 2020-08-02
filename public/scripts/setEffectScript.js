@@ -362,10 +362,10 @@ function updateTotalSetEffect() {
 	Object.keys(allStatTypes).forEach(function(statType) { 
 		if(allStatTypes[statType] !== 0) {
 			$(`.total-stat-${statType}`).addClass("active");
-			$(`.total-stat-${statType}-val`).text(allStatTypes[statType])
 		} else {
 			$(`.total-stat-${statType}`).removeClass("active");
 		}
+		$(`.total-stat-${statType}-val`).text(allStatTypes[statType])
 	});
 
 	var numSetEffectDisplayed = $(".total-stat.d-flex").length;

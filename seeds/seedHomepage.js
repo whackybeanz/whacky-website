@@ -11,7 +11,7 @@ var homepageSeeds = [
 	{ category: "beginner", name: "Todd's Hammer", imgUrl: "./public/images/guide/todd-icon.png" , pageUrl: "./maple/newbies/equip-guide/todd-hammer"},
 
 	{ category: "extras", name: "Flame Stats", imgUrl: "./public/images/flames/flame-crimson.png", pageUrl: "./maple/extras/flames", isCalculator: true },
-	{ category: "extras", name: "Set Effects", imgUrl: "./public/images/equips/hat/chaos-bellum.png", pageUrl: "./maple/extras/set-effects", isCalculator: true },
+	{ category: "extras", name: "Set Effects", imgUrl: "./public/images/equips/hat/chaos-vellum.png", pageUrl: "./maple/extras/set-effects", isCalculator: true },
 	{ category: "extras", name: "Boss Crystal Prices", imgUrl: "./public/images/items/boss-crystal.png", pageUrl: "./maple/extras/boss-crystal", isInfoSheet: true },
 	{ category: "extras", name: "Soul Tier List", imgUrl: "./public/images/souls/soul-magnus.png", pageUrl: "./maple/extras/soul-tier-list", isInfoSheet: true },
 	{ category: "extras", name: "Todding Sequence", imgUrl: "./public/images/guide/todd-icon.png", pageUrl: "./maple/extras/todd-sequence", isInfoSheet: true },
