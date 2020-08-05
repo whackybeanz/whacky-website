@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const Equip = require("../models/equipData");
 
-const warriorSetItems = require("./warriorSetItems");
-const mageSetItems = require("./mageSetItems");
-const archerSetItems = require("./archerSetItems");
-const thiefSetItems = require("./thiefSetItems");
-const pirateSetItems = require("./pirateSetItems");
-const commonSetItems = require("./commonSetItems");
+const warriorSetItems = require("./setItems/warriorSetItems");
+const mageSetItems = require("./setItems/mageSetItems");
+const archerSetItems = require("./setItems/archerSetItems");
+const thiefSetItems = require("./setItems/thiefSetItems");
+const pirateSetItems = require("./setItems/pirateSetItems");
+const commonSetItems = require("./setItems/commonSetItems");
 
 const equipSeeds = warriorSetItems.concat(mageSetItems, archerSetItems, thiefSetItems, pirateSetItems, commonSetItems);
 

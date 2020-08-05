@@ -1,7 +1,10 @@
+var Helper = require("./Helpers/extrasHelpers");
+
 var express = require("express");
 var router 	= express.Router();
 var Equip 	= require("../models/equipData");
 var Effect 	= require("../models/setEffectData");
+var Soul 	= require("../models/bossSoulData");
 
 router.get("/", function(req, res) {
 	res.redirect("/flames");
@@ -15,11 +18,18 @@ router.get("/flames", function(req, res) {
 })
 
 router.get("/soul-tier-list", function(req, res) {
-	var soulList = require("../item-data/allSoulList");
-	res.locals.extraStylesheet = "soulListStyles";
-	res.locals.section = "extras";
-	res.locals.branch = "soul-tier-list";
-	res.render("extras/soulTierList", {soulList: soulList});
+	Soul.find({}, function(err, allSouls) {
+		if(err) {
+			console.log(err);
+			res.redirect("back");
+		} else {
+			const soulsByTier = Helper.compileSoulsByTier(allSouls);
+			res.locals.extraStylesheet = "soulListStyles";
+			res.locals.section = "extras";
+			res.locals.branch = "soul-tier-list";
+			res.render("extras/soulTierList", {soulList: soulsByTier});
+		}
+	})
 })
 
 router.get("/set-effects", function(req, res) {
@@ -30,20 +40,14 @@ router.get("/set-effects", function(req, res) {
 })
 
 router.get("/set-effects/:jobType", function(req, res) {
-	var jobType = req.params.jobType.toLowerCase();
-	const allSetEffects = require("../item-data/allSetEffects");
-
-	//var compiledSetItems = {};
-	//compiledSetItems[jobType] = allSetItems[jobType];
-	//compiledSetItems.common = allSetItems.common;
-
+	const jobType = req.params.jobType.toLowerCase();
 	let getEquips = Equip.find().or([{ jobType: jobType }, { jobType: "common" }]);
 	let getSetEffects = Effect.find().or([{ jobType: jobType }, { jobType: "common" }]);
 
 	Promise.all([getEquips, getSetEffects])
 		.then(([equips, setEffects]) => {
-			const setItemsByItemPart = compileSetItemsByItemPart(equips);
-			const setItemsBySetName = compileSetItemsBySetName(equips);
+			const setItemsByItemPart = Helper.compileSetItemsByItemPart(equips);
+			const setItemsBySetName = Helper.compileSetItemsBySetName(equips);
 
 			const possibleStatTypes = [{ key: "str", name: "STR" }, { key: "dex", name: "DEX" }, { key: "int", name: "INT" }, { key: "luk", name: "LUK" }, { key: "allStats", name: "All Stats" }, 
 							{ key: "maxHp", name: "Max HP"}, { key: "maxHpMp", name: "Max HP/MP" }, { key: "maxHpMpPercent", name: "Max HP/MP %", symbol: "%" }, 
@@ -62,50 +66,6 @@ router.get("/set-effects/:jobType", function(req, res) {
 			res.redirect("back");
 		});
 })
-
-function compileSetItemsByItemPart(equips) {
-	const allEquipTypes = [...new Set(equips.map(equip => equip.equipType))];
-	let setItemsByItemPart = {};
-	
-	// Create keys for each item part
-	// Assign items to their respective item parts
-	// For each item within their item parts, sort first by level (descending order), then by groupId (descending order), then by subgroupId (ascending order)
-	allEquipTypes.forEach(type => setItemsByItemPart[type] = []);
-	equips.forEach(equip => setItemsByItemPart[equip.equipType].push(equip));
-	Object.keys(setItemsByItemPart).forEach(key => setItemsByItemPart[key].sort((a, b) => b.level - a.level || b.groupId - a.groupId || a.subgroupId - b.subgroupId));
-
-	return setItemsByItemPart;
-}
-
-function compileSetItemsBySetName(equips) {
-	const allSetNames = [...new Set(equips.map(equip => equip.setType))];
-	const displayPriority = {
-		hat: 1, top: 2, bottom: 3, shoes: 4, gloves: 5,	cape: 6, face: 7, eye: 8, earring: 9, ring: 10, 
-		belt: 11, pendant: 12, shoulder: 13, pocket: 14, badge: 15, heart: 16, emblem: 17, weapon: 18, secondary: 19, medal: 1000, android: 1001
-	}
-
-	let setItemsBySetName = {};
-
-	// Create keys for each set name
-	allSetNames.forEach(setName => {
-		if(setName !== "none") {
-			setItemsBySetName[setName] = [];
-		}
-	});
-
-	// Assign items to their respective sets
-	equips.forEach(equip => {
-		if(equip.setType !== "none") {
-			setItemsBySetName[equip.setType].push(equip);
-		}
-	});
-
-	// For each item within their set names
-	// Sort first by item part priority (ascending order), then by item level (ascending order), then by subgroupId (ascending order)
-	Object.keys(setItemsBySetName).forEach(key => setItemsBySetName[key].sort((a, b) => displayPriority[a.equipType] - displayPriority[b.equipType] || a.level - b.level || a.subgroupId - b.subgroupId));
-
-	return setItemsBySetName;
-}
 
 router.get("/boss-crystal", function(req, res) {
 	res.locals.extraStylesheet = "extrasStyles";
@@ -140,28 +100,9 @@ router.get("/boss-crystal", function(req, res) {
 		{ name: "Zakum", img: "./public/images/boss/zakum-sq.png", easy: 200000, normal: 612500, hard: 0, chaos: 16200000 },
 	];
 
-	const pricePerCrystalList = sortByPrice(bossList);
+	const pricePerCrystalList = Helper.sortByPrice(bossList);
 	res.render("extras/bossCrystal", {bossList: bossList, crystalList: pricePerCrystalList});
 })
-
-function sortByPrice(bossList) {
-	var bossPriceArr = [];
-	var difficulties = ["easy", "normal", "hard", "chaos"];
-
-	bossList.forEach(function(boss) {
-		difficulties.forEach(function(mode) {
-			if(boss[mode] !== 0) {
-				bossPriceArr.push({ name: `${boss.name} (${mode.charAt(0).toUpperCase() + mode.slice(1)})`, img: boss.img, crystalPrice: boss[mode]});
-			}
-		})
-	})
-
-	bossPriceArr.sort((boss1, boss2) => {
-		return boss1.crystalPrice - boss2.crystalPrice;
-	})
-
-	return bossPriceArr;
-}
 
 router.get("/todd-sequence", function(req, res) {
 	res.locals.extraStylesheet = "extrasStyles";

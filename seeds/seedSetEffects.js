@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const Effect = require("../models/setEffectData");
 
-const warriorSetEffects = require("./warriorSetEffects");
-const mageSetEffects = require("./mageSetEffects");
-const archerSetEffects = require("./archerSetEffects");
-const thiefSetEffects = require("./thiefSetEffects");
-const pirateSetEffects = require("./pirateSetEffects");
-const commonSetEffects = require("./commonSetEffects");
+const warriorSetEffects = require("./setEffects/warriorSetEffects");
+const mageSetEffects = require("./setEffects/mageSetEffects");
+const archerSetEffects = require("./setEffects/archerSetEffects");
+const thiefSetEffects = require("./setEffects/thiefSetEffects");
+const pirateSetEffects = require("./setEffects/pirateSetEffects");
+const commonSetEffects = require("./setEffects/commonSetEffects");
 
 const setEffectSeeds = warriorSetEffects.concat(mageSetEffects, archerSetEffects, thiefSetEffects, pirateSetEffects, commonSetEffects);
 

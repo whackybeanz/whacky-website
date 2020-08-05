@@ -22,197 +22,131 @@
 					<div class="font-content w-100 d-flex flex-column flex-xl-row justify-content-xl-between align-items-center align-items-xl-start mb-4">
 						<table class="font-table size-350 table table-sm table-bordered table-hover mb-4">
 							<tbody>
+								<% Object.keys(soulList).forEach(function(tier) { %>
 								<tr>
-									<th class="table-cols-header tier-col text-center align-middle">Tier 1</th>
+									<th class="table-cols-header tier-col text-center align-middle">Tier <%= tier %></th>
 									<td class="align-middle px-3">
-										<img src="./public/images/souls/soul-cygnus.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Cygnus" data-target="#soul-list-carousel" data-slide-to="0">
-										<img src="./public/images/souls/soul-magnus.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Magnus" data-target="#soul-list-carousel" data-slide-to="1">
-										<img src="./public/images/souls/soul-lotus.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Lotus" data-target="#soul-list-carousel" data-slide-to="2">
-										<img src="./public/images/souls/soul-damien.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Damien" data-target="#soul-list-carousel" data-slide-to="3">
-										<img src="./public/images/souls/soul-queen.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Crimson Queen" data-target="#soul-list-carousel" data-slide-to="4">
-										<img src="./public/images/souls/soul-vellum.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Vellum" data-target="#soul-list-carousel" data-slide-to="5">
-										<img src="./public/images/souls/soul-lucid.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Lucid" data-target="#soul-list-carousel" data-slide-to="6">
-										<img src="./public/images/souls/soul-will.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Will" data-target="#soul-list-carousel" data-slide-to="7">
-										<img src="./public/images/souls/soul-heretic-hilla.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Heretic Hilla" data-target="#soul-list-carousel" data-slide-to="8">
-										<img src="./public/images/souls/soul-djunkel.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Djunkel" data-target="#soul-list-carousel" data-slide-to="9">
-										<img src="./public/images/souls/soul-murrmurr.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Murr Murr" data-target="#soul-list-carousel" data-slide-to="10">
+										<% soulList[tier].forEach(function(soul, index) { %>
+											<img src="<%= soul.regular.itemImg %>" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="<%= soul.bossName %>" data-target="#soul-list-carousel" data-slide-to=<%= soulList[tier].currSummedSoulCount + index %>>
+										<% }) %>
 									</td>
 								</tr>
-								<tr>
-									<th class="table-cols-header tier-col text-center align-middle">Tier 2</th>
-									<td class="align-middle px-3">
-										<img src="./public/images/souls/soul-ursus.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Ursus" data-target="#soul-list-carousel" data-slide-to="11">
-										<img src="./public/images/souls/soul-pink-bean.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Pink Bean" data-target="#soul-list-carousel" data-slide-to="12">
-										<img src="./public/images/souls/soul-von-bon.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Von Bon" data-target="#soul-list-carousel" data-slide-to="13">
-										<img src="./public/images/souls/soul-pierre.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Pierre" data-target="#soul-list-carousel" data-slide-to="14">
-									</td>
-								</tr>
-								<tr>
-									<th class="table-cols-header tier-col text-center align-middle">Tier 3</th>
-									<td class="align-middle px-3">
-										<img src="./public/images/souls/soul-arkarium.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Arkarium" data-target="#soul-list-carousel" data-slide-to="15">
-										<img src="./public/images/souls/soul-black-knight.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Black Knight Mokadin" data-target="#soul-list-carousel" data-slide-to="16">
-										<img src="./public/images/souls/soul-mad-mage.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Mag Mage Kariaine" data-target="#soul-list-carousel" data-slide-to="17">
-										<img src="./public/images/souls/soul-vicious-hunter.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Vicious Hunter July" data-target="#soul-list-carousel" data-slide-to="18">
-										<img src="./public/images/souls/soul-rampant-cyborg.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Rampant Cyborg CQ57" data-target="#soul-list-carousel" data-slide-to="19">
-										<img src="./public/images/souls/soul-bad-brawler.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Fighter Plaid" data-target="#soul-list-carousel" data-slide-to="20">
-									</td>
-								</tr>
-								<tr>
-									<th class="table-cols-header tier-col text-center align-middle">Tier 4</th>
-									<td class="align-middle px-3">
-										<img src="./public/images/souls/soul-hilla.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Hilla" data-target="#soul-list-carousel" data-slide-to="21">
-										<img src="./public/images/souls/soul-von-leon.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Von Leon" data-target="#soul-list-carousel" data-slide-to="22">
-										<img src="./public/images/souls/soul-papulatus.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Papulatus" data-target="#soul-list-carousel" data-slide-to="23">
-										<img src="./public/images/souls/soul-weight-of-soul.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Weight of Soul" data-target="#soul-list-carousel" data-slide-to="24">
-									</td>
-								</tr>
-								<tr>
-									<th class="table-cols-header tier-col text-center align-middle">Tier 5</th>
-									<td class="align-middle px-3">
-										<img src="./public/images/souls/soul-zakum.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Zakum" data-target="#soul-list-carousel" data-slide-to="25">
-										<img src="./public/images/souls/soul-gold-dragon.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Gold Dragon" data-target="#soul-list-carousel" data-slide-to="26">
-										<img src="./public/images/souls/soul-red-tiger.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Red Tiger" data-target="#soul-list-carousel" data-slide-to="27">
-									</td>
-								</tr>
-								<tr>
-									<th class="table-cols-header tier-col text-center align-middle">Tier 6</th>
-									<td class="align-middle px-3">
-										<img src="./public/images/souls/soul-balrog.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Balrog" data-target="#soul-list-carousel" data-slide-to="28">
-										<img src="./public/images/souls/soul-nene.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Nene" data-target="#soul-list-carousel" data-slide-to="29">
-										<img src="./public/images/souls/soul-tutu.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Tutu" data-target="#soul-list-carousel" data-slide-to="30">
-										<img src="./public/images/souls/soul-pig-bar.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Pig Bar" data-target="#soul-list-carousel" data-slide-to="31">
-										<img src="./public/images/souls/soul-icafe.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Premium Internet Cafe" data-target="#soul-list-carousel" data-slide-to="32">
-									</td>
-								</tr>
-								<tr>
-									<th class="table-cols-header tier-col text-center align-middle">Tier 7</th>
-									<td class="align-middle px-3">
-										<img src="./public/images/souls/soul-rock-spirit.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Spirit of Rock" data-target="#soul-list-carousel" data-slide-to="33">
-										<img src="./public/images/souls/soul-ephenia.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Ephenia" data-target="#soul-list-carousel" data-slide-to="34">
-										<img src="./public/images/souls/soul-ani.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Ani" data-target="#soul-list-carousel" data-slide-to="35">
-										<img src="./public/images/souls/soul-mu-gong.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Mu Gong" data-target="#soul-list-carousel" data-slide-to="36">
-										<img src="./public/images/souls/soul-black-slime.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Captain Black Slime" data-target="#soul-list-carousel" data-slide-to="37">
-										<img src="./public/images/souls/soul-xerxes.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Xerxes" data-target="#soul-list-carousel" data-slide-to="38">
-										<img src="./public/images/souls/soul-rex.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Rex" data-target="#soul-list-carousel" data-slide-to="39">
-										<img src="./public/images/souls/soul-pianus.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Pianus" data-target="#soul-list-carousel" data-slide-to="40">
-										<img src="./public/images/souls/soul-dragon-rider.png" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="Dragon Rider" data-target="#soul-list-carousel" data-slide-to="41">
-									</td>
-								</tr>
+								<% }) %>
 							</tbody>
 						</table>
-
 						<div id="soul-list-carousel" class="size-720 w-100 carousel carousel-fade rounded-sm" data-ride="carousel" data-interval="false">
 							<div class="carousel-inner position-relative">
-								<% for (let [bossId, soulDetails] of soulList) { %>
-								<div class="carousel-item rounded-sm <% if(bossId === "cygnus") { %>active<% } %>">
-									<div class="carousel-caption w-100 p-0">
-										<div class="carousel-nav position-relative mb-3 py-2">
-											<a class="carousel-control-prev" href="#soul-list-carousel" role="button" data-slide="prev">
-												<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-												<span class="sr-only">Previous</span>
-											</a>
-											<div>
-												<h2 class="carousel-header font-subheader w-100 font-weight-bold text-center text-capitalize text-decoration-none mb-0">
-													<img src="<%= soulDetails.soulImg.regular %>">
-													<% if(soulDetails.soulImg.augmented) { %>
-													<img src="<%= soulDetails.soulImg.augmented %>">
-													<% } %>
-													<%= soulDetails.bossName %>
-												</h2>
-												<p class="font-small mb-0"><%= soulDetails.soulGaugeEffect %></p>
-											</div>
-											<a class="carousel-control-next" href="#soul-list-carousel" role="button" data-slide="next">
-												<span class="carousel-control-next-icon" aria-hidden="true"></span>
-												<span class="sr-only">Next</span>
-											</a>
-										</div>
-										<div class="font-small d-flex flex-column align-items-center">
-											<div class="d-flex flex-column align-items-center mb-3 soul-img" id="<%= bossId %>-soul-img">
-												<div class="d-flex soul-ui-div">
-													<div class="soul-ui soul-ui-normal cursor-pointer active"></div>
-													<div class="soul-ui soul-ui-hidden cursor-pointer"></div>
-												</div>
-												<div class="soul-caption-img normal-img position-relative">
-													<img src="<%= soulDetails.caption.regular.img %>">
-													<div class="soul-caption-div w-100 position-absolute px-2">
-														<div class="soul-caption w-100 d-flex align-items-center justify-content-center rounded-sm px-2">
-															<div><%= soulDetails.caption.regular.text %></div>
-														</div>
+								<% Object.keys(soulList).forEach(function(tier) { %>
+									<% soulList[tier].forEach(function(soul) { %>
+										<div class="carousel-item rounded-sm <% if(soul.soulId === "cygnus") { %>active<% } %>">
+											<div class="carousel-caption w-100 p-0">
+												<div class="carousel-nav position-relative mb-3 py-2">
+													<a class="carousel-control-prev" href="#soul-list-carousel" role="button" data-slide="prev">
+														<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+														<span class="sr-only">Previous</span>
+													</a>
+													<div>
+														<h2 class="carousel-header font-subheader w-100 font-weight-bold text-center text-capitalize text-decoration-none mb-0">
+															<img src="<%= soul.regular.itemImg %>">
+															<% if(soul.hasAugmented && soul.augmented.itemImg) { %>
+															<img src="<%= soul.augmented.itemImg %>">
+															<% } %>
+															<%= soul.bossName %>
+														</h2>
+														<p class="font-small mb-0"><%= soul.soulGaugeEffect %></p>
 													</div>
+													<a class="carousel-control-next" href="#soul-list-carousel" role="button" data-slide="next">
+														<span class="carousel-control-next-icon" aria-hidden="true"></span>
+														<span class="sr-only">Next</span>
+													</a>
 												</div>
-												<div class="soul-caption-img hidden-img position-relative d-none">
-													<img src="<%= soulDetails.caption.hidden.img %>">
-													<div class="soul-caption-div w-100 position-absolute px-2">
-														<div class="soul-caption w-100 d-flex align-items-center justify-content-center rounded-sm px-2">
-															<%= soulDetails.caption.hidden.text %>
+												<div class="font-small d-flex flex-column align-items-center">
+													<div class="d-flex flex-column align-items-center mb-3 soul-img" id="<%= soul.soulId %>-soul-img">
+														<div class="d-flex soul-ui-div">
+															<div class="soul-ui soul-ui-normal cursor-pointer active"></div>
+															<div class="soul-ui soul-ui-hidden cursor-pointer"></div>
 														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-12 px-3 mb-4">
-												<h3 class="soul-stat-info-header font-subsubheader index-collapse w-100 text-left px-3 py-2 mb-0 cursor-pointer" data-toggle="collapse" href="#<%= bossId %>-soul-stat-info">
-													<i class="fas fa-caret-down"></i> Stat Info
-												</h3>
-												<div class="soul-stat-info row text-left mx-0 mb-0 collapse show" id="<%= bossId%>-soul-stat-info">
-													<div class="d-flex flex-column flex-sm-row w-100 px-3 py-2">
-														<div class="col-12 col-sm-6 px-0 mb-0 flex-shrink-1">
-															<% soulDetails.stats.forEach(function(stat, index) { %>
-															<div class="d-flex px-0 <% if((index+1) % 4 === 0) { %>mb-4 mb-sm-2<% } else { %>mb-2<% } %>">
-																<div class="col-6 font-weight-bold px-0"><%= stat.prefix %></div>
-																<div class="col-6 px-0"><%= stat.amount %></div>
-															</div>
-															<% }) %>
-														</div>
-														<% if(soulDetails.augStats) { %>
-														<div class="d-flex col-12 col-sm-6 px-0">
-															<div class="col-6 col-sm-6 col-md-5 px-0 px-sm-3"><span class="font-weight-bold">Augmented</span><br/>(Randomly selects one)</div>
-															<div class="col-6 col-sm-6 col-md-7 d-flex px-0 flex-column">
-																<% soulDetails.augStats.forEach(function(augStat) { %>
-																<div class="mb-2"><%= augStat %></div>
-																<% }) %>
+														<div class="soul-caption-img normal-img position-relative">
+															<img src="<%= soul.caption.regular.img %>">
+															<div class="soul-caption-div w-100 position-absolute px-2">
+																<div class="soul-caption w-100 d-flex align-items-center justify-content-center rounded-sm px-2">
+																	<div><%= soul.caption.regular.text %></div>
+																</div>
 															</div>
 														</div>
-														<% } %>
-													</div>
-												</div>
-											</div>
-											<div class="col-12 px-3 mb-4">
-												<h3 class="soul-skill-info-header font-subsubheader index-collapse w-100 text-left px-3 py-2 mb-0 cursor-pointer" data-toggle="collapse" href="#<%= bossId %>-soul-skill-info">
-													<i class="fas fa-caret-down"></i> Skill Info
-												</h3>
-												<div class="soul-skill-info row text-left mx-0 mb-0 collapse show" id="<%= bossId %>-soul-skill-info">
-													<div class="px-3 py-2">
-														<div class="d-flex flex-column text-left <% if(soulDetails.skill.augmented) { %>mb-4<% } else { %>mb-0<% } %>">
-															<div class="mb-1">
-																<% soulDetails.skill.regular.img.forEach(function(skillImg) { %>
-																<img src="<%= skillImg %>">
-																<% }) %>
-																<span class="font-weight-bold"><%= soulDetails.skill.regular.name %></span>
+														<div class="soul-caption-img hidden-img position-relative d-none">
+															<img src="<%= soul.caption.hidden.img %>">
+															<div class="soul-caption-div w-100 position-absolute px-2">
+																<div class="soul-caption w-100 d-flex align-items-center justify-content-center rounded-sm px-2">
+																	<%= soul.caption.hidden.text %>
+																</div>
 															</div>
-															<div class="text-justify mb-2"><%- soulDetails.skill.regular.desc %></div>
-															<div class="text-justify mb-0"><%- soulDetails.skill.regular.effect %></div>
 														</div>
+													</div>
+													<div class="col-12 px-3 mb-4">
+														<h3 class="soul-stat-info-header font-subsubheader index-collapse w-100 text-left px-3 py-2 mb-0 cursor-pointer" data-toggle="collapse" href="#<%= soul.soulId %>-soul-stat-info">
+															<i class="fas fa-caret-down"></i> Stat Info
+														</h3>
+														<div class="soul-stat-info row text-left mx-0 mb-0 collapse show" id="<%= soul.soulId %>-soul-stat-info">
+															<div class="d-flex flex-column flex-sm-row w-100 px-3 py-2">
+																<div class="col-12 col-sm-6 px-0 mb-0 flex-shrink-1">
+																	<% soul.regular.stats.forEach(function(stat, index) { %>
+																	<div class="d-flex px-0 <% if((index+1) % 4 === 0) { %>mb-4 mb-sm-2<% } else { %>mb-2<% } %>">
+																		<div class="col-6 font-weight-bold px-0"><%= stat.soulPrefix %></div>
+																		<div class="col-6 px-0"><%= stat.amount %></div>
+																	</div>
+																	<% }) %>
+																</div>
+																<% if(soul.hasAugmented) { %>
+																<div class="d-flex col-12 col-sm-6 px-0">
+																	<div class="col-6 col-sm-6 col-md-5 px-0 px-sm-3"><span class="font-weight-bold">Augmented</span><br/>(Randomly selects one)</div>
+																	<div class="col-6 col-sm-6 col-md-7 d-flex px-0 flex-column">
+																		<% soul.augmented.stats.forEach(function(augStat) { %>
+																		<div class="mb-2"><%= augStat %></div>
+																		<% }) %>
+																	</div>
+																</div>
+																<% } %>
+															</div>
+														</div>
+													</div>
+													<div class="col-12 px-3 mb-4">
+														<h3 class="soul-skill-info-header font-subsubheader index-collapse w-100 text-left px-3 py-2 mb-0 cursor-pointer" data-toggle="collapse" href="#<%= soul.soulId %>-soul-skill-info">
+															<i class="fas fa-caret-down"></i> Skill Info
+														</h3>
+														<div class="soul-skill-info row text-left mx-0 mb-0 collapse show" id="<%= soul.soulId %>-soul-skill-info">
+															<div class="px-3 py-2">
+																<div class="d-flex flex-column text-left <% if(soul.hasAugmented && soul.augmented.skill) { %>mb-4<% } else { %>mb-0<% } %>">
+																	<div class="mb-1">
+																		<% soul.regular.skill.img.forEach(function(skillImg) { %>
+																		<img src="<%= skillImg %>">
+																		<% }) %>
+																		<span class="font-weight-bold"><%= soul.regular.skill.name %></span>
+																	</div>
+																	<div class="text-justify mb-2"><%- soul.regular.skill.desc %></div>
+																	<div class="text-justify mb-0"><%- soul.regular.skill.effect %></div>
+																</div>
 
-														<% if(soulDetails.skill.augmented) { %>
-														<div class="d-flex flex-column text-left mb-0">
-															<div class="mb-1">
-																<% soulDetails.skill.augmented.img.forEach(function(augSkillImg) { %>
-																<img src="<%= augSkillImg %>">
-																<% }) %>
-																<span class="font-weight-bold"><%= soulDetails.skill.augmented.name %></span>
+																<% if(soul.hasAugmented && soul.augmented.skill) { %>
+																<div class="d-flex flex-column text-left mb-0">
+																	<div class="mb-1">
+																		<% soul.augmented.skill.img.forEach(function(augSkillImg) { %>
+																		<img src="<%= augSkillImg %>">
+																		<% }) %>
+																		<span class="font-weight-bold"><%= soul.augmented.skill.name %></span>
+																	</div>
+																	<div class="text-justify mb-2"><%- soul.augmented.skill.desc %></div>
+																	<div class="text-justify mb-0"><%- soul.augmented.skill.effect %></div>
+																</div>
+																<% } %>
 															</div>
-															<div class="text-justify mb-2"><%- soulDetails.skill.augmented.desc %></div>
-															<div class="text-justify mb-0"><%- soulDetails.skill.augmented.effect %></div>
 														</div>
-														<% } %>
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-								<% } %>
+									<% }) %>
+								<% }) %>
 							</div>
 						</div>
 					</div>
