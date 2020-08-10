@@ -4,7 +4,7 @@
 <div class="container-fluid content d-flex flex-column flex-md-row p-0">
 	<%- include("../partials/sidebar") %>
 	<div class="main-content-div col p-0 position-relative">
-		<div class="w-100 d-flex align-items-center flex-column px-4 pt-4 px-lg-0" id="calculator">
+		<div class="w-100 d-flex align-items-center flex-column px-4 pt-4" id="calculator">
 			<div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
 				<div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
 					<div class="w-100 flex-grow-1 border-top border-dark"></div>
@@ -148,7 +148,7 @@
 			<div class="modal-body p-0">
 				<div id="carousel-fade" class="carousel carousel-fade rounded-sm" data-ride="carousel" data-interval="false">
 					<div class="carousel-inner position-relative">
-						<% Object.keys(setItemsByItemPart).forEach(function(equipType, index) { %>
+						<% allEquipTypes.forEach(function(equipType) { %>
 						<div class="equip-select-div equip-select-<%= equipType %> carousel-item pt-2 pb-3 px-3">
 							<div class="carousel-caption w-100 p-0">
 								<h2 class="carousel-header font-subheader w-100 font-weight-bold text-center text-capitalize text-decoration-none"></h2>
@@ -156,11 +156,17 @@
 								<% if(setItemsByItemPart[equipType].length > 0) { %>
 									<% setItemsByItemPart[equipType].forEach(function(item) { %> 
 									<div class="equip-choice col-12 col-sm-6 col-lg-6 w-100 mb-2 px-2 d-flex">
-										<div class="single-option-select single-equip-choice single-equip-<%= equipType %> w-100 d-flex align-items-center rounded-sm" data-equip-name="<%= item.name %>" data-set-type="<%= item.setType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= item.imgUrl %>" data-item-id="<%= item.id %>" <% if(item.isLuckyItem) { %>data-is-lucky-item="<%= item.isLuckyItem %>" data-item-priority="<%= item.itemPriority %>" <% } %> <% if(item.isOverall) { %>data-is-overall="<%= item.isOverall %>"<% } %>>
+										<div class="single-option-select single-equip-choice single-equip-<%= equipType %> w-100 d-flex align-items-center rounded-sm" data-equip-name="<%= item.name %>" data-set-type="<%= item.setType %>" data-equip-type="<%= equipType %>" data-choice-img="<%= icons[`${item.id}`].imgUrl %>" data-item-id="<%= item.id %>" <% if(item.isLuckyItem) { %>data-is-lucky-item="<%= item.isLuckyItem %>" data-item-priority="<%= item.itemPriority %>" <% } %> <% if(item.isOverall) { %>data-is-overall="<%= item.isOverall %>"<% } %>>
 											<div class="equip-choice-img-div inline-div-img h-100 mr-2 d-flex justify-content-center align-items-center">
-												<img src="<%= item.imgUrl %>" class="m-2">
+												<img src="<%= icons[`${item.id}`].imgUrl %>" class="m-2">
 											</div>
-											<p class="equip-name m-0 mr-2 text-left"><%= item.name %></p>
+											<p class="equip-name m-0 mr-2 text-left">
+												<% if(item.name) { %>
+													<%= item.name %>
+												<% } else { %>
+													<%= icons[`${item.id}`].name %>
+												<% } %>
+											</p>
 										</div>
 									</div>
 									<% }) %>

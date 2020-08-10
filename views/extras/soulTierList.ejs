@@ -27,7 +27,7 @@
 									<th class="table-cols-header tier-col text-center align-middle">Tier <%= tier %></th>
 									<td class="align-middle px-3">
 										<% soulList[tier].forEach(function(soul, index) { %>
-											<img src="<%= soul.regular.itemImg %>" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="<%= soul.bossName %>" data-target="#soul-list-carousel" data-slide-to=<%= soulList[tier].currSummedSoulCount + index %>>
+											<img src="<%= icons[`soul-${soul.soulId}`].imgUrl %>" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="<%= soul.bossName %>" data-target="#soul-list-carousel" data-slide-to=<%= soulList[tier].currSummedSoulCount + index %>>
 										<% }) %>
 									</td>
 								</tr>
@@ -47,9 +47,9 @@
 													</a>
 													<div>
 														<h2 class="carousel-header font-subheader w-100 font-weight-bold text-center text-capitalize text-decoration-none mb-0">
-															<img src="<%= soul.regular.itemImg %>">
-															<% if(soul.hasAugmented && soul.augmented.itemImg) { %>
-															<img src="<%= soul.augmented.itemImg %>">
+															<img src="<%= icons[`soul-${soul.soulId}`].imgUrl %>">
+															<% if(soul.hasAugSoulIcon) { %>
+															<img src="<%= icons[`soul-${soul.soulId}-aug`].imgUrl %>">
 															<% } %>
 															<%= soul.bossName %>
 														</h2>

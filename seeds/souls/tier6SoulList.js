@@ -32,7 +32,6 @@ const tier6SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-balrog.png",
 			stats: stats,
 			skill: {
 				name: "Hellfire Burp",
@@ -65,7 +64,6 @@ const tier6SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-nene.png",
 			stats: stats,
 			skill: {
 				name: "Nene's Soul",
@@ -92,7 +90,6 @@ const tier6SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-tutu.png",
 			stats: stats,
 			skill: {
 				name: "Tutu's Soul",
@@ -119,7 +116,6 @@ const tier6SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-pig-bar.png",
 			stats: stats,
 			skill: {
 				name: "Pig Bar Swing!",
@@ -152,7 +148,6 @@ const tier6SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-icafe.png",
 			stats: stats,
 			skill: {
 				name: "Started Maple at the Internet Cafe!",

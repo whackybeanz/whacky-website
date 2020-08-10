@@ -5,7 +5,6 @@ var equipmentSchema = new mongoose.Schema({
 	setType: String,
 	equipType: String,
 	id: String,
-	imgUrl: String,
 	name: String,
 	level: Number,
 	isOverall: Boolean,

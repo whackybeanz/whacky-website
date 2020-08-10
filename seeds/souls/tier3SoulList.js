@@ -15,7 +15,6 @@ const tier3SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-arkarium.png",
 			stats: [
 				{ soulPrefix: "Mighty", amount: "STR +18" },
 				{ soulPrefix: "Deft", amount: "DEX +18" },
@@ -61,7 +60,6 @@ const tier3SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-black-knight.png",
 			stats: [
 				{ soulPrefix: "Mighty", amount: "STR +20" },
 				{ soulPrefix: "Deft", amount: "DEX +18" },
@@ -107,7 +105,6 @@ const tier3SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-mad-mage.png",
 			stats: [
 				{ soulPrefix: "Mighty", amount: "STR +18" },
 				{ soulPrefix: "Deft", amount: "DEX +18" },
@@ -153,7 +150,6 @@ const tier3SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-vicious-hunter.png",
 			stats: [
 				{ soulPrefix: "Mighty", amount: "STR +18" },
 				{ soulPrefix: "Deft", amount: "DEX +20" },
@@ -199,7 +195,6 @@ const tier3SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-rampant-cyborg.png",
 			stats: [
 				{ soulPrefix: "Mighty", amount: "STR +18" },
 				{ soulPrefix: "Deft", amount: "DEX +18" },
@@ -245,7 +240,6 @@ const tier3SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-bad-brawler.png",
 			stats: [
 				{ soulPrefix: "Mighty", amount: "STR +18" },
 				{ soulPrefix: "Deft", amount: "DEX +18" },

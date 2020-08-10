@@ -1,35 +1,33 @@
+var IconHelper = require("./Helpers/iconHelpers");
+
 var express = require("express");
 var router 	= express.Router();
+var Icon 	= require("../models/iconData");
 var Homepage 	= require("../models/homepageData");
 
 router.get("/", function(req, res) {
-	res.locals.section = "maple-index";
-	res.locals.extraStylesheet = "indexStyles";
+	let getIcons = Icon.find({usedInSections: "homepage"});
+	let getHomepageDetails = Homepage.find();
 
-	Homepage.find({}, function(err, foundItems) {
-		if(err) {
-			console.log(err);
-			res.redirect("back");
-		} else {
-			let homepageObj = {
-				beginner: [],
-				extras: [],
-				moreMaple: [],
-				others: [],
-				quicklinks: [],
-				default: {}
-			};
-			foundItems.forEach(function(item) {
-				if(item.category !== "default") {
-					homepageObj[item.category].push(item);
-				} else {
-					homepageObj[item.category] = item;
-				}
+	Promise.all([getIcons, getHomepageDetails])
+		.then(([allIcons, homepageDetails]) => {
+			const compiledIcons = IconHelper.compileIcons(allIcons);
+			const allSections = [...new Set(homepageDetails.map(item => item.category))];
+			let sections = {};
+			allSections.forEach(section => sections[section] = []);
+
+			homepageDetails.forEach(function(item) {
+				sections[item.category].push(item);
 			});
 
-			res.render("mapleIndex", {homepageObj: homepageObj});
-		}
-	})
+			res.locals.section = "maple-index";
+			res.locals.extraStylesheet = "indexStyles";
+			res.render("mapleIndex", {sections: sections, icons: compiledIcons});
+		})
+		.catch(err => {
+			console.log(err);
+			res.redirect("back");
+		})
 })
 
 router.get("/events", function(req, res) {

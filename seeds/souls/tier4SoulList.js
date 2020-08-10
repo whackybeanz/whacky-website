@@ -38,7 +38,6 @@ const tier4SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-hilla.png",
 			stats: stats,
 			skill: {
 				name: "Blue Lightning Attack",
@@ -71,7 +70,6 @@ const tier4SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-von-leon.png",
 			stats: stats,
 			skill: {
 				name: "Martial Arts: Claw Basic",
@@ -92,7 +90,7 @@ const tier4SoulList = [
 	},
 	// Papulatus
 	{
-		soulId: "papulatus", tier: 4, soulGaugeEffect: soulGaugeEffect, bossName: "Papulatus", orderPriority: 3,
+		soulId: "papulatus", hasAugSoulIcon: true, tier: 4, soulGaugeEffect: soulGaugeEffect, bossName: "Papulatus", orderPriority: 3,
 		caption: {
 			regular: {
 				img: "./public/images/souls/img-papulatus-1.png",
@@ -104,7 +102,6 @@ const tier4SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-papulatus.png",
 			stats: stats,
 			skill: {
 				name: "Ruler of Space",
@@ -114,7 +111,6 @@ const tier4SoulList = [
 			}
 		},
 		augmented: {
-			itemImg: "./public/images/souls/soul-papulatus-aug.png",
 			stats: augOtherStats,
 			skill: {
 				name: "Ruler of Time",
@@ -126,7 +122,7 @@ const tier4SoulList = [
 	},
 	// Weight of Soul
 	{
-		soulId: "weight-of-soul", tier: 4, soulGaugeEffect: soulGaugeEffect, bossName: "Weight of Soul", orderPriority: 4,
+		soulId: "weight-of-soul", hasAugSoulIcon: true, tier: 4, soulGaugeEffect: soulGaugeEffect, bossName: "Weight of Soul", orderPriority: 4,
 		caption: {
 			regular: {
 				img: "./public/images/souls/img-weight-of-soul-1.png",
@@ -138,7 +134,6 @@ const tier4SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-weight-of-soul.png",
 			stats: stats,
 			skill: {
 				name: "Press",
@@ -148,7 +143,6 @@ const tier4SoulList = [
 			}
 		},
 		augmented: {
-			itemImg: "./public/images/souls/soul-weight-of-soul-aug.png",
 			stats: augOtherStats,
 			skill: {
 				name: "Soul Twister",

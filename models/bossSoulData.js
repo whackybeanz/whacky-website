@@ -1,12 +1,9 @@
 var mongoose = require("mongoose");
 
 var soulSchema = new mongoose.Schema({
-	soulId: String,
-	tier: Number,
-	soulGaugeEffect: String,
-	bossName: String,
-	hasAugmented: { type: Boolean, default: true },
-	orderPriority: Number,
+	soulId: String,	hasAugSoulIcon: { type: Boolean, default: false },
+	tier: Number, soulGaugeEffect: String, bossName: String, 
+	hasAugmented: { type: Boolean, default: true }, orderPriority: Number,
 	caption: {
 		regular: {
 			img: String,
@@ -18,7 +15,6 @@ var soulSchema = new mongoose.Schema({
 		}
 	},
 	regular: {
-		itemImg: String,
 		stats: [{ soulPrefix: String, amount: String }],
 		skill: {
 			name: String,
@@ -29,7 +25,6 @@ var soulSchema = new mongoose.Schema({
 	},
 	augmented: {
 		type: {
-			itemImg: String,
 			stats: [String],
 			skill: {
 				name: String,

@@ -32,7 +32,6 @@ const tier1SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-cygnus.png",
 			stats: stats,
 			skill: {
 				name: "Flame Empress",
@@ -65,7 +64,6 @@ const tier1SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-magnus.png",
 			stats: stats,
 			skill: {
 				name: "Advance! That is me.",
@@ -86,7 +84,7 @@ const tier1SoulList = [
 	},
 	// Lotus
 	{
-		soulId: "lotus", tier: 1, soulGaugeEffect: soulGaugeEffect, bossName: "Lotus", orderPriority: 3,
+		soulId: "lotus", hasAugSoulIcon: true, tier: 1, soulGaugeEffect: soulGaugeEffect, bossName: "Lotus", orderPriority: 3,
 		caption: {
 			regular: {
 				img: "./public/images/souls/img-lotus-1.png",
@@ -98,7 +96,6 @@ const tier1SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-lotus.png",
 			stats: stats,
 			skill: {
 				name: "Hit Lotus",
@@ -108,7 +105,6 @@ const tier1SoulList = [
 			}
 		},
 		augmented: {
-			itemImg: "./public/images/souls/soul-lotus-aug.png",
 			stats: augStats,
 			skill: {
 				name: "Angry Lotus",
@@ -120,7 +116,7 @@ const tier1SoulList = [
 	},
 	// Damien
 	{
-		soulId: "damien", tier: 1, soulGaugeEffect: soulGaugeEffect, bossName: "Damien", orderPriority: 4,
+		soulId: "damien", hasAugSoulIcon: true, tier: 1, soulGaugeEffect: soulGaugeEffect, bossName: "Damien", orderPriority: 4,
 		caption: {
 			regular: {
 				img: "./public/images/souls/img-damien-1.png",
@@ -132,7 +128,6 @@ const tier1SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-damien.png",
 			stats: stats,
 			skill: {
 				name: "Commence Hunting",
@@ -142,7 +137,6 @@ const tier1SoulList = [
 			}
 		},
 		augmented: {
-			itemImg: "./public/images/souls/soul-damien-aug.png",
 			stats: augStats,
 			skill: {
 				name: "Sword of Destruction",
@@ -166,7 +160,6 @@ const tier1SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-queen.png",
 			stats: stats,
 			skill: {
 				name: "Queen's Mood Swing",
@@ -221,7 +214,6 @@ const tier1SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-vellum.png",
 			stats: stats,
 			skill: {
 				name: "Vellum Giga Laser",
@@ -242,7 +234,7 @@ const tier1SoulList = [
 	},
 	// Lucid
 	{
-		soulId: "lucid", tier: 1, soulGaugeEffect: soulGaugeEffect, bossName: "Lucid", orderPriority: 7,
+		soulId: "lucid", hasAugSoulIcon: true, tier: 1, soulGaugeEffect: soulGaugeEffect, bossName: "Lucid", orderPriority: 7,
 		caption: {
 			regular: {
 				img: "./public/images/souls/img-lucid-1.png",
@@ -254,7 +246,6 @@ const tier1SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-lucid.png",
 			stats: stats,
 			skills: {
 				name: "Invitation to Nightmares",
@@ -264,7 +255,6 @@ const tier1SoulList = [
 			}
 		},
 		augmented: {
-			itemImg: "./public/images/souls/soul-lucid-aug.png",
 			stats: augStats,
 			skills: {
 				name: "Master of Nightmares",
@@ -276,7 +266,7 @@ const tier1SoulList = [
 	},
 	// Will
 	{
-		soulId: "will", tier: 1, soulGaugeEffect: soulGaugeEffect, bossName: "Will", orderPriority: 8,
+		soulId: "will", hasAugSoulIcon: true, tier: 1, soulGaugeEffect: soulGaugeEffect, bossName: "Will", orderPriority: 8,
 		caption: {
 			regular: {
 				img: "./public/images/souls/img-will-1.png",
@@ -288,7 +278,6 @@ const tier1SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-will.png",
 			stats: stats,
 			skill: {
 				name: "Grasp of Destruction",
@@ -298,7 +287,6 @@ const tier1SoulList = [
 			}
 		},
 		augmented: {
-			itemImg: "./public/images/souls/soul-will-aug.png",
 			stats: augStats,
 			skill: {
 				name: "King of Spiders",
@@ -310,7 +298,7 @@ const tier1SoulList = [
 	},
 	// Heretic Hilla
 	{
-		soulId: "heretic-hilla", tier: 1, soulGaugeEffect: soulGaugeEffect, bossName: "Heretic Hilla", orderPriority: 9,
+		soulId: "heretic-hilla", hasAugSoulIcon: true, tier: 1, soulGaugeEffect: soulGaugeEffect, bossName: "Heretic Hilla", orderPriority: 9,
 		caption: {
 			regular: {
 				img: "./public/images/souls/img-heretic-hilla-1.png",
@@ -322,7 +310,6 @@ const tier1SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-heretic-hilla.png",
 			stats: stats,
 			skill: {
 				name: "Soul Rip",
@@ -332,7 +319,6 @@ const tier1SoulList = [
 			}
 		},
 		augmented: {
-			itemImg: "./public/images/souls/soul-heretic-hilla-aug.png",
 			stats: augStats,
 			skill: {
 				name: "Red Witch",
@@ -344,7 +330,7 @@ const tier1SoulList = [
 	},
 	// Djunkel
 	{
-		soulId: "djunkel", tier: 1, soulGaugeEffect: soulGaugeEffect, bossName: "Djunkel", orderPriority: 10,
+		soulId: "djunkel", hasAugSoulIcon: true, tier: 1, soulGaugeEffect: soulGaugeEffect, bossName: "Djunkel", orderPriority: 10,
 		caption: {
 			regular: {
 				img: "./public/images/souls/img-djunkel-1.png",
@@ -356,7 +342,6 @@ const tier1SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-djunkel.png",
 			stats: stats,
 			skill: {
 				name: "Ground Slash",
@@ -366,7 +351,6 @@ const tier1SoulList = [
 			}
 		},
 		augmented: {
-			itemImg: "./public/images/souls/soul-djunkel-aug.png",
 			stats: augStats,
 			skill: {
 				name: "Ground Blast",
@@ -390,7 +374,6 @@ const tier1SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-murrmurr.png",
 			stats: stats,
 			skill: {
 				name: "Murr Murr's Strange Company",

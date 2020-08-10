@@ -33,7 +33,6 @@ const tier2SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-ursus.png",
 			stats: stats,
 			skill: {
 				name: "King's Roar",
@@ -66,7 +65,6 @@ const tier2SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-pink-bean.png",
 			stats: stats,
 			skill: {
 				name: "Prickly Cuteness",
@@ -99,7 +97,6 @@ const tier2SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-von-bon.png",
 			stats: stats,
 			skill: {
 				name: "Spicy Chicken's Spice",
@@ -132,7 +129,6 @@ const tier2SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-pierre.png",
 			stats: stats,
 			skill: {
 				name: "Pierre's Hat",

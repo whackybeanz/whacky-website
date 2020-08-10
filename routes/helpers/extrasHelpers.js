@@ -71,7 +71,7 @@ function sortByPrice(bossList) {
 	bossList.forEach(function(boss) {
 		difficulties.forEach(function(mode) {
 			if(boss[mode] !== 0) {
-				bossPriceArr.push({ name: `${boss.name} (${mode.charAt(0).toUpperCase() + mode.slice(1)})`, img: boss.img, crystalPrice: boss[mode]});
+				bossPriceArr.push({ id: boss.id, difficulty: `(${mode.charAt(0).toUpperCase() + mode.slice(1)})`, crystalPrice: boss[mode]});
 			}
 		})
 	})

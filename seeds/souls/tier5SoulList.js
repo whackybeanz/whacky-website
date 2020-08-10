@@ -32,7 +32,6 @@ const tier5SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-zakum.png",
 			stats: stats,
 			skill: {
 				name: "Hot Totem Drop",
@@ -65,7 +64,6 @@ const tier5SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-gold-dragon.png",
 			stats: stats,
 			skill: {
 				name: "Beast of Fury",
@@ -92,7 +90,6 @@ const tier5SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-red-tiger.png",
 			stats: stats,
 			skill: {
 				name: "Tiger's Teeth",

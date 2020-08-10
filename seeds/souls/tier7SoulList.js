@@ -56,7 +56,6 @@ const tier7SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-rock-spirit.png",
 			stats: tier7Dstats,
 			skill: {
 				name: "Rock n Roll Baby",
@@ -80,7 +79,6 @@ const tier7SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-ephenia.png",
 			stats: tier7Cstats,
 			skill: {
 				name: "Queen's Scent of Ephenia",
@@ -104,7 +102,6 @@ const tier7SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-ani.png",
 			stats: tier7Dstats,
 			skill: {
 				name: "Striking One Dude",
@@ -128,7 +125,7 @@ const tier7SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-mu-gong.png",
+
 			stats: tier7Astats,
 			skill: {
 				name: "Rejuvenation Spell",
@@ -152,7 +149,6 @@ const tier7SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-black-slime.png",
 			stats: tier7Dstats,
 			skill: {
 				name: "Pink Poison Mist",
@@ -176,7 +172,6 @@ const tier7SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-xerxes.png",
 			stats: tier7Dstats,
 			skill: {
 				name: "Goat Commando Attack",
@@ -200,7 +195,6 @@ const tier7SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-rex.png",
 			stats: tier7Bstats,
 			skill: {
 				name: "Out of My Way",
@@ -224,7 +218,6 @@ const tier7SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-pianus.png",
 			stats: tier7Astats,
 			skill: {
 				name: "Forehead Fish of Horror",
@@ -248,7 +241,6 @@ const tier7SoulList = [
 			}
 		},
 		regular: {
-			itemImg: "./public/images/souls/soul-dragon-rider.png",
 			stats: tier7Bstats,	
 			skill: {
 				name: "Palm Wind",
