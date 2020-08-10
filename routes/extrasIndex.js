@@ -79,7 +79,7 @@ router.get("/set-effects/:jobType", function(req, res) {
 
 			res.locals.extraStylesheet = "setItemStyles";
 			res.locals.section = "extras";
-			res.locals.branch = `calc-set-effects-${jobType}`;
+			res.locals.branch = `calc-set-effects`;
 			res.render("extras/setEffectCalcActive", {allEquipTypes: allEquipTypes, setItemsByItemPart: setItemsByItemPart, setItemsBySetName: setItemsBySetName, allSetEffects: setEffects, jobType: jobType, statTypes: possibleStatTypes, icons: compiledIcons });
 		})
 		.catch(err => {
