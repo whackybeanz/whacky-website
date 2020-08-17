@@ -120,6 +120,15 @@ body.dark-mode .todd-table.table-dark > thead {
 body.dark-mode .todd-table.table-dark > tbody {
   background-color: #454d55;
 }
+body.dark-mode .dmg-skin-table.table-dark {
+  background-color: transparent;
+}
+body.dark-mode .dmg-skin-table.table-dark > thead {
+  background-color: #343a40;
+}
+body.dark-mode .dmg-skin-table.table-dark > tbody {
+  background-color: transparent;
+}
 body.dark-mode .single-social a {
   color: rgba(255, 255, 255, 0.8);
 }

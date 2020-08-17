@@ -89,10 +89,10 @@ body .single-set-effect {
   background-color: white;
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
-body .todd-table > thead {
+body .todd-table > thead, body .dmg-skin-table > thead {
   background-color: rgba(0, 0, 0, 0.075);
 }
-body .todd-table > tbody {
+body .todd-table > tbody, body .dmg-skin-table > tbody {
   background-color: white;
 }
 body .single-social a {

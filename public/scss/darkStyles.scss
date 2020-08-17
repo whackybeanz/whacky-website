@@ -194,6 +194,18 @@ body.dark-mode {
 		}
 	}
 
+	.dmg-skin-table.table-dark {
+		background-color: transparent;
+
+		& > thead {
+			background-color: globals.$dark-mode-navy-grey-opaque;
+		}
+
+		& > tbody {
+			background-color: transparent;
+		}
+	}
+
 	// About
 	.single-social {
 		a {
