@@ -11,8 +11,10 @@ var damageSkinSchema = new mongoose.Schema({
 	hasCri1Nums: { type: Boolean, default: true },
 	hasRed1Nums: { type: Boolean, default: true },
 	isCustomSkin: { type: Boolean, default: false },
-	isUnitSkin: { type: Boolean, defualt: false},
 	altNames: [String],
+	hasUnitSkin: Boolean,
+	unitDamageSkinId: Number,
+	unitItemId: String,
 });
 
 module.exports = mongoose.model("Damage Skin", damageSkinSchema);

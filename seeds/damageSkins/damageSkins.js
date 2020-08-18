@@ -1,9 +1,9 @@
 var damageSkins = [
 	{ damageSkinId: -1, itemId: "2435516", name: "Damage Skin - Clear", altNames: "Damage Skin - Transparent Coupon" },
 	//{ damageSkinId: -1, itemId: "2434601", name: "Damage Skin - Transparent Coupon" },
-	{ damageSkinId: 0, itemId: "2431965", name: "Damage Skin - Default", hasCounter: true, hasShot: true, hasCri0Nums: false, hasCri1Nums: false },
-	{ damageSkinId: 0, itemId: "2438871", name: "Damage Skin - Default (Unit)", isUnitSkin: true },
-	{ damageSkinId: 1, itemId: "2431966", name: "Damage Skin - Digitalize", hasCounter: true, hasShot: true },
+	{ damageSkinId: 0, itemId: "2431965", name: "Damage Skin - Default", hasCounter: true, hasShot: true, hasUnitSkin: true, unitDamageSkinId: 208, unitItemId: "2438871" },
+	//{ damageSkinId: 0, itemId: "2438871", name: "Damage Skin - Default (Unit)", isUnitSkin: true },
+	{ damageSkinId: 1, itemId: "2431966", name: "Damage Skin - Digitalize" },
 	{ damageSkinId: 2, itemId: "2431967", name: "Damage Skin - Kritias", hasEffect: false },
 	{ damageSkinId: 3, itemId: "2432131", name: "Damage Skin - Party Quest", hasEffect: false },
 	{ damageSkinId: 4, itemId: "2432153", name: "Damage Skin - Heavy Impact", hasEffect: false },
@@ -40,7 +40,7 @@ var damageSkins = [
 	//{ damageSkinId: 34, itemId: "2433830", name: "Damage Skin - White Heaven Rainbow" },
 	//{ damageSkinId: 34, itemId: "2435117", name: "Damage Skin - Rainbow Boom" },
 	{ damageSkinId: 35, itemId: "2434273", name: "Damage Skin - Night Sky", hasEffect: false, hasCounter: true, hasShot: true }, // Has an alternative (2434818), similar to another skin (2437024)
-	{ damageSkinId: 36, itemId: "2434274", name: "Damage Skin - Marshmallow", hasCounter: true, hasShot: true },
+	{ damageSkinId: 36, itemId: "2434274", name: "Damage Skin - Marshmallow", hasEffect: false, hasCounter: true, hasShot: true },
 	{ damageSkinId: 37, itemId: "2434289", name: "Damage Skin - Mu Lung Dojo" },
 	{ damageSkinId: 38, itemId: "2434390", name: "Damage Skin - Teddy Bear" },
 	{ damageSkinId: 39, itemId: "2434391", name: "Damage Skin - King of Destruction" },
@@ -223,7 +223,7 @@ var damageSkins = [
 	{ damageSkinId: 205, itemId: "2438676", name: "Damage Skin - Football Uniform" },
 	{ damageSkinId: 206, itemId: "2438880", name: "Damage Skin - Monster" },
 	{ damageSkinId: 207, itemId: "2438884", name: "Damage Skin - 14th Street", hasCri1Nums: false, hasRed1Nums: false },
-	{ damageSkinId: 208, itemId: "", name: "???" }, // unit denomination, possibly violet damage skin unit
+	//{ damageSkinId: 208, itemId: "2438871", name: "Damage Skin - Default (Unit)" }, // Unit denomination
 	{ damageSkinId: 209, itemId: "2439256", name: "Damage Skin - Shinsoo" },
 	{ damageSkinId: 210, itemId: "2439264", name: "Damage Skin - Mist" }, // and 211 for unit denominations
 	{ damageSkinId: 211, itemId: "2439265", name: "Damage Skin - Mist (Unit)" }, // and 210 for digits

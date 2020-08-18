@@ -26,5 +26,8 @@
 .dmg-skin-table tbody tr th {
   width: 125px;
 }
+.dmg-skin-table .dmg-skin-header:last-child {
+  margin-bottom: 0 !important;
+}
 
 /*# sourceMappingURL=extrasStyles.css.map */

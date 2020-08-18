@@ -149,31 +149,34 @@ router.get("/todd-sequence", function(req, res) {
 })
 
 router.get("/damage-skin", function(req, res) {
-	DamageSkin.find({}, function(err, allSkins) {
-		if(err) {
-			console.log(err);
-			res.redirect("back");
-		} else {
-			allSkins.sort((a, b) => {
-					var nameA = a.name.toUpperCase(); // ignore upper and lowercase
-				  var nameB = b.name.toUpperCase(); // ignore upper and lowercase
-				  if (nameA < nameB) {
-				    return -1;
-				  }
-				  if (nameA > nameB) {
-				    return 1;
-				  }
+	res.redirect("./damage-skin/1");
+})
 
-				  // names must be equal
-				  return 0;
-			});
+router.get("/damage-skin/:pageNum", function(req, res) {
+	const pageNum = parseInt(req.params.pageNum);
 
-			res.locals.extraStylesheet = "extrasStyles";
-			res.locals.section = "extras";
-			res.locals.branch = "damage-skin";
-			res.render("extras/damageSkins", {allSkins: allSkins});
-		}
-	})
+	if(pageNum && pageNum > 0) {
+		// Need to count total num damage skin (or estimated?)
+
+		// To also skip to necessary page
+		DamageSkin.find()
+			.sort({ name: 1 })
+			.skip((pageNum-1) * 20)
+			.limit(20)
+			.then(allSkins => {
+				res.locals.extraStylesheet = "extrasStyles";
+				res.locals.section = "extras";
+				res.locals.branch = "damage-skin";
+				res.render("extras/damageSkins", {allSkins: allSkins});
+			})
+			.catch(err => {
+				console.log(err);
+				res.redirect("back");
+			})	
+	} else {
+		console.log("Invalid page number");
+		res.redirect("back");
+	}	
 })
 
 module.exports = router;
