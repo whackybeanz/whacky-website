@@ -10,11 +10,23 @@ var damageSkinSchema = new mongoose.Schema({
 	hasCri0Nums: { type: Boolean, default: true },
 	hasCri1Nums: { type: Boolean, default: true },
 	hasRed1Nums: { type: Boolean, default: true },
-	isCustomSkin: { type: Boolean, default: false },
-	altNames: [String],
+	altNames: { type: [String], default: undefined },
+	notes: String,
+
+	// Unit Skins
 	hasUnitSkin: Boolean,
 	unitDamageSkinId: Number,
 	unitItemId: String,
+
+	// For skins that use repeated image assets for certain digits by pulling from other image assets within itself
+	diffCri0Nums: { type: [String], default: undefined },
+	diffCri1Nums: { type: [String], default: undefined },
+	diffRed0Nums: { type: [String], default: undefined },
+	diffRed1Nums: { type: [String], default: undefined },
+
+	// Only for truly custom skins
+	isCustomSkin: Boolean,
+	numAssetsToLoad: Number,
 });
 
 module.exports = mongoose.model("Damage Skin", damageSkinSchema);

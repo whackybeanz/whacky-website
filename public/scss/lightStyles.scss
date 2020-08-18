@@ -92,6 +92,23 @@ body {
 		color: globals.$light-mode-black;
 	}
 
+	// Pagination
+	.pagination {
+		.page-item {
+			.page-link {
+				background-color: globals.$light-mode-white;
+				border-color: globals.$light-mode-grey;
+				color: globals.$light-mode-black;
+			}
+
+			&:hover, &.active {
+				.page-link {
+					background-color: globals.$light-mode-grey;
+				}
+			}
+		}
+	}
+
 	// Others
 	.radio-select-group {
 		.form-check {

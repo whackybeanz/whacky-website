@@ -255,6 +255,24 @@ img {
 
 /**********************
 
+	Pagination
+
+**********************/
+
+.pagination {
+	.page-item {
+		&.active {
+			font-weight: bold;
+		}
+
+		.page-link:focus {
+			box-shadow: none;
+		}
+	}
+}
+
+/**********************
+
 	Other
 
 **********************/

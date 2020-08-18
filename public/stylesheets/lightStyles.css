@@ -57,6 +57,14 @@ body .carousel.carousel-fade .carousel-inner .carousel-item .carousel-caption {
 body .carousel-control-prev, body .carousel-control-next {
   color: #212529;
 }
+body .pagination .page-item .page-link {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(206, 212, 218, 0.8);
+  color: #212529;
+}
+body .pagination .page-item:hover .page-link, body .pagination .page-item.active .page-link {
+  background-color: rgba(206, 212, 218, 0.8);
+}
 body .radio-select-group .form-check .radio-select {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }

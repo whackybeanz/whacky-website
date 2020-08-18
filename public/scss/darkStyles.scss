@@ -119,6 +119,23 @@ body.dark-mode {
 		}
 	}
 
+	// Pagination
+	.pagination {
+		.page-item {
+			.page-link {
+				background-color: globals.$dark-mode-black;
+				border-color: globals.$dark-mode-grey;
+				color: globals.$dark-mode-white;
+			}
+
+			&:hover, &.active {
+				.page-link {
+					background-color: globals.$dark-mode-grey;
+				}
+			}
+		}
+	}
+
 	// Table
 	table {
 		&.table-bordered {

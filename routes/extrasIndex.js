@@ -155,28 +155,32 @@ router.get("/damage-skin", function(req, res) {
 router.get("/damage-skin/:pageNum", function(req, res) {
 	const pageNum = parseInt(req.params.pageNum);
 
-	if(pageNum && pageNum > 0) {
-		// Need to count total num damage skin (or estimated?)
+	let getDocCount = DamageSkin.estimatedDocumentCount();
+	let getDamageSkins = DamageSkin.find().sort({ damageSkinId: 1 }).skip((pageNum - 1) * 20).limit(20);
 
-		// To also skip to necessary page
-		DamageSkin.find()
-			.sort({ name: 1 })
-			.skip((pageNum-1) * 20)
-			.limit(20)
-			.then(allSkins => {
-				res.locals.extraStylesheet = "extrasStyles";
-				res.locals.section = "extras";
-				res.locals.branch = "damage-skin";
-				res.render("extras/damageSkins", {allSkins: allSkins});
-			})
-			.catch(err => {
-				console.log(err);
-				res.redirect("back");
-			})	
-	} else {
-		console.log("Invalid page number");
+	getDocCount.then(numDocs => {
+		if(pageNum && pageNum > 0) {
+			//console.log(numDocs);
+			const totalNumPages = Math.ceil(numDocs/20);
+			
+			if(pageNum > totalNumPages) {
+				return Promise.reject("Invalid page number");
+			} else {
+				getDamageSkins.then(allSkins => {
+					res.locals.extraStylesheet = "extrasStyles";
+					res.locals.section = "extras";
+					res.locals.branch = "damage-skin";
+					res.render("extras/damageSkins", {allSkins: allSkins, pageNum: pageNum, totalNumPages: totalNumPages});
+				})
+			}
+		} else {
+			return Promise.reject("Invalid page number");
+		}	
+	})
+	.catch(err => {
+		console.log(err);
 		res.redirect("back");
-	}	
+	})
 })
 
 module.exports = router;

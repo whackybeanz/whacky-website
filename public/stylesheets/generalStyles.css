@@ -269,6 +269,18 @@ img.small-img {
 
 /**********************
 
+	Pagination
+
+**********************/
+.pagination .page-item.active {
+  font-weight: bold;
+}
+.pagination .page-item .page-link:focus {
+  box-shadow: none;
+}
+
+/**********************
+
 	Other
 
 **********************/

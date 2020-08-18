@@ -76,6 +76,14 @@ body.dark-mode .carousel-control-prev, body.dark-mode .carousel-control-next {
 body.dark-mode .carousel-control-prev:hover, body.dark-mode .carousel-control-prev:focus, body.dark-mode .carousel-control-next:hover, body.dark-mode .carousel-control-next:focus {
   color: rgba(255, 255, 255, 0.8);
 }
+body.dark-mode .pagination .page-item .page-link {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-color: #454d55;
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .pagination .page-item:hover .page-link, body.dark-mode .pagination .page-item.active .page-link {
+  background-color: #454d55;
+}
 body.dark-mode table.table-bordered td, body.dark-mode table.table-bordered th {
   color: rgba(255, 255, 255, 0.8);
 }
