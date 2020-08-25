@@ -82,7 +82,7 @@ body .page-select:hover, body .page-select.active, body .single-option-select:ho
 body .page-select a, body .single-option-select a {
   color: #212529;
 }
-body .job-choice-div .single-option-select, body .equip-choice .single-option-select, body .sort-boss-crystal-div .single-option-select {
+body .job-choice-div .single-option-select, body .equip-choice .single-option-select, body .sort-boss-crystal-div .single-option-select, body .skin-select-div .single-option-select {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
 body #soul-list-carousel .carousel-nav {
@@ -97,11 +97,32 @@ body .single-set-effect {
   background-color: white;
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
-body .todd-table > thead, body .dmg-skin-table > thead {
+body .todd-table > thead {
   background-color: rgba(0, 0, 0, 0.075);
 }
-body .todd-table > tbody, body .dmg-skin-table > tbody {
+body .todd-table > tbody {
   background-color: white;
+}
+body .dmg-skin-section-subheader, body .dmg-skin-section {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .dmg-skin-section-subheader {
+  background-color: rgba(206, 212, 218, 0.8);
+}
+body .single-dmg-skin > div {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .single-dmg-skin > div .dmg-skin-header {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+body .single-dmg-skin > div .dmg-skin-body {
+  background-color: white;
+}
+body .single-dmg-skin:hover > div, body .single-dmg-skin.active > div {
+  border: 1px solid #6cbb3c;
+}
+body .single-dmg-skin:hover > div .dmg-skin-header, body .single-dmg-skin.active > div .dmg-skin-header {
+  background-color: #6cbb3c;
 }
 body .single-social a {
   color: #212529;

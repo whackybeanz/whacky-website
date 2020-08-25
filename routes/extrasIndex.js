@@ -154,33 +154,44 @@ router.get("/damage-skin", function(req, res) {
 
 router.get("/damage-skin/:pageNum", function(req, res) {
 	const pageNum = parseInt(req.params.pageNum);
+	const pagesArr = ["???, 0-9, AB", "C", "DEF", "GHI", "JKL", "MNO", "PQR", "S", "TUVWXYZ"];
 
-	let getDocCount = DamageSkin.estimatedDocumentCount();
-	let getDamageSkins = DamageSkin.find().sort({ damageSkinId: 1 }).skip((pageNum - 1) * 20).limit(20);
+	let query = [];
+	//let getDocCount = DamageSkin.estimatedDocumentCount();
 
-	getDocCount.then(numDocs => {
-		if(pageNum && pageNum > 0) {
-			//console.log(numDocs);
-			const totalNumPages = Math.ceil(numDocs/20);
-			
-			if(pageNum > totalNumPages) {
-				return Promise.reject("Invalid page number");
-			} else {
-				getDamageSkins.then(allSkins => {
-					res.locals.extraStylesheet = "extrasStyles";
-					res.locals.section = "extras";
-					res.locals.branch = "damage-skin";
-					res.render("extras/damageSkins", {allSkins: allSkins, pageNum: pageNum, totalNumPages: totalNumPages});
-				})
-			}
+	if(pageNum && pageNum > 0 && pageNum-1 < pagesArr.length) {
+		if(pageNum === 1) {
+			query.push({ "letterCategory": " ??? (Unknown)"}, { "letterCategory": "0-9" }, { "letterCategory": "A" }, { "letterCategory": "B" });
 		} else {
-			return Promise.reject("Invalid page number");
-		}	
-	})
-	.catch(err => {
-		console.log(err);
+			const skinsToFind = pagesArr[pageNum-1];
+			for(letter of skinsToFind) {
+				query.push({ "letterCategory": letter });
+			}
+		}
+
+		let getDamageSkins = DamageSkin.find({$or: query}).sort({ letterCategory: 1, shortName: 1 });
+
+		getDamageSkins.then(allSkins => {
+			const allCategories = [...new Set(allSkins.map(skin => skin.letterCategory))];
+			let skinsByLetter = {};
+
+			allCategories.forEach(category => skinsByLetter[category] = []);
+			allSkins.forEach(skin => skinsByLetter[skin.letterCategory].push(skin));
+			//console.log(skinsByLetter);
+
+			res.locals.extraStylesheet = "extrasStyles";
+			res.locals.section = "extras";
+			res.locals.branch = "damage-skin";
+			res.render("extras/damageSkins", {skinsByLetter: skinsByLetter, pageNum: pageNum, pagesArr: pagesArr});
+		})
+		.catch(err => {
+			console.log(err);
+			res.redirect("back");
+		})
+	} else {
+		console.log("Invalid page number");
 		res.redirect("back");
-	})
+	}
 })
 
 module.exports = router;

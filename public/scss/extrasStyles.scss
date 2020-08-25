@@ -28,16 +28,24 @@
 	}
 }
 
-.dmg-skin-table {
-	tbody {
-		tr {
-			th {
-				width: 125px;
-			}
+.single-dmg-skin {
+	& > div {
+		transition: all 0.2s;
+
+		.dmg-skin-header {
+			transition: all 0.2s;
+		}
+
+		.dmg-skin-body {
+			height: 150px;	
 		}
 	}
 
-	.dmg-skin-header:last-child {
-		margin-bottom: 0 !important;
+	&:hover > div, &.active > div {
+		transition: all 0.2s;
+
+		.dmg-skin-header {
+			transition: all 0.2s;
+		}
 	}
 }

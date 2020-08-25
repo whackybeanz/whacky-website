@@ -4,6 +4,8 @@ var damageSkinSchema = new mongoose.Schema({
 	itemId: String,
 	damageSkinId: Number,
 	name: String,
+	shortName: String,
+	letterCategory: String,
 	hasCounter: { type: Boolean, default: false },
 	hasShot: { type: Boolean, default: false },
 	hasEffect: { type: Boolean, default: true },

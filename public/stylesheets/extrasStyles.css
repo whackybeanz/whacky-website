@@ -23,11 +23,20 @@
   background-color: rgba(255, 0, 0, 0.5);
 }
 
-.dmg-skin-table tbody tr th {
-  width: 125px;
+.single-dmg-skin > div {
+  transition: all 0.2s;
 }
-.dmg-skin-table .dmg-skin-header:last-child {
-  margin-bottom: 0 !important;
+.single-dmg-skin > div .dmg-skin-header {
+  transition: all 0.2s;
+}
+.single-dmg-skin > div .dmg-skin-body {
+  height: 150px;
+}
+.single-dmg-skin:hover > div, .single-dmg-skin.active > div {
+  transition: all 0.2s;
+}
+.single-dmg-skin:hover > div .dmg-skin-header, .single-dmg-skin.active > div .dmg-skin-header {
+  transition: all 0.2s;
 }
 
 /*# sourceMappingURL=extrasStyles.css.map */

@@ -13,183 +13,52 @@
 				</div>
 				<div class="w-100 mb-3">
 					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Info Sheet Details</h2>
-					<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-						<p class="w-100 text-justify">The tables below display damage skins sorted alphabetically. All item names are as seen in MapleSEA. However, note that not all skins are available in game -- they may not be released or are upcoming releases. Certain damage skins may have multiple names (commonly as a result of Cash Shop damage skin coupon releases).</p>
+					<p class="w-100 text-justify">The tables below display damage skins sorted alphabetically. All item names are as seen in MapleSEA. However, note that not all skins are available in game -- they may not be released or are upcoming releases. Certain damage skins may have multiple names (commonly as a result of Cash Shop damage skin coupon releases).</p>
 
-						<p class="w-100 text-justify">Also, the visuals for combat message displays - Guard, Miss, Resist, Counter and Block - are only shown if the monster is the one that successfully executed the necessary move to trigger these message displays. It <span class="text-underline">does not</span> affect moves executed by your character that triggers these displays. The character uses combat message displays as seen in Damage Skin - Default.</p>
+					<p class="w-100 text-justify">Each damage skin will show their icon and the sample image (i.e. the digits you see when you hover over a damage skin in game).</p>
 
-						<div>
-							<nav aria-label="Damage skins page navigation">
-								<ul class="pagination">
-									<li class="page-item <% if(pageNum === 1) { %>d-none<% } %>">
-										<a class="page-link" href="#" aria-label="Previous" <% if(pageNum === 1) { %>aria-disabled="true"<% } %>>
-											<span aria-hidden="true">&laquo;</span>
-										</a>
-									</li>
-									<% for(let i = 1; i <= totalNumPages; i++) { %>
-										<li class="page-item <% if(pageNum === i) { %>active<% } %>" <% if(pageNum === i) { %>aria-current="page"<% } %>>
-											<a class="page-link" href="./maple/extras/damage-skin/<%= i %>"><%= i %></a>
-										</li>
-									<% } %>
-									<li class="page-item <% if(pageNum === totalNumPages) { %>d-none<% } %>">
-										<a class="page-link" href="#" aria-label="Next" <% if(pageNum === totalNumPages) { %>aria-disabled="true"<% } %>>
-											<span aria-hidden="true">&raquo;</span>
-										</a>
-									</li>
-								</ul>
-							</nav>
-						</div>
+					<!--<p class="w-100 text-justify">Also, the visuals for combat message displays - Guard, Miss, Resist, Counter and Block - are only shown if the monster is the one that successfully executed the necessary move to trigger these message displays. It <span class="text-underline">does not</span> affect moves executed by your character that triggers these displays. The character uses combat message displays as seen in Damage Skin - Default.</p>-->
 
-						<div class="mb-3">
-							<div class="font-table size-350 border rounded-sm px-2 py-1">
-								<p class="w-100 mb-1 font-weight-bold">Quick-jump:</p>
-								<div class="d-flex justify-content-between align-items-center flex-wrap">
-									<% for(let i = 0; i < allSkins.length; i++) { %>
-										<a href=".<%= url %>#ds-table-<%= allSkins[i].damageSkinId %>">
-											<img src="https://mseadmgskins.s3-ap-southeast-1.amazonaws.com/195/icon/0<%= allSkins[i].itemId %>.png" class="mb-1 cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="<%= allSkins[i].name %>">
-										</a>
-									<% } %>
-								</div>
+					<div class="font-content w-100 d-flex justify-content-start align-items-center flex-wrap mb-4">
+						<% pagesArr.forEach(function(page, index) { %>
+						<div class="skin-select-div col-4 col-sm-3 col-md-2 col-lg-4 col-xl-2 text-center px-2 mb-3">
+							<div class="single-option-select rounded-sm position-relative py-1 <% if(pageNum-1 === index) { %>active<% } %>">
+								<a href="./maple/extras/damage-skin/<%= index+1 %>" class="stretched-link text-decoration-none"><%= page %></a>
 							</div>
 						</div>
-
-						<% allSkins.forEach(function(skin) { %>
-							<table class="dmg-skin-table font-table size-720 table table-sm table-bordered table-hover mb-4" id="ds-table-<%= skin.damageSkinId %>">
-								<thead>
-									<tr class="table-rows">
-										<th class="px-2" colspan="2">
-											<div class="d-flex flex-column">
-												<div class="dmg-skin-header d-flex align-items-start mb-1">
-													<img src="https://mseadmgskins.s3-ap-southeast-1.amazonaws.com/195/icon/0<%= skin.itemId %>.png" class="mr-2">
-													<div class="d-flex flex-column">
-														<p class="mb-0"><%= skin.name %> <!--- <%= skin.itemId %> - ID: <%= skin.damageSkinId %>--></p>
-														<% if(skin.altNames) { %>
-															<% skin.altNames.forEach(function(altName) { %>
-																<% if(altName.includes("Damage Skin")) { %>
-																	<p class="mb-0"><%= altName %></p>
-																<% } else { %>
-																	<p class="mb-0">Damage Skin - <%= altName %></p>
-																<% } %>
-															<% }) %>
-														<% } %>
-														<% if(skin.notes) { %>
-															<p class="font-small font-weight-normal mb-0"><%= skin.notes %></p>
-														<% } %>
-													</div>
-												</div>
-												<% if(skin.hasUnitSkin) { %>
-												<div class="dmg-skin-header d-flex align-items-start">
-													<img src="https://mseadmgskins.s3-ap-southeast-1.amazonaws.com/195/icon/0<%= skin.unitItemId %>.png" class="mr-2">
-													<div>
-														<p class="mb-0"><%= skin.name %> (Unit)</p>
-													</div>
-												</div>
-												<% } %>
-											</div>
-										</th>
-									</tr>
-								</thead>
-								<tbody class="font-small">
-									<% if(skin.damageSkinId >= 0) { %>
-										<tr>
-											<th class="align-middle text-center">Critical Hits /<br/>Combat Messages</th>
-											<td>
-												<div class="d-flex flex-column">
-													<% if(skin.hasCri1Nums) { %>
-														<div class="d-flex justify-content-around flex-wrap align-items-center">
-															<% for(let i = 0; i < 10; i++) { %>
-																<% if(!skin.diffCri1Nums || (skin.diffCri1Nums && skin.diffCri1Nums[i] === "-")) { %>
-																	<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCri1.<%= i %>.png">
-																<% } %>
-															<% } %>																
-														</div>
-													<% } %>
-
-													<% if(skin.hasCri0Nums) { %>
-														<div class="d-flex justify-content-around flex-wrap align-items-center">
-															<% if(skin.isCustomSkin) { %>
-																<% for(let i = 0; i < skin.numAssetsToLoad; i++) { %>
-																<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCustom.NoCri0.<%= i %>.png">
-																<% } %>
-															<% } else { %>
-																<% for(let i = 0; i < 10; i++) { %>
-																	<% if(!skin.diffCri0Nums || (skin.diffCri0Nums && skin.diffCri0Nums[i] === "-")) { %>
-																		<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCri0.<%= i %>.png">
-																	<% } %>
-																<% } %>
-															<% } %>
-
-															<% if(skin.hasUnitSkin) { %>
-																<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>.NoCustom.NoCri0.3.png">
-																<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>.NoCustom.NoCri0.4.png">
-															<% } %>
-														</div>
-													<% } %>
-
-													<div class="d-flex justify-content-around flex-wrap align-items-center">
-														<% if(skin.hasEffect) { %>
-															<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCri1.effect2.png">
-														<% } %>
-
-														<% if(skin.hasCounter) { %>
-															<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.counter.png">
-														<% } %>
-
-														<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.guard.png">
-														<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.Miss.png">
-														<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.resist.png">
-
-														<% if(skin.hasShot) { %>
-															<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.shot.png">
-														<% } %>
-													</div>
-												</div>
-											</td>
-										<tr>
-										<tr>
-											<th class="align-middle text-center">Regular Hits</th>
-											<td>
-												<div class="d-flex flex-column">
-													<% if(skin.hasRed1Nums) { %>
-														<div class="d-flex justify-content-around flex-wrap align-items-center">
-															<% for(let i = 0; i < 10; i++) { %>
-																<% if(!skin.diffRed1Nums || (skin.diffRed1Nums && skin.diffRed1Nums[i] === "-")) { %>
-																	<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed1.<%= i %>.png">
-																<% } %>
-															<% } %>
-														</div>
-													<% } %>
-
-													<div class="d-flex justify-content-around flex-wrap align-items-center">
-														<% if(skin.isCustomSkin) { %>
-															<% for(let i = 0; i < skin.numAssetsToLoad; i++) { %>
-															<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCustom.NoRed0.<%= i %>.png">
-															<% } %>
-														<% } else { %>
-															<% for(let i = 0; i < 10; i++) { %>
-																<% if(!skin.diffRed0Nums || (skin.diffRed0Nums && skin.diffRed0Nums[i] === "-")) { %>
-																	<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.<%= i %>.png">
-																<% } %>
-															<% } %>
-														<% } %>
-
-														<% if(skin.hasUnitSkin) { %>
-															<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>.NoCustom.NoRed0.3.png">
-															<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>.NoCustom.NoRed0.4.png">
-														<% } %>
-													</div>
-												</div>
-											</td>
-										</tr>
-									<% } else { %>
-										<tr>
-											<th class="align-middle text-center" colspan="2">It's invisible. You see no numbers. Move along~</th>
-										</tr>
-									<% } %>
-								</tbody>
-							</table>
 						<% }) %>
 					</div>
+
+					<% Object.keys(skinsByLetter).forEach(function(letter) { %>
+					<div class="col-12 mb-4 px-0">
+						<div class="dmg-skin-section-subheader">
+							<h3 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
+								<i class="fas fa-caret-down"></i> <%= letter %>
+							</h3>
+						</div>
+						<div class="dmg-skin-section px-0 collapse show pt-3" id="skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
+							<div class="d-flex flex-wrap w-100">
+								<% skinsByLetter[letter].forEach(function(skin) { %>
+								<div class="single-dmg-skin d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" data-skin-num="<%= skin.damageSkinId %>">
+									<div class="font-table w-100 d-flex flex-column align-items-center">
+										<div class="dmg-skin-header w-100 d-flex align-items-center font-weight-bold px-3 py-1">
+											<img src="https://mseadmgskins.s3-ap-southeast-1.amazonaws.com/195/icon/0<%= skin.itemId %>.png" class="mr-2">
+											<%= skin.shortName %>
+										</div>
+										<div class="dmg-skin-body w-100 d-flex flex-grow-1 justify-content-center align-items-center px-3 py-2">
+											<% if(skin.damageSkinId === -1) { %>
+											It's invisible. You see no numbers. Move along~
+											<% } else { %>
+											<img src="https://mseadmgskins.s3-ap-southeast-1.amazonaws.com/195/sample/0<%= skin.itemId %>.png" class="mh-100 img-fluid">
+											<% } %>
+										</div>
+									</div>
+								</div>
+								<% }) %>
+							</div>
+						</div>
+					</div>
+					<% }) %>
 				</div>
 			</div>
 		</div>

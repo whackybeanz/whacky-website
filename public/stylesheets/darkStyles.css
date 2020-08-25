@@ -104,7 +104,7 @@ body.dark-mode .page-select:hover, body.dark-mode .page-select.active, body.dark
 body.dark-mode .page-select a, body.dark-mode .single-option-select a {
   color: rgba(255, 255, 255, 0.8);
 }
-body.dark-mode .job-choice-div .single-option-select, body.dark-mode .equip-choice .single-option-select, body.dark-mode .sort-boss-crystal-div .single-option-select {
+body.dark-mode .job-choice-div .single-option-select, body.dark-mode .equip-choice .single-option-select, body.dark-mode .sort-boss-crystal-div .single-option-select, body.dark-mode .skin-select-div .single-option-select {
   border: 1px solid #454d55;
 }
 body.dark-mode #soul-list-carousel .carousel-nav {
@@ -128,14 +128,26 @@ body.dark-mode .todd-table.table-dark > thead {
 body.dark-mode .todd-table.table-dark > tbody {
   background-color: #454d55;
 }
-body.dark-mode .dmg-skin-table.table-dark {
-  background-color: transparent;
+body.dark-mode .dmg-skin-section-subheader, body.dark-mode .dmg-skin-section {
+  border: 1px solid #454d55;
 }
-body.dark-mode .dmg-skin-table.table-dark > thead {
+body.dark-mode .dmg-skin-section-subheader {
   background-color: #343a40;
 }
-body.dark-mode .dmg-skin-table.table-dark > tbody {
-  background-color: transparent;
+body.dark-mode .single-dmg-skin > div {
+  border: 1px solid #454d55;
+}
+body.dark-mode .single-dmg-skin > div .dmg-skin-header {
+  background-color: #343a40;
+}
+body.dark-mode .single-dmg-skin > div .dmg-skin-body {
+  background-color: black;
+}
+body.dark-mode .single-dmg-skin:hover > div, body.dark-mode .single-dmg-skin.active > div {
+  border: 1px solid #4aa02c;
+}
+body.dark-mode .single-dmg-skin:hover > div .dmg-skin-header, body.dark-mode .single-dmg-skin.active > div .dmg-skin-header {
+  background-color: #4aa02c;
 }
 body.dark-mode .single-social a {
   color: rgba(255, 255, 255, 0.8);

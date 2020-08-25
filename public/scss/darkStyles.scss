@@ -176,7 +176,7 @@ body.dark-mode {
 	}
 
 	// Extras
-	.job-choice-div, .equip-choice, .sort-boss-crystal-div {
+	.job-choice-div, .equip-choice, .sort-boss-crystal-div, .skin-select-div {
 		.single-option-select {
 			border: 1px solid globals.$dark-mode-grey;
 		}
@@ -211,15 +211,33 @@ body.dark-mode {
 		}
 	}
 
-	.dmg-skin-table.table-dark {
-		background-color: transparent;
+	.dmg-skin-section-subheader, .dmg-skin-section {
+		border: 1px solid globals.$dark-mode-grey;
+	}
 
-		& > thead {
-			background-color: globals.$dark-mode-navy-grey-opaque;
+	.dmg-skin-section-subheader {
+		background-color: globals.$dark-mode-navy-grey-opaque;
+	}
+
+	.single-dmg-skin {
+		& > div {
+			border: 1px solid globals.$dark-mode-grey;
+
+			.dmg-skin-header {
+				background-color: globals.$dark-mode-navy-grey-opaque;
+			}
+
+			.dmg-skin-body {
+				background-color: globals.$dark-mode-black-opaque;
+			}
 		}
 
-		& > tbody {
-			background-color: transparent;
+		&:hover > div, &.active > div {
+			border: 1px solid globals.$dark-mode-green;
+
+			.dmg-skin-header {
+				background-color: globals.$dark-mode-green;
+			}
 		}
 	}
 

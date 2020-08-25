@@ -140,7 +140,7 @@ body {
 	}
 
 	// Extras
-	.job-choice-div, .equip-choice, .sort-boss-crystal-div {
+	.job-choice-div, .equip-choice, .sort-boss-crystal-div, .skin-select-div {
 		.single-option-select {
 			border: 1px solid globals.$light-mode-grey;	
 		}
@@ -163,13 +163,43 @@ body {
 		border: 1px solid globals.$light-mode-grey;
 	}
 
-	.todd-table, .dmg-skin-table {
+	.todd-table {
 		& > thead {
 			background-color: globals.$light-mode-light-grey;
 		}
 
 		& > tbody {
 			background-color: globals.$light-mode-white-opaque;
+		}
+	}
+
+	.dmg-skin-section-subheader, .dmg-skin-section {
+		border: 1px solid globals.$light-mode-grey;
+	}
+
+	.dmg-skin-section-subheader {
+		background-color: globals.$light-mode-grey;
+	}
+
+	.single-dmg-skin {
+		& > div {
+			border: 1px solid globals.$light-mode-grey;
+
+			.dmg-skin-header {
+				background-color: globals.$light-mode-light-grey;
+			}	
+
+			.dmg-skin-body {
+				background-color: globals.$light-mode-white-opaque;
+			}
+		}
+
+		&:hover > div, &.active > div {
+			border: 1px solid globals.$light-mode-green;
+
+			.dmg-skin-header {
+				background-color: globals.$light-mode-green;
+			}
 		}
 	}
 

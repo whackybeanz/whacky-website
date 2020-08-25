@@ -8,6 +8,23 @@ function seedDamageSkins() {
 		console.log("All damage skins in DB deleted");
 
 		damageSkinSeeds.forEach(function(seed) {
+			var shortName = seed.name.replace(/(Damage Skin \- | Damage Skin)/, "");
+			seed.shortName = shortName;
+
+			const startingLetter = shortName.charAt(0);
+			
+			if(startingLetter === "?") {
+				seed.letterCategory = " ??? (Unknown)"; // Starting space is intentional to be sorted first
+			} else {
+				if(parseInt(startingLetter)) {
+					// If starting letter is a number
+					seed.letterCategory = "0-9"
+				} else {
+					// If starting letter is a letter
+					seed.letterCategory = startingLetter;
+				}
+			}
+
 			DamageSkin.create(seed, function(err, newDamageSkin) {
 				if(err) {
 					console.log(err);
