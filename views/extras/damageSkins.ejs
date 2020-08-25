@@ -39,7 +39,7 @@
 						<div class="dmg-skin-section px-0 collapse show pt-3" id="skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
 							<div class="d-flex flex-wrap w-100">
 								<% skinsByLetter[letter].forEach(function(skin) { %>
-								<div class="single-dmg-skin d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" data-skin-num="<%= skin.damageSkinId %>">
+								<div class="single-dmg-skin cursor-pointer d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" id="skin-num-<%= skin.damageSkinId %>" data-skin-num="<%= skin.damageSkinId %>">
 									<div class="font-table w-100 d-flex flex-column align-items-center">
 										<div class="dmg-skin-header w-100 d-flex align-items-center font-weight-bold px-3 py-1">
 											<img src="https://mseadmgskins.s3-ap-southeast-1.amazonaws.com/195/icon/0<%= skin.itemId %>.png" class="mr-2">
@@ -66,4 +66,5 @@
 </div>
 
 <script type="text/javascript" src="./public/scripts/commonScript.js"></script>
+<script type="text/javascript" src="./public/scripts/dmgSkinScript.js"></script>
 <%- include("../partials/footer") %>

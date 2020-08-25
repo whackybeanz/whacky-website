@@ -194,7 +194,11 @@ body {
 			}
 		}
 
-		&:hover > div, &.active > div {
+		&:hover > div {
+			border: 1px solid globals.$light-mode-green;
+		}
+
+		&.active > div {
 			border: 1px solid globals.$light-mode-green;
 
 			.dmg-skin-header {

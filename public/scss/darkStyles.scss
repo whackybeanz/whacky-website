@@ -232,9 +232,13 @@ body.dark-mode {
 			}
 		}
 
-		&:hover > div, &.active > div {
+		&:hover > div {
 			border: 1px solid globals.$dark-mode-green;
+		}
 
+		&.active > div {
+			border: 1px solid globals.$dark-mode-green;
+			
 			.dmg-skin-header {
 				background-color: globals.$dark-mode-green;
 			}

@@ -143,10 +143,13 @@ body.dark-mode .single-dmg-skin > div .dmg-skin-header {
 body.dark-mode .single-dmg-skin > div .dmg-skin-body {
   background-color: black;
 }
-body.dark-mode .single-dmg-skin:hover > div, body.dark-mode .single-dmg-skin.active > div {
+body.dark-mode .single-dmg-skin:hover > div {
   border: 1px solid #4aa02c;
 }
-body.dark-mode .single-dmg-skin:hover > div .dmg-skin-header, body.dark-mode .single-dmg-skin.active > div .dmg-skin-header {
+body.dark-mode .single-dmg-skin.active > div {
+  border: 1px solid #4aa02c;
+}
+body.dark-mode .single-dmg-skin.active > div .dmg-skin-header {
   background-color: #4aa02c;
 }
 body.dark-mode .single-social a {

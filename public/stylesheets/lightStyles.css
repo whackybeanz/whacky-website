@@ -118,10 +118,13 @@ body .single-dmg-skin > div .dmg-skin-header {
 body .single-dmg-skin > div .dmg-skin-body {
   background-color: white;
 }
-body .single-dmg-skin:hover > div, body .single-dmg-skin.active > div {
+body .single-dmg-skin:hover > div {
   border: 1px solid #6cbb3c;
 }
-body .single-dmg-skin:hover > div .dmg-skin-header, body .single-dmg-skin.active > div .dmg-skin-header {
+body .single-dmg-skin.active > div {
+  border: 1px solid #6cbb3c;
+}
+body .single-dmg-skin.active > div .dmg-skin-header {
   background-color: #6cbb3c;
 }
 body .single-social a {
