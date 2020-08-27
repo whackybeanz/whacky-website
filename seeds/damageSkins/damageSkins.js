@@ -377,8 +377,8 @@ var damageSkins = [
 	{ damageSkinId: 1005, itemId: "2433270", name: "Damage Skin - Jett", hasEffect: false },
 	{ damageSkinId: 1007, itemId: "2433112", name: "Damage Skin - Red Tiger", hasEffect: false, hasCounter: true, hasShot: true },
 	{ damageSkinId: 1009, itemId: "", name: "???", hasEffect: false, hasCounter: true, hasShot: true, notes: "Not available in MSEA. Known as 初音未來傷害字型 in TMS and ミクカラーダメージスキン in JMS (Hatsune Miku Damage Skin)." }, // 初音未來傷害字型, ミクカラーダメージスキン
-	{ damageSkinId: 1010, itemId: "2439396", name: "Damage Skin - Chalk", hasEffect: false, hasCounter: true, hasShot: true },
-	{ damageSkinId: 1010, itemId: "2433038", name: "Damage Skin - Friend's Story", hasEffect: false },
+	{ damageSkinId: 1010, itemId: "2439396", name: "Damage Skin - Chalk", hasEffect: false, hasCounter: true, hasShot: true, altNames: ["Friend's Story"] },
+	//{ damageSkinId: 1010, itemId: "2433038", name: "Damage Skin - Friend's Story", hasEffect: false },
 	{ damageSkinId: 1011, itemId: "2433252", name: "Damage Skin - Zen", hasEffect: false }, // Is missing a sample
 	{ damageSkinId: 1012, itemId: "2433197", name: "Damage Skin - Violetta" },
 	{ damageSkinId: 1013, itemId: "2433195", name: "Damage Skin - Haunted Halloween", hasEffect: false },
@@ -435,7 +435,7 @@ var damageSkins = [
 		diffCri1Nums: ["Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0"], 
 		diffRed0Nums: ["-", "-", "-", "Red0.0", "Red0.1", "Red0.2", "Red0.1", "Red0.2", "Red0.0", "Red0.1"],
 		diffRed1Nums: ["Red0.0", "Red0.1", "Red0.2", "Red0.0", "Red0.1", "Red0.2", "Red0.1", "Red0.2", "Red0.0", "Red0.1"] },
-	{ damageSkinId: 1088, itemId: "", name: "???", hasCounter: true, hasShot: true, notes: "Not available in MSEA. Known as 哈哈哈哈傷害字型 in TMS.",
+	{ damageSkinId: 1088, itemId: "2438779", name: "Damage Skin - Kekeke", hasCounter: true, hasShot: true,
 		diffCri0Nums: ["-", "-", "-", "Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0"], 
 		diffCri1Nums: ["Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0"], 
 		diffRed0Nums: ["-", "-", "-", "Red0.0", "Red0.1", "Red0.2", "Red0.0", "Red0.1", "Red0.2", "Red0.0"], 
@@ -445,7 +445,7 @@ var damageSkins = [
 		diffCri1Nums: ["Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0"], 
 		diffRed0Nums: ["-", "-", "-", "Red0.0", "Red0.1", "Red0.2", "Red0.0", "Red0.1", "Red0.2", "Red0.0"], 
 		diffRed1Nums: ["Red0.0", "Red0.1", "Red0.2", "Red0.0", "Red0.1", "Red0.2", "Red0.0", "Red0.1", "Red0.2", "Red0.0"] },
-	{ damageSkinId: 1090, itemId: "2435543", name: "Damage Skin - Epic Lulz Haha", hasCounter: true, hasShot: true,
+	{ damageSkinId: 1090, itemId: "2435543", name: "Damage Skin - Epic Lulz Haha", hasCounter: true, hasShot: true, altNames: ["Kekeke"],
 		diffCri0Nums: ["-", "-", "-", "Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0"], 
 		diffCri1Nums: ["Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0", "Cri0.1", "Cri0.2", "Cri0.0"], 
 		diffRed0Nums: ["-", "-", "-", "Red0.0", "Red0.1", "Red0.2", "Red0.0", "Red0.1", "Red0.2", "Red0.0"], 

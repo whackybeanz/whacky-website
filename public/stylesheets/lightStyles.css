@@ -113,7 +113,7 @@ body .single-dmg-skin > div {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
 body .single-dmg-skin > div .dmg-skin-header {
-  background-color: rgba(0, 0, 0, 0.075);
+  background-color: rgba(206, 212, 218, 0.8);
 }
 body .single-dmg-skin > div .dmg-skin-body {
   background-color: white;
@@ -126,6 +126,19 @@ body .single-dmg-skin.active > div {
 }
 body .single-dmg-skin.active > div .dmg-skin-header {
   background-color: #6cbb3c;
+}
+body .btn-dmg-skin-modal, body .num-selected-skins {
+  border: 2px solid rgba(206, 212, 218, 0.8);
+  background-color: white;
+  transition: all 0.2s;
+}
+body .btn-dmg-skin-modal:hover {
+  background-color: rgba(206, 212, 218, 0.8);
+  transition: all 0.2s;
+}
+body .btn-dmg-skin-modal:hover .num-selected-skins {
+  background-color: rgba(206, 212, 218, 0.8);
+  transition: all 0.2s;
 }
 body .single-social a {
   color: #212529;

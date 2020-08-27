@@ -245,6 +245,24 @@ body.dark-mode {
 		}
 	}
 
+	.btn-dmg-skin-modal, .num-selected-skins {
+		border: 2px solid globals.$dark-mode-grey;
+		background-color: globals.$dark-mode-black-opaque;
+		transition: all 0.2s;
+	}
+
+	.btn-dmg-skin-modal {
+		&:hover {
+			background-color: globals.$dark-mode-grey;
+			transition: all 0.2s;
+
+			.num-selected-skins {
+				background-color: globals.$dark-mode-grey;
+				transition: all 0.2s;
+			}
+		}
+	}
+
 	// About
 	.single-social {
 		a {

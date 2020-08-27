@@ -152,6 +152,19 @@ body.dark-mode .single-dmg-skin.active > div {
 body.dark-mode .single-dmg-skin.active > div .dmg-skin-header {
   background-color: #4aa02c;
 }
+body.dark-mode .btn-dmg-skin-modal, body.dark-mode .num-selected-skins {
+  border: 2px solid #454d55;
+  background-color: black;
+  transition: all 0.2s;
+}
+body.dark-mode .btn-dmg-skin-modal:hover {
+  background-color: #454d55;
+  transition: all 0.2s;
+}
+body.dark-mode .btn-dmg-skin-modal:hover .num-selected-skins {
+  background-color: #454d55;
+  transition: all 0.2s;
+}
 body.dark-mode .single-social a {
   color: rgba(255, 255, 255, 0.8);
 }

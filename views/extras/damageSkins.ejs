@@ -39,17 +39,21 @@
 						<div class="dmg-skin-section px-0 collapse show pt-3" id="skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
 							<div class="d-flex flex-wrap w-100">
 								<% skinsByLetter[letter].forEach(function(skin) { %>
-								<div class="single-dmg-skin cursor-pointer d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" id="skin-num-<%= skin.damageSkinId %>" data-skin-num="<%= skin.damageSkinId %>">
+								<div class="single-dmg-skin cursor-pointer d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" id="skin-num-<%= skin.damageSkinId %>" data-skin-num="<%= skin.damageSkinId %>" data-skin-name="<%= skin.shortName %>">
 									<div class="font-table w-100 d-flex flex-column align-items-center">
 										<div class="dmg-skin-header w-100 d-flex align-items-center font-weight-bold px-3 py-1">
-											<img src="https://mseadmgskins.s3-ap-southeast-1.amazonaws.com/195/icon/0<%= skin.itemId %>.png" class="mr-2">
+											<% if(skin.damageSkinId !== 1338 && skin.damageSkinId !== 1344) { %>
+											<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-2">
+											<% } %>
 											<%= skin.shortName %>
 										</div>
 										<div class="dmg-skin-body w-100 d-flex flex-grow-1 justify-content-center align-items-center px-3 py-2">
 											<% if(skin.damageSkinId === -1) { %>
 											It's invisible. You see no numbers. Move along~
+											<% } else if(skin.damageSkinId === 1011 || skin.name === "???") { %>
+											No sample image available.
 											<% } else { %>
-											<img src="https://mseadmgskins.s3-ap-southeast-1.amazonaws.com/195/sample/0<%= skin.itemId %>.png" class="mh-100 img-fluid">
+											<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.sample.png" class="mh-100 img-fluid">
 											<% } %>
 										</div>
 									</div>
@@ -60,6 +64,32 @@
 					</div>
 					<% }) %>
 				</div>
+			</div>
+		</div>
+	</div>
+	<div class="btn-dmg-skin-modal position-fixed cursor-pointer" data-toggle="modal" data-target="#selected-skins-modal">
+		<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/0/0.icon.png">
+		<div class="font-small num-selected-skins d-flex justify-content-center align-items-center position-absolute">0</div>
+	</div>
+</div>
+
+<div class="modal fade" id="selected-skins-modal" tabindex="-1" role="dialog" aria-labelledby="selectedSkinsModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title font-subheader" id="selectedSkinsModalLabel">Selected Damage Skins</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body font-table">
+				<div id="no-selected-skin-msg">
+					No skins selected. Go add some and they'll appear here!
+				</div>
+				<div id="selected-skins-list"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary">Save changes</button>
 			</div>
 		</div>
 	</div>

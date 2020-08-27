@@ -186,7 +186,7 @@ body {
 			border: 1px solid globals.$light-mode-grey;
 
 			.dmg-skin-header {
-				background-color: globals.$light-mode-light-grey;
+				background-color: globals.$light-mode-grey;
 			}	
 
 			.dmg-skin-body {
@@ -203,6 +203,24 @@ body {
 
 			.dmg-skin-header {
 				background-color: globals.$light-mode-green;
+			}
+		}
+	}
+
+	.btn-dmg-skin-modal, .num-selected-skins {
+		border: 2px solid globals.$light-mode-grey;
+		background-color: globals.$light-mode-white-opaque;
+		transition: all 0.2s;
+	}
+
+	.btn-dmg-skin-modal {
+		&:hover {
+			background-color: globals.$light-mode-grey;
+			transition: all 0.2s;
+
+			.num-selected-skins {
+				background-color: globals.$light-mode-grey;
+				transition: all 0.2s;
 			}
 		}
 	}
