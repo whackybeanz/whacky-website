@@ -182,6 +182,10 @@ body {
 
 		& > tbody {
 			background-color: globals.$light-mode-white-opaque;
+
+			.mobile-th {
+				border: globals.$light-mode-grey;
+			}
 		}
 	}
 
@@ -219,7 +223,7 @@ body {
 		}
 	}
 
-	.btn-dmg-skin-modal, .num-selected-skins {
+	.btn-dmg-skin-modal, #num-selected-skins {
 		border: 2px solid globals.$light-mode-grey;
 		background-color: globals.$light-mode-white-opaque;
 		transition: all 0.2s;
@@ -230,7 +234,7 @@ body {
 			background-color: globals.$light-mode-grey;
 			transition: all 0.2s;
 
-			.num-selected-skins {
+			#num-selected-skins {
 				background-color: globals.$light-mode-grey;
 				transition: all 0.2s;
 			}
@@ -244,6 +248,24 @@ body {
 		&:hover {
 			background-color: globals.$light-mode-grey;
 			transition: background-color 0.2s;
+		}
+	}
+
+	.quick-jump-div {
+		border: 2px solid globals.$light-mode-grey;
+	}
+
+	.dmg-skin-table {
+		& > thead {
+			background-color: globals.$light-mode-light-grey;
+		}
+
+		& > tbody {
+			background-color: globals.$light-mode-white-opaque;
+
+			.mobile-th {
+				border: 1px solid globals.$light-mode-grey;
+			}
 		}
 	}
 

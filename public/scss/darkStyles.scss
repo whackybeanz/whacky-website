@@ -257,7 +257,7 @@ body.dark-mode {
 		}
 	}
 
-	.btn-dmg-skin-modal, .num-selected-skins {
+	.btn-dmg-skin-modal, #num-selected-skins {
 		border: 2px solid globals.$dark-mode-grey;
 		background-color: globals.$dark-mode-black-opaque;
 		transition: all 0.2s;
@@ -268,7 +268,7 @@ body.dark-mode {
 			background-color: globals.$dark-mode-grey;
 			transition: all 0.2s;
 
-			.num-selected-skins {
+			#num-selected-skins {
 				background-color: globals.$dark-mode-grey;
 				transition: all 0.2s;
 			}
@@ -282,6 +282,24 @@ body.dark-mode {
 		&:hover {
 			background-color: globals.$dark-mode-grey;
 			transition: background-color 0.2s;
+		}
+	}
+
+	.quick-jump-div {
+		border: 2px solid globals.$dark-mode-grey;
+	}
+
+	.dmg-skin-table.table-dark {
+		& > thead {
+			background-color: globals.$dark-mode-navy-grey-opaque;
+		}
+
+		& > tbody {
+			background-color: globals.$dark-mode-black-opaque;
+
+			.mobile-th {
+				border: 1px solid globals.$dark-mode-grey;
+			}
 		}
 	}
 

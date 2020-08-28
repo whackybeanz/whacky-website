@@ -2,9 +2,9 @@ var mongoose = require("mongoose");
 
 var damageSkinSchema = new mongoose.Schema({
 	itemId: String,
-	damageSkinId: Number,
+	damageSkinId: { type: Number, index: true },
 	name: String,
-	shortName: String,
+	shortName: { type: String, index: true },
 	letterCategory: String,
 	hasCounter: { type: Boolean, default: false },
 	hasShot: { type: Boolean, default: false },
@@ -16,6 +16,7 @@ var damageSkinSchema = new mongoose.Schema({
 	notes: String,
 
 	// Unit Skins
+	hasRegularSkin: { type: Boolean, default: true },
 	hasUnitSkin: Boolean,
 	unitDamageSkinId: Number,
 	unitItemId: String,

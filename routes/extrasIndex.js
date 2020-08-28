@@ -148,11 +148,11 @@ router.get("/todd-sequence", function(req, res) {
 	})
 })
 
-router.get("/damage-skin", function(req, res) {
-	res.redirect("./damage-skin/1");
+router.get("/damage-skins", function(req, res) {
+	res.redirect("./damage-skins/1");
 })
 
-router.get("/damage-skin/:pageNum", function(req, res) {
+router.get("/damage-skins/:pageNum", function(req, res) {
 	const pageNum = parseInt(req.params.pageNum);
 	const pagesArr = ["???, 0-9, AB", "C", "DEF", "GHI", "JKL", "MNO", "PQR", "S", "TUVWXYZ"];
 
@@ -190,6 +190,38 @@ router.get("/damage-skin/:pageNum", function(req, res) {
 		})
 	} else {
 		console.log("Invalid page number");
+		res.redirect("back");
+	}
+})
+
+router.post("/damage-skin-details", function(req, res) {
+	const selectedSkinNums = JSON.parse(req.body.selectedSkinNums);
+	const MAX_NUM_SKINS = 20;
+	let query = [];
+	let totalLoadedSkins = 0;
+
+	if(Array.isArray(selectedSkinNums)) {
+		selectedSkinNums.forEach(function(skinNum) {
+			if(parseInt(skinNum) && totalLoadedSkins < MAX_NUM_SKINS) {
+				query.push({ "damageSkinId": parseInt(skinNum) });
+				totalLoadedSkins++;
+			}
+		})
+
+		let getDamageSkins = DamageSkin.find({$or: query}).sort({ letterCategory: 1, shortName: 1 });
+
+		getDamageSkins.then(allSkins => {
+			res.locals.extraStylesheet = "extrasStyles";
+			res.locals.section = "extras";
+			res.locals.branch = "damage-skin";
+			res.render("extras/damageSkinDetails", {allSkins: allSkins});
+		})
+		.catch(err => {
+			console.log(err);
+			res.redirect("back");
+		})
+	} else {
+		console.log("Invalid format received");
 		res.redirect("back");
 	}
 })

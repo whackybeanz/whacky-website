@@ -112,6 +112,9 @@ body .todd-table > thead {
 body .todd-table > tbody {
   background-color: white;
 }
+body .todd-table > tbody .mobile-th {
+  border: rgba(206, 212, 218, 0.8);
+}
 body .dmg-skin-section-subheader, body .dmg-skin-section {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
@@ -136,7 +139,7 @@ body .single-dmg-skin.active > div {
 body .single-dmg-skin.active > div .dmg-skin-header {
   background-color: #6cbb3c;
 }
-body .btn-dmg-skin-modal, body .num-selected-skins {
+body .btn-dmg-skin-modal, body #num-selected-skins {
   border: 2px solid rgba(206, 212, 218, 0.8);
   background-color: white;
   transition: all 0.2s;
@@ -145,7 +148,7 @@ body .btn-dmg-skin-modal:hover {
   background-color: rgba(206, 212, 218, 0.8);
   transition: all 0.2s;
 }
-body .btn-dmg-skin-modal:hover .num-selected-skins {
+body .btn-dmg-skin-modal:hover #num-selected-skins {
   background-color: rgba(206, 212, 218, 0.8);
   transition: all 0.2s;
 }
@@ -156,6 +159,18 @@ body .single-selected-skin {
 body .single-selected-skin:hover {
   background-color: rgba(206, 212, 218, 0.8);
   transition: background-color 0.2s;
+}
+body .quick-jump-div {
+  border: 2px solid rgba(206, 212, 218, 0.8);
+}
+body .dmg-skin-table > thead {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+body .dmg-skin-table > tbody {
+  background-color: white;
+}
+body .dmg-skin-table > tbody .mobile-th {
+  border: 1px solid rgba(206, 212, 218, 0.8);
 }
 body .single-social a {
   color: #212529;

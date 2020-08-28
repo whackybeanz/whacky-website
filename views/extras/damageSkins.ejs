@@ -13,9 +13,10 @@
 				</div>
 				<div class="w-100 mb-3">
 					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Info Sheet Details</h2>
-					<p class="w-100 text-justify">The tables below display damage skins sorted alphabetically. All item names are as seen in MapleSEA. However, note that not all skins are available in game -- they may not be released or are upcoming releases. Certain damage skins may have multiple names (commonly as a result of Cash Shop damage skin coupon releases).</p>
 
-					<p class="w-100 text-justify">Each damage skin will show their icon and the sample image (i.e. the digits you see when you hover over a damage skin in game).</p>
+					<p class="w-100 text-justify">All names are as seen in MapleSEA. Note that not all skins are available in game -- they may not be released or are upcoming releases. Damage skins may have multiple names. Click on any damage skin to add it to a "cart" (up to 20). View your currently selected skins by clicking on the bottom right icon in the page. From the "cart", click on 'View all selected skin details' to view the respective skin's details and other notes. <span class="text-danger">Warning: Possibly large data usage</span>.</p>
+
+					<p class="w-100 text-justify mb-4">Many thanks to <a href="https://github.com/IkaEren" target="_blank">Zamiel</a> and <a href="https://github.com/angelsl/reWZ" target="_blank">reWZ</a> for providing damage skin details that made this page a possibility.</p>
 
 					<!--<p class="w-100 text-justify">Also, the visuals for combat message displays - Guard, Miss, Resist, Counter and Block - are only shown if the monster is the one that successfully executed the necessary move to trigger these message displays. It <span class="text-underline">does not</span> affect moves executed by your character that triggers these displays. The character uses combat message displays as seen in Damage Skin - Default.</p>-->
 
@@ -23,7 +24,7 @@
 						<% pagesArr.forEach(function(page, index) { %>
 						<div class="skin-select-div col-4 col-sm-3 col-md-2 col-lg-4 col-xl-2 text-center px-2 mb-3">
 							<div class="single-option-select rounded-sm position-relative py-1 <% if(pageNum-1 === index) { %>active<% } %>">
-								<a href="./maple/extras/damage-skin/<%= index+1 %>" class="stretched-link text-decoration-none"><%= page %></a>
+								<a href="./maple/extras/damage-skins/<%= index+1 %>" class="stretched-link text-decoration-none"><%= page %></a>
 							</div>
 						</div>
 						<% }) %>
@@ -39,13 +40,19 @@
 						<div class="dmg-skin-section px-0 collapse show pt-3" id="skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
 							<div class="d-flex flex-wrap w-100">
 								<% skinsByLetter[letter].forEach(function(skin) { %>
-								<div class="single-dmg-skin cursor-pointer d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" id="skin-num-<%= skin.damageSkinId %>" data-skin-num="<%= skin.damageSkinId %>" data-skin-name="<%= skin.shortName %>">
+								<div class="single-dmg-skin cursor-pointer d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" id="skin-num-<%= skin.damageSkinId %>" data-skin-num="<%= skin.damageSkinId %>" data-skin-name="<%= skin.shortName %>" data-has-regular-skin="<%= skin.hasRegularSkin %>" <% if(skin.hasUnitSkin) { %>data-has-unit-skin="<%= skin.hasUnitSkin %>" data-unit-skin-num="<%= skin.unitDamageSkinId %><% } %>">
 									<div class="font-table w-100 d-flex flex-column align-items-center">
 										<div class="dmg-skin-header w-100 d-flex align-items-center font-weight-bold px-3 py-1">
 											<% if(skin.damageSkinId !== 1338 && skin.damageSkinId !== 1344) { %>
-											<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-2">
+												<% if(skin.hasRegularSkin) { %>
+													<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-1">
+												<% } %>
 											<% } else { %>
-											<div class="empty-box rounded-lg mr-2"></div>
+												<div class="empty-box rounded-lg mr-2"></div>
+											<% } %>
+
+											<% if(skin.hasUnitSkin) { %>
+												<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.icon.png" class="mr-1">
 											<% } %>
 											<%= skin.shortName %>
 										</div>
@@ -55,7 +62,11 @@
 											<% } else if(skin.damageSkinId === 1011 || skin.name === "???") { %>
 											No sample image available.
 											<% } else { %>
-											<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.sample.png" class="mh-100 img-fluid">
+												<% if(skin.hasUnitSkin) { %>
+													<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.sample.png" class="mh-100 img-fluid">
+												<% } else { %>
+													<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.sample.png" class="mh-100 img-fluid">
+												<% } %>
 											<% } %>
 										</div>
 									</div>
@@ -71,7 +82,7 @@
 	</div>
 	<div class="btn-dmg-skin-modal position-fixed cursor-pointer" data-toggle="modal" data-target="#selected-skins-modal">
 		<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/0/0.icon.png">
-		<div class="font-small num-selected-skins d-flex justify-content-center align-items-center position-absolute">0</div>
+		<div class="font-small d-flex justify-content-center align-items-center position-absolute" id="num-selected-skins">0</div>
 	</div>
 </div>
 
@@ -98,7 +109,11 @@
 			<div class="modal-footer" id="selected-skin-options">
 				<div class="w-100 d-flex justify-content-between">
 					<button type="button" class="btn btn-sm btn-outline-danger font-weight-bold" id="btn-remove-all-selected">Remove all</button>
-					<button type="button" class="btn btn-sm btn-outline-info font-weight-bold">View all selected skin details</button>
+
+					<form action="./maple/extras/damage-skin-details" method="POST">
+						<input type="hidden" name="selectedSkinNums" id="skin-num-input">
+						<button type="submit" class="btn btn-sm btn-outline-primary font-weight-bold">View all selected skin details</button>
+					</form>
 				</div>
 			</div>
 		</div>

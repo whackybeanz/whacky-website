@@ -1,5 +1,3 @@
-const MAX_SELECTIONS_ALLOWED = 20;
-
 document.addEventListener("DOMContentLoaded", function(event) { 
 	// Retrieve localstorage list of damage skins and highlight all eligible damage skins on page when page loads
 	// Also load list of selected damage skins into "cart"
@@ -22,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function addListListeners() {
 	const dmgSkinList = Array.from(document.querySelectorAll(".single-dmg-skin"));
+	const MAX_SELECTIONS_ALLOWED = 20;
 
 	dmgSkinList.forEach(function(skin) {
 		skin.addEventListener("click", function() {
@@ -42,7 +41,7 @@ function addListListeners() {
 				// then update displays
 				if(Object.keys(currSelectedSkins).length + 1 <= MAX_SELECTIONS_ALLOWED) {
 					this.classList.add("active");
-					currSelectedSkins[selectedSkinNum] = { name: this.dataset.skinName };
+					currSelectedSkins[selectedSkinNum] = { name: this.dataset.skinName, hasRegularSkin: this.dataset.hasRegularSkin === "true", hasUnitSkin: this.dataset.hasUnitSkin === "true", unitSkinNum: this.dataset.unitSkinNum };
 					localStorage.setItem("selectedSkins", JSON.stringify(currSelectedSkins));
 					updateCartDisplay(currSelectedSkins);
 				}
@@ -90,13 +89,22 @@ function addModalListeners() {
 }
 
 function updateCartDisplay(currSelectedSkins) {
-	document.querySelector(".num-selected-skins").textContent = Object.keys(currSelectedSkins).length;
+	const numSelectedSkins = Object.keys(currSelectedSkins).length;
+
+	document.getElementById("num-selected-skins").textContent = numSelectedSkins;
 	document.getElementById("selected-skins-list").textContent = '';
 
-	if(Object.keys(currSelectedSkins).length > 0) {
+	if(numSelectedSkins > 0) {
 		document.getElementById("no-selected-skin-msg").style.display = "none";
 		document.getElementById("has-selected-skin-msg").style.display = "block";
-		document.getElementById("selected-skin-options").style.display = "block";
+		document.getElementById("selected-skin-options").style.display = "flex";
+
+		if(numSelectedSkins === 20) {
+			document.getElementById("num-selected-skins").classList.add("bg-danger");
+		} else {
+			document.getElementById("num-selected-skins").classList.remove("bg-danger");
+		}
+
 		sortDamageSkinList(currSelectedSkins);
 	} else {
 		document.getElementById("no-selected-skin-msg").style.display = "block";
@@ -107,15 +115,23 @@ function updateCartDisplay(currSelectedSkins) {
 
 function sortDamageSkinList(currSelectedSkins) {
 	let skinsByName = [];
+	let skinsByNum = [];
 
 	Object.keys(currSelectedSkins).forEach(function(skinNum) {
 		if(parseInt(skinNum) !== NaN) {
-			let skinName = currSelectedSkins[skinNum].name;
+			let currSkin = currSelectedSkins[skinNum];
+			let skinName = currSkin.name;
 
 			if(skinName === "???") {
 				skinName = ` ${skinName}`;
 			}
-			skinsByName.push({ skinNum: skinNum, name: skinName });
+
+			if(currSkin.hasUnitSkin) {
+				skinsByName.push({ skinNum: skinNum, name: skinName, hasRegularSkin: currSkin.hasRegularSkin, hasUnitSkin: currSkin.hasUnitSkin, unitSkinNum: currSkin.unitSkinNum });
+			} else {
+				skinsByName.push({ skinNum: skinNum, name: skinName, hasRegularSkin: currSkin.hasRegularSkin });
+			}
+			skinsByNum.push(skinNum);
 		}
 	});
 
@@ -136,31 +152,33 @@ function sortDamageSkinList(currSelectedSkins) {
 		})
 
 		displaySortedSkinList(skinsByName);
+		document.getElementById("skin-num-input").value = JSON.stringify(skinsByNum);
 	}
 }
 
 function displaySortedSkinList(skinsByName) {
-	let numSkinsLoaded = 0;
 	const dmgSkinModal = document.getElementById("selected-skins-list");
 
 	skinsByName.forEach(function(skin) {
-		if(numSkinsLoaded <= MAX_SELECTIONS_ALLOWED) {
-			let imgHtml = "";
+		let imgHtml = "";
 
-			if(skin.skinNum !== '1338' && skin.skinNum !== '1344') {
+		if(skin.skinNum !== '1338' && skin.skinNum !== '1344') {
+			if(skin.hasRegularSkin) {
 				imgHtml = `<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/${skin.skinNum}/${skin.skinNum}.icon.png" class="mr-1">`;
-			} else {
-				imgHtml = `<div class="empty-box rounded-lg mr-1"></div>`
 			}
-
-			let html = `<div class="single-selected-skin-div flex-grow-1 col-12 col-sm-6 px-0 px-sm-1 mb-2" id="selected-skin-${skin.skinNum}" data-skin-num="${skin.skinNum}">
-				<div class="single-selected-skin h-100 w-100 d-flex align-items-center rounded-sm py-1 px-2 cursor-pointer">
-					${imgHtml} ${skin.name}
-				</div>
-			</div>`;
-			dmgSkinModal.insertAdjacentHTML('beforeend', html);
-
-			numSkinsLoaded++;
+		} else {
+			imgHtml = `<div class="empty-box rounded-lg mr-1"></div>`
 		}
+
+		if(skin.hasUnitSkin) {
+			imgHtml += `<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/${skin.skinNum}/${skin.unitSkinNum}-unit.icon.png" class="mr-1">`
+		}
+
+		let html = `<div class="single-selected-skin-div flex-grow-1 col-12 col-sm-6 px-0 px-sm-1 mb-2" id="selected-skin-${skin.skinNum}" data-skin-num="${skin.skinNum}">
+			<div class="single-selected-skin h-100 w-100 d-flex align-items-center rounded-sm py-1 px-2 cursor-pointer">
+				${imgHtml} ${skin.name}
+			</div>
+		</div>`;
+		dmgSkinModal.insertAdjacentHTML('beforeend', html);
 	})
 }
