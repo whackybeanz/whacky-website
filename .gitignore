@@ -1,3 +1,7 @@
+# Ignore images folder
+public/images/
+seeds/
+
 # Logs
 logs
 *.log
