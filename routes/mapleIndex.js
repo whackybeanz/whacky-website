@@ -1,3 +1,4 @@
+var CommonHelper = require("./Helpers/commonHelpers");
 var IconHelper = require("./Helpers/iconHelpers");
 
 var express = require("express");
@@ -19,6 +20,8 @@ router.get("/", function(req, res) {
 			homepageDetails.forEach(function(item) {
 				sections[item.category].push(item);
 			});
+
+			sections["extras"].sort(CommonHelper.sortByName);
 
 			res.locals.section = "maple-index";
 			res.locals.extraStylesheet = "indexStyles";
