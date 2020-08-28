@@ -44,6 +44,8 @@
 										<div class="dmg-skin-header w-100 d-flex align-items-center font-weight-bold px-3 py-1">
 											<% if(skin.damageSkinId !== 1338 && skin.damageSkinId !== 1344) { %>
 											<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-2">
+											<% } else { %>
+											<div class="empty-box rounded-lg mr-2"></div>
 											<% } %>
 											<%= skin.shortName %>
 										</div>
@@ -86,10 +88,18 @@
 				<div id="no-selected-skin-msg">
 					No skins selected. Go add some and they'll appear here!
 				</div>
-				<div id="selected-skins-list"></div>
+				<div id="has-selected-skin-msg">
+					<p class="mb-2">Click/Tap on any damage skin to <span class="text-danger">remove it</span> from selection.</p>
+					<div class="d-flex flex-wrap" id="selected-skins-list">
+
+					</div>
+				</div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">Save changes</button>
+			<div class="modal-footer" id="selected-skin-options">
+				<div class="w-100 d-flex justify-content-between">
+					<button type="button" class="btn btn-sm btn-outline-danger font-weight-bold" id="btn-remove-all-selected">Remove all</button>
+					<button type="button" class="btn btn-sm btn-outline-info font-weight-bold">View all selected skin details</button>
+				</div>
 			</div>
 		</div>
 	</div>

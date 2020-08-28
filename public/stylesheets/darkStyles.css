@@ -94,6 +94,15 @@ body.dark-mode .radio-select-group .form-check .radio-select:hover, body.dark-mo
   background-color: rgba(52, 58, 64, 0.8);
   color: rgba(255, 255, 255, 0.8);
 }
+body.dark-mode .action-button {
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #454d55;
+  transition: background-color 0.2s;
+}
+body.dark-mode .action-button:hover {
+  background-color: #454d55;
+  transition: background-color 0.2s;
+}
 body.dark-mode .index-section-subheader, body.dark-mode .index-section {
   border: 1px solid #454d55;
 }
@@ -164,6 +173,14 @@ body.dark-mode .btn-dmg-skin-modal:hover {
 body.dark-mode .btn-dmg-skin-modal:hover .num-selected-skins {
   background-color: #454d55;
   transition: all 0.2s;
+}
+body.dark-mode .single-selected-skin {
+  border: 1px solid #454d55;
+  transition: background-color 0.2s;
+}
+body.dark-mode .single-selected-skin:hover {
+  background-color: #454d55;
+  transition: background-color 0.2s;
 }
 body.dark-mode .single-social a {
   color: rgba(255, 255, 255, 0.8);

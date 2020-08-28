@@ -159,6 +159,18 @@ body.dark-mode {
 		}
 	}
 
+	// Button
+	.action-button {
+		color: globals.$dark-mode-white;
+		border: 1px solid globals.$dark-mode-grey;
+		transition: background-color 0.2s;
+
+		&:hover {
+			background-color: globals.$dark-mode-grey;
+			transition: background-color 0.2s;
+		}
+	}
+
 	// Maple Index
 	.index-section-subheader, .index-section {
 		border: 1px solid globals.$dark-mode-grey;
@@ -260,6 +272,16 @@ body.dark-mode {
 				background-color: globals.$dark-mode-grey;
 				transition: all 0.2s;
 			}
+		}
+	}
+
+	.single-selected-skin {
+		border: 1px solid globals.$dark-mode-grey;
+		transition: background-color 0.2s;
+
+		&:hover {
+			background-color: globals.$dark-mode-grey;
+			transition: background-color 0.2s;
 		}
 	}
 

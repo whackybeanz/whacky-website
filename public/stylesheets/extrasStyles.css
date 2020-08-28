@@ -23,6 +23,12 @@
   background-color: rgba(255, 0, 0, 0.5);
 }
 
+.empty-box {
+  height: 32px;
+  width: 32px;
+  border: 2px solid white;
+}
+
 .single-dmg-skin > div {
   transition: all 0.2s;
 }
@@ -55,6 +61,9 @@
 
 #selected-skins-modal #selected-skins-list .single-selected-skin:last-child {
   margin-bottom: 0 !important;
+}
+#selected-skins-modal .modal-body {
+  max-height: 300px;
 }
 
 /*# sourceMappingURL=extrasStyles.css.map */

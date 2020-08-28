@@ -109,6 +109,18 @@ body {
 		}
 	}
 
+	// Button
+	.action-button {
+		color: globals.$light-mode-black;
+		border: 1px solid globals.$dark-mode-grey;
+		transition: background-color 0.2s;
+
+		&:hover {
+			background-color: globals.$dark-mode-grey;
+			transition: background-color 0.2s;
+		}
+	}
+
 	// Others
 	.radio-select-group {
 		.form-check {
@@ -222,6 +234,16 @@ body {
 				background-color: globals.$light-mode-grey;
 				transition: all 0.2s;
 			}
+		}
+	}
+
+	.single-selected-skin {
+		border: 1px solid globals.$light-mode-grey;
+		transition: background-color 0.2s;
+
+		&:hover {
+			background-color: globals.$light-mode-grey;
+			transition: background-color 0.2s;
 		}
 	}
 

@@ -65,6 +65,15 @@ body .pagination .page-item .page-link {
 body .pagination .page-item:hover .page-link, body .pagination .page-item.active .page-link {
   background-color: rgba(206, 212, 218, 0.8);
 }
+body .action-button {
+  color: #212529;
+  border: 1px solid #454d55;
+  transition: background-color 0.2s;
+}
+body .action-button:hover {
+  background-color: #454d55;
+  transition: background-color 0.2s;
+}
 body .radio-select-group .form-check .radio-select {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
@@ -139,6 +148,14 @@ body .btn-dmg-skin-modal:hover {
 body .btn-dmg-skin-modal:hover .num-selected-skins {
   background-color: rgba(206, 212, 218, 0.8);
   transition: all 0.2s;
+}
+body .single-selected-skin {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+  transition: background-color 0.2s;
+}
+body .single-selected-skin:hover {
+  background-color: rgba(206, 212, 218, 0.8);
+  transition: background-color 0.2s;
 }
 body .single-social a {
   color: #212529;

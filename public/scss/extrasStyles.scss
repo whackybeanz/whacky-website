@@ -28,6 +28,12 @@
 	}
 }
 
+.empty-box {
+	height: 32px;
+	width: 32px;
+	border: 2px solid globals.$light-mode-white-opaque;
+}	
+
 .single-dmg-skin {
 	& > div {
 		transition: all 0.2s;
@@ -72,5 +78,9 @@
 				margin-bottom: 0 !important;
 			}
 		}
+	}
+
+	.modal-body {
+		max-height: 300px;
 	}
 }
