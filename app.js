@@ -11,7 +11,7 @@ var adminRoutes 	= require("./routes/admin");
 
 var port = process.env.PORT || 3005;
 var databaseUrl = process.env.DATABASEURL || "mongodb://localhost/maple-info";
-mongoose.connect(databaseUrl, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(databaseUrl, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");

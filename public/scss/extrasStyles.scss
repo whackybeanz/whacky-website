@@ -1,5 +1,6 @@
 @use '_global-styles' as globals;
 
+// Boss Crystal List
 .small-boss-square {
 	max-height: 40px;
 }
@@ -20,6 +21,7 @@
 	}
 }
 
+// Todding Sequence
 .todd-item-img-div {
 	height: 35px;
 
@@ -28,13 +30,13 @@
 	}
 }
 
+// Damage skin list
 .empty-box {
 	height: 32px;
 	width: 32px;
 	border: 2px solid globals.$light-mode-white-opaque;
 }	
 
-// Damage skin list
 .single-dmg-skin {
 	& > div {
 		transition: all 0.2s;
