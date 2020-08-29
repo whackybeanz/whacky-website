@@ -164,14 +164,14 @@ function displaySortedSkinList(skinsByName) {
 
 		if(skin.skinNum !== '1338' && skin.skinNum !== '1344') {
 			if(skin.hasRegularSkin) {
-				imgHtml = `<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/${skin.skinNum}/${skin.skinNum}.icon.png" class="mr-1">`;
+				imgHtml = `<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/${skin.skinNum}/${skin.skinNum}.icon.png" class="mr-1">`;
 			}
 		} else {
 			imgHtml = `<div class="empty-box rounded-lg mr-1"></div>`
 		}
 
 		if(skin.hasUnitSkin) {
-			imgHtml += `<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/${skin.skinNum}/${skin.unitSkinNum}-unit.icon.png" class="mr-1">`
+			imgHtml += `<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/${skin.skinNum}/${skin.unitSkinNum}-unit.icon.png" class="mr-1">`;
 		}
 
 		let html = `<div class="single-selected-skin-div flex-grow-1 col-12 col-sm-6 px-0 px-sm-1 mb-2" id="selected-skin-${skin.skinNum}" data-skin-num="${skin.skinNum}">

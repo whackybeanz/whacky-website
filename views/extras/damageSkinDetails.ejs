@@ -23,9 +23,9 @@
 									<div class="single-quick-jump-square d-inline-flex mb-1">
 										<a href=".<%= url %>#ds-table-<%= allSkins[index].damageSkinId %>">
 											<% if(skin.hasUnitSkin) { %>
-												<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.icon.png" class="mb-1 cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="<%= allSkins[index].name %> (Unit)">
+												<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.icon.png" class="mb-1 cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="<%= allSkins[index].name %> (Unit)">
 											<% } else { %>
-												<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mb-1 cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="<%= allSkins[index].name %>">
+												<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mb-1 cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="<%= allSkins[index].name %>">
 											<% } %>
 										</a>
 									</div>
@@ -45,7 +45,7 @@
 											<div class="d-flex flex-column">
 												<% if(skin.hasRegularSkin) { %>
 													<div class="dmg-skin-header d-flex align-items-start mb-1">
-														<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-1">
+														<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-1">
 														<div class="d-flex flex-column">
 															<p class="mb-0"><%= skin.name %></p>
 															<% if(skin.altNames) { %>
@@ -62,7 +62,7 @@
 												<% } %>
 												<% if(skin.hasUnitSkin) { %>
 												<div class="dmg-skin-header d-flex align-items-start">
-													<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.icon.png" class="mr-1">
+													<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.icon.png" class="mr-1">
 													<div>
 														<p class="mb-0"><%= skin.name %> (Unit)</p>
 													</div>
@@ -91,7 +91,7 @@
 														<div class="d-flex justify-content-around flex-wrap align-items-center">
 															<% for(let i = 0; i < 10; i++) { %>
 																<% if(!skin.diffCri1Nums || (skin.diffCri1Nums && skin.diffCri1Nums[i] === "-")) { %>
-																	<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCri1.<%= i %>.png">
+																	<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCri1.<%= i %>.png">
 																<% } %>
 															<% } %>																
 														</div>
@@ -101,38 +101,38 @@
 														<div class="d-flex justify-content-around flex-wrap align-items-center">
 															<% if(skin.isCustomSkin) { %>
 																<% for(let i = 0; i < skin.numAssetsToLoad; i++) { %>
-																<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCustom.NoCri0.<%= i %>.png">
+																<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCustom.NoCri0.<%= i %>.png">
 																<% } %>
 															<% } else { %>
 																<% for(let i = 0; i < 10; i++) { %>
 																	<% if(!skin.diffCri0Nums || (skin.diffCri0Nums && skin.diffCri0Nums[i] === "-")) { %>
-																		<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCri0.<%= i %>.png">
+																		<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCri0.<%= i %>.png">
 																	<% } %>
 																<% } %>
 															<% } %>
 
 															<% if(skin.hasUnitSkin) { %>
-																<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>.NoCustom.NoCri0.3.png">
-																<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>.NoCustom.NoCri0.4.png">
+																<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>.NoCustom.NoCri0.3.png">
+																<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>.NoCustom.NoCri0.4.png">
 															<% } %>
 														</div>
 													<% } %>
 
 													<div class="d-flex justify-content-around flex-wrap align-items-center">
 														<% if(skin.hasEffect) { %>
-															<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCri1.effect2.png">
+															<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCri1.effect2.png">
 														<% } %>
 
 														<% if(skin.hasCounter) { %>
-															<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.counter.png">
+															<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.counter.png">
 														<% } %>
 
-														<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.guard.png">
-														<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.Miss.png">
-														<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.resist.png">
+														<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.guard.png">
+														<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.Miss.png">
+														<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.resist.png">
 
 														<% if(skin.hasShot) { %>
-															<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.shot.png">
+															<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.shot.png">
 														<% } %>
 													</div>
 												</div>
@@ -150,7 +150,7 @@
 														<div class="d-flex justify-content-around flex-wrap align-items-center">
 															<% for(let i = 0; i < 10; i++) { %>
 																<% if(!skin.diffRed1Nums || (skin.diffRed1Nums && skin.diffRed1Nums[i] === "-")) { %>
-																	<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed1.<%= i %>.png">
+																	<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed1.<%= i %>.png">
 																<% } %>
 															<% } %>
 														</div>
@@ -159,19 +159,19 @@
 													<div class="d-flex justify-content-around flex-wrap align-items-center">
 														<% if(skin.isCustomSkin) { %>
 															<% for(let i = 0; i < skin.numAssetsToLoad; i++) { %>
-															<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCustom.NoRed0.<%= i %>.png">
+															<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoCustom.NoRed0.<%= i %>.png">
 															<% } %>
 														<% } else { %>
 															<% for(let i = 0; i < 10; i++) { %>
 																<% if(!skin.diffRed0Nums || (skin.diffRed0Nums && skin.diffRed0Nums[i] === "-")) { %>
-																	<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.<%= i %>.png">
+																	<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.<%= i %>.png">
 																<% } %>
 															<% } %>
 														<% } %>
 
 														<% if(skin.hasUnitSkin) { %>
-															<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>.NoCustom.NoRed0.3.png">
-															<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>.NoCustom.NoRed0.4.png">
+															<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>.NoCustom.NoRed0.3.png">
+															<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>.NoCustom.NoRed0.4.png">
 														<% } %>
 													</div>
 												</div>

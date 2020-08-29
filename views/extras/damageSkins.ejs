@@ -18,8 +18,6 @@
 
 					<p class="w-100 text-justify mb-4">Many thanks to <a href="https://github.com/IkaEren" target="_blank">Zamiel</a> and <a href="https://github.com/angelsl/reWZ" target="_blank">reWZ</a> for providing damage skin details that made this page a possibility.</p>
 
-					<!--<p class="w-100 text-justify">Also, the visuals for combat message displays - Guard, Miss, Resist, Counter and Block - are only shown if the monster is the one that successfully executed the necessary move to trigger these message displays. It <span class="text-underline">does not</span> affect moves executed by your character that triggers these displays. The character uses combat message displays as seen in Damage Skin - Default.</p>-->
-
 					<div class="font-content w-100 d-flex justify-content-start align-items-center flex-wrap mb-4">
 						<% pagesArr.forEach(function(page, index) { %>
 						<div class="skin-select-div col-4 col-sm-3 col-md-2 col-lg-4 col-xl-2 text-center px-2 mb-3">
@@ -45,14 +43,14 @@
 										<div class="dmg-skin-header w-100 d-flex align-items-center font-weight-bold px-3 py-1">
 											<% if(skin.damageSkinId !== 1338 && skin.damageSkinId !== 1344) { %>
 												<% if(skin.hasRegularSkin) { %>
-													<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-1">
+													<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-1">
 												<% } %>
 											<% } else { %>
 												<div class="empty-box rounded-lg mr-2"></div>
 											<% } %>
 
 											<% if(skin.hasUnitSkin) { %>
-												<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.icon.png" class="mr-1">
+												<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.icon.png" class="mr-1">
 											<% } %>
 											<%= skin.shortName %>
 										</div>
@@ -63,9 +61,9 @@
 											No sample image available.
 											<% } else { %>
 												<% if(skin.hasUnitSkin) { %>
-													<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.sample.png" class="mh-100 img-fluid">
+													<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.sample.png" class="mh-100 img-fluid">
 												<% } else { %>
-													<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.sample.png" class="mh-100 img-fluid">
+													<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.sample.png" class="mh-100 img-fluid">
 												<% } %>
 											<% } %>
 										</div>
@@ -81,7 +79,7 @@
 		</div>
 	</div>
 	<div class="btn-dmg-skin-modal position-fixed cursor-pointer" data-toggle="modal" data-target="#selected-skins-modal">
-		<img src="https://damage-skins.s3-ap-southeast-1.amazonaws.com/0/0.icon.png">
+		<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/0/0.icon.png">
 		<div class="font-small d-flex justify-content-center align-items-center position-absolute" id="num-selected-skins">0</div>
 	</div>
 </div>
