@@ -181,7 +181,7 @@ router.get("/damage-skins/:pageNum", function(req, res) {
 
 			res.locals.extraStylesheet = "extrasStyles";
 			res.locals.section = "extras";
-			res.locals.branch = "damage-skin";
+			res.locals.branch = "damage-skins";
 			res.render("extras/damageSkins", {skinsByLetter: skinsByLetter, pageNum: pageNum, pagesArr: pagesArr});
 		})
 		.catch(err => {
@@ -213,7 +213,7 @@ router.post("/damage-skin-details", function(req, res) {
 		getDamageSkins.then(allSkins => {
 			res.locals.extraStylesheet = "extrasStyles";
 			res.locals.section = "extras";
-			res.locals.branch = "damage-skin";
+			res.locals.branch = "damage-skins";
 			res.render("extras/damageSkinDetails", {allSkins: allSkins});
 		})
 		.catch(err => {
