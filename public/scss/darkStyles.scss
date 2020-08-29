@@ -1,7 +1,7 @@
 @use '_global-styles' as globals;
 
 body.dark-mode {
-	background-image: linear-gradient(to bottom, globals.$dark-mode-black, globals.$dark-mode-black), url('../images/dark.jpg');
+	background-image: linear-gradient(to bottom, globals.$dark-mode-black, globals.$dark-mode-black), url('../public-images/dark.jpg');
 	background-color: globals.$dark-mode-black;
 	color: globals.$dark-mode-white;
 
