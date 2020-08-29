@@ -1,4 +1,4 @@
-var IconHelper = require("./Helpers/iconHelpers");
+var IconHelper = require("./helpers/iconHelpers");
 
 var express = require("express");
 var router 	= express.Router();
