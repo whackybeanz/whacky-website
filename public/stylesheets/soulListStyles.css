@@ -12,18 +12,18 @@
 .soul-img .soul-ui-normal {
   width: 123.5px;
   height: 16px;
-  background-image: url("../images/souls/soul-ui-normal.png");
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/souls/soul-ui-normal.png");
 }
 .soul-img .soul-ui-normal:hover, .soul-img .soul-ui-normal.active {
-  background-image: url("../images/souls/soul-ui-normal-hover.png");
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/souls/soul-ui-normal-hover.png");
 }
 .soul-img .soul-ui-hidden {
   width: 123.5px;
   height: 16px;
-  background-image: url("../images/souls/soul-ui-hidden.png");
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/souls/soul-ui-hidden.png");
 }
 .soul-img .soul-ui-hidden:hover, .soul-img .soul-ui-hidden.active {
-  background-image: url("../images/souls/soul-ui-hidden-hover.png");
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/souls/soul-ui-hidden-hover.png");
 }
 .soul-img .soul-caption-div {
   bottom: 5px;

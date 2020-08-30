@@ -181,10 +181,10 @@ body .single-social a:hover, body .single-social a.active {
   font-weight: bold;
 }
 body .about-logo.gmail-logo {
-  background-image: url("../images/logos/gmail-logo-light.png");
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/gmail-logo-light.png");
 }
 body .about-logo.youtube-logo {
-  background-image: url("../images/logos/youtube-logo-light.png");
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/youtube-logo-light.png");
 }
 body .horz-partition {
   border-top: 1px solid rgba(206, 212, 218, 0.8);

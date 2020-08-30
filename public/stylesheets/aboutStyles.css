@@ -29,7 +29,7 @@
   max-height: 30px;
 }
 .single-social .single-logo-div .about-logo.discord-logo {
-  background-image: url("../images/logos/discord.svg");
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/discord.svg");
 }
 .single-social .single-logo-div .horz-partition {
   width: 75px;
