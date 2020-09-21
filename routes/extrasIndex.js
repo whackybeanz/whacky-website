@@ -194,7 +194,12 @@ router.get("/damage-skins/:pageNum", function(req, res) {
 	}
 })
 
+router.get("/damage-skin-details", function(req, res) {
+	res.redirect("back");
+})
+
 router.post("/damage-skin-details", function(req, res) {
+	const prevUrl = req.header("Referer") || "./maple/extras/damage-skins";
 	const selectedSkinNums = JSON.parse(req.body.selectedSkinNums);
 	const MAX_NUM_SKINS = 20;
 	let query = [];
@@ -214,7 +219,7 @@ router.post("/damage-skin-details", function(req, res) {
 			res.locals.extraStylesheet = "extrasStyles";
 			res.locals.section = "extras";
 			res.locals.branch = "damage-skins";
-			res.render("extras/damageSkinDetails", {allSkins: allSkins});
+			res.render("extras/damageSkinDetails", {allSkins: allSkins, prevUrl: prevUrl});
 		})
 		.catch(err => {
 			console.log(err);
@@ -224,6 +229,23 @@ router.post("/damage-skin-details", function(req, res) {
 		console.log("Invalid format received");
 		res.redirect("back");
 	}
+})
+
+router.get("/damage-skin-details/:skinNum", function(req, res) {
+	const skinNum = req.params.skinNum;
+	const prevUrl = req.header("Referer") || "./maple/extras/damage-skins";
+
+	DamageSkin.find({damageSkinId: skinNum}, function(err, allSkins) {
+		if(err) {
+			console.log(err);
+			res.redirect("back");
+		} else {
+			res.locals.extraStylesheet = "extrasStyles";
+			res.locals.section = "extras";
+			res.locals.branch = "damage-skins";
+			res.render("extras/damageSkinDetails", {allSkins: allSkins, prevUrl: prevUrl});
+		}
+	})
 })
 
 module.exports = router;

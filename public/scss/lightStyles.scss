@@ -284,6 +284,19 @@ body {
 			background-color: globals.$light-mode-grey;
 			transition: background-color 0.2s;
 		}
+
+		.remove-selected-dmg-skin-btn {
+			border: 1px solid globals.$light-mode-grey;
+			background-color: globals.$light-mode-white-opaque;
+			transition: all 0.2s;
+			color: globals.$red;
+
+			&:hover {
+				transition: all 0.2s;
+				color: globals.$light-mode-white-opaque;
+				background-color: globals.$red;
+			}
+		}
 	}
 
 	.quick-jump-div {

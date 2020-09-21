@@ -328,6 +328,19 @@ body.dark-mode {
 			background-color: globals.$dark-mode-grey;
 			transition: background-color 0.2s;
 		}
+
+		.remove-selected-dmg-skin-btn {
+			border: 1px solid globals.$dark-mode-grey;
+			background-color: globals.$dark-mode-black-opaque;
+			transition: all 0.2s;
+			color: globals.$red;
+			
+			&:hover {
+				transition: all 0.2s;
+				color: globals.$dark-mode-black;
+				background-color: globals.$red;
+			}
+		}
 	}
 
 	.quick-jump-div {

@@ -234,6 +234,17 @@ body.dark-mode .single-selected-skin:hover {
   background-color: #454d55;
   transition: background-color 0.2s;
 }
+body.dark-mode .single-selected-skin .remove-selected-dmg-skin-btn {
+  border: 1px solid #454d55;
+  background-color: black;
+  transition: all 0.2s;
+  color: #dc3545;
+}
+body.dark-mode .single-selected-skin .remove-selected-dmg-skin-btn:hover {
+  transition: all 0.2s;
+  color: rgba(0, 0, 0, 0.8);
+  background-color: #dc3545;
+}
 body.dark-mode .quick-jump-div {
   border: 2px solid #454d55;
 }

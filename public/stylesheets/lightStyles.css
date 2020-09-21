@@ -187,6 +187,17 @@ body .single-selected-skin:hover {
   background-color: rgba(206, 212, 218, 0.8);
   transition: background-color 0.2s;
 }
+body .single-selected-skin .remove-selected-dmg-skin-btn {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+  background-color: white;
+  transition: all 0.2s;
+  color: #dc3545;
+}
+body .single-selected-skin .remove-selected-dmg-skin-btn:hover {
+  transition: all 0.2s;
+  color: white;
+  background-color: #dc3545;
+}
 body .quick-jump-div {
   border: 2px solid rgba(206, 212, 218, 0.8);
 }

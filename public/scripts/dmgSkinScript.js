@@ -1,6 +1,6 @@
+// On DOM load, retrieve localstorage list of damage skins and highlight all eligible damage skins on page when page loads
+// Also load list of selected damage skins into "cart"
 document.addEventListener("DOMContentLoaded", function(event) { 
-	// Retrieve localstorage list of damage skins and highlight all eligible damage skins on page when page loads
-	// Also load list of selected damage skins into "cart"
 	let currSelectedSkins = JSON.parse(localStorage.getItem("selectedSkins")) || {};
 	
 	Object.keys(currSelectedSkins).forEach(function(skinNum) {
@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	addModalListeners();
 });
 
+// To every damage skin present on page, add listeners to view/add/remove buttons
 function addListListeners() {
 	const addDmgSkinButtonList = Array.from(document.querySelectorAll(".single-dmg-skin .add-dmg-skin-btn"));
 	const removeDmgSkinButtonList = Array.from(document.querySelectorAll(".single-dmg-skin .remove-dmg-skin-btn"));
@@ -29,18 +30,28 @@ function addListListeners() {
 		addSkinButton.addEventListener("click", function() {
 			const skinElem = this.parentNode.parentNode.parentNode.parentNode;
 			let currSelectedSkins = JSON.parse(localStorage.getItem("selectedSkins")) || {};
-			//const activeSkins = document.querySelectorAll(".single-dmg-skin.active");
 			const selectedSkinNum = skinElem.dataset.skinNum;
 
 			// If addition doesn't exceed allowed maximum, activate item, add to current selected skins object and save to localstorage
 			// then update displays
 			if(Object.keys(currSelectedSkins).length + 1 <= MAX_SELECTIONS_ALLOWED) {
+				// Activate skin on page
 				skinElem.classList.add("active");
-				currSelectedSkins[selectedSkinNum] = { name: skinElem.dataset.skinName, hasRegularSkin: skinElem.dataset.hasRegularSkin === "true", hasUnitSkin: skinElem.dataset.hasUnitSkin === "true", unitSkinNum: skinElem.dataset.unitSkinNum };
+
+				// Add skin to localstorage
+				currSelectedSkins[selectedSkinNum] = { 
+					name: skinElem.dataset.skinName, 
+					hasRegularSkin: skinElem.dataset.hasRegularSkin === "true", 
+					hasUnitSkin: skinElem.dataset.hasUnitSkin === "true", 
+					unitSkinNum: skinElem.dataset.unitSkinNum 
+				};
 				localStorage.setItem("selectedSkins", JSON.stringify(currSelectedSkins));
 				
+				// Toggle displays for add/remove buttons
 				this.classList.remove("d-flex");
 				this.nextSibling.nextSibling.classList.add("d-flex");
+
+				// Flash modal button for attention
 				let skinModal = document.querySelector(".btn-dmg-skin-modal");
 				skinModal.classList.add("flash");
 				window.setTimeout(function(){
@@ -49,6 +60,7 @@ function addListListeners() {
 
 				updateCartDisplay(currSelectedSkins);
 			} else {
+				// Flash modal button red for attention
 				let skinModal = document.querySelector(".btn-dmg-skin-modal");
 				skinModal.classList.add("flash-danger");
 				window.setTimeout(function(){
@@ -65,12 +77,15 @@ function addListListeners() {
 			const selectedSkinNum = skinElem.dataset.skinNum;
 
 			if(skinElem.classList.contains("active")) {
+				// Deactivate skin on page
 				skinElem.classList.remove("active");
 
-				// Remove selected damage skin from localstorage, remove from cart list, update displays
+				// Remove selected damage skin from localstorage, remove from cart list
 				delete currSelectedSkins[selectedSkinNum];
 				localStorage.setItem("selectedSkins", JSON.stringify(currSelectedSkins));
 				document.getElementById(`selected-skin-${selectedSkinNum}`).remove();
+
+				// Toggle displays for add/remove buttons
 				this.classList.remove("d-flex");
 				this.previousSibling.previousSibling.classList.add("d-flex");
 				updateCartDisplay(currSelectedSkins);
@@ -83,16 +98,20 @@ function addModalListeners() {
 	document.addEventListener('click', function(event) {
 		let currSelectedSkins = JSON.parse(localStorage.getItem("selectedSkins")) || {};
 
-		// Remove/deactivate damage skins when clicked within "cart"
-		if(event.target && event.target.classList.contains("single-selected-skin")) {
-			const listItemToRemove = document.getElementById(event.target.parentNode.id);
+		// Due to dynamic element nature, check if event.target matches delete button inside modal
+		if(event.target && event.target.classList.contains("remove-selected-dmg-skin-btn")) {
+			const listItemToRemove = document.getElementById(event.target.parentNode.parentNode.id);
 			const listItemSkinNum = listItemToRemove.dataset.skinNum;
 			const dmgSkinToDeactivate = document.getElementById(`skin-num-${listItemSkinNum}`);
 
+			// If skin exists on current page, deactivate skin and toggle add/remove button displays
 			if(dmgSkinToDeactivate) {
 				dmgSkinToDeactivate.classList.remove("active");
+				dmgSkinToDeactivate.querySelector(".add-dmg-skin-btn").classList.add("d-flex");
+				dmgSkinToDeactivate.querySelector(".remove-dmg-skin-btn").classList.remove("d-flex");
 			}
 
+			// Remove skin from localstorage and save, then remove element from modal
 			delete currSelectedSkins[listItemSkinNum];
 			localStorage.setItem("selectedSkins", JSON.stringify(currSelectedSkins));
 			listItemToRemove.remove();
@@ -102,10 +121,10 @@ function addModalListeners() {
 
 	// Remove all selected from cart, deactivate all elements
 	document.getElementById("btn-remove-all-selected").addEventListener("click", function() {
-		// Remove from cart
+		// Replace cart contents with empty content
 		document.getElementById("selected-skins-list").textContent = '';
 
-		// Remove from localstorage
+		// Remove all selected items from localstorage
 		localStorage.setItem("selectedSkins", JSON.stringify({}));
 		updateCartDisplay({});
 
@@ -122,14 +141,19 @@ function addModalListeners() {
 function updateCartDisplay(currSelectedSkins) {
 	const numSelectedSkins = Object.keys(currSelectedSkins).length;
 
+	// Updates the displayed numerical value on the cart
+	// Empty cart temporarily (for sorting purposes)
 	document.getElementById("num-selected-skins").textContent = numSelectedSkins;
 	document.getElementById("selected-skins-list").textContent = '';
 
 	if(numSelectedSkins > 0) {
+		// If there is at least 1 skin in cart, remove all displays related to "no damage skin in cart"
+		// Display messages on how to use cart functions
 		document.getElementById("no-selected-skin-msg").style.display = "none";
 		document.getElementById("has-selected-skin-msg").style.display = "block";
 		document.getElementById("selected-skin-options").style.display = "flex";
 
+		// Depending on number of selected skins, toggle red font display (for max skins selected)
 		if(numSelectedSkins === 20) {
 			document.getElementById("num-selected-skins").classList.add("text-danger", "font-weight-bold");
 		} else {
@@ -154,6 +178,7 @@ function sortDamageSkinList(currSelectedSkins) {
 			let currSkin = currSelectedSkins[skinNum];
 			let skinName = currSkin.name;
 
+			// Extra spacing for accurate ASCII sorting (spaces take priority)
 			if(skinName === "???") {
 				skinName = ` ${skinName}`;
 			}
@@ -167,6 +192,8 @@ function sortDamageSkinList(currSelectedSkins) {
 		}
 	});
 
+	// Sort skins alphabetically (by ASCII value) and update cart display with sorted list
+	// Fill hidden input field with selected skin numbers
 	if(skinsByName.length > 0) {
 		skinsByName.sort((a, b) => {
 			let nameA = a.name.toUpperCase();
@@ -203,8 +230,11 @@ function displaySortedSkinList(skinsByName) {
 		}
 
 		let html = `<div class="single-selected-skin-div flex-grow-1 col-12 col-sm-6 px-0 px-sm-1 mb-2" id="selected-skin-${skin.skinNum}" data-skin-num="${skin.skinNum}">
-			<div class="single-selected-skin h-100 w-100 d-flex align-items-center rounded-sm py-1 px-2 cursor-pointer">
-				${imgHtml} ${skin.name}
+			<div class="single-selected-skin h-100 w-100 d-flex align-items-center rounded-sm py-1 px-2 position-relative">
+				<div>${imgHtml} ${skin.name}</div>
+				<div class="btn btn-sm btn-outline-danger remove-selected-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm position-absolute" data-toggle="tooltip" data-placement="bottom" title="Remove from cart">
+					<i class="fas fa-minus pointer-events-none"></i>
+				</div>
 			</div>
 		</div>`;
 		dmgSkinModal.insertAdjacentHTML('beforeend', html);

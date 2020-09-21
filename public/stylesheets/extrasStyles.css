@@ -85,6 +85,11 @@
 #selected-skins-modal #selected-skins-list .single-selected-skin:last-child {
   margin-bottom: 0 !important;
 }
+#selected-skins-modal #selected-skins-list .single-selected-skin .remove-selected-dmg-skin-btn {
+  height: 30px;
+  width: 30px;
+  right: 5px;
+}
 #selected-skins-modal .modal-body {
   max-height: 300px;
 }

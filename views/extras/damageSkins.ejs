@@ -14,9 +14,12 @@
 				<div class="w-100 mb-3">
 					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Info Sheet Details</h2>
 
-					<p class="w-100 text-justify">All names are as seen in MapleSEA. Note that not all skins are available in game -- they may not be released or are upcoming releases. Damage skins may have multiple names. Click on any damage skin to add it to a "cart" (up to 20). View your currently selected skins by clicking on the bottom right icon in the page. From the "cart", click on 'View all selected skin details' to view the respective skin's details and other notes. <span class="text-danger">Warning: Possibly large data usage</span>.</p>
+					<p class="w-100 text-justify">All names are as seen in MapleSEA. Note that not all skins are available in game -- they may not be released or are upcoming releases. Damage skins may have multiple names. Many thanks to <a href="https://github.com/IkaEren" target="_blank">Zamiel</a> and <a href="https://github.com/angelsl/reWZ" target="_blank">reWZ</a> for providing damage skin details that made this page a possibility.</p>
 
-					<p class="w-100 text-justify mb-4">Many thanks to <a href="https://github.com/IkaEren" target="_blank">Zamiel</a> and <a href="https://github.com/angelsl/reWZ" target="_blank">reWZ</a> for providing damage skin details that made this page a possibility.</p>
+					<ul class="px-0 mb-4">
+						<p class="mb-1"><i class="fas fa-eye"></i> : View respective damage skin details</p>
+						<p><i class="fas fa-plus"></i> / <i class="fas fa-minus"></i> : Add/Remove selected damage skin from "cart" (up to 20; bottom right icon)</p>
+					</ul>
 
 					<div class="font-content w-100 d-flex justify-content-start align-items-center flex-wrap mb-4">
 						<% pagesArr.forEach(function(page, index) { %>
@@ -63,13 +66,13 @@
 												<% } %>
 											<% } %>
 											<div class="dmg-skin-tools position-absolute">
-												<div class="btn btn-sm view-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm">
+												<a href="./maple/extras/damage-skin-details/<%= skin.damageSkinId %>" class="btn btn-sm view-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="View damage skin">
 													<i class="fas fa-eye"></i>
-												</div>
-												<div class="btn btn-sm add-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm">
+												</a>
+												<div class="btn btn-sm add-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="Add to cart">
 													<i class="fas fa-plus"></i>
 												</div>
-												<div class="btn btn-sm btn-outline-danger remove-dmg-skin-btn justify-content-center align-items-center rounded-sm">
+												<div class="btn btn-sm btn-outline-danger remove-dmg-skin-btn justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="Remove from cart">
 													<i class="fas fa-minus"></i>
 												</div>
 											</div>
@@ -105,7 +108,7 @@
 					No skins selected. Go add some and they'll appear here!
 				</div>
 				<div id="has-selected-skin-msg">
-					<p class="mb-2">Click/Tap on any damage skin to <span class="text-danger">remove it</span> from selection.</p>
+					Click on "View all selected skin details" to view your selected damage skins' details and other notes. <span class="text-danger">Warning: Possibly large data usage</span>.</p>
 					<div class="d-flex flex-wrap" id="selected-skins-list">
 
 					</div>

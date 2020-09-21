@@ -104,6 +104,10 @@
   height: 25px;
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 /**********************
 
 	HTML Document
