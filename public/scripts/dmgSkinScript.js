@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 			if(elem) {
 				elem.classList.add("active");
+				elem.querySelector(".add-dmg-skin-btn").classList.remove("d-flex");
+				elem.querySelector(".remove-dmg-skin-btn").classList.add("d-flex");
 			}
 		}
 	})
@@ -19,32 +21,59 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function addListListeners() {
-	const dmgSkinList = Array.from(document.querySelectorAll(".single-dmg-skin"));
+	const addDmgSkinButtonList = Array.from(document.querySelectorAll(".single-dmg-skin .add-dmg-skin-btn"));
+	const removeDmgSkinButtonList = Array.from(document.querySelectorAll(".single-dmg-skin .remove-dmg-skin-btn"));
 	const MAX_SELECTIONS_ALLOWED = 20;
 
-	dmgSkinList.forEach(function(skin) {
-		skin.addEventListener("click", function() {
+	addDmgSkinButtonList.forEach(function(addSkinButton) {
+		addSkinButton.addEventListener("click", function() {
+			const skinElem = this.parentNode.parentNode.parentNode.parentNode;
 			let currSelectedSkins = JSON.parse(localStorage.getItem("selectedSkins")) || {};
-			const activeSkins = document.querySelectorAll(".single-dmg-skin.active");
-			const selectedSkinNum = this.dataset.skinNum;
+			//const activeSkins = document.querySelectorAll(".single-dmg-skin.active");
+			const selectedSkinNum = skinElem.dataset.skinNum;
 
-			if(this.classList.contains("active")) {
-				this.classList.remove("active");
+			// If addition doesn't exceed allowed maximum, activate item, add to current selected skins object and save to localstorage
+			// then update displays
+			if(Object.keys(currSelectedSkins).length + 1 <= MAX_SELECTIONS_ALLOWED) {
+				skinElem.classList.add("active");
+				currSelectedSkins[selectedSkinNum] = { name: skinElem.dataset.skinName, hasRegularSkin: skinElem.dataset.hasRegularSkin === "true", hasUnitSkin: skinElem.dataset.hasUnitSkin === "true", unitSkinNum: skinElem.dataset.unitSkinNum };
+				localStorage.setItem("selectedSkins", JSON.stringify(currSelectedSkins));
+				
+				this.classList.remove("d-flex");
+				this.nextSibling.nextSibling.classList.add("d-flex");
+				let skinModal = document.querySelector(".btn-dmg-skin-modal");
+				skinModal.classList.add("flash");
+				window.setTimeout(function(){
+					skinModal.classList.remove("flash");
+				}, 500)
+
+				updateCartDisplay(currSelectedSkins);
+			} else {
+				let skinModal = document.querySelector(".btn-dmg-skin-modal");
+				skinModal.classList.add("flash-danger");
+				window.setTimeout(function(){
+					skinModal.classList.remove("flash-danger");
+				}, 500)
+			}
+		})
+	})
+
+	removeDmgSkinButtonList.forEach(function(removeSkinButton) {
+		removeSkinButton.addEventListener("click", function() {
+			const skinElem = this.parentNode.parentNode.parentNode.parentNode;
+			let currSelectedSkins = JSON.parse(localStorage.getItem("selectedSkins")) || {};
+			const selectedSkinNum = skinElem.dataset.skinNum;
+
+			if(skinElem.classList.contains("active")) {
+				skinElem.classList.remove("active");
 
 				// Remove selected damage skin from localstorage, remove from cart list, update displays
 				delete currSelectedSkins[selectedSkinNum];
 				localStorage.setItem("selectedSkins", JSON.stringify(currSelectedSkins));
 				document.getElementById(`selected-skin-${selectedSkinNum}`).remove();
+				this.classList.remove("d-flex");
+				this.previousSibling.previousSibling.classList.add("d-flex");
 				updateCartDisplay(currSelectedSkins);
-			} else {
-				// If addition doesn't exceed allowed maximum, activate item, add to current selected skins object and save to localstorage
-				// then update displays
-				if(Object.keys(currSelectedSkins).length + 1 <= MAX_SELECTIONS_ALLOWED) {
-					this.classList.add("active");
-					currSelectedSkins[selectedSkinNum] = { name: this.dataset.skinName, hasRegularSkin: this.dataset.hasRegularSkin === "true", hasUnitSkin: this.dataset.hasUnitSkin === "true", unitSkinNum: this.dataset.unitSkinNum };
-					localStorage.setItem("selectedSkins", JSON.stringify(currSelectedSkins));
-					updateCartDisplay(currSelectedSkins);
-				}
 			}
 		})
 	})
@@ -84,6 +113,8 @@ function addModalListeners() {
 		const activeSkins = document.querySelectorAll(".single-dmg-skin.active");
 		activeSkins.forEach(function(node) {
 			node.classList.remove("active");
+			node.querySelector(".add-dmg-skin-btn").classList.add("d-flex");
+			node.querySelector(".remove-dmg-skin-btn").classList.remove("d-flex");
 		})
 	})
 }
@@ -100,9 +131,9 @@ function updateCartDisplay(currSelectedSkins) {
 		document.getElementById("selected-skin-options").style.display = "flex";
 
 		if(numSelectedSkins === 20) {
-			document.getElementById("num-selected-skins").classList.add("bg-danger");
+			document.getElementById("num-selected-skins").classList.add("text-danger", "font-weight-bold");
 		} else {
-			document.getElementById("num-selected-skins").classList.remove("bg-danger");
+			document.getElementById("num-selected-skins").classList.remove("text-danger", "font-weight-bold");
 		}
 
 		sortDamageSkinList(currSelectedSkins);
@@ -110,6 +141,7 @@ function updateCartDisplay(currSelectedSkins) {
 		document.getElementById("no-selected-skin-msg").style.display = "block";
 		document.getElementById("has-selected-skin-msg").style.display = "none";
 		document.getElementById("selected-skin-options").style.display = "none";
+		document.getElementById("num-selected-skins").classList.remove("text-danger", "font-weight-bold");
 	}
 }
 
@@ -162,12 +194,8 @@ function displaySortedSkinList(skinsByName) {
 	skinsByName.forEach(function(skin) {
 		let imgHtml = "";
 
-		if(skin.skinNum !== '1338' && skin.skinNum !== '1344') {
-			if(skin.hasRegularSkin) {
-				imgHtml = `<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/${skin.skinNum}/${skin.skinNum}.icon.png" class="mr-1">`;
-			}
-		} else {
-			imgHtml = `<div class="empty-box rounded-lg mr-1"></div>`
+		if(skin.hasRegularSkin) {
+			imgHtml = `<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/${skin.skinNum}/${skin.skinNum}.icon.png" class="mr-1">`;
 		}
 
 		if(skin.hasUnitSkin) {

@@ -33,7 +33,6 @@
 									<br/>
 									<% } %>
 								<% }) %>
-								<div class="flex-fill"></div>
 							</div>
 						</div>
 
@@ -127,9 +126,13 @@
 															<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.counter.png">
 														<% } %>
 
-														<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.guard.png">
-														<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.Miss.png">
-														<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.resist.png">
+														<% if(skin.damageSkinId === 1344) { %>
+															<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.counter.png">
+														<% } else { %>
+															<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.guard.png">
+															<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.Miss.png">
+															<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.resist.png">
+														<% } %>
 
 														<% if(skin.hasShot) { %>
 															<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.NoRed0.shot.png">

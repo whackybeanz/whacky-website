@@ -47,6 +47,20 @@
 
 		.dmg-skin-body {
 			height: 150px;	
+
+			.dmg-skin-tools {
+				bottom: 5px;
+				right: 5px;
+
+				.view-dmg-skin-btn, .add-dmg-skin-btn, .remove-dmg-skin-btn {
+					height: 30px;
+					width: 30px;
+				}
+
+				.add-dmg-skin-btn, .remove-dmg-skin-btn {
+					display: none;
+				}
+			}
 		}
 	}
 
@@ -64,6 +78,22 @@
 	right: 1rem;
 	border-radius: 50%;
 	padding: 8px;
+
+	&.flash {
+		animation: flash 0.5s;
+
+		#num-selected-skins {
+			animation: flash 0.5s;			
+		}
+	}
+
+	&.flash-danger {
+		animation: flash-danger 0.5s;
+
+		#num-selected-skins {
+			animation: flash-danger 0.5s;			
+		}
+	}
 
 	#num-selected-skins {
 		top: -10px;

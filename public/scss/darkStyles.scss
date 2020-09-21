@@ -241,11 +241,42 @@ body.dark-mode {
 
 			.dmg-skin-body {
 				background-color: globals.$dark-mode-black-opaque;
-			}
-		}
 
-		&:hover > div {
-			border: 1px solid globals.$dark-mode-green;
+				.view-dmg-skin-btn, .add-dmg-skin-btn, .remove-dmg-skin-btn {
+					border: 1px solid globals.$dark-mode-grey;
+					background-color: globals.$dark-mode-black-opaque;
+					transition: all 0.2s;
+
+					&:hover {
+						transition: all 0.2s;
+						color: globals.$dark-mode-black;
+					}
+				}
+
+				.view-dmg-skin-btn {
+					color: globals.$dark-mode-white;
+
+					&:hover {
+						background-color: globals.$dark-mode-white;
+					}
+				}
+
+				.add-dmg-skin-btn {
+					color: globals.$dark-mode-green;
+
+					&:hover {
+						background-color: globals.$dark-mode-green;
+					}
+				}
+
+				.remove-dmg-skin-btn {
+					color: globals.$red;
+					
+					&:hover {
+						background-color: globals.$red;
+					}
+				}
+			}
 		}
 
 		&.active > div {
@@ -273,6 +304,20 @@ body.dark-mode {
 				transition: all 0.2s;
 			}
 		}
+	}
+
+	@keyframes flash {
+		0% { background-color: globals.$dark-mode-black-opaque; }
+		40% { background-color: globals.$dark-mode-green; }
+		60% { background-color: globals.$dark-mode-green; }
+		100% { background-color: globals.$dark-mode-black-opaque; }
+	}
+
+	@keyframes flash-danger {
+		0% { background-color: globals.$dark-mode-black-opaque; }
+		40% { background-color: globals.$red; }
+		60% { background-color: globals.$red; }
+		100% { background-color: globals.$dark-mode-black-opaque; }
 	}
 
 	.single-selected-skin {

@@ -130,8 +130,32 @@ body .single-dmg-skin > div .dmg-skin-header {
 body .single-dmg-skin > div .dmg-skin-body {
   background-color: white;
 }
-body .single-dmg-skin:hover > div {
-  border: 1px solid #6cbb3c;
+body .single-dmg-skin > div .dmg-skin-body .view-dmg-skin-btn, body .single-dmg-skin > div .dmg-skin-body .add-dmg-skin-btn, body .single-dmg-skin > div .dmg-skin-body .remove-dmg-skin-btn {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+  background-color: white;
+  transition: all 0.2s;
+}
+body .single-dmg-skin > div .dmg-skin-body .view-dmg-skin-btn:hover, body .single-dmg-skin > div .dmg-skin-body .add-dmg-skin-btn:hover, body .single-dmg-skin > div .dmg-skin-body .remove-dmg-skin-btn:hover {
+  transition: all 0.2s;
+  color: white;
+}
+body .single-dmg-skin > div .dmg-skin-body .view-dmg-skin-btn {
+  color: #212529;
+}
+body .single-dmg-skin > div .dmg-skin-body .view-dmg-skin-btn:hover {
+  background-color: #212529;
+}
+body .single-dmg-skin > div .dmg-skin-body .add-dmg-skin-btn {
+  color: #6cbb3c;
+}
+body .single-dmg-skin > div .dmg-skin-body .add-dmg-skin-btn:hover {
+  background-color: #6cbb3c;
+}
+body .single-dmg-skin > div .dmg-skin-body .remove-dmg-skin-btn {
+  color: #dc3545;
+}
+body .single-dmg-skin > div .dmg-skin-body .remove-dmg-skin-btn:hover {
+  background-color: #dc3545;
 }
 body .single-dmg-skin.active > div {
   border: 1px solid #6cbb3c;
@@ -143,6 +167,9 @@ body .btn-dmg-skin-modal, body #num-selected-skins {
   border: 2px solid rgba(206, 212, 218, 0.8);
   background-color: white;
   transition: all 0.2s;
+}
+body .btn-dmg-skin-modal.flash {
+  background-color: #6cbb3c;
 }
 body .btn-dmg-skin-modal:hover {
   background-color: rgba(206, 212, 218, 0.8);

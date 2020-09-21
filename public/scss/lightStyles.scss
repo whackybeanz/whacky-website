@@ -207,11 +207,42 @@ body {
 
 			.dmg-skin-body {
 				background-color: globals.$light-mode-white-opaque;
-			}
-		}
 
-		&:hover > div {
-			border: 1px solid globals.$light-mode-green;
+				.view-dmg-skin-btn, .add-dmg-skin-btn, .remove-dmg-skin-btn {
+					border: 1px solid globals.$light-mode-grey;
+					background-color: globals.$light-mode-white-opaque;
+					transition: all 0.2s;
+
+					&:hover {
+						transition: all 0.2s;
+						color: globals.$light-mode-white-opaque;
+					}
+				}
+
+				.view-dmg-skin-btn {
+					color: globals.$light-mode-black;
+
+					&:hover {
+						background-color: globals.$light-mode-black;
+					}
+				}
+
+				.add-dmg-skin-btn {
+					color: globals.$light-mode-green;
+
+					&:hover {
+						background-color: globals.$light-mode-green;
+					}
+				}
+
+				.remove-dmg-skin-btn {
+					color: globals.$red;
+					
+					&:hover {
+						background-color: globals.$red;
+					}
+				}
+			}
 		}
 
 		&.active > div {
@@ -230,6 +261,10 @@ body {
 	}
 
 	.btn-dmg-skin-modal {
+		&.flash {
+			background-color: globals.$light-mode-green;
+		}
+
 		&:hover {
 			background-color: globals.$light-mode-grey;
 			transition: all 0.2s;

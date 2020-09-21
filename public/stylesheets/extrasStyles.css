@@ -38,6 +38,17 @@
 .single-dmg-skin > div .dmg-skin-body {
   height: 150px;
 }
+.single-dmg-skin > div .dmg-skin-body .dmg-skin-tools {
+  bottom: 5px;
+  right: 5px;
+}
+.single-dmg-skin > div .dmg-skin-body .dmg-skin-tools .view-dmg-skin-btn, .single-dmg-skin > div .dmg-skin-body .dmg-skin-tools .add-dmg-skin-btn, .single-dmg-skin > div .dmg-skin-body .dmg-skin-tools .remove-dmg-skin-btn {
+  height: 30px;
+  width: 30px;
+}
+.single-dmg-skin > div .dmg-skin-body .dmg-skin-tools .add-dmg-skin-btn, .single-dmg-skin > div .dmg-skin-body .dmg-skin-tools .remove-dmg-skin-btn {
+  display: none;
+}
 .single-dmg-skin:hover > div, .single-dmg-skin.active > div {
   transition: all 0.2s;
 }
@@ -50,6 +61,18 @@
   right: 1rem;
   border-radius: 50%;
   padding: 8px;
+}
+.btn-dmg-skin-modal.flash {
+  animation: flash 0.5s;
+}
+.btn-dmg-skin-modal.flash #num-selected-skins {
+  animation: flash 0.5s;
+}
+.btn-dmg-skin-modal.flash-danger {
+  animation: flash-danger 0.5s;
+}
+.btn-dmg-skin-modal.flash-danger #num-selected-skins {
+  animation: flash-danger 0.5s;
 }
 .btn-dmg-skin-modal #num-selected-skins {
   top: -10px;
