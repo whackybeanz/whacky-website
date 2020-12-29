@@ -14,7 +14,7 @@
                 <div class="w-100 mb-3">
                     <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Instructions</h2>
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                        <p class="w-100 text-justify">This calculator helps you quickly determine your current EXP multiplier, and expected EXP gains on certain content. Note: the dates listed in 'EXP Table to Use' are of KMS patch release dates.</p>
+                        <p class="w-100 text-justify">This calculator helps you quickly determine your current EXP multiplier, and expected EXP gains on certain content.</p>
                     </div>
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <h3 class="w-100 font-subsubheader font-italic mb-0">Step 1: Enter initial details</h3>
@@ -29,11 +29,12 @@
                                                     <option value="neo" selected>NEO</option>
                                                     <option value="rise">RISE</option>
                                                     <option value="glory">GLORY</option>
+                                                    <option value="black">BLACK</option>
                                                 </select>
                                                 <small id="patch-details" class="form-text text-info">
                                                     - Released in KMS in December 2020<br/>
                                                     - Level cap raised to 300<br/>
-                                                    - Level 210 to 250 EXP reduction
+                                                    - Level 210 to 250 EXP reductions
                                                 </small>
                                             </div>
                                         </div>
@@ -42,19 +43,57 @@
                                         <div class="form-group row d-flex align-items-start">
                                             <label for="gear-level" class="col-3 col-form-label font-weight-bold text-left pl-0">Character Level</label>
                                             <div class="col-9 col-lg-6 px-0 d-flex flex-column">
-                                                <input class="font-small w-100 form-control text-left rounded-sm" type="number" id="char-level" value=200>
-                                                <small id="invalid-level" class="form-text d-none text-danger">The level specified is invalid for the EXP Table selected. Please check again.</small>
+                                                <input class="font-small w-100 form-control text-left rounded-sm" type="number" id="char-level" value="200" min="50" max="300">
+                                                <small id="invalid-level" class="form-text d-none text-danger">The level specified is invalid for the EXP Table selected. Allowed values: 50 to <span id="max-level"></span></small>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group row">
-                                            <button class="btn col-12 col-lg-9 action-button py-1 px-2 rounded-sm font-weight-bold text-center" id="start-calc">Begin</button>
+                                            <button type="submit" class="btn col-12 col-lg-9 action-button py-1 px-2 rounded-sm font-weight-bold text-center" id="btn-start-calc">Begin</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4" id="select-exp-sources-div">
+                        <h3 class="w-100 font-subsubheader font-italic mb-0">Step 2: Select EXP sources</h3>
+                        <div class="w-100 d-flex justify-content-center align-items-center flex-column position-relative">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4" id="credits">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+                    <div class="w-100 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0">Credits</h1>
+                    <div class="w-100 border-top border-dark"></div>
+                </div>
+                <div class="w-100 mb-3">
+                    <h2 class="font-subheader font-weight-bold text-underline mb-2" id="credits-ack">Acknowledgements</h2>
+                    <div class="font-content w-100 mb-4">
+                        <p class="text-justify">Many thanks to the respective Inven threads, <a href="https://strategywiki.org/wiki/MapleStory/EXP_and_Pet_Closeness" target="_blank">StrategyWiki</a>, and Bready from the <a href="https://discord.gg/NNpqZsZ" target="_blank">MapleSEA Discord</a> for EXP table data across the various patches.</p>
+
+                        <p class="text-justify mb-1">EXP table data over the years:</p>
+                        <ul>
+                            <li><a href="http://m.inven.co.kr/board/maple/2304/24769">NEO</a> (Level cap raised to 300, Level 210 to 250 EXP reductions)</li>
+                            <li><a href="http://m.inven.co.kr/board/maple/2304/18454">RISE</a> (Level 170 to 199 EXP reductions)</li>
+                            <li><a href="http://m.inven.co.kr/board/maple/2304/16215">GLORY</a> (Level 220 to 234 EXP reductions)</li>
+                            <li><a href="http://m.inven.co.kr/board/maple/2304/11072">BLACK</a> (Level 201 to 219 EXP reductions, Level cap raised to 275)</li>
+                            <li><a href="http://m.inven.co.kr/board/maple/2304/13331">Complete EXP Table post-BLACK patch changes</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="w-100 mb-3">
+                    <h2 class="font-subheader font-weight-bold text-underline mb-2" id="credits-contact">Contact</h2>
+                    <div class="font-content w-100">
+                        <p class="text-justify">If you spot any errors, please contact whacky#7051 on Discord with the list of corrections to make. Thank you!</p>
                     </div>
                 </div>
             </div>
