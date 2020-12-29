@@ -1,6 +1,7 @@
 # Ignore images folder
 public/images/
 seeds/
+views/template.ejs
 
 # Logs
 logs
