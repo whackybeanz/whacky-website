@@ -248,4 +248,19 @@ router.get("/damage-skin-details/:skinNum", function(req, res) {
 	})
 })
 
+router.get("/exp-stacking", function(req, res) {
+	Icon.find({usedInSections: "exp-stacking"}, function(err, allIcons) {
+		if(err) {
+			console.log(err);
+			res.redirect("back");
+		} else {
+			const compiledIcons = IconHelper.compileIcons(allIcons);
+			res.locals.extraStylesheet = "extrasStyles";
+			res.locals.section = "extras";
+			res.locals.branch = "calc-exp-stacking";
+			res.render("extras/expStacking", {icons: compiledIcons});
+		}
+	})
+})
+
 module.exports = router;
