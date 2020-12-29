@@ -21,7 +21,7 @@ body .navbar .nav-item .dropdown-menu .dropdown-item:hover, body .navbar .nav-it
   background-color: rgba(0, 0, 0, 0.075);
 }
 body .sidebar {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.8);
   border-bottom: 1px solid rgba(206, 212, 218, 0.8);
 }
 @media (min-width: 992px) {
@@ -32,6 +32,7 @@ body .sidebar {
 }
 body .sidebar.sidebar-right {
   border-left: 1px solid rgba(206, 212, 218, 0.8);
+  border-bottom: none;
 }
 body .sidebar li.active {
   background-color: rgba(0, 0, 0, 0.075);

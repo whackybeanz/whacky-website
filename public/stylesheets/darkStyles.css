@@ -32,6 +32,7 @@ body.dark-mode .sidebar {
 }
 body.dark-mode .sidebar.sidebar-right {
   border-left: 1px solid rgba(52, 58, 64, 0.8);
+  border-bottom: none;
 }
 body.dark-mode .sidebar li.active {
   background-color: #343a40;

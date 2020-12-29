@@ -46,6 +46,7 @@ body.dark-mode {
 
 		&.sidebar-right {
 			border-left: 1px solid globals.$dark-mode-navy-grey;
+			border-bottom: none;
 		}
 
 		li {

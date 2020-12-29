@@ -20,16 +20,19 @@
   font-size: 1rem;
 }
 
-.font-form, .font-button {
+.font-form, .font-button,
+.font-form .form-control, .font-form button {
   font-size: 1rem;
 }
 @media (min-width: 768px) {
-  .font-form, .font-button {
+  .font-form, .font-button,
+.font-form .form-control, .font-form button {
     font-size: 0.9rem;
   }
 }
 @media (min-width: 1200px) {
-  .font-form, .font-button {
+  .font-form, .font-button,
+.font-form .form-control, .font-form button {
     font-size: 0.875rem;
   }
 }
@@ -116,6 +119,7 @@
 html, body {
   font-size: 12px;
   scroll-padding-top: 3rem;
+  height: 100%;
 }
 @media (min-width: 576px) {
   html, body {
@@ -143,6 +147,9 @@ body {
   background-position: center;
   background-attachment: fixed;
 }
+body .content {
+  min-height: 100%;
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -164,7 +171,9 @@ input[type=radio] {
 }
 
 .main-content-div {
+  padding-top: 3rem !important;
   max-width: 1200px;
+  min-height: 100%;
 }
 
 /**********************
@@ -309,6 +318,10 @@ img.small-img {
 .radio-select-group .form-check .radio-select:hover, .radio-select-group .form-check .radio-select.active {
   font-weight: bold;
   transition: all 0.3s;
+}
+
+#login-form {
+  width: 300px;
 }
 
 /*# sourceMappingURL=generalStyles.css.map */

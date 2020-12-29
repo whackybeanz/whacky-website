@@ -34,7 +34,7 @@ body {
 
 	// Sidebar
 	.sidebar {
-		background-color: globals.$light-mode-white-opaque;
+		background-color: globals.$light-mode-white;
 		border-bottom: 1px solid globals.$light-mode-grey;
 
 		&.sidebar-left {
@@ -46,6 +46,7 @@ body {
 		
 		&.sidebar-right {
 			border-left: 1px solid globals.$light-mode-grey;
+			border-bottom: none;
 		}
 
 		li {
