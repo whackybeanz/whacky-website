@@ -260,9 +260,14 @@ body.dark-mode .dmg-skin-table.table-dark > tbody .mobile-th {
 }
 body.dark-mode .single-exp-stack {
   border: 1px solid #454d55;
+  transition: all 0.2s;
 }
-body.dark-mode .single-exp-stack:hover, body.dark-mode .single-exp-stack.active {
+body.dark-mode .single-exp-stack:hover {
+  border: 1px solid #4aa02c;
+}
+body.dark-mode .single-exp-stack.active {
   background-color: #4aa02c;
+  transition: all 0.2s;
 }
 body.dark-mode .single-social a {
   color: rgba(255, 255, 255, 0.8);

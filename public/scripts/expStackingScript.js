@@ -183,25 +183,61 @@ function addEXPStackBtnListener() {
 
     singleEXPStackBtn.forEach(function(expStackBtn) {
         expStackBtn.addEventListener("click", function() {
-            const selectedCategoryNum = this.dataset.categoryNum;
-            const expBuffValue = this.dataset.value;
+            const selectedCategoryNum = parseInt(this.dataset.categoryNum);
+            const expBuffValue = Number(this.dataset.value);
             const itemType = this.dataset.item;
-            
-            if(selectedCategoryNum == 1 || selectedCategoryNum == 2 || selectedCategoryNum == 3) {
-                const allSingleCategoryElems = Array.from(document.querySelectorAll(`.category-${selectedCategoryNum}`));
 
-                allSingleCategoryElems.forEach(function(elem) {
-                    elem.classList.remove("active");
-                })
+            if(this.classList.contains("active")) {
+                this.classList.remove("active");
+                updateMultipliers(selectedCategoryNum, expBuffValue, false, itemType);
+            } else {                
+                if(selectedCategoryNum == 1 || selectedCategoryNum == 2 || selectedCategoryNum == 3) {
+                    const allSingleCategoryElems = Array.from(document.querySelectorAll(`.category-${selectedCategoryNum}`));
+
+                    allSingleCategoryElems.forEach(function(elem) {
+                        elem.classList.remove("active");
+                    })
+                }
+
+                this.classList.add("active");
+
+                updateMultipliers(selectedCategoryNum, expBuffValue, true, itemType);
             }
-
-            this.classList.toggle("active");
-
-            updateMultipliers(selectedCategoryNum, expBuffValue, itemType);
         })
     })
 }
 
-function updateMultipliers(categoryNum, expBuffValue, itemType = undefined) {
-    console.log(categoryNum, expBuffValue, itemType);
+let expBuffValueList = [1, 1, 1, 1, 1]
+let isCat1Premium = false;
+
+function updateMultipliers(categoryNum, expBuffValue, isAddStack, itemType = undefined) {
+    if(isAddStack) {
+        if(categoryNum === 5) {
+            expBuffValueList[categoryNum-1] += expBuffValue;
+        } else {
+            expBuffValueList[categoryNum-1] = expBuffValue;
+        }
+
+        if(categoryNum === 1) {
+            if(itemType === "premium") {
+                isCat1Premium = true;
+                document.getElementById("category-1-value").textContent = `+${expBuffValue}%`;
+            } else {
+                isCat1Premium = false;
+                document.getElementById("category-1-value").textContent = `x${expBuffValue}`;
+            }
+        }
+
+        if(categoryNum === 2 || categoryNum === 3 || categoryNum === 4) {
+            expBuffValueList[categoryNum-1] = expBuffValue;
+            document.getElementById(`category-${categoryNum}-value`).textContent = `x${expBuffValue}`;
+        }
+    } else {
+        if(categoryNum === 5) {
+
+        } else {
+            expBuffValueList[categoryNum-1] = 1;
+            document.getElementById(`category-${categoryNum}-value`).textContent = "-";
+        }
+    }
 }

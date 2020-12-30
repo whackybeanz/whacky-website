@@ -321,9 +321,15 @@ body {
 	// EXP Stacking
 	.single-exp-stack {
 		border: 1px solid globals.$light-mode-grey;
+		transition: all 0.2s;
 
-		&:hover, &.active {
+		&:hover {
+			border: 1px solid globals.$light-mode-green;
+		}
+
+		&.active {
 			background-color: globals.$light-mode-green;
+			transition: all 0.2s;
 		}
 	}
 
