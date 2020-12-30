@@ -318,6 +318,15 @@ body {
 		}
 	}
 
+	// EXP Stacking
+	.single-exp-stack {
+		border: 1px solid globals.$light-mode-grey;
+
+		&:hover, &.active {
+			background-color: globals.$light-mode-green;
+		}
+	}
+
 	// About
 	.single-social {
 		a {

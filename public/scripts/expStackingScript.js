@@ -97,41 +97,51 @@ const multipliers = {
     }
 }
 
-const expTableSelectField = document.getElementById("exp-table-used");
-
-expTableSelectField.addEventListener("change", (event) => {
-    const selectedField = event.target.value;
-    let patchDetailsField = document.getElementById("patch-details");
-    patchDetailsField.innerHTML = "";
-
-    patchDetails[selectedField].details.forEach(function(detail) {
-        patchDetailsField.appendChild(document.createTextNode(`- ${detail}`));
-        patchDetailsField.appendChild(document.createElement('br'));
-    })
+document.addEventListener("DOMContentLoaded", function(event) { 
+    addEXPTableSelectListener();
+    addStartCalcBtnListener();
+    addEXPStackBtnListener();
 })
+
+function addEXPTableSelectListener() {
+    const expTableSelectField = document.getElementById("exp-table-used");
+
+    expTableSelectField.addEventListener("change", (event) => {
+        const selectedField = event.target.value;
+        let patchDetailsField = document.getElementById("patch-details");
+        patchDetailsField.innerHTML = "";
+
+        patchDetails[selectedField].details.forEach(function(detail) {
+            patchDetailsField.appendChild(document.createTextNode(`- ${detail}`));
+            patchDetailsField.appendChild(document.createElement('br'));
+        })
+    })
+}
 
 // On click of "Begin", check if user entered valid character level
 // If invalid, display relevant error message and maximum allowed level input
-const startCalcBtn = document.getElementById("btn-start-calc");
+function addStartCalcBtnListener() {
+    const startCalcBtn = document.getElementById("btn-start-calc");
 
-startCalcBtn.addEventListener("click", (event) => {
-    event.preventDefault();
-    const expTableSelected = expTableSelectField.value;
-    const charLevelInput = parseInt(document.getElementById("char-level").value);
-    const maxAllowedLevelInput = patchDetails[expTableSelected].maxLevel;
-    const minAllowedLevelInput = 50;
+    startCalcBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        const expTableSelected = expTableSelectField.value;
+        const charLevelInput = parseInt(document.getElementById("char-level").value);
+        const maxAllowedLevelInput = patchDetails[expTableSelected].maxLevel;
+        const minAllowedLevelInput = 50;
 
-    if(!isNaN(charLevelInput) && charLevelInput >= minAllowedLevelInput && charLevelInput <= maxAllowedLevelInput-1) {
-        document.getElementById("invalid-level").classList.add("d-none");
-        document.getElementById("select-exp-sources-div").classList.add("d-flex");
+        if(!isNaN(charLevelInput) && charLevelInput >= minAllowedLevelInput && charLevelInput <= maxAllowedLevelInput-1) {
+            document.getElementById("invalid-level").classList.add("d-none");
+            document.getElementById("select-exp-sources-div").classList.add("d-flex");
 
-        let expRequired = calculateEXPRequired(expTableSelected, charLevelInput);
-        console.log(expRequired.toLocaleString());
-    } else {
-        document.getElementById("invalid-level").classList.remove("d-none");
-        document.getElementById("max-level").textContent = maxAllowedLevelInput-1;
-    }
-})
+            let expRequired = calculateEXPRequired(expTableSelected, charLevelInput);
+            console.log(expRequired.toLocaleString());
+        } else {
+            document.getElementById("invalid-level").classList.remove("d-none");
+            document.getElementById("max-level").textContent = maxAllowedLevelInput-1;
+        }
+    })
+}
 
 // Calculates the expected EXP required to next level, split into multiple tiers
 // Extracts the required multipliers to use for calculation
@@ -163,4 +173,35 @@ function calculateEXPRequired(expTableSelected, charLevelInput) {
     }
 
     return finalEXPValue;
+}
+
+// On click of any exp stack, check category of selected item
+// If within category 1/2/3, disable other active states within category
+// Activate selected item
+function addEXPStackBtnListener() {
+    const singleEXPStackBtn = Array.from(document.querySelectorAll(".single-exp-stack"));
+
+    singleEXPStackBtn.forEach(function(expStackBtn) {
+        expStackBtn.addEventListener("click", function() {
+            const selectedCategoryNum = this.dataset.categoryNum;
+            const expBuffValue = this.dataset.value;
+            const itemType = this.dataset.item;
+            
+            if(selectedCategoryNum == 1 || selectedCategoryNum == 2 || selectedCategoryNum == 3) {
+                const allSingleCategoryElems = Array.from(document.querySelectorAll(`.category-${selectedCategoryNum}`));
+
+                allSingleCategoryElems.forEach(function(elem) {
+                    elem.classList.remove("active");
+                })
+            }
+
+            this.classList.toggle("active");
+
+            updateMultipliers(selectedCategoryNum, expBuffValue, itemType);
+        })
+    })
+}
+
+function updateMultipliers(categoryNum, expBuffValue, itemType = undefined) {
+    console.log(categoryNum, expBuffValue, itemType);
 }

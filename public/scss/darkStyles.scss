@@ -362,6 +362,15 @@ body.dark-mode {
 		}
 	}
 
+	// EXP Stacking
+	.single-exp-stack {
+		border: 1px solid globals.$dark-mode-grey;
+
+		&:hover, &.active {
+			background-color: globals.$dark-mode-green;
+		}
+	}
+
 	// About
 	.single-social {
 		a {
