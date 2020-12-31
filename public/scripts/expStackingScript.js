@@ -101,6 +101,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addEXPTableSelectListener();
     addStartCalcBtnListener();
     addEXPStackBtnListener();
+    addEXPStackSelectListener();
+    addEXPStackInputListener();
 })
 
 function addEXPTableSelectListener() {
@@ -189,7 +191,7 @@ function addEXPStackBtnListener() {
 
             if(this.classList.contains("active")) {
                 this.classList.remove("active");
-                updateMultipliers(selectedCategoryNum, expBuffValue, false, itemType);
+                updateMultipliers(selectedCategoryNum, -expBuffValue, false, itemType);
             } else {                
                 if(selectedCategoryNum == 1 || selectedCategoryNum == 2 || selectedCategoryNum == 3) {
                     const allSingleCategoryElems = Array.from(document.querySelectorAll(`.category-${selectedCategoryNum}`));
@@ -207,17 +209,70 @@ function addEXPStackBtnListener() {
     })
 }
 
-let expBuffValueList = [1, 1, 1, 1, 1]
+let expStackUserInputList = {
+    elvenBlessing: 0,
+    zeroUnion: 0,
+    spiritPendant: 0,
+    ringOfClan: 0,
+    burningField: 0,
+    runeBuff: 0,
+    unionBoard: 0,
+    eventTitle: 0,
+    hyperStats: 0,
+    holySymbol: 0
+}
+
+function addEXPStackSelectListener() {
+    const expStackSelectFields = Array.from(document.querySelectorAll(".single-exp-stack-select"));
+    const categoryNum = 5;
+
+    expStackSelectFields.forEach(function(selectField) {
+        selectField.addEventListener("change", function(event) {
+            let prevSelectedValue = expStackUserInputList[event.target.dataset.selectType];
+            let newSelectedValue = Number(event.target.value);
+            let valueDiff = newSelectedValue - prevSelectedValue;
+
+            if(newSelectedValue === 0) {
+                updateMultipliers(categoryNum, valueDiff, false);
+            } else {
+                updateMultipliers(categoryNum, valueDiff, true);
+            }
+
+            expStackUserInputList[event.target.dataset.selectType] = newSelectedValue;
+        })
+    })
+}
+
+function addEXPStackInputListener() {
+    const expStackInputFields = Array.from(document.querySelectorAll(".single-exp-stack-input"));
+    const categoryNum = 5;
+
+    expStackInputFields.forEach(function(inputField) {
+        inputField.addEventListener("change", function(event) {
+            let prevInputValue = expStackUserInputList[event.target.dataset.inputType];
+            let newInputValue = Number(event.target.value);
+            let valueDiff = newInputValue - prevInputValue;
+
+            if(valueDiff !== 0) {
+                if(newInputValue === 0) {
+                    updateMultipliers(categoryNum, valueDiff, false);
+                } else {
+                    updateMultipliers(categoryNum, valueDiff, true);
+                }
+            }
+
+            expStackUserInputList[event.target.dataset.inputType] = newInputValue;
+        })
+    })
+}
+
+let expBuffValueList = [1, 1, 1, 1, 0]
 let isCat1Premium = false;
 
 function updateMultipliers(categoryNum, expBuffValue, isAddStack, itemType = undefined) {
-    if(isAddStack) {
-        if(categoryNum === 5) {
-            expBuffValueList[categoryNum-1] += expBuffValue;
-        } else {
-            expBuffValueList[categoryNum-1] = expBuffValue;
-        }
+    expBuffValueList[categoryNum-1] += expBuffValue;
 
+    if(isAddStack) {
         if(categoryNum === 1) {
             if(itemType === "premium") {
                 isCat1Premium = true;
@@ -229,12 +284,19 @@ function updateMultipliers(categoryNum, expBuffValue, isAddStack, itemType = und
         }
 
         if(categoryNum === 2 || categoryNum === 3 || categoryNum === 4) {
-            expBuffValueList[categoryNum-1] = expBuffValue;
             document.getElementById(`category-${categoryNum}-value`).textContent = `x${expBuffValue}`;
+        }
+
+        if(categoryNum === 5) {
+            document.getElementById(`category-5-value`).textContent = `+${expBuffValueList[categoryNum-1]}%`;
         }
     } else {
         if(categoryNum === 5) {
-
+            if(expBuffValueList[categoryNum-1] === 0) {
+                document.getElementById(`category-5-value`).textContent = "-";
+            } else {
+                document.getElementById(`category-5-value`).textContent = `+${expBuffValueList[categoryNum-1]}%`;
+            }
         } else {
             expBuffValueList[categoryNum-1] = 1;
             document.getElementById(`category-${categoryNum}-value`).textContent = "-";
