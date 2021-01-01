@@ -75,6 +75,19 @@ body .action-button:hover {
   background-color: #454d55;
   transition: background-color 0.2s;
 }
+body .nav-tabs {
+  border-bottom: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .nav-tabs .nav-link:hover, body .nav-tabs .nav-link.active {
+  background-color: rgba(206, 212, 218, 0.8);
+  border-color: rgba(206, 212, 218, 0.8);
+}
+body .tab-pane {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .tab-pane .single-map-select {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
 body .radio-select-group .form-check .radio-select {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }

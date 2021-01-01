@@ -112,4 +112,14 @@
   object-fit: scale-down;
 }
 
+.map-icon {
+  height: 40px;
+  width: 40px;
+}
+
+.single-map-tab {
+  height: 400px;
+  overflow-y: auto;
+}
+
 /*# sourceMappingURL=extrasStyles.css.map */

@@ -5,6 +5,7 @@ var mapSchema = new mongoose.Schema({
 	worldRegion: String,
 	subregion: String,
 	regionStartLevel: Number,
+	lastMonsterLevel: Number,
 	isEnforceStartLevel: Boolean,
 	mapLocations: [{
 		mapName: String,

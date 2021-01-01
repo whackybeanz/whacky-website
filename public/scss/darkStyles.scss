@@ -77,6 +77,10 @@ body.dark-mode {
 			color: globals.$dark-mode-white;
 			border: 1px solid globals.$dark-mode-grey;
 		}
+
+		.form-control-plaintext {
+			color: globals.$dark-mode-white;
+		}
 	}
 	
 	// Modal
@@ -169,6 +173,26 @@ body.dark-mode {
 		&:hover {
 			background-color: globals.$dark-mode-grey;
 			transition: background-color 0.2s;
+		}
+	}
+
+	// Tabs
+	.nav-tabs {
+		border-bottom: 1px solid globals.$dark-mode-grey;
+
+		.nav-link {
+			&:hover, &.active {
+				background-color: globals.$dark-mode-grey;
+				border-color: globals.$dark-mode-navy-grey;
+			}
+		}
+	}
+
+	.tab-pane {
+		border: 1px solid globals.$dark-mode-navy-grey;
+
+		.single-map-select {
+			border: 1px solid globals.$dark-mode-navy-grey;
 		}
 	}
 

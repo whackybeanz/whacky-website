@@ -2,12 +2,13 @@ var IconHelper = require("./helpers/iconHelpers");
 var Helper = require("./helpers/extrasHelpers");
 
 var express = require("express");
-var router 	= express.Router();
-var Icon 	= require("../models/iconData");
-var Equip 	= require("../models/equipData");
-var Effect 	= require("../models/setEffectData");
-var Soul 	= require("../models/bossSoulData");
-var DamageSkin 	= require("../models/damageSkinData");
+var router  = express.Router();
+var Icon    = require("../models/iconData");
+var Equip   = require("../models/equipData");
+var Effect  = require("../models/setEffectData");
+var Soul    = require("../models/bossSoulData");
+var DamageSkin  = require("../models/damageSkinData");
+var MapLocations = require("../models/mapData");
 
 router.get("/", function(req, res) {
 	res.redirect("/flames");
@@ -84,7 +85,7 @@ router.get("/set-effects/:jobType", function(req, res) {
 			res.render("extras/setEffectCalcActive", {allEquipTypes: allEquipTypes, setItemsByItemPart: setItemsByItemPart, setItemsBySetName: setItemsBySetName, allSetEffects: setEffects, jobType: jobType, statTypes: possibleStatTypes, icons: compiledIcons });
 		})
 		.catch(err => {
-		 	console.log(err);
+			console.log(err);
 			res.redirect("back");
 		});
 })
@@ -249,18 +250,51 @@ router.get("/damage-skin-details/:skinNum", function(req, res) {
 })
 
 router.get("/exp-stacking", function(req, res) {
-	Icon.find({usedInSections: "exp-stacking"}, function(err, allIcons) {
-		if(err) {
-			console.log(err);
-			res.redirect("back");
-		} else {
-			const compiledIcons = IconHelper.compileIcons(allIcons);
+	res.locals.extraStylesheet = "extrasStyles";
+	res.locals.section = "extras";
+	res.locals.branch = "calc-exp-stacking";
+	res.render("extras/expStacking");
+})
+
+router.post("/exp-stacking", function(req, res) {
+	const charLevel = parseInt(req.body.charLevel);
+
+	// Retrieve map data that meets these conditions:
+	// 1) For maps that are not level restricted, get regions with monsters that are at least +-20 of character level
+	// 2) For maps that are level restricted, get regions that players have access to, with monsters that are +-20 of character level
+	let query = [];
+	const findUnrestrictedMaps = {
+		$and: [{ isEnforceStartLevel: false },
+				{ lastMonsterLevel: { $gte: charLevel-20 } },
+				{ lastMonsterLevel: { $lte: charLevel+20 } }
+			]};
+
+	const findRestrictedMaps = { 
+		$and: [{ isEnforceStartLevel: true }, 
+				{ regionStartLevel: { $lte: charLevel } }, 
+				{ $and: [
+					{ lastMonsterLevel: { $gte: charLevel-20 } }, 
+					{ lastMonsterLevel: { $lte: charLevel+20 } }
+				]}
+			]};
+
+	query.push(findUnrestrictedMaps, findRestrictedMaps);
+
+	let getMapRegions = MapLocations.find({ $or: query });
+	let getIcons = Icon.find({ usedInSections: "exp-stacking" });
+
+	Promise.all([getMapRegions, getIcons])
+		.then(([foundMaps, foundIcons]) => {
+			const compiledIcons = IconHelper.compileIcons(foundIcons);
 			res.locals.extraStylesheet = "extrasStyles";
 			res.locals.section = "extras";
 			res.locals.branch = "calc-exp-stacking";
-			res.render("extras/expStacking", {icons: compiledIcons});
-		}
-	})
+			res.render("extras/expStackingActive", {icons: compiledIcons, foundMaps: foundMaps, expTable: req.body.expTable, charLevel: charLevel});
+		})
+		.catch(err => {
+			console.log(err);
+			res.redirect("back");
+		})
 })
 
 module.exports = router;

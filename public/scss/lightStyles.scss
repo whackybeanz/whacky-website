@@ -122,6 +122,26 @@ body {
 		}
 	}
 
+	// Tabs
+	.nav-tabs {
+		border-bottom: 1px solid globals.$light-mode-grey;
+
+		.nav-link {
+			&:hover, &.active {
+				background-color: globals.$light-mode-grey;
+				border-color: globals.$light-mode-grey;
+			}
+		}
+	}
+
+	.tab-pane {
+		border: 1px solid globals.$light-mode-grey;
+
+		.single-map-select {
+			border: 1px solid globals.$light-mode-grey;
+		}
+	}
+
 	// Others
 	.radio-select-group {
 		.form-check {
