@@ -91,6 +91,9 @@ body.dark-mode .pagination .page-item:hover .page-link, body.dark-mode .paginati
 body.dark-mode table.table-bordered td, body.dark-mode table.table-bordered th {
   color: rgba(255, 255, 255, 0.8);
 }
+body.dark-mode table.table-bordered th.empty-row {
+  background-color: rgba(0, 0, 0, 0.8);
+}
 body.dark-mode .radio-select-group .form-check .radio-select {
   border: 1px solid #454d55;
 }

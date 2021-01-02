@@ -298,7 +298,7 @@ router.post("/exp-stacking", function(req, res) {
 			res.locals.extraStylesheet = "extrasStyles";
 			res.locals.section = "extras";
 			res.locals.branch = "calc-exp-stacking";
-			res.render("extras/expStackingActive", {icons: compiledIcons, foundMaps: foundMaps, expTable: expTable, charLevel: charLevel, viewType: viewType});
+			res.render("extras/expStackingActive", {icons: compiledIcons, foundMaps: foundMaps, expTable: expTable, charLevel: charLevel, viewType: viewType, generalContentsEXP: generalContentsEXP});
 		})
 		.catch(err => {
 			console.log(err);

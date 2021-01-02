@@ -147,6 +147,12 @@ body.dark-mode {
 			td, th {
 				color: globals.$dark-mode-white;
 			}
+
+			th {
+				&.empty-row {
+					background-color: globals.$dark-mode-black;
+				}
+			}
 		}
 	}
 

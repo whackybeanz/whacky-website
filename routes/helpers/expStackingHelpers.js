@@ -98,46 +98,105 @@ const multipliers = {
 }
 
 function calculateGeneralContentsEXP(expTableSelected, charLevel) {
-    const monsterParkEXP = calculateMonsterParkEXP(expTableSelected, charLevel);
-    const expPotions = calculatePotionEXP(expTableSelected, charLevel);
+    const expToLevel = calculateEXPRequired(expTableSelected, charLevel);
+    const monsterParkEXP = calculateMonsterParkEXP(expTableSelected, charLevel, expToLevel);
+    const expPotions = calculatePotionEXP(expTableSelected, charLevel, expToLevel);
 
     return { monsterPark: monsterParkEXP, expPotions: expPotions };
 }
 
-function calculateMonsterParkEXP() {
+function calculateMonsterParkEXP(expTableSelected, charLevel, expToLevel) {
+    const monsterPark = {
+        leftDoor: {
+            minLevel: 105, maxLevel: 115,
+            content: [
+                { name: "Auto Security Zone", recMinLevel: 105, recMaxLevel: 114, rawEXP: 3517411 },
+            ]
+        },
+        midDoor: {
+            minLevel: 115, maxLevel: 160,
+            content: [
+                { name: "Mossy Tree Forest", recMinLevel: 115, recMaxLevel: 124, rawEXP: 5989675 },
+                { name: "Sky Forest Training Center", recMinLevel: 120, recMaxLevel: 129, rawEXP: 7311630 },
+                { name: "Pirates' Secret Base", recMinLevel: 125, recMaxLevel: 134, rawEXP: 8129820 },
+                { name: "Otherworldly Battleground", recMinLevel: 135, recMaxLevel: 144, rawEXP: 11524015 },
+                { name: "Dangerously Isolated Forest", recMinLevel: 140, recMaxLevel: 149, rawEXP: 11953470 },
+                { name: "Forbidden Time", recMinLevel: 145, recMaxLevel: 154, rawEXP: 13378390 },
+                { name: "Clandestine Ruins", recMinLevel: 150, recMaxLevel: 159, rawEXP: 15311670 },
+            ]
+        },
+        rightDoor: {
+            minLevel: 160, maxLevel: 300,
+            content: [
+                { name: "Ruined City", recMinLevel: 160, recMaxLevel: 169, rawEXP: 19790735 },
+                { name: "Dead Tree Forest", recMinLevel: 170, recMaxLevel: 179, rawEXP: 26950030 },
+                { name: "Watchman's Tower", recMinLevel: 175, recMaxLevel: 184, rawEXP: 27953565 },
+                { name: "Dragon Nest", recMinLevel: 180, recMaxLevel: 189, rawEXP: 33576980 },
+                { name: "Temple of Oblivion", recMinLevel: 185, recMaxLevel: 194, rawEXP: 35340485 },
+                { name: "Knight Stronghold", recMinLevel: 190, recMaxLevel: 199, rawEXP: 39187305,
+                    notes: "May get 39,775,800 EXP instead if final boss is Oz (summons 1 extra Ifrit minion)." },
+                { name: "Spirit Valley", recMinLevel: 200, recMaxLevel: 209, rawEXP: 40650435 },
+                { name: "Road to Extinction", recMinLevel: 200, recMaxLevel: 209, isEnforceMinLevel: true, rawEXP: 0,
+                    notes: "Uses NEO patch values. Old EXP value: 128,541,100 EXP." },
+                { name: "Chew Chew Island", recMinLevel: 210, recMaxLevel: 219, isEnforceMinLevel: true, rawEXP: 642539340 },
+                { name: "Lacheln", recMinLevel: 220, recMaxLevel: 229, isEnforceMinLevel: true, rawEXP: 1007394250 },
+            ]
+        }
+    };
+
+    let matchingContent = [];
+
+    if(charLevel >= 200) {
+        matchingContent = monsterPark.rightDoor.content.filter(content => (content.isEnforceMinLevel && charLevel >= content.recMinLevel) || (!content.isEnforceMinLevel && content.recMinLevel >= charLevel - 20));
+    } else {
+        let matchingDoors = Object.keys(monsterPark).filter(door => charLevel >= monsterPark[door].minLevel && charLevel <= monsterPark[door].maxLevel);
+        
+        matchingDoors.forEach(function(door) {
+            matchingContent.push(monsterPark[door].content.filter(content => (!content.isEnforceMinLevel && content.recMinLevel >= charLevel - 20 && content.recMaxLevel <= charLevel + 20)));
+        })
+        matchingContent = [].concat(...matchingContent);
+    }
+
+    matchingContent.forEach(function(content) {
+        content.percentEXP = (content.rawEXP / expToLevel * 100).toFixed(3);
+    })
     
+    return matchingContent;
 }
 
-function calculatePotionEXP(expTableSelected, charLevel) {
+function calculatePotionEXP(expTableSelected, charLevel, expToLevel) {
     let expPotions = {
         potion1: {
+            name: "Potion 1",
             maxLevel: 209,
             rawEXP: 0,
             percentEXP: 0,
         },
         potion2: {
+            name: "Potion 2",
             maxLevel: 219,
             rawEXP: 0,
             percentEXP: 0,
         },
         potion3: {
+            name: "Potion 3",
             maxLevel: 229,
             rawEXP: 0,
             percentEXP: 0,
         },
         typhoon: {
+            name: "Typhoon Growth Potion",
             maxLevel: 239,
             rawEXP: 0,
             percentEXP: 0,
         },
         maximum: {
+            name: "Maximum Growth Potion",
             maxLevel: 249,
             rawEXP: 0,
             percentEXP: 0,
         },
     };
-
-    const expToLevel = calculateEXPRequired(expTableSelected, charLevel);
 
     Object.keys(expPotions).forEach(function(potionType) {
         expPotions[potionType].rawEXP = calculateEXPRequired(expTableSelected, expPotions[potionType].maxLevel);
@@ -147,8 +206,6 @@ function calculatePotionEXP(expTableSelected, charLevel) {
         } else {
             expPotions[potionType].percentEXP = (expPotions[potionType].rawEXP / expToLevel * 100).toFixed(3);
         }
-
-        //document.getElementById(`exp-${potionType}`).textContent = `${expPotions[potionType].percentEXP}%`;
     })
 
     return expPotions;
