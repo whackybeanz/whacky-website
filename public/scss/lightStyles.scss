@@ -353,6 +353,23 @@ body {
 		}
 	}
 
+	.tab-pane {
+		.single-map-select {
+			border: 1px solid globals.$light-mode-grey;
+			transition: all 0.2s;
+
+			&:hover {
+				border: 1px solid globals.$light-mode-green;
+				transition: all 0.2s;
+			}
+
+			&.active {
+				background-color: globals.$light-mode-green;
+				transition: all 0.2s;
+			}
+		}
+	}
+
 	// About
 	.single-social {
 		a {

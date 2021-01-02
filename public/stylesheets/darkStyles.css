@@ -280,8 +280,21 @@ body.dark-mode .single-exp-stack {
 }
 body.dark-mode .single-exp-stack:hover {
   border: 1px solid #4aa02c;
+  transition: all 0.2s;
 }
 body.dark-mode .single-exp-stack.active {
+  background-color: #4aa02c;
+  transition: all 0.2s;
+}
+body.dark-mode .tab-pane .single-map-select {
+  border: 1px solid rgba(52, 58, 64, 0.8);
+  transition: all 0.2s;
+}
+body.dark-mode .tab-pane .single-map-select:hover {
+  border: 1px solid #4aa02c;
+  transition: all 0.2s;
+}
+body.dark-mode .tab-pane .single-map-select.active {
   background-color: #4aa02c;
   transition: all 0.2s;
 }

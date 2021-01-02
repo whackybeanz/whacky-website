@@ -393,11 +393,29 @@ body.dark-mode {
 
 		&:hover {
 			border: 1px solid globals.$dark-mode-green;	
+			transition: all 0.2s;
 		}
 
 		&.active {
 			background-color: globals.$dark-mode-green;
 			transition: all 0.2s;
+		}
+	}
+
+	.tab-pane {
+		.single-map-select {
+			border: 1px solid globals.$dark-mode-navy-grey;
+			transition: all 0.2s;
+
+			&:hover {
+				border: 1px solid globals.$dark-mode-green;
+				transition: all 0.2s;
+			}
+
+			&.active {
+				background-color: globals.$dark-mode-green;
+				transition: all 0.2s;
+			}
 		}
 	}
 

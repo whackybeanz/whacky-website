@@ -326,8 +326,9 @@
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4" id="select-exp-sources-div">
                         <h3 class="w-100 font-subsubheader font-italic mb-0">Step 3: Select Training Locations</h3>
                         <p class="w-100 text-justify">Regions with monsters that are within +-20 of character level are displayed below. You can select up to five map locations.</p>
+                        <p class="w-100 text-justify" id="num-maps-prompt"><span class="font-weight-bold">Total selected</span>: <span id="num-maps-selected">0</span>
 
-                        <div class="font-table size-720 w-100">
+                        <div class="font-table size-720 w-100 mb-4">
                             <ul class="nav nav-tabs">
                                 <% foundMaps.forEach(function(region, index) { %>
                                     <li class="nav-item">
@@ -355,11 +356,19 @@
                                                 <% if(location.monsters.length > 0) { %>
                                                     <% if(location.monsters.some(monster => monster.monsterLevel >= charLevel-20 && monster.monsterLevel <= charLevel+20)) { %>
                                                         <div class="col-12 col-md-6 py-1 px-1">
-                                                            <div class="single-map-select h-100 rounded-sm py-1 px-2">
-                                                                <span class="font-weight-bold"><%= location.mapName %></span><br/>
-                                                                <% location.monsters.forEach(function(monster) { %>
-                                                                    [Lv. <%= monster.monsterLevel %>] <%= monster.monsterName %><br/>
-                                                                <% }) %>
+                                                            <div class="single-map-select h-100 rounded-sm py-1 px-2 cursor-pointer" 
+                                                                data-map-name="<%= location.mapName %>"
+                                                                data-monster-levels="<%= location.monsters.map(monster => monster.monsterLevel) %>"
+                                                                data-monster-names="<%= location.monsters.map(monster => monster.monsterName) %>"
+                                                                data-monster-exp="<%= location.monsters.map(monster => monster.monsterEXP) %>"
+                                                                data-monster-hp="<%= location.monsters.map(monster => monster.monsterHP) %>"
+                                                                data-monster-is-boss="<%= location.monsters.map(monster => monster.isBoss) %>">
+                                                                <div>
+                                                                    <span class="font-weight-bold"><%= location.mapName %></span><br/>
+                                                                    <% location.monsters.forEach(function(monster) { %>
+                                                                        [Lv. <%= monster.monsterLevel %>] <%= monster.monsterName %><br/>
+                                                                    <% }) %>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     <% } %>
@@ -372,8 +381,57 @@
                         </div>
                     </div>
 
-                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4" id="select-exp-sources-div">
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <h3 class="w-100 font-subsubheader font-italic mb-0">Step 4: View Results</h3>
+                        <p class="w-100 text-justify">The sections below are split into General Contents (unaffected by EXP multipliers) and Hunting Contents (affected by EXP multipliers).</p>
+
+                        <p class="w-100 text-justify font-weight-bold">General Contents</p>
+                        <table class="font-table size-720 table table-sm table-bordered table-hover mb-2">
+                            <thead>
+                                <tr>
+                                    <th class="align-middle">Content</th>
+                                    <th class="align-middle">Details</th>
+                                    <th class="text-center align-middle">EXP Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th id="monster-park-row">Monster Park</th>
+                                    <td>-</td>
+                                    <td class="text-center">-</td>
+                                </tr>
+                                <% if(charLevel >= 200) { %>
+                                    <tr>
+                                        <th rowspan="5">EXP Growth Potion<sup class="text-info">[2]</sup></th>
+                                        <td>Potion 1 (Lv. 200~209)</td>
+                                        <td class="table-cols-125 text-center" id="exp-potion1">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potion 2 (Lv. 200~219)</td>
+                                        <td class="table-cols-125 text-center" id="exp-potion2">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Potion 3 (Lv. 200~229)</td>
+                                        <td class="table-cols-125 text-center" id="exp-potion3">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Typhoon Growth (Lv. 200~239)</td>
+                                        <td class="table-cols-125 text-center" id="exp-typhoon">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maximum Growth (Lv. 200~249)</td>
+                                        <td class="table-cols-125 text-center" id="exp-maximum">-</td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                        <% if(charLevel >= 200) { %>
+                        <div class="font-footnote size-720 w-100 text-justify">
+                            <p class="mb-4"><span class="text-info font-weight-bold">[2]</span> EXP Growth Potions are usable from level 200 onwards. You get the full EXP value (i.e. from 0% to 100%) if the potion is used within its designated level ranges. If used outside of the recommended level range, you get the highest level's EXP value that the potion recommends for. For example, for Typhoon Growth Potion, you get level 239's full EXP value if used from level 240 onwards.</p>
+                        </div>
+                        <% } %>
+
+                        <p class="w-100 text-justify font-weight-bold">Hunting Contents</p>
                         <table class="font-table size-720 table table-sm table-bordered table-hover mb-2">
                             <thead>
                                 <tr>

@@ -82,8 +82,8 @@ const multipliers = {
         to250: [1.12, 1.12, 1.12, 1.12, 1.12, 1.12, 1.12, 1.12, 1.12,
                 2.75, 1.08, 1.08, 1.08, 1.08, 1.08, 1.08, 1.08, 1.08, 1.08,
                 1.7, 1.05, 1.05, 1.05, 1.05, 1.35, 1.03, 1.03, 1.03, 1.03,
-                1.65, 1.02, 1.02, 1.02, 1.02, 1.3, 1.03, 1.03, 1.03, 1.03,
-                1.6, 1.03, 1.03, 1.03, 1.03, 1.3, 1.03, 1.03, 1.03, 1.03]
+                1.65, 1.02, 1.02, 1.02, 1.02, 1.441558145, 1.02, 1.02, 1.02, 1.02,
+                2.02, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01]
     },
     black: {
         to250: [1.12, 1.12, 1.12, 1.12, 1.12, 1.12, 1.12, 1.12, 1.12, 
@@ -104,6 +104,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addEXPStackBtnListener();
     addEXPStackSelectListener();
     addEXPStackInputListener();
+    addMapSelectorListener();
+    updateGeneralContentsEXP();
 })
 
 // On selection change of EXP table, present the EXP table details
@@ -128,38 +130,6 @@ function addEXPTableSelectListener() {
             document.getElementById("invalid-select-warning").classList.add("d-none");
         }
     })
-}
-
-// Calculates the expected EXP required to next level, split into multiple tiers
-// Extracts the required multipliers to use for calculation
-// Current assumption: input is between 160 and 300
-function calculateEXPRequired(expTableSelected, charLevelInput) {
-    let startingValue, count, multiplierToUse, multiplierType;
-
-    if(charLevelInput < 200) {
-        startingValue = patchDetails[expTableSelected].expStages.at160;
-        count = charLevelInput - 160;
-        multiplierToUse = patchDetails[expTableSelected].multiplierToUse.to200;
-        multiplierType = "to200";
-    } else if(charLevelInput < 250) {
-        startingValue = patchDetails[expTableSelected].expStages.at200;
-        count = charLevelInput - 200;
-        multiplierToUse = patchDetails[expTableSelected].multiplierToUse.to250;
-        multiplierType = "to250";
-    } else {
-        startingValue = patchDetails[expTableSelected].expStages.at250;
-        count = charLevelInput - 250;
-        multiplierToUse = patchDetails[expTableSelected].multiplierToUse.to300;
-        multiplierType = "to300";
-    }
-
-    let finalEXPValue = startingValue;
-
-    for(let i = 0; i < count; i++) {
-        finalEXPValue = Math.trunc(finalEXPValue * multipliers[expTableSelected][multiplierType][i]);
-    }
-
-    return finalEXPValue;
 }
 
 // On click of any exp stack, check category of selected item
@@ -194,6 +164,7 @@ function addEXPStackBtnListener() {
     })
 }
 
+// For Category 5 select options, on change, add/remove changed value to multiplier and update visual value
 let expStackUserInputList = {
     elvenBlessing: 0,
     zeroUnion: 0,
@@ -228,6 +199,7 @@ function addEXPStackSelectListener() {
     })
 }
 
+// For Category 5 input fields, on change, add/remove changed value to multiplier and update visual value
 function addEXPStackInputListener() {
     const expStackInputFields = Array.from(document.querySelectorAll(".single-exp-stack-input"));
     const categoryNum = 5;
@@ -251,6 +223,52 @@ function addEXPStackInputListener() {
     })
 }
 
+// On selection of a map:
+// 1) Check if map has already been selected
+// 2) If not selected, toggle active state, add total count, and insert data to calculations in Step 4
+// 3) If selected, remove active state, remove total count, and remove data from calculations in Step 4
+let numSelectedMaps = 0;
+
+function addMapSelectorListener() {
+    document.addEventListener("click", function(event) {
+        if(event.target && event.target.classList.contains("single-map-select")) {
+            if(event.target.classList.contains("active")) {
+                event.target.classList.remove("active");
+                numSelectedMaps--;
+                document.getElementById("num-maps-selected").textContent = numSelectedMaps;
+                document.getElementById("num-maps-prompt").classList.remove("text-danger");
+            } else {
+                if(numSelectedMaps < 5) {
+                    event.target.classList.add("active");
+                    numSelectedMaps++;
+                    document.getElementById("num-maps-selected").textContent = numSelectedMaps;
+
+                    if(numSelectedMaps === 5) {
+                        document.getElementById("num-maps-prompt").classList.add("text-danger");
+                    }
+
+                    const selectedElem = event.target;
+                    const mapData = {
+                        mapName: selectedElem.dataset.mapName,
+                        monsterLevels: selectedElem.dataset.monsterLevels.split(","),
+                        monsterName: selectedElem.dataset.monsterNames.split(","),
+                        monsterEXP: selectedElem.dataset.monsterExp.split(","),
+                        monsterHP: selectedElem.dataset.monsterHp.split(","),
+                        monsterIsBoss: selectedElem.dataset.monsterIsBoss.split(","),
+                    }
+
+                    addMapData(mapData);
+                }
+            }
+        }
+    })
+}
+
+function addMapData(mapData) {
+
+}
+
+// Update multiplier values presented in a table
 let expBuffValueList = [1, 1, 1, 1, 0]
 let isCat1Premium = false;
 
@@ -287,4 +305,90 @@ function updateMultipliers(categoryNum, expBuffValue, isAddStack, itemType = und
             document.getElementById(`category-${categoryNum}-value`).textContent = "-";
         }
     }
+}
+
+function updateGeneralContentsEXP() {
+    updateMonsterParkEXP();
+    updatePotionEXP();
+}
+
+function updateMonsterParkEXP() {
+    
+}
+
+function updatePotionEXP() {
+    const expTableSelected = document.getElementById("exp-table-used").value;
+    let expPotions = {
+        potion1: {
+            maxLevel: 209,
+            rawEXP: 0,
+            percentEXP: 0,
+        },
+        potion2: {
+            maxLevel: 219,
+            rawEXP: 0,
+            percentEXP: 0,
+        },
+        potion3: {
+            maxLevel: 229,
+            rawEXP: 0,
+            percentEXP: 0,
+        },
+        typhoon: {
+            maxLevel: 239,
+            rawEXP: 0,
+            percentEXP: 0,
+        },
+        maximum: {
+            maxLevel: 249,
+            rawEXP: 0,
+            percentEXP: 0,
+        },
+    };
+
+    const expToLevel = calculateEXPRequired(expTableSelected, charLevel);
+
+    Object.keys(expPotions).forEach(function(potionType) {
+        expPotions[potionType].rawEXP = calculateEXPRequired(expTableSelected, expPotions[potionType].maxLevel);
+
+        if(charLevel <= expPotions[potionType].maxLevel) {
+            expPotions[potionType].percentEXP = 100.000;
+        } else {
+            expPotions[potionType].percentEXP = (expPotions[potionType].rawEXP / expToLevel * 100).toFixed(3);
+        }
+
+        document.getElementById(`exp-${potionType}`).textContent = `${expPotions[potionType].percentEXP}%`;
+    })
+}
+
+// Calculates the expected EXP required to next level, split into multiple tiers
+// Extracts the required multipliers to use for calculation
+// Current assumption: input is between 160 and 300
+function calculateEXPRequired(expTableSelected, charLevelInput) {
+    let startingValue, count, multiplierToUse, multiplierType;
+
+    if(charLevelInput < 200) {
+        startingValue = patchDetails[expTableSelected].expStages.at160;
+        count = charLevelInput - 160;
+        multiplierToUse = patchDetails[expTableSelected].multiplierToUse.to200;
+        multiplierType = "to200";
+    } else if(charLevelInput < 250) {
+        startingValue = patchDetails[expTableSelected].expStages.at200;
+        count = charLevelInput - 200;
+        multiplierToUse = patchDetails[expTableSelected].multiplierToUse.to250;
+        multiplierType = "to250";
+    } else {
+        startingValue = patchDetails[expTableSelected].expStages.at250;
+        count = charLevelInput - 250;
+        multiplierToUse = patchDetails[expTableSelected].multiplierToUse.to300;
+        multiplierType = "to300";
+    }
+
+    let finalEXPValue = startingValue;
+
+    for(let i = 0; i < count; i++) {
+        finalEXPValue = Math.trunc(finalEXPValue * multipliers[multiplierToUse][multiplierType][i]);
+    }
+
+    return finalEXPValue;
 }

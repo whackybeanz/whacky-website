@@ -235,6 +235,18 @@ body .single-exp-stack.active {
   background-color: #6cbb3c;
   transition: all 0.2s;
 }
+body .tab-pane .single-map-select {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+  transition: all 0.2s;
+}
+body .tab-pane .single-map-select:hover {
+  border: 1px solid #6cbb3c;
+  transition: all 0.2s;
+}
+body .tab-pane .single-map-select.active {
+  background-color: #6cbb3c;
+  transition: all 0.2s;
+}
 body .single-social a {
   color: #212529;
 }

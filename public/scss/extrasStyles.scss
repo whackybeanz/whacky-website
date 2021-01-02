@@ -159,4 +159,10 @@
 .single-map-tab {
 	height: 400px;
 	overflow-y: auto;
+
+	.single-map-select {
+		div {
+			pointer-events: none;
+		}
+	}
 }

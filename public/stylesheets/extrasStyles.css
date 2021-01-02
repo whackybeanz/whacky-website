@@ -121,5 +121,8 @@
   height: 400px;
   overflow-y: auto;
 }
+.single-map-tab .single-map-select div {
+  pointer-events: none;
+}
 
 /*# sourceMappingURL=extrasStyles.css.map */
