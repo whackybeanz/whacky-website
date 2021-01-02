@@ -14,45 +14,40 @@
                 <div class="w-100 mb-3">
                     <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Instructions</h2>
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                        <p class="w-100 text-justify">This calculator helps you quickly determine your current EXP multiplier, and expected EXP gains on certain content.</p>
+                        <p class="w-100 text-justify">This calculator helps you determine your current EXP multiplier, and expected EXP gains on certain content. If you wish to change any of the initial fields, click on Restart in Step 1.</p>
                     </div>
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <h3 class="w-100 font-subsubheader font-italic mb-0">Step 1: Enter initial details</h3>
-                        <p class="w-100 text-justify">You can change the EXP table anytime to compare EXP rates against old EXP tables. A warning will display if your character level does not exist within the EXP table selected.</p>
-
                         <div class="w-100 d-flex justify-content-center align-items-center flex-column position-relative">
                             <div class="w-100 d-flex justify-content-center align-items-center py-3">
                                 <form class="font-form size-720 w-100 d-flex flex-column justify-content-center align-items-start">
                                     <div class="col-12">
                                         <div class="form-group row d-flex align-items-start">
-                                            <label for="exp-table-used" class="col-3 col-form-label font-weight-bold text-left pl-0">EXP Table to Use</label>
-                                            <div class="col-9 col-md-6 px-0 d-flex flex-column">
-                                                <select class="form-control px-2" id="exp-table-used">
-                                                    <option value="neo"  <% if(expTable === "neo") { %>selected<% } %>>NEO</option>
-                                                    <option value="rise" <% if(expTable === "rise") { %>selected<% } %>>RISE</option>
-                                                    <option value="glory" <% if(expTable === "glory") { %>selected<% } %>>GLORY</option>
-                                                    <option value="black" <% if(expTable === "black") { %>selected<% } %>>BLACK</option>
-                                                </select>
-                                                <small id="invalid-select-warning" class="form-text d-none text-danger">The selected EXP table does not have data for the character level below. Please select a different EXP table.</small>
-                                                <small id="patch-details" class="form-text text-info">
-                                                    - Released in KMS in December 2020<br/>
-                                                    - Level cap raised to 300<br/>
-                                                    - Level 210 to 250 EXP reductions
-                                                </small>
+                                            <label for="exp-table-used" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">EXP Table to Use</label>
+                                            <div class="col-8 col-sm-9 col-md-6 px-0 d-flex flex-column">
+                                                <input class="font-small w-100 form-control-plaintext text-left rounded-sm" readonly type="text" id="exp-table" value="<%= expTable.toUpperCase() %>">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group row d-flex align-items-start">
-                                            <label for="gear-level" class="col-3 col-form-label font-weight-bold text-left pl-0">Character Level</label>
-                                            <div class="col-9 col-md-6 px-0 d-flex flex-column">
+                                            <label for="gear-level" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">Character Level</label>
+                                            <div class="col-8 col-sm-9 col-md-6 px-0 d-flex flex-column">
                                                 <input class="font-small w-100 form-control-plaintext text-left rounded-sm" readonly type="number" id="char-level" value="<%= charLevel %>">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
+                                        <div class="form-group row d-flex align-items-start">
+                                            <label for="gear-level" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">View Type</label>
+                                            <div class="col-8 col-sm-9 col-md-6 px-0 d-flex flex-column">
+                                                <input class="font-small w-100 form-control-plaintext text-left rounded-sm" readonly type="text" id="view-type" value="<%= viewType %>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="form-group row">
-                                            <a href="./maple/extras/exp-stacking" class="btn col-12 col-md-9 action-button py-1 px-2 rounded-sm font-weight-bold text-center" id="btn-start-calc"><i class="fas fa-redo-alt"></i> Restart</a>
+                                            <a href="./maple/extras/exp-stacking" class="btn btn-sm btn-outline-danger col-4 py-1 px-2 rounded-sm font-weight-bold text-center" id="btn-start-calc"><i class="fas fa-redo-alt"></i> Restart</a>
                                         </div>
                                     </div>
                                 </form>
@@ -60,6 +55,7 @@
                         </div>
                     </div>
 
+                    <% if(viewType === "Detailed") { %>
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4" id="select-exp-sources-div">
                         <h3 class="w-100 font-subsubheader font-italic mb-0">Step 2: Select EXP sources</h3>
                         <p class="w-100 text-justify">Click on any EXP coupons/items/buffs you use during training. Class-specific skills that give extra EXP, and buffs lasting for a very short duration (e.g. V Matrix special core) are not selectable.</p>
@@ -380,10 +376,11 @@
                             </div>
                         </div>
                     </div>
+                    <% } %>
 
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                        <h3 class="w-100 font-subsubheader font-italic mb-0">Step 4: View Results</h3>
-                        <p class="w-100 text-justify">The sections below are split into General Contents (unaffected by EXP multipliers) and Hunting Contents (affected by EXP multipliers).</p>
+                        <h3 class="w-100 font-subsubheader font-italic mb-0">Step <% if(viewType === "Simplified") { %>2<% } else { %>4<% } %>: View Results</h3>
+                        <% if(viewType === "Detailed") { %><p class="w-100 text-justify">The sections below are split into General Contents (unaffected by EXP multipliers) and Hunting Contents (affected by EXP multipliers).</p><% } %>
 
                         <p class="w-100 text-justify font-weight-bold">General Contents</p>
                         <table class="font-table size-720 table table-sm table-bordered table-hover mb-2">
@@ -431,6 +428,7 @@
                         </div>
                         <% } %>
 
+                        <% if(viewType === "Detailed") { %>
                         <p class="w-100 text-justify font-weight-bold">Hunting Contents</p>
                         <table class="font-table size-720 table table-sm table-bordered table-hover mb-2">
                             <thead>
@@ -456,6 +454,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <% } %>
                     </div>
                 </div>
             </div>

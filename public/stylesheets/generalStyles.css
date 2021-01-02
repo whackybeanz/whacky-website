@@ -160,11 +160,6 @@ input[type=number] {
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
 }
-@media (min-width: 992px) {
-  input[type=number] {
-    width: 75px !important;
-  }
-}
 
 input[type=radio] {
   visibility: hidden;

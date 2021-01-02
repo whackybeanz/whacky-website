@@ -1,3 +1,9 @@
+@media (min-width: 992px) {
+  #gear-level, #base-wa-ma {
+    width: 75px !important;
+  }
+}
+
 .small-boss-square {
   max-height: 40px;
 }

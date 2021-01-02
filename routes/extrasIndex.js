@@ -1,5 +1,6 @@
 var IconHelper = require("./helpers/iconHelpers");
 var Helper = require("./helpers/extrasHelpers");
+var EXPStackingHelper = require("./helpers/expStackingHelpers");
 
 var express = require("express");
 var router  = express.Router();
@@ -21,7 +22,7 @@ router.get("/flames", function(req, res) {
 			res.redirect("back");
 		} else {
 			const compiledIcons = IconHelper.compileIcons(allIcons);
-			res.locals.extraStylesheet = "flameStyles";
+			res.locals.extraStylesheet = "extrasStyles";
 			res.locals.section = "extras";
 			res.locals.branch = "calc-flames";
 			res.render("extras/flameCalc", {icons: compiledIcons});
@@ -257,7 +258,15 @@ router.get("/exp-stacking", function(req, res) {
 })
 
 router.post("/exp-stacking", function(req, res) {
+	const expTable = req.body.expTable;
 	const charLevel = parseInt(req.body.charLevel);
+	const viewType = req.body.viewTypeRadio;
+
+	// TODO: INSERT ERROR CHECKING HERE for expTable, charLevel, viewType
+
+	// TODO: Filter whether to retrieve map data or not based on simple/detailed view
+
+	const generalContentsEXP = EXPStackingHelper.calculateGeneralContentsEXP(expTable, charLevel);
 
 	// Retrieve map data that meets these conditions:
 	// 1) For maps that are not level restricted, get regions with monsters that are at least +-20 of character level
@@ -289,7 +298,7 @@ router.post("/exp-stacking", function(req, res) {
 			res.locals.extraStylesheet = "extrasStyles";
 			res.locals.section = "extras";
 			res.locals.branch = "calc-exp-stacking";
-			res.render("extras/expStackingActive", {icons: compiledIcons, foundMaps: foundMaps, expTable: req.body.expTable, charLevel: charLevel});
+			res.render("extras/expStackingActive", {icons: compiledIcons, foundMaps: foundMaps, expTable: expTable, charLevel: charLevel, viewType: viewType});
 		})
 		.catch(err => {
 			console.log(err);

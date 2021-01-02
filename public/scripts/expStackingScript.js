@@ -19,6 +19,7 @@ const patchDetails = {
 
 document.addEventListener("DOMContentLoaded", function(event) { 
     addEXPTableSelectListener();
+    addViewTypeBtnListeners();
     addStartCalcBtnListener();
 })
 
@@ -36,6 +37,19 @@ function addEXPTableSelectListener() {
         })
 
         document.getElementById("max-level").textContent = patchDetails[selectedField].maxLevel-1;
+    })
+}
+
+function addViewTypeBtnListeners() {
+    const viewTypeBtns = Array.from(document.querySelectorAll(".view-type-input"));
+
+    viewTypeBtns.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            if(!this.classList.contains("active")) {
+                document.querySelector(".view-type-input.active").classList.remove("active");
+                this.classList.add("active");
+            }
+        })
     })
 }
 

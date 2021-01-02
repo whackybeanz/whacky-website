@@ -1,5 +1,10 @@
 @use '_global-styles' as globals;
 
+// Flame Calculator
+#gear-level, #base-wa-ma {
+	@include globals.for-size(lg) { width: 75px !important; }
+}
+
 // Boss Crystal List
 .small-boss-square {
 	max-height: 40px;
