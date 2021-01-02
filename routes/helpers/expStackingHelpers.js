@@ -185,3 +185,5 @@ function calculateEXPRequired(expTableSelected, charLevel) {
 
     return finalEXPValue;
 }
+
+module.exports = { calculateGeneralContentsEXP };
