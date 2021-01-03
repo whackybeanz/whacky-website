@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addEXPStackSelectListener();
     addEXPStackInputListener();
     addMapSelectorListener();
+    addUpdateMapCalcListener();
     addViewEXPTypeListener();
 })
 
@@ -122,34 +123,23 @@ function addMapSelectorListener() {
                     if(numSelectedMaps === 5) {
                         document.getElementById("num-maps-prompt").classList.add("text-danger");
                     }
-
-                    const selectedElem = event.target;
-                    const mapData = {
-                        mapName: selectedElem.dataset.mapName,
-                        monsterLevels: selectedElem.dataset.monsterLevels.split(","),
-                        monsterName: selectedElem.dataset.monsterNames.split(","),
-                        monsterEXP: selectedElem.dataset.monsterExp.split(","),
-                        monsterHP: selectedElem.dataset.monsterHp.split(","),
-                        monsterIsBoss: selectedElem.dataset.monsterIsBoss.split(","),
-                    }
-
-                    addMapData(mapData);
                 }
             }
         }
     })
 }
 
-function addMapData(mapData) {
-
-}
-
 // Update multiplier values presented in a table
 let expBuffValueList = [1, 1, 1, 1, 0]
 let isCat1Premium = false;
+let totalMultiplier = 1;
 
 function updateMultipliers(categoryNum, expBuffValue, isAddStack, itemType = undefined) {
-    expBuffValueList[categoryNum-1] += expBuffValue;
+    if(categoryNum === 5) {
+        expBuffValueList[categoryNum-1] += expBuffValue;    
+    } else {
+        expBuffValueList[categoryNum-1] = expBuffValue;
+    }
 
     if(isAddStack) {
         if(categoryNum === 1) {
@@ -177,9 +167,110 @@ function updateMultipliers(categoryNum, expBuffValue, isAddStack, itemType = und
                 document.getElementById(`category-5-value`).textContent = `+${expBuffValueList[categoryNum-1]}%`;
             }
         } else {
+            if(categoryNum === 1 && itemType === "premium") {
+                isCat1Premium = false;
+            }
             expBuffValueList[categoryNum-1] = 1;
             document.getElementById(`category-${categoryNum}-value`).textContent = "-";
         }
+    }
+
+    if(isCat1Premium) {
+        totalMultiplier = expBuffValueList[1] * expBuffValueList[2] * expBuffValueList[3] + expBuffValueList[0]/100 + expBuffValueList[4]/100;
+    } else {
+        totalMultiplier = expBuffValueList[0] * expBuffValueList[1] * expBuffValueList[2] * expBuffValueList[3] + expBuffValueList[4]/100;
+    }
+
+    document.getElementById("total-value").textContent = `x${totalMultiplier}`;
+}
+
+function addUpdateMapCalcListener() {
+    const btnUpdateMap = document.getElementById("btn-update-calc");
+
+    btnUpdateMap.addEventListener("click", function() {
+        // Hide all map data rows
+        const allMapDisplayElems = Array.from(document.querySelectorAll(".single-map-display"));
+
+        allMapDisplayElems.forEach(function(elem, index) {
+            elem.classList.add("d-none");
+        })
+
+        // Populate new map data
+        const allSelectedMapElems = Array.from(document.querySelectorAll(".single-map-select.active"));
+
+        if(allSelectedMapElems.length > 0) {
+            document.getElementById("all-map-display").classList.remove("d-none");
+
+            allSelectedMapElems.forEach(function(mapElem, index) {
+                let mapData = {
+                    mapName: mapElem.dataset.mapName,
+                    mapIconUrl: mapElem.dataset.mapIcon,
+                    monsterLevels: mapElem.dataset.monsterLevels.split(","),
+                    monsterNames: mapElem.dataset.monsterNames.split(","),
+                    monsterEXP: mapElem.dataset.monsterExp.split(","),
+                    monsterHP: mapElem.dataset.monsterHp.split(","),
+                    monsterIsBoss: mapElem.dataset.monsterIsBoss.split(","),
+                };
+
+                document.getElementById(`map-name-${index+1}`).innerHTML = `<div class="d-flex align-items-center"><img src='${mapData.mapIconUrl}' class='mr-2'> ${mapData.mapName}</div>`;
+
+                const numMonsters = mapData.monsterNames.length;
+                let html = ``;
+
+                for(let i = 0; i < numMonsters; i++) {
+                    let levelDiffModifier = getLevelDiffModifier(charLevel, mapData.monsterLevels[i]);
+
+                    html += `<div class="font-weight-bold">[Lv. ${mapData.monsterLevels[i]}] ${mapData.monsterNames[i]}</div>`;
+                    html += `<div class="col-12 d-flex"><span class="col-6 col-sm-5 col-md-5 col-lg-6 px-0 text-right">Monster HP</span> <span class="col-6">${Number(mapData.monsterHP[i]).toLocaleString()}</span></div>`;
+                    html += `<div class="col-12 d-flex"><span class="col-6 col-sm-5 col-md-5 col-lg-6 px-0 text-right">Base EXP</span> <span class="col-6">${Number(mapData.monsterEXP[i]).toLocaleString()}</span></div>`;
+                    html += `<div class="col-12 d-flex"><span class="col-6 col-sm-5 col-md-5 col-lg-6 px-0 text-right">Level Bonus/Penalty</span> <span class="col-6">x${levelDiffModifier}<sup class="text-info">[3]</sup></span></div>`;
+                    html += `<div class="col-12 d-flex"><span class="col-6 col-sm-5 col-md-5 col-lg-6 px-0 text-right">New Base EXP</span> <span class="col-6">${Math.round(Number(mapData.monsterEXP[i]) * levelDiffModifier).toLocaleString()}</span></div>`;
+                    html += `<div class="col-12 d-flex font-weight-bold"><span class="col-6 col-sm-5 col-md-5 col-lg-6 px-0 text-right">EXP with multipliers</span> <span class="col-6">${Math.round(Number(mapData.monsterEXP[i]) * levelDiffModifier * totalMultiplier).toLocaleString()}</span></div>`;
+
+                    if(i !== numMonsters - 1) {
+                        html += "<hr>";
+                    }
+                }
+
+                document.getElementById(`monster-level-${index+1}`).innerHTML = html;
+
+                const affectedMapElem = Array.from(document.querySelectorAll(`.map-display-${index+1}`));
+
+                affectedMapElem.forEach(function(elem) {
+                    elem.classList.remove("d-none");
+                })
+            })
+        } else {
+            document.getElementById("all-map-display").classList.add("d-none");
+        }
+    })
+}
+
+// Returns the level difference bonus/penalty after comparing character level to monster level
+function getLevelDiffModifier(charLevel, monsterLevel) {
+    const levelDiff = charLevel-monsterLevel;
+
+    const overleveledModifiers = [
+        1.2, 1.2, 1.1, 1.1, 1.1, 1.05, 1.05, 1.05, 1.05, 1.05, 1, 
+        0.99, 0.99, 0.98, 0.98, 0.97, 0.97, 0.96, 0.96, 0.95, 0.95,
+        0.89, 0.88, 0.87, 0.86, 0.85, 0.84, 0.83, 0.82, 0.81, 0.80,
+        0.79, 0.78, 0.77, 0.76, 0.75, 0.74, 0.73, 0.72, 0.71, 0.70];
+    const underleveledModifiers = [
+        1.2, 1.2, 1.1, 1.1, 1.1, 1.05, 1.05, 1.05, 1.05, 1.05, 1, 
+        0.99, 0.98, 0.97, 0.96, 0.95, 0.94, 0.93, 0.92, 0.91, 0.90,
+        0.70, 0.66, 0.62, 0.58, 0.54, 0.50, 0.46, 0.42, 0.38, 0.34,
+        0.30, 0.26, 0.22, 0.18, 0.14, 0.10];
+
+    if(levelDiff >= 0) {
+        if(!overleveledModifiers[levelDiff]) {
+            return overleveledModifiers[overleveledModifiers.length-1];
+        }
+        return overleveledModifiers[levelDiff];
+    } else {
+        if(!underleveledModifiers[Math.abs(levelDiff)]) {
+            return underleveledModifiers[underleveledModifiers.length-1];
+        }
+        return underleveledModifiers[Math.abs(levelDiff)];
     }
 }
 

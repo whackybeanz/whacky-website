@@ -180,7 +180,16 @@
 	@include globals.for-size(lg) { width: 225px; }
 }
 
-#btn-change-exp-view {
-	right: 2px;
-	top: 2px;
+.mult-cols {
+	width: 75px;
+
+	@include globals.for-size(sm) { width: 100px; }
+	@include globals.for-size(md) { width: 125px; }
+}
+
+.map-name-col {
+	width: 150px;
+
+	@include globals.for-size(sm) { width: 200px; }
+	@include globals.for-size(md) { width: 250px; }
 }

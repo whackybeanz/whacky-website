@@ -336,7 +336,7 @@
                                     </li>
                                 <% }) %>
                             </ul>
-                            <div class="tab-content" id="full-map-list">
+                            <div class="tab-content mb-3" id="full-map-list">
                                 <% foundMaps.forEach(function(region, index) { %>
                                     <div class="single-map-tab tab-pane fade <% if(index === 0) { %>show active<% } %> border-top-0 rounded-sm py-2 px-2" id="<%= region.mapIcon %>" role="tabpanel" aria-labelledby="<%= region.mapIcon %>-tab">
                                         <div class="d-flex flex-wrap">
@@ -354,6 +354,7 @@
                                                         <div class="col-12 col-md-6 py-1 px-1">
                                                             <div class="single-map-select h-100 rounded-sm py-1 px-2 cursor-pointer" 
                                                                 data-map-name="<%= location.mapName %>"
+                                                                data-map-icon="<%= icons[`${region.mapIcon}`].imgUrl %>"
                                                                 data-monster-levels="<%= location.monsters.map(monster => monster.monsterLevel) %>"
                                                                 data-monster-names="<%= location.monsters.map(monster => monster.monsterName) %>"
                                                                 data-monster-exp="<%= location.monsters.map(monster => monster.monsterEXP) %>"
@@ -374,6 +375,8 @@
                                     </div>
                                 <% }) %>
                             </div>
+                        
+                            <div class="col-12 btn btn-sm btn-outline-info col-4 py-1 px-2 rounded-sm font-weight-bold text-center" id="btn-update-calc">Update Map Calculations</div>
                         </div>
                     </div>
                     <% } %>
@@ -386,15 +389,19 @@
                         <table class="font-table size-720 table table-sm table-bordered table-hover mb-2">
                             <thead>
                                 <tr>
-                                    <th class="align-middle">Content</th>
+                                    <th class="align-middle px-2">Content</th>
                                     <th class="text-center align-middle">Details</th>
                                     <th class="text-center align-middle position-relative cursor-pointer" id="view-exp-type-col">EXP Amount <span id="view-exp-type">(%)</span></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th class="step-4-col" id="monster-park-row" rowspan="<%= generalContentsEXP.monsterPark.length %>"><img src="<%= icons['map-monster-park'].imgUrl %>"> Monster Park</th>
-                                    <td class="step-4-col text-center align-middle"><%= generalContentsEXP.monsterPark[0].name %><br/>(Lv. <%= generalContentsEXP.monsterPark[0].recMinLevel %>~<%= generalContentsEXP.monsterPark[0].recMaxLevel %>)</td>
+                                    <th class="step-4-col" id="monster-park-row" rowspan="<%= generalContentsEXP.monsterPark.length %>">
+                                        <div class="d-flex align-items-center px-2">
+                                            <img src="<%= icons['map-monster-park'].imgUrl %>" class="mr-2"> Monster Park
+                                        </div>
+                                    </th>
+                                    <td class="step-4-col text-center align-middle"><%= generalContentsEXP.monsterPark[0].name %><br/>[Lv. <%= generalContentsEXP.monsterPark[0].recMinLevel %>~<%= generalContentsEXP.monsterPark[0].recMaxLevel %>]</td>
                                     <td class="table-cols-125">
                                         <div class="d-flex col-12 flex-column px-0">
                                             <div class="d-flex col-12 px-0">
@@ -428,7 +435,7 @@
                                     <% if(index > 0) { %>
                                     <tr>
                                         <td class="step-4-col text-center align-middle">
-                                            <%= generalContentsEXP.monsterPark[index].name %><br/>(Lv. <%= generalContentsEXP.monsterPark[index].recMinLevel %>~<%= generalContentsEXP.monsterPark[index].recMaxLevel %>)
+                                            <%= generalContentsEXP.monsterPark[index].name %><br/>[Lv. <%= generalContentsEXP.monsterPark[index].recMinLevel %>~<%= generalContentsEXP.monsterPark[index].recMaxLevel %>]
                                         </td>
                                         <td class="table-cols-125">
                                             <div class="d-flex col-12 flex-column px-0">
@@ -462,40 +469,45 @@
                                     <% } %>
                                 <% }) %>
                                 <% if(charLevel >= 200) { %>
-                                <tr>
-                                    <th colspan="3" class="empty-row py-2"></th>
-                                </tr>
                                     <tr>
-                                        <th class="step-4-col" rowspan="5"><img src="<%= icons['growth-potion'].imgUrl %>"> EXP Growth Potion<sup class="text-danger">[!]</sup><sup class="text-info">[2]</sup></th>
-                                        <td class="step-4-col text-center align-middle">Potion 1<br/>(Lv. 200~209)</td>
+                                        <th colspan="3" class="empty-row py-2"></th>
+                                    </tr>
+                                    <tr>
+                                        <th class="step-4-col" rowspan="5">
+                                            <div class="d-flex align-items-center px-2">
+                                                <img src="<%= icons['growth-potion'].imgUrl %>" class="mr-2">
+                                                <span>EXP Growth Potion<sup class="text-danger">[!]</sup><sup class="text-info">[2]</sup></span>
+                                            </div>
+                                        </th>
+                                        <td class="step-4-col text-center align-middle">Potion 1<br/>[Lv. 200~209]</td>
                                         <td class="text-center align-middle" id="exp-potion1">
                                             <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.potion1.rawEXP.toLocaleString() %> EXP</span>
                                             <span class="view-percent-exp"><%= generalContentsEXP.expPotions.potion1.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="step-4-col text-center align-middle">Potion 2<br/>(Lv. 200~219)</td>
+                                        <td class="step-4-col text-center align-middle">Potion 2<br/>[Lv. 200~219]</td>
                                         <td class="text-center align-middle" id="exp-potion2">
                                             <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.potion2.rawEXP.toLocaleString() %> EXP</span>
                                             <span class="view-percent-exp"><%= generalContentsEXP.expPotions.potion2.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="step-4-col text-center align-middle">Potion 3<br/>(Lv. 200~229)</td>
+                                        <td class="step-4-col text-center align-middle">Potion 3<br/>[Lv. 200~229]</td>
                                         <td class="text-center align-middle" id="exp-potion3">
                                             <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.potion3.rawEXP.toLocaleString() %> EXP</span>
                                             <span class="view-percent-exp"><%= generalContentsEXP.expPotions.potion3.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="step-4-col text-center align-middle">Typhoon Growth Potion<br/>(Lv. 200~239)</td>
+                                        <td class="step-4-col text-center align-middle">Typhoon Growth Potion<br/>[Lv. 200~239]</td>
                                         <td class="text-center align-middle" id="exp-typhoon">
                                             <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.typhoon.rawEXP.toLocaleString() %> EXP</span>
                                             <span class="view-percent-exp"><%= generalContentsEXP.expPotions.typhoon.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="step-4-col text-center align-middle">Maximum Growth Potion<br/>(Lv. 200~249)</td>
+                                        <td class="step-4-col text-center align-middle">Maximum Growth Potion<br/>[Lv. 200~249]</td>
                                         <td class="text-center align-middle" id="exp-maximum">
                                             <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.maximum.rawEXP.toLocaleString() %> EXP</span>
                                             <span class="view-percent-exp"><%= generalContentsEXP.expPotions.maximum.percentEXP %>%</span>
@@ -514,30 +526,87 @@
 
                         <% if(viewType === "Detailed") { %>
                         <p class="w-100 text-justify font-weight-bold mt-4">Hunting Contents</p>
-                        <table class="font-table size-720 table table-sm table-bordered table-hover mb-2">
+                        <table class="font-table size-720 table table-sm table-bordered table-hover mb-4">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th class="text-center align-middle">Cash shop coupons</th>
-                                    <th class="text-center align-middle">Use coupons<br/>(non-cash)</th>
-                                    <th class="text-center align-middle">Server Events</th>
-                                    <th class="text-center align-middle">Penance Ring</th>
-                                    <th class="text-center align-middle">Additive Buffs</th>
-                                    <th class="text-center align-middle">Total</th>
+                                    <th class="text-center" colspan="6">Multiplier</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th class="text-center align-middle">Multiplier</th>
-                                    <td class="text-center align-middle" id="category-1-value">-</td>
-                                    <td class="text-center align-middle" id="category-2-value">-</td>
-                                    <td class="text-center align-middle" id="category-3-value">-</td>
-                                    <td class="text-center align-middle" id="category-4-value">-</td>
-                                    <td class="text-center align-middle" id="category-5-value">-</td>
-                                    <td class="text-center align-middle" id="category-5-value">-</td>
+                                    <th class="mult-cols text-center align-middle">Cash shop coupons</th>
+                                    <th class="mult-cols text-center align-middle">Use coupons<br/>(non-cash)</th>
+                                    <th class="mult-cols text-center align-middle">Server Events</th>
+                                    <th class="mult-cols text-center align-middle">Penance Ring</th>
+                                    <th class="mult-cols text-center align-middle">Additive Buffs</th>
+                                    <th class="mult-cols text-center align-middle">Total</th>
+                                </tr>
+                                <tr>
+                                    <td class="mult-cols text-center align-middle" id="category-1-value">-</td>
+                                    <td class="mult-cols text-center align-middle" id="category-2-value">-</td>
+                                    <td class="mult-cols text-center align-middle" id="category-3-value">-</td>
+                                    <td class="mult-cols text-center align-middle" id="category-4-value">-</td>
+                                    <td class="mult-cols text-center align-middle" id="category-5-value">-</td>
+                                    <td class="mult-cols text-center align-middle" id="total-value">-</td>
                                 </tr>
                             </tbody>
                         </table>
+
+                        <table class="font-table size-720 table table-sm table-bordered table-hover mb-2 d-none" id="all-map-display">
+                            <thead>
+                                <tr>
+                                    <th class="text-left px-2">Map Name</th>
+                                    <th class="text-left px-2">Monster(s)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="single-map-display map-display-1">
+                                    <th class="text-left map-name-col px-2 py-2" id="map-name-1"></th>
+                                    <td class="text-left px-2 py-2">
+                                        <div class="col-12 d-flex flex-column px-0" id="monster-level-1"></div>
+                                    </td>
+                                </tr>
+                                <tr class="single-map-display map-display-2">
+                                    <th colspan="3" class="empty-row py-2"></td>
+                                </tr>
+                                <tr class="single-map-display map-display-2">
+                                    <th class="text-left map-name-col px-2 py-2" id="map-name-2"></th>
+                                    <td class="text-left px-2 py-2">
+                                        <div class="col-12 d-flex flex-column px-0" id="monster-level-2"></div>
+                                    </td>
+                                </tr>
+                                <tr class="single-map-display map-display-3">
+                                    <th colspan="3" class="empty-row py-2"></td>
+                                </tr>
+                                <tr class="single-map-display map-display-3">
+                                    <th class="text-left map-name-col px-2 py-2" id="map-name-3"></th>
+                                    <td class="text-left px-2 py-2">
+                                        <div class="col-12 d-flex flex-column px-0" id="monster-level-3"></div>
+                                    </td>
+                                </tr>
+                                <tr class="single-map-display map-display-4">
+                                    <th colspan="3" class="empty-row py-2"></td>
+                                </tr>
+                                <tr class="single-map-display map-display-4">
+                                    <th class="text-left map-name-col px-2 py-2" id="map-name-4"></th>
+                                    <td class="text-left px-2 py-2">
+                                        <div class="col-12 d-flex flex-column px-0" id="monster-level-4"></div>
+                                    </td>
+                                </tr>
+                                <tr class="single-map-display map-display-5">
+                                    <th colspan="3" class="empty-row py-2"></td>
+                                </tr>
+                                <tr class="single-map-display map-display-5">
+                                    <th class="text-left map-name-col px-2 py-2" id="map-name-5"></th>
+                                    <td class="text-left px-2 py-2">
+                                        <div class="col-12 d-flex flex-column px-0" id="monster-level-5"></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="font-footnote size-720 w-100 text-justify">
+                            <p class="mb-0"><span class="text-info font-weight-bold">[3]</span> Depending on your level difference to the monster, you get a bonus/penalty. As of NEO patch, the bonuses are: x1.2 Base EXP (+-1 level) / x1.1 Base EXP (+-4 levels) / x1.05 Base EXP (+-9 levels) / x1 Base EXP (+-10 levels). Beyond 10 levels, a penalty is applied.</p>
+                        </div>
                         <% } %>
                     </div>
                 </div>

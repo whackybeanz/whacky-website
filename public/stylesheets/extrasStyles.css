@@ -150,9 +150,32 @@
   }
 }
 
-#btn-change-exp-view {
-  right: 2px;
-  top: 2px;
+.mult-cols {
+  width: 75px;
+}
+@media (min-width: 576px) {
+  .mult-cols {
+    width: 100px;
+  }
+}
+@media (min-width: 768px) {
+  .mult-cols {
+    width: 125px;
+  }
+}
+
+.map-name-col {
+  width: 150px;
+}
+@media (min-width: 576px) {
+  .map-name-col {
+    width: 200px;
+  }
+}
+@media (min-width: 768px) {
+  .map-name-col {
+    width: 250px;
+  }
 }
 
 /*# sourceMappingURL=extrasStyles.css.map */
