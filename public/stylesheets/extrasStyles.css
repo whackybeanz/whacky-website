@@ -131,4 +131,28 @@
   pointer-events: none;
 }
 
+.step-4-col {
+  width: 100px;
+}
+@media (min-width: 576px) {
+  .step-4-col {
+    width: 125px;
+  }
+}
+@media (min-width: 768px) {
+  .step-4-col {
+    width: 175px;
+  }
+}
+@media (min-width: 992px) {
+  .step-4-col {
+    width: 225px;
+  }
+}
+
+#btn-change-exp-view {
+  right: 2px;
+  top: 2px;
+}
+
 /*# sourceMappingURL=extrasStyles.css.map */

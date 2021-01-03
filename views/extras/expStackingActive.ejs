@@ -380,41 +380,83 @@
 
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <h3 class="w-100 font-subsubheader font-italic mb-0">Step <% if(viewType === "Simplified") { %>2<% } else { %>4<% } %>: View Results</h3>
-                        <% if(viewType === "Detailed") { %><p class="w-100 text-justify">The sections below are split into General Contents (unaffected by EXP multipliers) and Hunting Contents (affected by EXP multipliers).</p><% } %>
+                        <p class="w-100 text-justify"><% if(viewType === "Detailed") { %>The sections below are split into General Contents (unaffected by EXP multipliers) and Hunting Contents (affected by EXP multipliers).<% } %> Click on 'EXP Amount' column to toggle between % EXP values and raw EXP values.</p>
 
                         <p class="w-100 text-justify font-weight-bold">General Contents</p>
                         <table class="font-table size-720 table table-sm table-bordered table-hover mb-2">
                             <thead>
                                 <tr>
                                     <th class="align-middle">Content</th>
-                                    <th class="align-middle">Details</th>
-                                    <th class="text-center align-middle">EXP Amount</th>
+                                    <th class="text-center align-middle">Details</th>
+                                    <th class="text-center align-middle position-relative cursor-pointer" id="view-exp-type-col">EXP Amount <span id="view-exp-type">(%)</span></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th id="monster-park-row" rowspan="<%= generalContentsEXP.monsterPark.length %>">Monster Park</th>
-                                    <td><%= generalContentsEXP.monsterPark[0].name %> (Lv. <%= generalContentsEXP.monsterPark[0].recMinLevel %>~<%= generalContentsEXP.monsterPark[0].recMaxLevel %>)</td>
-                                    <td class="text-center">
-                                        (<%= generalContentsEXP.monsterPark[0].rawEXP.toLocaleString() %> EXP)<br/>
-                                        <%= generalContentsEXP.monsterPark[0].percentEXP %>%                                        
-                                        <% if(generalContentsEXP.monsterPark[0].notes) { %>
-                                            <div class="d-inline" data-toggle="tooltip" data-placement="bottom" title="<%= generalContentsEXP.monsterPark[0].notes %>"><i class="fas fa-info-circle"></i></div>
-                                        <% } %>
+                                    <th class="step-4-col" id="monster-park-row" rowspan="<%= generalContentsEXP.monsterPark.length %>"><img src="<%= icons['map-monster-park'].imgUrl %>"> Monster Park</th>
+                                    <td class="step-4-col text-center align-middle"><%= generalContentsEXP.monsterPark[0].name %><br/>(Lv. <%= generalContentsEXP.monsterPark[0].recMinLevel %>~<%= generalContentsEXP.monsterPark[0].recMaxLevel %>)</td>
+                                    <td class="table-cols-125">
+                                        <div class="d-flex col-12 flex-column px-0">
+                                            <div class="d-flex col-12 px-0">
+                                                <div class="col-6 d-inline text-right px-1">Mon-Sat:</div>
+                                                <div class="col-6 d-inline px-2">
+                                                    <span class="view-raw-exp d-none"><%= generalContentsEXP.monsterPark[0].rawEXP.toLocaleString() %> EXP</span>
+                                                    <span class="view-percent-exp"><%= generalContentsEXP.monsterPark[0].percentEXP %>%</span>
+                                                    <% if(generalContentsEXP.monsterPark[0].notes) { %>
+                                                        <div class="d-inline" data-toggle="tooltip" data-placement="bottom" title="<%= generalContentsEXP.monsterPark[0].notes %>"><i class="fas fa-info-circle"></i></div>
+                                                    <% } %>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex col-12 px-0">
+                                                <div class="col-6 d-inline text-right px-1">Sundays:</div>
+                                                <div class="col-6 d-inline px-2">
+                                                    <span class="view-raw-exp d-none"><%= Math.round(generalContentsEXP.monsterPark[0].rawEXP * 1.5).toLocaleString() %> EXP</span>
+                                                    <span class="view-percent-exp"><%= (generalContentsEXP.monsterPark[0].percentEXP * 1.5).toFixed(3) %>%</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex col-12 px-0">
+                                                <div class="col-6 d-inline text-right px-1">Sunday Maple:</div>
+                                                <div class="col-6 d-inline px-2">
+                                                    <span class="view-raw-exp d-none"><%= (generalContentsEXP.monsterPark[0].rawEXP * 2).toLocaleString() %> EXP</span>
+                                                    <span class="view-percent-exp"><%= (generalContentsEXP.monsterPark[0].percentEXP * 2).toFixed(3) %>%</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 <% generalContentsEXP.monsterPark.forEach(function(content, index) { %>
                                     <% if(index > 0) { %>
                                     <tr>
-                                        <td>
-                                            <%= generalContentsEXP.monsterPark[index].name %> (Lv. <%= generalContentsEXP.monsterPark[index].recMinLevel %>~<%= generalContentsEXP.monsterPark[index].recMaxLevel %>)
+                                        <td class="step-4-col text-center align-middle">
+                                            <%= generalContentsEXP.monsterPark[index].name %><br/>(Lv. <%= generalContentsEXP.monsterPark[index].recMinLevel %>~<%= generalContentsEXP.monsterPark[index].recMaxLevel %>)
                                         </td>
-                                        <td class="text-center">
-                                            (<%= generalContentsEXP.monsterPark[index].rawEXP.toLocaleString() %> EXP)<br/>
-                                            <%= generalContentsEXP.monsterPark[index].percentEXP %>%
-                                            <% if(generalContentsEXP.monsterPark[index].notes) { %>
-                                                <div class="d-inline" data-toggle="tooltip" data-placement="bottom" title="<%= generalContentsEXP.monsterPark[index].notes %>"><i class="fas fa-info-circle"></i></div>
-                                            <% } %>
+                                        <td class="table-cols-125">
+                                            <div class="d-flex col-12 flex-column px-0">
+                                                <div class="d-flex col-12 px-0">
+                                                    <div class="col-6 d-inline text-right px-1">Mon-Sat:</div>
+                                                    <div class="col-6 d-inline px-2">
+                                                        <span class="view-raw-exp d-none"><%= generalContentsEXP.monsterPark[index].rawEXP.toLocaleString() %> EXP</span>
+                                                        <span class="view-percent-exp"><%= generalContentsEXP.monsterPark[index].percentEXP %>%</span>
+                                                        <% if(generalContentsEXP.monsterPark[index].notes) { %>
+                                                            <div class="d-inline" data-toggle="tooltip" data-placement="bottom" title="<%= generalContentsEXP.monsterPark[index].notes %>"><i class="fas fa-info-circle"></i></div>
+                                                        <% } %>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex col-12 px-0">
+                                                    <div class="col-6 d-inline text-right px-1">Sundays:</div>
+                                                    <div class="col-6 d-inline px-2">
+                                                        <span class="view-raw-exp d-none"><%= Math.round(generalContentsEXP.monsterPark[index].rawEXP * 1.5).toLocaleString() %> EXP</span>
+                                                        <span class="view-percent-exp"><%= (generalContentsEXP.monsterPark[index].percentEXP * 1.5).toFixed(3) %>%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex col-12 px-0">
+                                                    <div class="col-6 d-inline text-right px-1">Sunday Maple:</div>
+                                                    <div class="col-6 d-inline px-2">
+                                                        <span class="view-raw-exp d-none"><%= (generalContentsEXP.monsterPark[index].rawEXP * 2).toLocaleString() %> EXP</span>
+                                                        <span class="view-percent-exp"><%= (generalContentsEXP.monsterPark[index].percentEXP * 2).toFixed(3) %>%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     <% } %>
@@ -424,39 +466,39 @@
                                     <th colspan="3" class="empty-row py-2"></th>
                                 </tr>
                                     <tr>
-                                        <th rowspan="5">EXP Growth Potion<sup class="text-danger">[!]</sup><sup class="text-info">[2]</sup></th>
-                                        <td>Potion 1 (Lv. 200~209)</td>
-                                        <td class="table-cols-125 text-center" id="exp-potion1">
-                                            (<%= generalContentsEXP.expPotions.potion1.rawEXP.toLocaleString() %> EXP)<br/>
-                                            <%= generalContentsEXP.expPotions.potion1.percentEXP %>%
+                                        <th class="step-4-col" rowspan="5"><img src="<%= icons['growth-potion'].imgUrl %>"> EXP Growth Potion<sup class="text-danger">[!]</sup><sup class="text-info">[2]</sup></th>
+                                        <td class="step-4-col text-center align-middle">Potion 1<br/>(Lv. 200~209)</td>
+                                        <td class="text-center align-middle" id="exp-potion1">
+                                            <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.potion1.rawEXP.toLocaleString() %> EXP</span>
+                                            <span class="view-percent-exp"><%= generalContentsEXP.expPotions.potion1.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Potion 2 (Lv. 200~219)</td>
-                                        <td class="table-cols-125 text-center" id="exp-potion2">
-                                            (<%= generalContentsEXP.expPotions.potion2.rawEXP.toLocaleString() %> EXP)<br/>
-                                            <%= generalContentsEXP.expPotions.potion2.percentEXP %>%
+                                        <td class="step-4-col text-center align-middle">Potion 2<br/>(Lv. 200~219)</td>
+                                        <td class="text-center align-middle" id="exp-potion2">
+                                            <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.potion2.rawEXP.toLocaleString() %> EXP</span>
+                                            <span class="view-percent-exp"><%= generalContentsEXP.expPotions.potion2.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Potion 3 (Lv. 200~229)</td>
-                                        <td class="table-cols-125 text-center" id="exp-potion3">
-                                            (<%= generalContentsEXP.expPotions.potion3.rawEXP.toLocaleString() %> EXP)<br/>
-                                            <%= generalContentsEXP.expPotions.potion3.percentEXP %>%
+                                        <td class="step-4-col text-center align-middle">Potion 3<br/>(Lv. 200~229)</td>
+                                        <td class="text-center align-middle" id="exp-potion3">
+                                            <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.potion3.rawEXP.toLocaleString() %> EXP</span>
+                                            <span class="view-percent-exp"><%= generalContentsEXP.expPotions.potion3.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Typhoon Growth (Lv. 200~239)</td>
-                                        <td class="table-cols-125 text-center" id="exp-typhoon">
-                                            (<%= generalContentsEXP.expPotions.typhoon.rawEXP.toLocaleString() %> EXP)<br/>
-                                            <%= generalContentsEXP.expPotions.typhoon.percentEXP %>%
+                                        <td class="step-4-col text-center align-middle">Typhoon Growth Potion<br/>(Lv. 200~239)</td>
+                                        <td class="text-center align-middle" id="exp-typhoon">
+                                            <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.typhoon.rawEXP.toLocaleString() %> EXP</span>
+                                            <span class="view-percent-exp"><%= generalContentsEXP.expPotions.typhoon.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Maximum Growth (Lv. 200~249)</td>
-                                        <td class="table-cols-125 text-center" id="exp-maximum">
-                                            (<%= generalContentsEXP.expPotions.maximum.rawEXP.toLocaleString() %> EXP)<br/>
-                                            <%= generalContentsEXP.expPotions.maximum.percentEXP %>%
+                                        <td class="step-4-col text-center align-middle">Maximum Growth Potion<br/>(Lv. 200~249)</td>
+                                        <td class="text-center align-middle" id="exp-maximum">
+                                            <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.maximum.rawEXP.toLocaleString() %> EXP</span>
+                                            <span class="view-percent-exp"><%= generalContentsEXP.expPotions.maximum.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                 <% } %>

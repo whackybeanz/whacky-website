@@ -171,3 +171,16 @@
 		}
 	}
 }
+
+.step-4-col {
+	width: 100px;
+
+	@include globals.for-size(sm) { width: 125px; }
+	@include globals.for-size(md) { width: 175px; }
+	@include globals.for-size(lg) { width: 225px; }
+}
+
+#btn-change-exp-view {
+	right: 2px;
+	top: 2px;
+}

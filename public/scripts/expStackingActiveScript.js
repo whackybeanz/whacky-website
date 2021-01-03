@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addEXPStackSelectListener();
     addEXPStackInputListener();
     addMapSelectorListener();
+    addViewEXPTypeListener();
 })
 
 // On click of any exp stack, check category of selected item
@@ -180,4 +181,31 @@ function updateMultipliers(categoryNum, expBuffValue, isAddStack, itemType = und
             document.getElementById(`category-${categoryNum}-value`).textContent = "-";
         }
     }
+}
+
+let isViewEXPPercent = true;
+
+function addViewEXPTypeListener() {
+    const expTypeElem = document.getElementById("view-exp-type-col");
+
+    expTypeElem.addEventListener("click", function() {
+        const allPercentEXPElem = Array.from(document.querySelectorAll(".view-percent-exp"));
+        const allRawEXPElem = Array.from(document.querySelectorAll(".view-raw-exp"));
+
+        allPercentEXPElem.forEach(function(elem) {
+            elem.classList.toggle("d-none");
+        })
+
+        allRawEXPElem.forEach(function(elem) {
+            elem.classList.toggle("d-none");
+        })
+
+        isViewEXPPercent = !isViewEXPPercent;
+
+        if(isViewEXPPercent) {
+            document.getElementById("view-exp-type").textContent = "(%)";
+        } else {
+            document.getElementById("view-exp-type").textContent = "(Raw EXP)";
+        }
+    })
 }
