@@ -224,6 +224,12 @@ body .dmg-skin-table > tbody {
 body .dmg-skin-table > tbody .mobile-th {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
+body .exp-stack-section-subheader, body .exp-stack-section {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .exp-stack-section-subheader {
+  background-color: rgba(206, 212, 218, 0.8);
+}
 body .single-exp-stack {
   border: 1px solid rgba(206, 212, 218, 0.8);
   transition: all 0.2s;

@@ -1,0 +1,73 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4" id="select-exp-sources-div">
+    <div class="exp-stack-section-subheader w-100">
+        <h3 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#step-3">
+            <i class="fas fa-caret-down"></i> Step 3: Select Training Locations
+        </h3>
+    </div>
+
+    <div class="exp-stack-section w-100 px-0 collapse show" id="step-3">
+        <div class="w-100 d-flex justify-content-start align-items-center">
+            <div class="w-100 px-3 py-2">
+                <p class="w-100 text-justify">Regions with monsters that are within +-20 of character level are displayed below. You can select up to five map locations.</p>
+                <p class="w-100 text-justify" id="num-maps-prompt"><span class="font-weight-bold">Total selected</span>: <span id="num-maps-selected">0</span></p>
+
+                <div class="w-100 d-flex justify-content-center">
+                    <div class="font-table size-720 w-100 mb-4">
+                        <ul class="nav nav-tabs">
+                            <% foundMaps.forEach(function(region, index) { %>
+                                <li class="nav-item">
+                                    <a class="nav-link <% if(index === 0) { %>active<% } %>" data-toggle="tab" href="#<%= region.mapIcon %>" role="tab" aria-controls="home" aria-selected="true">
+                                        <div class="map-icon d-flex justify-content-center align-items-center">
+                                            <img src="<%= icons[`${region.mapIcon}`].imgUrl %>">
+                                        </div>
+                                    </a>
+                                </li>
+                            <% }) %>
+                        </ul>
+                        <div class="tab-content mb-3" id="full-map-list">
+                            <% foundMaps.forEach(function(region, index) { %>
+                                <div class="single-map-tab tab-pane fade <% if(index === 0) { %>show active<% } %> border-top-0 rounded-sm py-2 px-2" id="<%= region.mapIcon %>" role="tabpanel" aria-labelledby="<%= region.mapIcon %>-tab">
+                                    <div class="d-flex flex-wrap">
+                                        <div class="col-12">
+                                            <h3 class="font-subsubheader d-flex align-items-center justify-content-center">
+                                                <div class="map-icon d-flex align-items-center justify-content-center mr-2">
+                                                    <img src="<%= icons[`${region.mapIcon}`].imgUrl %>"> 
+                                                </div>
+                                                <%= region.subregion %>
+                                            </h3>
+                                        </div>
+                                        <% region.mapLocations.forEach(function(location) { %>
+                                            <% if(location.monsters.length > 0) { %>
+                                                <% if(location.monsters.some(monster => monster.monsterLevel >= charLevel-20 && monster.monsterLevel <= charLevel+20)) { %>
+                                                    <div class="col-12 col-md-6 py-1 px-1">
+                                                        <div class="single-map-select h-100 rounded-sm py-1 px-2 cursor-pointer" 
+                                                            data-map-name="<%= location.mapName %>"
+                                                            data-map-icon="<%= icons[`${region.mapIcon}`].imgUrl %>"
+                                                            data-monster-levels="<%= location.monsters.map(monster => monster.monsterLevel) %>"
+                                                            data-monster-names="<%= location.monsters.map(monster => monster.monsterName) %>"
+                                                            data-monster-exp="<%= location.monsters.map(monster => monster.monsterEXP) %>"
+                                                            data-monster-hp="<%= location.monsters.map(monster => monster.monsterHP) %>"
+                                                            data-monster-is-boss="<%= location.monsters.map(monster => monster.isBoss) %>">
+                                                            <div>
+                                                                <span class="font-weight-bold"><%= location.mapName %></span><br/>
+                                                                <% location.monsters.forEach(function(monster) { %>
+                                                                    [Lv. <%= monster.monsterLevel %>] <%= monster.monsterName %><br/>
+                                                                <% }) %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <% } %>
+                                            <% } %>
+                                        <% }) %>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+        
+                        <div class="col-12 btn btn-sm btn-outline-info col-4 py-1 px-2 rounded-sm font-weight-bold text-center" id="btn-update-calc">Update Map Calculations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

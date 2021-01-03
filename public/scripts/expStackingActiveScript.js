@@ -200,6 +200,7 @@ function addUpdateMapCalcListener() {
 
         if(allSelectedMapElems.length > 0) {
             document.getElementById("all-map-display").classList.remove("d-none");
+            document.getElementById("all-map-display-footnote").classList.remove("d-none");
 
             allSelectedMapElems.forEach(function(mapElem, index) {
                 let mapData = {
@@ -242,6 +243,7 @@ function addUpdateMapCalcListener() {
             })
         } else {
             document.getElementById("all-map-display").classList.add("d-none");
+            document.getElementById("all-map-display-footnote").classList.add("d-none");
         }
     })
 }

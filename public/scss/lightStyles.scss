@@ -339,6 +339,14 @@ body {
 	}
 
 	// EXP Stacking
+	.exp-stack-section-subheader, .exp-stack-section {
+		border: 1px solid globals.$light-mode-grey;
+	}
+
+	.exp-stack-section-subheader {
+		background-color: globals.$light-mode-grey;
+	}
+
 	.single-exp-stack {
 		border: 1px solid globals.$light-mode-grey;
 		transition: all 0.2s;

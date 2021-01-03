@@ -17,63 +17,7 @@
                         <p class="w-100 text-justify">This calculator helps you determine your current EXP multiplier, and expected EXP gains on certain content.</p>
                         <p class="w-100 text-justify">To view expected EXP rates on only 'general content' (Monster Park, EXP Growth Potions), select 'Simplified' for View Type. To view expected EXP rates for both 'general content' and 'hunting content' (killing monsters, Polo/Frito portals), select 'Detailed'.</p>
                     </div>
-                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                        <h3 class="w-100 font-subsubheader font-italic mb-0">Step 1: Enter initial details</h3>
-                        <div class="w-100 d-flex justify-content-center align-items-center flex-column position-relative">
-                            <div class="w-100 d-flex justify-content-center align-items-center py-3">
-                                <form class="font-form size-720 w-100 d-flex flex-column justify-content-center align-items-start" action="./maple/extras/exp-stacking" method="POST">
-                                    <div class="col-12">
-                                        <div class="form-group row d-flex align-items-start">
-                                            <label for="exp-table-used" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">EXP Table to Use</label>
-                                            <div class="col-8 col-md-6 px-0 d-flex flex-column">
-                                                <select class="form-control px-2" name="expTable" id="exp-table-used">
-                                                    <option value="neo" selected>NEO</option>
-                                                    <option value="rise">RISE</option>
-                                                    <option value="glory">GLORY</option>
-                                                    <option value="black">BLACK</option>
-                                                </select>
-                                                <small id="patch-details" class="form-text text-info">
-                                                    - Released in KMS in December 2020<br/>
-                                                    - Level cap raised to 300<br/>
-                                                    - Level 210 to 250 EXP reductions
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group row d-flex align-items-start">
-                                            <label for="gear-level" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">Character Level</label>
-                                            <div class="col-8 col-md-6 px-0 d-flex flex-column">
-                                                <input class="font-small w-100 form-control text-left rounded-sm" name="charLevel" type="number" id="char-level" value="210" min="50" max="300" required>
-                                                <small id="allowed-levels" class="form-text text-info">Allowed values: 50 to <span id="max-level">299</span></small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 mb-2">
-                                        <div class="form-group row d-flex align-items-start">
-                                            <label for="viewTypeRadio" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">View Type</label>
-                                            <div class="col-8 col-md-6 px-0 radio-select-group d-flex justify-content-center">
-                                                <div class="col form-check p-0">
-                                                    <input class="form-check-input" type="radio" name="viewTypeRadio" id="view-type-simple" value="Simplified" checked>
-                                                    <label class="form-check-label font-small radio-select view-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 active" for="view-type-simple">Simplified View</label>
-                                                </div>
-                                                <div class="col form-check p-0">
-                                                    <input class="form-check-input" type="radio" name="viewTypeRadio" id="view-type-detailed" value="Detailed">
-                                                    <label class="form-check-label font-small radio-select view-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="view-type-detailed">Detailed View</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="form-group row">
-                                            <button type="submit" class="btn col-12 col-sm-11 col-md-9 action-button py-1 px-2 rounded-sm font-weight-bold text-center" id="btn-start-calc"><i class="fas fa-check"></i> Begin</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    <%- include("./exp-stack-partials/exp-stack-step-1") %>
                 </div>
             </div>
         </div>
