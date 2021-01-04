@@ -14,7 +14,7 @@
                 <div class="w-100 mb-3">
                     <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Instructions</h2>
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                        <p class="w-100 text-justify">This calculator helps you determine your current EXP multiplier, and expected EXP gains on certain content. If you wish to change any of the initial fields, click on Restart in Step 1.</p>
+                        <p class="w-100 text-justify">This calculator helps you determine your current EXP multiplier, and expected EXP gains on certain content.</p>
                     </div>
                     <%- include("./exp-stack-partials/exp-stack-step-1") %>
 
@@ -34,5 +34,5 @@
 
 <script type="text/javascript" src="./public/scripts/commonScript.js"></script>
 <script type="text/javascript" src="./public/scripts/expStackingScript.js"></script>
-<script type="text/javascript" src="./public/scripts/expStackingActiveScript.js"></script>
+<% if(viewType === "Detailed") { %><script type="text/javascript" src="./public/scripts/expStackingActiveScript.js"></script><% } %>
 <%- include("../partials/footer") %>

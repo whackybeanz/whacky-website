@@ -193,3 +193,7 @@
 	@include globals.for-size(sm) { width: 200px; }
 	@include globals.for-size(md) { width: 250px; }
 }
+
+.quick-ref {
+	right: 1rem;
+}

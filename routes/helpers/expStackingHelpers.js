@@ -3,7 +3,7 @@ const patchDetails = {
         details: ["Released in KMS in December 2020", "Level cap raised to 300", "Level 210 to 250 EXP reductions"],
         maxLevel: 300,
         expStages: {
-            at160: 76574580,
+            at140: 22777494,
             at200: 2207026470,
             at250: 1313764762354
         },
@@ -17,7 +17,7 @@ const patchDetails = {
         details: ["Released in KMS in December 2020", "Level 170 to 199 EXP reductions"],
         maxLevel: 275,
         expStages: {
-            at160: 76574580,
+            at140: 22777494,
             at200: 2207026470,
             at250: 1313764762354
         },
@@ -31,7 +31,7 @@ const patchDetails = {
         details: ["Released in KMS in July 2019", "Level 220 to 234 EXP reductions"],
         maxLevel: 275,
         expStages: {
-            at160: 76574580,
+            at140: 22777494,
             at200: 2207026470,
             at250: 1313764762354
         },
@@ -45,7 +45,7 @@ const patchDetails = {
         details: ["Released in KMS in June 2018", "Level 201 to 220 EXP reductions", "Level cap raised to 275"],
         maxLevel: 275,
         expStages: {
-            at160: 76574580,
+            at140: 22777494,
             at200: 2207026470,
             at250: 1313764762354,
         },
@@ -101,8 +101,9 @@ function calculateGeneralContentsEXP(expTableSelected, charLevel) {
     const expToLevel = calculateEXPRequired(expTableSelected, charLevel);
     const monsterParkEXP = calculateMonsterParkEXP(expTableSelected, charLevel, expToLevel);
     const expPotions = calculatePotionEXP(expTableSelected, charLevel, expToLevel);
+    const dojoEXP = calculateDojoEXP(expTableSelected, charLevel, expToLevel);
 
-    return { monsterPark: monsterParkEXP, expPotions: expPotions };
+    return { monsterPark: monsterParkEXP, expPotions: expPotions, dojo: dojoEXP };
 }
 
 function calculateMonsterParkEXP(expTableSelected, charLevel, expToLevel) {
@@ -211,6 +212,76 @@ function calculatePotionEXP(expTableSelected, charLevel, expToLevel) {
     return expPotions;
 }
 
+function calculateDojoEXP(expTableSelected, charLevel, expToLevel) {
+    const expPerTick = [3190, 3307, 3425, 3520, 3640, 4518, 4668, 4785, 4938, 5092,
+                        5247, 5405, 5565, 5690, 5850, 6013, 6180, 6347, 6517, 6687,
+                        6857, 7087, 7263, 7613, 7968, 8327, 8687, 9053, 9475, 9852,
+                        10230, 10615, 11005, 11393, 11852, 12253, 12657, 13065, 13545, 13963,
+                        14385, 14880, 15310, 15742, 16253, 16698, 17143, 18018, 18823, 19720,
+                        20542, 21465, 22302, 23247, 24103, 25068, 25940, 26930, 27932, 28830,
+                        29850, 30763, 31807, 32862, 33800, 34878, 35965, 37063, 38038, 39158,
+                        40288, 41432, 42585, 43598, 44773, 45957, 48000, 50075, 52168, 54282,
+                        56425, 58582, 60768, 62972, 65207, 67452, 69727, 72018, 74333, 76670,
+                        79030, 81413, 83812, 86475, 88928, 91397, 93878, 96390, 99190, 101747,
+                        104317, 106917, 109813, 112457, 115113, 118097, 120797, 123832, 126575, 129343,
+                        132447, 135258, 138418, 144473, 147367];
+
+    // For character levels eligible for dojo, execute some calculations
+    let dojoEXPData = {};
+
+    if(charLevel >= 105) {
+        let levelDiff;
+
+        if(charLevel < 220) {
+            // For character levels with scaling dojo EXP, calculate expected duration
+            if(charLevel < 200) {
+                levelDiff = 200 - charLevel;
+            } else {
+                levelDiff = 220 - charLevel;    
+            }
+
+            let totalNumTicks = 0;
+
+            for(let i = 0; i < levelDiff; i++) {
+                let expToLevel = calculateEXPRequired(expTableSelected, charLevel+i);
+                let numTicks = expToLevel / expPerTick[charLevel+i - 105];
+                totalNumTicks += numTicks;
+
+                if(i === 0) {
+                    const oneLevelMins = Math.ceil(totalNumTicks * 5 / 60);
+                    const oneLevelHrs = Math.trunc(oneLevelMins / 60);
+
+                    dojoEXPData.per5sRaw = expPerTick[charLevel - 105];
+                    dojoEXPData.per5sPercent = (expPerTick[charLevel-105] / expToLevel * 100).toFixed(3);
+                    dojoEXPData.perHrRaw = expPerTick[charLevel - 105] * 60;
+                    dojoEXPData.perHrPercent = (expPerTick[charLevel-105] * 60 / expToLevel * 100).toFixed(3);
+                    dojoEXPData.toLevel = `~${oneLevelHrs}hrs ${oneLevelMins - oneLevelHrs * 60}mins`
+                }
+            }
+
+            if(charLevel < 200) {
+                totalNumTicks = Math.ceil(totalNumTicks);
+                const totalMins = Math.ceil(totalNumTicks * 5 / 60);
+                const totalHrs = Math.trunc(totalMins / 60);
+
+                dojoEXPData.to200 = `${totalHrs}hrs ${totalMins - totalHrs * 60}mins`;
+            } else {
+                dojoEXPData.to200 = "";
+            }
+        } else {
+            // For characters 220 and beyond, retrieve standard values and return
+            dojoEXPData.per5sRaw = expPerTick[expPerTick.length - 1];
+            dojoEXPData.per5sPercent = (expPerTick[expPerTick.length - 1] / expToLevel * 100).toFixed(3);
+            dojoEXPData.perHrRaw = expPerTick[expPerTick.length - 1] * 60;
+            dojoEXPData.perHrPercent = (expPerTick[expPerTick.length - 1] * 60 / expToLevel * 100).toFixed(3);
+            dojoEXPData.toLevel = `Not worth it`;
+            dojoEXPData.to200 = "";
+        }
+    }
+
+    return dojoEXPData;
+}
+
 // Calculates the expected EXP required to next level, split into multiple tiers
 // Extracts the required multipliers to use for calculation
 // Current assumption: input is between 160 and 300
@@ -218,8 +289,8 @@ function calculateEXPRequired(expTableSelected, charLevel) {
     let startingValue, count, multiplierToUse, multiplierType;
 
     if(charLevel < 200) {
-        startingValue = patchDetails[expTableSelected].expStages.at160;
-        count = charLevel - 160;
+        startingValue = patchDetails[expTableSelected].expStages.at140;
+        count = charLevel - 140;
         multiplierToUse = patchDetails[expTableSelected].multiplierToUse.to200;
         multiplierType = "to200";
     } else if(charLevel < 250) {

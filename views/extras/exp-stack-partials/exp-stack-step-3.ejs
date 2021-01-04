@@ -1,7 +1,10 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4" id="select-exp-sources-div">
     <div class="exp-stack-section-subheader w-100">
-        <h3 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#step-3">
-            <i class="fas fa-caret-down"></i> Step 3: Select Training Locations
+        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 position-relative" id="step-3-collapsible" data-toggle="collapse" href="#step-3">
+            <i class="fas fa-caret-down mr-2"></i> Step 3<span class="d-none d-sm-inline">: Select Training Locations</span>
+            <div class="font-table quick-ref text-info position-absolute d-none" id="step-3-quick-ref">
+                <i class="fas fa-check" style="transform: initial"></i> <span id="step-3-quick-ref-num">0</span> maps selected
+            </div>
         </h3>
     </div>
 
@@ -12,7 +15,7 @@
                 <p class="w-100 text-justify" id="num-maps-prompt"><span class="font-weight-bold">Total selected</span>: <span id="num-maps-selected">0</span></p>
 
                 <div class="w-100 d-flex justify-content-center">
-                    <div class="font-table size-720 w-100 mb-4">
+                    <div class="font-table size-720 w-100">
                         <ul class="nav nav-tabs">
                             <% foundMaps.forEach(function(region, index) { %>
                                 <li class="nav-item">
@@ -64,7 +67,7 @@
                             <% }) %>
                         </div>
         
-                        <div class="col-12 btn btn-sm btn-outline-info col-4 py-1 px-2 rounded-sm font-weight-bold text-center" id="btn-update-calc">Update Map Calculations</div>
+                        <div class="btn-update-values col-12 btn btn-sm btn-outline-info col-4 mb-2 py-1 px-2 rounded-sm font-weight-bold text-center" data-btn-step-num="3">Update Map Calculations</div>
                     </div>
                 </div>
             </div>

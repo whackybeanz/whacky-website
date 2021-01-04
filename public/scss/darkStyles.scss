@@ -393,6 +393,14 @@ body.dark-mode {
 	}
 
 	// EXP Stacking
+	.exp-stack-section-subheader, .exp-stack-section {
+		border: 1px solid globals.$dark-mode-grey;
+	}
+
+	.exp-stack-section-subheader {
+		background-color: globals.$dark-mode-navy-grey-opaque;
+	}
+
 	.single-exp-stack {
 		border: 1px solid globals.$dark-mode-grey;
 		transition: all 0.2s;

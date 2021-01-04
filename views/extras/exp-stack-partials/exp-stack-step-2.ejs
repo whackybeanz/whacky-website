@@ -1,14 +1,17 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4" id="select-exp-sources-div">
     <div class="exp-stack-section-subheader w-100">
-        <h3 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#step-2">
-            <i class="fas fa-caret-down"></i> Step 2: Select EXP sources
+        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 position-relative" id="step-2-collapsible" data-toggle="collapse" href="#step-2">
+            <i class="fas fa-caret-down mr-2"></i> Step 2<span class="d-none d-sm-inline">: Select EXP sources</span>
+            <div class="font-table quick-ref text-info position-absolute d-none" id="step-2-quick-ref">
+                <i class="fas fa-check" style="transform: initial"></i> Total EXP Multiplier: x<span id="step-2-quick-ref-num"></span>
+            </div>
         </h3>
     </div>
 
     <div class="exp-stack-section w-100 px-0 collapse show" id="step-2">
         <div class="w-100 d-flex justify-content-start align-items-center">
             <div class="w-100 px-3 py-2">
-                <p class="w-100 text-justify">Click on any EXP coupons/items/buffs you use during training. Class-specific skills that give extra EXP, and buffs lasting for a very short duration (e.g. V Matrix special core) are not selectable.</p>
+                <p class="w-100 text-justify">Click on any EXP coupons/items/buffs you use during training. Class-specific skills that give extra EXP, and buffs lasting for a very short duration (e.g. V Matrix special core) are not selectable. Click on "Update EXP Sources" after selecting/changing your EXP sources to update calculations to their latest values.</p>
 
                 <div class="w-100 d-flex justify-content-center align-items-center flex-column position-relative">
                     <table class="font-table size-720 table table-sm table-bordered table-hover mb-2">
@@ -265,6 +268,10 @@
                     </table>
                     <div class="font-footnote size-720 w-100 text-justify">
                         <p class="mb-4"><span class="text-info font-weight-bold">[1]</span> The player MUST be wearing the Ring of Clan for the EXP buff to take effect. If the player does not wear the Ring but other party members do, the EXP buff will not take effect.</p>
+                    </div>
+
+                    <div class="size-720 w-100 mb-2">
+                        <div class="btn-update-values col-12 btn btn-sm btn-outline-info col-4 py-1 px-2 rounded-sm font-weight-bold text-center" data-btn-step-num="2">Update EXP Sources</div>
                     </div>
                 </div>
             </div>

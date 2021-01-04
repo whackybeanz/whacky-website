@@ -1,21 +1,26 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
     <div class="exp-stack-section-subheader w-100">
-        <h3 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#step-1">
-            <i class="fas fa-caret-down"></i> Step 1: Enter initial details
+        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 position-relative <% if(locals.expTable && locals.charLevel && locals.viewType) { %>collapsed<% } %>" data-toggle="collapse" href="#step-1">
+            <i class="fas fa-caret-down mr-2"></i> Step 1<span class="d-none d-sm-inline">: Enter initial details</span>
+            <div class="font-table quick-ref text-info position-absolute" id="step-1-quick-ref">
+                <% if(locals.expTable && locals.charLevel && locals.viewType) { %>
+                   <i class="fas fa-check" style="transform: initial"></i> <%= locals.expTable.toUpperCase() %> / Level <%= locals.charLevel %> / <%= locals.viewType %> view
+                <% } %>
+            </div>
         </h3>
     </div>
-    <div class="exp-stack-section w-100 px-0 collapse show" id="step-1">
-        <div class="w-100 d-flex justify-content-center px-4 py-4">
+    <div class="exp-stack-section w-100 px-0 collapse <% if(!locals.expTable && !locals.charLevel && !locals.viewType) { %>show<% } %>" id="step-1">
+        <div class="w-100 d-flex justify-content-center px-3 pt-3 pb-2">
             <form class="font-form size-720 w-100 d-flex flex-column justify-content-center align-items-center" action="./maple/extras/exp-stacking" method="POST">
                 <div class="col-12">
                     <div class="form-group row d-flex align-items-start">
                         <label for="exp-table-used" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">EXP Table to Use</label>
                         <div class="col-8 col-md-6 px-0 d-flex flex-column">
                             <select class="form-control px-2" name="expTable" id="exp-table-used">
-                                <option value="neo" selected>NEO</option>
-                                <option value="rise">RISE</option>
-                                <option value="glory">GLORY</option>
-                                <option value="black">BLACK</option>
+                                <option value="neo" <% if(locals.expTable === "neo") { %>selected<% } %>>NEO</option>
+                                <option value="rise" <% if(!locals.expTable || locals.expTable === "rise") { %>selected<% } %>>RISE</option>
+                                <option value="glory" <% if(locals.expTable === "glory") { %>selected<% } %>>GLORY</option>
+                                <option value="black" <% if(locals.expTable === "black") { %>selected<% } %>>BLACK</option>
                             </select>
                             <small id="patch-details" class="form-text text-info">
                                 - Released in KMS in December 2020<br/>
@@ -29,7 +34,9 @@
                     <div class="form-group row d-flex align-items-start">
                         <label for="gear-level" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">Character Level</label>
                         <div class="col-8 col-md-6 px-0 d-flex flex-column">
-                            <input class="font-small w-100 form-control text-left rounded-sm" name="charLevel" type="number" id="char-level" value="210" min="50" max="300" required>
+                            <input class="font-small w-100 form-control text-left rounded-sm" name="charLevel" type="number" id="char-level" 
+                                value="<% if(!locals.charLevel) { %>210<% } else { %><%= locals.charLevel%><% } %>" 
+                                min="50" max="300" required>
                             <small id="allowed-levels" class="form-text text-info">Allowed values: 50 to <span id="max-level">299</span></small>
                         </div>
                     </div>
@@ -39,20 +46,26 @@
                         <label for="viewTypeRadio" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">View Type</label>
                         <div class="col-8 col-md-6 px-0 radio-select-group d-flex justify-content-center">
                             <div class="col form-check p-0">
-                                <input class="form-check-input" type="radio" name="viewTypeRadio" id="view-type-simple" value="Simplified" checked>
-                                <label class="form-check-label font-small radio-select view-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 active" for="view-type-simple">Simplified View</label>
+                                <input class="form-check-input" type="radio" name="viewTypeRadio" id="view-type-simple" value="Simplified" <% if(!locals.viewType || locals.viewType === "Simplified") { %>checked<% } %>>
+                                <label class="form-check-label font-small radio-select view-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.viewType || locals.viewType === "Simplified") { %>active<% } %>" for="view-type-simple">Simplified View</label>
                             </div>
                             <div class="col form-check p-0">
-                                <input class="form-check-input" type="radio" name="viewTypeRadio" id="view-type-detailed" value="Detailed">
-                                <label class="form-check-label font-small radio-select view-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="view-type-detailed">Detailed View</label>
+                                <input class="form-check-input" type="radio" name="viewTypeRadio" id="view-type-detailed" value="Detailed" <% if(locals.viewType === "Detailed") { %>checked<% } %>>
+                                <label class="form-check-label font-small radio-select view-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.viewType === "Detailed") { %>active<% } %>" for="view-type-detailed">Detailed View</label>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-12">
-                    <div class="form-group row mb-0">
-                        <button type="submit" class="btn col-12 col-sm-11 col-md-9 action-button py-1 px-2 rounded-sm font-weight-bold text-center" id="btn-start-calc"><i class="fas fa-check"></i> Begin</button>
+                    <div class="form-group row mb-2">
+                        <button type="submit" class="btn btn-sm btn-outline-info col-12 col-sm-11 col-md-9 py-1 px-2 rounded-sm font-weight-bold text-center" id="btn-start-calc">
+                            <% if(locals.expTable && locals.charLevel && locals.viewType) { %>
+                                <i class="fas fa-redo-alt"></i> Refresh
+                            <% } else { %>
+                                <i class="fas fa-check"></i> Begin
+                            <% } %>
+                        </button>
                     </div>
                 </div>
             </form>

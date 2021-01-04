@@ -17,26 +17,33 @@ const patchDetails = {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function(event) { 
+document.addEventListener("DOMContentLoaded", function(event) {
+    const initSelectedField = document.getElementById("exp-table-used").value;
+    populateStep1Details(initSelectedField);
     addEXPTableSelectListener();
     addViewTypeBtnListeners();
     addStartCalcBtnListener();
+    addViewEXPTypeListener();
 })
+
+// Populates "tooltip" below each input field for patch details and restrictions
+function populateStep1Details(selectedField) {
+    let patchDetailsField = document.getElementById("patch-details");
+    patchDetailsField.innerHTML = "";
+    
+    patchDetails[selectedField].details.forEach(function(detail) {
+        patchDetailsField.appendChild(document.createTextNode(`- ${detail}`));
+        patchDetailsField.appendChild(document.createElement('br'));
+        document.getElementById("max-level").textContent = patchDetails[selectedField].maxLevel-1;
+    })
+}
 
 function addEXPTableSelectListener() {
     const expTableSelectField = document.getElementById("exp-table-used");
 
     expTableSelectField.addEventListener("change", (event) => {
         const selectedField = event.target.value;
-        let patchDetailsField = document.getElementById("patch-details");
-        patchDetailsField.innerHTML = "";
-
-        patchDetails[selectedField].details.forEach(function(detail) {
-            patchDetailsField.appendChild(document.createTextNode(`- ${detail}`));
-            patchDetailsField.appendChild(document.createElement('br'));
-        })
-
-        document.getElementById("max-level").textContent = patchDetails[selectedField].maxLevel-1;
+        populateStep1Details(selectedField);
     })
 }
 
@@ -70,6 +77,34 @@ function addStartCalcBtnListener() {
             document.getElementById("max-level").textContent = maxAllowedLevelInput-1;
         } else {
             document.getElementById("allowed-levels").classList.remove("text-danger");
+        }
+    })
+}
+
+// Toggles view between raw EXP value and percent EXP value
+let isViewEXPPercent = true;
+
+function addViewEXPTypeListener() {
+    const expTypeElem = document.getElementById("view-exp-type-col");
+
+    expTypeElem.addEventListener("click", function() {
+        const allPercentEXPElem = Array.from(document.querySelectorAll(".view-percent-exp"));
+        const allRawEXPElem = Array.from(document.querySelectorAll(".view-raw-exp"));
+
+        allPercentEXPElem.forEach(function(elem) {
+            elem.classList.toggle("d-none");
+        })
+
+        allRawEXPElem.forEach(function(elem) {
+            elem.classList.toggle("d-none");
+        })
+
+        isViewEXPPercent = !isViewEXPPercent;
+
+        if(isViewEXPPercent) {
+            document.getElementById("view-exp-type").textContent = "(%)";
+        } else {
+            document.getElementById("view-exp-type").textContent = "(Raw EXP)";
         }
     })
 }

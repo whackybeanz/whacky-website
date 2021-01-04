@@ -1,6 +1,6 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
     <div class="exp-stack-section-subheader w-100">
-        <h3 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#step-4">
+        <h3 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" id="step-4-collapsible" data-toggle="collapse" href="#step-4">
             <i class="fas fa-caret-down"></i> Step <% if(viewType === "Simplified") { %>2<% } else { %>4<% } %>: View Results
         </h3>
     </div>
@@ -32,7 +32,7 @@
                                     <td class="table-cols-125">
                                         <div class="d-flex col-12 flex-column px-0">
                                             <div class="d-flex col-12 px-0">
-                                                <div class="col-6 d-inline text-right px-1">Mon-Sat:</div>
+                                                <div class="col-6 d-inline text-right px-1">Mon-Sat</div>
                                                 <div class="col-6 d-inline px-2">
                                                     <span class="view-raw-exp d-none"><%= generalContentsEXP.monsterPark[0].rawEXP.toLocaleString() %> EXP</span>
                                                     <span class="view-percent-exp"><%= generalContentsEXP.monsterPark[0].percentEXP %>%</span>
@@ -42,14 +42,14 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex col-12 px-0">
-                                                <div class="col-6 d-inline text-right px-1">Sundays:</div>
+                                                <div class="col-6 d-inline text-right px-1">Sundays</div>
                                                 <div class="col-6 d-inline px-2">
                                                     <span class="view-raw-exp d-none"><%= Math.round(generalContentsEXP.monsterPark[0].rawEXP * 1.5).toLocaleString() %> EXP</span>
                                                     <span class="view-percent-exp"><%= (generalContentsEXP.monsterPark[0].percentEXP * 1.5).toFixed(3) %>%</span>
                                                 </div>
                                             </div>
                                             <div class="d-flex col-12 px-0">
-                                                <div class="col-6 d-inline text-right px-1">Sunday Maple:</div>
+                                                <div class="col-6 d-inline text-right px-1">Sunday Maple</div>
                                                 <div class="col-6 d-inline px-2">
                                                     <span class="view-raw-exp d-none"><%= (generalContentsEXP.monsterPark[0].rawEXP * 2).toLocaleString() %> EXP</span>
                                                     <span class="view-percent-exp"><%= (generalContentsEXP.monsterPark[0].percentEXP * 2).toFixed(3) %>%</span>
@@ -67,7 +67,7 @@
                                         <td class="table-cols-125">
                                             <div class="d-flex col-12 flex-column px-0">
                                                 <div class="d-flex col-12 px-0">
-                                                    <div class="col-6 d-inline text-right px-1">Mon-Sat:</div>
+                                                    <div class="col-6 d-inline text-right px-1">Mon-Sat</div>
                                                     <div class="col-6 d-inline px-2">
                                                         <span class="view-raw-exp d-none"><%= generalContentsEXP.monsterPark[index].rawEXP.toLocaleString() %> EXP</span>
                                                         <span class="view-percent-exp"><%= generalContentsEXP.monsterPark[index].percentEXP %>%</span>
@@ -77,14 +77,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="d-flex col-12 px-0">
-                                                    <div class="col-6 d-inline text-right px-1">Sundays:</div>
+                                                    <div class="col-6 d-inline text-right px-1">Sundays</div>
                                                     <div class="col-6 d-inline px-2">
                                                         <span class="view-raw-exp d-none"><%= Math.round(generalContentsEXP.monsterPark[index].rawEXP * 1.5).toLocaleString() %> EXP</span>
                                                         <span class="view-percent-exp"><%= (generalContentsEXP.monsterPark[index].percentEXP * 1.5).toFixed(3) %>%</span>
                                                     </div>
                                                 </div>
                                                 <div class="d-flex col-12 px-0">
-                                                    <div class="col-6 d-inline text-right px-1">Sunday Maple:</div>
+                                                    <div class="col-6 d-inline text-right px-1">Sunday Maple</div>
                                                     <div class="col-6 d-inline px-2">
                                                         <span class="view-raw-exp d-none"><%= (generalContentsEXP.monsterPark[index].rawEXP * 2).toLocaleString() %> EXP</span>
                                                         <span class="view-percent-exp"><%= (generalContentsEXP.monsterPark[index].percentEXP * 2).toFixed(3) %>%</span>
@@ -141,20 +141,60 @@
                                         </td>
                                     </tr>
                                 <% } %>
+                                <tr>
+                                    <th colspan="3" class="empty-row py-2"></th>
+                                </tr>
+                                <tr>
+                                    <th class="step-4-col">
+                                        <div class="d-flex align-items-center px-2">
+                                            <img src="<%= icons['map-dojo-center'].imgUrl %>" class="mr-2">
+                                            <span>Dojo Training Center</span>
+                                        </div>
+                                    </th>
+                                    <td class="step-4-col text-center align-middle px-2">
+                                        -
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="d-flex col-12 px-0">
+                                            <div class="col-6 d-inline text-right px-1">EXP per tick</div>
+                                            <div class="col-6 d-inline px-2">
+                                                <span class="view-raw-exp d-none"><%= generalContentsEXP.dojo.per5sRaw.toLocaleString() %></span>
+                                                <span class="view-percent-exp"><%= generalContentsEXP.dojo.per5sPercent %>%</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex col-12 px-0">
+                                            <div class="col-6 d-inline text-right px-1">EXP per hour</div>
+                                            <div class="col-6 d-inline px-2">
+                                                <span class="view-raw-exp d-none"><%= generalContentsEXP.dojo.perHrRaw.toLocaleString() %></span>
+                                                <span class="view-percent-exp"><%= generalContentsEXP.dojo.perHrPercent %>%</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex col-12 px-0">
+                                            <div class="col-6 d-inline text-right px-1">Time to level once</div>
+                                            <div class="col-6 d-inline px-2"><%= generalContentsEXP.dojo.toLevel %></div>
+                                        </div>
+                                        <% if(charLevel < 200) { %>
+                                            <div class="d-flex col-12 px-0">
+                                                <div class="col-6 d-inline text-right px-1">To reach level 200</div>
+                                                <div class="col-6 d-inline px-2"><%= generalContentsEXP.dojo.to200 %></div>
+                                            </div>
+                                        <% } %>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <% if(charLevel >= 200) { %>
                             <div class="font-footnote size-720 w-100 text-justify">
                                 <p class="mb-3"><span class="text-danger font-weight-bold">[!]</span> EXP values displayed may be incorrect by approximately 1000 EXP.</p>
 
-                                <p class="mb-0"><span class="text-info font-weight-bold">[2]</span> EXP Growth Potions are usable from level 200 onwards. You get the full EXP value (i.e. from 0% to 100%) if the potion is used within its designated level ranges. If used outside of the recommended level range, you get the highest level's EXP value that the potion recommends for. For example, for Typhoon Growth Potion, you get level 239's full EXP value if used from level 240 onwards.</p>
+                                <p class="mb-3"><span class="text-info font-weight-bold">[2]</span> EXP Growth Potions are usable from level 200 onwards. You get the full EXP value (i.e. from 0% to 100%) if the potion is used within its designated level ranges. If used outside of the recommended level range, you get the highest level's EXP value that the potion recommends for. For example, for Typhoon Growth Potion, you get level 239's full EXP value if used from level 240 onwards.</p>
                             </div>
                         <% } %>
 
                         <% if(viewType === "Detailed") { %>
                             <hr>
                             <p class="w-100 text-justify font-weight-bold mb-1">Hunting Contents</p>
-                            <table class="font-table size-720 table table-sm table-bordered table-hover mb-4">
+                            <table class="font-table size-720 table table-sm table-bordered table-hover mb-3">
                                 <thead>
                                     <tr>
                                         <th class="text-center" colspan="6">Multiplier</th>
@@ -180,7 +220,7 @@
                                 </tbody>
                             </table>
 
-                            <table class="font-table size-720 table table-sm table-bordered table-hover mb-2 d-none" id="all-map-display">
+                            <table class="font-table size-720 table table-sm table-bordered table-hover mt-2 mb-2 d-none" id="all-map-display">
                                 <thead>
                                     <tr>
                                         <th class="text-left px-2">Map Name</th>
@@ -233,7 +273,7 @@
                                 </tbody>
                             </table>
                             <div class="font-footnote size-720 w-100 text-justify d-none" id="all-map-display-footnote">
-                                <p class="mb-4"><span class="text-info font-weight-bold">[3]</span> Depending on your level difference to the monster, you get a bonus/penalty. As of NEO patch, the bonuses are: x1.2 Base EXP (+-1 level) / x1.1 Base EXP (+-4 levels) / x1.05 Base EXP (+-9 levels) / x1 Base EXP (+-10 levels). Beyond 10 levels, a penalty is applied.</p>
+                                <p class="mb-2"><span class="text-info font-weight-bold">[3]</span> Depending on your level difference to the monster, you get a bonus/penalty. As of NEO patch, the bonuses are: x1.2 Base EXP (+-1 level) / x1.1 Base EXP (+-4 levels) / x1.05 Base EXP (+-9 levels) / x1 Base EXP (+-10 levels). Beyond 10 levels, a penalty is applied.</p>
                             </div>
                         <% } %>
                     </div>
