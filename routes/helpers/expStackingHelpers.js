@@ -3,6 +3,8 @@ const patchDetails = {
         details: ["Released in KMS in December 2020", "Level cap raised to 300", "Level 210 to 250 EXP reductions"],
         maxLevel: 300,
         expStages: {
+            at70: 342029,
+            at100: 2365603,
             at140: 22777494,
             at200: 2207026470,
             at250: 1313764762354
@@ -17,6 +19,8 @@ const patchDetails = {
         details: ["Released in KMS in December 2020", "Level 170 to 199 EXP reductions"],
         maxLevel: 275,
         expStages: {
+            at70: 342029,
+            at100: 2365603,
             at140: 22777494,
             at200: 2207026470,
             at250: 1313764762354
@@ -31,12 +35,14 @@ const patchDetails = {
         details: ["Released in KMS in July 2019", "Level 220 to 234 EXP reductions"],
         maxLevel: 275,
         expStages: {
+            at70: 342029,
+            at100: 2365603,
             at140: 22777494,
             at200: 2207026470,
             at250: 1313764762354
         },
         multiplierToUse: {
-            to200: "default",
+            to200: "v",
             to250: "glory",
             to300: "black",
         }
@@ -45,14 +51,48 @@ const patchDetails = {
         details: ["Released in KMS in June 2018", "Level 201 to 220 EXP reductions", "Level cap raised to 275"],
         maxLevel: 275,
         expStages: {
+            at70: 342029,
+            at100: 2365603,
             at140: 22777494,
             at200: 2207026470,
             at250: 1313764762354,
         },
         multiplierToUse: {
-            to200: "default",
+            to200: "v",
             to250: "black",
             to300: "black",
+        }
+    },
+    v: {
+        details: ["Released in KMS in July 2016", "Level 66 to 200 EXP reductions", "Level cap raised to 250"],
+        maxLevel: 250,
+        expStages: {
+            at70: 342029,
+            at100: 2365603,
+            at140: 22777494,
+            at200: 2207026470
+        },
+        multiplierToUse: {
+            to100: "v",
+            to140: "v",
+            to200: "v",
+            to250: "bigbang",
+        }
+    },
+    bigbang: {
+        details: ["Released in KMS in July 2010", "EXP reduced across all levels"],
+        maxLevel: 250,
+        expStages: {
+            at70: 351686,
+            at100: 2596787,
+            at140: 29665473,
+            at200: 2207026470
+        },
+        multiplierToUse: {
+            to100: "bigbang",
+            to140: "bigbang",
+            to200: "bigbang",
+            to250: "bigbang",
         }
     }
 }
@@ -94,16 +134,66 @@ const multipliers = {
         to300: [1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01,
                 2.02, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01,
                 2.02, 1.01, 1.01, 1.01, 1.01]
+    },
+    v: {
+        to100: [1.075, 1.075, 1.075, 1.075, 1.07, 1.07, 1.07, 1.07, 1.07,
+                1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 
+                1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065],
+        to140: [1, 1, 1, 1, 1.065, 1.065, 1.065, 1.065, 1.065,
+                1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065,
+                1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065,
+                1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065, 1.065,],
+        to200: [1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 
+                1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 
+                1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 
+                1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 1.0625, 
+                1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 
+                1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06],
+    },
+    bigbang: {
+        // Multipliers start from level 70
+        to100: [1.08, 1.08, 1.08, 1.08, 1.07, 1.07, 1.07, 1.07, 1.07, 
+                1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 
+                1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07],
+        to140: [1, 1, 1, 1, 1.07, 1.07, 1.07, 1.07, 1.07,
+                1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07,
+                1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07,
+                1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07],
+        to200: [1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07,
+                1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07, 1.07,
+                1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 
+                1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06,
+                1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06,
+                1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06],
+        to250: [1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2,
+                2.12, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06, 1.06,
+                2.08, 1.04, 1.04, 1.04, 1.04, 1.04, 1.04, 1.04, 1.04, 1.04,
+                2.04, 1.02, 1.02, 1.02, 1.02, 1.02, 1.02, 1.02, 1.02, 1.02,
+                2.02, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01]
     }
+}
+
+function getMaxLevel(expTableSelected) {
+    return patchDetails[expTableSelected].maxLevel;
 }
 
 function calculateGeneralContentsEXP(expTableSelected, charLevel) {
     const expToLevel = calculateEXPRequired(expTableSelected, charLevel);
-    const monsterParkEXP = calculateMonsterParkEXP(expTableSelected, charLevel, expToLevel);
-    const expPotions = calculatePotionEXP(expTableSelected, charLevel, expToLevel);
-    const dojoEXP = calculateDojoEXP(expTableSelected, charLevel, expToLevel);
 
-    return { monsterPark: monsterParkEXP, expPotions: expPotions, dojo: dojoEXP };
+    let expPotions = {};
+    let monsterParkEXP = {};
+    let dojoEXP = {};
+
+    if(charLevel >= 200) {
+        expPotions = calculatePotionEXP(expTableSelected, charLevel, expToLevel);
+    }
+
+    if(charLevel >= 105) {
+        dojoEXP = calculateDojoEXP(expTableSelected, charLevel, expToLevel);
+        monsterParkEXP = calculateMonsterParkEXP(expTableSelected, charLevel, expToLevel);
+    }
+
+    return { expToLevel: expToLevel, monsterPark: monsterParkEXP, expPotions: expPotions, dojo: dojoEXP };
 }
 
 function calculateMonsterParkEXP(expTableSelected, charLevel, expToLevel) {
@@ -288,12 +378,22 @@ function calculateDojoEXP(expTableSelected, charLevel, expToLevel) {
 function calculateEXPRequired(expTableSelected, charLevel) {
     let startingValue, count, multiplierToUse, multiplierType;
 
-    if(charLevel < 200) {
+    if(charLevel < 100) {
+        startingValue = patchDetails[expTableSelected].expStages.at70;
+        count = charLevel - 70;
+        multiplierToUse = patchDetails[expTableSelected].multiplierToUse.to100;
+        multiplierType = "to100";
+    } else if (charLevel < 140) {
+        startingValue = patchDetails[expTableSelected].expStages.at100;
+        count = charLevel - 100;
+        multiplierToUse = patchDetails[expTableSelected].multiplierToUse.to140;
+        multiplierType = "to140";
+    } else if (charLevel < 200) {
         startingValue = patchDetails[expTableSelected].expStages.at140;
         count = charLevel - 140;
         multiplierToUse = patchDetails[expTableSelected].multiplierToUse.to200;
         multiplierType = "to200";
-    } else if(charLevel < 250) {
+    } else if (charLevel < 250) {
         startingValue = patchDetails[expTableSelected].expStages.at200;
         count = charLevel - 200;
         multiplierToUse = patchDetails[expTableSelected].multiplierToUse.to250;
@@ -314,4 +414,4 @@ function calculateEXPRequired(expTableSelected, charLevel) {
     return finalEXPValue;
 }
 
-module.exports = { calculateGeneralContentsEXP };
+module.exports = { getMaxLevel, calculateGeneralContentsEXP };

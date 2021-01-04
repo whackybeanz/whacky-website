@@ -1,6 +1,7 @@
 var IconHelper = require("./helpers/iconHelpers");
 var Helper = require("./helpers/extrasHelpers");
 var EXPStackingHelper = require("./helpers/expStackingHelpers");
+var middleware 	= require("./middleware");
 
 var express = require("express");
 var router  = express.Router();
@@ -257,53 +258,62 @@ router.get("/exp-stacking", function(req, res) {
 	res.render("extras/expStacking");
 })
 
-router.post("/exp-stacking", function(req, res) {
+router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) {
 	const expTable = req.body.expTable;
-	const charLevel = parseInt(req.body.charLevel);
+	let charLevel = parseInt(req.body.charLevel);
 	const viewType = req.body.viewTypeRadio;
-
-	// TODO: INSERT ERROR CHECKING HERE for expTable, charLevel, viewType
-
-	// TODO: Filter whether to retrieve map data or not based on simple/detailed view
 
 	const generalContentsEXP = EXPStackingHelper.calculateGeneralContentsEXP(expTable, charLevel);
 
-	// Retrieve map data that meets these conditions:
-	// 1) For maps that are not level restricted, get regions with monsters that are at least +-20 of character level
-	// 2) For maps that are level restricted, get regions that players have access to, with monsters that are +-20 of character level
-	let query = [];
-	const findUnrestrictedMaps = {
-		$and: [{ isEnforceStartLevel: false },
-				{ lastMonsterLevel: { $gte: charLevel-20 } },
-				{ lastMonsterLevel: { $lte: charLevel+20 } }
-			]};
-
-	const findRestrictedMaps = { 
-		$and: [{ isEnforceStartLevel: true }, 
-				{ regionStartLevel: { $lte: charLevel } }, 
-				{ $and: [
-					{ lastMonsterLevel: { $gte: charLevel-20 } }, 
-					{ lastMonsterLevel: { $lte: charLevel+20 } }
-				]}
-			]};
-
-	query.push(findUnrestrictedMaps, findRestrictedMaps);
-
-	let getMapRegions = MapLocations.find({ $or: query });
 	let getIcons = Icon.find({ usedInSections: "exp-stacking" });
+	res.locals.extraStylesheet = "extrasStyles";
+	res.locals.section = "extras";
+	res.locals.branch = "calc-exp-stacking";
 
-	Promise.all([getMapRegions, getIcons])
-		.then(([foundMaps, foundIcons]) => {
-			const compiledIcons = IconHelper.compileIcons(foundIcons);
-			res.locals.extraStylesheet = "extrasStyles";
-			res.locals.section = "extras";
-			res.locals.branch = "calc-exp-stacking";
-			res.render("extras/expStackingActive", {icons: compiledIcons, foundMaps: foundMaps, expTable: expTable, charLevel: charLevel, viewType: viewType, generalContentsEXP: generalContentsEXP});
-		})
-		.catch(err => {
-			console.log(err);
-			res.redirect("back");
-		})
+	if(viewType === "Detailed") {
+		// Retrieve map data that meets these conditions:
+		// 1) For maps that are not level restricted, get regions with monsters that are at least +-20 of character level
+		// 2) For maps that are level restricted, get regions that players have access to, with monsters that are +-20 of character level
+		let query = [];
+		const findUnrestrictedMaps = {
+			$and: [{ isEnforceStartLevel: false },
+					{ lastMonsterLevel: { $gte: charLevel-20 } },
+					{ lastMonsterLevel: { $lte: charLevel+20 } }
+				]};
+
+		const findRestrictedMaps = { 
+			$and: [{ isEnforceStartLevel: true }, 
+					{ regionStartLevel: { $lte: charLevel } }, 
+					{ $and: [
+						{ lastMonsterLevel: { $gte: charLevel-20 } }, 
+						{ lastMonsterLevel: { $lte: charLevel+20 } }
+					]}
+				]};
+
+		query.push(findUnrestrictedMaps, findRestrictedMaps);
+
+		let getMapRegions = MapLocations.find({ $or: query });
+
+		Promise.all([getMapRegions, getIcons])
+			.then(([foundMaps, foundIcons]) => {
+				const compiledIcons = IconHelper.compileIcons(foundIcons);
+				res.render("extras/expStackingActive", {icons: compiledIcons, foundMaps: foundMaps, expTable: expTable, charLevel: charLevel, viewType: viewType, generalContentsEXP: generalContentsEXP});
+			})
+			.catch(err => {
+				console.log(err);
+				res.redirect("back");
+			})
+	} else {
+		Promise.resolve(getIcons)
+			.then(foundIcons => {
+				const compiledIcons = IconHelper.compileIcons(foundIcons);
+				res.render("extras/expStackingActive", {icons: compiledIcons, expTable: expTable, charLevel: charLevel, viewType: viewType, generalContentsEXP: generalContentsEXP});
+			})
+			.catch(err => {
+				console.log(err);
+				res.redirect("back");
+			})
+	}
 })
 
 module.exports = router;

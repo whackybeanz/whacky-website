@@ -21,6 +21,8 @@
                                 <option value="rise" <% if(!locals.expTable || locals.expTable === "rise") { %>selected<% } %>>RISE</option>
                                 <option value="glory" <% if(locals.expTable === "glory") { %>selected<% } %>>GLORY</option>
                                 <option value="black" <% if(locals.expTable === "black") { %>selected<% } %>>BLACK</option>
+                                <option value="v" <% if(locals.expTable === "v") { %>selected<% } %>>V</option>
+                                <option value="bigbang" <% if(locals.expTable === "bigbang") { %>selected<% } %>>BIG BANG</option>
                             </select>
                             <small id="patch-details" class="form-text text-info">
                                 - Released in KMS in December 2020<br/>
@@ -36,8 +38,8 @@
                         <div class="col-8 col-md-6 px-0 d-flex flex-column">
                             <input class="font-small w-100 form-control text-left rounded-sm" name="charLevel" type="number" id="char-level" 
                                 value="<% if(!locals.charLevel) { %>210<% } else { %><%= locals.charLevel%><% } %>" 
-                                min="50" max="300" required>
-                            <small id="allowed-levels" class="form-text text-info">Allowed values: 50 to <span id="max-level">299</span></small>
+                                min="70" max="300" required>
+                            <small id="allowed-levels" class="form-text text-info">Allowed values: 70 to <span id="max-level">299</span></small>
                         </div>
                     </div>
                 </div>

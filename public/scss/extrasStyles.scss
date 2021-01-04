@@ -177,7 +177,8 @@
 
 	@include globals.for-size(sm) { width: 125px; }
 	@include globals.for-size(md) { width: 175px; }
-	@include globals.for-size(lg) { width: 225px; }
+	@include globals.for-size(lg) { width: 200px; }
+	@include globals.for-size(xl) { width: 225px; }
 }
 
 .mult-cols {

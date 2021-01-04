@@ -14,6 +14,14 @@ const patchDetails = {
     black: {
         details: ["Released in KMS in June 2018", "Level 201 to 220 EXP reductions", "Level cap raised to 275"],
         maxLevel: 275,
+    },
+    v: {
+        details: ["Released in KMS in July 2016", "Level 66 to 200 EXP reductions", "Level cap raised to 250"],
+        maxLevel: 250,
+    },
+    bigbang: {
+        details: ["Released in KMS in July 2010", "EXP reduced across all levels"],
+        maxLevel: 250,
     }
 }
 
