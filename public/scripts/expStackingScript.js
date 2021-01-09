@@ -95,24 +95,26 @@ let isViewEXPPercent = true;
 function addViewEXPTypeListener() {
     const expTypeElem = document.getElementById("view-exp-type-col");
 
-    expTypeElem.addEventListener("click", function() {
-        const allPercentEXPElem = Array.from(document.querySelectorAll(".view-percent-exp"));
-        const allRawEXPElem = Array.from(document.querySelectorAll(".view-raw-exp"));
+    if(expTypeElem) {
+        expTypeElem.addEventListener("click", function() {
+            const allPercentEXPElem = Array.from(document.querySelectorAll(".view-percent-exp"));
+            const allRawEXPElem = Array.from(document.querySelectorAll(".view-raw-exp"));
 
-        allPercentEXPElem.forEach(function(elem) {
-            elem.classList.toggle("d-none");
+            allPercentEXPElem.forEach(function(elem) {
+                elem.classList.toggle("d-none");
+            })
+
+            allRawEXPElem.forEach(function(elem) {
+                elem.classList.toggle("d-none");
+            })
+
+            isViewEXPPercent = !isViewEXPPercent;
+
+            if(isViewEXPPercent) {
+                document.getElementById("view-exp-type").textContent = "(%)";
+            } else {
+                document.getElementById("view-exp-type").textContent = "(Raw EXP)";
+            }
         })
-
-        allRawEXPElem.forEach(function(elem) {
-            elem.classList.toggle("d-none");
-        })
-
-        isViewEXPPercent = !isViewEXPPercent;
-
-        if(isViewEXPPercent) {
-            document.getElementById("view-exp-type").textContent = "(%)";
-        } else {
-            document.getElementById("view-exp-type").textContent = "(Raw EXP)";
-        }
-    })
+    }
 }

@@ -277,22 +277,36 @@ router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) 
 		let query = [];
 		const findUnrestrictedMaps = {
 			$and: [{ isEnforceStartLevel: false },
-					{ lastMonsterLevel: { $gte: charLevel-20 } },
-					{ lastMonsterLevel: { $lte: charLevel+20 } }
+					{ $or: [
+						{ $and: [
+							{ firstMonsterLevel: { $gte: charLevel-20 } },
+							{ firstMonsterLevel: { $lte: charLevel+20 } }
+						]},
+						{ $and: [
+							{ lastMonsterLevel: { $gte: charLevel-20 } },
+							{ lastMonsterLevel: { $lte: charLevel+20 } }
+						]}
+					]}
 				]};
 
 		const findRestrictedMaps = { 
 			$and: [{ isEnforceStartLevel: true }, 
 					{ regionStartLevel: { $lte: charLevel } }, 
-					{ $and: [
-						{ lastMonsterLevel: { $gte: charLevel-20 } }, 
-						{ lastMonsterLevel: { $lte: charLevel+20 } }
+					{ $or: [
+						{ $and: [
+							{ firstMonsterLevel: { $gte: charLevel-20 } },
+							{ firstMonsterLevel: { $lte: charLevel+20 } }
+						]},
+						{ $and: [
+							{ lastMonsterLevel: { $gte: charLevel-20 } },
+							{ lastMonsterLevel: { $lte: charLevel+20 } }
+						]}
 					]}
 				]};
 
 		query.push(findUnrestrictedMaps, findRestrictedMaps);
 
-		let getMapRegions = MapLocations.find({ $or: query });
+		let getMapRegions = MapLocations.find({ $or: query }).sort({ firstMonsterLevel: 1, regionStartLevel: 1, lastMonsterLevel: 1 });
 
 		Promise.all([getMapRegions, getIcons])
 			.then(([foundMaps, foundIcons]) => {

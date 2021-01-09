@@ -10,6 +10,8 @@ const patchDetails = {
             at250: 1313764762354
         },
         multiplierToUse: {
+            to100: "v",
+            to140: "v",
             to200: "rise",
             to250: "neo",
             to300: "neo",
@@ -26,6 +28,8 @@ const patchDetails = {
             at250: 1313764762354
         },
         multiplierToUse: {
+            to100: "v",
+            to140: "v",
             to200: "rise",
             to250: "glory",
             to300: "black",
@@ -42,6 +46,8 @@ const patchDetails = {
             at250: 1313764762354
         },
         multiplierToUse: {
+            to100: "v",
+            to140: "v",
             to200: "v",
             to250: "glory",
             to300: "black",
@@ -58,6 +64,8 @@ const patchDetails = {
             at250: 1313764762354,
         },
         multiplierToUse: {
+            to100: "v",
+            to140: "v",
             to200: "v",
             to250: "black",
             to300: "black",
