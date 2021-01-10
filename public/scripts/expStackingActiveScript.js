@@ -233,7 +233,13 @@ function populateHuntingContentsTable() {
             let html = ``;
 
             for(let i = 0; i < numMonsters; i++) {
-                let levelDiffModifier = getLevelDiffModifier(charLevel, mapData.monsterLevels[i]);
+                let levelDiffModifier;
+
+                if(mapData.monsterIsBoss[i] === "true") {
+                    levelDiffModifier = 1;
+                } else {
+                    levelDiffModifier = getLevelDiffModifier(charLevel, mapData.monsterLevels[i]);
+                }
 
                 html += `<div class="font-weight-bold">[Lv. ${mapData.monsterLevels[i]}] ${mapData.monsterNames[i]}</div>`;
                 html += `<div class="col-12 d-flex"><span class="col-6 col-sm-5 col-md-5 col-lg-6 px-0 text-right">Monster HP</span> <span class="col-6">${Number(mapData.monsterHP[i]).toLocaleString()}</span></div>`;
