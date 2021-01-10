@@ -9,7 +9,7 @@ var equipmentSchema = new mongoose.Schema({
 	level: Number,
 	isOverall: Boolean,
 	isLuckyItem: Boolean,
-	priority: Number,
+	itemPriority: Number,
 	groupId: Number,
 	subgroupId: Number,
 });
