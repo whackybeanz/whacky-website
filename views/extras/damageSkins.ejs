@@ -43,7 +43,7 @@
 								<% skinsByLetter[letter].forEach(function(skin) { %>
 								<div class="single-dmg-skin d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" id="skin-num-<%= skin.damageSkinId %>" data-skin-num="<%= skin.damageSkinId %>" data-skin-name="<%= skin.shortName %>" data-has-regular-skin="<%= skin.hasRegularSkin %>" <% if(skin.hasUnitSkin) { %>data-has-unit-skin="<%= skin.hasUnitSkin %>" data-unit-skin-num="<%= skin.unitDamageSkinId %><% } %>">
 									<div class="font-table w-100 d-flex flex-column align-items-center">
-										<div class="dmg-skin-header w-100 d-flex align-items-center font-weight-bold px-3 py-1">
+										<div class="dmg-skin-header w-100 d-flex align-items-center font-weight-bold px-2 py-1">
 											<% if(skin.hasRegularSkin) { %>
 												<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-1">
 											<% } %>
