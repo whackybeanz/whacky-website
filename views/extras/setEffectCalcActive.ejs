@@ -41,8 +41,11 @@
 					<div class="step-2-div font-content w-100 d-flex flex-column mb-4">
 						<h3 class="w-100 font-subsubheader font-italic mb-0">Step 2: Fill in your equipment setup</h3>
 						<p class="text-justify">Click on any of the squares on the equipment window to begin. A popup will appear for selection of equipment sorted by item type. Once selection is complete, close the window and scroll down for the calculated values.</p>
-						<p class="text-justify"><strong>Note:</strong> When adding pendants, the first item selected will be added to the regular Pendant slot. Rings will always be added from the top-most slot first regardless of which slot is initially selected.</p>
-						<p class="text-justify"><strong>Note 2:</strong> For Zeros, select your weapon based on what set you'd like to take effect. For example, if you are using an ACS weapon but have used a Lucky Scroll to apply to the Fafnir set, please select a Fafnir weapon instead.</p>
+						<div class="font-table">
+							<p class="text-justify mb-0">Notes:</p>
+							<p class="text-justify">- When adding pendants, the first item selected will be added to the regular Pendant slot. Rings will always be added from the top-most slot first regardless of which slot is initially selected.</p>
+							<p class="text-justify">- For Zeros, select your weapon based on what set you'd like to take effect. For example, if you are using an ACS weapon but have used a Lucky Scroll to apply to the Fafnir set, please select a Fafnir weapon instead.</p>
+						</div>
 						<div class="w-100 d-flex justify-content-center">
 							<div class="position-relative">
 								<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/equip-tab.png">
@@ -84,7 +87,12 @@
 				<div class="w-100 mb-3">
 					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Total Set Effects</h2>
 					<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-						<!--<p class="no-set-effect-msg font-content w-100 d-flex justify-content-center">- No active set effects -</p>-->
+						<div class="font-table">
+							<p class="w-100 mb-0">Notes:</p>
+							<p class="text-justify"> - Set effects displayed below <span class="text-underline">exclude innate item effects</span>. For example, a Fafnir weapon has 30% Boss Damage within the item itself. This will not be reflected in this table.</p>
+							<p class="text-justify"> - IED% is calculated multiplicatively. As such, do not be surprised if the displayed IED value is lower than what you expected. See <a href="https://strategywiki.org/wiki/MapleStory/Formulas#Ignore_DEF" target="_blank">this section on IED% calculations</a> for more details.</p>
+						</div>
+
 						<div class="font-table w-100 d-flex flex-wrap">
 							<% statTypes.forEach(function(stat) { %>
 								<div class="total-stat total-stat-<%= stat.key %> col-6 col-lg-4 d-flex justify-content-between align-items-center p-0 my-1">
