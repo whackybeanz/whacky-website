@@ -1,13 +1,13 @@
-var express 				= require("express");
-var app						= express();
-var bodyParser 				= require("body-parser");
-var mongoose				= require("mongoose");
+var express                 = require("express");
+var app                     = express();
+var bodyParser              = require("body-parser");
+var mongoose                = require("mongoose");
 
-var indexRoutes 	= require("./routes/index");
-var mapleRoutes 	= require("./routes/mapleIndex");
-var extrasRoutes 	= require("./routes/extrasIndex");
-var beginnerRoutes 	= require("./routes/beginnerGuide");
-var adminRoutes 	= require("./routes/admin");
+var indexRoutes     = require("./routes/index");
+var mapleRoutes     = require("./routes/mapleIndex");
+var extrasRoutes    = require("./routes/extrasIndex");
+var beginnerRoutes  = require("./routes/beginnerGuide");
+var adminRoutes     = require("./routes/admin");
 
 var port = process.env.PORT || 3005;
 var databaseUrl = process.env.DATABASEURL || "mongodb://localhost/maple-info";
@@ -19,8 +19,8 @@ app.use('/public', express.static(__dirname + '/public'));
 
 // MIDDLEWARE
 app.use(function(req, res, next) {
-	res.locals.url = req.originalUrl;
-	next();
+    res.locals.url = req.originalUrl;
+    next();
 })
 
 // ROUTES
@@ -31,10 +31,10 @@ app.use("/maple/newbies", beginnerRoutes);
 app.use("/admin", adminRoutes);
 
 app.get("*", function(req, res) {
-	//req.flash("error", "Invalid route accessed.")
-	res.redirect("back");
+    //req.flash("error", "Invalid route accessed.")
+    res.redirect("back");
 })
 
 app.listen(port, function() {
-	console.log("Server is running");
+    console.log("Server is running");
 })

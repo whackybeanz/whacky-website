@@ -2,99 +2,99 @@
 
 /*******************
 
-	INTRODUCTION
+    INTRODUCTION
 
 *******************/
 .section-show-hide {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 /*******************
 
-	SETTINGS
+    SETTINGS
 
 *******************/
 .relay-form-initial-inputs {
-	min-width: 300px;
-	max-width: 500px;
+    min-width: 300px;
+    max-width: 500px;
 }
 
 .over-200-checkbox {
-	right: 0px;
-	top: -4px;
+    right: 0px;
+    top: -4px;
 }
 
 .single-class-type-list {
-	min-width: 175px;
-	max-width: 200px;
+    min-width: 175px;
+    max-width: 200px;
 
-	.class-input {
-		min-height: 30px;
-		height: initial;
+    .class-input {
+        min-height: 30px;
+        height: initial;
 
-		&::-webkit-input-placeholder {
-			text-transform: capitalize;
-		}
-	}
+        &::-webkit-input-placeholder {
+            text-transform: capitalize;
+        }
+    }
 
-	.add-character-btn {
-		height: 30px;
-		cursor: pointer;
-	}
+    .add-character-btn {
+        height: 30px;
+        cursor: pointer;
+    }
 }
 
 /*******************
 
-	PLANNER
+    PLANNER
 
 *******************/
 .single-date, .class-type {
-	width: 100px;
-	line-height: 1;
-	opacity: 1.0;
+    width: 100px;
+    line-height: 1;
+    opacity: 1.0;
 
-	&.inactive {
-		opacity: 0.25;
-	}
+    &.inactive {
+        opacity: 0.25;
+    }
 
-	&.curr-day {
-		opacity: 1.0;
-	}
+    &.curr-day {
+        opacity: 1.0;
+    }
 }
 
 .mission-desc {
-	width: 200px;
-	line-height: 1;
+    width: 200px;
+    line-height: 1;
 }
 
 .icon-class {
-	top: 0;
-	right: 0;
-	opacity: 0.2;
+    top: 0;
+    right: 0;
+    opacity: 0.2;
 
-	&.active {
-		opacity: 1.0;
-	}
+    &.active {
+        opacity: 1.0;
+    }
 }
 
 .icon-over-200 {
-	top: 0;
-	right: 14px;
-	opacity: 0.2;
+    top: 0;
+    right: 14px;
+    opacity: 0.2;
 
-	&.active {
-		opacity: 1.0;
-	}
+    &.active {
+        opacity: 1.0;
+    }
 }
 
 .mission-score, .job-score, .level-score, .total-score {
-	opacity: 1.0;
+    opacity: 1.0;
 
-	&.inactive {
-		opacity: 0.25;
-	}
+    &.inactive {
+        opacity: 0.25;
+    }
 
-	&.curr-day {
-		opacity: 1.0;
-	}
+    &.curr-day {
+        opacity: 1.0;
+    }
 }

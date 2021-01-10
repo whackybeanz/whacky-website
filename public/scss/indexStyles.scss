@@ -1,45 +1,45 @@
 @use '_global-styles' as globals;
 
 .font-index-subsubheader {
-	font-size: 1.1rem;
+    font-size: 1.1rem;
 }
 
 .index-subsection {
-	&:nth-last-child(1) {
-		margin-bottom: 0px !important;
-	}
+    &:nth-last-child(1) {
+        margin-bottom: 0px !important;
+    }
 
-	@include globals.for-size(sm) {
-		&:nth-last-child(-n+2) {
-			margin-bottom: 0px !important;
-		}
-	}
+    @include globals.for-size(sm) {
+        &:nth-last-child(-n+2) {
+            margin-bottom: 0px !important;
+        }
+    }
 
-	@include globals.for-size(md) {
-		&:nth-last-child(-n+3) {
-			margin-bottom: 0px !important;
-		}
-	}
+    @include globals.for-size(md) {
+        &:nth-last-child(-n+3) {
+            margin-bottom: 0px !important;
+        }
+    }
 }
 
 .page-select {
-	height: 50px;
-	transition: background-color 0.3s;
-	color: inherit;
+    height: 50px;
+    transition: background-color 0.3s;
+    color: inherit;
 
-	&:hover {
-		transition: background-color 0.3s;
-	}
+    &:hover {
+        transition: background-color 0.3s;
+    }
 }
 
 .page-select-img-div {
-	min-width: 70px;
-	max-width: 70px;
+    min-width: 70px;
+    max-width: 70px;
 }
 
 .maple-logos {
-	object-fit: contain;
-	object-position: left;
-	max-width: 105px;
-	width: 100%;
+    object-fit: contain;
+    object-position: left;
+    max-width: 105px;
+    width: 100%;
 }

@@ -2,980 +2,980 @@
 <%- include("../partials/navbar") %>
 
 <div class="container-fluid content d-flex flex-column flex-md-row p-0">
-	<%- include("../partials/sidebar") %>
-	<div class="main-content-div col p-0 position-relative">
-		<div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
-			<div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
-				<div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
-					<div class="w-100 flex-grow-1 border-top border-dark"></div>
-					<h1 class="font-header w-100 text-center m-0 px-0">Todding Sequence</h1>
-					<div class="w-100 flex-grow-1 border-top border-dark"></div>
-				</div>
-				<div class="w-100 mb-3">
-					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Info Sheet Details</h2>
-					<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-						<p class="w-100 text-justify">The table below shows todding sequences for various item parts (credits to <a href="https://namu.wiki/w/%EB%B6%84%EB%A5%98:%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC" target="_blank">Namu Wiki</a> and players on the <a href="https://discord.gg/NNpqZsZ" target="_blank">MapleSEA Discord</a> for majority of these!). Lower level equipment with large varieties for todding are not shown in this table. There may be todding alternatives not mentioned at certain item levels. No image on the level range specified indicates no possible todding item available.</p>
-						<p class="w-100 text-justify">Note that an item is displayed below because it's a <span class="text-underline">possible option</span>. Be sure you are okay with losing the extracted item first before proceeding with todding. Equipment obtainable only once per character, not obtainable now or obtainable only from Gachapon systems have been highlighted in red.</p>
-					
-						<table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
-							<thead>
-								<tr class="table-rows">
-									<th class="text-center align-middle">Hat / Top / Bottom / Overall</th>
-								</tr>
-							</thead>
-							<tbody class="font-small">
-								<tr class="table-rows">
-									<th class="text-center align-middle">
-										<div class="d-flex justify-content-center align-items-center flex-wrap">
-											<div class="d-flex flex-column mx-2">
-												<span>120</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['necro-warrior-suit'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Necro series">
-													<img class="item-img" src="<%= icons['eclectic-warrior-suit'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Eclectic series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>130</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['rvl-warrior-suit'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Royal Von Leon series">
-													<img class="item-img" src="<%= icons['muspell-warrior-suit'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Muspell series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>140</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['empress-warrior-suit'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Empress series">
-													<img class="item-img" src="<%= icons['fensalir-warrior-suit'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Fensalir series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>150</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['faf-warrior-hat'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Highness series">
-													<img class="item-img" src="<%= icons['faf-warrior-top'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Eagle Eye series">
-													<img class="item-img" src="<%= icons['faf-warrior-bottom'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Trickster series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>160</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['abs-warrior-overall'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Absolabs series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>170</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>180</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>190</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>200</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['acs-warrior-overall'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade series">
-												</div>
-											</div>
-										</div>
-									</th>
-								</tr>
-							</tbody>
-						</table>
+    <%- include("../partials/sidebar") %>
+    <div class="main-content-div col p-0 position-relative">
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Todding Sequence</h1>
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                </div>
+                <div class="w-100 mb-3">
+                    <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Info Sheet Details</h2>
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <p class="w-100 text-justify">The table below shows todding sequences for various item parts (credits to <a href="https://namu.wiki/w/%EB%B6%84%EB%A5%98:%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC" target="_blank">Namu Wiki</a> and players on the <a href="https://discord.gg/NNpqZsZ" target="_blank">MapleSEA Discord</a> for majority of these!). Lower level equipment with large varieties for todding are not shown in this table. There may be todding alternatives not mentioned at certain item levels. No image on the level range specified indicates no possible todding item available.</p>
+                        <p class="w-100 text-justify">Note that an item is displayed below because it's a <span class="text-underline">possible option</span>. Be sure you are okay with losing the extracted item first before proceeding with todding. Equipment obtainable only once per character, not obtainable now or obtainable only from Gachapon systems have been highlighted in red.</p>
+                    
+                        <table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
+                            <thead>
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">Hat / Top / Bottom / Overall</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-small">
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>120</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['necro-warrior-suit'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Necro series">
+                                                    <img class="item-img" src="<%= icons['eclectic-warrior-suit'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Eclectic series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>130</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['rvl-warrior-suit'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Royal Von Leon series">
+                                                    <img class="item-img" src="<%= icons['muspell-warrior-suit'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Muspell series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>140</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['empress-warrior-suit'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Empress series">
+                                                    <img class="item-img" src="<%= icons['fensalir-warrior-suit'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Fensalir series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>150</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['faf-warrior-hat'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Highness series">
+                                                    <img class="item-img" src="<%= icons['faf-warrior-top'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Eagle Eye series">
+                                                    <img class="item-img" src="<%= icons['faf-warrior-bottom'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Trickster series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>160</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['abs-warrior-overall'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Absolabs series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>170</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>180</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>190</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>200</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['acs-warrior-overall'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade series">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
 
-						<table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
-							<thead>
-								<tr class="table-rows">
-									<th class="text-center align-middle">Glove / Shoe</th>
-								</tr>
-							</thead>
-							<tbody class="font-small">
-								<tr class="table-rows">
-									<th class="text-center align-middle">
-										<div class="d-flex justify-content-center align-items-center flex-wrap">
-											<div class="d-flex flex-column mx-2">
-												<span>120</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['necro-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Necro series">
-													<img class="item-img" src="<%= icons['eclectic-warrior-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Eclectic series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>130</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['rvl-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Royal Von Leon series">
-													<img class="item-img" src="<%= icons['muspell-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Muspell series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>140</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['empress-warrior-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Empress series">
-													<img class="item-img" src="<%= icons['fensalir-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Fensalir series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>150</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['antique-root-mitts'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Antique Root series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>160</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['abs-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Absolabs series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>170</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>180</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>190</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>200</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['acs-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade series">
-												</div>
-											</div>
-										</div>
-									</th>
-								</tr>
-							</tbody>
-						</table>
+                        <table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
+                            <thead>
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">Glove / Shoe</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-small">
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>120</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['necro-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Necro series">
+                                                    <img class="item-img" src="<%= icons['eclectic-warrior-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Eclectic series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>130</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['rvl-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Royal Von Leon series">
+                                                    <img class="item-img" src="<%= icons['muspell-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Muspell series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>140</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['empress-warrior-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Empress series">
+                                                    <img class="item-img" src="<%= icons['fensalir-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Fensalir series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>150</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['antique-root-mitts'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Antique Root series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>160</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['abs-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Absolabs series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>170</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>180</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>190</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>200</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['acs-gloves'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade series">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
 
-						<table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
-							<thead>
-								<tr class="table-rows">
-									<th class="text-center align-middle">Cape</th>
-								</tr>
-							</thead>
-							<tbody class="font-small">
-								<tr class="table-rows">
-									<th class="text-center align-middle">
-										<div class="d-flex justify-content-center align-items-center flex-wrap">
-											<div class="d-flex flex-column mx-2">
-												<span>100</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['black-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Black/Kuro Cape">
-													<img class="item-img" src="<%= icons['10th-anniv-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="10th Anniversary Saint Cape">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>110</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['maple-treasure-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Maple Treasure Cape">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>115</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['ludibrium-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ludibrium Cape">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>120</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['timeless-moonlight'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Timeless Moonlight (Smithing level 8)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>130</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['rvl-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Royal Von Leon series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>140</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['empress-warrior-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Empress series">
-													<img class="item-img" src="<%= icons['fensalir-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Fensalir series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>150</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['angry-zakum-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Angry Zakum Cape">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>160</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['abs-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Absolabs series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>170</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>180</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>190</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>200</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['acs-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade series">
-												</div>
-											</div>
-										</div>
-									</th>
-								</tr>
-							</tbody>
-						</table>
+                        <table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
+                            <thead>
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">Cape</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-small">
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>100</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['black-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Black/Kuro Cape">
+                                                    <img class="item-img" src="<%= icons['10th-anniv-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="10th Anniversary Saint Cape">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>110</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['maple-treasure-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Maple Treasure Cape">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>115</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['ludibrium-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ludibrium Cape">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>120</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['timeless-moonlight'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Timeless Moonlight (Smithing level 8)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>130</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['rvl-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Royal Von Leon series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>140</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['empress-warrior-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Empress series">
+                                                    <img class="item-img" src="<%= icons['fensalir-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Fensalir series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>150</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['angry-zakum-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Angry Zakum Cape">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>160</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['abs-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Absolabs series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>170</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>180</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>190</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>200</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['acs-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade series">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
 
-						<table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
-							<thead>
-								<tr class="table-rows">
-									<th class="text-center align-middle">Weapon</th>
-								</tr>
-							</thead>
-							<tbody class="font-small">
-								<tr class="table-rows">
-									<th class="text-center align-middle">
-										<div class="d-flex justify-content-center align-items-center flex-wrap">
-											<div class="d-flex flex-column mx-2">
-												<span>110</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['dragon-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Dragon series">
-													<img class="item-img" src="<%= icons['zakum-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Zakum series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>120</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['necro-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Necro series">
-													<img class="item-img" src="<%= icons['briser-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Briser series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>130</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['rvl-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Royal Von Leon series">
-													<img class="item-img" src="<%= icons['jaihin-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Jaihin series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>140</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['empress-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Empress series">
-													<img class="item-img" src="<%= icons['utgard-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Utgard series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>150</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['faf-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Fafnir series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>160</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['abs-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Absolabs series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>170</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>180</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>190</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>200</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['acs-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade series">
-												</div>
-											</div>
-										</div>
-									</th>
-								</tr>
-							</tbody>
-						</table>
+                        <table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
+                            <thead>
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">Weapon</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-small">
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>110</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['dragon-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Dragon series">
+                                                    <img class="item-img" src="<%= icons['zakum-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Zakum series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>120</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['necro-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Necro series">
+                                                    <img class="item-img" src="<%= icons['briser-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Briser series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>130</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['rvl-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Royal Von Leon series">
+                                                    <img class="item-img" src="<%= icons['jaihin-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Jaihin series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>140</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['empress-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Empress series">
+                                                    <img class="item-img" src="<%= icons['utgard-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Utgard series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>150</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['faf-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Fafnir series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>160</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['abs-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Absolabs series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>170</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>180</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>190</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>200</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['acs-1h-sword'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade series">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
 
-						<table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
-							<thead>
-								<tr class="table-rows">
-									<th class="text-center align-middle">Face Accessory</th>
-								</tr>
-							</thead>
-							<tbody class="font-small">
-								<tr class="table-rows">
-									<th class="text-center align-middle">
-										<div class="d-flex justify-content-center align-items-center flex-wrap">
-											<div class="d-flex flex-column mx-2">
-												<span>110</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['condensed-crystal'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Condensed Strength Crystalline">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>120</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['dazzling-golden-image'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Dazzling Golden Image (Yu Garden coin shop, randomly available)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>130</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['meister-symbol'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Shiny Red Meister Symbol series">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>140</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>150</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>160</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['lotus-mark'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Loose Control Machine Mark">
-												</div>
-											</div>
-										</div>
-									</th>
-								</tr>
-							</tbody>
-						</table>
+                        <table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
+                            <thead>
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">Face Accessory</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-small">
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>110</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['condensed-crystal'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Condensed Strength Crystalline">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>120</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['dazzling-golden-image'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Dazzling Golden Image (Yu Garden coin shop, randomly available)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>130</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['meister-symbol'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Shiny Red Meister Symbol series">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>140</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>150</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>160</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['lotus-mark'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Loose Control Machine Mark">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
 
-						<table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
-							<thead>
-								<tr class="table-rows">
-									<th class="text-center align-middle">Eye Accessory</th>
-								</tr>
-							</thead>
-							<tbody class="font-small">
-								<tr class="table-rows">
-									<th class="text-center align-middle">
-										<div class="d-flex justify-content-center align-items-center flex-wrap">
-											<div class="d-flex flex-column mx-2">
-												<span>75</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['michael-new-glasses'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Michael's New Glasses">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>90</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['michaela-new-glasses'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Michaela's New Glasses">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>100</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['aqua-letter'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Aqua Eye Letter Decoration">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>110</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>115</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['mystic-eye'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Mystic Eye Accessory">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>125</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['kenta-new-goggles'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Kenta's New Goggles">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>135</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['black-bean-mark'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Black Bean Mark">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>145</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['papulatus-mark'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Papulatus Mark">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>150</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>160</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['damien-eye'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Damien Eye Patch">
-												</div>
-											</div>
-										</div>
-									</th>
-								</tr>
-							</tbody>
-						</table>
+                        <table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
+                            <thead>
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">Eye Accessory</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-small">
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>75</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['michael-new-glasses'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Michael's New Glasses">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>90</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['michaela-new-glasses'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Michaela's New Glasses">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>100</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['aqua-letter'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Aqua Eye Letter Decoration">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>110</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>115</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['mystic-eye'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Mystic Eye Accessory">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>125</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['kenta-new-goggles'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Kenta's New Goggles">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>135</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['black-bean-mark'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Black Bean Mark">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>145</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['papulatus-mark'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Papulatus Mark">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>150</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>160</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['damien-eye'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Damien Eye Patch">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
 
-						<table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
-							<thead>
-								<tr class="table-rows">
-									<th class="text-center align-middle">Earring</th>
-								</tr>
-							</thead>
-							<tbody class="font-small">
-								<tr class="table-rows">
-									<th class="text-center align-middle">
-										<div class="d-flex justify-content-center align-items-center flex-wrap">
-											<div class="d-flex flex-column mx-2">
-												<span>30</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['octopus-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Octopus Earrings (Gold Beach theme dungeon)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>40</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['blue-moon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Blue Moon (Todding introduction quest)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>50</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['skull-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Skull Earrings (Todding introduction quest)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>60</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['pink-flower-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Pink-Flowered Earrings (Accessory Crafting level 3)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>70</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['metal-silver-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Metal Silver Earrings (Accessory Crafting level 4)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>75</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['half-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Half Earrings (Accessory Crafting level 4)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>80</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['metal-heart-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Metal Heart Earrings (Accessory Crafting level 5)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>85</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['strawberry-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Strawberry Earrings (Accessory Crafting level 5)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>90</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['rose-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Rose Earrings (Accessory Crafting level 6)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>100</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['sword-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Sword Earrings (Accessory Crafting level 7)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>110</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['ifia-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ifia's Earrings">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>120</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['shield-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Shield Earrings (Accessory Crafting level 9)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>130</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['dea-sidus'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Dea Sidus Earrings">
-													<img class="item-img" src="<%= icons['will-o-the-wisps'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Will o' the Wisps">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>140</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['meister-studs'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Meister Ear Studs">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>150</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['ocean-glow-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ocean Glow Earrings">
-													<img class="item-img" src="<%= icons['inverse-jewel-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Inverse Jewel Earring">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>160</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>170</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>180</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>190</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>200</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['commander-force-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Commander Force Earrings">
-												</div>
-											</div>
-										</div>
-									</th>
-								</tr>
-							</tbody>
-						</table>
+                        <table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
+                            <thead>
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">Earring</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-small">
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>30</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['octopus-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Octopus Earrings (Gold Beach theme dungeon)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>40</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['blue-moon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Blue Moon (Todding introduction quest)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>50</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['skull-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Skull Earrings (Todding introduction quest)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>60</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['pink-flower-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Pink-Flowered Earrings (Accessory Crafting level 3)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>70</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['metal-silver-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Metal Silver Earrings (Accessory Crafting level 4)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>75</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['half-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Half Earrings (Accessory Crafting level 4)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>80</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['metal-heart-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Metal Heart Earrings (Accessory Crafting level 5)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>85</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['strawberry-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Strawberry Earrings (Accessory Crafting level 5)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>90</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['rose-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Rose Earrings (Accessory Crafting level 6)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>100</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['sword-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Sword Earrings (Accessory Crafting level 7)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>110</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['ifia-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ifia's Earrings">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>120</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['shield-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Shield Earrings (Accessory Crafting level 9)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>130</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['dea-sidus'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Dea Sidus Earrings">
+                                                    <img class="item-img" src="<%= icons['will-o-the-wisps'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Will o' the Wisps">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>140</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['meister-studs'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Meister Ear Studs">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>150</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['ocean-glow-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ocean Glow Earrings">
+                                                    <img class="item-img" src="<%= icons['inverse-jewel-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Inverse Jewel Earring">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>160</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>170</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>180</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>190</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>200</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['commander-force-earrings'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Commander Force Earrings">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
 
-						<table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
-							<thead>
-								<tr class="table-rows">
-									<th class="text-center align-middle">Ring</th>
-								</tr>
-							</thead>
-							<tbody class="font-small">
-								<tr class="table-rows">
-									<th class="text-center align-middle">
-										<div class="d-flex justify-content-center align-items-center flex-wrap">
-											<div class="d-flex flex-column mx-2">
-												<span>110</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['sbr'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Silver Blossom Ring">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>120</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['elegant-ifia-ring'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Elegant Ifia's Ring">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>130</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['hekaton-signet'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Hekaton Signet [A]">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>140</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['meister-signet'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Meister Signet">
-													<img class="item-img highlight" src="<%= icons['kanna-ring'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Kanna's Treasure">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>150</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>160</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>170</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>180</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>190</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>200</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['giant-fear'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Giant Fear">
-												</div>
-											</div>
-										</div>
-									</th>
-								</tr>
-							</tbody>
-						</table>
+                        <table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
+                            <thead>
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">Ring</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-small">
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>110</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['sbr'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Silver Blossom Ring">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>120</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['elegant-ifia-ring'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Elegant Ifia's Ring">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>130</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['hekaton-signet'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Hekaton Signet [A]">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>140</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['meister-signet'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Meister Signet">
+                                                    <img class="item-img highlight" src="<%= icons['kanna-ring'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Kanna's Treasure">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>150</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>160</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>170</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>180</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>190</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>200</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['giant-fear'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Giant Fear">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
 
-						<table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
-							<thead>
-								<tr class="table-rows">
-									<th class="text-center align-middle">Pendant</th>
-								</tr>
-							</thead>
-							<tbody class="font-small">
-								<tr class="table-rows">
-									<th class="text-center align-middle">
-										<div class="d-flex justify-content-center align-items-center flex-wrap">
-											<div class="d-flex flex-column mx-2">
-												<span>65</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['shackles-of-love'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Shackles of Love">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>75</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['greed-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Greed Pendant">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>85</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['romeo-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Romeo's Pendant">
-													<img class="item-img" src="<%= icons['juliet-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Juliet's Pendant">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>100</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['green-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Green Pendant series (Accessory Crafting level 7)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>105</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['veteran-crusader-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Veteran Crusader Pendant (Silent Crusade shop)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>110</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['ifia-necklace'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ifia's Necklace">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>115</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['mystic-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Mystic Pendant (Silent Crusade shop)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>120</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['pink-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Pink Pendant series (Accessory Crafting level 9)">
-													<img class="item-img" src="<%= icons['ht-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Horned Tail Necklace">
-													<img class="item-img" src="<%= icons['cht-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Chaos Horntail Necklace">
-													<img class="item-img" src="<%= icons['machinator-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Machinator Pendant">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>130</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['purple-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Purple Pendant series (Accessory Crafting level 10, recipe required)">
-													<img class="item-img highlight" src="<%= icons['rising-sun-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Rising Sun Pendant (Gachapon)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>140</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['dom-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Dominator Pendant">
-													<img class="item-img highlight" src="<%= icons['frontier-b-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="FrontierB Black Pendant (Discontinued item)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>145</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img highlight" src="<%= icons['frontier-c-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="FrontierC White Pendant (Discontinued item)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>150</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>160</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['hilla-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Source of Pain">
-												</div>
-											</div>
-										</div>
-									</th>
-								</tr>
-							</tbody>
-						</table>
+                        <table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
+                            <thead>
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">Pendant</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-small">
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>65</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['shackles-of-love'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Shackles of Love">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>75</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['greed-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Greed Pendant">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>85</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['romeo-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Romeo's Pendant">
+                                                    <img class="item-img" src="<%= icons['juliet-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Juliet's Pendant">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>100</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['green-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Green Pendant series (Accessory Crafting level 7)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>105</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['veteran-crusader-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Veteran Crusader Pendant (Silent Crusade shop)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>110</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['ifia-necklace'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ifia's Necklace">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>115</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['mystic-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Mystic Pendant (Silent Crusade shop)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>120</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['pink-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Pink Pendant series (Accessory Crafting level 9)">
+                                                    <img class="item-img" src="<%= icons['ht-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Horned Tail Necklace">
+                                                    <img class="item-img" src="<%= icons['cht-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Chaos Horntail Necklace">
+                                                    <img class="item-img" src="<%= icons['machinator-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Machinator Pendant">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>130</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['purple-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Purple Pendant series (Accessory Crafting level 10, recipe required)">
+                                                    <img class="item-img highlight" src="<%= icons['rising-sun-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Rising Sun Pendant (Gachapon)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>140</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['dom-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Dominator Pendant">
+                                                    <img class="item-img highlight" src="<%= icons['frontier-b-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="FrontierB Black Pendant (Discontinued item)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>145</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img highlight" src="<%= icons['frontier-c-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="FrontierC White Pendant (Discontinued item)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>150</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>160</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['hilla-pendant'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Source of Pain">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
 
-						<table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
-							<thead>
-								<tr class="table-rows">
-									<th class="text-center align-middle">Shoulder Decoration</th>
-								</tr>
-							</thead>
-							<tbody class="font-small">
-								<tr class="table-rows">
-									<th class="text-center align-middle">
-										<div class="d-flex justify-content-center align-items-center flex-wrap">
-											<div class="d-flex flex-column mx-2">
-												<span>70</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['black-bean-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Black Bean Shoulderpads">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>90</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>100</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img highlight" src="<%= icons['season-2-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Season2 Epaulet (Discontinued item)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>110</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img highlight" src="<%= icons['maple-treasure-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Maple Treasure Epaulettes (Discontinued item)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>120</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['magnus-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Royal Black Metal Shoulder">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>130</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['hekaton-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Hekaton Pauldrons [A]">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>140</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['meister-spaulders'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Empress series / Meister Spaulders">
-													<img class="item-img highlight" src="<%= icons['hayato-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Hayato's Treasure">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>150</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['inverse-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Inverse Metal Shoulders">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>160</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['abs-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Absolabs Pauldron">
-												</div>
-											</div>
-										</div>
-									</th>
-								</tr>
-							</tbody>
-						</table>
+                        <table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
+                            <thead>
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">Shoulder Decoration</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-small">
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>70</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['black-bean-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Black Bean Shoulderpads">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>90</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>100</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img highlight" src="<%= icons['season-2-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Season2 Epaulet (Discontinued item)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>110</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img highlight" src="<%= icons['maple-treasure-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Maple Treasure Epaulettes (Discontinued item)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>120</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['magnus-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Royal Black Metal Shoulder">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>130</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['hekaton-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Hekaton Pauldrons [A]">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>140</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['meister-spaulders'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Empress series / Meister Spaulders">
+                                                    <img class="item-img highlight" src="<%= icons['hayato-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Hayato's Treasure">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>150</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['inverse-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Inverse Metal Shoulders">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>160</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['abs-shoulder'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Absolabs Pauldron">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
 
-						<table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
-							<thead>
-								<tr class="table-rows">
-									<th class="text-center align-middle">Belt</th>
-								</tr>
-							</thead>
-							<tbody class="font-small">
-								<tr class="table-rows">
-									<th class="text-center align-middle">
-										<div class="d-flex justify-content-center align-items-center flex-wrap">
-											<div class="d-flex flex-column mx-2">
-												<span>70</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['black-bean-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Black Bean Belt">
-													<img class="item-img" src="<%= icons['green-buckle-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Green Buckle Belt series (Accessory Crafting level 4)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>80</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['blue-buckle-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Blue Buckle Belt series (Accessory Crafting level 5)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>90</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['brown-buckle-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Brown Buckle Belt series (Accessory Crafting level 6)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>100</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img highlight" src="<%= icons['season-2-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Season2 Belt (Discontinued item)">
-													<img class="item-img" src="<%= icons['blue-gilded-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Blue Gilded Belt series (Accessory Crafting level 7)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>110</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img highlight" src="<%= icons['maple-treasure-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Maple Treasure Belt (Discontinued item)">
-													<img class="item-img" src="<%= icons['red-gilded-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Red Gilded Belt series (Accessory Crafting level 8)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>120</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['purple-gilded-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Purple Gilded Belt series (Accessory Crafting level 9)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>130</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['exquisite-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Exquisite/Extreme Belt series (Accessory Crafting level 10, recipe required)">
-													<img class="item-img highlight" src="<%= icons['rising-sun-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Blazing/Rising Sun Belt (Gachapon)">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>140</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['golden-clover-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Golden Clover Belt">
-													<img class="item-img highlight" src="<%= icons['ayame-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ayame's Treasure">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>150</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['angry-zakum-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Angry Zakum Belt">
-												</div>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>160</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>170</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>180</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>190</span>
-											</div>
-											&raquo;
-											<div class="d-flex flex-column mx-2">
-												<span>200</span>
-												<div class="todd-item-img-div d-flex align-items-center">
-													<img class="item-img" src="<%= icons['fantasy-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Fantasy Belt">
-												</div>
-											</div>
-										</div>
-									</th>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                        <table class="todd-table font-table size-720 table table-sm table-bordered table-hover mb-4">
+                            <thead>
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">Belt</th>
+                                </tr>
+                            </thead>
+                            <tbody class="font-small">
+                                <tr class="table-rows">
+                                    <th class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>70</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['black-bean-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Black Bean Belt">
+                                                    <img class="item-img" src="<%= icons['green-buckle-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Green Buckle Belt series (Accessory Crafting level 4)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>80</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['blue-buckle-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Blue Buckle Belt series (Accessory Crafting level 5)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>90</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['brown-buckle-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Brown Buckle Belt series (Accessory Crafting level 6)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>100</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img highlight" src="<%= icons['season-2-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Season2 Belt (Discontinued item)">
+                                                    <img class="item-img" src="<%= icons['blue-gilded-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Blue Gilded Belt series (Accessory Crafting level 7)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>110</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img highlight" src="<%= icons['maple-treasure-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Maple Treasure Belt (Discontinued item)">
+                                                    <img class="item-img" src="<%= icons['red-gilded-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Red Gilded Belt series (Accessory Crafting level 8)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>120</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['purple-gilded-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Purple Gilded Belt series (Accessory Crafting level 9)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>130</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['exquisite-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Exquisite/Extreme Belt series (Accessory Crafting level 10, recipe required)">
+                                                    <img class="item-img highlight" src="<%= icons['rising-sun-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Blazing/Rising Sun Belt (Gachapon)">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>140</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['golden-clover-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Golden Clover Belt">
+                                                    <img class="item-img highlight" src="<%= icons['ayame-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ayame's Treasure">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>150</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['angry-zakum-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Angry Zakum Belt">
+                                                </div>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>160</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>170</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>180</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>190</span>
+                                            </div>
+                                            &raquo;
+                                            <div class="d-flex flex-column mx-2">
+                                                <span>200</span>
+                                                <div class="todd-item-img-div d-flex align-items-center">
+                                                    <img class="item-img" src="<%= icons['fantasy-belt'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Fantasy Belt">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="./public/scripts/commonScript.js"></script>

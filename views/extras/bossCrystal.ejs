@@ -2,153 +2,153 @@
 <%- include("../partials/navbar") %>
 
 <div class="container-fluid content d-flex flex-column flex-md-row p-0">
-	<%- include("../partials/sidebar") %>
-	<div class="main-content-div col p-0 position-relative">
-		<div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
-			<div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
-				<div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
-					<div class="w-100 flex-grow-1 border-top border-dark"></div>
-					<h1 class="font-header w-100 text-center m-0 px-0">Boss Crystal Prices</h1>
-					<div class="w-100 flex-grow-1 border-top border-dark"></div>
-				</div>
-				<div class="w-100 mb-3">
-					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Info Sheet Details</h2>
-					<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-						<p class="w-100 text-justify">Boss Crystals (actually named Glowing Soul Crystal) are items you acquire from defeating most bosses available through the Boss Queue. These items can be sold to the Collector in the Free Market for mesos. The amount of mesos you get is divided by the <span class="text-underline">total number of party members</span>, regardless of whether they died out/disconnected during battle.</p>
+    <%- include("../partials/sidebar") %>
+    <div class="main-content-div col p-0 position-relative">
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Boss Crystal Prices</h1>
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                </div>
+                <div class="w-100 mb-3">
+                    <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Info Sheet Details</h2>
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <p class="w-100 text-justify">Boss Crystals (actually named Glowing Soul Crystal) are items you acquire from defeating most bosses available through the Boss Queue. These items can be sold to the Collector in the Free Market for mesos. The amount of mesos you get is divided by the <span class="text-underline">total number of party members</span>, regardless of whether they died out/disconnected during battle.</p>
 
-						<p class="w-100 text-justify">The table below contains all Boss Crystal prices at <span class="font-weight-bold">full selling price</span> (i.e. the boss was killed in a party of 1 person), sorted alphabetically by boss. Click on any table header to sort the rows in ascending/descending order.</p>
+                        <p class="w-100 text-justify">The table below contains all Boss Crystal prices at <span class="font-weight-bold">full selling price</span> (i.e. the boss was killed in a party of 1 person), sorted alphabetically by boss. Click on any table header to sort the rows in ascending/descending order.</p>
 
-						<div class="w-100 font-form d-flex justify-content-center sort-boss-crystal-div mb-3">
-							<div class="single-option-select select-sort-type text-center rounded-sm py-1 mx-2 cursor-pointer active" id="sort-by-boss">Sort by Boss</div>
-							<div class="single-option-select select-sort-type text-center rounded-sm py-1 mx-2 cursor-pointer" id="sort-by-crystal">Sort by Price</div>
-						</div>
+                        <div class="w-100 font-form d-flex justify-content-center sort-boss-crystal-div mb-3">
+                            <div class="single-option-select select-sort-type text-center rounded-sm py-1 mx-2 cursor-pointer active" id="sort-by-boss">Sort by Boss</div>
+                            <div class="single-option-select select-sort-type text-center rounded-sm py-1 mx-2 cursor-pointer" id="sort-by-crystal">Sort by Price</div>
+                        </div>
 
-						<div class="position-relative w-100 size-720 d-flex justify-content-center">
-							<div class="table-sort-div table-responsive-sm size-720 w-100 active" id="sort-by-boss-div">
-								<table class="font-table table table-sm table-bordered table-hover mb-0">
-									<thead>
-										<tr>
-											<th class="table-sort-header text-center cursor-pointer" id="sort-boss-name">
-												<div class="d-flex h-100 justify-content-center align-items-center">
-													<span class="mx-1">Boss Name</span>
-													<div class="sort-arrows-div position-relative">
-														<i class="table-sort-icon position-absolute fas fa-caret-up active" id="sort-boss-name-ascending"></i>
-														<i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-boss-name-descending"></i>
-													</div>
-												</div>
-											</th>
-											<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-easy">
-												<div class="d-flex justify-content-center align-items-center">
-													<span class="mx-1">Easy</span>
-													<div class="sort-arrows-div position-relative">
-														<i class="table-sort-icon position-absolute fas fa-caret-up" id="sort-easy-ascending"></i>
-														<i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-easy-descending"></i>
-													</div>
-												</div>
-											</th>
-											<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-normal">
-												<div class="d-flex justify-content-center align-items-center">
-													<span class="mx-1">Normal</span>
-													<div class="sort-arrows-div position-relative">
-														<i class="table-sort-icon position-absolute fas fa-caret-up" id="sort-normal-ascending"></i>
-														<i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-normal-descending"></i>
-													</div>
-												</div>
-											</th>
-											<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-hard">
-												<div class="d-flex justify-content-center align-items-center">
-													<span class="mx-1">Hard</span>
-													<div class="sort-arrows-div position-relative">
-														<i class="table-sort-icon position-absolute fas fa-caret-up" id="sort-hard-ascending"></i>
-														<i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-hard-descending"></i>
-													</div>
-												</div>
-											</th>
-											<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-chaos">
-												<div class="d-flex justify-content-center align-items-center">
-													<span class="mx-1">Chaos</span>
-													<div class="sort-arrows-div position-relative">
-														<i class="table-sort-icon position-absolute fas fa-caret-up" id="sort-chaos-ascending"></i>
-														<i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-chaos-descending"></i>
-													</div>
-												</div>
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<% bossList.forEach(function(boss) { %>
-										<tr class="table-rows">
-											<th class="text-center text-md-left align-middle" data-val="<%= icons[`${boss.id}-sq`].name %>">
-												<div class="d-flex flex-column flex-md-row align-items-center">
-													<img src="<%= icons[`${boss.id}-sq`].imgUrl %>" class="small-boss-square mr-md-2">
-													<%= icons[`${boss.id}-sq`].name %>		
-												</div>
-											</th>
-											<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.easy !== 0) ? boss.easy : 0 %>">
-												<%= (boss.easy !== 0) ? boss.easy.toLocaleString() : "-" %>
-											</td>
-											<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.normal !== 0) ? boss.normal : 0 %>">
-												<%= (boss.normal !== 0) ? boss.normal.toLocaleString() : "-" %>
-											</td>
-											<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.hard !== 0) ? boss.hard : 0 %>">
-												<%= (boss.hard !== 0) ? boss.hard.toLocaleString() : "-" %>
-											</td>
-											<td class="table-cols-50 text-center align-middle" data-val="<%= (boss.chaos !== 0) ? boss.chaos : 0 %>">
-												<%= (boss.chaos !== 0) ? boss.chaos.toLocaleString() : "-" %>
-											</td>
-										</tr>
-										<% }) %>
-									</tbody>
-								</table>
-							</div>
+                        <div class="position-relative w-100 size-720 d-flex justify-content-center">
+                            <div class="table-sort-div table-responsive-sm size-720 w-100 active" id="sort-by-boss-div">
+                                <table class="font-table table table-sm table-bordered table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="table-sort-header text-center cursor-pointer" id="sort-boss-name">
+                                                <div class="d-flex h-100 justify-content-center align-items-center">
+                                                    <span class="mx-1">Boss Name</span>
+                                                    <div class="sort-arrows-div position-relative">
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-up active" id="sort-boss-name-ascending"></i>
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-boss-name-descending"></i>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-easy">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <span class="mx-1">Easy</span>
+                                                    <div class="sort-arrows-div position-relative">
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-up" id="sort-easy-ascending"></i>
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-easy-descending"></i>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-normal">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <span class="mx-1">Normal</span>
+                                                    <div class="sort-arrows-div position-relative">
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-up" id="sort-normal-ascending"></i>
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-normal-descending"></i>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-hard">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <span class="mx-1">Hard</span>
+                                                    <div class="sort-arrows-div position-relative">
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-up" id="sort-hard-ascending"></i>
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-hard-descending"></i>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-chaos">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <span class="mx-1">Chaos</span>
+                                                    <div class="sort-arrows-div position-relative">
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-up" id="sort-chaos-ascending"></i>
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-chaos-descending"></i>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% bossList.forEach(function(boss) { %>
+                                        <tr class="table-rows">
+                                            <th class="text-center text-md-left align-middle" data-val="<%= icons[`${boss.id}-sq`].name %>">
+                                                <div class="d-flex flex-column flex-md-row align-items-center">
+                                                    <img src="<%= icons[`${boss.id}-sq`].imgUrl %>" class="small-boss-square mr-md-2">
+                                                    <%= icons[`${boss.id}-sq`].name %>      
+                                                </div>
+                                            </th>
+                                            <td class="table-cols-50 text-center align-middle" data-val="<%= (boss.easy !== 0) ? boss.easy : 0 %>">
+                                                <%= (boss.easy !== 0) ? boss.easy.toLocaleString() : "-" %>
+                                            </td>
+                                            <td class="table-cols-50 text-center align-middle" data-val="<%= (boss.normal !== 0) ? boss.normal : 0 %>">
+                                                <%= (boss.normal !== 0) ? boss.normal.toLocaleString() : "-" %>
+                                            </td>
+                                            <td class="table-cols-50 text-center align-middle" data-val="<%= (boss.hard !== 0) ? boss.hard : 0 %>">
+                                                <%= (boss.hard !== 0) ? boss.hard.toLocaleString() : "-" %>
+                                            </td>
+                                            <td class="table-cols-50 text-center align-middle" data-val="<%= (boss.chaos !== 0) ? boss.chaos : 0 %>">
+                                                <%= (boss.chaos !== 0) ? boss.chaos.toLocaleString() : "-" %>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
 
-							<div class="table-sort-div table-responsive-sm size-350 w-100 position" id="sort-by-crystal-div" style="display: none">
-								<table class="font-table table table-sm table-bordered table-hover mb-0">
-									<thead>
-										<tr>
-											<th class="table-sort-header text-center cursor-pointer" id="sort-price-boss-name">
-												<div class="d-flex justify-content-center align-items-center">
-													<span class="mx-1">Boss Name</span>
-													<div class="sort-arrows-div position-relative">
-														<i class="table-sort-icon position-absolute fas fa-caret-up" id="sort-price-boss-name-ascending"></i>
-														<i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-price-boss-name-descending"></i>
-													</div>
-												</div>
-											</th>
-											<th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-crystal-price">
-												<div class="d-flex justify-content-center align-items-center">
-													<span class="mx-1">Price</span>
-													<div class="sort-arrows-div position-relative">
-														<i class="table-sort-icon position-absolute fas fa-caret-up active" id="sort-crystal-price-ascending"></i>
-														<i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-crystal-price-descending"></i>
-													</div>
-												</div>
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<% crystalList.forEach(function(boss) { %>
-										<tr class="table-rows">
-											<th class="text-center text-md-left align-middle" data-val="<%= boss.name %>">
-												<div class="d-flex flex-column flex-md-row align-items-center">
-													<img src="<%= icons[`${boss.id}-sq`].imgUrl %>" class="small-boss-square mr-md-2">
-													<%= icons[`${boss.id}-sq`].name %> <%= boss.difficulty %>
-												</div>
-											</th>
-											<td class="table-cols-50 text-center align-middle" data-val="<%= boss.crystalPrice %>">
-												<%= boss.crystalPrice.toLocaleString() %>
-											</td>
-										</tr>
-										<% }) %>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                            <div class="table-sort-div table-responsive-sm size-350 w-100 position" id="sort-by-crystal-div" style="display: none">
+                                <table class="font-table table table-sm table-bordered table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="table-sort-header text-center cursor-pointer" id="sort-price-boss-name">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <span class="mx-1">Boss Name</span>
+                                                    <div class="sort-arrows-div position-relative">
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-up" id="sort-price-boss-name-ascending"></i>
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-price-boss-name-descending"></i>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th class="table-sort-header table-cols-50 text-center align-middle cursor-pointer" id="sort-crystal-price">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <span class="mx-1">Price</span>
+                                                    <div class="sort-arrows-div position-relative">
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-up active" id="sort-crystal-price-ascending"></i>
+                                                        <i class="table-sort-icon position-absolute fas fa-caret-down" id="sort-crystal-price-descending"></i>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% crystalList.forEach(function(boss) { %>
+                                        <tr class="table-rows">
+                                            <th class="text-center text-md-left align-middle" data-val="<%= boss.name %>">
+                                                <div class="d-flex flex-column flex-md-row align-items-center">
+                                                    <img src="<%= icons[`${boss.id}-sq`].imgUrl %>" class="small-boss-square mr-md-2">
+                                                    <%= icons[`${boss.id}-sq`].name %> <%= boss.difficulty %>
+                                                </div>
+                                            </th>
+                                            <td class="table-cols-50 text-center align-middle" data-val="<%= boss.crystalPrice %>">
+                                                <%= boss.crystalPrice.toLocaleString() %>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="./public/scripts/bossCrystalScript.js"></script>

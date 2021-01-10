@@ -2,130 +2,130 @@
 <%- include("../partials/navbar") %>
 
 <div class="container-fluid content d-flex flex-column flex-md-row p-0">
-	<%- include("../partials/sidebar") %>
-	<div class="main-content-div col p-0 position-relative">
-		<div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
-			<div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
-				<div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
-					<div class="w-100 flex-grow-1 border-top border-dark"></div>
-					<h1 class="font-header w-100 text-center m-0 px-0">Damage Skins</h1>
-					<div class="w-100 flex-grow-1 border-top border-dark"></div>
-				</div>
-				<div class="w-100 mb-3">
-					<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Info Sheet Details</h2>
+    <%- include("../partials/sidebar") %>
+    <div class="main-content-div col p-0 position-relative">
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Damage Skins</h1>
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                </div>
+                <div class="w-100 mb-3">
+                    <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Info Sheet Details</h2>
 
-					<p class="w-100 text-justify">All names are as seen in MapleSEA. Note that not all skins are available in game -- they may not be released or are upcoming releases. Damage skins may have multiple names. Many thanks to <a href="https://github.com/IkaEren" target="_blank">Zamiel</a> and <a href="https://github.com/angelsl/reWZ" target="_blank">reWZ</a> for providing damage skin details that made this page a possibility.</p>
+                    <p class="w-100 text-justify">All names are as seen in MapleSEA. Note that not all skins are available in game -- they may not be released or are upcoming releases. Damage skins may have multiple names. Many thanks to <a href="https://github.com/IkaEren" target="_blank">Zamiel</a> and <a href="https://github.com/angelsl/reWZ" target="_blank">reWZ</a> for providing damage skin details that made this page a possibility.</p>
 
-					<ul class="px-0 mb-4">
-						<p class="mb-1"><i class="fas fa-eye"></i> : View respective damage skin details</p>
-						<p><i class="fas fa-plus"></i> / <i class="fas fa-minus"></i> : Add/Remove selected damage skin from "cart" (up to 20; bottom right icon)</p>
-					</ul>
+                    <ul class="px-0 mb-4">
+                        <p class="mb-1"><i class="fas fa-eye"></i> : View respective damage skin details</p>
+                        <p><i class="fas fa-plus"></i> / <i class="fas fa-minus"></i> : Add/Remove selected damage skin from "cart" (up to 20; bottom right icon)</p>
+                    </ul>
 
-					<div class="font-content w-100 d-flex justify-content-start align-items-center flex-wrap mb-4">
-						<% pagesArr.forEach(function(page, index) { %>
-						<div class="skin-select-div col-4 col-sm-3 col-md-2 col-lg-4 col-xl-2 text-center px-2 mb-3">
-							<div class="single-option-select rounded-sm position-relative py-1 <% if(pageNum-1 === index) { %>active<% } %>">
-								<a href="./maple/extras/damage-skins/<%= index+1 %>" class="stretched-link text-decoration-none"><%= page %></a>
-							</div>
-						</div>
-						<% }) %>
-					</div>
+                    <div class="font-content w-100 d-flex justify-content-start align-items-center flex-wrap mb-4">
+                        <% pagesArr.forEach(function(page, index) { %>
+                        <div class="skin-select-div col-4 col-sm-3 col-md-2 col-lg-4 col-xl-2 text-center px-2 mb-3">
+                            <div class="single-option-select rounded-sm position-relative py-1 <% if(pageNum-1 === index) { %>active<% } %>">
+                                <a href="./maple/extras/damage-skins/<%= index+1 %>" class="stretched-link text-decoration-none"><%= page %></a>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div>
 
-					<% Object.keys(skinsByLetter).forEach(function(letter) { %>
-					<div class="col-12 mb-4 px-0">
-						<div class="dmg-skin-section-subheader">
-							<h3 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
-								<i class="fas fa-caret-down"></i> <%= letter %>
-							</h3>
-						</div>
-						<div class="dmg-skin-section px-0 collapse show pt-3" id="skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
-							<div class="d-flex flex-wrap w-100">
-								<% skinsByLetter[letter].forEach(function(skin) { %>
-								<div class="single-dmg-skin d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" id="skin-num-<%= skin.damageSkinId %>" data-skin-num="<%= skin.damageSkinId %>" data-skin-name="<%= skin.shortName %>" data-has-regular-skin="<%= skin.hasRegularSkin %>" <% if(skin.hasUnitSkin) { %>data-has-unit-skin="<%= skin.hasUnitSkin %>" data-unit-skin-num="<%= skin.unitDamageSkinId %><% } %>">
-									<div class="font-table w-100 d-flex flex-column align-items-center">
-										<div class="dmg-skin-header w-100 d-flex align-items-center font-weight-bold px-2 py-1">
-											<% if(skin.hasRegularSkin) { %>
-												<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-1">
-											<% } %>
+                    <% Object.keys(skinsByLetter).forEach(function(letter) { %>
+                    <div class="col-12 mb-4 px-0">
+                        <div class="dmg-skin-section-subheader">
+                            <h3 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
+                                <i class="fas fa-caret-down"></i> <%= letter %>
+                            </h3>
+                        </div>
+                        <div class="dmg-skin-section px-0 collapse show pt-3" id="skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
+                            <div class="d-flex flex-wrap w-100">
+                                <% skinsByLetter[letter].forEach(function(skin) { %>
+                                <div class="single-dmg-skin d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" id="skin-num-<%= skin.damageSkinId %>" data-skin-num="<%= skin.damageSkinId %>" data-skin-name="<%= skin.shortName %>" data-has-regular-skin="<%= skin.hasRegularSkin %>" <% if(skin.hasUnitSkin) { %>data-has-unit-skin="<%= skin.hasUnitSkin %>" data-unit-skin-num="<%= skin.unitDamageSkinId %><% } %>">
+                                    <div class="font-table w-100 d-flex flex-column align-items-center">
+                                        <div class="dmg-skin-header w-100 d-flex align-items-center font-weight-bold px-2 py-1">
+                                            <% if(skin.hasRegularSkin) { %>
+                                                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-1">
+                                            <% } %>
 
-											<% if(skin.hasUnitSkin) { %>
-												<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.icon.png" class="mr-1">
-											<% } %>
-											<%= skin.shortName %>
-										</div>
-										<div class="dmg-skin-body w-100 d-flex flex-grow-1 justify-content-center align-items-center position-relative px-3 py-2">
-											<% if(skin.damageSkinId === -1) { %>
-											It's invisible. You see no numbers. Move along~
-											<% } else if(skin.damageSkinId === 1011 || skin.name === "???") { %>
-											No sample image available.
-											<% } else { %>
-												<% if(skin.hasUnitSkin) { %>
-													<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.sample.png" class="mh-100 img-fluid">
-												<% } else { %>
-													<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.sample.png" class="mh-100 img-fluid">
-												<% } %>
-											<% } %>
-											<div class="dmg-skin-tools position-absolute">
-												<a href="./maple/extras/damage-skin-details/<%= skin.damageSkinId %>" class="btn btn-sm view-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="View damage skin">
-													<i class="fas fa-eye"></i>
-												</a>
-												<div class="btn btn-sm add-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="Add to cart">
-													<i class="fas fa-plus"></i>
-												</div>
-												<div class="btn btn-sm btn-outline-danger remove-dmg-skin-btn justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="Remove from cart">
-													<i class="fas fa-minus"></i>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<% }) %>
-							</div>
-						</div>
-					</div>
-					<% }) %>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="btn-dmg-skin-modal position-fixed cursor-pointer" data-toggle="modal" data-target="#selected-skins-modal">
-		<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/0/0.icon.png">
-		<div class="font-small d-flex justify-content-center align-items-center position-absolute" id="num-selected-skins">0</div>
-	</div>
+                                            <% if(skin.hasUnitSkin) { %>
+                                                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.icon.png" class="mr-1">
+                                            <% } %>
+                                            <%= skin.shortName %>
+                                        </div>
+                                        <div class="dmg-skin-body w-100 d-flex flex-grow-1 justify-content-center align-items-center position-relative px-3 py-2">
+                                            <% if(skin.damageSkinId === -1) { %>
+                                            It's invisible. You see no numbers. Move along~
+                                            <% } else if(skin.damageSkinId === 1011 || skin.name === "???") { %>
+                                            No sample image available.
+                                            <% } else { %>
+                                                <% if(skin.hasUnitSkin) { %>
+                                                    <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.sample.png" class="mh-100 img-fluid">
+                                                <% } else { %>
+                                                    <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.sample.png" class="mh-100 img-fluid">
+                                                <% } %>
+                                            <% } %>
+                                            <div class="dmg-skin-tools position-absolute">
+                                                <a href="./maple/extras/damage-skin-details/<%= skin.damageSkinId %>" class="btn btn-sm view-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="View damage skin">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <div class="btn btn-sm add-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="Add to cart">
+                                                    <i class="fas fa-plus"></i>
+                                                </div>
+                                                <div class="btn btn-sm btn-outline-danger remove-dmg-skin-btn justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="Remove from cart">
+                                                    <i class="fas fa-minus"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn-dmg-skin-modal position-fixed cursor-pointer" data-toggle="modal" data-target="#selected-skins-modal">
+        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/0/0.icon.png">
+        <div class="font-small d-flex justify-content-center align-items-center position-absolute" id="num-selected-skins">0</div>
+    </div>
 </div>
 
 <div class="modal fade" id="selected-skins-modal" tabindex="-1" role="dialog" aria-labelledby="selectedSkinsModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title font-subheader" id="selectedSkinsModalLabel">Selected Damage Skins</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body font-table">
-				<div id="no-selected-skin-msg">
-					No skins selected. Go add some and they'll appear here!
-				</div>
-				<div id="has-selected-skin-msg">
-					Click on "View all selected skin details" to view your selected damage skins' details and other notes. <span class="text-danger">Warning: Possibly large data usage</span>.</p>
-					<div class="d-flex flex-wrap" id="selected-skins-list">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-subheader" id="selectedSkinsModalLabel">Selected Damage Skins</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body font-table">
+                <div id="no-selected-skin-msg">
+                    No skins selected. Go add some and they'll appear here!
+                </div>
+                <div id="has-selected-skin-msg">
+                    Click on "View all selected skin details" to view your selected damage skins' details and other notes. <span class="text-danger">Warning: Possibly large data usage</span>.</p>
+                    <div class="d-flex flex-wrap" id="selected-skins-list">
 
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer" id="selected-skin-options">
-				<div class="w-100 d-flex justify-content-between">
-					<button type="button" class="btn btn-sm btn-outline-danger font-weight-bold" id="btn-remove-all-selected">Remove all</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="selected-skin-options">
+                <div class="w-100 d-flex justify-content-between">
+                    <button type="button" class="btn btn-sm btn-outline-danger font-weight-bold" id="btn-remove-all-selected">Remove all</button>
 
-					<form action="./maple/extras/damage-skin-details" method="POST">
-						<input type="hidden" name="selectedSkinNums" id="skin-num-input">
-						<button type="submit" class="btn btn-sm btn-outline-primary font-weight-bold">View all selected skin details</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <form action="./maple/extras/damage-skin-details" method="POST">
+                        <input type="hidden" name="selectedSkinNums" id="skin-num-input">
+                        <button type="submit" class="btn btn-sm btn-outline-primary font-weight-bold">View all selected skin details</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="./public/scripts/commonScript.js"></script>

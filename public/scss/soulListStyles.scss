@@ -1,50 +1,50 @@
 @use '_global-styles' as globals;
 
 .tier-col {
-	min-width: 75px;
+    min-width: 75px;
 }
 
 #soul-list-carousel {
-	.carousel-item {
-		height: 0;
+    .carousel-item {
+        height: 0;
 
-		&.active {
-			height: 100%;
-		}
-	}
+        &.active {
+            height: 100%;
+        }
+    }
 }
 
 .soul-img {
-	.soul-ui-normal {
-		width: 123.5px;
-		height: 16px;
+    .soul-ui-normal {
+        width: 123.5px;
+        height: 16px;
 
-		background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/souls/soul-ui-normal.png");
+        background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/souls/soul-ui-normal.png");
 
-		&:hover, &.active {
-			background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/souls/soul-ui-normal-hover.png");
-		}
-	}
+        &:hover, &.active {
+            background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/souls/soul-ui-normal-hover.png");
+        }
+    }
 
-	.soul-ui-hidden {
-		width: 123.5px;
-		height: 16px;
+    .soul-ui-hidden {
+        width: 123.5px;
+        height: 16px;
 
-		background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/souls/soul-ui-hidden.png");
+        background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/souls/soul-ui-hidden.png");
 
-		&:hover, &.active {
-			background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/souls/soul-ui-hidden-hover.png");
-		}
-	}
+        &:hover, &.active {
+            background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/souls/soul-ui-hidden-hover.png");
+        }
+    }
 
-	.soul-caption-div {
-		bottom: 5px;
+    .soul-caption-div {
+        bottom: 5px;
 
-		.soul-caption {
-			height: 40px;
-			line-height: 1.25;
-			background-color: globals.$dark-mode-black;
-			color: globals.$dark-mode-white;
-		}
-	}
+        .soul-caption {
+            height: 40px;
+            line-height: 1.25;
+            background-color: globals.$dark-mode-black;
+            color: globals.$dark-mode-white;
+        }
+    }
 }

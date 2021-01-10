@@ -4,7 +4,7 @@
 
 #equip-grid {
   display: grid;
-  grid-template-areas: "ring1 	. 		 hat 	. 		 emblem" "ring2 	pendant2 face 	. 		 badge" "ring3 	pendant1 eye 	earring  medal" "ring4 	weapon 	 top 	shoulder secondary" "pocket belt 	 bottom gloves 	 cape" ". 		. 		 shoes 	android  heart";
+  grid-template-areas: "ring1  .        hat    .        emblem" "ring2  pendant2 face   .        badge" "ring3  pendant1 eye    earring  medal" "ring4  weapon   top    shoulder secondary" "pocket belt     bottom gloves   cape" ".      .        shoes  android  heart";
   top: 0;
   grid-gap: 4px;
   padding: 6px;

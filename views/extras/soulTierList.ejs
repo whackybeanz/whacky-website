@@ -2,158 +2,158 @@
 <%- include("../partials/navbar") %>
 
 <div class="container-fluid content d-flex flex-column flex-md-row p-0">
-	<%- include("../partials/sidebar") %>
-	<div class="main-content-div col p-0 position-relative">
-		<div class="w-100 d-flex align-items-center flex-column px-4 pt-4" id="calculator">
-			<div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
-				<div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
-					<div class="w-100 flex-grow-1 border-top border-dark"></div>
-					<h1 class="font-header w-100 text-center m-0 px-0">Soul Tier List</h1>
-					<div class="w-100 flex-grow-1 border-top border-dark"></div>
-				</div>
-				<div class="w-100 mb-3">
-					<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-						<h2 class="font-subheader w-100 font-weight-bold text-underline mb-2" id="calc-how-to">Instructions</h2>
-						<p class="w-100 text-justify">This list contains all boss souls that have been released so far, sorted into separate tiers. Click each soul to view more detailed information related to it. You can also navigate between each individual boss soul by clicking the left/right arrows. Under Skill Info, regular prefixed souls grant users the first skill, while Augmented souls grant users the second skill. There are two levels for each skill (Level 2 stats are in brackets). There are certain souls that deviate from these and will be noted accordingly.</p>
-						<p class="w-100 text-justify">Souls have been sorted into tiers based on their regular and augmented soul's stats (all souls with no augmented versions are placed in the bottom-most tier). Souls are also ordered based on their appearance in the Soul Collector. Souls that do not have a collector entry are placed at the end.</p>
-						<p class="w-100 text-justify mb-0">Note: "All Skill Levels +X" stat from augmented souls apply only till the skill's maximum level, and does not work on 5th job skills, hyper skills and beginner skills.</p>
-					</div>
+    <%- include("../partials/sidebar") %>
+    <div class="main-content-div col p-0 position-relative">
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4" id="calculator">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Soul Tier List</h1>
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                </div>
+                <div class="w-100 mb-3">
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2" id="calc-how-to">Instructions</h2>
+                        <p class="w-100 text-justify">This list contains all boss souls that have been released so far, sorted into separate tiers. Click each soul to view more detailed information related to it. You can also navigate between each individual boss soul by clicking the left/right arrows. Under Skill Info, regular prefixed souls grant users the first skill, while Augmented souls grant users the second skill. There are two levels for each skill (Level 2 stats are in brackets). There are certain souls that deviate from these and will be noted accordingly.</p>
+                        <p class="w-100 text-justify">Souls have been sorted into tiers based on their regular and augmented soul's stats (all souls with no augmented versions are placed in the bottom-most tier). Souls are also ordered based on their appearance in the Soul Collector. Souls that do not have a collector entry are placed at the end.</p>
+                        <p class="w-100 text-justify mb-0">Note: "All Skill Levels +X" stat from augmented souls apply only till the skill's maximum level, and does not work on 5th job skills, hyper skills and beginner skills.</p>
+                    </div>
 
-					<div class="font-content w-100 d-flex flex-column flex-xl-row justify-content-xl-between align-items-center align-items-xl-start mb-4">
-						<table class="font-table size-350 table table-sm table-bordered table-hover mb-4">
-							<tbody>
-								<% Object.keys(soulList).forEach(function(tier) { %>
-								<tr>
-									<th class="table-cols-header tier-col text-center align-middle">Tier <%= tier %></th>
-									<td class="align-middle px-3">
-										<% soulList[tier].forEach(function(soul, index) { %>
-											<img src="<%= icons[`soul-${soul.soulId}`].imgUrl %>" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="<%= soul.bossName %>" data-target="#soul-list-carousel" data-slide-to=<%= soulList[tier].currSummedSoulCount + index %>>
-										<% }) %>
-									</td>
-								</tr>
-								<% }) %>
-							</tbody>
-						</table>
-						<div id="soul-list-carousel" class="size-720 w-100 carousel carousel-fade rounded-sm" data-ride="carousel" data-interval="false">
-							<div class="carousel-inner position-relative">
-								<% Object.keys(soulList).forEach(function(tier) { %>
-									<% soulList[tier].forEach(function(soul) { %>
-										<div class="carousel-item rounded-sm <% if(soul.soulId === "cygnus") { %>active<% } %>">
-											<div class="carousel-caption w-100 p-0">
-												<div class="carousel-nav position-relative mb-3 py-2">
-													<a class="carousel-control-prev" href="#soul-list-carousel" role="button" data-slide="prev">
-														<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-														<span class="sr-only">Previous</span>
-													</a>
-													<div>
-														<h2 class="carousel-header font-subheader w-100 font-weight-bold text-center text-capitalize text-decoration-none mb-0">
-															<img src="<%= icons[`soul-${soul.soulId}`].imgUrl %>">
-															<% if(soul.hasAugSoulIcon) { %>
-															<img src="<%= icons[`soul-${soul.soulId}-aug`].imgUrl %>">
-															<% } %>
-															<%= soul.bossName %>
-														</h2>
-														<p class="font-small mb-0"><%= soul.soulGaugeEffect %></p>
-													</div>
-													<a class="carousel-control-next" href="#soul-list-carousel" role="button" data-slide="next">
-														<span class="carousel-control-next-icon" aria-hidden="true"></span>
-														<span class="sr-only">Next</span>
-													</a>
-												</div>
-												<div class="font-small d-flex flex-column align-items-center">
-													<div class="d-flex flex-column align-items-center mb-3 soul-img" id="<%= soul.soulId %>-soul-img">
-														<div class="d-flex soul-ui-div">
-															<div class="soul-ui soul-ui-normal cursor-pointer active"></div>
-															<div class="soul-ui soul-ui-hidden cursor-pointer"></div>
-														</div>
-														<div class="soul-caption-img normal-img position-relative">
-															<img src="<%= soul.caption.regular.img %>">
-															<div class="soul-caption-div w-100 position-absolute px-2">
-																<div class="soul-caption w-100 d-flex align-items-center justify-content-center rounded-sm px-2">
-																	<div><%= soul.caption.regular.text %></div>
-																</div>
-															</div>
-														</div>
-														<div class="soul-caption-img hidden-img position-relative d-none">
-															<img src="<%= soul.caption.hidden.img %>">
-															<div class="soul-caption-div w-100 position-absolute px-2">
-																<div class="soul-caption w-100 d-flex align-items-center justify-content-center rounded-sm px-2">
-																	<%= soul.caption.hidden.text %>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-12 px-3 mb-4">
-														<h3 class="soul-stat-info-header font-subsubheader index-collapse w-100 text-left px-3 py-2 mb-0 cursor-pointer" data-toggle="collapse" href="#<%= soul.soulId %>-soul-stat-info">
-															<i class="fas fa-caret-down"></i> Stat Info
-														</h3>
-														<div class="soul-stat-info row text-left mx-0 mb-0 collapse show" id="<%= soul.soulId %>-soul-stat-info">
-															<div class="d-flex flex-column flex-sm-row w-100 px-3 py-2">
-																<div class="col-12 col-sm-6 px-0 mb-0 flex-shrink-1">
-																	<% soul.regular.stats.forEach(function(stat, index) { %>
-																	<div class="d-flex px-0 <% if((index+1) % 4 === 0) { %>mb-4 mb-sm-2<% } else { %>mb-2<% } %>">
-																		<div class="col-6 font-weight-bold px-0"><%= stat.soulPrefix %></div>
-																		<div class="col-6 px-0"><%= stat.amount %></div>
-																	</div>
-																	<% }) %>
-																</div>
-																<% if(soul.hasAugmented) { %>
-																<div class="d-flex col-12 col-sm-6 px-0">
-																	<div class="col-6 col-sm-6 col-md-5 px-0 px-sm-3"><span class="font-weight-bold">Augmented</span><br/>(Randomly selects one)</div>
-																	<div class="col-6 col-sm-6 col-md-7 d-flex px-0 flex-column">
-																		<% soul.augmented.stats.forEach(function(augStat) { %>
-																		<div class="mb-2"><%= augStat %></div>
-																		<% }) %>
-																	</div>
-																</div>
-																<% } %>
-															</div>
-														</div>
-													</div>
-													<div class="col-12 px-3 mb-4">
-														<h3 class="soul-skill-info-header font-subsubheader index-collapse w-100 text-left px-3 py-2 mb-0 cursor-pointer" data-toggle="collapse" href="#<%= soul.soulId %>-soul-skill-info">
-															<i class="fas fa-caret-down"></i> Skill Info
-														</h3>
-														<div class="soul-skill-info row text-left mx-0 mb-0 collapse show" id="<%= soul.soulId %>-soul-skill-info">
-															<div class="px-3 py-2">
-																<div class="d-flex flex-column text-left <% if(soul.hasAugmented && soul.augmented.skill) { %>mb-4<% } else { %>mb-0<% } %>">
-																	<div class="mb-1">
-																		<% soul.regular.skill.img.forEach(function(skillImg) { %>
-																		<img src="<%= skillImg %>">
-																		<% }) %>
-																		<span class="font-weight-bold"><%= soul.regular.skill.name %></span>
-																	</div>
-																	<div class="text-justify mb-2"><%- soul.regular.skill.desc %></div>
-																	<div class="text-justify mb-0"><%- soul.regular.skill.effect %></div>
-																</div>
+                    <div class="font-content w-100 d-flex flex-column flex-xl-row justify-content-xl-between align-items-center align-items-xl-start mb-4">
+                        <table class="font-table size-350 table table-sm table-bordered table-hover mb-4">
+                            <tbody>
+                                <% Object.keys(soulList).forEach(function(tier) { %>
+                                <tr>
+                                    <th class="table-cols-header tier-col text-center align-middle">Tier <%= tier %></th>
+                                    <td class="align-middle px-3">
+                                        <% soulList[tier].forEach(function(soul, index) { %>
+                                            <img src="<%= icons[`soul-${soul.soulId}`].imgUrl %>" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="<%= soul.bossName %>" data-target="#soul-list-carousel" data-slide-to=<%= soulList[tier].currSummedSoulCount + index %>>
+                                        <% }) %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                        <div id="soul-list-carousel" class="size-720 w-100 carousel carousel-fade rounded-sm" data-ride="carousel" data-interval="false">
+                            <div class="carousel-inner position-relative">
+                                <% Object.keys(soulList).forEach(function(tier) { %>
+                                    <% soulList[tier].forEach(function(soul) { %>
+                                        <div class="carousel-item rounded-sm <% if(soul.soulId === "cygnus") { %>active<% } %>">
+                                            <div class="carousel-caption w-100 p-0">
+                                                <div class="carousel-nav position-relative mb-3 py-2">
+                                                    <a class="carousel-control-prev" href="#soul-list-carousel" role="button" data-slide="prev">
+                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                    <div>
+                                                        <h2 class="carousel-header font-subheader w-100 font-weight-bold text-center text-capitalize text-decoration-none mb-0">
+                                                            <img src="<%= icons[`soul-${soul.soulId}`].imgUrl %>">
+                                                            <% if(soul.hasAugSoulIcon) { %>
+                                                            <img src="<%= icons[`soul-${soul.soulId}-aug`].imgUrl %>">
+                                                            <% } %>
+                                                            <%= soul.bossName %>
+                                                        </h2>
+                                                        <p class="font-small mb-0"><%= soul.soulGaugeEffect %></p>
+                                                    </div>
+                                                    <a class="carousel-control-next" href="#soul-list-carousel" role="button" data-slide="next">
+                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </div>
+                                                <div class="font-small d-flex flex-column align-items-center">
+                                                    <div class="d-flex flex-column align-items-center mb-3 soul-img" id="<%= soul.soulId %>-soul-img">
+                                                        <div class="d-flex soul-ui-div">
+                                                            <div class="soul-ui soul-ui-normal cursor-pointer active"></div>
+                                                            <div class="soul-ui soul-ui-hidden cursor-pointer"></div>
+                                                        </div>
+                                                        <div class="soul-caption-img normal-img position-relative">
+                                                            <img src="<%= soul.caption.regular.img %>">
+                                                            <div class="soul-caption-div w-100 position-absolute px-2">
+                                                                <div class="soul-caption w-100 d-flex align-items-center justify-content-center rounded-sm px-2">
+                                                                    <div><%= soul.caption.regular.text %></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="soul-caption-img hidden-img position-relative d-none">
+                                                            <img src="<%= soul.caption.hidden.img %>">
+                                                            <div class="soul-caption-div w-100 position-absolute px-2">
+                                                                <div class="soul-caption w-100 d-flex align-items-center justify-content-center rounded-sm px-2">
+                                                                    <%= soul.caption.hidden.text %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 px-3 mb-4">
+                                                        <h3 class="soul-stat-info-header font-subsubheader index-collapse w-100 text-left px-3 py-2 mb-0 cursor-pointer" data-toggle="collapse" href="#<%= soul.soulId %>-soul-stat-info">
+                                                            <i class="fas fa-caret-down"></i> Stat Info
+                                                        </h3>
+                                                        <div class="soul-stat-info row text-left mx-0 mb-0 collapse show" id="<%= soul.soulId %>-soul-stat-info">
+                                                            <div class="d-flex flex-column flex-sm-row w-100 px-3 py-2">
+                                                                <div class="col-12 col-sm-6 px-0 mb-0 flex-shrink-1">
+                                                                    <% soul.regular.stats.forEach(function(stat, index) { %>
+                                                                    <div class="d-flex px-0 <% if((index+1) % 4 === 0) { %>mb-4 mb-sm-2<% } else { %>mb-2<% } %>">
+                                                                        <div class="col-6 font-weight-bold px-0"><%= stat.soulPrefix %></div>
+                                                                        <div class="col-6 px-0"><%= stat.amount %></div>
+                                                                    </div>
+                                                                    <% }) %>
+                                                                </div>
+                                                                <% if(soul.hasAugmented) { %>
+                                                                <div class="d-flex col-12 col-sm-6 px-0">
+                                                                    <div class="col-6 col-sm-6 col-md-5 px-0 px-sm-3"><span class="font-weight-bold">Augmented</span><br/>(Randomly selects one)</div>
+                                                                    <div class="col-6 col-sm-6 col-md-7 d-flex px-0 flex-column">
+                                                                        <% soul.augmented.stats.forEach(function(augStat) { %>
+                                                                        <div class="mb-2"><%= augStat %></div>
+                                                                        <% }) %>
+                                                                    </div>
+                                                                </div>
+                                                                <% } %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 px-3 mb-4">
+                                                        <h3 class="soul-skill-info-header font-subsubheader index-collapse w-100 text-left px-3 py-2 mb-0 cursor-pointer" data-toggle="collapse" href="#<%= soul.soulId %>-soul-skill-info">
+                                                            <i class="fas fa-caret-down"></i> Skill Info
+                                                        </h3>
+                                                        <div class="soul-skill-info row text-left mx-0 mb-0 collapse show" id="<%= soul.soulId %>-soul-skill-info">
+                                                            <div class="px-3 py-2">
+                                                                <div class="d-flex flex-column text-left <% if(soul.hasAugmented && soul.augmented.skill) { %>mb-4<% } else { %>mb-0<% } %>">
+                                                                    <div class="mb-1">
+                                                                        <% soul.regular.skill.img.forEach(function(skillImg) { %>
+                                                                        <img src="<%= skillImg %>">
+                                                                        <% }) %>
+                                                                        <span class="font-weight-bold"><%= soul.regular.skill.name %></span>
+                                                                    </div>
+                                                                    <div class="text-justify mb-2"><%- soul.regular.skill.desc %></div>
+                                                                    <div class="text-justify mb-0"><%- soul.regular.skill.effect %></div>
+                                                                </div>
 
-																<% if(soul.hasAugmented && soul.augmented.skill) { %>
-																<div class="d-flex flex-column text-left mb-0">
-																	<div class="mb-1">
-																		<% soul.augmented.skill.img.forEach(function(augSkillImg) { %>
-																		<img src="<%= augSkillImg %>">
-																		<% }) %>
-																		<span class="font-weight-bold"><%= soul.augmented.skill.name %></span>
-																	</div>
-																	<div class="text-justify mb-2"><%- soul.augmented.skill.desc %></div>
-																	<div class="text-justify mb-0"><%- soul.augmented.skill.effect %></div>
-																</div>
-																<% } %>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									<% }) %>
-								<% }) %>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                                                <% if(soul.hasAugmented && soul.augmented.skill) { %>
+                                                                <div class="d-flex flex-column text-left mb-0">
+                                                                    <div class="mb-1">
+                                                                        <% soul.augmented.skill.img.forEach(function(augSkillImg) { %>
+                                                                        <img src="<%= augSkillImg %>">
+                                                                        <% }) %>
+                                                                        <span class="font-weight-bold"><%= soul.augmented.skill.name %></span>
+                                                                    </div>
+                                                                    <div class="text-justify mb-2"><%- soul.augmented.skill.desc %></div>
+                                                                    <div class="text-justify mb-0"><%- soul.augmented.skill.effect %></div>
+                                                                </div>
+                                                                <% } %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <% }) %>
+                                <% }) %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="./public/scripts/commonScript.js"></script>

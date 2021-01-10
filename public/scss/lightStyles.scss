@@ -1,407 +1,407 @@
 @use '_global-styles' as globals;
 
 body {
-	background-image: linear-gradient(to bottom, globals.$light-mode-white, globals.$light-mode-white), url("../public-images/light.jpg");
-	background-color: globals.$light-mode-white-opaque;
-	color: globals.$light-mode-black;
-
-	// Navbar 
-	.navbar {
-		border-bottom: 1px solid globals.$light-mode-light-grey;
-
-		.nav-item {
-			.nav-link {
-				&:hover, &.active {
-					color: globals.$light-mode-black;
-				}
-			}
-
-			.dropdown-menu {
-				background-color: globals.$light-mode-white-opaque;
-				border: 1px solid globals.$light-mode-light-grey;
-
-				.dropdown-item {
-					color: globals.$light-mode-black;
-
-					&:hover, &.active {
-						color: globals.$light-mode-black;
-						background-color: globals.$light-mode-light-grey;
-					}
-				}
-			}
-		}
-	}
-
-	// Sidebar
-	.sidebar {
-		background-color: globals.$light-mode-white;
-		border-bottom: 1px solid globals.$light-mode-grey;
-
-		&.sidebar-left {
-			@include globals.for-size(lg) {
-				border-right: 1px solid globals.$light-mode-grey;
-				border-bottom: none;
-			}
-		}
-		
-		&.sidebar-right {
-			border-left: 1px solid globals.$light-mode-grey;
-			border-bottom: none;
-		}
-
-		li {
-			&.active {
-				background-color: globals.$light-mode-light-grey;
-				color: globals.$light-mode-black;
-			}
-		}
-
-		.sidebar-btn {
-			color: globals.$light-mode-black;
-
-			a {
-				color: globals.$light-mode-black;
-			}
-
-			&:hover, &.active {
-				background-color: globals.$light-mode-light-grey;
-				color: globals.$light-mode-black;
-			}
-		}
-	}
-
-	// Modal
-	.modal {
-		.modal-content {
-			border: 1px solid globals.$light-mode-grey;
-			color: globals.$light-mode-black;
-		}
-	}
-
-	// Carousel
-	.carousel.carousel-fade {
-		.carousel-inner {
-			.carousel-item {
-	    		.carousel-caption {
-					color: globals.$light-mode-black;
-	    		}
-	    	}
-	    }
-	}
-
-	.carousel-control-prev, .carousel-control-next {
-		color: globals.$light-mode-black;
-	}
-
-	// Pagination
-	.pagination {
-		.page-item {
-			.page-link {
-				background-color: globals.$light-mode-white;
-				border-color: globals.$light-mode-grey;
-				color: globals.$light-mode-black;
-			}
-
-			&:hover, &.active {
-				.page-link {
-					background-color: globals.$light-mode-grey;
-				}
-			}
-		}
-	}
-
-	// Button
-	.action-button {
-		color: globals.$light-mode-black;
-		border: 1px solid globals.$dark-mode-grey;
-		transition: background-color 0.2s;
-
-		&:hover {
-			background-color: globals.$dark-mode-grey;
-			transition: background-color 0.2s;
-		}
-	}
-
-	// Tabs
-	.nav-tabs {
-		border-bottom: 1px solid globals.$light-mode-grey;
-
-		.nav-link {
-			&:hover, &.active {
-				background-color: globals.$light-mode-grey;
-				border-color: globals.$light-mode-grey;
-			}
-		}
-	}
-
-	.tab-pane {
-		border: 1px solid globals.$light-mode-grey;
-
-		.single-map-select {
-			border: 1px solid globals.$light-mode-grey;
-		}
-	}
-
-	// Others
-	.radio-select-group {
-		.form-check {
-			.radio-select {
-				border: 1px solid globals.$light-mode-grey;
-
-				&:hover, &.active {
-					background-color: globals.$light-mode-light-grey;
-					color: globals.$light-mode-black;
-				}
-			}
-		}
-	}
-
-	// Maple Index
-	.index-section-subheader, .index-section {
-		border: 1px solid globals.$light-mode-grey;
-	}
-
-	.page-select, .single-option-select {
-		&:hover, &.active {
-			background-color: globals.$light-mode-light-grey;
-			color: globals.$light-mode-black;
-		}
-
-		a {
-			color: globals.$light-mode-black;
-		}
-	}
-
-	// Extras
-	.job-choice-div, .equip-choice, .sort-boss-crystal-div, .skin-select-div {
-		.single-option-select {
-			border: 1px solid globals.$light-mode-grey;	
-		}
-	}
-
-	#soul-list-carousel {
-		.carousel-nav {
-			border-bottom: 1px solid globals.$light-mode-grey;
-		}
-
-		.carousel-item, 
-		.soul-skill-info, .soul-skill-info-header,
-		.soul-stat-info, .soul-stat-info-header {
-			border: 1px solid globals.$light-mode-grey;
-		}
-	}
-
-	.single-set-effect {
-		background-color: globals.$light-mode-white-opaque;
-		border: 1px solid globals.$light-mode-grey;
-	}
-
-	.todd-table {
-		& > thead {
-			background-color: globals.$light-mode-light-grey;
-		}
-
-		& > tbody {
-			background-color: globals.$light-mode-white-opaque;
-
-			.mobile-th {
-				border: globals.$light-mode-grey;
-			}
-		}
-	}
-
-	.dmg-skin-section-subheader, .dmg-skin-section {
-		border: 1px solid globals.$light-mode-grey;
-	}
-
-	.dmg-skin-section-subheader {
-		background-color: globals.$light-mode-grey;
-	}
-
-	.single-dmg-skin {
-		& > div {
-			border: 1px solid globals.$light-mode-grey;
-
-			.dmg-skin-header {
-				background-color: globals.$light-mode-grey;
-			}	
-
-			.dmg-skin-body {
-				background-color: globals.$light-mode-white-opaque;
-
-				.view-dmg-skin-btn, .add-dmg-skin-btn, .remove-dmg-skin-btn {
-					border: 1px solid globals.$light-mode-grey;
-					background-color: globals.$light-mode-white-opaque;
-					transition: all 0.2s;
-
-					&:hover {
-						transition: all 0.2s;
-						color: globals.$light-mode-white-opaque;
-					}
-				}
-
-				.view-dmg-skin-btn {
-					color: globals.$light-mode-black;
-
-					&:hover {
-						background-color: globals.$light-mode-black;
-					}
-				}
-
-				.add-dmg-skin-btn {
-					color: globals.$light-mode-green;
-
-					&:hover {
-						background-color: globals.$light-mode-green;
-					}
-				}
-
-				.remove-dmg-skin-btn {
-					color: globals.$red;
-					
-					&:hover {
-						background-color: globals.$red;
-					}
-				}
-			}
-		}
-
-		&.active > div {
-			border: 1px solid globals.$light-mode-green;
-
-			.dmg-skin-header {
-				background-color: globals.$light-mode-green;
-			}
-		}
-	}
-
-	.btn-dmg-skin-modal, #num-selected-skins {
-		border: 2px solid globals.$light-mode-grey;
-		background-color: globals.$light-mode-white-opaque;
-		transition: all 0.2s;
-	}
-
-	.btn-dmg-skin-modal {
-		&.flash {
-			background-color: globals.$light-mode-green;
-		}
-
-		&:hover {
-			background-color: globals.$light-mode-grey;
-			transition: all 0.2s;
-
-			#num-selected-skins {
-				background-color: globals.$light-mode-grey;
-				transition: all 0.2s;
-			}
-		}
-	}
-
-	.single-selected-skin {
-		border: 1px solid globals.$light-mode-grey;
-		transition: background-color 0.2s;
-
-		&:hover {
-			background-color: globals.$light-mode-grey;
-			transition: background-color 0.2s;
-		}
-
-		.remove-selected-dmg-skin-btn {
-			border: 1px solid globals.$light-mode-grey;
-			background-color: globals.$light-mode-white-opaque;
-			transition: all 0.2s;
-			color: globals.$red;
-
-			&:hover {
-				transition: all 0.2s;
-				color: globals.$light-mode-white-opaque;
-				background-color: globals.$red;
-			}
-		}
-	}
-
-	.quick-jump-div {
-		border: 2px solid globals.$light-mode-grey;
-	}
-
-	.dmg-skin-table {
-		& > thead {
-			background-color: globals.$light-mode-light-grey;
-		}
-
-		& > tbody {
-			background-color: globals.$light-mode-white-opaque;
-
-			.mobile-th {
-				border: 1px solid globals.$light-mode-grey;
-			}
-		}
-	}
-
-	// EXP Stacking
-	.exp-stack-section-subheader, .exp-stack-section {
-		border: 1px solid globals.$light-mode-grey;
-	}
-
-	.exp-stack-section-subheader {
-		background-color: globals.$light-mode-grey;
-	}
-
-	.single-exp-stack {
-		border: 1px solid globals.$light-mode-grey;
-		transition: all 0.2s;
-
-		&:hover {
-			border: 1px solid globals.$light-mode-green;
-		}
-
-		&.active {
-			background-color: globals.$light-mode-green;
-			transition: all 0.2s;
-		}
-	}
-
-	.tab-pane {
-		.single-map-select {
-			border: 1px solid globals.$light-mode-grey;
-			transition: all 0.2s;
-
-			&:hover {
-				border: 1px solid globals.$light-mode-green;
-				transition: all 0.2s;
-			}
-
-			&.active {
-				background-color: globals.$light-mode-green;
-				transition: all 0.2s;
-			}
-		}
-	}
-
-	// About
-	.single-social {
-		a {
-			color: globals.$light-mode-black;
-
-			&:hover, &.active {
-				background-color: globals.$light-mode-light-grey;
-				color: globals.$light-mode-black;
-				font-weight: bold;
-			}
-		}
-	}
-
-	.about-logo {
-		&.gmail-logo {
-			background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/gmail-logo-light.png");
-		}
-
-		&.youtube-logo {
-			background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/youtube-logo-light.png");
-		}
-	}
-
-	.horz-partition {
-		border-top: 1px solid globals.$light-mode-grey;
-	}
+    background-image: linear-gradient(to bottom, globals.$light-mode-white, globals.$light-mode-white), url("../public-images/light.jpg");
+    background-color: globals.$light-mode-white-opaque;
+    color: globals.$light-mode-black;
+
+    // Navbar 
+    .navbar {
+        border-bottom: 1px solid globals.$light-mode-light-grey;
+
+        .nav-item {
+            .nav-link {
+                &:hover, &.active {
+                    color: globals.$light-mode-black;
+                }
+            }
+
+            .dropdown-menu {
+                background-color: globals.$light-mode-white-opaque;
+                border: 1px solid globals.$light-mode-light-grey;
+
+                .dropdown-item {
+                    color: globals.$light-mode-black;
+
+                    &:hover, &.active {
+                        color: globals.$light-mode-black;
+                        background-color: globals.$light-mode-light-grey;
+                    }
+                }
+            }
+        }
+    }
+
+    // Sidebar
+    .sidebar {
+        background-color: globals.$light-mode-white;
+        border-bottom: 1px solid globals.$light-mode-grey;
+
+        &.sidebar-left {
+            @include globals.for-size(lg) {
+                border-right: 1px solid globals.$light-mode-grey;
+                border-bottom: none;
+            }
+        }
+        
+        &.sidebar-right {
+            border-left: 1px solid globals.$light-mode-grey;
+            border-bottom: none;
+        }
+
+        li {
+            &.active {
+                background-color: globals.$light-mode-light-grey;
+                color: globals.$light-mode-black;
+            }
+        }
+
+        .sidebar-btn {
+            color: globals.$light-mode-black;
+
+            a {
+                color: globals.$light-mode-black;
+            }
+
+            &:hover, &.active {
+                background-color: globals.$light-mode-light-grey;
+                color: globals.$light-mode-black;
+            }
+        }
+    }
+
+    // Modal
+    .modal {
+        .modal-content {
+            border: 1px solid globals.$light-mode-grey;
+            color: globals.$light-mode-black;
+        }
+    }
+
+    // Carousel
+    .carousel.carousel-fade {
+        .carousel-inner {
+            .carousel-item {
+                .carousel-caption {
+                    color: globals.$light-mode-black;
+                }
+            }
+        }
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+        color: globals.$light-mode-black;
+    }
+
+    // Pagination
+    .pagination {
+        .page-item {
+            .page-link {
+                background-color: globals.$light-mode-white;
+                border-color: globals.$light-mode-grey;
+                color: globals.$light-mode-black;
+            }
+
+            &:hover, &.active {
+                .page-link {
+                    background-color: globals.$light-mode-grey;
+                }
+            }
+        }
+    }
+
+    // Button
+    .action-button {
+        color: globals.$light-mode-black;
+        border: 1px solid globals.$dark-mode-grey;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: globals.$dark-mode-grey;
+            transition: background-color 0.2s;
+        }
+    }
+
+    // Tabs
+    .nav-tabs {
+        border-bottom: 1px solid globals.$light-mode-grey;
+
+        .nav-link {
+            &:hover, &.active {
+                background-color: globals.$light-mode-grey;
+                border-color: globals.$light-mode-grey;
+            }
+        }
+    }
+
+    .tab-pane {
+        border: 1px solid globals.$light-mode-grey;
+
+        .single-map-select {
+            border: 1px solid globals.$light-mode-grey;
+        }
+    }
+
+    // Others
+    .radio-select-group {
+        .form-check {
+            .radio-select {
+                border: 1px solid globals.$light-mode-grey;
+
+                &:hover, &.active {
+                    background-color: globals.$light-mode-light-grey;
+                    color: globals.$light-mode-black;
+                }
+            }
+        }
+    }
+
+    // Maple Index
+    .index-section-subheader, .index-section {
+        border: 1px solid globals.$light-mode-grey;
+    }
+
+    .page-select, .single-option-select {
+        &:hover, &.active {
+            background-color: globals.$light-mode-light-grey;
+            color: globals.$light-mode-black;
+        }
+
+        a {
+            color: globals.$light-mode-black;
+        }
+    }
+
+    // Extras
+    .job-choice-div, .equip-choice, .sort-boss-crystal-div, .skin-select-div {
+        .single-option-select {
+            border: 1px solid globals.$light-mode-grey; 
+        }
+    }
+
+    #soul-list-carousel {
+        .carousel-nav {
+            border-bottom: 1px solid globals.$light-mode-grey;
+        }
+
+        .carousel-item, 
+        .soul-skill-info, .soul-skill-info-header,
+        .soul-stat-info, .soul-stat-info-header {
+            border: 1px solid globals.$light-mode-grey;
+        }
+    }
+
+    .single-set-effect {
+        background-color: globals.$light-mode-white-opaque;
+        border: 1px solid globals.$light-mode-grey;
+    }
+
+    .todd-table {
+        & > thead {
+            background-color: globals.$light-mode-light-grey;
+        }
+
+        & > tbody {
+            background-color: globals.$light-mode-white-opaque;
+
+            .mobile-th {
+                border: globals.$light-mode-grey;
+            }
+        }
+    }
+
+    .dmg-skin-section-subheader, .dmg-skin-section {
+        border: 1px solid globals.$light-mode-grey;
+    }
+
+    .dmg-skin-section-subheader {
+        background-color: globals.$light-mode-grey;
+    }
+
+    .single-dmg-skin {
+        & > div {
+            border: 1px solid globals.$light-mode-grey;
+
+            .dmg-skin-header {
+                background-color: globals.$light-mode-grey;
+            }   
+
+            .dmg-skin-body {
+                background-color: globals.$light-mode-white-opaque;
+
+                .view-dmg-skin-btn, .add-dmg-skin-btn, .remove-dmg-skin-btn {
+                    border: 1px solid globals.$light-mode-grey;
+                    background-color: globals.$light-mode-white-opaque;
+                    transition: all 0.2s;
+
+                    &:hover {
+                        transition: all 0.2s;
+                        color: globals.$light-mode-white-opaque;
+                    }
+                }
+
+                .view-dmg-skin-btn {
+                    color: globals.$light-mode-black;
+
+                    &:hover {
+                        background-color: globals.$light-mode-black;
+                    }
+                }
+
+                .add-dmg-skin-btn {
+                    color: globals.$light-mode-green;
+
+                    &:hover {
+                        background-color: globals.$light-mode-green;
+                    }
+                }
+
+                .remove-dmg-skin-btn {
+                    color: globals.$red;
+                    
+                    &:hover {
+                        background-color: globals.$red;
+                    }
+                }
+            }
+        }
+
+        &.active > div {
+            border: 1px solid globals.$light-mode-green;
+
+            .dmg-skin-header {
+                background-color: globals.$light-mode-green;
+            }
+        }
+    }
+
+    .btn-dmg-skin-modal, #num-selected-skins {
+        border: 2px solid globals.$light-mode-grey;
+        background-color: globals.$light-mode-white-opaque;
+        transition: all 0.2s;
+    }
+
+    .btn-dmg-skin-modal {
+        &.flash {
+            background-color: globals.$light-mode-green;
+        }
+
+        &:hover {
+            background-color: globals.$light-mode-grey;
+            transition: all 0.2s;
+
+            #num-selected-skins {
+                background-color: globals.$light-mode-grey;
+                transition: all 0.2s;
+            }
+        }
+    }
+
+    .single-selected-skin {
+        border: 1px solid globals.$light-mode-grey;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: globals.$light-mode-grey;
+            transition: background-color 0.2s;
+        }
+
+        .remove-selected-dmg-skin-btn {
+            border: 1px solid globals.$light-mode-grey;
+            background-color: globals.$light-mode-white-opaque;
+            transition: all 0.2s;
+            color: globals.$red;
+
+            &:hover {
+                transition: all 0.2s;
+                color: globals.$light-mode-white-opaque;
+                background-color: globals.$red;
+            }
+        }
+    }
+
+    .quick-jump-div {
+        border: 2px solid globals.$light-mode-grey;
+    }
+
+    .dmg-skin-table {
+        & > thead {
+            background-color: globals.$light-mode-light-grey;
+        }
+
+        & > tbody {
+            background-color: globals.$light-mode-white-opaque;
+
+            .mobile-th {
+                border: 1px solid globals.$light-mode-grey;
+            }
+        }
+    }
+
+    // EXP Stacking
+    .exp-stack-section-subheader, .exp-stack-section {
+        border: 1px solid globals.$light-mode-grey;
+    }
+
+    .exp-stack-section-subheader {
+        background-color: globals.$light-mode-grey;
+    }
+
+    .single-exp-stack {
+        border: 1px solid globals.$light-mode-grey;
+        transition: all 0.2s;
+
+        &:hover {
+            border: 1px solid globals.$light-mode-green;
+        }
+
+        &.active {
+            background-color: globals.$light-mode-green;
+            transition: all 0.2s;
+        }
+    }
+
+    .tab-pane {
+        .single-map-select {
+            border: 1px solid globals.$light-mode-grey;
+            transition: all 0.2s;
+
+            &:hover {
+                border: 1px solid globals.$light-mode-green;
+                transition: all 0.2s;
+            }
+
+            &.active {
+                background-color: globals.$light-mode-green;
+                transition: all 0.2s;
+            }
+        }
+    }
+
+    // About
+    .single-social {
+        a {
+            color: globals.$light-mode-black;
+
+            &:hover, &.active {
+                background-color: globals.$light-mode-light-grey;
+                color: globals.$light-mode-black;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .about-logo {
+        &.gmail-logo {
+            background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/gmail-logo-light.png");
+        }
+
+        &.youtube-logo {
+            background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/youtube-logo-light.png");
+        }
+    }
+
+    .horz-partition {
+        border-top: 1px solid globals.$light-mode-grey;
+    }
 }

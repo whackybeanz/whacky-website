@@ -1,78 +1,78 @@
 <div class="w-100 d-flex align-items-center flex-column px-4 pt-4" id="info">
-	<div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
-		<div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
-			<div class="w-100 border-top border-dark"></div>
-			<h1 class="font-header w-100 text-center m-0">About Set Effects</h1>
-			<div class="w-100 border-top border-dark"></div>
-		</div>
-		<div class="w-100 mb-3">
-			<h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-intro">Introduction</h2>
-			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-				<p class="text-justify">Set effects are bonuses you get when wearing 2 or more items belonging to the same item set. The more items you wear within the set, the more bonuses you get. It is possible to reap the benefits of multiple set effects from different sets if you plan your gear setup well.</p>
+    <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+        <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+            <div class="w-100 border-top border-dark"></div>
+            <h1 class="font-header w-100 text-center m-0">About Set Effects</h1>
+            <div class="w-100 border-top border-dark"></div>
+        </div>
+        <div class="w-100 mb-3">
+            <h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-intro">Introduction</h2>
+            <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                <p class="text-justify">Set effects are bonuses you get when wearing 2 or more items belonging to the same item set. The more items you wear within the set, the more bonuses you get. It is possible to reap the benefits of multiple set effects from different sets if you plan your gear setup well.</p>
 
-				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
-					<div class="d-flex">
-						<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/guide/set-effects-1.png">
-					</div>
-					<p class="size-350 font-caption">Equip 3 or more items in the same set and you'll get set effects!</p>
-				</div>
+                <div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
+                    <div class="d-flex">
+                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/guide/set-effects-1.png">
+                    </div>
+                    <p class="size-350 font-caption">Equip 3 or more items in the same set and you'll get set effects!</p>
+                </div>
 
-				<p class="text-justify mb-0">To find out if an item belongs to any set, mouse over the item, and any set effect will be displayed to the right of it. If you already have an item of the same type equipped (e.g. you already have a cape equipped and want to see if another cape in your inventory has set effects), simply right click while hovering over the item to view set effect details.</p>
-			</div>
-		</div>
-		<div class="w-100 mb-3">
-			<h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-lucky-items">Lucky Items</h2>
-			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-				<p class="text-justify">Lucky items can take the place of the item's equip type in any set effect. For example, a Chaos Vellum Helm is a lucky item, and fills the Hat slot in any set that requires a hat as part of the set effect.</p>
-				<p class="w-100 mb-0">However, there are a few restrictions:</p>
-				<ul class="w-100">
-					<li class="my-2">Only <strong>one</strong> lucky item will take effect if you are wearing multiple lucky items</li>
-					<li class="my-2">You must have <strong>at least 3 non-lucky items equipped</strong> in the set before the lucky item takes effect inside that set (see image below)</li>
-				</ul>
-				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
-					<div class="d-flex flex-wrap justify-content-center align-items-start">
-						<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/guide/set-effects-2.png">
-						<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/guide/set-effects-3.png">
-					</div>
-					<p class="size-350 font-caption mb-0">The Chaos Vellum Helm will not take effect unless you have at least 3 non-lucky items equipped in the set.</p>
-				</div>
-			</div>
-		</div>
-		<div class="w-100 mb-3">
-			<h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-priority">Lucky Item Priority</h2>
-			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-				<p class="text-justify">If you have multiple lucky items equipped and all of them are eligible to take effect, which one takes priority? Below is a list of all lucky items, listed in order of priority, from highest to lowest (i.e. Chaos Root Abyss boss helmets take priority over all other lucky items if they are eligible).</p>
-				<p class="text-justify mb-0"><span class="font-weight-bold">Disclaimer:</span> The priority list below is speculative. Data was gathered by equipping certain items (CRA helm, Scarlet accessories) to see which item took effect within item sets. A common trend was identified and extrapolated to apply to all lucky items to generate this list. There may be inaccuracies.</p>
-				<ul class="w-100 mb-0">
-					<li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['chaos-vellum-hat'].imgUrl %>"> Chaos Root Abyss boss helmets</li>
-					<li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['scarlet-earrings'].imgUrl %>"> Scarlet Earrings</li>
-					<li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['hero-gloves'].imgUrl %>"> Mu Lung Dojo gloves</li>
-					<li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['scarlet-ring'].imgUrl %>"> Scarlet Ring</li>
-					<li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['fighter-ring'].imgUrl %>"> Fighter's Ring</li>
-					<li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['scarlet-shoulder'].imgUrl %>"> Scarlet Shoulderpads</li>
-					<li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['masteria-shoulder'].imgUrl %>"> Masteria Shoulderpads</li>
-					<li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['scarlet-bow'].imgUrl %>"> Scarlet Weapons</li>
-					<li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['genesis-staff'].imgUrl %>"> Genesis Weapons</li>
-				</ul>
-			</div>
-		</div>
-		<div class="w-100 mb-3">
-			<h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-importance">How Important Are Lucky Items?</h2>
-			<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-				<p class="text-justify">Ultimately, it depends. A common setup for unfunded to low-funded players at the initial stages is equipping 3 Root Abyss set items (Top + Bottom + Weapon) and 4 Absolabs set items (Glove + Shoe + Cape + Shoulder), along with a Chaos Vellum Helm to push both sets to 4 and 5 items equipped respectively. This earns the user 60% boss damage from the added set effects, which is quite a decent amount.</p>
+                <p class="text-justify mb-0">To find out if an item belongs to any set, mouse over the item, and any set effect will be displayed to the right of it. If you already have an item of the same type equipped (e.g. you already have a cape equipped and want to see if another cape in your inventory has set effects), simply right click while hovering over the item to view set effect details.</p>
+            </div>
+        </div>
+        <div class="w-100 mb-3">
+            <h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-lucky-items">Lucky Items</h2>
+            <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                <p class="text-justify">Lucky items can take the place of the item's equip type in any set effect. For example, a Chaos Vellum Helm is a lucky item, and fills the Hat slot in any set that requires a hat as part of the set effect.</p>
+                <p class="w-100 mb-0">However, there are a few restrictions:</p>
+                <ul class="w-100">
+                    <li class="my-2">Only <strong>one</strong> lucky item will take effect if you are wearing multiple lucky items</li>
+                    <li class="my-2">You must have <strong>at least 3 non-lucky items equipped</strong> in the set before the lucky item takes effect inside that set (see image below)</li>
+                </ul>
+                <div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
+                    <div class="d-flex flex-wrap justify-content-center align-items-start">
+                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/guide/set-effects-2.png">
+                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/guide/set-effects-3.png">
+                    </div>
+                    <p class="size-350 font-caption mb-0">The Chaos Vellum Helm will not take effect unless you have at least 3 non-lucky items equipped in the set.</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-100 mb-3">
+            <h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-priority">Lucky Item Priority</h2>
+            <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                <p class="text-justify">If you have multiple lucky items equipped and all of them are eligible to take effect, which one takes priority? Below is a list of all lucky items, listed in order of priority, from highest to lowest (i.e. Chaos Root Abyss boss helmets take priority over all other lucky items if they are eligible).</p>
+                <p class="text-justify mb-0"><span class="font-weight-bold">Disclaimer:</span> The priority list below is speculative. Data was gathered by equipping certain items (CRA helm, Scarlet accessories) to see which item took effect within item sets. A common trend was identified and extrapolated to apply to all lucky items to generate this list. There may be inaccuracies.</p>
+                <ul class="w-100 mb-0">
+                    <li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['chaos-vellum-hat'].imgUrl %>"> Chaos Root Abyss boss helmets</li>
+                    <li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['scarlet-earrings'].imgUrl %>"> Scarlet Earrings</li>
+                    <li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['hero-gloves'].imgUrl %>"> Mu Lung Dojo gloves</li>
+                    <li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['scarlet-ring'].imgUrl %>"> Scarlet Ring</li>
+                    <li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['fighter-ring'].imgUrl %>"> Fighter's Ring</li>
+                    <li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['scarlet-shoulder'].imgUrl %>"> Scarlet Shoulderpads</li>
+                    <li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['masteria-shoulder'].imgUrl %>"> Masteria Shoulderpads</li>
+                    <li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['scarlet-bow'].imgUrl %>"> Scarlet Weapons</li>
+                    <li class="my-2"><img class="item-img-inline mx-1" src="<%= icons['genesis-staff'].imgUrl %>"> Genesis Weapons</li>
+                </ul>
+            </div>
+        </div>
+        <div class="w-100 mb-3">
+            <h2 class="font-subheader font-weight-bold text-underline mb-2" id="info-importance">How Important Are Lucky Items?</h2>
+            <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                <p class="text-justify">Ultimately, it depends. A common setup for unfunded to low-funded players at the initial stages is equipping 3 Root Abyss set items (Top + Bottom + Weapon) and 4 Absolabs set items (Glove + Shoe + Cape + Shoulder), along with a Chaos Vellum Helm to push both sets to 4 and 5 items equipped respectively. This earns the user 60% boss damage from the added set effects, which is quite a decent amount.</p>
 
-				<div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
-					<div class="d-flex flex-wrap justify-content-center align-items-start">
-						<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/guide/set-effects-4.png">
-						<img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/guide/set-effects-5.png">
-					</div>
-					<p class="size-350 font-caption">One lucky helmet, multiple benefits.</p>
-				</div>
+                <div class="w-100 d-flex flex-column justify-content-center align-items-center text-center">
+                    <div class="d-flex flex-wrap justify-content-center align-items-start">
+                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/guide/set-effects-4.png">
+                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/guide/set-effects-5.png">
+                    </div>
+                    <p class="size-350 font-caption">One lucky helmet, multiple benefits.</p>
+                </div>
 
-				<p class="text-justify">However, this gives rise to an interesting problem -- if you want to retain these benefits, you cannot change any items and are stuck in this setup. As you progress further into the game, Absolabs/Arcaneshade set items (usually weapons first) become increasingly more crucial for progression towards harder bosses. You may then find it necessary to remove the lucky item in favor of other gear.</p>
+                <p class="text-justify">However, this gives rise to an interesting problem -- if you want to retain these benefits, you cannot change any items and are stuck in this setup. As you progress further into the game, Absolabs/Arcaneshade set items (usually weapons first) become increasingly more crucial for progression towards harder bosses. You may then find it necessary to remove the lucky item in favor of other gear.</p>
 
-				<p class="text-justify mb-0">Lucky items help provide a decent boost to cover multiple sets in one shot, which is why they are so useful. The conditions lucky items are imposed with makes them a little difficult to work with, but plan well and you can reap its benefits.</p>
-			</div>
-		</div>
-	</div>
+                <p class="text-justify mb-0">Lucky items help provide a decent boost to cover multiple sets in one shot, which is why they are so useful. The conditions lucky items are imposed with makes them a little difficult to work with, but plan well and you can reap its benefits.</p>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,6 +1,6 @@
 /*****************
 
-	Font sizes 
+    Font sizes 
 
 *****************/
 .font-header {
@@ -70,7 +70,7 @@
 
 /***********************
 
-	General Utilities
+    General Utilities
 
 ***********************/
 .text-underline {
@@ -113,7 +113,7 @@
 
 /**********************
 
-	HTML Document
+    HTML Document
 
 **********************/
 html, body {
@@ -173,7 +173,7 @@ input[type=radio] {
 
 /**********************
 
-	Images
+    Images
 
 **********************/
 img.item-img {
@@ -197,7 +197,7 @@ img.small-img {
 
 /**********************
 
-	Tables
+    Tables
 
 **********************/
 .table-cols-header {
@@ -230,7 +230,7 @@ img.small-img {
 
 /**********************
 
-	Modals
+    Modals
 
 **********************/
 .modal .modal-dialog {
@@ -239,7 +239,7 @@ img.small-img {
 
 /**********************
 
-	Carousel
+    Carousel
 
 **********************/
 .carousel.carousel-fade .carousel-inner .carousel-item {
@@ -277,7 +277,7 @@ img.small-img {
 
 /**********************
 
-	Pagination
+    Pagination
 
 **********************/
 .pagination .page-item.active {
@@ -289,7 +289,7 @@ img.small-img {
 
 /**********************
 
-	Other
+    Other
 
 **********************/
 .single-option-select:hover, .single-option-select.active {
@@ -313,10 +313,6 @@ img.small-img {
 .radio-select-group .form-check .radio-select:hover, .radio-select-group .form-check .radio-select.active {
   font-weight: bold;
   transition: all 0.3s;
-}
-
-#login-form {
-  width: 300px;
 }
 
 /*# sourceMappingURL=generalStyles.css.map */

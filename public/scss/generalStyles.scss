@@ -2,318 +2,318 @@
 
 /*****************
 
-	Font sizes 
+    Font sizes 
 
 *****************/
 .font-header {
-	font-size: 1.5rem;
-	font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .font-subheader {
-	font-size: 1.25rem;
+    font-size: 1.25rem;
 }
 
 .font-subsubheader {
-	font-size: 1.1rem;
+    font-size: 1.1rem;
 }
 
 .font-content {
-	font-size: 1rem;
+    font-size: 1rem;
 }
 
 .font-form, .font-button, 
 .font-form .form-control, .font-form button {
-	font-size: 1rem;
+    font-size: 1rem;
 
-	@include globals.for-size(md) { font-size: 0.9rem; }
-	@include globals.for-size(xl) { font-size: 0.875rem; }
+    @include globals.for-size(md) { font-size: 0.9rem; }
+    @include globals.for-size(xl) { font-size: 0.875rem; }
 }
 
 .font-sidebar {
-	font-size: 0.9rem;
+    font-size: 0.9rem;
 }
 
 .font-table {
-	font-size: 0.9rem;
+    font-size: 0.9rem;
 
-	@include globals.for-size(md) { font-size: 0.875rem; }
+    @include globals.for-size(md) { font-size: 0.875rem; }
 }
 
 .font-small, .tooltip {
-	font-size: 0.9rem;
+    font-size: 0.9rem;
 
-	@include globals.for-size(md) { font-size: 0.875rem; }
-	@include globals.for-size(xl) { font-size: 0.8rem; }
+    @include globals.for-size(md) { font-size: 0.875rem; }
+    @include globals.for-size(xl) { font-size: 0.8rem; }
 }
 
 .font-caption, .font-footnote {
-	font-size: 0.75rem;
+    font-size: 0.75rem;
 }
 
 /***********************
 
-	General Utilities
+    General Utilities
 
 ***********************/
 .text-underline {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 .list-style-type-none {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 .cursor-pointer {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .size-350 {
-	max-width: 350px;
+    max-width: 350px;
 }
 
 .size-720 {
-	max-width: 720px;
+    max-width: 720px;
 }
 
 .index-collapse svg,
 .sidebar-collapse svg{
-	transition: all linear 0.25s;
+    transition: all linear 0.25s;
 }
 
 .index-collapse.collapsed svg,
 .sidebar-collapse.collapsed svg {
-	transform: rotate(-90deg) ;
+    transform: rotate(-90deg) ;
 }
 
 .li-img {
-	height: 25px;
+    height: 25px;
 }
 
 .pointer-events-none {
-	pointer-events: none;
+    pointer-events: none;
 }
 
 /**********************
 
-	HTML Document
+    HTML Document
 
 **********************/
 html, body {
-	font-size: 12px;
-	scroll-padding-top: 3rem;
-	height: 100%;
+    font-size: 12px;
+    scroll-padding-top: 3rem;
+    height: 100%;
 
-	@include globals.for-size(sm) {	font-size: 13px; }
-	@include globals.for-size(md) { font-size: 14px; }
-	@include globals.for-size(lg) { font-size: 15px; }
-	@include globals.for-size(xl) { font-size: 16px; }
+    @include globals.for-size(sm) { font-size: 13px; }
+    @include globals.for-size(md) { font-size: 14px; }
+    @include globals.for-size(lg) { font-size: 15px; }
+    @include globals.for-size(xl) { font-size: 16px; }
 }
 
 body {
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 
-	.content {
-		min-height: 100%;
-	}
+    .content {
+        min-height: 100%;
+    }
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
+    -webkit-appearance: none;
 }
 
 input[type="number"] {
-	-moz-appearance: textfield;
-	-webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
 }
 
 input[type="radio"] {
-	visibility: hidden;
+    visibility: hidden;
 }
 
 .main-content-div {
-	padding-top: 3rem !important;
-	max-width: 1200px;
-	min-height: 100%;
+    padding-top: 3rem !important;
+    max-width: 1200px;
+    min-height: 100%;
 }
 
 /**********************
 
-	Images
+    Images
 
 **********************/
 img {
-	&.item-img {
-		cursor: help;
+    &.item-img {
+        cursor: help;
 
-		&.standard-img-size {
-			width: 30px;
-			height: 30px;
-			object-fit: scale-down;
-		}
-	}
+        &.standard-img-size {
+            width: 30px;
+            height: 30px;
+            object-fit: scale-down;
+        }
+    }
 
-	&.item-img-inline {
-		cursor: help;
-		height: 24px;
-	}
+    &.item-img-inline {
+        cursor: help;
+        height: 24px;
+    }
 
-	&.border-img {
-		border: 1px solid black;
-	}
+    &.border-img {
+        border: 1px solid black;
+    }
 
-	&.small-img {
-		height: 24px;
-	}
+    &.small-img {
+        height: 24px;
+    }
 }
 
 /**********************
 
-	Tables
+    Tables
 
 **********************/
 .table-cols-header {
-	min-width: 75px;
-	max-width: 150px;
+    min-width: 75px;
+    max-width: 150px;
 }
 
 .table-cols-50 {
-	min-width: 50px;
-	max-width: 125px;
+    min-width: 50px;
+    max-width: 125px;
 }
 
 .table-cols-125 {
-	min-width: 125px;
-	max-width: 300px;
+    min-width: 125px;
+    max-width: 300px;
 }
 
 .table-item-img,
 .table-user-controls {
-	width: 50px;
-	height: 50px;
+    width: 50px;
+    height: 50px;
 }
 
 .table-sort-div {
-	.table-sort-header {
-		.table-sort-icon {
-			opacity: 0.3;
+    .table-sort-header {
+        .table-sort-icon {
+            opacity: 0.3;
 
-			&.active {
-				opacity: 1.0;
-			}
-		}
-	}	
+            &.active {
+                opacity: 1.0;
+            }
+        }
+    }   
 }
 
 /**********************
 
-	Modals
+    Modals
 
 **********************/
 .modal {
-	.modal-dialog {
-		max-width: 720px;
-	}
+    .modal-dialog {
+        max-width: 720px;
+    }
 }
 
 /**********************
 
-	Carousel
+    Carousel
 
 **********************/
 .carousel.carousel-fade {
-	.carousel-inner {
-		.carousel-item {
-		    display: block;
-		    opacity: 0;
-		    transition: all ease-out .7s;
+    .carousel-inner {
+        .carousel-item {
+            display: block;
+            opacity: 0;
+            transition: all ease-out .7s;
 
-		    &.active {
-		    	opacity: 1 !important;
-		    }
+            &.active {
+                opacity: 1 !important;
+            }
 
-		    .carousel-caption {
-		    	position: initial;
-				right: initial;
-				bottom: initial;
-				left: initial;
-		    }
-		}
-	}
+            .carousel-caption {
+                position: initial;
+                right: initial;
+                bottom: initial;
+                left: initial;
+            }
+        }
+    }
 }
 
 .carousel-control {
-	height: 35px;
+    height: 35px;
 
-	.carousel-control-prev,
-	.carousel-control-next {
-		width: initial;
-		top: initial;
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: initial;
+        top: initial;
 
-		& > i {
-			height: 18px;
-		}
+        & > i {
+            height: 18px;
+        }
 
-		&:hover, &:focus {
-			color: initial;
-		}
-	}
+        &:hover, &:focus {
+            color: initial;
+        }
+    }
 }
 
 /**********************
 
-	Pagination
+    Pagination
 
 **********************/
 
 .pagination {
-	.page-item {
-		&.active {
-			font-weight: bold;
-		}
+    .page-item {
+        &.active {
+            font-weight: bold;
+        }
 
-		.page-link:focus {
-			box-shadow: none;
-		}
-	}
+        .page-link:focus {
+            box-shadow: none;
+        }
+    }
 }
 
 /**********************
 
-	Other
+    Other
 
 **********************/
 .single-option-select {
-	&:hover, &.active {
-		font-weight: bold;
-		transition: all 0.3s;
-	}
+    &:hover, &.active {
+        font-weight: bold;
+        transition: all 0.3s;
+    }
 }
 
 .radio-select-group {
-	.form-check {
-		&:first-of-type .radio-select {
-			border-top-left-radius: 3px;
-			border-bottom-left-radius: 3px;
-		}
+    .form-check {
+        &:first-of-type .radio-select {
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
 
-		&:last-of-type .radio-select {
-			border-top-right-radius: 3px;
-			border-bottom-right-radius: 3px;
-		}
+        &:last-of-type .radio-select {
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
 
-		.radio-select {
-			height: 32px;
-			transition: all 0.3s;
-			line-height: 1;
+        .radio-select {
+            height: 32px;
+            transition: all 0.3s;
+            line-height: 1;
 
-			&:hover, &.active {
-				font-weight: bold;
-				transition: all 0.3s;
-			}
-		}
-	}
+            &:hover, &.active {
+                font-weight: bold;
+                transition: all 0.3s;
+            }
+        }
+    }
 }
