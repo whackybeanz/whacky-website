@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("../public-images/light.jpg");
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url("../public-images/light.jpg");
   background-color: white;
   color: #212529;
 }
@@ -21,11 +21,14 @@ body .navbar .nav-item .dropdown-menu .dropdown-item:hover, body .navbar .nav-it
   background-color: rgba(0, 0, 0, 0.075);
 }
 body .sidebar {
-  background-color: rgba(255, 255, 255, 0.8);
   border-bottom: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .sidebar.sidebar-left {
+  background-color: white;
 }
 @media (min-width: 992px) {
   body .sidebar.sidebar-left {
+    background: transparent;
     border-right: 1px solid rgba(206, 212, 218, 0.8);
     border-bottom: none;
   }
@@ -59,7 +62,7 @@ body .carousel-control-prev, body .carousel-control-next {
   color: #212529;
 }
 body .pagination .page-item .page-link {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.7);
   border-color: rgba(206, 212, 218, 0.8);
   color: #212529;
 }
@@ -104,6 +107,9 @@ body .page-select:hover, body .page-select.active, body .single-option-select:ho
 }
 body .page-select a, body .single-option-select a {
   color: #212529;
+}
+body .main-content-div {
+  background-color: rgba(255, 255, 255, 0.7);
 }
 body .job-choice-div .single-option-select, body .equip-choice .single-option-select, body .sort-boss-crystal-div .single-option-select, body .skin-select-div .single-option-select {
   border: 1px solid rgba(206, 212, 218, 0.8);

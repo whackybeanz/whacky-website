@@ -1,7 +1,7 @@
 @use '_global-styles' as globals;
 
 .sidebar {
-    position: absolute;
+    position: fixed;
     top: 3rem;
     z-index: 1000;
     max-height: 500px;

@@ -34,11 +34,13 @@ body {
 
     // Sidebar
     .sidebar {
-        background-color: globals.$light-mode-white;
         border-bottom: 1px solid globals.$light-mode-grey;
 
         &.sidebar-left {
+            background-color: globals.$light-mode-white-opaque;
+
             @include globals.for-size(lg) {
+                background: transparent;
                 border-right: 1px solid globals.$light-mode-grey;
                 border-bottom: none;
             }
@@ -173,6 +175,10 @@ body {
     }
 
     // Extras
+    .main-content-div {
+        background-color: globals.$light-mode-white;
+    }
+
     .job-choice-div, .equip-choice, .sort-boss-crystal-div, .skin-select-div {
         .single-option-select {
             border: 1px solid globals.$light-mode-grey; 

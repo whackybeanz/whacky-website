@@ -34,11 +34,13 @@ body.dark-mode {
     
     // Sidebar
     .sidebar {
-        background-color: globals.$dark-mode-black-opaque;
         border-bottom: 1px solid globals.$dark-mode-navy-grey;
 
         &.sidebar-left {
+            background-color: globals.$dark-mode-black-opaque;
+
             @include globals.for-size(lg) {
+                background: transparent;
                 border-right: 1px solid globals.$dark-mode-navy-grey;
                 border-bottom: none;
             }
@@ -219,6 +221,10 @@ body.dark-mode {
     }
 
     // Extras
+    .main-content-div {
+        background-color: globals.$dark-mode-black;
+    }
+
     .job-choice-div, .equip-choice, .sort-boss-crystal-div, .skin-select-div {
         .single-option-select {
             border: 1px solid globals.$dark-mode-grey;
