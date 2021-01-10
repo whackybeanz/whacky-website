@@ -1,3 +1,9 @@
+@media (min-width: 992px) {
+  #gear-level, #base-wa-ma {
+    width: 75px !important;
+  }
+}
+
 .small-boss-square {
   max-height: 40px;
 }
@@ -104,6 +110,81 @@
 }
 .dmg-skin-table .dmg-skin-header:last-child {
   margin-bottom: 0 !important;
+}
+
+.item-square {
+  height: 40px;
+  width: 40px;
+  object-fit: scale-down;
+}
+
+.map-icon {
+  height: 40px;
+  width: 40px;
+}
+
+.single-map-tab {
+  height: 400px;
+  overflow-y: auto;
+}
+.single-map-tab .single-map-select div {
+  pointer-events: none;
+}
+
+.step-4-col {
+  width: 100px;
+}
+@media (min-width: 576px) {
+  .step-4-col {
+    width: 125px;
+  }
+}
+@media (min-width: 768px) {
+  .step-4-col {
+    width: 175px;
+  }
+}
+@media (min-width: 992px) {
+  .step-4-col {
+    width: 200px;
+  }
+}
+@media (min-width: 1200px) {
+  .step-4-col {
+    width: 225px;
+  }
+}
+
+.mult-cols {
+  width: 75px;
+}
+@media (min-width: 576px) {
+  .mult-cols {
+    width: 100px;
+  }
+}
+@media (min-width: 768px) {
+  .mult-cols {
+    width: 125px;
+  }
+}
+
+.map-name-col {
+  width: 150px;
+}
+@media (min-width: 576px) {
+  .map-name-col {
+    width: 200px;
+  }
+}
+@media (min-width: 768px) {
+  .map-name-col {
+    width: 250px;
+  }
+}
+
+.quick-ref {
+  right: 1rem;
 }
 
 /*# sourceMappingURL=extrasStyles.css.map */

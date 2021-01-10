@@ -1,13 +1,16 @@
 var IconHelper = require("./helpers/iconHelpers");
 var Helper = require("./helpers/extrasHelpers");
+var EXPStackingHelper = require("./helpers/expStackingHelpers");
+var middleware 	= require("./middleware");
 
 var express = require("express");
-var router 	= express.Router();
-var Icon 	= require("../models/iconData");
-var Equip 	= require("../models/equipData");
-var Effect 	= require("../models/setEffectData");
-var Soul 	= require("../models/bossSoulData");
-var DamageSkin 	= require("../models/damageSkinData");
+var router  = express.Router();
+var Icon    = require("../models/iconData");
+var Equip   = require("../models/equipData");
+var Effect  = require("../models/setEffectData");
+var Soul    = require("../models/bossSoulData");
+var DamageSkin  = require("../models/damageSkinData");
+var MapLocations = require("../models/mapData");
 
 router.get("/", function(req, res) {
 	res.redirect("/flames");
@@ -20,7 +23,7 @@ router.get("/flames", function(req, res) {
 			res.redirect("back");
 		} else {
 			const compiledIcons = IconHelper.compileIcons(allIcons);
-			res.locals.extraStylesheet = "flameStyles";
+			res.locals.extraStylesheet = "extrasStyles";
 			res.locals.section = "extras";
 			res.locals.branch = "calc-flames";
 			res.render("extras/flameCalc", {icons: compiledIcons});
@@ -84,7 +87,7 @@ router.get("/set-effects/:jobType", function(req, res) {
 			res.render("extras/setEffectCalcActive", {allEquipTypes: allEquipTypes, setItemsByItemPart: setItemsByItemPart, setItemsBySetName: setItemsBySetName, allSetEffects: setEffects, jobType: jobType, statTypes: possibleStatTypes, icons: compiledIcons });
 		})
 		.catch(err => {
-		 	console.log(err);
+			console.log(err);
 			res.redirect("back");
 		});
 })
@@ -246,6 +249,85 @@ router.get("/damage-skin-details/:skinNum", function(req, res) {
 			res.render("extras/damageSkinDetails", {allSkins: allSkins, prevUrl: prevUrl});
 		}
 	})
+})
+
+router.get("/exp-stacking", function(req, res) {
+	res.locals.extraStylesheet = "extrasStyles";
+	res.locals.section = "extras";
+	res.locals.branch = "calc-exp-stacking";
+	res.render("extras/expStacking");
+})
+
+router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) {
+	const expTable = req.body.expTable;
+	let charLevel = parseInt(req.body.charLevel);
+	const viewType = req.body.viewTypeRadio;
+
+	const generalContentsEXP = EXPStackingHelper.calculateGeneralContentsEXP(expTable, charLevel);
+
+	let getIcons = Icon.find({ usedInSections: "exp-stacking" });
+	res.locals.extraStylesheet = "extrasStyles";
+	res.locals.section = "extras";
+	res.locals.branch = "calc-exp-stacking";
+
+	if(viewType === "Detailed") {
+		// Retrieve map data that meets these conditions:
+		// 1) For maps that are not level restricted, get regions with monsters that are at least +-20 of character level
+		// 2) For maps that are level restricted, get regions that players have access to, with monsters that are +-20 of character level
+		let query = [];
+		const findUnrestrictedMaps = {
+			$and: [{ isEnforceStartLevel: false },
+					{ $or: [
+						{ $and: [
+							{ firstMonsterLevel: { $gte: charLevel-20 } },
+							{ firstMonsterLevel: { $lte: charLevel+20 } }
+						]},
+						{ $and: [
+							{ lastMonsterLevel: { $gte: charLevel-20 } },
+							{ lastMonsterLevel: { $lte: charLevel+20 } }
+						]}
+					]}
+				]};
+
+		const findRestrictedMaps = { 
+			$and: [{ isEnforceStartLevel: true }, 
+					{ regionStartLevel: { $lte: charLevel } }, 
+					{ $or: [
+						{ $and: [
+							{ firstMonsterLevel: { $gte: charLevel-20 } },
+							{ firstMonsterLevel: { $lte: charLevel+20 } }
+						]},
+						{ $and: [
+							{ lastMonsterLevel: { $gte: charLevel-20 } },
+							{ lastMonsterLevel: { $lte: charLevel+20 } }
+						]}
+					]}
+				]};
+
+		query.push(findUnrestrictedMaps, findRestrictedMaps);
+
+		let getMapRegions = MapLocations.find({ $or: query }).sort({ firstMonsterLevel: 1, regionStartLevel: 1, lastMonsterLevel: 1 });
+
+		Promise.all([getMapRegions, getIcons])
+			.then(([foundMaps, foundIcons]) => {
+				const compiledIcons = IconHelper.compileIcons(foundIcons);
+				res.render("extras/expStackingActive", {icons: compiledIcons, foundMaps: foundMaps, expTable: expTable, charLevel: charLevel, viewType: viewType, generalContentsEXP: generalContentsEXP});
+			})
+			.catch(err => {
+				console.log(err);
+				res.redirect("back");
+			})
+	} else {
+		Promise.resolve(getIcons)
+			.then(foundIcons => {
+				const compiledIcons = IconHelper.compileIcons(foundIcons);
+				res.render("extras/expStackingActive", {icons: compiledIcons, expTable: expTable, charLevel: charLevel, viewType: viewType, generalContentsEXP: generalContentsEXP});
+			})
+			.catch(err => {
+				console.log(err);
+				res.redirect("back");
+			})
+	}
 })
 
 module.exports = router;

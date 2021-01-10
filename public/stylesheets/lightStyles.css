@@ -75,6 +75,19 @@ body .action-button:hover {
   background-color: #454d55;
   transition: background-color 0.2s;
 }
+body .nav-tabs {
+  border-bottom: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .nav-tabs .nav-link:hover, body .nav-tabs .nav-link.active {
+  background-color: rgba(206, 212, 218, 0.8);
+  border-color: rgba(206, 212, 218, 0.8);
+}
+body .tab-pane {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .tab-pane .single-map-select {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
 body .radio-select-group .form-check .radio-select {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
@@ -210,6 +223,35 @@ body .dmg-skin-table > tbody {
 }
 body .dmg-skin-table > tbody .mobile-th {
   border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .exp-stack-section-subheader, body .exp-stack-section {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .exp-stack-section-subheader {
+  background-color: rgba(206, 212, 218, 0.8);
+}
+body .single-exp-stack {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+  transition: all 0.2s;
+}
+body .single-exp-stack:hover {
+  border: 1px solid #6cbb3c;
+}
+body .single-exp-stack.active {
+  background-color: #6cbb3c;
+  transition: all 0.2s;
+}
+body .tab-pane .single-map-select {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+  transition: all 0.2s;
+}
+body .tab-pane .single-map-select:hover {
+  border: 1px solid #6cbb3c;
+  transition: all 0.2s;
+}
+body .tab-pane .single-map-select.active {
+  background-color: #6cbb3c;
+  transition: all 0.2s;
 }
 body .single-social a {
   color: #212529;

@@ -122,6 +122,26 @@ body {
 		}
 	}
 
+	// Tabs
+	.nav-tabs {
+		border-bottom: 1px solid globals.$light-mode-grey;
+
+		.nav-link {
+			&:hover, &.active {
+				background-color: globals.$light-mode-grey;
+				border-color: globals.$light-mode-grey;
+			}
+		}
+	}
+
+	.tab-pane {
+		border: 1px solid globals.$light-mode-grey;
+
+		.single-map-select {
+			border: 1px solid globals.$light-mode-grey;
+		}
+	}
+
 	// Others
 	.radio-select-group {
 		.form-check {
@@ -314,6 +334,46 @@ body {
 
 			.mobile-th {
 				border: 1px solid globals.$light-mode-grey;
+			}
+		}
+	}
+
+	// EXP Stacking
+	.exp-stack-section-subheader, .exp-stack-section {
+		border: 1px solid globals.$light-mode-grey;
+	}
+
+	.exp-stack-section-subheader {
+		background-color: globals.$light-mode-grey;
+	}
+
+	.single-exp-stack {
+		border: 1px solid globals.$light-mode-grey;
+		transition: all 0.2s;
+
+		&:hover {
+			border: 1px solid globals.$light-mode-green;
+		}
+
+		&.active {
+			background-color: globals.$light-mode-green;
+			transition: all 0.2s;
+		}
+	}
+
+	.tab-pane {
+		.single-map-select {
+			border: 1px solid globals.$light-mode-grey;
+			transition: all 0.2s;
+
+			&:hover {
+				border: 1px solid globals.$light-mode-green;
+				transition: all 0.2s;
+			}
+
+			&.active {
+				background-color: globals.$light-mode-green;
+				transition: all 0.2s;
 			}
 		}
 	}

@@ -1,0 +1,280 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4" id="select-exp-sources-div">
+    <div class="exp-stack-section-subheader w-100">
+        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 position-relative" id="step-2-collapsible" data-toggle="collapse" href="#step-2">
+            <i class="fas fa-caret-down mr-2"></i> Step 2<span class="d-none d-sm-inline">: Select EXP sources</span>
+            <div class="font-table quick-ref text-info position-absolute d-none" id="step-2-quick-ref">
+                <i class="fas fa-check" style="transform: initial"></i> Total EXP Multiplier: x<span id="step-2-quick-ref-num"></span>
+            </div>
+        </h3>
+    </div>
+
+    <div class="exp-stack-section w-100 px-0 collapse show" id="step-2">
+        <div class="w-100 d-flex justify-content-start align-items-center">
+            <div class="w-100 px-3 py-2">
+                <p class="w-100 text-justify">Click on any EXP coupons/items/buffs you use during training. Class-specific skills that give extra EXP, and buffs lasting for a very short duration (e.g. V Matrix special core) are not selectable. Click on "Update EXP Sources" after selecting/changing your EXP sources to update calculations to their latest values.</p>
+
+                <div class="w-100 d-flex justify-content-center align-items-center flex-column position-relative">
+                    <table class="font-table size-720 table table-sm table-bordered table-hover mb-2">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="text-center" scope="col">Sources</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="text-center table-cols-header align-middle">
+                                    Category 1<br/>
+                                    <span class="font-weight-normal">Cash shop coupons</span>
+                                </th>
+                                <td class="text-center align-middle">
+                                    <p class="mb-0">Select <span class="text-underline">one</span></p>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="single-exp-stack category-1 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="1" data-item="premium" data-value="20">
+                                            <img class="item-square" src="<%= icons['premium-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Premium Cafe / Premium Service Coupon (+20% EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-1 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="1" data-item="cash" data-value="2">
+                                            <img class="item-square" src="<%= icons['exp-active-card'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="2x EXP Active Card (x2 EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-1 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="1" data-item="cash" data-value="2">
+                                            <img class="item-square" src="<%= icons['2x-cash-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Special Cash Coupons (x2 EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-1 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="1" data-item="cash" data-value="3">
+                                            <img class="item-square" src="<%= icons['3x-cash-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Special Cash Coupons (x3 EXP)">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center table-cols-header align-middle">
+                                    Category 2<br/>
+                                    <span class="font-weight-normal">Use coupons<br/>(non-cash)</span>
+                                </th>
+                                <td class="text-center align-middle">
+                                    <p class="mb-0">Stacks with Category 3 (only for GMS). Select <span class="text-underline">one</span> (if applicable)</p>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="single-exp-stack category-2 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="2" data-value="1.2">
+                                            <img class="item-square" src="<%= icons['happy-winter'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Happy Winter (x1.2 EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-2 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="2" data-value="1.5">
+                                            <img class="item-square" src="<%= icons['enjoyable-winter'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="1.5x EXP Coupon / Enjoyable Winter (x1.5 EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-2 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="2" data-value="2">
+                                            <img class="item-square" src="<%= icons['union-exp'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="2x EXP Coupon / Union's EXP / 2x MVP EXP Coupon / Dojo EXP Coupon (x2 EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-2 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="2" data-value="3">
+                                            <img class="item-square" src="<%= icons['exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="3x EXP Coupon (x3 EXP)">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center table-cols-header align-middle">
+                                    Category 3<br/>
+                                    <span class="font-weight-normal">Server events</span>
+                                </th>
+                                <td class="text-center align-middle">
+                                    <p class="mb-0">Stacks with Category 2 (only for GMS). Select <span class="text-underline">one</span> (if applicable)</p>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="single-exp-stack category-3 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="3" data-value="1.5">
+                                            <img class="item-square" src="<%= icons['exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="1.5x EXP server event (x1.5 EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-3 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="3" data-value="2">
+                                            <img class="item-square" src="<%= icons['exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="2x EXP server event (x2 EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-3 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="3" data-value="3">
+                                            <img class="item-square" src="<%= icons['exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="3x EXP server event (x3 EXP)">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center table-cols-header align-middle">
+                                    Category 4<br/>
+                                    <span class="font-weight-normal">Penance Ring</span>
+                                </th>
+                                <td class="text-center align-middle">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="single-exp-stack category-4 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="4" data-value="1.15">
+                                            <img class="item-square" src="<%= icons['penance-ring'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Penance Ring (x1.15 EXP)"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center table-cols-header align-middle">
+                                    Category 5<br/>
+                                    <span class="font-weight-normal">Additive Buffs</span>
+                                </th>
+                                <td class="text-center align-middle py-2">
+                                    <div class="d-flex justify-content-center flex-wrap">
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="20">
+                                            <img class="item-square" src="<%= icons['exp-accumulation-potion'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="EXP Accumulation Potion (+20% EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="10">
+                                            <img class="item-square" src="<%= icons['extreme-gold'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Extreme Gold (+10% EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="50">
+                                            <img class="item-square" src="<%= icons['mvp-plus-weather'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="MVP Plus Weather Effect / MVP Additional 50% EXP Coupon / Mu Gong's Stamina Tonic (+50% EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="50">
+                                            <img class="item-square" src="<%= icons['ursun-gift-buff'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ursun's Gift Buff (+50% EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="100">
+                                            <img class="item-square" src="<%= icons['lightning-gift-buff'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Lightning's Gift Buff (+100% EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="50">
+                                            <img class="item-square" src="<%= icons['mushroom-exp-buff'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="EXP Buff (+50% EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="10">
+                                            <img class="item-square" src="<%= icons['party-exp-booster'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Party EXP Booster (+10% EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="80">
+                                            <img class="item-square" src="<%= icons['welcome-back-ring'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Welcome Back Ring (+80% EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="20">
+                                            <img class="item-square" src="<%= icons['returning-mapler-ring'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Returning Mapler Ring (+20% EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="5">
+                                            <img class="item-square" src="<%= icons['guild-know-how'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Guild Know-how (+5% EXP, level 101 to 200 monsters only)">
+                                        </div>
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="50">
+                                            <img class="item-square" src="<%= icons['exp-entropy'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="E.X.P Entropy (+50% EXP, Kritias monsters only)">
+                                        </div>
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="3">
+                                            <img class="item-square" src="<%= icons['petite-orchid'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Monster Life Petite Orchid (+3% EXP)">
+                                        </div>
+                                        <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="3">
+                                            <img class="item-square" src="<%= icons['petite-mercedes'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Monster Life Petite Mercedes (+3% EXP)">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="col-6 col-md-5 text-left">
+                                                <img class="item-square" src="<%= icons['elven-blessing'].imgUrl %>">
+                                                Elven Blessing
+                                            </span>
+                                            <select class="single-exp-stack-select font-table col-4 form-control px-2" id="elven-blessing" data-select-type="elvenBlessing">
+                                                <option value="0" selected>N/A</option>
+                                                <option value="10">+10% EXP (Level 1)</option>
+                                                <option value="15">+15% EXP (Level 2)</option>
+                                                <option value="20">+20% EXP (Level 3, GMS only)</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="col-6 col-md-5 text-left">
+                                                <img class="item-square" src="<%= icons['rhinne-blessing'].imgUrl %>">
+                                                Zero Union Attacker
+                                            </span>
+                                            <select class="single-exp-stack-select font-table col-4 form-control px-2" id="zero-union" data-select-type="zeroUnion">
+                                                <option value="0" selected>N/A</option>
+                                                <option value="4">+4% EXP (B-rank)</option>
+                                                <option value="6">+6% EXP (A-rank)</option>
+                                                <option value="8">+8% EXP (S-rank)</option>
+                                                <option value="10">+10% EXP (SS-rank)</option>
+                                                <option value="12">+12% EXP (SSS-rank)</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="col-6 col-md-5 text-left">
+                                                <img class="item-square" src="<%= icons['spirit-pendant'].imgUrl %>">
+                                                Spirit Pendant
+                                            </span>
+                                            <select class="single-exp-stack-select font-table col-4 form-control px-2" id="spirit-pendant" data-select-type="spiritPendant">
+                                                <option value="0" selected>N/A</option>
+                                                <option value="10">+10% EXP</option>
+                                                <option value="20">+20% EXP</option>
+                                                <option value="30">+30% EXP</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="col-6 col-md-5 text-left">
+                                                <img class="item-square" src="<%= icons['ring-of-clan'].imgUrl %>">
+                                                Ring of Clan<sup class="text-info">[1]</sup>
+                                            </span>
+                                            <select class="single-exp-stack-select font-table col-4 form-control px-2" id="ring-of-clan" data-select-type="ringOfClan">
+                                                <option value="0" selected>N/A</option>
+                                                <option value="10">+10% EXP (Player wears ring)</option>
+                                                <option value="15">+15% EXP (1 extra ring wearer in party)</option>
+                                                <option value="20">+20% EXP (2 extra ring wearers in party)</option>
+                                                <option value="25">+25% EXP (3 extra ring wearers in party)</option>
+                                                <option value="30">+30% EXP (4 extra ring wearers in party)</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="col-6 col-md-5 text-left">
+                                                <img class="item-square" src="<%= icons['burning-field'].imgUrl %>">
+                                                Burning Field
+                                            </span>
+                                            <select class="single-exp-stack-select font-table col-4 form-control px-2" id="burning-field" data-select-type="burningField">
+                                                <option value="0" selected>N/A</option>
+                                                <option value="10">+10% EXP (Stage 1)</option>
+                                                <option value="20">+20% EXP (Stage 2)</option>
+                                                <option value="30">+30% EXP (Stage 3)</option>
+                                                <option value="40">+40% EXP (Stage 4)</option>
+                                                <option value="50">+50% EXP (Stage 5)</option>
+                                                <option value="60">+60% EXP (Stage 6)</option>
+                                                <option value="70">+70% EXP (Stage 7)</option>
+                                                <option value="80">+80% EXP (Stage 8)</option>
+                                                <option value="90">+90% EXP (Stage 9)</option>
+                                                <option value="100">+100% EXP (Stage 10)</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="col-6 col-md-5 text-left">
+                                                <img class="item-square" src="<%= icons['rune-buff'].imgUrl %>">
+                                                Liberated Rune
+                                            </span>
+                                            <select class="single-exp-stack-select font-table col-4 form-control px-2" id="rune-exp" data-select-type="runeBuff">
+                                                <option value="0" selected>N/A</option>
+                                                <option value="100">+100% EXP</option>
+                                                <option value="150">+150% EXP (Events)</option>
+                                                <option value="200">+200% EXP (Events)</option>
+                                            </select>
+                                        </div>
+                                        <p class="col-12 mt-3 mb-1 text-left">After keying numbers below, please <span class="d-none d-md-inline">click</span><span class="d-inline d-md-none">tap</span> out of the input box for changes to take place.</p>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="col-6 col-md-5 text-left">
+                                                <img class="item-square" src="<%= icons['coin-union'].imgUrl %>">
+                                                Union Board EXP tiles
+                                            </span>
+                                            <input type="number" class="single-exp-stack-input font-table col-2 form-control mr-2" id="union-board-tiles" value="0" data-input-type="unionBoard">%
+                                        </div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="col-6 col-md-5 text-left">
+                                                <img class="item-square" src="<%= icons['swan-dream'].imgUrl %>">
+                                                Event Titles
+                                            </span>
+                                            <input type="number" class="single-exp-stack-input font-table col-2 form-control mr-2" id="event-titles" value="0" data-input-type="eventTitle">%
+                                        </div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="col-6 col-md-5 text-left">
+                                                <img class="item-square" src="<%= icons['hyper-stats'].imgUrl %>">
+                                                Hyper Stats
+                                            </span>
+                                            <input type="number" class="single-exp-stack-input font-table col-2 form-control mr-2" id="hyper-stats" value="0" data-input-type="hyperStats">%
+                                        </div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="col-6 col-md-5 text-left">
+                                                <img class="item-square" src="<%= icons['holy-symbol'].imgUrl %>">
+                                                (Decent) Holy Symbol
+                                            </span>
+                                            <input type="number" class="single-exp-stack-input font-table col-2 form-control mr-2" id="holy-symbol" value="0" data-input-type="holySymbol">%
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="font-footnote size-720 w-100 text-justify">
+                        <p class="mb-4"><span class="text-info font-weight-bold">[1]</span> The player MUST be wearing the Ring of Clan for the EXP buff to take effect. If the player does not wear the Ring but other party members do, the EXP buff will not take effect.</p>
+                    </div>
+
+                    <div class="size-720 w-100 mb-2">
+                        <div class="btn-update-values col-12 btn btn-sm btn-outline-info col-4 py-1 px-2 rounded-sm font-weight-bold text-center" data-btn-step-num="2">Update EXP Sources</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

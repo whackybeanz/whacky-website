@@ -1,0 +1,39 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="container-fluid content d-flex flex-column flex-md-row p-0">
+    <%- include("../partials/sidebar") %>
+    <div class="main-content-div col p-0 position-relative">
+        <div class="w-100 align-items-center flex-column px-4 pt-4" id="calculator">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0 px-0">EXP Stacking Calculator</h1>
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                </div>
+                <div class="w-100 mb-3">
+                    <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Instructions</h2>
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <p class="w-100 text-justify">This calculator helps you determine your current EXP multiplier, and expected EXP gains on certain content.</p>
+                        <p class="w-100 text-justify">To view expected EXP rates on only 'general content' (Monster Park, EXP Growth Potions), select 'Simplified' for View Type. To view expected EXP rates for both 'general content' and 'hunting content' (monster EXP), select 'Detailed'.</p>
+                    </div>
+                    <%- include("./exp-stack-partials/exp-stack-step-1") %>
+
+                    <% if(viewType === "Detailed") { %>
+                        <%- include("./exp-stack-partials/exp-stack-step-2") %>
+                        <%- include("./exp-stack-partials/exp-stack-step-3") %>
+                    <% } %>
+
+                    <%- include("./exp-stack-partials/exp-stack-step-4") %>
+                </div>
+            </div>
+        </div>
+
+        <%- include("./exp-stack-partials/exp-stack-credits") %>
+    </div>
+</div>
+
+<script type="text/javascript" src="./public/scripts/commonScript.js"></script>
+<script type="text/javascript" src="./public/scripts/expStackingScript.js"></script>
+<% if(viewType === "Detailed") { %><script type="text/javascript" src="./public/scripts/expStackingActiveScript.js"></script><% } %>
+<%- include("../partials/footer") %>

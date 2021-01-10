@@ -53,6 +53,9 @@ body.dark-mode form .form-control {
   color: rgba(255, 255, 255, 0.8);
   border: 1px solid #454d55;
 }
+body.dark-mode form .form-control-plaintext {
+  color: rgba(255, 255, 255, 0.8);
+}
 body.dark-mode .modal .modal-content {
   border: 1px solid #454d55;
   color: rgba(255, 255, 255, 0.8);
@@ -88,6 +91,9 @@ body.dark-mode .pagination .page-item:hover .page-link, body.dark-mode .paginati
 body.dark-mode table.table-bordered td, body.dark-mode table.table-bordered th {
   color: rgba(255, 255, 255, 0.8);
 }
+body.dark-mode table.table-bordered th.empty-row {
+  background-color: rgba(0, 0, 0, 0.8);
+}
 body.dark-mode .radio-select-group .form-check .radio-select {
   border: 1px solid #454d55;
 }
@@ -103,6 +109,19 @@ body.dark-mode .action-button {
 body.dark-mode .action-button:hover {
   background-color: #454d55;
   transition: background-color 0.2s;
+}
+body.dark-mode .nav-tabs {
+  border-bottom: 1px solid #454d55;
+}
+body.dark-mode .nav-tabs .nav-link:hover, body.dark-mode .nav-tabs .nav-link.active {
+  background-color: #454d55;
+  border-color: rgba(52, 58, 64, 0.8);
+}
+body.dark-mode .tab-pane {
+  border: 1px solid rgba(52, 58, 64, 0.8);
+}
+body.dark-mode .tab-pane .single-map-select {
+  border: 1px solid rgba(52, 58, 64, 0.8);
 }
 body.dark-mode .index-section-subheader, body.dark-mode .index-section {
   border: 1px solid #454d55;
@@ -257,6 +276,36 @@ body.dark-mode .dmg-skin-table.table-dark > tbody {
 }
 body.dark-mode .dmg-skin-table.table-dark > tbody .mobile-th {
   border: 1px solid #454d55;
+}
+body.dark-mode .exp-stack-section-subheader, body.dark-mode .exp-stack-section {
+  border: 1px solid #454d55;
+}
+body.dark-mode .exp-stack-section-subheader {
+  background-color: #343a40;
+}
+body.dark-mode .single-exp-stack {
+  border: 1px solid #454d55;
+  transition: all 0.2s;
+}
+body.dark-mode .single-exp-stack:hover {
+  border: 1px solid #4aa02c;
+  transition: all 0.2s;
+}
+body.dark-mode .single-exp-stack.active {
+  background-color: #4aa02c;
+  transition: all 0.2s;
+}
+body.dark-mode .tab-pane .single-map-select {
+  border: 1px solid rgba(52, 58, 64, 0.8);
+  transition: all 0.2s;
+}
+body.dark-mode .tab-pane .single-map-select:hover {
+  border: 1px solid #4aa02c;
+  transition: all 0.2s;
+}
+body.dark-mode .tab-pane .single-map-select.active {
+  background-color: #4aa02c;
+  transition: all 0.2s;
 }
 body.dark-mode .single-social a {
   color: rgba(255, 255, 255, 0.8);

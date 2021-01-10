@@ -1,5 +1,10 @@
 @use '_global-styles' as globals;
 
+// Flame Calculator
+#gear-level, #base-wa-ma {
+	@include globals.for-size(lg) { width: 75px !important; }
+}
+
 // Boss Crystal List
 .small-boss-square {
 	max-height: 40px;
@@ -142,4 +147,54 @@
 	.dmg-skin-header:last-child {
 		margin-bottom: 0 !important;
 	}
+}
+
+// EXP Stacking table
+.item-square {
+	height: 40px;
+	width: 40px;
+	object-fit: scale-down;
+}
+
+.map-icon {
+	height: 40px;
+	width: 40px;
+}
+
+.single-map-tab {
+	height: 400px;
+	overflow-y: auto;
+
+	.single-map-select {
+		div {
+			pointer-events: none;
+		}
+	}
+}
+
+.step-4-col {
+	width: 100px;
+
+	@include globals.for-size(sm) { width: 125px; }
+	@include globals.for-size(md) { width: 175px; }
+	@include globals.for-size(lg) { width: 200px; }
+	@include globals.for-size(xl) { width: 225px; }
+}
+
+.mult-cols {
+	width: 75px;
+
+	@include globals.for-size(sm) { width: 100px; }
+	@include globals.for-size(md) { width: 125px; }
+}
+
+.map-name-col {
+	width: 150px;
+
+	@include globals.for-size(sm) { width: 200px; }
+	@include globals.for-size(md) { width: 250px; }
+}
+
+.quick-ref {
+	right: 1rem;
 }

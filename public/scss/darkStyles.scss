@@ -77,6 +77,10 @@ body.dark-mode {
 			color: globals.$dark-mode-white;
 			border: 1px solid globals.$dark-mode-grey;
 		}
+
+		.form-control-plaintext {
+			color: globals.$dark-mode-white;
+		}
 	}
 	
 	// Modal
@@ -143,6 +147,12 @@ body.dark-mode {
 			td, th {
 				color: globals.$dark-mode-white;
 			}
+
+			th {
+				&.empty-row {
+					background-color: globals.$dark-mode-black;
+				}
+			}
 		}
 	}
 
@@ -169,6 +179,26 @@ body.dark-mode {
 		&:hover {
 			background-color: globals.$dark-mode-grey;
 			transition: background-color 0.2s;
+		}
+	}
+
+	// Tabs
+	.nav-tabs {
+		border-bottom: 1px solid globals.$dark-mode-grey;
+
+		.nav-link {
+			&:hover, &.active {
+				background-color: globals.$dark-mode-grey;
+				border-color: globals.$dark-mode-navy-grey;
+			}
+		}
+	}
+
+	.tab-pane {
+		border: 1px solid globals.$dark-mode-navy-grey;
+
+		.single-map-select {
+			border: 1px solid globals.$dark-mode-navy-grey;
 		}
 	}
 
@@ -358,6 +388,47 @@ body.dark-mode {
 
 			.mobile-th {
 				border: 1px solid globals.$dark-mode-grey;
+			}
+		}
+	}
+
+	// EXP Stacking
+	.exp-stack-section-subheader, .exp-stack-section {
+		border: 1px solid globals.$dark-mode-grey;
+	}
+
+	.exp-stack-section-subheader {
+		background-color: globals.$dark-mode-navy-grey-opaque;
+	}
+
+	.single-exp-stack {
+		border: 1px solid globals.$dark-mode-grey;
+		transition: all 0.2s;
+
+		&:hover {
+			border: 1px solid globals.$dark-mode-green;	
+			transition: all 0.2s;
+		}
+
+		&.active {
+			background-color: globals.$dark-mode-green;
+			transition: all 0.2s;
+		}
+	}
+
+	.tab-pane {
+		.single-map-select {
+			border: 1px solid globals.$dark-mode-navy-grey;
+			transition: all 0.2s;
+
+			&:hover {
+				border: 1px solid globals.$dark-mode-green;
+				transition: all 0.2s;
+			}
+
+			&.active {
+				background-color: globals.$dark-mode-green;
+				transition: all 0.2s;
 			}
 		}
 	}
