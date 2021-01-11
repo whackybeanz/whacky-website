@@ -235,7 +235,7 @@ function calculateMonsterParkEXP(expTableSelected, charLevel, expToLevel) {
                 { name: "Knight Stronghold", recMinLevel: 190, recMaxLevel: 199, rawEXP: 39187305,
                     notes: "May get 39,775,800 EXP instead if final boss is Oz (summons 1 extra Ifrit minion)." },
                 { name: "Spirit Valley", recMinLevel: 200, recMaxLevel: 209, rawEXP: 40650435 },
-                { name: "Road to Extinction", recMinLevel: 200, recMaxLevel: 209, isEnforceMinLevel: true, rawEXP: 0,
+                { name: "Road to Extinction", recMinLevel: 200, recMaxLevel: 209, isEnforceMinLevel: true, rawEXP: 154248920,
                     notes: "Uses NEO patch values. Old EXP value: 128,541,100 EXP." },
                 { name: "Chew Chew Island", recMinLevel: 210, recMaxLevel: 219, isEnforceMinLevel: true, rawEXP: 642539340 },
                 { name: "Lacheln", recMinLevel: 220, recMaxLevel: 229, isEnforceMinLevel: true, rawEXP: 1007394250 },
