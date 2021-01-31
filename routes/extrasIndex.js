@@ -330,4 +330,11 @@ router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) 
     }
 })
 
+router.get("/potential-list", function(req, res) {
+    res.locals.extraStylesheet = "extrasStyles";
+    res.locals.section = "extras";
+    res.locals.branch = "potential-list";
+    res.render("extras/potentialList");
+})
+
 module.exports = router;
