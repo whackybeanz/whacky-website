@@ -15,7 +15,7 @@ mongoose.connect(databaseUrl, {useNewUrlParser: true, useUnifiedTopology: true, 
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-app.use('/public', express.static(__dirname + '/public'));
+app.use(express.static('public'));
 
 // MIDDLEWARE
 app.use(function(req, res, next) {

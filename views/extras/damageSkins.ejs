@@ -25,7 +25,7 @@
                         <% pagesArr.forEach(function(page, index) { %>
                         <div class="skin-select-div col-4 col-sm-3 col-md-2 col-lg-4 col-xl-2 text-center px-2 mb-3">
                             <div class="single-option-select rounded-sm position-relative py-1 <% if(pageNum-1 === index) { %>active<% } %>">
-                                <a href="./maple/extras/damage-skins/<%= index+1 %>" class="stretched-link text-decoration-none"><%= page %></a>
+                                <a href="/maple/extras/damage-skins/<%= index+1 %>" class="stretched-link text-decoration-none"><%= page %></a>
                             </div>
                         </div>
                         <% }) %>
@@ -66,7 +66,7 @@
                                                 <% } %>
                                             <% } %>
                                             <div class="dmg-skin-tools position-absolute">
-                                                <a href="./maple/extras/damage-skin-details/<%= skin.damageSkinId %>" class="btn btn-sm view-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="View damage skin">
+                                                <a href="/maple/extras/damage-skin-details/<%= skin.damageSkinId %>" class="btn btn-sm view-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="View damage skin">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                                 <div class="btn btn-sm add-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="Add to cart">
@@ -118,7 +118,7 @@
                 <div class="w-100 d-flex justify-content-between">
                     <button type="button" class="btn btn-sm btn-outline-danger font-weight-bold" id="btn-remove-all-selected">Remove all</button>
 
-                    <form action="./maple/extras/damage-skin-details" method="POST">
+                    <form action="/maple/extras/damage-skin-details" method="POST">
                         <input type="hidden" name="selectedSkinNums" id="skin-num-input">
                         <button type="submit" class="btn btn-sm btn-outline-primary font-weight-bold">View all selected skin details</button>
                     </form>
@@ -128,6 +128,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="./public/scripts/commonScript.js"></script>
-<script type="text/javascript" src="./public/scripts/dmgSkinScript.js"></script>
+<script type="text/javascript" src="/scripts/commonScript.js"></script>
+<script type="text/javascript" src="/scripts/dmgSkinScript.js"></script>
 <%- include("../partials/footer") %>
