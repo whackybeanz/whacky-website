@@ -6,57 +6,6 @@
     }
 }
 
-#equip-grid {
-    display: grid;
-    grid-template-areas:
-        "ring1  .        hat    .        emblem"
-        "ring2  pendant2 face   .        badge"
-        "ring3  pendant1 eye    earring  medal"
-        "ring4  weapon   top    shoulder secondary"
-        "pocket belt     bottom gloves   cape"
-        ".      .        shoes  android  heart";
-    top: 0;
-    grid-gap: 4px;
-    padding: 6px;
-
-    .equip-slot {
-        border-radius: 4px;
-        cursor: pointer;
-        background-position: center;
-        background-repeat: no-repeat;
-
-        &:hover {
-            background-color: globals.$light-mode-salmon;
-        }
-
-        &#ring-1-slot { grid-area: ring1; }
-        &#ring-2-slot { grid-area: ring2; }
-        &#ring-3-slot { grid-area: ring3; }
-        &#ring-4-slot { grid-area: ring4; }
-        &#pocket-slot { grid-area: pocket; }
-        &#pendant-1-slot { grid-area: pendant1; }
-        &#pendant-2-slot { grid-area: pendant2; }
-        &#weapon-slot { grid-area: weapon; }
-        &#belt-slot { grid-area: belt; }
-        &#hat-slot { grid-area: hat; }
-        &#face-slot { grid-area: face; }
-        &#eye-slot { grid-area: eye; }
-        &#top-slot { grid-area: top; }
-        &#bottom-slot { grid-area: bottom; }
-        &#shoes-slot { grid-area: shoes; }
-        &#earring-slot { grid-area: earring; }
-        &#shoulder-slot { grid-area: shoulder; }
-        &#gloves-slot { grid-area: gloves; }
-        &#android-slot { grid-area: android; }
-        &#emblem-slot { grid-area: emblem; }
-        &#badge-slot { grid-area: badge; }
-        &#medal-slot { grid-area: medal; }
-        &#secondary-slot { grid-area: secondary; }
-        &#cape-slot { grid-area: cape; }
-        &#heart-slot { grid-area: heart; }
-    }
-}
-
 #setItemSelectModal {
     .slot-exceed-msg {
         left: 0;

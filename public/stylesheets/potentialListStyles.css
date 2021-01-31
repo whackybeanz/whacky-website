@@ -1,0 +1,53 @@
+#equip-grid .equip-slot#ring-1-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/ring/meister-signet.png");
+}
+#equip-grid .equip-slot#pendant-1-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/pendant/dom-pendant.png");
+}
+#equip-grid .equip-slot#weapon-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/weapon/genesis-staff.png");
+}
+#equip-grid .equip-slot#belt-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/belt/tyrant-belt.png");
+}
+#equip-grid .equip-slot#hat-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/hat/faf-mage-hat.png");
+}
+#equip-grid .equip-slot#face-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/face/meister-symbol.png");
+}
+#equip-grid .equip-slot#eye-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/eye/papulatus-mark.png");
+}
+#equip-grid .equip-slot#top-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/top/faf-mage-top.png");
+}
+#equip-grid .equip-slot#bottom-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/bottom/faf-mage-bottom.png");
+}
+#equip-grid .equip-slot#shoes-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/shoes/acs-shoes.png");
+}
+#equip-grid .equip-slot#earring-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/earring/meister-studs.png");
+}
+#equip-grid .equip-slot#shoulder-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/shoulder/acs-shoulder.png");
+}
+#equip-grid .equip-slot#gloves-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/gloves/acs-glove.png");
+}
+#equip-grid .equip-slot#emblem-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/emblem/gold-evan-emblem.png");
+}
+#equip-grid .equip-slot#secondary-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/secondary/deimos-sage-shield.png");
+}
+#equip-grid .equip-slot#cape-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/cape/acs-cape.png");
+}
+#equip-grid .equip-slot#heart-slot {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/heart/outlaw-heart.png");
+}
+
+/*# sourceMappingURL=potentialliststyles.css.map */
