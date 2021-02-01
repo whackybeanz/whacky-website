@@ -12,7 +12,7 @@
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
                 </div>
                 <div class="w-100 mb-3">
-                    <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Instructions</h2>
+                    <h2 class="font-subheader w-100 font-subheader-weight-bold text-underline mb-2">Instructions</h2>
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <p class="w-100 text-justify">This info sheet contains the full list of possible potentials for each item part. To begin, click on an item part in the Equip window.</p>
 
@@ -20,36 +20,70 @@
                             <div class="position-relative">
                                 <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/equip-tab.png">
                                 <div class="w-100 h-100 position-absolute" id="equip-grid">
-                                    <a href="#" class="equip-slot" id="ring-1-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=ring" class="equip-slot" id="ring-1-slot"></a>
                                     <div class="equip-slot disabled" id="ring-2-slot"></div>
                                     <div class="equip-slot disabled" id="ring-3-slot"></div>
                                     <div class="equip-slot disabled" id="ring-4-slot"></div>
                                     <div class="equip-slot disabled" id="pocket-slot"></div>
 
                                     <div class="equip-slot disabled" id="pendant-2-slot"></div>
-                                    <a href="#" class="equip-slot" id="pendant-1-slot"></a>
-                                    <a href="#" class="equip-slot" id="weapon-slot"></a>
-                                    <a href="#" class="equip-slot" id="belt-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=pendant" class="equip-slot" id="pendant-1-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=weapon" class="equip-slot" id="weapon-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=belt" class="equip-slot" id="belt-slot"></a>
 
-                                    <a href="#" class="equip-slot" id="hat-slot"></a>
-                                    <a href="#" class="equip-slot" id="face-slot"></a>
-                                    <a href="#" class="equip-slot" id="eye-slot"></a>
-                                    <a href="#" class="equip-slot" id="top-slot"></a>
-                                    <a href="#" class="equip-slot" id="bottom-slot"></a>
-                                    <a href="#" class="equip-slot" id="shoes-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=hat" class="equip-slot" id="hat-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=face" class="equip-slot" id="face-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=eye" class="equip-slot" id="eye-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=top" class="equip-slot" id="top-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=bottom" class="equip-slot" id="bottom-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=shoes" class="equip-slot" id="shoes-slot"></a>
 
-                                    <a href="#" class="equip-slot" id="earring-slot"></a>
-                                    <a href="#" class="equip-slot" id="shoulder-slot"></a>
-                                    <a href="#" class="equip-slot" id="gloves-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=earring" class="equip-slot" id="earring-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=shoulder" class="equip-slot" id="shoulder-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=gloves" class="equip-slot" id="gloves-slot"></a>
                                     <div class="equip-slot disabled" id="android-slot"></div>
 
-                                    <a href="#" class="equip-slot" id="emblem-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=emblem" class="equip-slot" id="emblem-slot"></a>
                                     <div class="equip-slot disabled" id="badge-slot"></div>
                                     <div class="equip-slot disabled" id="medal-slot"></div>
-                                    <a href="#" class="equip-slot" id="secondary-slot"></a>
-                                    <a href="#" class="equip-slot" id="cape-slot"></a>
-                                    <a href="#" class="equip-slot" id="heart-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=secondary" class="equip-slot" id="secondary-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=cape" class="equip-slot" id="cape-slot"></a>
+                                    <a href="/maple/extras/potential-list?itemPart=heart" class="equip-slot" id="heart-slot"></a>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <div class="exp-stack-section-subheader w-100">
+                            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#pot-reg">
+                                <i class="fas fa-caret-down mr-2"></i> Potentials
+                            </h3>
+                        </div>
+                        <div class="exp-stack-section w-100 px-0 collapse show" id="pot-reg">
+                            <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3">
+                                <p class="font-table mt-2 mb-0">The pool of possible lines for each potential tier is split into Primary/Secondary lines. For example, if your item is Legendary rank, it is possible to get STR +9% / STR +9% / STR +9%, meaning that your cube took all 3 lines from the Legendary (Secondary) pool.</p>
+
+                                <% if(locals.potentialsByRank) { %>
+                                    <% Object.keys(potentialsByRank).forEach(function(rank) { %>
+                                        <div class="d-flex font-table col-12 col-md-6 col-lg-4 mt-3 px-3">
+                                            <table class="font-table table table-bordered table-hover mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center bg-<%= potentialsByRank[rank].rankName %> py-2"><%= potentialsByRank[rank].title %></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% potentialsByRank[rank].list.forEach(function(potentialData) { %>
+                                                        <tr>
+                                                            <td class="align-middle py-2"><%= potentialData.desc %></td>
+                                                        </tr>
+                                                    <% }) %> 
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    <% }) %>
+                                <% } %>
                             </div>
                         </div>
                     </div>

@@ -1,3 +1,5 @@
+@use '_global-styles' as globals;
+
 #equip-grid {
     .equip-slot {
         &#ring-1-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/ring/meister-signet.png"); }
@@ -26,4 +28,27 @@
         &#cape-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/cape/acs-cape.png"); }
         &#heart-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/heart/outlaw-heart.png"); }
     }
+}
+
+.bg-legendary { 
+    background-color: #77EE00;
+    color: globals.$dark-mode-black !important;
+}
+
+.bg-unique { 
+    background-color: #FFBB00; 
+    color: globals.$dark-mode-black !important;
+}
+
+.bg-epic { 
+    background-color: #5500CC;
+}
+
+.bg-rare { 
+    background-color: #0099FF;
+}
+
+.bg-rareWeak { 
+    background-color: #66FFFF; 
+    color: globals.$dark-mode-black !important;
 }

@@ -83,4 +83,32 @@ function sortByPrice(bossList) {
     return bossPriceArr;
 }
 
-module.exports = { compileSoulsByTier, compileSetItemsBySetName, compileSetItemsByItemPart, sortByPrice };
+function groupByRank(potentials) {
+    const allPotentialRanks = [...new Set(potentials.map(potential => potential.potRank))];
+    const potentialTitles = ["Rare (Primary)", "Rare (Primary) / Epic (Secondary)", "Epic (Primary) / Unique (Secondary)", "Unique (Primary) / Legendary (Secondary)", "Legendary (Primary)"];
+    const potentialNames = ["rareWeak", "rare", "epic", "unique", "legendary"]
+
+    let potentialsByRank = {};
+
+    allPotentialRanks.forEach(rankNum => {
+        potentialsByRank[`rank${rankNum}`] = {};
+        potentialsByRank[`rank${rankNum}`].title = potentialTitles[rankNum - 1];
+        potentialsByRank[`rank${rankNum}`].rankName = potentialNames[rankNum - 1];
+        potentialsByRank[`rank${rankNum}`].totalWeight = 0;
+        potentialsByRank[`rank${rankNum}`].list = [];
+    })
+
+    potentials.forEach(potential => {
+        potentialsByRank[`rank${potential.potRank}`].totalWeight += potential.weight;
+
+        potentialsByRank[`rank${potential.potRank}`].list.push({ 
+            desc: potential.desc, 
+            weight: potential.weight, 
+            cubeTypes: potential.cubeTypes,  
+            notes: potential.notes });
+    });
+
+    return potentialsByRank;
+}
+
+module.exports = { compileSoulsByTier, compileSetItemsBySetName, compileSetItemsByItemPart, sortByPrice, groupByRank };

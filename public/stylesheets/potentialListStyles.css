@@ -50,4 +50,27 @@
   background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/heart/outlaw-heart.png");
 }
 
-/*# sourceMappingURL=potentialliststyles.css.map */
+.bg-legendary {
+  background-color: #77EE00;
+  color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.bg-unique {
+  background-color: #FFBB00;
+  color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.bg-epic {
+  background-color: #5500CC;
+}
+
+.bg-rare {
+  background-color: #0099FF;
+}
+
+.bg-rareWeak {
+  background-color: #66FFFF;
+  color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/*# sourceMappingURL=potentialListStyles.css.map */

@@ -11,6 +11,7 @@ var Effect  = require("../models/setEffectData");
 var Soul    = require("../models/bossSoulData");
 var DamageSkin  = require("../models/damageSkinData");
 var MapLocations = require("../models/mapData");
+var Potentials = require("../models/potentialsData");
 
 router.get("/", function(req, res) {
     res.redirect("/flames");
@@ -331,10 +332,34 @@ router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) 
 })
 
 router.get("/potential-list", function(req, res) {
+    let itemPart = req.query.itemPart;
+    let level = 150; //Number(req.query.level);
+    let serverType = "kms";
+
     res.locals.extraStylesheet = "potentialListStyles";
     res.locals.section = "extras";
     res.locals.branch = "potential-list";
-    res.render("extras/potentialList");
+
+    if(itemPart === undefined) {
+        res.render("extras/potentialList");
+    } else {
+        let query = { $and: [ 
+                        { itemLevelMin: { $lte: level } },
+                        { itemLevelMax: { $gte: level } },
+                        { serverType: { $in: serverType } },
+                        { $or: [{ itemTypes: "common" }, { itemTypes: itemPart }]}
+                    ] };
+
+        Potentials.find(query).sort({ potRank: -1, displayPriority: 1, desc: 1 })
+            .then(function(allPotentials) {
+                const potentialsByRank = Helper.groupByRank(allPotentials);
+                res.render("extras/potentialList", { potentialsByRank: potentialsByRank });
+            })
+            .catch(err => {
+                console.log(err);
+                res.redirect("back");
+            })
+    }
 })
 
 module.exports = router;
