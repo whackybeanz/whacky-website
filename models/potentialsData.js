@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 
 var potentialSchema = new mongoose.Schema({
+    potType: String,
     potRank: Number,
     displayPriority: Number,
     desc: String,

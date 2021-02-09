@@ -327,7 +327,7 @@ img.small-img {
   background-position: center;
   background-repeat: no-repeat;
 }
-#equip-grid .equip-slot:hover {
+#equip-grid .equip-slot:hover, #equip-grid .equip-slot.active {
   background-color: rgba(213, 93, 77, 0.5);
 }
 #equip-grid .equip-slot.disabled {

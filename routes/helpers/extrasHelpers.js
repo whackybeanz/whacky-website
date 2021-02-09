@@ -84,24 +84,30 @@ function sortByPrice(bossList) {
 }
 
 function groupByRank(potentials) {
+    const allPotentialTypes = ["regular", "additional"];
     const allPotentialRanks = [...new Set(potentials.map(potential => potential.potRank))];
     const potentialTitles = ["Rare (Primary)", "Rare (Primary) / Epic (Secondary)", "Epic (Primary) / Unique (Secondary)", "Unique (Primary) / Legendary (Secondary)", "Legendary (Primary)"];
     const potentialNames = ["rareWeak", "rare", "epic", "unique", "legendary"]
 
-    let potentialsByRank = {};
+    let potentialsByRank = {
+        regular: {},
+        additional: {},
+    };
 
-    allPotentialRanks.forEach(rankNum => {
-        potentialsByRank[`rank${rankNum}`] = {};
-        potentialsByRank[`rank${rankNum}`].title = potentialTitles[rankNum - 1];
-        potentialsByRank[`rank${rankNum}`].rankName = potentialNames[rankNum - 1];
-        potentialsByRank[`rank${rankNum}`].totalWeight = 0;
-        potentialsByRank[`rank${rankNum}`].list = [];
+    Object.keys(potentialsByRank).forEach(potentialType => {
+        allPotentialRanks.forEach(rankNum => {
+            potentialsByRank[potentialType][`rank${rankNum}`] = {};
+            potentialsByRank[potentialType][`rank${rankNum}`].title = potentialTitles[rankNum - 1];
+            potentialsByRank[potentialType][`rank${rankNum}`].rankName = potentialNames[rankNum - 1];
+            potentialsByRank[potentialType][`rank${rankNum}`].totalWeight = 0;
+            potentialsByRank[potentialType][`rank${rankNum}`].list = [];
+        })
     })
 
     potentials.forEach(potential => {
-        potentialsByRank[`rank${potential.potRank}`].totalWeight += potential.weight;
+        potentialsByRank[potential.potType][`rank${potential.potRank}`].totalWeight += potential.weight;
 
-        potentialsByRank[`rank${potential.potRank}`].list.push({ 
+        potentialsByRank[potential.potType][`rank${potential.potRank}`].list.push({ 
             desc: potential.desc, 
             weight: potential.weight, 
             cubeTypes: potential.cubeTypes,  

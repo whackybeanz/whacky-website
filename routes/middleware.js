@@ -26,4 +26,25 @@ middlewareObj.isValidEXPFormInput = function(req, res, next) {
     }
 }
 
+middlewareObj.isValidPotentialListFormInput = function(req, res, next) {
+    const validItemParts = ["hat", "top", "bottom", "weapon", "secondary", "emblem",
+                            "gloves", "shoes", "cape", "ring", "pendant", "belt",
+                            "eye", "face", "earring", "shoulder", "heart"];
+    const itemLevel = parseInt(req.body.itemLevel);
+    const serverType = req.body.serverType;
+
+    let isValidItemPart = false;
+
+    if(validItemParts.includes(req.body.itemPart)) {
+        isValidItemPart = true;
+    }
+
+    if(!isValidItemPart || isNaN(itemLevel) || itemLevel < 0 || itemLevel > 300 || (serverType !== "kms" && serverType !== "gms")) {
+        console.log("Invalid fields received for potential list form");
+        res.redirect("back");
+    } else {
+        return next();
+    }
+}
+
 module.exports = middlewareObj;
