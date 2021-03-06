@@ -439,6 +439,15 @@ body.dark-mode {
         }
     }
 
+    // Potential List
+    .pot-list-subheader, .pot-list-section {
+        border: 1px solid globals.$dark-mode-grey;
+    }
+
+    .pot-list-section-subheader {
+        background-color: globals.$dark-mode-navy-grey-opaque;
+    }
+
     // About
     .single-social {
         a {

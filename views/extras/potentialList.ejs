@@ -12,140 +12,408 @@
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
                 </div>
                 <div class="w-100 mb-3">
-                    <h2 class="font-subheader w-100 font-subheader-weight-bold text-underline mb-2">Instructions</h2>
+                    <h2 class="font-subheader w-100 font-subheader text-underline mb-2">Instructions</h2>
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                        <p class="w-100 text-justify">This info sheet contains the full list of possible potentials seen from <a href="https://strategywiki.org/wiki/MapleStory/Potential_System" target="_blank">StrategyWiki</a> and <a href="https://namu.wiki/w/%EC%9E%A0%EC%9E%AC%EB%8A%A5%EB%A0%A5" target="_blank">Namu Wiki</a>, sorted by item part. To begin, select an item part in the Equip window (or select from dropdown). Fill in the other required fields and click Submit. By default, in KMS/MSEA, all item parts reach maximum potential values at level 120+.</p>
+                        <p class="w-100 text-justify">This info sheet contains the full list of possible potentials sorted by item part. To begin, select an item part in the Equip window.</p>
+                        <div class="font-table w-100 mb-3">
+                            <p class="text-justify mb-0">Notes:</p>
+                            <p class="text-justify">- Only potential values above item level 100 (Emblem, Secondary Weapon, Heart) and level 120 (other item parts) are displayed below.</p>
+                            <p class="text-justify">- Only <a href="https://maplestory.nexon.com/Guide/OtherProbability/cube/red" target="_blank">Red Cubes</a>, <a href="https://maplestory.nexon.com/Guide/OtherProbability/cube/black" target="_blank">Black Cubes</a>, and <a href="https://maplestory.nexon.com/Guide/OtherProbability/cube/addi" target="_blank">Additional Potential Cubes</a> data is available, as extracted from Nexon Korea's official website.</p>
+                            <p class="text-justify">- Percentage chance may differ across servers; the values below are applicable to KMS.</p>
+                        </div>
 
                         <div class="size-720 w-100 d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-around">
-                            <div class="position-relative mb-4 mb-md-0">
+                            <div class="position-relative mb-4">
                                 <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/equip-tab.png">
                                 <div class="w-100 h-100 position-absolute" id="equip-grid">
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "ring") { %>active<% } %>" id="ring-1-slot" data-item-part="ring"></div>
+                                    <a href="/maple/extras/potential-list?itemType=ring" class="equip-slot" id="ring-1-slot" data-item-part="ring"></a>
                                     <div class="equip-slot disabled" id="ring-2-slot"></div>
                                     <div class="equip-slot disabled" id="ring-3-slot"></div>
                                     <div class="equip-slot disabled" id="ring-4-slot"></div>
                                     <div class="equip-slot disabled" id="pocket-slot" data-item-part="pocket"></div>
 
                                     <div class="equip-slot disabled" id="pendant-2-slot"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "pendant") { %>active<% } %>" id="pendant-1-slot" data-item-part="pendant"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "weapon" || !locals.userInput) { %>active<% } %>" id="weapon-slot" data-item-part="weapon"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "belt") { %>active<% } %>" id="belt-slot" data-item-part="belt"></div>
+                                    <a href="/maple/extras/potential-list?itemType=pendant" class="equip-slot" id="pendant-1-slot" data-item-part="pendant"></a>
+                                    <a href="/maple/extras/potential-list?itemType=weapon" class="equip-slot" id="weapon-slot" data-item-part="weapon"></a>
+                                    <a href="/maple/extras/potential-list?itemType=belt" class="equip-slot" id="belt-slot" data-item-part="belt"></a>
 
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "hat") { %>active<% } %>" id="hat-slot" data-item-part="hat"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "face") { %>active<% } %>" id="face-slot" data-item-part="face"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "eye") { %>active<% } %>" id="eye-slot" data-item-part="eye"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "top") { %>active<% } %>" id="top-slot" data-item-part="top"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "bottom") { %>active<% } %>" id="bottom-slot" data-item-part="bottom"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "shoes") { %>active<% } %>" id="shoes-slot" data-item-part="shoes"></div>
+                                    <a href="/maple/extras/potential-list?itemType=hat" class="equip-slot" id="hat-slot" data-item-part="hat"></a>
+                                    <a href="/maple/extras/potential-list?itemType=face" class="equip-slot" id="face-slot" data-item-part="face"></a>
+                                    <a href="/maple/extras/potential-list?itemType=eye" class="equip-slot" id="eye-slot" data-item-part="eye"></a>
+                                    <a href="/maple/extras/potential-list?itemType=top" class="equip-slot" id="top-slot" data-item-part="top"></a>
+                                    <a href="/maple/extras/potential-list?itemType=bottom" class="equip-slot" id="bottom-slot" data-item-part="bottom"></a>
+                                    <a href="/maple/extras/potential-list?itemType=shoes" class="equip-slot" id="shoes-slot" data-item-part="shoes"></a>
 
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "earrings") { %>active<% } %>" id="earring-slot" data-item-part="earrings"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "shoulder") { %>active<% } %>" id="shoulder-slot" data-item-part="shoulder"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "gloves") { %>active<% } %>" id="gloves-slot" data-item-part="gloves"></div>
+                                    <a href="/maple/extras/potential-list?itemType=earrings" class="equip-slot" id="earring-slot" data-item-part="earrings"></a>
+                                    <a href="/maple/extras/potential-list?itemType=shoulder" class="equip-slot" id="shoulder-slot" data-item-part="shoulder"></a>
+                                    <a href="/maple/extras/potential-list?itemType=gloves" class="equip-slot" id="gloves-slot" data-item-part="gloves"></a>
                                     <div class="equip-slot disabled" id="android-slot"></div>
 
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "emblem") { %>active<% } %>" id="emblem-slot" data-item-part="emblem"></div>
+                                    <a href="/maple/extras/potential-list?itemType=emblem" class="equip-slot" id="emblem-slot" data-item-part="emblem"></a>
                                     <div class="equip-slot disabled" id="badge-slot"></div>
                                     <div class="equip-slot disabled" id="medal-slot"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "secondary") { %>active<% } %>" id="secondary-slot" data-item-part="secondary"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "cape") { %>active<% } %>" id="cape-slot" data-item-part="cape"></div>
-                                    <div class="equip-slot <% if(locals.userInput && locals.userInput.itemPart === "heart") { %>active<% } %>" id="heart-slot" data-item-part="heart"></div>
+                                    <a href="/maple/extras/potential-list?itemType=secondary" class="equip-slot" id="secondary-slot" data-item-part="secondary"></a>
+                                    <a href="/maple/extras/potential-list?itemType=cape" class="equip-slot" id="cape-slot" data-item-part="cape"></a>
+                                    <a href="/maple/extras/potential-list?itemType=heart" class="equip-slot" id="heart-slot" data-item-part="heart"></a>
                                 </div>
                             </div>
-                            <form class="font-form size-350 w-100" action="/maple/extras/potential-list" method="POST">
-                                <div class="form-group row d-flex align-items-center">
-                                    <label for="item-part" class="col-4 font-weight-bold">Item Part</label>
-                                    <select class="font-table col-8 form-control px-2" id="item-part" name="itemPart">
-                                        <option class="single-select-option" id="option-weapon" value="weapon" <% if((locals.userInput && locals.userInput.itemPart) === "weapon" || (!locals.userInput)) { %>selected<% } %>>Weapon</option>
-                                        <option class="single-select-option" id="option-secondary" value="secondary" <% if(locals.userInput && locals.userInput.itemPart === "secondary") { %>selected<% } %>>Secondary Weapon</option>
-                                        <option class="single-select-option" id="option-emblem" value="emblem" <% if(locals.userInput && locals.userInput.itemPart === "emblem") { %>selected<% } %>>Emblem</option>
-                                        <option class="single-select-option" id="option-hat" value="hat" <% if(locals.userInput && locals.userInput.itemPart === "hat") { %>selected<% } %>>Hat</option>
-                                        <option class="single-select-option" id="option-top" value="top" <% if(locals.userInput && locals.userInput.itemPart === "top") { %>selected<% } %>>Top / Overall</option>
-                                        <option class="single-select-option" id="option-bottom" value="bottom" <% if(locals.userInput && locals.userInput.itemPart === "bottom") { %>selected<% } %>>Bottom</option>
-                                        <option class="single-select-option" id="option-shoe" value="shoes" <% if(locals.userInput && locals.userInput.itemPart === "shoes") { %>selected<% } %>>Shoes</option>
-                                        <option class="single-select-option" id="option-glove" value="gloves" <% if(locals.userInput && locals.userInput.itemPart === "gloves") { %>selected<% } %>>Gloves</option>
-                                        <option class="single-select-option" id="option-cape" value="cape" <% if(locals.userInput && locals.userInput.itemPart === "cape") { %>selected<% } %>>Cape</option>
-                                        <option class="single-select-option" id="option-ring" value="ring" <% if(locals.userInput && locals.userInput.itemPart === "ring") { %>selected<% } %>>Ring</option>
-                                        <option class="single-select-option" id="option-pendant" value="pendant" <% if(locals.userInput && locals.userInput.itemPart === "pendant") { %>selected<% } %>>Pendant</option>
-                                        <option class="single-select-option" id="option-belt" value="belt" <% if(locals.userInput && locals.userInput.itemPart === "belt") { %>selected<% } %>>Belt</option>
-                                        <option class="single-select-option" id="option-face" value="face" <% if(locals.userInput && locals.userInput.itemPart === "face") { %>selected<% } %>>Face Accessory</option>
-                                        <option class="single-select-option" id="option-eye" value="eye" <% if(locals.userInput && locals.userInput.itemPart === "eye") { %>selected<% } %>>Eye Accessory</option>
-                                        <option class="single-select-option" id="option-earrings" value="earrings" <% if(locals.userInput && locals.userInput.itemPart === "earrings") { %>selected<% } %>>Earrings</option>
-                                        <option class="single-select-option" id="option-shoulder" value="shoulder" <% if(locals.userInput && locals.userInput.itemPart === "shoulder") { %>selected<% } %>>Shoulder Decoration</option>
-                                        <option class="single-select-option" id="option-heart" value="heart" <% if(locals.userInput && locals.userInput.itemPart === "heart") { %>selected<% } %>>Mechanical Heart</option>
-                                    </select>
-                                </div>
-                                <div class="form-group row d-flex align-items-center">
-                                    <label for="gear-level" class="col-4 col-form-label font-weight-bold">Equip Level</label>
-                                    <div class="col-8 px-0">
-                                        <input class="font-small w-100 form-control text-left rounded-sm" type="number" name="itemLevel" min=0 max=300 value=<% if(locals.userInput) { %><%= userInput.itemLevel %><% } else { %>150<% } %> required>
-                                    </div>
-                                </div>
-                                <div class="form-group row d-flex align-items-center">
-                                    <label for="server" class="col-4 col-form-label font-weight-bold">
-                                        Server
-                                    </label>
-                                    <div class="col-8 radio-select-group d-flex justify-content-center px-0">
-                                        <div class="col form-check p-0">
-                                            <input class="form-check-input" type="radio" name="serverType" id="server-kms" value="kms" <% if((locals.userInput && locals.userInput.serverType === "kms") || (!locals.userInput)) { %>checked<% } %>>
-                                            <label class="server-type-input form-check-label font-small radio-select d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if((locals.userInput && userInput.serverType === "kms") || (!locals.userInput)) { %>active<% } %>" for="server-kms">KMS / MSEA</label>
-                                        </div>
-                                        <div class="col form-check p-0">
-                                            <input class="form-check-input" type="radio" name="serverType" id="server-gms" value="gms" <% if(locals.userInput && locals.userInput.serverType === "gms") { %>checked<% } %>>
-                                            <label class="server-type-input form-check-label font-small radio-select d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.userInput && userInput.serverType === "gms") { %>active<% } %>" for="server-gms">GMS</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="pl-3 w-100">
-                                        <button type="submit" class="btn-update-values col-12 btn btn-sm btn-outline-info col-4 py-1 px-2 rounded-sm font-weight-bold text-center">
-                                            Submit
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                     </div>
 
                     <% if(locals.potentialsByRank) { %>
-                        <hr>
-                        <h2 class="font-subheader text-center mb-3">Potential List for <%= locals.userInput.itemPartName %></h2>
                         <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                            <div class="exp-stack-section-subheader w-100">
-                                <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#pot-reg">
-                                    <i class="fas fa-caret-down mr-2"></i> Potentials
+                            <div class="pot-list-section-subheader w-100">
+                                <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#pot-summary">
+                                    <i class="fas fa-caret-down mr-2"></i> Cube Summary
                                 </h3>
                             </div>
-                            <div class="exp-stack-section w-100 px-0 collapse show" id="pot-reg">
-                                <p class="font-table px-3 mt-2 mb-2">The pool of possible lines for each potential tier is split into Primary/Secondary lines. For example, if your item is Legendary rank, it is possible to get STR +9% / STR +9% / STR +9%, meaning that your cube took all 3 lines from the Legendary (Secondary) pool.</p>
-                                <p class="font-table px-3 mb-0"><i class="fas fa-cubes"></i> indicates that the potential line only appears when certain cubes are used - mouseover to see which cubes.</p>
-                                <div class="w-100 d-flex justify-content-start flex-wrap px-3 pb-3">
+                            <div class="pot-list-section w-100 px-0 collapse show" id="pot-summary">
+                                <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+                                    <p class="w-100 text-justify mb-2">The table below displays the respective tier up rates for each cube:</p>
+                                    <h2 class="font-subheader w-100 text-center mb-2">Tier-up Rates</h2>
+                                    <table class="font-table size-720 table table-bordered table-hover mb-5">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="text-center"><div class="red-cube d-inline rounded-sm font-weight-bold px-1 mr-1">R</div> Red</th>
+                                                <th class="text-center"><div class="black-cube d-inline rounded-sm font-weight-bold px-1 mr-1">B</div> Black</th>
+                                                <th class="text-center"><div class="additional-cube d-inline rounded-sm font-weight-bold px-1 mr-1">O</div> Additional</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>Rare > Epic</th>
+                                                <td class="text-center">6%</td>
+                                                <td class="text-center">15%</td>
+                                                <td class="text-center">4.7619%</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Epic > Unique</th>
+                                                <td class="text-center">1.8%</td>
+                                                <td class="text-center">3.5%</td>
+                                                <td class="text-center">1.9608%</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Unique > Legandary</th>
+                                                <td class="text-center">0.3%</td>
+                                                <td class="text-center">1%</td>
+                                                <td class="text-center">0.4975%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <p class="w-100 text-justify mb-2">The tables below display the chance of getting X rank for each individual line if your item's potential rank is Y. For example, if your item is Legendary and you use a Red Cube:</p>
+                                    <ul class="w-100">
+                                        <li>Line 1 has 100% chance to be Legendary rank</li>
+                                        <li>Line 2 has 10% chance to be Legendary rank, and 90% chance to be Unique rank</li>
+                                        <li>Line 3 has 1% chance to be Legendary rank, and 99% chance to be Unique rank</li>
+                                    </ul>
+
+                                    <div class="w-100 d-flex align-items-center">
+                                        <h2 class="font-subheader line-height-1-5 w-100 text-center mb-2"><div class="red-cube big-cube d-inline-flex align-items-center justify-content-center rounded-sm font-weight-bold mr-1">R</div> Red Cube Options Rates</h2>
+                                    </div>
+                                    <table class="font-table size-720 table table-bordered table-hover mb-4">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="text-center bg-rare" colspan="2">Rare</th>
+                                                <th class="text-center bg-epic" colspan="2">Epic</th>
+                                                <th class="text-center bg-unique" colspan="2">Unique</th>
+                                                <th class="text-center bg-legendary" colspan="2">Legendary</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th class="align-middle text-center">Line 1</th>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">100%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">100%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">100%</td>
+                                                <td class="text-center">Legendary</td>
+                                                <td class="text-center">100%</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="align-middle text-center" rowspan="2">Line 2</th>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">10%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">10%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">10%</td>
+                                                <td class="text-center">Legendary</td>
+                                                <td class="text-center">10%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">Normal</td>
+                                                <td class="text-center">90%</td>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">90%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">90%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">90%</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="align-middle text-center" rowspan="2">Line 3</th>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">1%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">1%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">1%</td>
+                                                <td class="text-center">Legendary</td>
+                                                <td class="text-center">1%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">Normal</td>
+                                                <td class="text-center">99%</td>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">99%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">99%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">99%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="w-100 d-flex align-items-center">
+                                        <h2 class="font-subheader line-height-1-5 w-100 text-center mb-2"><div class="black-cube big-cube d-inline-flex align-items-center justify-content-center rounded-sm font-weight-bold mr-1">B</div> Black Cube Options Rates</h2>
+                                    </div>
+                                    <table class="font-table size-720 table table-bordered table-hover mb-4">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="text-center bg-rare" colspan="2">Rare</th>
+                                                <th class="text-center bg-epic" colspan="2">Epic</th>
+                                                <th class="text-center bg-unique" colspan="2">Unique</th>
+                                                <th class="text-center bg-legendary" colspan="2">Legendary</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th class="align-middle text-center">Line 1</th>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">100%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">100%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">100%</td>
+                                                <td class="text-center">Legendary</td>
+                                                <td class="text-center">100%</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="align-middle text-center" rowspan="2">Line 2</th>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">20%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">20%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">20%</td>
+                                                <td class="text-center">Legendary</td>
+                                                <td class="text-center">20%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">Normal</td>
+                                                <td class="text-center">80%</td>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">80%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">80%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">80%</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="align-middle text-center" rowspan="2">Line 3</th>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">5%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">5%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">5%</td>
+                                                <td class="text-center">Legendary</td>
+                                                <td class="text-center">5%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">Normal</td>
+                                                <td class="text-center">95%</td>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">95%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">95%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">95%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="w-100 d-flex align-items-center">
+                                        <h2 class="font-subheader line-height-1-5 w-100 text-center mb-2"><div class="additional-cube big-cube d-inline-flex align-items-center justify-content-center rounded-sm font-weight-bold mr-1">R</div> Additional Cube Options Rates</h2>
+                                    </div>
+                                    <table class="font-table size-720 table table-bordered table-hover mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="text-center bg-rare" colspan="2">Rare</th>
+                                                <th class="text-center bg-epic" colspan="2">Epic</th>
+                                                <th class="text-center bg-unique" colspan="2">Unique</th>
+                                                <th class="text-center bg-legendary" colspan="2">Legendary</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th class="align-middle text-center">Line 1</th>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">100%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">100%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">100%</td>
+                                                <td class="text-center">Legendary</td>
+                                                <td class="text-center">100%</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="align-middle text-center" rowspan="2">Line 2</th>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">1.9608%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">4.7619%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">1.9608%</td>
+                                                <td class="text-center">Legendary</td>
+                                                <td class="text-center">0.4975%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">Normal</td>
+                                                <td class="text-center">98.0392%</td>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">95.2381%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">98.0392%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">99.5025%</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="align-middle text-center" rowspan="2">Line 3</th>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">1.9608%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">4.7619%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">1.9608%</td>
+                                                <td class="text-center">Legendary</td>
+                                                <td class="text-center">0.4975%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">Normal</td>
+                                                <td class="text-center">98.0392%</td>
+                                                <td class="text-center">Rare</td>
+                                                <td class="text-center">95.2381%</td>
+                                                <td class="text-center">Epic</td>
+                                                <td class="text-center">98.0392%</td>
+                                                <td class="text-center">Unique</td>
+                                                <td class="text-center">99.5025%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                            <div class="pot-list-section-subheader w-100">
+                                <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#pot-reg">
+                                    <i class="fas fa-caret-down mr-2"></i> <%= locals.selectedPartName %> Potentials
+                                </h3>
+                            </div>
+                            <div class="pot-list-section w-100 px-0 collapse show" id="pot-reg">
+                                <!--<p class="font-table px-3 mt-2 mb-2">The pool of possible lines for each potential tier is split into Primary/Secondary lines. For example, if your item is Legendary rank, it is possible to get STR +9% / STR +9% / STR +9%, meaning that your cube took all 3 lines from the Legendary (Secondary) pool.</p>
+                                <p class="font-table px-3 mb-0"><i class="fas fa-cubes"></i> indicates that the potential line only appears when certain cubes are used - mouseover to see which cubes.</p>-->
+
+                                <div id="rc-summary">
+                                    
+                                </div>
+
+                                <div id="bc-summary">
+                                    
+                                </div>
+
+                                <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3">
                                     <% if(locals.potentialsByRank) { %>
-                                        <% Object.keys(potentialsByRank.regular).forEach(function(rank) { %>
-                                            <div class="d-flex font-table col-12 col-md-6 col-xl-4 mt-3 px-2">
-                                                <table class="font-table table table-bordered table-hover mb-0">
+                                        <% potentialsByRank.regular.forEach(function(potentialListDetails) { %>
+                                            <div class="d-flex font-table col-12 justify-content-center mt-3 px-2">
+                                                <table class="font-table size-720 table table-bordered table-hover mb-0">
                                                     <thead>
                                                         <tr>
-                                                            <th class="text-center bg-<%= potentialsByRank.regular[rank].rankName %> py-2">
-                                                                <%= potentialsByRank.regular[rank].title %>
+                                                            <th class="font-subsubheader text-center bg-<%= potentialListDetails.potRankName.toLowerCase() %> py-2" colspan="4">
+                                                                <%= potentialListDetails.potRankName %>
                                                             </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="stat-type text-left py-2">Stat</th>
+                                                            <th class="text-center py-2">Line 1 (%)</th>
+                                                            <th class="text-center py-2">Line 2 (%)</th>
+                                                            <th class="text-center py-2">Line 3 (%)</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <% potentialsByRank.regular[rank].list.forEach(function(potentialData) { %>
+                                                        <% potentialListDetails.potentials.forEach(function(potentialData) { %>
                                                             <tr>
-                                                                <td class="align-middle px-2 py-2">
+                                                                <td class="stat-type align-middle">
                                                                     <%= potentialData.desc %>
-                                                                    <% if(potentialData.cubeTypes.length > 0) { %>
-                                                                        <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" data-html="true"
-                                                                            title="<% potentialData.cubeTypes.forEach(function(cube) { %><img src='<%= icons[`cube-${cube}`].imgUrl %>'><% }) %>">
-                                                                            <i class="fas fa-cubes"></i>
-                                                                        </div>
-                                                                    <% } %>
                                                                     <% if(potentialData.notes) { %>
                                                                         <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= potentialData.notes %>"><i class="fas fa-info-circle"></i></div>
                                                                     <% } %>
                                                                 </td>
-                                                                <!--<td class="align-middle py-2"><%= (potentialData.weight / potentialsByRank.regular[rank].totalWeight * 100).toFixed(2) %>%</td>-->
+                                                                <td class="text-center align-middle">
+                                                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                                                        <div class="rc-data">
+                                                                            <% if(potentialData.rcPercentChance.line1 === 0) { %>
+                                                                                -
+                                                                            <% } else { %>                                                                            
+                                                                                <div class="red-cube d-inline rounded-sm font-weight-bold px-1 mr-1">R</div>
+                                                                                <span class="dp-2"><%= potentialData.rcPercentChance.line1.toFixed(2) %></span>
+                                                                                <span class="dp-4 d-none"><%= potentialData.rcPercentChance.line1.toFixed(4) %></span>
+                                                                            <% } %>
+                                                                        </div>
+
+                                                                        <div class="bc-data">
+                                                                            <% if(potentialData.bcPercentChance.line1 === 0) { %>
+                                                                                -
+                                                                            <% } else { %>
+                                                                                <div class="black-cube d-inline rounded-sm font-weight-bold px-1 mr-1">B</div>
+                                                                                <span class="dp-2"><%= potentialData.bcPercentChance.line1.toFixed(2) %></span>
+                                                                                <span class="dp-4 d-none"><%= potentialData.bcPercentChance.line1.toFixed(4) %></span>
+                                                                            <% } %>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle">
+                                                                    <div class="rc-data">
+                                                                        <div class="red-cube d-inline rounded-sm font-weight-bold px-1 mr-1">R</div>
+                                                                        <span class="dp-2"><%= potentialData.rcPercentChance.line2.toFixed(2) %></span>
+                                                                        <span class="dp-4 d-none"><%= potentialData.rcPercentChance.line2.toFixed(4) %></span>
+                                                                    </div>
+                                                                    <div class="bc-data">
+                                                                        <div class="black-cube d-inline rounded-sm font-weight-bold px-1 mr-1">B</div>
+                                                                        <span class="dp-2"><%= potentialData.bcPercentChance.line2.toFixed(2) %></span>
+                                                                        <span class="dp-4 d-none"><%= potentialData.bcPercentChance.line2.toFixed(4) %></span>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center align-middle">
+                                                                    <div class="rc-data">
+                                                                        <div class="red-cube d-inline rounded-sm font-weight-bold px-1 mr-1">R</div>
+                                                                        <span class="dp-2"><%= potentialData.rcPercentChance.line3.toFixed(2) %></span>
+                                                                        <span class="dp-4 d-none"><%= potentialData.rcPercentChance.line3.toFixed(4) %></span>
+                                                                    </div>
+                                                                    <div class="bc-data">
+                                                                        <div class="black-cube d-inline rounded-sm font-weight-bold px-1 mr-1">B</div>
+                                                                        <span class="dp-2"><%= potentialData.bcPercentChance.line3.toFixed(2) %></span>
+                                                                        <span class="dp-4 d-none"><%= potentialData.bcPercentChance.line3.toFixed(4) %></span>
+                                                                    </div>
+                                                                </td>
                                                             </tr>
                                                         <% }) %> 
                                                     </tbody>
@@ -158,13 +426,13 @@
                         </div>
 
                         <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                            <div class="exp-stack-section-subheader w-100">
+                            <div class="pot-list-section-subheader w-100">
                                 <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#pot-add">
-                                    <i class="fas fa-caret-down mr-2"></i> Additional (Bonus) Potentials
+                                    <i class="fas fa-caret-down mr-2"></i> <%= locals.selectedPartName %> Additional (Bonus) Potentials
                                 </h3>
                             </div>
-                            <div class="exp-stack-section w-100 px-0 collapse show" id="pot-add">
-                                <div class="w-100 d-flex justify-content-start flex-wrap px-3 pb-3">
+                            <div class="pot-list-section w-100 px-0 collapse show" id="pot-add">
+                                <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3">
                                     <% if(locals.potentialsByRank) { %>
                                         <% Object.keys(potentialsByRank.additional).forEach(function(rank) { %>
                                             <div class="d-flex font-table col-12 col-md-6 col-xl-4 mt-3 px-2">

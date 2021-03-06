@@ -259,6 +259,12 @@ body .tab-pane .single-map-select.active {
   background-color: #6cbb3c;
   transition: all 0.2s;
 }
+body .pot-list-subheader, body .pot-list-section {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .pot-list-section-subheader {
+  background-color: rgba(206, 212, 218, 0.8);
+}
 body .single-social a {
   color: #212529;
 }

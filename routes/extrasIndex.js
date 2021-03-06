@@ -332,52 +332,41 @@ router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) 
 })
 
 router.get("/potential-list", function(req, res) {
-    res.locals.extraStylesheet = "potentialListStyles";
-    res.locals.section = "extras";
-    res.locals.branch = "potential-list";
-    res.render("extras/potentialList");
-})
+    let selectedPartType = req.query.itemType;
 
-router.post("/potential-list", middleware.isValidPotentialListFormInput, function(req, res) {
-    const validItemParts = {
-        hat: "Hat", top: "Top / Overall", bottom: "Bottom",
-        weapon: "Weapon", secondary: "Secondary Weapon", emblem: "Emblem",
-        gloves: "Gloves", shoes: "Shoes", cape: "Cape",
-        ring: "Ring", pendant: "Pendant", belt: "Belt",
-        eye: "Eye Accessory", face: "Face Accessory", earring: "Earrings",
-        shoulder: "Shoulder Decoration", heart: "Mechanical Heart"
+    if(selectedPartType) {
+        const validItemParts = {
+            hat: "Hat", top: "Top / Overall", bottom: "Bottom",
+            weapon: "Weapon", secondary: "Secondary Weapon", emblem: "Emblem",
+            gloves: "Gloves", shoes: "Shoes", cape: "Cape",
+            ring: "Ring", pendant: "Pendant", belt: "Belt",
+            eye: "Eye Accessory", face: "Face Accessory", earrings: "Earrings",
+            shoulder: "Shoulder Decoration", heart: "Mechanical Heart"
+        }
+
+        let getIcons = Icon.find({ usedInSections: "potential-list" });
+        let getPotentialList = Potentials.find({ itemType: selectedPartType }).sort({ potRankNum: -1 })
+
+        Promise.all([getPotentialList, getIcons])
+            .then(([allPotentials, foundIcons]) => {
+                const compiledIcons = IconHelper.compileIcons(foundIcons);
+                const potentialsByRank = Helper.groupByRank(allPotentials);
+                res.locals.extraStylesheet = "potentialListStyles";
+                res.locals.section = "extras";
+                res.locals.branch = "potential-list";
+
+                res.render("extras/potentialList", { icons: compiledIcons, potentialsByRank: potentialsByRank, selectedPartType: selectedPartType, selectedPartName: validItemParts[selectedPartType] });
+            })
+            .catch(err => {
+                console.log(err);
+                res.redirect("back");
+            })
+    } else {
+        res.locals.extraStylesheet = "potentialListStyles";
+        res.locals.section = "extras";
+        res.locals.branch = "potential-list";
+        res.render("extras/potentialList");
     }
-
-    let userInput = {
-        itemPart: req.body.itemPart,
-        itemPartName: validItemParts[req.body.itemPart],
-        itemLevel: parseInt(req.body.itemLevel),
-        serverType: req.body.serverType
-    };
-
-    let getIcons = Icon.find({ usedInSections: "potential-list" });
-    let query = { $and: [ 
-                    { itemLevelMin: { $lte: userInput.itemLevel } },
-                    { itemLevelMax: { $gte: userInput.itemLevel } },
-                    { serverType: { $in: userInput.serverType } },
-                    { $or: [{ itemTypes: "common" }, { itemTypes: userInput.itemPart }]}
-                ] };
-    let getPotentialList = Potentials.find(query).sort({ potRank: -1, displayPriority: 1, desc: 1 })
-
-    Promise.all([getPotentialList, getIcons])
-        .then(([allPotentials, foundIcons]) => {
-            const compiledIcons = IconHelper.compileIcons(foundIcons);
-            const potentialsByRank = Helper.groupByRank(allPotentials);
-            res.locals.extraStylesheet = "potentialListStyles";
-            res.locals.section = "extras";
-            res.locals.branch = "potential-list";
-
-            res.render("extras/potentialList", { icons: compiledIcons, potentialsByRank: potentialsByRank, userInput: userInput });
-        })
-        .catch(err => {
-            console.log(err);
-            res.redirect("back");
-        })
 })
 
 module.exports = router;

@@ -73,4 +73,49 @@
   color: rgba(0, 0, 0, 0.8) !important;
 }
 
+.stat-type {
+  width: 125px;
+}
+@media (min-width: 768px) {
+  .stat-type {
+    width: 150px;
+  }
+}
+@media (min-width: 992px) {
+  .stat-type {
+    width: 200px;
+  }
+}
+
+.red-cube, .black-cube, .additional-cube {
+  width: 20px;
+  height: 20px;
+}
+.red-cube.big-cube, .black-cube.big-cube, .additional-cube.big-cube {
+  width: 30px;
+  height: 30px;
+}
+
+.red-cube {
+  border: 2px solid #FFAA00;
+  background-color: #DD2222;
+  color: #FFEEEE;
+}
+
+.black-cube {
+  border: 2px solid #FFAA00;
+  background-color: #111111;
+  color: #FFAA11;
+}
+
+.additional-cube {
+  background-color: #77DD00;
+  border: 2px solid #FFAA00;
+  color: #FFEEEE;
+}
+
+.line-height-1-5 {
+  line-height: 1.5;
+}
+
 /*# sourceMappingURL=potentialListStyles.css.map */

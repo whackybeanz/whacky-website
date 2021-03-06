@@ -313,6 +313,12 @@ body.dark-mode .tab-pane .single-map-select.active {
   background-color: #4aa02c;
   transition: all 0.2s;
 }
+body.dark-mode .pot-list-subheader, body.dark-mode .pot-list-section {
+  border: 1px solid #454d55;
+}
+body.dark-mode .pot-list-section-subheader {
+  background-color: #343a40;
+}
 body.dark-mode .single-social a {
   color: rgba(255, 255, 255, 0.8);
 }

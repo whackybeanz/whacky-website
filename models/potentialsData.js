@@ -2,16 +2,19 @@ var mongoose = require("mongoose");
 
 var potentialSchema = new mongoose.Schema({
     potType: String,
-    potRank: Number,
-    displayPriority: Number,
-    desc: String,
-    weight: Number,
-    cubeTypes: [String],
-    itemTypes: [String],
-    notes: String,
-    itemLevelMin: Number,
-    itemLevelMax: {type: Number, default: 300},
-    serverType: {type: [String], default: ["kms", "gms"]},
+    potRankName: String,
+    potRankNum: Number,
+    itemType: String,
+    potentials: [
+        {
+            desc: String,
+            notes: String,
+            rcPercentChance: { line1: Number, line2: Number, line3: Number },
+            bcPercentChance: { line1: Number, line2: Number, line3: Number },
+            apcPercentChance: { line1: Number, line2: Number, line3: Number },
+        }
+    ],
+    serverType: { type: String, default: "kms" },
 });
 
 module.exports = mongoose.model("Potential", potentialSchema)
