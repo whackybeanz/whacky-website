@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function addRadioListeners() {
     const potTypes = ["reg", "add"];
-    const radioGroups = ["pot-rank-input", "dp-input", "cube-type-input"];
+    const radioGroups = ["pot-rank-input", "display-type-input", "dp-input", "cube-type-input"];
 
     potTypes.forEach(function(potType) {
         radioGroups.forEach(function(group) {
@@ -41,6 +41,28 @@ function toggleElemViews(potType, group, elem) {
             document.getElementById(`${potType}-pot-${selectedPotRank}`).classList.remove("d-none");
             document.getElementById(`${potType}-pot-${selectedPotRank}`).classList.add("d-flex");
         }
+    }
+
+    if(group === "display-type-input") {
+        const selectedDisplayType = elem.dataset.displayType;
+        const allWeightCells = document.querySelectorAll(`.${potType}-cell-display-weights`);
+        const allPercentCells = document.querySelectorAll(`.${potType}-cell-display-percent`);
+        const allWeightTotalDisplays = document.querySelectorAll(`.${potType}-display-weights-total`);
+        document.getElementById(`${potType}-display-percent-controls`).classList.toggle("d-none");
+
+        allWeightTotalDisplays.forEach(function(display) {
+            display.classList.toggle("d-none");
+        })
+
+        allWeightCells.forEach(function(cell) {
+            cell.classList.toggle("d-none");
+            cell.classList.toggle("d-table-cell");
+        })
+
+        allPercentCells.forEach(function(cell) {
+            cell.classList.toggle("d-none");
+            cell.classList.toggle("d-table-cell");
+        })
     }
 
     // As there are only two DP inputs for selection, using toggle is okay

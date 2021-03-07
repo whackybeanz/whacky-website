@@ -344,8 +344,20 @@ router.get("/potential-list", function(req, res) {
             shoulder: "Shoulder Decoration", heart: "Mechanical Heart"
         }
 
+        const cubeRates = Helper.getCubeRates();
+
+        let generalData = {
+            selectedPartType: selectedPartType,
+            selectedPartName: validItemParts[selectedPartType],
+            cubeRates: cubeRates,
+            ranks: [{ prime: "legendary", secondary: "unique" },
+                    { prime: "unique", secondary: "epic" },
+                    { prime: "epic", secondary: "rare" },
+                    { prime: "rare", secondary: "normal" }]
+        }
+
         let getIcons = Icon.find({ usedInSections: "potential-list" });
-        let getPotentialList = Potentials.find({ itemType: selectedPartType }).sort({ potRankNum: -1 })
+        let getPotentialList = Potentials.find({ itemType: { $in: [selectedPartType] } }).sort({ potRankNum: -1 })
 
         Promise.all([getPotentialList, getIcons])
             .then(([allPotentials, foundIcons]) => {
@@ -355,7 +367,7 @@ router.get("/potential-list", function(req, res) {
                 res.locals.section = "extras";
                 res.locals.branch = "potential-list";
 
-                res.render("extras/potentialList", { icons: compiledIcons, potentialsByRank: potentialsByRank, selectedPartType: selectedPartType, selectedPartName: validItemParts[selectedPartType] });
+                res.render("extras/potentialList", { icons: compiledIcons, potentialsByRank: potentialsByRank, generalData: generalData });
             })
             .catch(err => {
                 console.log(err);

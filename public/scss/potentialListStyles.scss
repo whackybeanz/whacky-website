@@ -61,13 +61,14 @@
     }
 
     @include globals.for-size(lg) {
-        width: 200px;
+        width: 25%;
     }    
 }
 
 .red-cube, .black-cube, .additional-cube {
     width: 20px;
     height: 20px;
+    line-height: 1;
 
     &.big-cube {
         width: 30px;

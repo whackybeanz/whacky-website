@@ -63,6 +63,44 @@
                     <% if(locals.potentialsByRank) { %>
                         <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                             <div class="pot-list-section-subheader w-100">
+                                <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#pot-weights-guide">
+                                    <i class="fas fa-caret-down mr-2"></i> How do weights correspond to percentages?
+                                </h3>
+                            </div>
+                            <div class="pot-list-section w-100 px-0 collapse" id="pot-weights-guide">
+                                <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+                                    <p class="w-100 text-justify">You may have noticed that each potential stat is assigned a 'weight' value. This value determines the percentage chance of getting that stat on a particular line. To illustrate the calculation, we will utilize Mechanical Hearts, Legendary grade as an example. We will work on regular potentials.</p>
+                                    <p class="w-100 text-justify">
+                                        <span class="text-info font-weight-bold">Step 1) Decide your goal stat value per line</span><br/>
+                                        For this example, we will aim for <code>STR +12% / STR +9% / STR +9%</code>.
+                                    </p>
+                                    <p class="w-100 text-justify">
+                                        <span class="text-info font-weight-bold">Step 2) Determine what 'ranks' your 3 desired lines are</span><br/>
+                                        Under the 'Potentials - Mechanical Heart' table, for Legendary grade, STR +12% is under 'Prime Lines' and STR +9% is under 'Secondary Lines'. In short, <code>STR +12% / STR +9% / STR +9%</code> is equivalent to <code>Legendary / Unique / Unique</code> lines.
+                                    </p>
+                                    <p class="w-100 text-justify">
+                                        <span class="text-info font-weight-bold">Step 3) Note down the weights for your respective lines and total weights</span><br/>
+                                        <code>STR +12% / STR +9% / STR +9%</code> has a weight of <code>4 / 5 / 5</code>. Prime and Secondary Lines have separate total weights. In our case, the total weights we'll use is <code>31 / 44 / 44</code> to correspond to the <code>Primary / Secondary / Secondary</code> line we are aiming for.
+                                    </p>
+                                    <p class="w-100 text-justify">
+                                        <span class="text-info font-weight-bold">Step 4) Decide what cube you wish to use, and its respective line rates</span><br/>
+                                        For this example, we will use Red Cubes. Under the 'Cube Summary' section, the chance to get <code>Legendary / Unique / Unique</code> for the respective lines is <code>100% / 90% / 99%</code> respectively.
+                                    </p>
+                                    <p class="w-100 text-justify mb-2">
+                                        <span class="text-info font-weight-bold">Step 5) Calculate the percentage chance of acquiring each line</span><br/>
+                                        The formula is <code>lineRate * lineWeight / totalWeight</code>. This is thus broken down into:
+                                    </p>
+                                    <ul class="w-100 mb-0">
+                                        <li>Line 1: <code>100 * 4 / 31 = 12.9032%</code></li>
+                                        <li>Line 2: <code>90 * 5 / 44 = 10.2273%</code></li>
+                                        <li>Line 3: <code>99 * 5 / 44 = 11.2500%</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                            <div class="pot-list-section-subheader w-100">
                                 <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#pot-summary">
                                     <i class="fas fa-caret-down mr-2"></i> Cube Summary
                                 </h3>
@@ -250,7 +288,7 @@
                                     </table>
 
                                     <div class="w-100 d-flex align-items-center">
-                                        <h2 class="font-subheader line-height-1-5 w-100 text-center mb-2"><div class="additional-cube big-cube d-inline-flex align-items-center justify-content-center rounded-sm font-weight-bold mr-1">R</div> Additional Cube Options Rates</h2>
+                                        <h2 class="font-subheader line-height-1-5 w-100 text-center mb-2"><div class="additional-cube big-cube d-inline-flex align-items-center justify-content-center rounded-sm font-weight-bold mr-1">O</div> Additional Cube Options Rates</h2>
                                     </div>
                                     <table class="font-table size-720 table table-bordered table-hover mb-0">
                                         <thead>
@@ -325,12 +363,11 @@
                         <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                             <div class="pot-list-section-subheader w-100">
                                 <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#pot-reg">
-                                    <i class="fas fa-caret-down mr-2"></i> Potentials - <%= locals.selectedPartName %>
+                                    <i class="fas fa-caret-down mr-2"></i> Potentials - <%= locals.generalData.selectedPartName %>
                                 </h3>
                             </div>
                             <div class="pot-list-section w-100 px-0 collapse show" id="pot-reg">
-                                <!--<p class="font-table px-3 mt-2 mb-2">The pool of possible lines for each potential tier is split into Primary/Secondary lines. For example, if your item is Legendary rank, it is possible to get STR +9% / STR +9% / STR +9%, meaning that your cube took all 3 lines from the Legendary (Secondary) pool.</p>
-                                <p class="font-table px-3 mb-0"><i class="fas fa-cubes"></i> indicates that the potential line only appears when certain cubes are used - mouseover to see which cubes.</p>-->
+                                <p class="font-table px-3 mt-2 mb-2"></p>
 
                                 <div class="col-12 d-flex justify-content-center mt-3">
                                     <div class="w-100 size-720">
@@ -363,35 +400,52 @@
                                         </div>
                                         <div class="form-group row d-flex align-items-center mb-2">
                                             <label for="dp-type" class="col-4 col-lg-4 col-form-label font-weight-bold text-left d-flex">
-                                                <span class="mr-1">Decimal Places</span>
+                                                <span class="mr-1">Display Type</span>
                                             </label>
                                             <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center">
                                                 <div class="col form-check p-0">
-                                                    <input class="form-check-input" type="radio" name="dp-type" id="dp-type-2" value="2" checked>
-                                                    <label class="form-check-label font-small radio-select reg-dp-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 active" for="dp-type-2" data-dp-type="2">2 d.p.</label>
+                                                    <input class="form-check-input" type="radio" name="display-type" id="display-type-percent" value="percent" checked>
+                                                    <label class="form-check-label font-small radio-select reg-display-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 active" for="display-type-percent" data-display-type="percent">% chance</label>
                                                 </div>
                                                 <div class="col form-check p-0">
-                                                    <input class="form-check-input" type="radio" name="dp-type" id="dp-type-4" value="4">
-                                                    <label class="form-check-label font-small radio-select reg-dp-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="dp-type-4" data-dp-type="4">4 d.p.</label>
+                                                    <input class="form-check-input" type="radio" name="display-type" id="display-type-weights" value="weights">
+                                                    <label class="form-check-label font-small radio-select reg-display-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="display-type-weights" data-display-type="weights">Weights</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group row d-flex align-items-center mb-2">
-                                            <label for="cube-type" class="col-4 col-lg-4 col-form-label font-weight-bold text-left d-flex">
-                                                <span class="mr-1">Cube Type</span>
-                                            </label>
-                                            <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center">
-                                                <div class="col form-check p-0">
-                                                    <input class="form-check-input" type="radio" name="cube-type" id="cube-type-all" value="all" checked>
-                                                    <label class="form-check-label font-small radio-select reg-cube-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 active" for="cube-type-all" data-cube-type="all">All</label>
+                                        <div id="reg-display-percent-controls"> 
+                                            <div class="form-group row d-flex align-items-center mb-2">
+                                                <label for="dp-type" class="col-4 col-lg-4 col-form-label font-weight-bold text-left d-flex">
+                                                    <span class="mr-1">Decimal Places</span>
+                                                </label>
+                                                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center">
+                                                    <div class="col form-check p-0">
+                                                        <input class="form-check-input" type="radio" name="dp-type" id="dp-type-2" value="2" checked>
+                                                        <label class="form-check-label font-small radio-select reg-dp-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 active" for="dp-type-2" data-dp-type="2">2 d.p.</label>
+                                                    </div>
+                                                    <div class="col form-check p-0">
+                                                        <input class="form-check-input" type="radio" name="dp-type" id="dp-type-4" value="4">
+                                                        <label class="form-check-label font-small radio-select reg-dp-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="dp-type-4" data-dp-type="4">4 d.p.</label>
+                                                    </div>
                                                 </div>
-                                                <div class="col form-check p-0">
-                                                    <input class="form-check-input" type="radio" name="cube-type" id="cube-type-red" value="red">
-                                                    <label class="form-check-label font-small radio-select reg-cube-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="cube-type-red" data-cube-type="red">Red</label>
-                                                </div>
-                                                <div class="col form-check p-0">
-                                                    <input class="form-check-input" type="radio" name="cube-type" id="cube-type-black" value="black">
-                                                    <label class="form-check-label font-small radio-select reg-cube-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="cube-type-black" data-cube-type="black">Black</label>
+                                            </div>
+                                            <div class="form-group row d-flex align-items-center mb-2">
+                                                <label for="cube-type" class="col-4 col-lg-4 col-form-label font-weight-bold text-left d-flex">
+                                                    <span class="mr-1">Cube Type</span>
+                                                </label>
+                                                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center">
+                                                    <div class="col form-check p-0">
+                                                        <input class="form-check-input" type="radio" name="cube-type" id="cube-type-all" value="all" checked>
+                                                        <label class="form-check-label font-small radio-select reg-cube-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 active" for="cube-type-all" data-cube-type="all">All</label>
+                                                    </div>
+                                                    <div class="col form-check p-0">
+                                                        <input class="form-check-input" type="radio" name="cube-type" id="cube-type-red" value="red">
+                                                        <label class="form-check-label font-small radio-select reg-cube-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="cube-type-red" data-cube-type="red">Red</label>
+                                                    </div>
+                                                    <div class="col form-check p-0">
+                                                        <input class="form-check-input" type="radio" name="cube-type" id="cube-type-black" value="black">
+                                                        <label class="form-check-label font-small radio-select reg-cube-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="cube-type-black" data-cube-type="black">Black</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -399,86 +453,76 @@
                                 </div>
 
                                 <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3">
-                                    <% if(locals.potentialsByRank) { %>
-                                        <% potentialsByRank.regular.forEach(function(potentialListDetails) { %>
-                                            <div class="single-reg-pot-rank-table font-table col-12 justify-content-center mt-3 px-2 <% if(potentialListDetails.potRankName !== 'Legendary') { %>d-none<% } else { %>d-flex<% } %>" id="reg-pot-<%= potentialListDetails.potRankName.toLowerCase() %>">
+                                    <% generalData.ranks.forEach(function(rankData) { %>
+                                        <% if(rankData.prime !== "normal") { %>
+                                            <div class="single-reg-pot-rank-table font-table col-12 justify-content-center mt-3 px-2 <% if(rankData.prime !== 'legendary') { %>d-none<% } else { %>d-flex<% } %>" id="reg-pot-<%= rankData.prime %>">
                                                 <table class="font-table size-720 table table-bordered table-hover mb-0">
                                                     <thead>
                                                         <tr>
-                                                            <th class="font-subsubheader text-center bg-<%= potentialListDetails.potRankName.toLowerCase() %> py-2" colspan="4">
-                                                                <%= potentialListDetails.potRankName %>
+                                                            <th class="font-subsubheader text-center bg-<%= rankData.prime %> py-2" colspan="4">
+                                                                <%= rankData.prime.charAt(0).toUpperCase() + rankData.prime.slice(1) %>
                                                             </th>
                                                         </tr>
                                                         <tr>
                                                             <th class="stat-type text-left py-2">Stat</th>
-                                                            <th class="text-center py-2">Line 1 (%)</th>
-                                                            <th class="text-center py-2">Line 2 (%)</th>
-                                                            <th class="text-center py-2">Line 3 (%)</th>
+                                                            <th class="reg-cell-display-percent d-table-cell text-center py-2">Line 1 (%)</th>
+                                                            <th class="reg-cell-display-percent d-table-cell text-center py-2">Line 2 (%)</th>
+                                                            <th class="reg-cell-display-percent d-table-cell text-center py-2">Line 3 (%)</th>
+                                                            <th class="reg-cell-display-weights text-center d-none py-2" colspan="3">Weight</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <% potentialListDetails.potentials.forEach(function(potentialData) { %>
+                                                        <% Object.keys(rankData).forEach(function(potType) { %>
                                                             <tr>
-                                                                <td class="stat-type align-middle">
-                                                                    <%= potentialData.desc %>
-                                                                    <% if(potentialData.notes) { %>
-                                                                        <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= potentialData.notes %>"><i class="fas fa-info-circle"></i></div>
-                                                                    <% } %>
-                                                                </td>
-                                                                <td class="text-center align-middle">
-                                                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                                                        <div class="single-reg-pot-cube-data red-cube-data">
-                                                                            <% if(potentialData.rcPercentChance.line1 === 0) { %>
-                                                                                -
-                                                                            <% } else { %>                                                                            
-                                                                                <div class="red-cube d-inline rounded-sm font-weight-bold px-1 mr-1">R</div>
-                                                                                <span class="single-reg-dp reg-dp-2"><%= potentialData.rcPercentChance.line1.toFixed(2) %></span>
-                                                                                <span class="single-reg-dp reg-dp-4 d-none"><%= potentialData.rcPercentChance.line1.toFixed(4) %></span>
-                                                                            <% } %>
-                                                                        </div>
-
-                                                                        <div class="single-reg-pot-cube-data black-cube-data">
-                                                                            <% if(potentialData.bcPercentChance.line1 === 0) { %>
-                                                                                -
-                                                                            <% } else { %>
-                                                                                <div class="black-cube d-inline rounded-sm font-weight-bold px-1 mr-1">B</div>
-                                                                                <span class="single-reg-dp reg-dp-2"><%= potentialData.bcPercentChance.line1.toFixed(2) %></span>
-                                                                                <span class="single-reg-dp reg-dp-4 d-none"><%= potentialData.bcPercentChance.line1.toFixed(4) %></span>
-                                                                            <% } %>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="text-center align-middle">
-                                                                    <div class="single-reg-pot-cube-data red-cube-data">
-                                                                        <div class="red-cube d-inline rounded-sm font-weight-bold px-1 mr-1">R</div>
-                                                                        <span class="single-reg-dp reg-dp-2"><%= potentialData.rcPercentChance.line2.toFixed(2) %></span>
-                                                                        <span class="single-reg-dp reg-dp-4 d-none"><%= potentialData.rcPercentChance.line2.toFixed(4) %></span>
-                                                                    </div>
-                                                                    <div class="single-reg-pot-cube-data black-cube-data">
-                                                                        <div class="black-cube d-inline rounded-sm font-weight-bold px-1 mr-1">B</div>
-                                                                        <span class="single-reg-dp reg-dp-2"><%= potentialData.bcPercentChance.line2.toFixed(2) %></span>
-                                                                        <span class="single-reg-dp reg-dp-4 d-none"><%= potentialData.bcPercentChance.line2.toFixed(4) %></span>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="text-center align-middle">
-                                                                    <div class="single-reg-pot-cube-data red-cube-data">
-                                                                        <div class="red-cube d-inline rounded-sm font-weight-bold px-1 mr-1">R</div>
-                                                                        <span class="single-reg-dp reg-dp-2"><%= potentialData.rcPercentChance.line3.toFixed(2) %></span>
-                                                                        <span class="single-reg-dp reg-dp-4 d-none"><%= potentialData.rcPercentChance.line3.toFixed(4) %></span>
-                                                                    </div>
-                                                                    <div class="single-reg-pot-cube-data black-cube-data">
-                                                                        <div class="black-cube d-inline rounded-sm font-weight-bold px-1 mr-1">B</div>
-                                                                        <span class="single-reg-dp reg-dp-2"><%= potentialData.bcPercentChance.line3.toFixed(2) %></span>
-                                                                        <span class="single-reg-dp reg-dp-4 d-none"><%= potentialData.bcPercentChance.line3.toFixed(4) %></span>
-                                                                    </div>
+                                                                <td class="py-2 text-center font-weight-bold" colspan="4">
+                                                                    <%= potType.charAt(0).toUpperCase() + potType.slice(1) %> Lines<br/>
+                                                                    <span class="reg-display-weights-total d-none">(Total Weight = <%= potentialsByRank.regular[rankData[potType]].totalWeight %>)</span>
                                                                 </td>
                                                             </tr>
-                                                        <% }) %> 
+                                                            <% potentialsByRank.regular[rankData[potType]].list.forEach(function(potentialData) { %>
+                                                                <tr>
+                                                                    <td class="stat-type align-middle">
+                                                                        <%= potentialData.desc %>
+                                                                        <% if(potentialData.notes) { %>
+                                                                            <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= potentialData.notes %>"><i class="fas fa-info-circle"></i></div>
+                                                                        <% } %>
+                                                                    </td>
+                                                                    <td class="reg-cell-display-weights text-center justify-content-center align-items-center align-middle d-none" colspan="3">
+                                                                        <%= potentialData.weight %>
+                                                                    </td>
+                                                                    <% ["line1", "line2", "line3"].forEach(function(lineNum) { %>
+                                                                        <td class="reg-cell-display-percent d-table-cell text-center align-middle">
+                                                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                                                <% ["red", "black"].forEach(function(cubeType) { %>
+                                                                                    <div class="single-reg-pot-cube-data <%= cubeType %>-cube-data">
+                                                                                        <% if(generalData.cubeRates[cubeType][lineNum][rankData.prime][potType] === 0) { %>
+                                                                                            -
+                                                                                        <% } else { %>
+                                                                                            <div class="d-flex">
+                                                                                                <div class="<%= cubeType %>-cube d-flex justify-content-center align-items-center rounded-sm font-weight-bold px-1 mr-1">
+                                                                                                    <% if(cubeType === "red") { %>R<% } else { %>B<% } %>
+                                                                                                </div>
+                                                                                                <span class="single-reg-dp reg-dp-2">
+                                                                                                    <%= (generalData.cubeRates[cubeType][lineNum][rankData.prime][potType] * potentialData.weight / potentialsByRank.regular[rankData[potType]].totalWeight).toFixed(2) %>
+                                                                                                </span>
+                                                                                                <span class="single-reg-dp reg-dp-4 d-none">
+                                                                                                    <%= (generalData.cubeRates[cubeType][lineNum][rankData.prime][potType] * potentialData.weight / potentialsByRank.regular[rankData[potType]].totalWeight).toFixed(4) %>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        <% } %>
+                                                                                    </div>
+                                                                                <% }) %>
+                                                                            </div>
+                                                                        </td>
+                                                                    <% }) %>
+                                                                </tr>
+                                                            <% }) %> 
+                                                        <% }) %>
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        <% }) %>
-                                    <% } %>
+                                        <% } %>
+                                    <% }) %>
                                 </div>
                             </div>
                         </div>
@@ -486,34 +530,141 @@
                         <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                             <div class="pot-list-section-subheader w-100">
                                 <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#pot-add">
-                                    <i class="fas fa-caret-down mr-2"></i> Additional (Bonus) Potentials - <%= locals.selectedPartName %>
+                                    <i class="fas fa-caret-down mr-2"></i> Additional (Bonus) Potentials - <%= locals.generalData.selectedPartName %>
                                 </h3>
                             </div>
                             <div class="pot-list-section w-100 px-0 collapse show" id="pot-add">
                                 <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3">
-                                    <% if(locals.potentialsByRank) { %>
-                                        <% Object.keys(potentialsByRank.additional).forEach(function(rank) { %>
-                                            <div class="d-flex font-table col-12 col-md-6 col-xl-4 mt-3 px-2">
-                                                <table class="font-table table table-bordered table-hover mb-0">
+                                    <div class="col-12 d-flex justify-content-center mt-3">
+                                        <div class="w-100 size-720">
+                                            <div class="form-group row d-flex align-items-center mb-2">
+                                                <label for="pot-rank-type" class="col-4 col-lg-4 col-form-label font-weight-bold text-left d-flex">
+                                                    <span class="mr-1">Potential Rank</span>
+                                                </label>
+                                                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center">
+                                                    <div class="col form-check p-0">
+                                                        <input class="form-check-input" type="radio" name="pot-rank-type" id="pot-rank-all" value="all">
+                                                        <label class="form-check-label font-small radio-select add-pot-rank-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="pot-rank-all" data-pot-rank="all">All</label>
+                                                    </div>
+                                                    <div class="col form-check p-0">
+                                                        <input class="form-check-input" type="radio" name="pot-rank-type" id="pot-rank-legendary" value="legendary" checked>
+                                                        <label class="form-check-label font-small radio-select add-pot-rank-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 active" for="pot-rank-legendary" data-pot-rank="legendary">Legendary</label>
+                                                    </div>
+                                                    <div class="col form-check p-0">
+                                                        <input class="form-check-input" type="radio" name="pot-rank-type" id="pot-rank-unique" value="unique">
+                                                        <label class="form-check-label font-small radio-select add-pot-rank-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="pot-rank-unique" data-pot-rank="unique">Unique</label>
+                                                    </div>
+                                                    <div class="col form-check p-0">
+                                                        <input class="form-check-input" type="radio" name="pot-rank-type" id="pot-rank-epic" value="epic">
+                                                        <label class="form-check-label font-small radio-select add-pot-rank-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="pot-rank-epic" data-pot-rank="epic">Epic</label>
+                                                    </div>
+                                                    <div class="col form-check p-0">
+                                                        <input class="form-check-input" type="radio" name="pot-rank-type" id="pot-rank-rare" value="rare">
+                                                        <label class="form-check-label font-small radio-select add-pot-rank-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="pot-rank-rare" data-pot-rank="rare">Rare</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row d-flex align-items-center mb-2">
+                                                <label for="dp-type" class="col-4 col-lg-4 col-form-label font-weight-bold text-left d-flex">
+                                                    <span class="mr-1">Display Type</span>
+                                                </label>
+                                                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center">
+                                                    <div class="col form-check p-0">
+                                                        <input class="form-check-input" type="radio" name="display-type" id="display-type-percent" value="percent" checked>
+                                                        <label class="form-check-label font-small radio-select add-display-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 active" for="display-type-percent" data-display-type="percent">% chance</label>
+                                                    </div>
+                                                    <div class="col form-check p-0">
+                                                        <input class="form-check-input" type="radio" name="display-type" id="display-type-weights" value="weights">
+                                                        <label class="form-check-label font-small radio-select add-display-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="display-type-weights" data-display-type="weights">Weights</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="add-display-percent-controls"> 
+                                                <div class="form-group row d-flex align-items-center mb-2">
+                                                    <label for="dp-type" class="col-4 col-lg-4 col-form-label font-weight-bold text-left d-flex">
+                                                        <span class="mr-1">Decimal Places</span>
+                                                    </label>
+                                                    <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center">
+                                                        <div class="col form-check p-0">
+                                                            <input class="form-check-input" type="radio" name="dp-type" id="dp-type-2" value="2" checked>
+                                                            <label class="form-check-label font-small radio-select add-dp-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 active" for="dp-type-2" data-dp-type="2">2 d.p.</label>
+                                                        </div>
+                                                        <div class="col form-check p-0">
+                                                            <input class="form-check-input" type="radio" name="dp-type" id="dp-type-4" value="4">
+                                                            <label class="form-check-label font-small radio-select add-dp-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="dp-type-4" data-dp-type="4">4 d.p.</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <% generalData.ranks.forEach(function(rankData) { %>
+                                        <% if(rankData.prime !== "normal") { %>
+                                            <div class="single-add-pot-rank-table font-table col-12 justify-content-center mt-3 px-2 <% if(rankData.prime !== 'legendary') { %>d-none<% } else { %>d-flex<% } %>" id="add-pot-<%= rankData.prime %>">
+                                                <table class="font-table size-720 table table-bordered table-hover mb-0">
                                                     <thead>
                                                         <tr>
-                                                            <th class="text-center bg-<%= potentialsByRank.additional[rank].rankName %> py-2"><%= potentialsByRank.additional[rank].title %></th>
+                                                            <th class="font-subsubheader text-center bg-<%= rankData.prime %> py-2" colspan="4">
+                                                                <%= rankData.prime.charAt(0).toUpperCase() + rankData.prime.slice(1) %>
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="stat-type text-left py-2">Stat</th>
+                                                            <th class="add-cell-display-percent d-table-cell text-center py-2">Line 1 (%)</th>
+                                                            <th class="add-cell-display-percent d-table-cell text-center py-2">Line 2 (%)</th>
+                                                            <th class="add-cell-display-percent d-table-cell text-center py-2">Line 3 (%)</th>
+                                                            <th class="add-cell-display-weights text-center d-none py-2" colspan="3">Weight</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <% potentialsByRank.additional[rank].list.forEach(function(potentialData) { %>
+                                                        <% Object.keys(rankData).forEach(function(potType) { %>
                                                             <tr>
-                                                                <td class="align-middle py-2"><%= potentialData.desc %></td>
-                                                                <% if(potentialsByRank.additional[rank].notes) { %>
-                                                                    <div class="d-inline mx-1" data-toggle="tooltip" data-placement="bottom" title="<%= potentialsByRank.regular[rank].notes %>"><i class="fas fa-info-circle"></i></div>
-                                                                <% } %>
+                                                                <td class="py-2 text-center font-weight-bold" colspan="4">
+                                                                    <%= potType.charAt(0).toUpperCase() + potType.slice(1) %> Lines<br/>
+                                                                    <span class="add-display-weights-total d-none">(Total Weight = <%= potentialsByRank.additional[rankData[potType]].totalWeight %>)</span>
+                                                                </td>
                                                             </tr>
-                                                        <% }) %> 
+                                                            <% potentialsByRank.additional[rankData[potType]].list.forEach(function(potentialData) { %>
+                                                                <tr>
+                                                                    <td class="stat-type align-middle">
+                                                                        <%= potentialData.desc %>
+                                                                        <% if(potentialData.notes) { %>
+                                                                            <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= potentialData.notes %>"><i class="fas fa-info-circle"></i></div>
+                                                                        <% } %>
+                                                                    </td>
+                                                                    <td class="add-cell-display-weights text-center justify-content-center align-items-center align-middle d-none" colspan="3">
+                                                                        <%= potentialData.weight %>
+                                                                    </td>
+                                                                    <% ["line1", "line2", "line3"].forEach(function(lineNum) { %>
+                                                                        <td class="add-cell-display-percent d-table-cell text-center align-middle">
+                                                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                                                <div class="single-add-pot-cube-data additional-cube-data">
+                                                                                    <% if(generalData.cubeRates.addPot[lineNum][rankData.prime][potType] === 0) { %>
+                                                                                        -
+                                                                                    <% } else { %>
+                                                                                        <div class="d-flex">
+                                                                                            <div class="additional-cube d-flex justify-content-center align-items-center rounded-sm font-weight-bold px-1 mr-1">O</div>
+                                                                                            <span class="single-add-dp add-dp-2">
+                                                                                                <%= (generalData.cubeRates.addPot[lineNum][rankData.prime][potType] * potentialData.weight / potentialsByRank.additional[rankData[potType]].totalWeight).toFixed(2) %>
+                                                                                            </span>
+                                                                                            <span class="single-add-dp add-dp-4 d-none">
+                                                                                                <%= (generalData.cubeRates.addPot[lineNum][rankData.prime][potType] * potentialData.weight / potentialsByRank.additional[rankData[potType]].totalWeight).toFixed(4) %>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    <% } %>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    <% }) %>
+                                                                </tr>
+                                                            <% }) %> 
+                                                        <% }) %>
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        <% }) %>
-                                    <% } %>
+                                        <% } %>
+                                    <% }) %>
                                 </div>
                             </div>
                         </div>

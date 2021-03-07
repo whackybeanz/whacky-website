@@ -85,19 +85,96 @@ function sortByPrice(bossList) {
 
 function groupByRank(potentialList) {
     const allPotentialTypes = ["regular", "additional"];
-    const allPotentialRanks = [...new Set(potentialList.map(singleList => singleList.potRankName))];
+    const allPotentialRanks = [...new Set(potentialList.map(singleList => singleList.potRankName.toLowerCase()))];
     const allCubeTypes = ["red", "black", "additional"];
 
     let potentialsByRank = {
-        regular: [],
-        additional: [],
+        regular: {},
+        additional: {},
     };
 
+    allPotentialRanks.forEach(function(rank) {
+        potentialsByRank.regular[rank] = { totalWeight: 0, list: [] };
+        potentialsByRank.additional[rank] = { totalWeight: 0, list: [] };
+    })
+
     potentialList.forEach(listItem => {
-        potentialsByRank[listItem.potType].push({ potRankName: listItem.potRankName, potentials: listItem.potentials })
+        let affectedRankObj = potentialsByRank[listItem.potType][listItem.potRankName.toLowerCase()];
+
+        listItem.potentials.forEach(statType => {
+            affectedRankObj.totalWeight += statType.weight;
+            affectedRankObj.list.push({ desc: statType.desc, weight: statType.weight });
+        })
     });
 
     return potentialsByRank;
 }
 
-module.exports = { compileSoulsByTier, compileSetItemsBySetName, compileSetItemsByItemPart, sortByPrice, groupByRank };
+function getCubeRates() {
+    const cubeRates = {
+        red: {
+            line1: { 
+                legendary: { prime: 100, secondary: 0 }, 
+                unique: { prime: 100, secondary: 0 }, 
+                epic: { prime: 100, secondary: 0 }, 
+                rare: { prime: 100, secondary: 0 } 
+            },
+            line2: { 
+                legendary: { prime: 10, secondary: 90 },
+                unique: { prime: 10, secondary: 90 },
+                epic: { prime: 10, secondary: 90 },
+                rare: { prime: 10, secondary: 90 } 
+            },
+            line3: { 
+                legendary: { prime: 1, secondary: 99 },
+                unique: { prime: 1, secondary: 99 },
+                epic: { prime: 1, secondary: 99 },
+                rare: { prime: 1, secondary: 99 } 
+            }, 
+        },
+        black: {
+            line1: { 
+                legendary: { prime: 100, secondary: 0 }, 
+                unique: { prime: 100, secondary: 0 }, 
+                epic: { prime: 100, secondary: 0 }, 
+                rare: { prime: 100, secondary: 0 } 
+            },
+            line2: { 
+                legendary: { prime: 20, secondary: 80 },
+                unique: { prime: 20, secondary: 80 },
+                epic: { prime: 20, secondary: 80 },
+                rare: { prime: 20, secondary: 80 } 
+            },
+            line3: { 
+                legendary: { prime: 5, secondary: 95 },
+                unique: { prime: 5, secondary: 95 },
+                epic: { prime: 5, secondary: 95 },
+                rare: { prime: 5, secondary: 95 } 
+            },
+        },
+        addPot: {
+            line1: { 
+                legendary: { prime: 100, secondary: 0 }, 
+                unique: { prime: 100, secondary: 0 }, 
+                epic: { prime: 100, secondary: 0 }, 
+                rare: { prime: 100, secondary: 0 } 
+            },
+            line2: { 
+                legendary: { prime: 0.4975, secondary: 99.5025 },
+                unique: { prime: 1.9608, secondary: 98.0392 },
+                epic: { prime: 4.7619, secondary: 95.2381 },
+                rare: { prime: 1.9608, secondary: 98.0392 } 
+            },
+            line3: { 
+                legendary: { prime: 0.4975, secondary: 99.5025 },
+                unique: { prime: 1.9608, secondary: 98.0392 },
+                epic: { prime: 4.7619, secondary: 95.2381 },
+                rare: { prime: 1.9608, secondary: 98.0392 } 
+            },
+        }
+    };
+
+    return cubeRates;
+}
+
+module.exports = { compileSoulsByTier, compileSetItemsBySetName, compileSetItemsByItemPart, sortByPrice, groupByRank, getCubeRates };
