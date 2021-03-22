@@ -93,6 +93,10 @@
   max-width: 720px;
 }
 
+.size-900 {
+  max-width: 900px;
+}
+
 .index-collapse svg,
 .sidebar-collapse svg {
   transition: all linear 0.25s;

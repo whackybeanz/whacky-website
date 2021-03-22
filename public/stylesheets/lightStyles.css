@@ -122,7 +122,7 @@ body .page-select a, body .single-option-select a {
 body .main-content-div {
   background-color: rgba(255, 255, 255, 0.7);
 }
-body .job-choice-div .single-option-select, body .equip-choice .single-option-select, body .sort-boss-crystal-div .single-option-select, body .skin-select-div .single-option-select {
+body .single-option-select {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
 body #soul-list-carousel .carousel-nav {

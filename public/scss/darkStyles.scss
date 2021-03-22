@@ -241,10 +241,8 @@ body.dark-mode {
         background-color: globals.$dark-mode-black;
     }
 
-    .job-choice-div, .equip-choice, .sort-boss-crystal-div, .skin-select-div {
-        .single-option-select {
-            border: 1px solid globals.$dark-mode-grey;
-        }
+    .single-option-select {
+        border: 1px solid globals.$dark-mode-grey;
     }
 
     #soul-list-carousel {

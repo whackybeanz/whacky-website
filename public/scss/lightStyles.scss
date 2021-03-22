@@ -198,10 +198,8 @@ body {
         background-color: globals.$light-mode-white;
     }
 
-    .job-choice-div, .equip-choice, .sort-boss-crystal-div, .skin-select-div {
-        .single-option-select {
-            border: 1px solid globals.$light-mode-grey; 
-        }
+    .single-option-select {
+        border: 1px solid globals.$light-mode-grey; 
     }
 
     #soul-list-carousel {

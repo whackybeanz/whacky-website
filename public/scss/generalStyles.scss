@@ -76,6 +76,10 @@
     max-width: 720px;
 }
 
+.size-900 {
+    max-width: 900px;
+}
+
 .index-collapse svg,
 .sidebar-collapse svg{
     transition: all linear 0.25s;
@@ -345,7 +349,7 @@ form {
 **********************/
 .single-option-select {
     height: 32px;
-    
+
     &:hover, &.active {
         font-weight: bold;
         transition: all 0.3s;
