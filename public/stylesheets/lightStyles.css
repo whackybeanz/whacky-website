@@ -51,6 +51,17 @@ body .sidebar .sidebar-btn:hover, body .sidebar .sidebar-btn.active {
   background-color: rgba(0, 0, 0, 0.075);
   color: #212529;
 }
+body form .form-check .form-check-label {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body form .form-check .form-check-label:hover, body form .form-check .form-check-label.active {
+  background-color: rgba(206, 212, 218, 0.8);
+  color: #212529;
+}
+body form option:disabled {
+  background-color: rgba(206, 212, 218, 0.8);
+  color: #212529;
+}
 body .modal .modal-content {
   border: 1px solid rgba(206, 212, 218, 0.8);
   color: #212529;

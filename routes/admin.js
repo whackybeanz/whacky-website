@@ -1,27 +1,20 @@
 var express = require("express");
 var router  = express.Router();
+var Icon    = require("../models/iconData");
 
 router.get("/", function(req, res) {
-    res.render("admin/equipList", {pageView: "equip-list"});
+    res.render("admin/index");
 })
 
-router.get("/addSet", function(req, res) {
-    res.locals.extraStylesheet = "adminStyles";
-    res.render("admin/addSet", {pageView: "add-set"});
-})
-
-router.post("/addSet", function(req, res) {
-    var setData = req.body;
-    console.log(setData)
-
-    Object.values(setData).forEach(function(value) {
-        //console.log(value.length);
-        //console.log(typeof value)
+router.get("/icons", function(req, res) {
+    Icon.find({}, function(err, icons) {
+        if(err) {
+            console.log(err);
+            res.redirect("back");
+        } else {
+            res.render("admin/icons");
+        }
     })
-})
-
-router.get("/addItem", function(req, res) {
-    res.render("admin/addItem", {pageView: "add-item"});
 })
 
 module.exports = router;

@@ -83,6 +83,22 @@ body.dark-mode {
         .form-control-plaintext {
             color: globals.$dark-mode-white;
         }
+
+        .form-check {
+            .form-check-label {
+                border: 1px solid globals.$dark-mode-grey;
+
+                &:hover, &.active {
+                    background-color: globals.$dark-mode-navy-grey;
+                    color: globals.$dark-mode-white;
+                }
+            }
+        }
+
+        option:disabled {
+            background-color: globals.$dark-mode-navy-grey-opaque;
+            color: globals.$dark-mode-white;
+        }
     }
     
     // Modal

@@ -33,6 +33,19 @@ router.get("/", function(req, res) {
         })
 })
 
+router.get("/login", function(req, res) {
+    res.locals.section = "";
+    res.render("login");
+})
+
+router.post("/login", function(req, res) {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    res.locals.section = "";
+    res.redirect("/admin");
+})
+
 router.get("/events", function(req, res) {
     res.redirect("/events/tactical-relay");
 })

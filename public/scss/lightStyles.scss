@@ -72,6 +72,25 @@ body {
         }
     }
 
+    // Form
+    form {
+        .form-check {
+            .form-check-label {
+                border: 1px solid globals.$light-mode-grey;
+
+                &:hover, &.active {
+                    background-color: globals.$light-mode-grey;
+                    color: globals.$light-mode-black;
+                }
+            }
+        }
+
+        option:disabled {
+            background-color: globals.$light-mode-grey;
+            color: globals.$light-mode-black;
+        }
+    }
+
     // Modal
     .modal {
         .modal-content {

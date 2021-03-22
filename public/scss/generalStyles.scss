@@ -130,7 +130,7 @@ input[type="number"] {
     -webkit-appearance: textfield;
 }
 
-input[type="radio"] {
+input[type="radio"], input[type="checkbox"] {
     visibility: hidden;
 }
 
@@ -205,6 +205,64 @@ img {
             }
         }
     }   
+}
+
+/**********************
+
+    Forms
+
+**********************/
+form {
+    .form-control {
+        height: 32px;
+    }
+
+    .form-check {
+        height: 32px;
+
+        &:first-of-type {
+            padding-left: 0 !important;
+
+            .radio-select {
+                border-top-left-radius: 3px;
+                border-bottom-left-radius: 3px;
+            }
+        }
+
+        &:last-of-type {
+            padding-right: 0 !important;
+
+            .radio-select {
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+            }
+        }
+
+        .radio-select {
+            height: 32px;
+            transition: all 0.3s;
+            line-height: 1;
+
+            &:hover, &.active {
+                font-weight: bold;
+                transition: all 0.3s;
+            }
+        }
+
+        .form-check-input {
+            visibility: hidden;
+        }
+
+        .form-check-label {
+            left: 0;
+            transition: all 0.3s;
+
+            &:hover, &.active {
+                font-weight: bold;
+                transition: all 0.3s;
+            }
+        }
+    }
 }
 
 /**********************
@@ -286,34 +344,11 @@ img {
 
 **********************/
 .single-option-select {
+    height: 32px;
+    
     &:hover, &.active {
         font-weight: bold;
         transition: all 0.3s;
-    }
-}
-
-.radio-select-group {
-    .form-check {
-        &:first-of-type .radio-select {
-            border-top-left-radius: 3px;
-            border-bottom-left-radius: 3px;
-        }
-
-        &:last-of-type .radio-select {
-            border-top-right-radius: 3px;
-            border-bottom-right-radius: 3px;
-        }
-
-        .radio-select {
-            height: 32px;
-            transition: all 0.3s;
-            line-height: 1;
-
-            &:hover, &.active {
-                font-weight: bold;
-                transition: all 0.3s;
-            }
-        }
     }
 }
 

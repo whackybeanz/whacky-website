@@ -161,7 +161,7 @@ input[type=number] {
   -webkit-appearance: textfield;
 }
 
-input[type=radio] {
+input[type=radio], input[type=checkbox] {
   visibility: hidden;
 }
 
@@ -229,6 +229,52 @@ img.small-img {
 
 /**********************
 
+    Forms
+
+**********************/
+form .form-control {
+  height: 32px;
+}
+form .form-check {
+  height: 32px;
+}
+form .form-check:first-of-type {
+  padding-left: 0 !important;
+}
+form .form-check:first-of-type .radio-select {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+form .form-check:last-of-type {
+  padding-right: 0 !important;
+}
+form .form-check:last-of-type .radio-select {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+form .form-check .radio-select {
+  height: 32px;
+  transition: all 0.3s;
+  line-height: 1;
+}
+form .form-check .radio-select:hover, form .form-check .radio-select.active {
+  font-weight: bold;
+  transition: all 0.3s;
+}
+form .form-check .form-check-input {
+  visibility: hidden;
+}
+form .form-check .form-check-label {
+  left: 0;
+  transition: all 0.3s;
+}
+form .form-check .form-check-label:hover, form .form-check .form-check-label.active {
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+/**********************
+
     Modals
 
 **********************/
@@ -291,25 +337,10 @@ img.small-img {
     Other
 
 **********************/
-.single-option-select:hover, .single-option-select.active {
-  font-weight: bold;
-  transition: all 0.3s;
-}
-
-.radio-select-group .form-check:first-of-type .radio-select {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-.radio-select-group .form-check:last-of-type .radio-select {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-.radio-select-group .form-check .radio-select {
+.single-option-select {
   height: 32px;
-  transition: all 0.3s;
-  line-height: 1;
 }
-.radio-select-group .form-check .radio-select:hover, .radio-select-group .form-check .radio-select.active {
+.single-option-select:hover, .single-option-select.active {
   font-weight: bold;
   transition: all 0.3s;
 }
