@@ -4,7 +4,7 @@
 <div class="container-fluid content d-flex flex-column flex-md-row p-0">
     <%- include("../partials/admin/adminSidebar") %>
     <div class="main-content-div col p-0 position-relative">
-        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4" id="page-1">
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
             <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
                 <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
@@ -20,171 +20,7 @@
                         </div>
                         <div class="pot-list-section w-100 px-0 collapse" id="add-icon">
                             <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
-                                <form class="font-form w-100 size-720">
-                                    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Icon Basic Info</h3>
-                                    <div class="form-group row">
-                                        <label for="item-type" class="col-sm-3 col-form-label font-weight-bold">Item Type</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control" name="itemType" id="item-type" required>
-                                                <option value="" selected disabled hidden>-- Select Item Type --</option>
-                                                <option value="equip" data-img-main-folder="equips">Equip</option>
-                                                <option value="use" data-img-main-folder="items" data-img-sub-folder="use">Use</option>
-                                                <option value="setup" data-img-main-folder="items" data-img-sub-folder="setup">Setup</option>
-                                                <option value="etc" data-img-main-folder="items" data-img-sub-folder="etc">ETC</option>
-                                                <option value="cash" data-img-main-folder="items" data-img-sub-folder="cash">Cash</option>
-                                                <option value="map" data-img-main-folder="maps">Map</option>
-                                                <option value="boss" data-img-main-folder="boss">Boss Monster</option>
-                                                <option value="boss" data-img-main-folder="souls">Boss Soul</option>
-                                                <option value="other" data-img-main-folder="">Other</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row d-none" id="select-equip-type">
-                                        <label for="item-type" class="col-sm-3 col-form-label font-weight-bold">Equip Type</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control" name="itemType" id="equip-type">
-                                                <option value="" selected disabled hidden>-- Select Equip Type --</option>
-                                                <option class="font-weight-bold" value="" disabled>[WSE]</option>
-                                                <option value="weapon">Weapon</option>
-                                                <option value="secondary">Secondary</option>
-                                                <option value="emblem">Emblem</option>
-                                                <option class="font-weight-bold" value="" disabled>[Armors]</option>
-                                                <option value="hat">Hat</option>
-                                                <option value="top">Top</option>
-                                                <option value="overall">Overall</option>
-                                                <option value="bottom">Bottom</option>
-                                                <option value="gloves">Gloves</option>
-                                                <option value="shoes">Shoes</option>
-                                                <option value="cape">Cape</option>
-                                                <option class="font-weight-bold" value="" disabled>[Accessories]</option>
-                                                <option value="face-acc">Face Accessory</option>
-                                                <option value="eye-acc">Eye Accessory</option>
-                                                <option value="ring">Ring</option>
-                                                <option value="earring">Earrings</option>
-                                                <option value="pendant">Pendant</option>
-                                                <option value="belt">Belt</option>
-                                                <option value="shoulder">Shoulder Decoration</option>
-                                                <option value="badge">Badge</option>
-                                                <option value="medal">Medal</option>
-                                                <option value="pocket">Pocket</option>
-                                                <option value="android">Android</option>
-                                                <option value="heart">Mechanical Heart</option>
-                                                <option class="font-weight-bold" value="" disabled>[Others]</option>
-                                                <option value="others">Others</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Item ID</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="item-id" name="itemID" placeholder="Item ID" required>
-                                            <small class="form-text text-muted">Use small case and dashes to connect words (something-like-this). ID will be filled as image file name automatically below.</small>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="item-name" class="col-sm-3 col-form-label font-weight-bold">Item Name</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="item-name" name="itemName" placeholder="Item Name" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-3 font-weight-bold">Sections Used</div>
-                                        <div class="col-sm-9 d-flex flex-wrap h-100">
-                                            <div class="form-check col-3 px-1 mb-1">
-                                                <input class="form-check-input" name="sections" type="checkbox" id="section-home">
-                                                <label class="form-check-label col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer" for="section-home">
-                                                    Homepage
-                                                </label>
-                                            </div>
-                                            <div class="single-check col-3 px-1 mb-1">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" name="sections" type="checkbox" id="section-spell-trace">
-                                                    <label class="form-check-label col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer" for="section-spell-trace">
-                                                        Spell Trace
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-check col-3 px-1 mb-1">
-                                                <input class="form-check-input" name="sections" type="checkbox" id="section-home">
-                                                <label class="form-check-label col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer" for="section-home">
-                                                    Homepage
-                                                </label>
-                                            </div>
-                                            <div class="single-check col-3 px-1 mb-1">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" name="sections" type="checkbox" id="section-spell-trace">
-                                                    <label class="form-check-label col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer" for="section-spell-trace">
-                                                        Spell Trace
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-check col-3 px-1 mb-1">
-                                                <input class="form-check-input" name="sections" type="checkbox" id="section-home">
-                                                <label class="form-check-label col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer" for="section-home">
-                                                    Homepage
-                                                </label>
-                                            </div>
-                                            <div class="single-check col-3 px-1 mb-1">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" name="sections" type="checkbox" id="section-spell-trace">
-                                                    <label class="form-check-label col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer" for="section-spell-trace">
-                                                        Spell Trace
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr class="w-25 my-4">
-
-                                    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Icon Image Details</h3>
-                                    <div class="form-group row">
-                                        <div class="col-sm-3 font-weight-bold">Localhost?</div>
-                                        <div class="col-sm-9 d-flex flex-wrap h-100">
-                                            <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0">
-                                                <div class="col form-check p-0">
-                                                    <input class="form-check-input" type="radio" name="isLocalhost" id="localhost-no" value="no" checked>
-                                                    <label class="form-check-label radio-select is-localhost-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 active" for="localhost-no" data-is-localhost="no">No</label>
-                                                </div>
-                                                <div class="col form-check p-0">
-                                                    <input class="form-check-input" type="radio" name="isLocalhost" id="localhost-yes" value="yes">
-                                                    <label class="form-check-label radio-select is-localhost-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="localhost-yes" data-is-localhost="yes">Yes</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="image-path-start" class="col-sm-3 col-form-label font-weight-bold">Image Path</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="font-form form-control-plaintext" id="image-path-start" name="imgPath" value="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="image-path-end" class="col-sm-3 col-form-label font-weight-bold">Image Main Folder</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="image-main-folder" name="imgPath" placeholder="Main Folder" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="image-path-end" class="col-sm-3 col-form-label font-weight-bold">Image Subfolder</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="image-sub-folder" name="imgPath" placeholder="Subfolder">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="image-file-name" class="col-sm-3 col-form-label font-weight-bold">Image File Name</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="image-file-name" name="imgPath" placeholder="Image URL" required>
-                                            <small class="form-text text-muted">Double check that the image is hosted on AWS in the correct folder with the correct name.</small>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group row">
-                                        <div class="col-12">
-                                            <button type="submit" class="w-100 btn btn-sm btn-info">Add Icon</button>
-                                        </div>
-                                    </div>
-                                </form>
+                                <%- include("./partials/iconDataForm") %>
                             </div>
                         </div>
                     </div>
@@ -222,9 +58,8 @@
                                         <table class="font-table w-100 table table-bordered table-hover mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th class="d-none d-md-table-cell text-center"></th>
                                                     <% if(selectedCategory === "equip") { %>
-                                                        <th class="text-center">Equip Type</th>
+                                                        <th class="text-center align-middle">Equip Type</th>
                                                     <% } %>
                                                     <th class="align-middle">Icon ID</th>
                                                     <th class="align-middle">Icon Name</th>
@@ -235,16 +70,17 @@
                                             <tbody>
                                                 <% icons.forEach(function(icon) { %>
                                                     <tr class="single-search-row" <% if(selectedCategory === "equip") { %>data-equip-type="<%= icon.category %>"<% } %> data-icon-id="<%= icon.id %>" data-icon-name="<%= icon.name %>">
-                                                        <td class="d-none d-md-table-cell text-center"><img src="<%= icon.imgUrl %>"></td>
                                                         <% if(selectedCategory === "equip") { %>
-                                                            <td class="text-center"><%= icon.category %></td>
+                                                            <td class="text-center align-middle"><%= icon.category %></td>
                                                         <% } %> 
                                                         <td class="align-middle"><%= icon.id %></td>
                                                         <td class="align-middle"><%= icon.name %></td>
                                                         <td class="align-middle"><%= icon.usedInSections.join(" / ") %></td>
                                                         <td class="table-cols-125 text-center align-middle">
-                                                            <a href="#" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
-                                                            <a href="#" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                                            <a href="/admin/icon/<%= icon._id %>" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
+                                                            <form action="/admin/icon/<%= icon._id %>/delete" method="POST" class="d-inline">
+                                                                <button type="submit" class="delete-icon-btn btn btn-outline-danger btn-sm" data-icon-name="<%= icon.name %>"><i class="fas fa-trash"></i></button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 <% }) %>
