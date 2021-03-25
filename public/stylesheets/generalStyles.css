@@ -204,18 +204,75 @@ img.small-img {
 
 **********************/
 .table-cols-header {
-  min-width: 75px;
-  max-width: 150px;
+  width: 75px;
+}
+@media (min-width: 576px) {
+  .table-cols-header {
+    width: 90px;
+  }
+}
+@media (min-width: 768px) {
+  .table-cols-header {
+    width: 100px;
+  }
+}
+@media (min-width: 992px) {
+  .table-cols-header {
+    width: 125px;
+  }
+}
+@media (min-width: 1200px) {
+  .table-cols-header {
+    width: 150px;
+  }
 }
 
 .table-cols-50 {
-  min-width: 50px;
-  max-width: 125px;
+  width: 50px;
+}
+@media (min-width: 576px) {
+  .table-cols-50 {
+    width: 65px;
+  }
+}
+@media (min-width: 768px) {
+  .table-cols-50 {
+    width: 85px;
+  }
+}
+@media (min-width: 992px) {
+  .table-cols-50 {
+    width: 105px;
+  }
+}
+@media (min-width: 1200px) {
+  .table-cols-50 {
+    width: 125px;
+  }
 }
 
 .table-cols-125 {
-  min-width: 125px;
-  max-width: 300px;
+  width: 125px;
+}
+@media (min-width: 576px) {
+  .table-cols-125 {
+    width: 150px;
+  }
+}
+@media (min-width: 768px) {
+  .table-cols-125 {
+    width: 200px;
+  }
+}
+@media (min-width: 992px) {
+  .table-cols-125 {
+    width: 250px;
+  }
+}
+@media (min-width: 1200px) {
+  .table-cols-125 {
+    width: 300px;
+  }
 }
 
 .table-item-img,

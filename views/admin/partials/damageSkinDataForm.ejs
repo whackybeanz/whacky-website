@@ -71,7 +71,7 @@
         <div class="form-group row">
             <label for="alt-names" class="col-sm-3 col-form-label font-weight-bold">Alternate Names</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="alt-names" name="altNames" placeholder="Alternate Names" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.altNames %>"<% } %>>
+                <input type="text" class="form-control" id="alt-names" name="altNames" placeholder="Alternate Names" autocomplete="off" <% if(locals.damageSkinData && damageSkinData.altNames) { %>value="<%= damageSkinData.altNames.join(" / ") %>"<% } %>>
                 <small class="form-text text-info">Separate each alternate name with space-forward slash-space " / ". Use shortened names (Default instead of Damage Skin - Default) unless damage skin's name does not start with "Damage Skin -".</small>
             </div>
         </div>

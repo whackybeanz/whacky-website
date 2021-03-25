@@ -71,44 +71,6 @@ function addLocalhostRadioListener() {
     })
 }
 
-function addSearchListener() {
-    const searchForm = document.getElementById("search-icon-form");
-    const searchInputField = document.getElementById("search-icon-field");
-
-    if(searchForm && searchInputField) {
-        searchForm.addEventListener("submit", function(event) {
-            event.preventDefault();
-        })
-
-        searchInputField.addEventListener("keyup", function(event) {
-            const searchTerm = this.value.toLowerCase();
-
-            // Search for input as long as above 3 characters
-            // Search by equipType (if applicable), icon ID and icon name
-            // If any match, display row
-            if(searchTerm.length >= 3) {
-                const allSearchRows = document.querySelectorAll(".single-search-row");
-
-                allSearchRows.forEach(function(row) {
-                    if((row.dataset.equipType && row.dataset.equipType.toLowerCase().includes(searchTerm)) ||
-                        row.dataset.iconId.toLowerCase().includes(searchTerm) ||
-                        row.dataset.iconName.toLowerCase().includes(searchTerm)) {
-                        row.classList.remove("d-none");
-                    }  else {
-                        row.classList.add("d-none");
-                    }
-                })
-            } else {
-                const allSearchRows = document.querySelectorAll(".single-search-row");
-
-                allSearchRows.forEach(function(row) {
-                    row.classList.remove("d-none");
-                })
-            }
-        })
-    }
-}
-
 function addDeleteIconListener() {
     const deleteIconBtns = document.querySelectorAll(".delete-icon-btn");
 

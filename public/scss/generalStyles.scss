@@ -179,18 +179,30 @@ img {
 
 **********************/
 .table-cols-header {
-    min-width: 75px;
-    max-width: 150px;
+    width: 75px;
+
+    @include globals.for-size(sm) { width: 90px; }
+    @include globals.for-size(md) { width: 100px; }
+    @include globals.for-size(lg) { width: 125px; }
+    @include globals.for-size(xl) { width: 150px; }
 }
 
 .table-cols-50 {
-    min-width: 50px;
-    max-width: 125px;
+    width: 50px;
+
+    @include globals.for-size(sm) { width: 65px; }
+    @include globals.for-size(md) { width: 85px; }
+    @include globals.for-size(lg) { width: 105px; }
+    @include globals.for-size(xl) { width: 125px; }
 }
 
 .table-cols-125 {
-    min-width: 125px;
-    max-width: 300px;
+    width: 125px;
+
+    @include globals.for-size(sm) { width: 150px; }
+    @include globals.for-size(md) { width: 200px; }
+    @include globals.for-size(lg) { width: 250px; }
+    @include globals.for-size(xl) { width: 300px; }
 }
 
 .table-item-img,

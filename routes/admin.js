@@ -107,7 +107,22 @@ router.post("/icon/:id/delete", function(req, res) {
 router.get("/damage-skins", function(req, res) {
     const damageSkinCategories = AdminHelper.getDamageSkinCategories();
     res.locals.extraStylesheet = "adminStyles";
-    res.render("admin/damage-skins", {damageSkinCategories: damageSkinCategories});
+    res.render("admin/damageSkins", {damageSkinCategories: damageSkinCategories});
+})
+
+router.get("/damage-skins/:category", function(req, res) {
+    const selectedCategory = req.params.category;
+
+    DamageSkin.find({ isKMSskin: selectedCategory === "kms" }, function(err, foundDamageSkins) {
+        if(err) {
+            console.log(err);
+            res.redirect("back");
+        } else {
+            const damageSkinCategories = AdminHelper.getDamageSkinCategories();
+            res.locals.extraStylesheet = "adminStyles";
+            res.render("admin/damageSkins", {selectedCategory: selectedCategory, damageSkinCategories: damageSkinCategories, damageSkins: foundDamageSkins});
+        }
+    })
 })
 
 router.post("/damage-skins", function(req, res) {
@@ -121,7 +136,20 @@ router.post("/damage-skins", function(req, res) {
             const damageSkinCategories = AdminHelper.getDamageSkinCategories();
             res.locals.extraStylesheet = "adminStyles";
             console.log(`Created new damage skin: ${newDamageSkin.name}`);
-            res.render("admin/damage-skins", {damageSkinCategories: damageSkinCategories});
+            res.render("admin/damageSkins", {damageSkinCategories: damageSkinCategories});
+        }
+    })
+})
+
+router.get("/damage-skin/:id", function(req, res) {
+    DamageSkin.findOne({ damageSkinId: req.params.id }, function(err, damageSkin) {
+        if(err) {
+            console.log(err);
+            res.redirect("back");
+        } else {
+            const prevUrl = `/admin/damage-skins/${damageSkin.isKMSskin ? "kms" : "non-kms"}`;
+            res.locals.extraStylesheet = "adminStyles";
+            res.render("admin/damageSkinData", {prevUrl: prevUrl, damageSkinData: damageSkin });
         }
     })
 })
