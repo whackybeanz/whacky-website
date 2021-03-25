@@ -1,0 +1,59 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="container-fluid content d-flex flex-column flex-md-row p-0">
+    <%- include("./partials/adminSidebar") %>
+    <div class="main-content-div col p-0 position-relative">
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Damage Skins</h1>
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                </div>
+                <div class="d-flex w-100 flex-column align-items-center justify-content-center mb-3 py-3">
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <div class="pot-list-section-subheader w-100">
+                            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 <% if(!locals.selectedCategory) { %>collapsed<% } %>" data-toggle="collapse" href="#add-damage-skin">
+                                <i class="fas fa-caret-down mr-2"></i> Add Damage Skins
+                            </h3>
+                        </div>
+                        <div class="pot-list-section w-100 px-0 collapse <% if(locals.selectedCategory) { %>show<% } %>" id="add-damage-skin">
+                            <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+                                <%- include("./partials/damageSkinDataForm") %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <div class="pot-list-section-subheader w-100">
+                            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 <% if(locals.selectedCategory) { %>collapsed<% } %>" data-toggle="collapse" href="#damage-skin-db">
+                                <i class="fas fa-caret-down mr-2"></i> Damage Skin Database
+                            </h3>
+                        </div>
+                        <div class="pot-list-section w-100 px-0 collapse <% if(!locals.selectedCategory) { %>show<% } %>" id="damage-skin-db">
+                            <div class="d-flex flex-column justify-content-center align-items-center px-3 pt-3 pb-3">
+                                <p>Select one of the following categories to view damage skins in that category.</p>
+                                <div class="col-12 d-flex justify-content-center flex-wrap px-0">
+                                    <% damageSkinCategories.forEach(function(category) { %>
+                                        <div class="col-6 col-md-3 px-1 mb-2">
+                                            <div class="single-option-select d-flex justify-content-center align-items-center rounded-sm position-relative py-1 px-2 <% if(locals.selectedCategory && selectedCategory === category.id) { %>active<% } %>">
+                                                <a href="/admin/damage-skins/<%= category.id %>" class="stretched-link text-decoration-none">
+                                                    <%= category.name %>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    <% }) %>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/scripts/commonScript.js"></script>
+<script type="text/javascript" src="/scripts/admin/damageSkinScript.js"></script>
+<%- include("../partials/footer") %>
