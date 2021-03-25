@@ -24,7 +24,7 @@
                             <tbody>
                                 <% Object.keys(soulList).forEach(function(tier) { %>
                                 <tr>
-                                    <th class="table-cols-header tier-col text-center align-middle">Tier <%= tier %></th>
+                                    <th class="tier-col text-center align-middle">Tier <%= tier %></th>
                                     <td class="align-middle px-3">
                                         <% soulList[tier].forEach(function(soul, index) { %>
                                             <img src="<%= icons[`soul-${soul.soulId}`].imgUrl %>" class="cursor-pointer" data-toggle="tooltip" data-placement="bottom" title="<%= soul.bossName %>" data-target="#soul-list-carousel" data-slide-to=<%= soulList[tier].currSummedSoulCount + index %>>
