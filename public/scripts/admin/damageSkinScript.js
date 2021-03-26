@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addServerTypeRadioListener();
     addCustomSkinRadioListener();
     addUnitSkinRadioListener();
+    addRemoveSkinFromLatestListener();
 });
 
 function addServerTypeRadioListener() {
@@ -45,6 +46,16 @@ function addUnitSkinRadioListener() {
             } else {
                 document.getElementById("unit-skin-section").classList.add("d-none");
             }
+        })
+    })
+}
+
+function addRemoveSkinFromLatestListener() {
+    const btns = document.querySelectorAll(".remove-latest-dmg-skin-btn");
+
+    btns.forEach(function(btn) {
+        btn.addEventListener("click", function(event) {
+            this.parentNode.remove();
         })
     })
 }

@@ -196,6 +196,15 @@ img {
     @include globals.for-size(xl) { width: 125px; }
 }
 
+.table-cols-75 {
+    width: 75px;
+
+    @include globals.for-size(sm) { width: 100px; }
+    @include globals.for-size(md) { width: 130px; }
+    @include globals.for-size(lg) { width: 160px; }
+    @include globals.for-size(xl) { width: 200px; }
+}
+
 .table-cols-125 {
     width: 125px;
 
@@ -361,6 +370,7 @@ form {
 **********************/
 .single-option-select {
     height: 32px;
+    transition: all 0.3s;
 
     &:hover, &.active {
         font-weight: bold;

@@ -251,6 +251,30 @@ img.small-img {
   }
 }
 
+.table-cols-75 {
+  width: 75px;
+}
+@media (min-width: 576px) {
+  .table-cols-75 {
+    width: 100px;
+  }
+}
+@media (min-width: 768px) {
+  .table-cols-75 {
+    width: 130px;
+  }
+}
+@media (min-width: 992px) {
+  .table-cols-75 {
+    width: 160px;
+  }
+}
+@media (min-width: 1200px) {
+  .table-cols-75 {
+    width: 200px;
+  }
+}
+
 .table-cols-125 {
   width: 125px;
 }
@@ -400,6 +424,7 @@ form .form-check .form-check-label:hover, form .form-check .form-check-label.act
 **********************/
 .single-option-select {
   height: 32px;
+  transition: all 0.3s;
 }
 .single-option-select:hover, .single-option-select.active {
   font-weight: bold;

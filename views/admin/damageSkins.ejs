@@ -15,12 +15,25 @@
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <div class="pot-list-section-subheader w-100">
                             <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#add-damage-skin">
-                                <i class="fas fa-caret-down mr-2"></i> Add Damage Skins
+                                <i class="fas fa-caret-down mr-2"></i> Add New Damage Skins
                             </h3>
                         </div>
                         <div class="pot-list-section w-100 px-0 collapse" id="add-damage-skin">
                             <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
                                 <%- include("./partials/damageSkinDataForm") %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <div class="pot-list-section-subheader w-100">
+                            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#system-new-skins">
+                                <i class="fas fa-caret-down mr-2"></i> New Skins / Skins in Boxes
+                            </h3>
+                        </div>
+                        <div class="pot-list-section w-100 px-0 collapse" id="system-new-skins">
+                            <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+                                <%- include("./partials/latestDamageSkinsForm") %>
                             </div>
                         </div>
                     </div>
@@ -60,7 +73,7 @@
                                                 <tr>
                                                     <th class="table-cols-50 align-middle text-center">Folder Number</th>
                                                     <th class="align-middle">Name(s)</th>
-                                                    <th class="table-cols-50 text-center align-middle">Tools</th>
+                                                    <th class="table-cols-75 text-center align-middle">Tools</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -85,7 +98,7 @@
                                                                 (<%= damageSkin.altNames.join(" / ") %>)
                                                             <% } %>
                                                         </td>
-                                                        <td class="table-cols-50 text-center align-middle">
+                                                        <td class="table-cols-75 text-center align-middle">
                                                             <a href="/admin/damage-skin/<%= damageSkin._id %>" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
                                                             <form action="/admin/damage-skin/<%= damageSkin._id %>/delete" method="POST" class="d-inline">
                                                                 <button type="submit" class="delete-database-item-btn btn btn-outline-danger btn-sm" data-name="<%= damageSkin.name %>"><i class="fas fa-trash"></i></button>
