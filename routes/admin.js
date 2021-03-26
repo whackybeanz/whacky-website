@@ -28,7 +28,7 @@ router.post("/icons", function(req, res) {
             const pageSections = AdminHelper.getPageSections();
             res.locals.extraStylesheet = "adminStyles";
             console.log(`Created new icon: ${newIcon.name}`);
-            res.render("admin/icons", {iconCategories: iconCategories, pageSections: pageSections});
+            res.redirect("/admin/icons");
         }
     })
 })
@@ -81,13 +81,14 @@ router.get("/icon/:id", function(req, res) {
 router.post("/icon/:id", function(req, res) {
     const newIconData = AdminHelper.compileIconData(req.body); 
 
-    Icon.findOneAndUpdate({ _id: req.params.id }, newIconData, { new: true }, function(err, updatedIcon) {
+    Icon.findOneAndUpdate({ _id: req.params.id }, newIconData, { new: true, overwrite: true }, function(err, updatedIcon) {
         if(err) {
             console.log(err);
             res.redirect("back");
         } else {
+            const path = updatedIcon.itemType;
             console.log("Icon updated");
-            res.redirect("back");
+            res.redirect(`/admin/icons/${path}`);
         }
     })
 })
@@ -136,13 +137,13 @@ router.post("/damage-skins", function(req, res) {
             const damageSkinCategories = AdminHelper.getDamageSkinCategories();
             res.locals.extraStylesheet = "adminStyles";
             console.log(`Created new damage skin: ${newDamageSkin.name}`);
-            res.render("admin/damageSkins", {damageSkinCategories: damageSkinCategories});
+            res.redirect("/admin/damage-skins");
         }
     })
 })
 
 router.get("/damage-skin/:id", function(req, res) {
-    DamageSkin.findOne({ damageSkinId: req.params.id }, function(err, damageSkin) {
+    DamageSkin.findOne({ _id: req.params.id }, function(err, damageSkin) {
         if(err) {
             console.log(err);
             res.redirect("back");
@@ -150,6 +151,33 @@ router.get("/damage-skin/:id", function(req, res) {
             const prevUrl = `/admin/damage-skins/${damageSkin.isKMSskin ? "kms" : "non-kms"}`;
             res.locals.extraStylesheet = "adminStyles";
             res.render("admin/damageSkinData", {prevUrl: prevUrl, damageSkinData: damageSkin });
+        }
+    })
+})
+
+router.post("/damage-skin/:id", function(req, res) {
+    const newDamageSkinData = AdminHelper.compileDamageSkinData(req.body);
+
+    DamageSkin.findOneAndUpdate({ _id: req.params.id }, newDamageSkinData, { new: true, overwrite: true }, function(err, updatedSkin) {
+        if(err) {
+            console.log(err);
+            res.redirect("back");
+        } else {
+            const path = updatedSkin.isKMSskin ? "kms" : "non-kms";
+            console.log("Damage skin updated");
+            res.redirect(`/admin/damage-skins/${path}`);
+        }
+    })
+})
+
+router.post("/damage-skin/:id/delete", function(req, res) {
+    DamageSkin.findOneAndDelete({ _id: req.params.id }, function(err) {
+        if(err) {
+            console.log(err);
+            res.redirect("back");
+        } else {
+            console.log("Damage skin deleted");
+            res.redirect("back");
         }
     })
 })

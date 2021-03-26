@@ -1,4 +1,6 @@
-<form class="font-form w-100 size-900" action="/admin/damage-skins" method="POST">
+<form class="font-form w-100 size-900" 
+    action="<% if(locals.damageSkinData) { %>/admin/damage-skin/<%= damageSkinData._id%><% } else { %>/admin/damage-skins<% } %>" 
+    method="POST">
     <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Basic Information</h3>
     <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
         <div class="form-group row">

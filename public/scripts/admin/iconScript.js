@@ -70,17 +70,3 @@ function addLocalhostRadioListener() {
         })
     })
 }
-
-function addDeleteIconListener() {
-    const deleteIconBtns = document.querySelectorAll(".delete-icon-btn");
-
-    deleteIconBtns.forEach(function(btn) {
-        btn.addEventListener("click", function(event) {
-            if(confirm(`Do you really wish to delete [${this.dataset.iconName}]?`)) {
-                return true;
-            } else {
-                event.preventDefault();
-            }
-        })
-    })
-}
