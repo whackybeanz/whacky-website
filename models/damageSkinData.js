@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 
 var damageSkinSchema = new mongoose.Schema({
     // Basic Info
+    isNewSkin: { type: Boolean, default: true },
     isKMSskin: { type: Boolean, default: true },
     isCustomSkin: Boolean,
     hasRegularSkin: { type: Boolean, default: true },

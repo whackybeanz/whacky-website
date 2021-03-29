@@ -12,6 +12,7 @@ var Soul    = require("../models/bossSoulData");
 var DamageSkin  = require("../models/damageSkinData");
 var MapLocations = require("../models/mapData");
 var Potentials = require("../models/potentialsData");
+var LatestUpdate = require("../models/latestUpdateData");
 
 router.get("/", function(req, res) {
     res.redirect("/flames");
@@ -173,25 +174,27 @@ router.get("/damage-skins/:pageNum", function(req, res) {
             }
         }
 
+        let getLatestUpdate = LatestUpdate.findOne({});
         let getDamageSkins = DamageSkin.find({$or: query}).sort({ letterCategory: 1, shortName: 1 });
 
-        getDamageSkins.then(allSkins => {
-            const allCategories = [...new Set(allSkins.map(skin => skin.letterCategory))];
-            let skinsByLetter = {};
+        Promise.all([getLatestUpdate, getDamageSkins])
+            .then(([latestUpdate, allSkins]) => {
+                const allCategories = [...new Set(allSkins.map(skin => skin.letterCategory))];
+                let skinsByLetter = {};
 
-            allCategories.forEach(category => skinsByLetter[category] = []);
-            allSkins.forEach(skin => skinsByLetter[skin.letterCategory].push(skin));
-            //console.log(skinsByLetter);
+                allCategories.forEach(category => skinsByLetter[category] = []);
+                allSkins.forEach(skin => skinsByLetter[skin.letterCategory].push(skin));
+                //console.log(skinsByLetter);
 
-            res.locals.extraStylesheet = "extrasStyles";
-            res.locals.section = "extras";
-            res.locals.branch = "damage-skins";
-            res.render("extras/damageSkins", {skinsByLetter: skinsByLetter, pageNum: pageNum, pagesArr: pagesArr});
-        })
-        .catch(err => {
-            console.log(err);
-            res.redirect("back");
-        })
+                res.locals.extraStylesheet = "extrasStyles";
+                res.locals.section = "extras";
+                res.locals.branch = "damage-skins";
+                res.render("extras/damageSkins", {skinsByLetter: skinsByLetter, pageNum: pageNum, pagesArr: pagesArr, dateUpdated: latestUpdate.lastUpdatedDate.damageSkins});
+            })
+            .catch(err => {
+                console.log(err);
+                res.redirect("back");
+            })
     } else {
         console.log("Invalid page number");
         res.redirect("back");

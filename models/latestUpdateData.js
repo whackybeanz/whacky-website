@@ -11,10 +11,9 @@ var latestSchema = new mongoose.Schema ({
 			currPatch: String, 
 		}
 	},
-	damageSkins: {
-		dateUpdated: String,
-		list: [{ skinServerType: String, damageSkinId: Number, name: String, isUnitSkin: Boolean }]
-	}
+	lastUpdatedDate: {
+		damageSkins: String,
+	},
 });
 
 module.exports = mongoose.model("Latest Update", latestSchema)

@@ -110,22 +110,30 @@ router.post("/icon/:id/delete", function(req, res) {
 })
 
 router.get("/damage-skins", function(req, res) {
-    res.redirect("/damage-skins/kms");
+    res.redirect("/admin/damage-skins/new");
 })
 
 // Retrieves damage skins based on category.
+// Also retrieve damage skins marked as 'new'
 // Valid req.params.category values: kms, non-kms
 router.get("/damage-skins/:category", function(req, res) {
     const selectedCategory = req.params.category;
 
-    let latestUpdate = LatestUpdate.findOne({});
-    let findDamageSkin = DamageSkin.find({ isKMSskin: selectedCategory === "kms" });
-
-    Promise.all([latestUpdate, findDamageSkin])
-        .then(([latestData, foundDamageSkins]) => {
+    //let latestUpdate = LatestUpdate.findOne({});
+    let findDamageSkins;
+    if(selectedCategory === "new") {
+        findDamageSkins = DamageSkin.find({ isNewSkin: true });
+    } else {
+        findDamageSkins = DamageSkin.find({ isKMSskin: selectedCategory === "kms" });
+    }
+    
+    Promise.all([findDamageSkins])
+        .then(([foundDamageSkins]) => {
+            foundDamageSkins.forEach(skin => console.log(`found skin = ${skin.name}`));
             const damageSkinCategories = AdminHelper.getDamageSkinCategories();
+            //const sortedDamageSkins = AdminHelper.classifyDamageSkins(foundDamageSkins, selectedCategory);
             res.locals.extraStylesheet = "adminStyles";
-            res.render("admin/damageSkins", {selectedCategory: selectedCategory, damageSkinCategories: damageSkinCategories, damageSkins: foundDamageSkins, latestData: latestData});
+            res.render("admin/damageSkins", {selectedCategory: selectedCategory, damageSkinCategories: damageSkinCategories, damageSkins: foundDamageSkins});
         })
         .catch(err => {
             console.log(err);
@@ -135,26 +143,19 @@ router.get("/damage-skins/:category", function(req, res) {
 
 // On addition of damage skin, execute these two steps:
 // 1) Compile damage skin data for creation of new skin
-// 2) Also compile data for addition to "newest released skins" and set today's date as date of update
+// 2) Set last updated date for damage skin page as date of new skin creation
 router.post("/damage-skins", function(req, res) {
     const damageSkinData = AdminHelper.compileDamageSkinData(req.body);
-    const latestSkinData = {
-        skinServerType: req.body.isKMSskin === "yes" ? "kms" : "msea",
-        damageSkinId: parseInt(req.body.damageSkinId),
-        name: req.body.name,
-        isUnitSkin: req.body.hasUnitSkin === "yes",
-    };
     const date = new Date(Date.now()).toLocaleDateString('en-SG', {day: "2-digit", month: "short", year: "numeric"});
 
+    let findLatestUpdate = LatestUpdate.findOneAndUpdate({}, { $set: { 'lastUpdatedDate.damageSkins': date }});
     let createDamageSkin = DamageSkin.create(damageSkinData);
-    let updateLatestSkins = LatestUpdate.findOneAndUpdate({}, { $set: { 'damageSkins.dateUpdated': date }, $push: { 'damageSkins.list' : latestSkinData } }, { new: true });
 
-    Promise.all([createDamageSkin, updateLatestSkins])
-        .then(([newDamageSkin, latestData]) => {
-            const damageSkinCategories = AdminHelper.getDamageSkinCategories();
+    Promise.all([findLatestUpdate, createDamageSkin])
+        .then(([latestUpdate, newDamageSkin]) => {
             res.locals.extraStylesheet = "adminStyles";
             console.log(`Created new damage skin: ${newDamageSkin.name}`);
-            res.redirect(`/admin/damage-skins/${req.body.isKMSskin ? "kms" : "non-kms"}`);
+            res.redirect(`/admin/damage-skins/new`);
         })
         .catch(err => {
             console.log(err);

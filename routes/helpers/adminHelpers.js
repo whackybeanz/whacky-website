@@ -48,12 +48,13 @@ function compileIconData(body) {
 }
 
 function getDamageSkinCategories() {
-    const damageSkinCategories = [{ id: "kms", name: "KMS skins" }, { id: "non-kms", name: "Non-KMS skins" }];
+    const damageSkinCategories = [{id: "new", name: "Newly Added skins"}, { id: "kms", name: "KMS skins" }, { id: "non-kms", name: "Non-KMS skins" }];
     return damageSkinCategories;
 }
 
 function compileDamageSkinData(body) {
     const damageSkinData = {
+        isNewSkin: body.isNewSkin === "yes",
         isKMSskin: body.isKMSskin === "yes",
         hasRegularSkin: body.hasRegularSkin === "yes",
         name: body.name,
