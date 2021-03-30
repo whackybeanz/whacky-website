@@ -1,5 +1,6 @@
 var middlewareObj = {};
 var EXPStackingHelper = require("./helpers/expStackingHelpers");
+const User = require("../models/users");
 
 middlewareObj.isValidEXPFormInput = function(req, res, next) {
     const selectedExpTable = req.body.expTable;
@@ -45,6 +46,19 @@ middlewareObj.isValidPotentialListFormInput = function(req, res, next) {
     } else {
         return next();
     }
+}
+
+middlewareObj.isAdmin = function(req, res, next) {
+    const username = res.locals.currentUser.username;
+
+    User.findOne({ username: username }, function(err, user) {
+        if(student.isAdmin) {
+            return next();
+        } else {
+            req.flash("error", "You are not authorized to access this page.");
+            res.redirect("back");
+        }
+    })
 }
 
 module.exports = middlewareObj;

@@ -14,6 +14,7 @@ router.get("/icons", function(req, res) {
     const iconCategories = AdminHelper.getIconCategories();
     const pageSections = AdminHelper.getPageSections();
     res.locals.extraStylesheet = "adminStyles";
+    res.locals.branch = "icons";
     res.render("admin/icons", {iconCategories: iconCategories, pageSections: pageSections});
 })
 
@@ -25,9 +26,6 @@ router.post("/icons", function(req, res) {
             console.log(err);
             res.redirect("back");
         } else {
-            const iconCategories = AdminHelper.getIconCategories();
-            const pageSections = AdminHelper.getPageSections();
-            res.locals.extraStylesheet = "adminStyles";
             console.log(`Created new icon: ${newIcon.name}`);
             res.redirect("/admin/icons");
         }
@@ -48,6 +46,7 @@ router.get("/icons/:category", function(req, res) {
             const pageSections = AdminHelper.getPageSections();
 
             res.locals.extraStylesheet = "adminStyles";
+            res.locals.branch = "icons";
             res.render("admin/icons", {selectedCategory: selectedCategory, iconCategories: iconCategories, pageSections: pageSections, icons: foundIcons})
         }
     })
@@ -77,6 +76,7 @@ router.get("/icon/:id", function(req, res) {
             };
 
             res.locals.extraStylesheet = "adminStyles";
+            res.locals.branch = "icons";
             res.render("admin/iconData", {iconCategories: iconCategories, pageSections: pageSections, prevUrl: prevUrl, iconData: icon, iconImgUrl: iconImgUrlSplit });
         }
     })
@@ -115,7 +115,7 @@ router.get("/damage-skins", function(req, res) {
 
 // Retrieves damage skins based on category.
 // Also retrieve damage skins marked as 'new'
-// Valid req.params.category values: kms, non-kms
+// Valid req.params.category values: new, kms, non-kms
 router.get("/damage-skins/:category", function(req, res) {
     const selectedCategory = req.params.category;
 
@@ -129,10 +129,9 @@ router.get("/damage-skins/:category", function(req, res) {
     
     Promise.all([findDamageSkins])
         .then(([foundDamageSkins]) => {
-            foundDamageSkins.forEach(skin => console.log(`found skin = ${skin.name}`));
             const damageSkinCategories = AdminHelper.getDamageSkinCategories();
-            //const sortedDamageSkins = AdminHelper.classifyDamageSkins(foundDamageSkins, selectedCategory);
             res.locals.extraStylesheet = "adminStyles";
+            res.locals.branch = "damage-skins";
             res.render("admin/damageSkins", {selectedCategory: selectedCategory, damageSkinCategories: damageSkinCategories, damageSkins: foundDamageSkins});
         })
         .catch(err => {
@@ -153,7 +152,6 @@ router.post("/damage-skins", function(req, res) {
 
     Promise.all([findLatestUpdate, createDamageSkin])
         .then(([latestUpdate, newDamageSkin]) => {
-            res.locals.extraStylesheet = "adminStyles";
             console.log(`Created new damage skin: ${newDamageSkin.name}`);
             res.redirect(`/admin/damage-skins/new`);
         })
@@ -171,6 +169,7 @@ router.get("/damage-skin/:id", function(req, res) {
         } else {
             const prevUrl = `/admin/damage-skins/${damageSkin.isKMSskin ? "kms" : "non-kms"}`;
             res.locals.extraStylesheet = "adminStyles";
+            res.locals.branch = "damage-skins";
             res.render("admin/damageSkinData", {prevUrl: prevUrl, damageSkinData: damageSkin });
         }
     })
@@ -199,30 +198,6 @@ router.post("/damage-skin/:id/delete", function(req, res) {
         } else {
             console.log("Damage skin deleted");
             res.redirect("back");
-        }
-    })
-})
-
-router.post("/system/updateLatestDamageSkins", function(req, res) {
-    const date = new Date(Date.now()).toLocaleDateString('en-SG', {day: "2-digit", month: "short", year: "numeric"});
-
-    LatestUpdate.findOne({}, function(err, latestData) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
-            latestData.servers.kms.currPatch = req.body.kmsPatchDetails;
-            latestData.servers.msea.currPatch = req.body.mseaPatchDetails;
-            latestData.damageSkins.dateUpdated = date;
-
-            let dbList = latestData.damageSkins.list;
-            let remainingSkins = req.body.damageSkinId.map(elem => parseInt(elem));
-            latestData.damageSkins.list = dbList.filter(skin => remainingSkins.includes(skin.damageSkinId));
-
-            latestData.save();
-
-            console.log("Latest damage skin list updated.");
-            res.redirect('/admin/damage-skins/kms')
         }
     })
 })

@@ -19,8 +19,13 @@
   "homepage": "https://github.com/whackybeanz/whacky-website#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^4.4.1",
     "ejs": "^3.0.2",
     "express": "^4.17.1",
-    "mongoose": "^5.9.5"
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.5",
+    "passport": "^0.4.1",
+    "passport-local-mongoose": "^6.1.0"
   }
 }

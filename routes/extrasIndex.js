@@ -192,8 +192,6 @@ router.get("/damage-skins/:pageNum", function(req, res) {
                     allSkins.forEach(skin => sortedSkins.newSkins.push(skin))
                 }
 
-                console.log(sortedSkins);
-
                 res.locals.extraStylesheet = "extrasStyles";
                 res.locals.section = "extras";
                 res.locals.branch = "damage-skins";

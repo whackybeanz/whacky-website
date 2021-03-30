@@ -42,8 +42,6 @@ function compileIconData(body) {
     }
     iconData.imgUrl = body.imgPath.join("/");
 
-    console.log(iconData);
-
     return iconData;
 }
 
