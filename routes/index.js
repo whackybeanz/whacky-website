@@ -12,4 +12,9 @@ router.get("/about", function(req, res) {
     res.render("about");
 })
 
+router.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/maple");
+})
+
 module.exports = router;

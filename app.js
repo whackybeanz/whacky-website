@@ -6,6 +6,7 @@ var flash                   = require("connect-flash");
 var session                 = require("express-session");
 var MongoStore              = require("connect-mongo");
 var passport                = require("passport");
+var LocalStrategy           = require("passport-local");
 var passportLocalMongoose   = require("passport-local-mongoose");
 
 var indexRoutes     = require("./routes/index");
@@ -14,6 +15,8 @@ var extrasRoutes    = require("./routes/extrasIndex");
 var beginnerRoutes  = require("./routes/beginnerGuide");
 var adminRoutes     = require("./routes/admin");
 
+var User = require("./models/users");
+
 var port = process.env.PORT || 3005;
 var databaseUrl = process.env.DATABASEURL || "mongodb://localhost/maple-info";
 mongoose.connect(databaseUrl, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
@@ -21,6 +24,7 @@ mongoose.connect(databaseUrl, {useNewUrlParser: true, useUnifiedTopology: true, 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static('public'));
+app.use(flash());
 
 // PASSPORT CONFIG
 app.use(session({
