@@ -40,7 +40,7 @@
     height: 32px;
     width: 32px;
     border: 2px solid globals.$light-mode-white-opaque;
-}   
+}
 
 .single-dmg-skin {
     & > div {
@@ -52,19 +52,19 @@
 
         .dmg-skin-body {
             height: 150px;  
+        }
 
-            .dmg-skin-tools {
-                bottom: 5px;
-                right: 5px;
+        .dmg-skin-tools {
+            bottom: 5px;
+            right: 5px;
 
-                .view-dmg-skin-btn, .add-dmg-skin-btn, .remove-dmg-skin-btn {
-                    height: 30px;
-                    width: 30px;
-                }
+            .view-dmg-skin-btn, .add-dmg-skin-btn, .remove-dmg-skin-btn {
+                height: 30px;
+                width: 30px;
+            }
 
-                .add-dmg-skin-btn, .remove-dmg-skin-btn {
-                    display: none;
-                }
+            .add-dmg-skin-btn, .remove-dmg-skin-btn {
+                display: none;
             }
         }
     }

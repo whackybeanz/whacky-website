@@ -44,15 +44,15 @@
 .single-dmg-skin > div .dmg-skin-body {
   height: 150px;
 }
-.single-dmg-skin > div .dmg-skin-body .dmg-skin-tools {
+.single-dmg-skin > div .dmg-skin-tools {
   bottom: 5px;
   right: 5px;
 }
-.single-dmg-skin > div .dmg-skin-body .dmg-skin-tools .view-dmg-skin-btn, .single-dmg-skin > div .dmg-skin-body .dmg-skin-tools .add-dmg-skin-btn, .single-dmg-skin > div .dmg-skin-body .dmg-skin-tools .remove-dmg-skin-btn {
+.single-dmg-skin > div .dmg-skin-tools .view-dmg-skin-btn, .single-dmg-skin > div .dmg-skin-tools .add-dmg-skin-btn, .single-dmg-skin > div .dmg-skin-tools .remove-dmg-skin-btn {
   height: 30px;
   width: 30px;
 }
-.single-dmg-skin > div .dmg-skin-body .dmg-skin-tools .add-dmg-skin-btn, .single-dmg-skin > div .dmg-skin-body .dmg-skin-tools .remove-dmg-skin-btn {
+.single-dmg-skin > div .dmg-skin-tools .add-dmg-skin-btn, .single-dmg-skin > div .dmg-skin-tools .remove-dmg-skin-btn {
   display: none;
 }
 .single-dmg-skin:hover > div, .single-dmg-skin.active > div {

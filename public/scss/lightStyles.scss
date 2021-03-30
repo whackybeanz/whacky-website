@@ -251,7 +251,9 @@ body {
 
             .dmg-skin-body {
                 background-color: globals.$light-mode-white-opaque;
+            }
 
+            .dmg-skin-tools {
                 .view-dmg-skin-btn, .add-dmg-skin-btn, .remove-dmg-skin-btn {
                     border: 1px solid globals.$light-mode-grey;
                     background-color: globals.$light-mode-white-opaque;

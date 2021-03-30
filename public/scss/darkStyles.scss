@@ -292,7 +292,9 @@ body.dark-mode {
 
             .dmg-skin-body {
                 background-color: globals.$dark-mode-black-opaque;
+            }
 
+            .dmg-skin-tools {
                 .view-dmg-skin-btn, .add-dmg-skin-btn, .remove-dmg-skin-btn {
                     border: 1px solid globals.$dark-mode-grey;
                     background-color: globals.$dark-mode-black-opaque;

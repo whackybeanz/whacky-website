@@ -189,31 +189,31 @@ body.dark-mode .single-dmg-skin > div .dmg-skin-header {
 body.dark-mode .single-dmg-skin > div .dmg-skin-body {
   background-color: black;
 }
-body.dark-mode .single-dmg-skin > div .dmg-skin-body .view-dmg-skin-btn, body.dark-mode .single-dmg-skin > div .dmg-skin-body .add-dmg-skin-btn, body.dark-mode .single-dmg-skin > div .dmg-skin-body .remove-dmg-skin-btn {
+body.dark-mode .single-dmg-skin > div .dmg-skin-tools .view-dmg-skin-btn, body.dark-mode .single-dmg-skin > div .dmg-skin-tools .add-dmg-skin-btn, body.dark-mode .single-dmg-skin > div .dmg-skin-tools .remove-dmg-skin-btn {
   border: 1px solid #454d55;
   background-color: black;
   transition: all 0.2s;
 }
-body.dark-mode .single-dmg-skin > div .dmg-skin-body .view-dmg-skin-btn:hover, body.dark-mode .single-dmg-skin > div .dmg-skin-body .add-dmg-skin-btn:hover, body.dark-mode .single-dmg-skin > div .dmg-skin-body .remove-dmg-skin-btn:hover {
+body.dark-mode .single-dmg-skin > div .dmg-skin-tools .view-dmg-skin-btn:hover, body.dark-mode .single-dmg-skin > div .dmg-skin-tools .add-dmg-skin-btn:hover, body.dark-mode .single-dmg-skin > div .dmg-skin-tools .remove-dmg-skin-btn:hover {
   transition: all 0.2s;
   color: rgba(0, 0, 0, 0.8);
 }
-body.dark-mode .single-dmg-skin > div .dmg-skin-body .view-dmg-skin-btn {
+body.dark-mode .single-dmg-skin > div .dmg-skin-tools .view-dmg-skin-btn {
   color: rgba(255, 255, 255, 0.8);
 }
-body.dark-mode .single-dmg-skin > div .dmg-skin-body .view-dmg-skin-btn:hover {
+body.dark-mode .single-dmg-skin > div .dmg-skin-tools .view-dmg-skin-btn:hover {
   background-color: rgba(255, 255, 255, 0.8);
 }
-body.dark-mode .single-dmg-skin > div .dmg-skin-body .add-dmg-skin-btn {
+body.dark-mode .single-dmg-skin > div .dmg-skin-tools .add-dmg-skin-btn {
   color: #4aa02c;
 }
-body.dark-mode .single-dmg-skin > div .dmg-skin-body .add-dmg-skin-btn:hover {
+body.dark-mode .single-dmg-skin > div .dmg-skin-tools .add-dmg-skin-btn:hover {
   background-color: #4aa02c;
 }
-body.dark-mode .single-dmg-skin > div .dmg-skin-body .remove-dmg-skin-btn {
+body.dark-mode .single-dmg-skin > div .dmg-skin-tools .remove-dmg-skin-btn {
   color: #dc3545;
 }
-body.dark-mode .single-dmg-skin > div .dmg-skin-body .remove-dmg-skin-btn:hover {
+body.dark-mode .single-dmg-skin > div .dmg-skin-tools .remove-dmg-skin-btn:hover {
   background-color: #dc3545;
 }
 body.dark-mode .single-dmg-skin.active > div {

@@ -1,0 +1,53 @@
+<% Object.keys(sortedSkins).forEach(function(letter) { %>
+<div class="col-12 mb-4 px-0">
+    <div class="dmg-skin-section-subheader">
+        <h3 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
+            <i class="fas fa-caret-down"></i> <% if(pageNum > 0) { %><%= letter %><% } else { %>New Skins (Updated <%= dateUpdated %>)<% } %>
+        </h3>
+    </div>
+    <div class="dmg-skin-section px-0 collapse show pt-3" id="skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
+        <div class="d-flex flex-wrap w-100">
+            <% sortedSkins[letter].forEach(function(skin) { %>
+            <div class="single-dmg-skin d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" id="skin-num-<%= skin.damageSkinId %>" data-skin-num="<%= skin.damageSkinId %>" data-skin-name="<%= skin.shortName %>" data-has-regular-skin="<%= skin.hasRegularSkin %>" <% if(skin.hasUnitSkin) { %>data-has-unit-skin="<%= skin.hasUnitSkin %>" data-unit-skin-num="<%= skin.unitDamageSkinId %><% } %>">
+                <div class="font-table w-100 d-flex flex-column align-items-center">
+                    <div class="dmg-skin-header w-100 d-flex align-items-center font-weight-bold px-2 py-1">
+                        <% if(skin.hasRegularSkin) { %>
+                            <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-1">
+                        <% } %>
+
+                        <% if(skin.hasUnitSkin) { %>
+                            <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.icon.png" class="mr-1">
+                        <% } %>
+                        <%= skin.shortName %>
+                    </div>
+                    <div class="dmg-skin-body w-100 d-flex flex-grow-1 justify-content-center align-items-center position-relative px-3 py-2">
+                        <% if(skin.damageSkinId === -1) { %>
+                        It's invisible. You see no numbers. Move along~
+                        <% } else if(skin.damageSkinId === 1011 || skin.name === "???") { %>
+                        No sample image available.
+                        <% } else { %>
+                            <% if(skin.hasUnitSkin) { %>
+                                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.sample.png" class="mh-100 img-fluid">
+                            <% } else { %>
+                                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.sample.png" class="mh-100 img-fluid">
+                            <% } %>
+                        <% } %>
+                        <div class="dmg-skin-tools position-absolute">
+                            <a href="/maple/extras/damage-skin-details/<%= skin.damageSkinId %>" class="btn btn-sm view-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="View damage skin">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <div class="btn btn-sm add-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="Add to cart">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="btn btn-sm btn-outline-danger remove-dmg-skin-btn justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="Remove from cart">
+                                <i class="fas fa-minus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+<% }) %>
