@@ -27,7 +27,7 @@
                 </div>
             </li>
         </ul>
-        <button class="btn <% if(url.includes("maple") && section !== "maple-index") { %>d-block<% } else { %>d-none<% } %> d-lg-none ml-3" id="sidebar-collapse-btn" data-toggle="collapse" data-target="#sidebar-nav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle sidebar navigation">
+        <button class="btn <% if((url.includes("maple") && section !== "maple-index") || url.includes("admin")) { %>d-block<% } else { %>d-none<% } %> d-lg-none ml-3" id="sidebar-collapse-btn" data-toggle="collapse" data-target="#sidebar-nav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle sidebar navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>

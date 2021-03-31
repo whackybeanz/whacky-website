@@ -2,15 +2,17 @@ var AdminHelper = require("./helpers/adminHelpers");
 
 var express = require("express");
 var router  = express.Router();
+var middleware = require("./middleware");
+
 var Icon    = require("../models/iconData");
 var DamageSkin  = require("../models/damageSkinData");
 var LatestUpdate = require("../models/latestUpdateData");
 
-router.get("/", function(req, res) {
+router.get("/", middleware.isAdmin, function(req, res) {
     res.render("admin/index");
 })
 
-router.get("/icons", function(req, res) {
+router.get("/icons", middleware.isAdmin, function(req, res) {
     const iconCategories = AdminHelper.getIconCategories();
     const pageSections = AdminHelper.getPageSections();
     res.locals.extraStylesheet = "adminStyles";
@@ -18,7 +20,7 @@ router.get("/icons", function(req, res) {
     res.render("admin/icons", {iconCategories: iconCategories, pageSections: pageSections});
 })
 
-router.post("/icons", function(req, res) {
+router.post("/icons", middleware.isAdmin, function(req, res) {
     const iconData = AdminHelper.compileIconData(req.body);
 
     Icon.create(iconData, function(err, newIcon) {
@@ -34,7 +36,7 @@ router.post("/icons", function(req, res) {
 
 // Retrieves group of icons based on sorted category.
 // Valid req.params.category values can be found in adminHelpers, getIconCategories() function
-router.get("/icons/:category", function(req, res) {
+router.get("/icons/:category", middleware.isAdmin, function(req, res) {
     const selectedCategory = req.params.category;
 
     Icon.find({ itemType: selectedCategory }, function(err, foundIcons) {
@@ -53,7 +55,7 @@ router.get("/icons/:category", function(req, res) {
 })
 
 // Retrieves specific icon based on database ID
-router.get("/icon/:id", function(req, res) {
+router.get("/icon/:id", middleware.isAdmin, function(req, res) {
     Icon.findOne({ _id: req.params.id }, function(err, icon) {
         if(err) {
             console.log(err);
@@ -82,7 +84,7 @@ router.get("/icon/:id", function(req, res) {
     })
 })
 
-router.post("/icon/:id", function(req, res) {
+router.post("/icon/:id", middleware.isAdmin, function(req, res) {
     const newIconData = AdminHelper.compileIconData(req.body); 
 
     Icon.findOneAndUpdate({ _id: req.params.id }, newIconData, { new: true, overwrite: true }, function(err, updatedIcon) {
@@ -97,7 +99,7 @@ router.post("/icon/:id", function(req, res) {
     })
 })
 
-router.post("/icon/:id/delete", function(req, res) {
+router.post("/icon/:id/delete", middleware.isAdmin, function(req, res) {
     Icon.findOneAndDelete({ _id: req.params.id }, function(err) {
         if(err) {
             console.log(err);
@@ -109,7 +111,7 @@ router.post("/icon/:id/delete", function(req, res) {
     })
 })
 
-router.get("/damage-skins", function(req, res) {
+router.get("/damage-skins", middleware.isAdmin, function(req, res) {
     res.redirect("/admin/damage-skins/new");
 })
 
@@ -143,7 +145,7 @@ router.get("/damage-skins/:category", function(req, res) {
 // On addition of damage skin, execute these two steps:
 // 1) Compile damage skin data for creation of new skin
 // 2) Set last updated date for damage skin page as date of new skin creation
-router.post("/damage-skins", function(req, res) {
+router.post("/damage-skins", middleware.isAdmin, function(req, res) {
     const damageSkinData = AdminHelper.compileDamageSkinData(req.body);
     const date = new Date(Date.now()).toLocaleDateString('en-SG', {day: "2-digit", month: "short", year: "numeric"});
 
@@ -161,7 +163,7 @@ router.post("/damage-skins", function(req, res) {
         })
 })
 
-router.get("/damage-skin/:id", function(req, res) {
+router.get("/damage-skin/:id", middleware.isAdmin, function(req, res) {
     DamageSkin.findOne({ _id: req.params.id }, function(err, damageSkin) {
         if(err) {
             console.log(err);
@@ -175,7 +177,7 @@ router.get("/damage-skin/:id", function(req, res) {
     })
 })
 
-router.post("/damage-skin/:id", function(req, res) {
+router.post("/damage-skin/:id", middleware.isAdmin, function(req, res) {
     const newDamageSkinData = AdminHelper.compileDamageSkinData(req.body);
 
     DamageSkin.findOneAndUpdate({ _id: req.params.id }, newDamageSkinData, { new: true, overwrite: true }, function(err, updatedSkin) {
@@ -190,7 +192,7 @@ router.post("/damage-skin/:id", function(req, res) {
     })
 })
 
-router.post("/damage-skin/:id/delete", function(req, res) {
+router.post("/damage-skin/:id/delete", middleware.isAdmin, function(req, res) {
     DamageSkin.findOneAndDelete({ _id: req.params.id }, function(err) {
         if(err) {
             console.log(err);
