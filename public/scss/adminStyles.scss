@@ -9,3 +9,14 @@
 .remove-latest-dmg-skin-btn {
 	right: 0.25rem;
 }
+
+.coin-event-banner {
+    height: 150px;
+    object-fit: contain;
+    transition: all 0.2s;
+
+    &:hover {
+        transform: scale(1.05);
+        transition: all 0.2s;
+    }
+}

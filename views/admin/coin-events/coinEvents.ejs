@@ -8,7 +8,7 @@
             <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
                 <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
-                    <h1 class="font-header w-100 text-center m-0 px-0">Coin Shops</h1>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Coin Events</h1>
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
                 </div>
 
@@ -16,12 +16,12 @@
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <div class="pot-list-section-subheader w-100">
                             <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#add-coin-shop">
-                                <i class="fas fa-caret-down mr-2"></i> Add Coin Shop
+                                <i class="fas fa-caret-down mr-2"></i> Add Coin Event
                             </h3>
                         </div>
                         <div class="pot-list-section w-100 px-0 collapse" id="add-coin-shop">
                             <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
-                                
+                                <%- include("./addCoinEventForm") %>
                             </div>
                         </div>
                     </div>
@@ -29,11 +29,19 @@
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <div class="pot-list-section-subheader w-100">
                             <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#coin-shop-list">
-                                <i class="fas fa-caret-down mr-2"></i> All Coin Shops
+                                <i class="fas fa-caret-down mr-2"></i> All Coin Events
                             </h3>
                         </div>
                         <div class="pot-list-section w-100 px-0 collapse show" id="coin-shop-list">
-
+                            <div class="d-flex justify-content-start flex-wrap px-3 pt-3 pb-3">
+                                <% allEvents.forEach(event => { %>
+                                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                                        <a href="/admin/coin-event/<%= event.eventDetails.id %>">
+                                            <img class="w-100 coin-event-banner" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= event.eventDetails.bannerImg %>">
+                                        </a>
+                                    </div>
+                                <% }) %>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -43,4 +51,5 @@
 </div>
 
 <script type="text/javascript" src="/scripts/commonScript.js"></script>
+<script type="text/javascript" src="/scripts/admin/coinEventScript.js"></script>
 <%- include("../../partials/footer") %>
