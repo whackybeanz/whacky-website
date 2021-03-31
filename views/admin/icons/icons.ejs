@@ -1,8 +1,8 @@
-<%- include("../partials/header") %>
-<%- include("../partials/navbar") %>
+<%- include("../../partials/header") %>
+<%- include("../../partials/navbar") %>
 
 <div class="container-fluid content d-flex flex-column flex-md-row p-0">
-    <%- include("./partials/adminSidebar") %>
+    <%- include("../adminSidebar") %>
     <div class="main-content-div col p-0 position-relative">
         <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
             <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
@@ -20,7 +20,7 @@
                         </div>
                         <div class="pot-list-section w-100 px-0 collapse" id="add-icon">
                             <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
-                                <%- include("./partials/iconDataForm") %>
+                                <%- include("./iconDataForm") %>
                             </div>
                         </div>
                     </div>
@@ -99,4 +99,4 @@
 
 <script type="text/javascript" src="/scripts/commonScript.js"></script>
 <script type="text/javascript" src="/scripts/admin/iconScript.js"></script>
-<%- include("../partials/footer") %>
+<%- include("../../partials/footer") %>
