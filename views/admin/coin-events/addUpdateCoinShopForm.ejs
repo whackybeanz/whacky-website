@@ -1,0 +1,70 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+    <div class="pot-list-section-subheader w-100">
+        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#add-coin-shop">
+            <i class="fas fa-caret-down mr-2"></i> <% if(locals.coinShopData) { %>Update<% } else { %>Add<% } %> Coin Shop
+        </h3>
+    </div>
+    <div class="pot-list-section w-100 px-0 collapse" id="add-coin-shop">
+        <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+            <form class="font-form w-100 size-900" 
+                action="<% if(locals.coinShopData) { %>/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %><% } else { %>/admin/coin-event/<%= coinEventData._id %>/addShop<% } %>" 
+                method="POST" id="add-coin-shop-form">
+                <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Coin Shop Basic Info</h3>
+                <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
+                    <div class="form-group row">
+                        <label for="coin-shop-name" class="col-sm-3 col-form-label font-weight-bold">Shop Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="coin-shop-name" name="shopName" placeholder="Shop Name" required autocomplete="off" <% if(locals.coinShopData) { %>value="<%= coinShopData.shopName %>"<% } %>>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="shop-currency" class="col-sm-3 col-form-label font-weight-bold">Default Currency Used</label>
+                        <div class="col-sm-9">
+                            <select class="form-control col-sm-6 px-2" name="defaultCurrency" id="shop-currency" required>
+                                <% if(!locals.coinShopData) { %>
+                                    <option value="" selected disabled hidden>-- Select Default Currency --</option>
+                                <% } %>
+                                <% coinEventData.coinDetails.coinIds.forEach(function(coinId) { %>
+                                    <option value="<%= coinId %>" <% if(locals.coinShopData && coinShopData.defaultCurrency === coinId) { %>selected<% } %>>
+                                        <%= icons[`${coinId}`].name %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                            <small class="text-info">Sets the default currency for all items in this shop. You can adjust each item's currency if necessary.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="default-tradability" class="col-sm-3 col-form-label font-weight-bold">Default Tradability</label>
+                        <div class="col-sm-9">
+                            <select class="form-control col-sm-6 px-2" name="defaultTradability" id="default-tradability" required>
+                                <% if(!locals.coinShopData) { %>
+                                    <option value="" selected disabled hidden>-- Select Default Tradability --</option>
+                                <% } %>
+                                <option value="untradable" <% if(locals.coinShopData && coinShopData.defaultTradability === "untradable") { %>selected<% } %>>Untradable</option>
+                                <option value="inter-acct" <% if(locals.coinShopData && coinShopData.defaultTradability === "inter-acct") { %>selected<% } %>>Inter-Account Tradable</option>
+                                <option value="tradable" <% if(locals.coinShopData && coinShopData.defaultTradability === "tradable") { %>selected<% } %>>Tradable</option>
+                            </select>
+                            <small class="text-info">Sets the default tradability for all items in this shop. You can adjust each item's tradability if necessary.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="coin-shop-notes" class="col-sm-3 col-form-label font-weight-bold">Notes</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="coin-shop-notes" name="shopNotes" placeholder="Notes" autocomplete="off" <% if(locals.coinShopData) { %>value="<%= coinShopData.shopNotes %>"<% } %>>
+                            <small class="text-info">Here, you can indicate any special notes about the shop / its items (e.g. 'This shop requires the Guardian rank to access' / 'All items are inter-account tradable.').</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <button type="submit" class="w-100 btn btn-sm btn-outline-info"><% if(locals.coinShopData) { %>Update<% } else { %>Add<% } %> Coin Shop</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

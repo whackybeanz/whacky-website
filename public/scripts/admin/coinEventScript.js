@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addNewCoinIcon();
     addRemoveIconInputBtnListener();
     addCoinEventFormListener();
-    deleteCoinEventFormListener();
+    deleteFormListener();
 });
 
 function addNewCoinIcon() {
@@ -30,22 +30,38 @@ function addRemoveIconInputBtnListener() {
 function addCoinEventFormListener() {
     const addCoinEventForm = document.getElementById("add-coin-event-form");
 
-    addCoinEventForm.addEventListener("submit", function(event) {
-        if(checkDateValidity) {
-            return true;
-        } else {
-            event.preventDefault();
-        }
-    })
+    if(addCoinEventForm) {
+        addCoinEventForm.addEventListener("submit", function(event) {
+            if(checkDateValidity) {
+                return true;
+            } else {
+                event.preventDefault();
+            }
+        })
+    }
 }
 
-function deleteCoinEventFormListener() {
+function deleteFormListener() {
     const deleteCoinEventForm = document.getElementById("delete-coin-event-form");
-    const eventName = document.getElementById("event-name").value;
+    const deleteCoinShopForm = document.getElementById("delete-coin-shop-form");
 
     if(deleteCoinEventForm) {
+        const eventName = document.getElementById("event-name").value;
+
         deleteCoinEventForm.addEventListener("submit", function(event) {
             if(prompt(`Do you really wish to delete the ${eventName} coin event? This action is irreversible.\n\nType 'confirm delete' (without quotation marks) to proceed with deletion.`) === "confirm delete") {
+                return true;
+            } else {
+                event.preventDefault();
+            }
+        })
+    }
+
+    if(deleteCoinShopForm) {
+        const shopName = document.getElementById("coin-shop-name").value;
+
+        deleteCoinShopForm.addEventListener("submit", function(event) {
+            if(prompt(`Do you really wish to delete the [${shopName}] coin shop? This action is irreversible.\n\nType 'confirm delete' (without quotation marks) to proceed with deletion.`) === "confirm delete") {
                 return true;
             } else {
                 event.preventDefault();

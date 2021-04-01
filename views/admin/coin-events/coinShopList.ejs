@@ -1,0 +1,20 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+    <div class="pot-list-section-subheader w-100">
+        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#coin-shop-list">
+            <i class="fas fa-caret-down mr-2"></i> Coin Shop List
+        </h3>
+    </div>
+    <div class="pot-list-section w-100 px-0 collapse show" id="coin-shop-list">
+        <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+            <% coinEventData.shops.forEach((coinShop, index) => { %>
+                <div class="col-6 col-md-3 px-1 mb-2">
+                    <div class="single-option-select d-flex justify-content-center align-items-center rounded-sm position-relative py-1 px-2">
+                        <a href="/admin/coin-event/<%= coinEventData.eventId %>/shop/<%= index %>" class="stretched-link text-decoration-none">
+                            <%= coinShop.shopName %>
+                        </a>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>

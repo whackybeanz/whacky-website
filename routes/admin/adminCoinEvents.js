@@ -106,4 +106,79 @@ router.post("/coin-event/:id/delete", middleware.isAdmin, function(req, res) {
     })
 })
 
+router.post("/coin-event/:id/addShop", middleware.isAdmin, function(req, res) {
+    const coinShop = {
+        shopName: req.body.shopName, 
+        defaultCurrency: req.body.defaultCurrency, 
+        defaultTradability: req.body.defaultTradability, 
+        shopNotes: req.body.shopNotes, 
+    }
+
+    CoinEvent.findOneAndUpdate({ _id: req.params.id }, { $push: { shops: coinShop } }, { new: true })
+        .then(updatedCoinEvent => {
+            req.flash("success", "Coin shop added.");
+            res.redirect(`/admin/coin-event/${updatedCoinEvent.eventId}/shop/${updatedCoinEvent.shops.length-1}`)
+        })
+        .catch(err => {
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
+})
+
+router.get("/coin-event/:id/shop/:shopNum", middleware.isAdmin, function(req, res) {
+    let findIconsInEvent = Icon.find({ usedInEvents: req.params.id });
+    let findCoinEvent = CoinEvent.findOne({ eventId: req.params.id });
+
+    Promise.all([findIconsInEvent, findCoinEvent])
+        .then(([allIcons, coinEventData]) => {
+            const shopNum = parseInt(req.params.shopNum);
+
+            if(!isNaN(shopNum) && shopNum < coinEventData.shops.length) {
+                const iconsById = IconHelper.compileIconsById(allIcons);
+                const coinShopData = coinEventData.shops[shopNum];
+                res.locals.extraStylesheet = "adminStyles";
+                res.locals.branch = "coin-events";
+                res.render("admin/coin-events/coinShopDetails", { icons: iconsById, coinEventData: coinEventData, coinShopData: coinShopData });
+            } else {
+                throw new Error("Invalid shop number received");
+            }
+        })
+        .catch(err => {
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
+})
+
+router.post("/coin-event/:id/shop/:shopId", middleware.isAdmin, function(req, res) {
+    const coinShop = {
+        'shops.$.shopName': req.body.shopName, 
+        'shops.$.defaultCurrency': req.body.defaultCurrency, 
+        'shops.$.defaultTradability': req.body.defaultTradability, 
+        'shops.$.shopNotes': req.body.shopNotes, 
+    }
+
+    CoinEvent.findOneAndUpdate({"shops._id": req.params.shopId}, { $set: coinShop }, { new: true })
+        .then(updatedCoinEvent => {
+            req.flash("success", "Coin shop added.");
+            res.redirect("back")
+        })
+        .catch(err => {
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
+})
+
+router.post("/coin-event/:id/shop/:shopId/delete", middleware.isAdmin, function(req, res) {
+    CoinEvent.findOneAndUpdate({ _id: req.params.id }, { $pull: { shops: { _id: req.params.shopId } } }, { new: true })
+        .then(updatedCoinEvent => {
+            req.flash("success", 'Coin shop deletion successful.');
+            res.redirect(`/admin/coin-event/${updatedCoinEvent.eventId}`);
+        })
+        .catch(err => {
+            console.log(err);
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
+})
+
 module.exports = router;
