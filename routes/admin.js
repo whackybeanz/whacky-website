@@ -4,7 +4,7 @@ var middleware = require("./middleware");
 
 var iconRoutes = require("./admin/adminIcons");
 var damageSkinRoutes = require("./admin/adminDamageSkins");
-var coinShopRoutes = require("./admin/adminCoinShops");
+var coinEventRoutes = require("./admin/adminCoinEvents");
 
 router
     .get("/", middleware.isAdmin, function(req, res) {
@@ -12,6 +12,6 @@ router
     })
     .use("/", iconRoutes)
     .use("/", damageSkinRoutes)
-    .use("/", coinShopRoutes);
+    .use("/", coinEventRoutes);
 
 module.exports = router;

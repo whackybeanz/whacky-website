@@ -8,9 +8,32 @@
             <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
                 <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
-                    <h1 class="font-header w-100 text-center m-0 px-0">Coin Event - <%= event.eventDetails.name %></h1>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Coin Event Details</h1>
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
                 </div>
+
+                <img class="coin-event-banner small mb-3" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= coinEventData.eventDetails.bannerImg %>">
+
+                <div class="d-flex w-100 flex-column align-items-center justify-content-center mb-3 py-3">
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <div class="pot-list-section-subheader w-100">
+                            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#update-coin-event">
+                                <i class="fas fa-caret-down mr-2"></i> Update Coin Event Details
+                            </h3>
+                        </div>
+                        <div class="pot-list-section w-100 px-0 collapse" id="update-coin-event">
+                            <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+                                <%- include("./addUpdateCoinEventForm") %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="size-350 w-100" action="/admin/coin-event/<%= coinEventData._id %>/delete" method="POST" id="delete-coin-event-form">
+                    <div class="col-sm-12 px-0">
+                        <button type="submit" class="w-100 btn btn-sm btn-outline-danger">Delete Coin Event</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

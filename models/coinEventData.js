@@ -1,9 +1,10 @@
 var mongoose = require("mongoose");
 
 var coinEventData = new mongoose.Schema({
-    addedOn: Date,
+    addedOrUpdatedOn: Date,
+    isPublic: { type: Boolean, default: true },
+    eventId: String,
     eventDetails: {
-        id: String,
         name: String,
         startDate: Date,
         endDate: Date,

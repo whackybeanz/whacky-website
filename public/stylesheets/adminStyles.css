@@ -17,5 +17,8 @@
   transform: scale(1.05);
   transition: all 0.2s;
 }
+.coin-event-banner.small {
+  height: 100px;
+}
 
 /*# sourceMappingURL=adminStyles.css.map */

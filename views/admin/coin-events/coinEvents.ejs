@@ -15,28 +15,28 @@
                 <div class="d-flex w-100 flex-column align-items-center justify-content-center mb-3 py-3">
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <div class="pot-list-section-subheader w-100">
-                            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#add-coin-shop">
+                            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#add-coin-event">
                                 <i class="fas fa-caret-down mr-2"></i> Add Coin Event
                             </h3>
                         </div>
-                        <div class="pot-list-section w-100 px-0 collapse" id="add-coin-shop">
+                        <div class="pot-list-section w-100 px-0 collapse" id="add-coin-event">
                             <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
-                                <%- include("./addCoinEventForm") %>
+                                <%- include("./addUpdateCoinEventForm") %>
                             </div>
                         </div>
                     </div>
 
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <div class="pot-list-section-subheader w-100">
-                            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#coin-shop-list">
+                            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#coin-event-list">
                                 <i class="fas fa-caret-down mr-2"></i> All Coin Events
                             </h3>
                         </div>
-                        <div class="pot-list-section w-100 px-0 collapse show" id="coin-shop-list">
+                        <div class="pot-list-section w-100 px-0 collapse show" id="coin-event-list">
                             <div class="d-flex justify-content-start flex-wrap px-3 pt-3 pb-3">
                                 <% allEvents.forEach(event => { %>
                                     <div class="col-12 col-md-6 col-lg-4 mb-4">
-                                        <a href="/admin/coin-event/<%= event.eventDetails.id %>">
+                                        <a href="/admin/coin-event/<%= event.eventId %>">
                                             <img class="w-100 coin-event-banner" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= event.eventDetails.bannerImg %>">
                                         </a>
                                     </div>

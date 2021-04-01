@@ -1,0 +1,83 @@
+<form class="font-form w-100 size-900" 
+    action="<% if(locals.coinEventData) { %>/admin/coin-event/<%= coinEventData._id %><% } else { %>/admin/coin-events<% } %>" 
+    method="POST" id="add-coin-event-form">
+    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Event Basic Info</h3>
+    <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
+        <div class="form-group row">
+            <div class="col-sm-3 font-weight-bold">Public?</div>
+            <div class="col-sm-9 d-flex flex-wrap h-100">
+                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="is-public-radio-group">
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isPublic" id="public-yes" value="yes" <% if(!locals.coinEventData || (locals.coinEventData && coinEventData.isNewSkin)) { %>checked<% } %>>
+                        <label class="form-check-label radio-select is-public-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.coinEventData || (locals.coinEventData && coinEventData.isPublic)) { %>active<% } %>" for="public-yes" data-is-public="yes">Yes</label>
+                    </div>
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isPublic" id="public-no" value="" <% if(locals.coinEventData && !coinEventData.isPublic) { %>checked<% } %>>
+                        <label class="form-check-label radio-select is-public-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.coinEventData && !coinEventData.isPublic) { %>active<% } %>" for="public-no" data-is-public="no">No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Event Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="event-name" name="eventName" placeholder="Event Name" required autocomplete="off" <% if(locals.coinEventData) { %>value="<%= coinEventData.eventDetails.name %>"<% } %>>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Event ID</label>
+            <div class="col-sm-9">
+                <input type="text" id="event-id" name="eventId" autocomplete="off" placeholder="Event ID"
+                    class="<% if(locals.coinEventData) { %>form-control-plaintext<% } else { %>form-control<% } %>" 
+                    <% if(locals.coinEventData) { %>readonly<% } else { %>required<% } %>
+                    <% if(locals.coinEventData) { %>value="<%= coinEventData.eventId %>"<% } %>>
+                <% if(!locals.coinEventData) { %><small class="text-danger">Cannot be changed once set.</small><% } %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="item-name" class="col-sm-3 col-form-label font-weight-bold">Start Date</label>
+            <div class="col-sm-5">
+                <input type="date" class="date-input form-control" id="start-date" name="startDate" required pattern="\d{4}-\d{2}-\d{2}" <% if(locals.coinEventData) { %>value="<%= coinEventData.eventDetails.startDate.toISOString().split("T")[0] %>"<% } %>>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="item-name" class="col-sm-3 col-form-label font-weight-bold">End Date</label>
+            <div class="col-sm-5"> 
+                <input type="date" class="date-input form-control" id="end-date" name="endDate" required pattern="\d{4}-\d{2}-\d{2}" <% if(locals.coinEventData) { %>value="<%= coinEventData.eventDetails.endDate.toISOString().split("T")[0] %>"<% } %>>
+                <small class="text-info">Refers to coin farming end date, not coin shop end date</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Banner Image File Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="banner-img-file-name" name="bannerFileName" placeholder="Banner Image File Name" required autocomplete="off" <% if(locals.coinEventData) { %>value="<%= coinEventData.eventDetails.bannerImg %>"<% } %>>
+                <small class="form-text text-info">Will be displayed as banner image when listed. Only insert image file name (e.g. image.jpg). Recommended dimensions: 325px by 150px (or similar ratio)</small>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Coins Basic Info</h3>
+    <% if(!locals.coinEventData) { %><p class="text-info">Insert the icon ID for each coin involved. Use the <a href="/admin/icons" target="_blank">Icons page</a> to retrieve each icon ID. Create a new icon if necessary. <span class="text-danger">Coin icons cannot be changed once set</span>.</p><% } %>
+    <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
+        <div class="form-group row">
+            <label for="item-id" class="col-sm-3 col-form-label font-weight-bold"><% if(locals.coinEventData) { %>Coins<% } else { %>Coin Icon IDs<% } %></label>
+            <div class="col-sm-9" id="coin-icons-list">
+                <% if(!locals.coinEventData) { %>
+                    <button type="button" class="col-12 btn btn-sm btn-outline-info" id="btn-add-coin-icon"><i class="fas fa-plus"></i> Add Coin Icon</button>
+                <% } else { %>
+                    <% coinEventData.coinDetails.coinIds.forEach(function(coinId) { %>
+                        <div class="d-flex align-items-center mb-2">
+                            <img class="mr-1" src="<%= icons[`${coinId}`].imgUrl %>"> <%= icons[`${coinId}`].name %>
+                        </div>
+                    <% }) %>
+                <% } %>                
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-12">
+            <button type="submit" class="w-100 btn btn-sm btn-outline-info"><% if(locals.coinEventData) { %>Update<% } else { %>Add<% } %> Coin Event</button>
+        </div>
+    </div>
+</form>
