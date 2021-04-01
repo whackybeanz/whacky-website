@@ -30,6 +30,9 @@
                                         <%= icons[`${coinId}`].name %>
                                     </option>
                                 <% }) %>
+                                <% if(coinEventData.coinDetails.hasMesosShop) { %>
+                                    <option value="mesos" <% if(locals.coinShopData && coinShopData.defaultCurrency === "mesos") { %>selected<% } %>>Mesos</option>
+                                <% } %>
                             </select>
                             <small class="text-info">Sets the default currency for all items in this shop. You can adjust each item's currency if necessary.</small>
                         </div>

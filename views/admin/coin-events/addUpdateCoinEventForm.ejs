@@ -16,7 +16,7 @@
                         <div class="col-sm-9 d-flex flex-wrap h-100">
                             <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="is-public-radio-group">
                                 <div class="col form-check p-0">
-                                    <input class="form-check-input" type="radio" name="isPublic" id="public-yes" value="yes" <% if(!locals.coinEventData || (locals.coinEventData && coinEventData.isNewSkin)) { %>checked<% } %>>
+                                    <input class="form-check-input" type="radio" name="isPublic" id="public-yes" value="yes" <% if(!locals.coinEventData || (locals.coinEventData && coinEventData.isNewSkin)) { %>checked<% } %> required>
                                     <label class="form-check-label radio-select is-public-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.coinEventData || (locals.coinEventData && coinEventData.isPublic)) { %>active<% } %>" for="public-yes" data-is-public="yes">Yes</label>
                                 </div>
                                 <div class="col form-check p-0">
@@ -65,8 +65,27 @@
                 </div>
 
                 <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Coins Basic Info</h3>
-                <% if(!locals.coinEventData) { %><p class="text-info">Insert the icon ID for each coin involved. Use the <a href="/admin/icons" target="_blank">Icons page</a> to retrieve each icon ID. Create a new icon if necessary. <span class="text-danger">Coin icons cannot be changed once set</span>.</p><% } %>
+                <% if(!locals.coinEventData) { %><p class="text-info">Insert the icon ID for each coin involved. Use the <a href="/admin/icons" target="_blank">Icons page</a> to retrieve each icon ID. Create a new icon if necessary. <span class="text-danger">This section cannot be changed once set.</span></p><% } %>
                 <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
+                    <div class="form-group row">
+                        <label for="hasMesosShop" class="col-3 col-form-label font-weight-bold">Has Mesos Shop?</label>
+                        <div class="col-sm-9 <% if(!locals.coinEventData) { %>d-flex flex-wrap h-100<% } %>">
+                            <% if(!locals.coinEventData) { %>
+                                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="has-mesos-shop-radio-group">
+                                    <div class="col form-check p-0">
+                                        <input class="form-check-input" type="radio" name="hasMesosShop" id="mesos-shop-yes" value="yes" checked required>
+                                        <label class="form-check-label radio-select has-mesos-shop-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 active" for="mesos-shop-yes" data-has-mesos-shop="yes">Yes</label>
+                                    </div>
+                                    <div class="col form-check p-0">
+                                        <input class="form-check-input" type="radio" name="hasMesosShop" id="mesos-shop-no" value="no">
+                                        <label class="form-check-label radio-select has-mesos-shop-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2" for="mesos-shop-no" data-has-mesos-shop="no">No</label>
+                                    </div>
+                                </div>
+                            <% } else { %>
+                                <input type="text" class="form-control-plaintext" readonly value="<% if(coinEventData.coinDetails.hasMesosShop) { %>Yes<% } else { %>No<% } %>">
+                            <% } %>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="item-id" class="col-sm-3 col-form-label font-weight-bold"><% if(locals.coinEventData) { %>Coins<% } else { %>Coin Icon IDs<% } %></label>
                         <div class="col-sm-9" id="coin-icons-list">

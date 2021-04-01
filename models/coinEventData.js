@@ -11,7 +11,8 @@ var coinEventData = new mongoose.Schema({
         bannerImg: String,
     },
     coinDetails: {
-        coinIds: [String]
+        coinIds: [String],
+        hasMesosShop: Boolean,
     },
     shops: [{ 
         shopName: String, 
@@ -22,6 +23,7 @@ var coinEventData = new mongoose.Schema({
             iconId: String,
             price: Number,
             quantity: Number,
+            coinType: String,
             limits: String,
             tradability: String,
             itemNotes: String

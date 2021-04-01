@@ -41,6 +41,23 @@ function addCoinEventFormListener() {
     }
 }
 
+function checkDateValidity() {
+    const startDateValue = document.getElementById("start-date").value;
+    const endDateValue = document.getElementById("end-date").value;
+    const startDate = new Date(startDateValue);
+    const endDate = new Date(endDateValue);
+
+    if(startDateValue !== "" && endDateValue !== "" && startDate < endDate) {
+        if(numWeeks < 12) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
 function deleteFormListener() {
     const deleteCoinEventForm = document.getElementById("delete-coin-event-form");
     const deleteCoinShopForm = document.getElementById("delete-coin-shop-form");
@@ -67,22 +84,5 @@ function deleteFormListener() {
                 event.preventDefault();
             }
         })
-    }
-}
-
-function checkDateValidity() {
-    const startDateValue = document.getElementById("start-date").value;
-    const endDateValue = document.getElementById("end-date").value;
-    const startDate = new Date(startDateValue);
-    const endDate = new Date(endDateValue);
-
-    if(startDateValue !== "" && endDateValue !== "" && startDate < endDate) {
-        if(numWeeks < 12) {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        return false;
     }
 }

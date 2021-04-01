@@ -33,14 +33,19 @@ router.post("/coin-events", middleware.isAdmin, function(req, res) {
             bannerImg: req.body.bannerFileName,
         },
         coinDetails: {
-            coinIds: req.body.coinIds
+            coinIds: req.body.coinIds,
+            hasMesosShop: req.body.hasMesosShop === "yes"
         }
     }
 
     // Update event currencies to be tagged to event
     let query = [];
     req.body.coinIds.forEach(coinId => query.push({ id: coinId }));
-    let updateIconData = Icon.updateMany({ $or: query }, { $push: { usedInEvents: newCoinEvent.eventDetails.id }}, { new: true });
+    if(newCoinEvent.coinDetails.hasMesosShop) {
+        query.push({ id: "mesos" });
+    }
+
+    let updateIconData = Icon.updateMany({ $or: query }, { $push: { usedInEvents: newCoinEvent.eventId }}, { new: true });
     let createCoinEvent = CoinEvent.create(newCoinEvent);
 
     Promise.all([updateIconData, createCoinEvent])
@@ -179,6 +184,33 @@ router.post("/coin-event/:id/shop/:shopId/delete", middleware.isAdmin, function(
             req.flash("error", `Error: ${err}`);
             res.redirect("back");
         })
+})
+
+router.post("/coin-event/:id/shop/:shopId/addItem", middleware.isAdmin, function(req, res) {
+    const newCoinShopItem = {
+        iconId: req.body.itemId,
+        price: parseInt(req.body.price),
+        quantity: parseInt(req.body.quantity),
+        coinType: req.body.coinType,
+        limits: req.body.itemLimits,
+        tradability: req.body.itemTradability,
+        itemNotes: req.body.itemNotes
+    }
+
+    CoinEvent.findOneAndUpdate({ _id: req.params.id, "shops._id": req.params.shopId }, { $push: { "shops.$.items": newCoinShopItem } }, { new: true })
+        .then(updatedCoinEvent => {
+            return Icon.updateOne({ id: req.body.itemId }, { $push: { usedInEvents: updatedCoinEvent.eventId }}, { new: true });
+        })
+        .then(updatedIcon => {
+            console.log(updatedIcon);
+            req.flash("success", "Coin shop added.");
+            res.redirect("/coin-event/:id/shop/:shopId")
+        })
+        .catch(err => {
+            console.log(err);
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })    
 })
 
 module.exports = router;
