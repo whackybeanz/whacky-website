@@ -24,7 +24,8 @@ var coinEventData = new mongoose.Schema({
             price: Number,
             quantity: Number,
             coinType: String,
-            limits: String,
+            purchaseLimit: String,
+            timeframeLimit: String,
             tradability: String,
             itemNotes: String
         }]

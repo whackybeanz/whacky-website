@@ -192,7 +192,8 @@ router.post("/coin-event/:id/shop/:shopId/addItem", middleware.isAdmin, function
         price: parseInt(req.body.price),
         quantity: parseInt(req.body.quantity),
         coinType: req.body.coinType,
-        limits: req.body.itemLimits,
+        purchaseLimit: req.body.purchaseLimit,
+        timeframeLimit: req.body.timeframeLimit,
         tradability: req.body.itemTradability,
         itemNotes: req.body.itemNotes
     }
@@ -202,12 +203,10 @@ router.post("/coin-event/:id/shop/:shopId/addItem", middleware.isAdmin, function
             return Icon.updateOne({ id: req.body.itemId }, { $push: { usedInEvents: updatedCoinEvent.eventId }}, { new: true });
         })
         .then(updatedIcon => {
-            console.log(updatedIcon);
             req.flash("success", "Coin shop added.");
             res.redirect("/coin-event/:id/shop/:shopId")
         })
         .catch(err => {
-            console.log(err);
             req.flash("error", `Error: ${err}`);
             res.redirect("back");
         })    
