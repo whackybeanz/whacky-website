@@ -18,9 +18,10 @@ var coinEventData = new mongoose.Schema({
             sundayMultiplierByWeek: [Number],
         },
         extraSources: [{
+            sourceName: String,
+            sourceDesc: String,
             coinAmount: Number,
             timeframe: String,
-            sourceNote: String,
         }]
     }],
     rankUpCosts: {

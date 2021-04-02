@@ -1,0 +1,56 @@
+<form class="font-form w-100 size-900" action="/admin/coin-event/<%= coinEventData._id %>/coin/<%= coinData._id %>" method="POST">
+    <h3 class="w-100 font-subsubheader font-weight-bold d-flex align-items-center justify-content-center mb-3">
+        <img class="mr-1" src="<%= icon.imgUrl %>"> <%= icon.name %>
+    </h3>
+
+    <div class="border border-dark rounded-sm px-3 py-3 mb-5">
+        <div class="form-group row">
+            <label for="coin-notes" class="col-sm-3 col-form-label font-weight-bold">Notes</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="coin-notes" name="coinNotes" placeholder="Notes" autocomplete="off" <% if(coinData.coinNotes) { %>value="<%= coinData.coinNotes %>"<% } %>>
+                <small class="text-info">Write any notes related to acquiring this coin (e.g. "This coin is obtained through mini games.")</small>
+            </div>
+        </div>
+
+        <h3 class="w-100 font-subsubheader font-weight-bold font-italic text-underline mt-4 mb-0">Main Coin Source</h3>
+        <p class="text-info">Input fields are split by week. For 'Daily Coin Cap', enter the cap for a single day (and not summed across the week).</p>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Daily Coin Cap</label>
+            <div class="col-sm-9">
+                <div class="d-flex flex-wrap">
+                    <% for(let i = 0; i < durationWeeks; i++) { %>
+                        <div class="col-4 col-sm-3 px-0">
+                            <input type="number" class="form-control text-center" name="coinCap" placeholder="Week <%= i+1 %>" value="300">
+                        </div>
+                    <% } %>
+                </div>
+                <small class="text-info">Factor in any possible coin cap increases (e.g. through rank ups in events) when entering values. Do not factor external sources that allow you to go beyond the 'normal' coin cap.</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Sunday Maple Multiplier</label>
+            <div class="col-sm-9">
+                <div class="d-flex flex-wrap">
+                    <% for(let i = 0; i < durationWeeks; i++) { %>
+                        <div class="col-4 col-sm-3 px-0">
+                            <input type="number" class="form-control text-center" name="sundayMaple" placeholder="Week <%= i+1 %>" value="2">
+                        </div>
+                    <% } %>
+                </div>
+                <small class="text-info">Leave field blank (or enter 1) if no multiplier effect for that week. If multiplier is x2, enter 2.</small>
+            </div>
+        </div>
+
+        <h3 class="w-100 font-subsubheader font-weight-bold font-italic text-underline mt-4 mb-0">Additional Sources</h3>
+        <p class="text-info">Insert any other sources for this coin here (e.g. if the boss dummy relay activity awards the same coins, it goes here). Leave fields empty if not applicable.</p>
+        <div class="d-flex flex-column">
+            <%- include("./extraCoinSourceInput") %>
+        </div>
+
+        <div class="col-12 px-0">
+            <button class="h-100 w-100 btn btn-sm btn-outline-info rounded-sm d-flex justify-content-center align-items-center" id="btn-update-coin">
+                Update Coin Details
+            </button>
+        </div>
+    </div>
+</form>

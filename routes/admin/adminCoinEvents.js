@@ -147,11 +147,46 @@ router.get("/coin-event/:id/coin/:coinIconId", middleware.isAdmin, function(req,
 
     Promise.all([findIcon, findCoinEvent])
         .then(([icon, coinEventData]) => {
+            const coinData = coinEventData.coinDetails.find(coin => coin.iconId === req.params.coinIconId);
+            const durationWeeks = (Date.parse(coinEventData.eventDetails.endDate) - Date.parse(coinEventData.eventDetails.startDate) + 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000);
+
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";
-            res.render("admin/coin-events/coinDetails", { icon: icon, coinEventData: coinEventData });
+            res.render("admin/coin-events/coinDetails", { icon: icon, coinEventData: coinEventData, coinData: coinData, durationWeeks: durationWeeks });
         })
         .catch(err => {
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
+})
+
+router.post("/coin-event/:id/coin/:coinId", middleware.isAdmin, function(req, res) {
+    let coin = {
+        'coinDetails.$.coinNotes': req.body.coinNotes,
+        'coinDetails.$.mainSource': {
+            dailyMaxCapByWeek: req.body.coinCap,
+            sundayMultiplierByWeek: req.body.sundayMaple,
+        },
+    };
+
+    let extraSources = [];
+    for(let i = 0; i < req.body.activityNames.length; i++) {
+        extraSources.push({ 
+            sourceName: req.body.activityNames[i],
+            sourceDesc: req.body.activityDescriptions[i],
+            coinAmount: req.body.extraSourceCoinAmounts[i],
+            timeframe: req.body.coinSourceTimeframes && req.body.coinSourceTimeframes[i] ? req.body.coinSourceTimeframes[i] : "", 
+        })
+    }
+    coin['coinDetails.$.extraSources'] = extraSources;
+
+    CoinEvent.findOneAndUpdate({"coinDetails._id": req.params.coinId}, { $set: coin }, { new: true })
+        .then(updatedCoinEvent => {
+            req.flash("success", "Coin shop details updated.");
+            res.redirect(`/admin/coin-event/${updatedCoinEvent.eventId}`)
+        })
+        .catch(err => {
+            console.log(err);
             req.flash("error", `Error: ${err}`);
             res.redirect("back");
         })
