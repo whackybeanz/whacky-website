@@ -10,9 +10,25 @@ var coinEventData = new mongoose.Schema({
         endDate: Date,
         bannerImg: String,
     },
-    coinDetails: {
-        coinIds: [String],
-        hasMesosShop: Boolean,
+    coinDetails: [{
+        iconId: String,
+        coinNotes: String,
+        mainSource: {
+            dailyMaxCapByWeek: [Number],
+            sundayMultiplierByWeek: [Number],
+        },
+        extraSources: [{
+            coinAmount: Number,
+            timeframe: String,
+            sourceNote: String,
+        }]
+    }],
+    rankUpCosts: {
+        details: String,
+        ranks: [{
+            rankName: String,
+            totalCost: Number
+        }]
     },
     shops: [{ 
         shopName: String, 
@@ -29,7 +45,8 @@ var coinEventData = new mongoose.Schema({
             tradability: String,
             itemNotes: String
         }]
-    }]
+    }],
+    hasMesosShop: Boolean,
 });
 
 module.exports = mongoose.model("Coin Event", coinEventData);

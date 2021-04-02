@@ -9,6 +9,7 @@ var middleware = require("../middleware");
 var CoinEvent    = require("../../models/coinEventData");
 var Icon         = require("../../models/iconData");
 
+// Coin Event List
 router.get("/coin-events", middleware.isAdmin, function(req, res) {
     CoinEvent.find({}, function(err, allEvents) {
         if(err) {
@@ -23,7 +24,7 @@ router.get("/coin-events", middleware.isAdmin, function(req, res) {
 })
 
 router.post("/coin-events", middleware.isAdmin, function(req, res) {
-    const newCoinEvent = {
+    let newCoinEvent = {
         isPublic: req.body.isPublic === "yes",
         addedOrUpdatedOn: Date.now(),
         eventId: req.body.eventId,
@@ -33,16 +34,20 @@ router.post("/coin-events", middleware.isAdmin, function(req, res) {
             endDate: req.body.endDate,
             bannerImg: req.body.bannerFileName,
         },
-        coinDetails: {
-            coinIds: req.body.coinIds,
-            hasMesosShop: req.body.hasMesosShop === "yes"
-        }
+        hasMesosShop: req.body.hasMesosShop === "yes",
     }
+
+    req.body.coinIconIds.forEach(iconId => {
+        if(!newCoinEvent.coinDetails) {
+            newCoinEvent.coinDetails = [];
+        }
+        newCoinEvent.coinDetails.push({ iconId: iconId })
+    })
 
     // Update event currencies to be tagged to event
     let query = [];
-    req.body.coinIds.forEach(coinId => query.push({ id: coinId }));
-    if(newCoinEvent.coinDetails.hasMesosShop) {
+    req.body.coinIconIds.forEach(iconId => query.push({ id: iconId }));
+    if(newCoinEvent.hasMesosShop) {
         query.push({ id: "mesos" });
     }
 
@@ -60,6 +65,7 @@ router.post("/coin-events", middleware.isAdmin, function(req, res) {
         })
 })
 
+// Specific Coin Event
 router.get("/coin-event/:id", middleware.isAdmin, function(req, res) {
     let findIconsInEvent = Icon.find({ usedInEvents: req.params.id });
     let findCoinEvent = CoinEvent.findOne({ eventId: req.params.id });
@@ -67,9 +73,12 @@ router.get("/coin-event/:id", middleware.isAdmin, function(req, res) {
     Promise.all([findIconsInEvent, findCoinEvent])
         .then(([allIcons, coinEventData]) => {
             const iconsById = IconHelper.compileIconsById(allIcons);
+            // To calculate correct value, 1 extra day needs to be added to factor for end date (as event ends on selected date but 2359hrs)
+            const durationWeeks = (Date.parse(coinEventData.eventDetails.endDate) - Date.parse(coinEventData.eventDetails.startDate) + 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000);
+
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";
-            res.render("admin/coin-events/coinEventDetails", { icons: iconsById, coinEventData: coinEventData });
+            res.render("admin/coin-events/coinEventDetails", { icons: iconsById, coinEventData: coinEventData, durationWeeks: durationWeeks });
         })
         .catch(err => {
             req.flash("error", `Error: ${err}`);
@@ -131,6 +140,24 @@ router.post("/coin-event/:id/addShop", middleware.isAdmin, function(req, res) {
         })
 })
 
+// Specific Coin
+router.get("/coin-event/:id/coin/:coinIconId", middleware.isAdmin, function(req, res) {
+    let findIcon = Icon.findOne({ usedInEvents: req.params.id, id: req.params.coinIconId });
+    let findCoinEvent = CoinEvent.findOne({ eventId: req.params.id });
+
+    Promise.all([findIcon, findCoinEvent])
+        .then(([icon, coinEventData]) => {
+            res.locals.extraStylesheet = "adminStyles";
+            res.locals.branch = "coin-events";
+            res.render("admin/coin-events/coinDetails", { icon: icon, coinEventData: coinEventData });
+        })
+        .catch(err => {
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
+})
+
+// Specific Coin Shop
 router.get("/coin-event/:id/shop/:shopNum", middleware.isAdmin, function(req, res) {
     let findIconsInEvent = Icon.find({ usedInEvents: req.params.id });
     let findCoinEvent = CoinEvent.findOne({ eventId: req.params.id });
@@ -220,6 +247,7 @@ router.post("/coin-event/:id/shop/:shopId/addItem", middleware.isAdmin, function
         })    
 })
 
+// Specific Coin Shop Item
 router.get("/coin-event/:id/shop/:shopNum/item/:itemIconId", middleware.isAdmin, function(req, res) {
     CoinEvent.findOne({ eventId: req.params.id })
         .then(coinEventData => {
@@ -243,8 +271,8 @@ router.get("/coin-event/:id/shop/:shopNum/item/:itemIconId", middleware.isAdmin,
 
                     // Execute a query to retrieve icons matching currencies and also item involved
                     let query = [];
-                    coinEventData.coinDetails.coinIds.forEach(coinId => query.push({ id: coinId }));
-                    if(coinEventData.coinDetails.hasMesosShop) {
+                    coinEventData.coinDetails.forEach(coin => query.push({ id: coin.iconId }));
+                    if(coinEventData.hasMesosShop) {
                         query.push({ id: "mesos" });
                     }
                     query.push({ id: req.params.itemIconId });

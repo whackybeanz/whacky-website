@@ -25,12 +25,12 @@
                                 <% if(!locals.coinShopData) { %>
                                     <option value="" selected disabled hidden>-- Select Default Currency --</option>
                                 <% } %>
-                                <% coinEventData.coinDetails.coinIds.forEach(function(coinId) { %>
-                                    <option value="<%= coinId %>" <% if(locals.coinShopData && coinShopData.defaultCurrency === coinId) { %>selected<% } %>>
-                                        <%= icons[`${coinId}`].name %>
+                                <% coinEventData.coinDetails.forEach(function(coin) { %>
+                                    <option value="<%= coin.iconId %>" <% if(locals.coinShopData && coinShopData.defaultCurrency === coin.iconId) { %>selected<% } %>>
+                                        <%= icons[`${coin.iconId}`].name %>
                                     </option>
                                 <% }) %>
-                                <% if(coinEventData.coinDetails.hasMesosShop) { %>
+                                <% if(coinEventData.hasMesosShop) { %>
                                     <option value="mesos" <% if(locals.coinShopData && coinShopData.defaultCurrency === "mesos") { %>selected<% } %>>Mesos</option>
                                 <% } %>
                             </select>

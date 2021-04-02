@@ -11,7 +11,7 @@ function addNewCoinIcon() {
     if(addIconBtn) {
         addIconBtn.addEventListener("click", function() {
             const html = `<div class="d-flex align-items-center mb-2">
-                            <input type="text" class="col-11 form-control mr-2" name="coinIds" placeholder="Coin Icon ID" required autocomplete="off">
+                            <input type="text" class="col-11 form-control mr-2" name="coinIconIds" placeholder="Coin Icon ID" required autocomplete="off">
                             <button type="button" class="remove-coin-icon-input btn text-danger d-flex align-items-center"><i class="fas fa-times"></i></button>
                         </div>`;
             addIconBtn.insertAdjacentHTML('beforebegin', html);

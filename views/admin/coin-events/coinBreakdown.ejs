@@ -6,7 +6,28 @@
     </div>
     <div class="pot-list-section w-100 px-0 collapse" id="coin-breakdown">
         <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
-            
+            <div class="w-100 size-720" id="coin-list">
+                <table class="font-table w-100 table table-bordered table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th class="align-middle py-2">Coin</th>
+                            <th class="text-center align-middle py-2">Tools</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% coinEventData.coinDetails.forEach(coin => { %>
+                            <tr>
+                                <td class="align-middle py-2">
+                                    <img class="mr-2" src="<%= icons[`${coin.iconId}`].imgUrl %>"> <%= icons[`${coin.iconId}`].name %>
+                                </td>
+                                <td class="text-center align-middle py-2">
+                                    <a href="/admin/coin-event/<%= coinEventData.eventId %>/coin/<%= coin.iconId %>" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

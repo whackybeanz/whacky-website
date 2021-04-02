@@ -39,19 +39,19 @@
     <div class="form-group row">
         <label class="col-3 col-form-label font-weight-bold text-left">Coin Type</label>
         <div class="col-9 radio-select-group d-flex justify-content-center" id="coin-type-radio-group">
-            <% coinEventData.coinDetails.coinIds.forEach(function(coinId) { %>
+            <% coinEventData.coinDetails.forEach(function(coin) { %>
                 <div class="col form-check p-0">
-                    <input class="form-check-input" id="coin-type-<%= coinId %>" type="radio" name="coinType" value="<%= coinId %>" required 
-                        <% if((!locals.coinShopItemData && coinShopData.defaultCurrency === coinId) || (locals.coinShopItemData && coinShopItemData.coinType === coinId)) { %>checked<% } %>>
+                    <input class="form-check-input" id="coin-type-<%= coin.iconId %>" type="radio" name="coinType" value="<%= coin.iconId %>" required 
+                        <% if((!locals.coinShopItemData && coinShopData.defaultCurrency === coin.iconId) || (locals.coinShopItemData && coinShopItemData.coinType === coin.iconId)) { %>checked<% } %>>
                     <label class="form-check-label radio-select coin-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
-                        <% if((!locals.coinShopItemData && coinShopData.defaultCurrency === coinId) || (locals.coinShopItemData && coinShopItemData.coinType === coinId)) { %>active<% } %>" 
-                        for="coin-type-<%= coinId %>">
-                        <img class="h-100 mr-0 mr-sm-1" src="<%= icons[`${coinId}`].imgUrl %>">
-                        <p class="font-small d-none d-sm-inline mb-0"><%= icons[`${coinId}`].name %></p>
+                        <% if((!locals.coinShopItemData && coinShopData.defaultCurrency === coin.iconId) || (locals.coinShopItemData && coinShopItemData.coinType === coin.iconId)) { %>active<% } %>" 
+                        for="coin-type-<%= coin.iconId %>">
+                        <img class="h-100 mr-0 mr-sm-1" src="<%= icons[`${coin.iconId}`].imgUrl %>">
+                        <p class="font-small d-none d-sm-inline mb-0"><%= icons[`${coin.iconId}`].name %></p>
                     </label>
                 </div>
             <% }) %>
-            <% if(locals.coinEventData && coinEventData.coinDetails.hasMesosShop) { %>
+            <% if(locals.coinEventData && coinEventData.hasMesosShop) { %>
                 <div class="col form-check p-0">
                     <input class="form-check-input" id="coin-type-meso" type="radio" name="coinType" value="mesos" 
                         <% if((!locals.coinShopItemData && coinShopData.defaultCurrency === "mesos") || (locals.coinShopItemData && coinShopItemData.coinType === "mesos")) { %>checked<% } %>>
