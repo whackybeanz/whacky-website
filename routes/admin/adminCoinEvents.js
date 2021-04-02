@@ -2,6 +2,7 @@ var AdminHelper = require("../helpers/adminHelpers");
 var IconHelper = require("../helpers/iconHelpers");
 
 var express = require("express");
+var mongoose = require("mongoose");
 var router  = express.Router();
 var middleware = require("../middleware");
 
@@ -143,7 +144,7 @@ router.get("/coin-event/:id/shop/:shopNum", middleware.isAdmin, function(req, re
                 const coinShopData = coinEventData.shops[shopNum];
                 res.locals.extraStylesheet = "adminStyles";
                 res.locals.branch = "coin-events";
-                res.render("admin/coin-events/coinShopDetails", { icons: iconsById, coinEventData: coinEventData, coinShopData: coinShopData });
+                res.render("admin/coin-events/coinShopDetails", { icons: iconsById, coinEventData: coinEventData, coinShopData: coinShopData, shopNum: req.params.shopNum });
             } else {
                 throw new Error("Invalid shop number received");
             }
@@ -164,8 +165,9 @@ router.post("/coin-event/:id/shop/:shopId", middleware.isAdmin, function(req, re
 
     CoinEvent.findOneAndUpdate({"shops._id": req.params.shopId}, { $set: coinShop }, { new: true })
         .then(updatedCoinEvent => {
-            req.flash("success", "Coin shop added.");
-            res.redirect("back")
+            const shopNum = AdminHelper.retrieveShopNum(updatedCoinEvent, req.params.shopId);
+            req.flash("success", "Coin shop details updated.");
+            res.redirect(`/admin/coin-event/${updatedCoinEvent.eventId}/shop/${shopNum}`)
         })
         .catch(err => {
             req.flash("error", `Error: ${err}`);
@@ -200,16 +202,125 @@ router.post("/coin-event/:id/shop/:shopId/addItem", middleware.isAdmin, function
 
     CoinEvent.findOneAndUpdate({ _id: req.params.id, "shops._id": req.params.shopId }, { $push: { "shops.$.items": newCoinShopItem } }, { new: true })
         .then(updatedCoinEvent => {
-            return Icon.updateOne({ id: req.body.itemId }, { $push: { usedInEvents: updatedCoinEvent.eventId }}, { new: true });
+            const compiledData = Promise.resolve({
+                coinEventId: updatedCoinEvent.eventId,
+                shopNum: AdminHelper.retrieveShopNum(updatedCoinEvent, req.params.shopId)
+            });
+            let updateIcon = Icon.updateOne({ id: req.body.itemId }, { $push: { usedInEvents: updatedCoinEvent.eventId }}, { new: true });
+
+            return Promise.all([compiledData, updateIcon]);
         })
-        .then(updatedIcon => {
+        .then(([compiledData, updatedIcon]) => {
             req.flash("success", "Coin shop added.");
-            res.redirect("/coin-event/:id/shop/:shopId")
+            res.redirect(`/coin-event/${compiledData.coinEventId}/shop/${compiledData.shopNum}`);
         })
         .catch(err => {
             req.flash("error", `Error: ${err}`);
             res.redirect("back");
         })    
+})
+
+router.get("/coin-event/:id/shop/:shopNum/item/:itemIconId", middleware.isAdmin, function(req, res) {
+    CoinEvent.findOne({ eventId: req.params.id })
+        .then(coinEventData => {
+            const shopNum = parseInt(req.params.shopNum);
+
+            // First check if shop number is valid
+            if(!isNaN(shopNum) && shopNum < coinEventData.shops.length) {
+                const coinShopData = coinEventData.shops[shopNum];
+                const coinShopItemData = coinEventData.shops[shopNum].items.find(item => item.iconId === req.params.itemIconId);
+                
+                // Then check if requested item exists in shop
+                if(coinShopItemData === undefined) {
+                    throw new Error("Invalid item id received");
+                } else {
+                    // Compile coin event, shop, shop item data
+                    const compiledData = Promise.resolve({
+                        coinEventData: coinEventData,
+                        coinShopData: coinShopData,
+                        coinShopItemData: coinShopItemData,
+                    })
+
+                    // Execute a query to retrieve icons matching currencies and also item involved
+                    let query = [];
+                    coinEventData.coinDetails.coinIds.forEach(coinId => query.push({ id: coinId }));
+                    if(coinEventData.coinDetails.hasMesosShop) {
+                        query.push({ id: "mesos" });
+                    }
+                    query.push({ id: req.params.itemIconId });
+
+                    let findIconsInEvent = Icon.find({ $or: query });
+
+                    // Return compiled data and query as a promise
+                    return Promise.all([compiledData, findIconsInEvent]);
+                }
+            } else {
+                throw new Error("Invalid shop number received");
+            }
+        })
+        .then(([compiledData, allIcons]) => {
+            const responseObj = {
+                icons: IconHelper.compileIconsById(allIcons),
+                coinEventData: compiledData.coinEventData,
+                coinShopData: compiledData.coinShopData,
+                coinShopItemData: compiledData.coinShopItemData,
+                shopNum: req.params.shopNum,
+            }
+            res.locals.extraStylesheet = "adminStyles";
+            res.locals.branch = "coin-events";
+            res.render("admin/coin-events/coinShopItemDetails", responseObj);
+        })
+        .catch(err => {
+            console.log(err);
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
+})
+
+router.post("/coin-event/:id/shop/:shopId/item/:itemId", middleware.isAdmin, function(req, res) {
+    const updatedItem = {
+        'shops.$[outer].items.$[inner].price': parseInt(req.body.price),
+        'shops.$[outer].items.$[inner].quantity': parseInt(req.body.quantity),
+        'shops.$[outer].items.$[inner].coinType': req.body.coinType,
+        'shops.$[outer].items.$[inner].purchaseLimit': req.body.purchaseLimit,
+        'shops.$[outer].items.$[inner].timeframeLimit': req.body.timeframeLimit,
+        'shops.$[outer].items.$[inner].tradability': req.body.itemTradability,
+        'shops.$[outer].items.$[inner].itemNotes': req.body.itemNotes
+    }
+
+    // Finds the matching coin event _id, and sets the above properties for changing
+    // Filter the nested array by outer/inner variables corresponding to shop _id and item _id respectively to target the correct item
+    CoinEvent.findOneAndUpdate(
+        { _id: req.params.id }, 
+        { $set: updatedItem }, 
+        { 
+            arrayFilters: [{ "outer._id": req.params.shopId }, { "inner._id": req.params.itemId }],
+            new: true 
+        })
+        .then(updatedCoinEvent => {
+            const shopNum = AdminHelper.retrieveShopNum(updatedCoinEvent, req.params.shopId);
+            req.flash("success", "Item updated");
+            res.redirect(`/admin/coin-event/${updatedCoinEvent.eventId}/shop/${shopNum}`)
+        })
+        .catch(err => {
+            console.log(err);
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
+})
+
+router.post("/coin-event/:id/shop/:shopId/item/:itemId/delete", middleware.isAdmin, function(req, res) {
+    CoinEvent.findOneAndUpdate({ _id: req.params.id, "shops._id": req.params.shopId }, { $pull: { 'shops.$.items': { _id: req.params.itemId } } }, { new: true })
+        .then(updatedCoinEvent => {
+            const shopNum = AdminHelper.retrieveShopNum(updatedCoinEvent, req.params.shopId);
+            req.flash("success", 'Item deletion successful.');
+            res.redirect(`/admin/coin-event/${updatedCoinEvent.eventId}/shop/${shopNum}`);
+        })
+        .catch(err => {
+            console.log(err);
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
 })
 
 module.exports = router;

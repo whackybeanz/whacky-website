@@ -22,7 +22,7 @@
                                 <% if(icons[`${item.iconId}`]) { %>
                                     <img class="item-img standard-img-size mr-0 mr-sm-2" src="<%= icons[`${item.iconId}`].imgUrl %>"> <%= icons[`${item.iconId}`].name %>
                                 <% } else { %>
-                                    Invalid item ID (<%= iconId %>) received
+                                    Invalid item ID (<%= item.iconId %>) received
                                 <% } %>
                                 <div>
                                     <div class="d-inline d-sm-none">
@@ -92,9 +92,12 @@
                             <% } %>
                         </td>
                         <td class="text-center align-middle py-2">
-                            <a href="#" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
-                            <form class="d-inline">
-                                <button type="submit" class="delete-database-item-btn btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            <a href="/admin/coin-event/<%= coinEventData.eventId %>/shop/<%= shopNum %>/item/<%= item.iconId %>" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
+                            <form class="d-inline" action="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/item/<%= item._id %>/delete" method="POST">
+                                <button type="submit" class="delete-database-item-btn btn btn-outline-danger btn-sm" 
+                                    data-name="<% if(icons[`${item.iconId}`]) { %><%= icons[`${item.iconId}`].name %><% } else { %>undefined<% } %>">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>

@@ -125,4 +125,8 @@ function compileDamageSkinData(body) {
     return damageSkinData;
 }
 
-module.exports = { getIconCategories, getPageSections, compileIconData, getDamageSkinCategories, compileDamageSkinData };
+function retrieveShopNum(coinEvent, shopId) {
+    return coinEvent.shops.findIndex(shop => shop._id.toString() === shopId);
+}
+
+module.exports = { getIconCategories, getPageSections, compileIconData, getDamageSkinCategories, compileDamageSkinData, retrieveShopNum };
