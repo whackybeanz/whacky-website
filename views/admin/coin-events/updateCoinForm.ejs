@@ -1,8 +1,9 @@
 <form class="font-form w-100 size-900" action="/admin/coin-event/<%= coinEventData._id %>/coin/<%= coinData._id %>" method="POST">
-    <h3 class="w-100 font-subsubheader font-weight-bold d-flex align-items-center justify-content-center mb-3">
+    <h3 class="w-100 font-subheader font-weight-bold d-flex align-items-center justify-content-center mb-3">
         <img class="mr-1" src="<%= icon.imgUrl %>"> <%= icon.name %>
     </h3>
 
+    <h3 class="w-100 font-subsubheader font-weight-bold font-italic">General Data</h3>
     <div class="border border-dark rounded-sm px-3 py-3 mb-5">
         <div class="form-group row">
             <label for="coin-notes" class="col-sm-3 col-form-label font-weight-bold">Notes</label>
@@ -12,8 +13,26 @@
             </div>
         </div>
 
-        <h3 class="w-100 font-subsubheader font-weight-bold font-italic text-underline mt-4 mb-0">Main Coin Source</h3>
-        <p class="text-info">Input fields are split by week. For 'Daily Coin Cap', enter the cap for a single day (and not summed across the week).</p>
+        <div class="form-group row mb-0">
+            <label for="coin-notes" class="col-sm-3 col-form-label font-weight-bold">Used for Rank Up Costs?</label>
+            <div class="col-sm-9 d-flex flex-wrap h-100">
+                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="timeframe-limits-radio-group">
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isUsedForRankUp" id="rank-up-no" value="" <% if(!coinData.isUsedForRankUp) { %>checked<% } %>>
+                        <label class="form-check-label radio-select used-for-rank-up-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!coinData.isUsedForRankUp) { %>active<% } %>" for="rank-up-no" data-used-for-rank-up="">No</label>
+                    </div>
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isUsedForRankUp" id="rank-up-yes" value="yes" <% if(coinData.isUsedForRankUp) { %>checked<% } %>>
+                        <label class="form-check-label radio-select used-for-rank-up-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(coinData.isUsedForRankUp) { %>active<% } %>" for="rank-up-yes" data-used-for-rank-up="yes">Yes</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Main Coin Source</h3>
+    <p class="text-info mb-2">Input fields are split by week. For 'Daily Coin Cap', enter the cap for a single day (and not summed across the week).</p>
+    <div class="border border-dark rounded-sm px-3 py-3 mb-5">
         <div class="form-group row">
             <label class="col-sm-3 col-form-label font-weight-bold">Daily Coin Cap</label>
             <div class="col-sm-9">
@@ -40,17 +59,25 @@
                 <small class="text-info">Leave field blank (or enter 1) if no multiplier effect for that week. If multiplier is x2, enter 2.</small>
             </div>
         </div>
+    </div>
 
-        <h3 class="w-100 font-subsubheader font-weight-bold font-italic text-underline mt-4 mb-0">Additional Sources</h3>
-        <p class="text-info">Insert any other sources for this coin here (e.g. if the boss dummy relay activity awards the same coins, it goes here). Leave fields empty if not applicable.</p>
-        <div class="d-flex flex-column">
-            <%- include("./extraCoinSourceInput") %>
-        </div>
+    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Additional Sources</h3>
+    <p class="text-info mb-2">Insert any other sources for this coin here (e.g. if the boss dummy relay activity awards the same coins, it goes here). Leave fields empty if not applicable.</p>
+    <div class="border border-dark rounded-sm px-3 py-3 mb-5">
+        <%- include("./extraCoinSourceInput") %>
+    </div>
 
-        <div class="col-12 px-0">
-            <button class="h-100 w-100 btn btn-sm btn-outline-info rounded-sm d-flex justify-content-center align-items-center" id="btn-update-coin">
-                Update Coin Details
-            </button>
+    <div class="<% if(!coinData.isUsedForRankUp) { %>d-none<% } %>" id="rank-up-table">
+        <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Rank Up Cost Breakdown</h3>
+        <p class="text-info mb-2">Insert each rank and its cost on a separate row.</p>
+        <div class="border border-dark rounded-sm px-3 py-3 mb-5">
+            <%- include("./rankUpCostsInput") %>
         </div>
+    </div>
+
+    <div class="col-12 px-0 mb-4">
+        <button class="h-100 w-100 btn btn-sm btn-outline-info rounded-sm d-flex justify-content-center align-items-center" id="btn-update-coin">
+            Update Coin Details
+        </button>
     </div>
 </form>

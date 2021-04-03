@@ -161,24 +161,52 @@ router.get("/coin-event/:id/coin/:coinIconId", middleware.isAdmin, function(req,
 })
 
 router.post("/coin-event/:id/coin/:coinId", middleware.isAdmin, function(req, res) {
+    // First assign basic coin data
+    // Includes notes about coin, main source cap + sunday maple multiplier, and whether it's used for ranking up
     let coin = {
         'coinDetails.$.coinNotes': req.body.coinNotes,
         'coinDetails.$.mainSource': {
             dailyMaxCapByWeek: req.body.coinCap,
             sundayMultiplierByWeek: req.body.sundayMaple,
         },
+        'coinDetails.$.isUsedForRankUp': req.body.isUsedForRankUp === "yes",
     };
 
+    // Add to coin data any extra sources for receiving this coin
     let extraSources = [];
     for(let i = 0; i < req.body.activityNames.length; i++) {
-        extraSources.push({ 
-            sourceName: req.body.activityNames[i],
-            sourceDesc: req.body.activityDescriptions[i],
-            coinAmount: req.body.extraSourceCoinAmounts[i],
-            timeframe: req.body.coinSourceTimeframes && req.body.coinSourceTimeframes[i] ? req.body.coinSourceTimeframes[i] : "", 
-        })
+        let activityName = req.body.activityNames[i];
+
+        if(activityName !== "") {
+            extraSources.push({ 
+                sourceName: activityName,
+                sourceDesc: req.body.activityDescriptions[i],
+                coinAmount: req.body.extraSourceCoinAmounts[i],
+                timeframe: req.body.coinSourceTimeframes && req.body.coinSourceTimeframes[i] ? req.body.coinSourceTimeframes[i] : "", 
+            })
+        }
     }
     coin['coinDetails.$.extraSources'] = extraSources;
+
+    // If the coin is also used for rank up costs, add the relevant ranks and costs
+    if(req.body.isUsedForRankUp === "yes") {
+        coin['coinDetails.$.rankUpCosts.details'] = req.body.rankUpNotes;
+
+        let rankDetails = [];
+        for(let i = 0; i < req.body.rankName.length; i++) {
+            let rankName = req.body.rankName[i];
+            let rankCost = req.body.totalRankUpCost[i];
+
+            if(rankName !== "") {
+                rankDetails.push({ rankName: rankName, totalCost: rankCost });
+            }
+        }
+
+        coin['coinDetails.$.rankUpCosts.ranks'] = rankDetails;
+    } else {
+        coin['coinDetails.$.rankUpCosts.details'] = "";
+        coin['coinDetails.$.rankUpCosts.ranks'] = [];
+    }
 
     CoinEvent.findOneAndUpdate({"coinDetails._id": req.params.coinId}, { $set: coin }, { new: true })
         .then(updatedCoinEvent => {

@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addRemoveIconInputBtnListener();
     addCoinEventFormListener();
     deleteFormListener();
+    addRankUpBtnListener();
 });
 
 function addNewCoinIcon() {
@@ -85,4 +86,18 @@ function deleteFormListener() {
             }
         })
     }
+}
+
+function addRankUpBtnListener() {
+    const radioBtns = document.querySelectorAll(".used-for-rank-up-input");
+
+    radioBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+            if(this.dataset.usedForRankUp === "yes") {
+                document.getElementById("rank-up-table").classList.remove("d-none");
+            } else {
+                document.getElementById("rank-up-table").classList.add("d-none");
+            }
+        })
+    })
 }

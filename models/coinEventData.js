@@ -22,15 +22,16 @@ var coinEventData = new mongoose.Schema({
             sourceDesc: String,
             coinAmount: Number,
             timeframe: String,
-        }]
+        }],
+        isUsedForRankUp: Boolean,
+        rankUpCosts: {
+            details: String,
+            ranks: [{
+                rankName: String,
+                totalCost: Number
+            }]
+        },
     }],
-    rankUpCosts: {
-        details: String,
-        ranks: [{
-            rankName: String,
-            totalCost: Number
-        }]
-    },
     shops: [{ 
         shopName: String, 
         defaultCurrency: String, 
