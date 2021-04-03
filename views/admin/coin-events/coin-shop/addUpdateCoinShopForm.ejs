@@ -1,10 +1,10 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
     <div class="pot-list-section-subheader w-100">
-        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#add-coin-shop">
+        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 <% if(locals.coinShopData) { %>collapsed<% } %>" data-toggle="collapse" href="#add-coin-shop">
             <i class="fas fa-caret-down mr-2"></i> <% if(locals.coinShopData) { %>Update<% } else { %>Add<% } %> Coin Shop
         </h3>
     </div>
-    <div class="pot-list-section w-100 px-0 collapse" id="add-coin-shop">
+    <div class="pot-list-section w-100 px-0 collapse <% if(!locals.coinShopData) { %>show<% } %>" id="add-coin-shop">
         <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
             <form class="font-form w-100 size-900" 
                 action="<% if(locals.coinShopData) { %>/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %><% } else { %>/admin/coin-event/<%= coinEventData._id %>/addShop<% } %>" 
