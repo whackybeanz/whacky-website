@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addRankUpBtnListener();
     addMoreItemsListener();
     deleteAddedItemListener();
+    pasteFromClipboardListener();
 });
 
 function addNewCoinIcon() {
@@ -114,8 +115,13 @@ function addMoreItemsListener() {
                                 <div class="delete-bulk-add-item-div text-danger position-absolute cursor-pointer">
                                     <i class="fas fa-lg fa-times pointer-events-none"></i>
                                 </div>
-                                <div class="form-group mb-2">
-                                    <input type="text" class="form-control text-center" placeholder="Item ID" name="itemId" pattern="^[a-zA-Z0-9-]+$" autocomplete="off" required>
+                                <div class="input-group mb-2">
+                                    <input type="text" class="paste-input form-control text-center" placeholder="Item ID" name="itemId" pattern="^[a-zA-Z0-9-]+$" autocomplete="off" required>
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn-paste-from-clipboard btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Paste from clipboard">
+                                            <i class="fas fa-clipboard pointer-events-none"></i>
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="form-group mb-2">
                                     <input type="number" class="form-control text-center" placeholder="Price" name="price" autocomplete="off" required>
@@ -137,6 +143,18 @@ function deleteAddedItemListener() {
     document.addEventListener("click", function(event) {
         if(event.target && event.target.classList.contains("delete-bulk-add-item-div")) {
             event.target.parentNode.parentNode.remove();
+        }
+    })
+}
+
+function pasteFromClipboardListener() {
+    document.addEventListener("click", function(event) {
+        if(event.target && event.target.classList.contains("btn-paste-from-clipboard")) {
+            navigator.clipboard.readText().then(function(clipText) {
+                event.target.parentNode.parentNode.querySelector(".paste-input").value = clipText;
+            }, function() {
+                
+            });
         }
     })
 }

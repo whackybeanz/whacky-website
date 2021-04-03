@@ -3,8 +3,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addEquipTypeSelectListener();
     addItemIdInputListener();
     addLocalhostRadioListener();
-    addSearchListener();
-    addDeleteIconListener();
+    addCopyToClipboardListener();
 });
 
 function addIconTypeSelectListener() {
@@ -69,4 +68,24 @@ function addLocalhostRadioListener() {
             }
         })
     })
+}
+
+// To prevent eventListener from firing twice, callback function is split into its own handler
+function addCopyToClipboardListener() {
+    const copyBtns = document.querySelectorAll(".btn-copy-to-clipboard");
+
+    copyBtns.forEach(function(btn) {
+        btn.addEventListener("click", getNode)
+    })
+}
+
+function getNode() {
+    const copyBtnElem = this;
+    const iconId = copyBtnElem.parentNode.parentNode.querySelector(".cell-icon-id").textContent;
+
+    navigator.clipboard.writeText(iconId).then(function() {
+        
+    }, function() {
+        
+    });
 }

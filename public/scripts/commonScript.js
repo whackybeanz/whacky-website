@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addCheckboxListener();
     addRadioListener();
     addSearchListener();
-    addDeleteDbItemListener();
+    removeItemListener();
 });
 
 function addCheckboxListener() {
@@ -71,12 +71,12 @@ function addSearchListener() {
     }
 }
 
-function addDeleteDbItemListener() {
-    const deleteBtns = document.querySelectorAll(".delete-database-item-btn");
+function removeItemListener() {
+    const removeBtns = document.querySelectorAll(".remove-item-btn");
 
-    deleteBtns.forEach(function(btn) {
+    removeBtns.forEach(function(btn) {
         btn.addEventListener("click", function(event) {
-            if(confirm(`Do you really wish to delete [${this.dataset.name}]?`)) {
+            if(confirm(`Do you really wish to remove [${this.dataset.name}]?`)) {
                 return true;
             } else {
                 event.preventDefault();
