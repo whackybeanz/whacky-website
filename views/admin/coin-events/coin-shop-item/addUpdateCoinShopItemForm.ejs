@@ -5,9 +5,7 @@
         action="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/item/<%= coinShopItemData._id %>" 
     <% } %>
     method="POST">
-    <% if(!locals.coinShopItemData) { %>
-        <h3 class="w-100 font-subsubheader font-weight-bold text-left text-underline mb-2">Add New Item</h3>
-    <% } else { %>
+    <% if(locals.coinShopItemData) { %>
         <h3 class="w-100 font-subsubheader font-weight-bold d-flex align-items-center justify-content-center mb-3">
             <img class="mr-2" src="<%= icons[`${coinShopItemData.iconId}`].imgUrl %>">
             <%= icons[`${coinShopItemData.iconId}`].name %>
