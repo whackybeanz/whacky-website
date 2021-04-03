@@ -154,7 +154,7 @@ router.get("/coin-event/:id/coin/:coinIconId", middleware.isAdmin, function(req,
 
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";
-            res.render("admin/coin-events/coinDetails", { icon: icon, coinEventData: coinEventData, coinData: coinData, durationWeeks: durationWeeks });
+            res.render("admin/coin-events/coin/coinDetails", { icon: icon, coinEventData: coinEventData, coinData: coinData, durationWeeks: durationWeeks });
         })
         .catch(err => {
             req.flash("error", `Error: ${err}`);
@@ -237,7 +237,7 @@ router.get("/coin-event/:id/shop/:shopNum", middleware.isAdmin, function(req, re
                 const coinShopData = coinEventData.shops[shopNum];
                 res.locals.extraStylesheet = "adminStyles";
                 res.locals.branch = "coin-events";
-                res.render("admin/coin-events/coinShopDetails", { icons: iconsById, coinEventData: coinEventData, coinShopData: coinShopData, shopNum: req.params.shopNum });
+                res.render("admin/coin-events/coin-shop/coinShopDetails", { icons: iconsById, coinEventData: coinEventData, coinShopData: coinShopData, shopNum: req.params.shopNum });
             } else {
                 throw new Error("Invalid shop number received");
             }
@@ -362,7 +362,7 @@ router.get("/coin-event/:id/shop/:shopNum/item/:itemIconId", middleware.isAdmin,
             }
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";
-            res.render("admin/coin-events/coinShopItemDetails", responseObj);
+            res.render("admin/coin-events/coin-shop-item/coinShopItemDetails", responseObj);
         })
         .catch(err => {
             console.log(err);

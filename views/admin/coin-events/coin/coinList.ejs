@@ -1,0 +1,38 @@
+<h3 class="w-100 font-subheader font-weight-bold d-flex align-items-center mb-2">Coin List</h3>
+<table class="font-table w-100 table table-bordered table-hover mb-4">
+    <thead>
+        <tr>
+            <th class="align-middle py-2">Coin</th>
+            <th class="align-middle py-2">Coin Numbers</th>
+            <th class="text-center align-middle py-2">Tools</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% coinEventData.coinDetails.forEach(coin => { %>
+            <tr>
+                <td class="align-middle py-2">
+                    <img class="mr-2" src="<%= icons[`${coin.iconId}`].imgUrl %>"> <%= icons[`${coin.iconId}`].name %>
+
+                    <% if(coin.coinNotes && coin.coinNotes !== "") { %>
+                        <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= coin.coinNotes %>">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                    <% } %>
+                </td>
+                <td class="text-center align-middle py-2">
+                    <div class="d-flex flex-column align-items-start">
+                        <p class="mb-1">Max Possible Coins: <%= coinGainsAndCosts[coin.iconId].maxPossibleCoins.toLocaleString('en-SG') %></p>
+
+                        <% if(coin.isUsedForRankUp) { %>
+                            <p class="mb-1">Rank up costs: <%= coinGainsAndCosts[coin.iconId].rankCosts.toLocaleString('en-SG') %></p>
+                            <p class="mb-0">Amount Left: <%= (coinGainsAndCosts[coin.iconId].maxPossibleCoins - coinGainsAndCosts[coin.iconId].rankCosts).toLocaleString('en-SG') %></p>
+                        <% } %>
+                    </div>
+                </td>
+                <td class="text-center align-middle py-2">
+                    <a href="/admin/coin-event/<%= coinEventData.eventId %>/coin/<%= coin.iconId %>" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>

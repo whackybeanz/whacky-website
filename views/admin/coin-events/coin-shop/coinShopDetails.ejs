@@ -1,8 +1,8 @@
-<%- include("../../partials/header") %>
-<%- include("../../partials/navbar") %>
+<%- include("../../../partials/header") %>
+<%- include("../../../partials/navbar") %>
 
 <div class="container-fluid content d-flex flex-column flex-md-row p-0">
-    <%- include("../adminSidebar") %>
+    <%- include("../../adminSidebar") %>
     <div class="main-content-div col p-0 position-relative">
         <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
             <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
@@ -20,7 +20,7 @@
 
                 <div class="d-flex w-100 flex-column align-items-center justify-content-center mb-3 py-3">
                     <%- include("./addUpdateCoinShopForm") %>
-                    <%- include("./coinShopItems") %>
+                    <%- include("../coin-shop-item/coinShopItems") %>
                 </div>
 
                 <form class="size-350 w-100" action="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/delete" method="POST" id="delete-coin-shop-form">
@@ -35,4 +35,4 @@
 
 <script type="text/javascript" src="/scripts/commonScript.js"></script>
 <script type="text/javascript" src="/scripts/admin/coinEventScript.js"></script>
-<%- include("../../partials/footer") %>
+<%- include("../../../partials/footer") %>

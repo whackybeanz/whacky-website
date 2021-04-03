@@ -20,15 +20,15 @@
 
                 <div class="d-flex w-100 flex-column align-items-center justify-content-center mb-3 py-3">
                     <div class="size-900 w-100">
-                        <%- include("./coinList") %>
-                        <%- include("./coinShopList") %>
+                        <%- include("./coin/coinList") %>
+                        <%- include("./coin-shop/coinShopList") %>
                     </div>
 
                     <hr class="w-25 my-4">
 
                     <%- include("./addUpdateCoinEventForm") %>
-                    <%- include("./coinBreakdown") %>
-                    <%- include("./addUpdateCoinShopForm") %>
+                    <%- include("./coin/coinBreakdown") %>
+                    <%- include("./coin-shop/addUpdateCoinShopForm") %>
                 </div>
 
                 <form class="size-350 w-100" action="/admin/coin-event/<%= coinEventData._id %>/delete" method="POST" id="delete-coin-event-form">
