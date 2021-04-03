@@ -1,20 +1,27 @@
-<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-    <div class="pot-list-section-subheader w-100">
-        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#coin-shop-list">
-            <i class="fas fa-caret-down mr-2"></i> Coin Shop List
-        </h3>
-    </div>
-    <div class="pot-list-section w-100 px-0 collapse show" id="coin-shop-list">
-        <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+<h3 class="w-100 font-subheader font-weight-bold d-flex align-items-center mb-2">Coin Shop List</h3>
+<table class="font-table w-100 table table-bordered table-hover mb-0">
+    <thead>
+        <tr>
+            <th class="align-middle py-2">Shop Name</th>
+            <th class="text-center align-middle py-2">Tools</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if(coinEventData.shops.length > 0) { %>
             <% coinEventData.shops.forEach((coinShop, index) => { %>
-                <div class="col-6 col-md-3 px-1 mb-2">
-                    <div class="single-option-select d-flex justify-content-center align-items-center rounded-sm position-relative py-1 px-2">
-                        <a href="/admin/coin-event/<%= coinEventData.eventId %>/shop/<%= index %>" class="stretched-link text-decoration-none">
-                            <%= coinShop.shopName %>
-                        </a>
-                    </div>
-                </div>
+                <tr>
+                    <td class="align-middle py-2">
+                        <%= coinShop.shopName %>
+                    </td>
+                    <td class="table-cols-75 text-center align-middle py-2">
+                        <a href="/admin/coin-event/<%= coinEventData.eventId %>/shop/<%= index %>" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
+                    </td>
+                </tr>
             <% }) %>
-        </div>
-    </div>
-</div>
+        <% } else { %>
+            <tr>
+                <td class="table-cols-75 text-center" colspan="2">- No shops added yet. Why not add some? -</td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>

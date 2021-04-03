@@ -1,32 +1,103 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
     <div class="pot-list-section-subheader w-100">
         <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#coin-breakdown">
-            <i class="fas fa-caret-down mr-2"></i> Coin Breakdown
+            <i class="fas fa-caret-down mr-2"></i> Coin Numbers Breakdown
         </h3>
     </div>
     <div class="pot-list-section w-100 px-0 collapse" id="coin-breakdown">
         <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
-            <div class="w-100 size-720" id="coin-list">
-                <table class="font-table w-100 table table-bordered table-hover mb-0">
-                    <thead>
-                        <tr>
-                            <th class="align-middle py-2">Coin</th>
-                            <th class="text-center align-middle py-2">Tools</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% coinEventData.coinDetails.forEach(coin => { %>
-                            <tr>
-                                <td class="align-middle py-2">
-                                    <img class="mr-2" src="<%= icons[`${coin.iconId}`].imgUrl %>"> <%= icons[`${coin.iconId}`].name %>
-                                </td>
-                                <td class="text-center align-middle py-2">
-                                    <a href="/admin/coin-event/<%= coinEventData.eventId %>/coin/<%= coin.iconId %>" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
-                                </td>
-                            </tr>
-                        <% }) %>
-                    </tbody>
-                </table>
+            <div class="size-900 w-100">
+                <% coinEventData.coinDetails.forEach((coin, index) => { %>
+                    <div class="w-100 border border-dark rounded-sm px-3 py-3 <% if(index !== 0) { %>mt-4<% } %>">
+                        <h3 class="w-100 font-subsubheader d-flex align-items-center mb-0">
+                            <img class="mr-2" src="<%= icons[`${coin.iconId}`].imgUrl %>"> <%= icons[`${coin.iconId}`].name %>
+                        </h3>
+
+                        <% if(coin.coinNotes) { %>
+                            <p class="font-small"><%= coin.coinNotes %></p>
+                        <% } %>
+
+                        <p class="w-100 font-weight-bold mt-4 mb-1">Weekly Coin Cap</p>
+                        <div class="d-flex flex-wrap">
+                            <% if(coin.mainSource.coinCapValues.length > 0) { %>
+                                <% coin.mainSource.coinCapValues.forEach((coinCap, index) => { %>
+                                    <div class="col-6 col-sm-3 text-center border border-dark py-2">
+                                        <p class="text-center text-underline mb-0">Week <%= index+1 %></p>
+                                        <p class="mb-0">
+                                            <%= coinCap %> 
+
+                                            <% if(coin.mainSource.coinCapType === "daily") { %>
+                                                / day
+                                            <% } else { %>
+                                                / week
+                                            <% } %>
+                                        </p>
+                                        <% if(coin.mainSource.sundayMultiplierByWeek[index] > 1) { %>
+                                            <small>(Sunday Maple: <%= coinCap * coin.mainSource.sundayMultiplierByWeek[index] %>)</small>
+                                        <% } %>
+                                    </div>
+                                <% }) %>
+                            <% } else { %>
+                                - Huh, there's no data here yet. Weird. -
+                            <% } %>
+                        </div>
+
+                        <% if(coin.extraSources.length > 0) { %>
+                            <p class="w-100 font-weight-bold mt-4 mb-1">Extra Sources</p>
+                            <div class="d-flex flex-wrap">
+                                <% coin.extraSources.forEach(source => { %>
+                                    <div class="col-6 col-sm-3 text-center border border-dark py-2">
+                                        <div class="text-center mb-0">
+                                            <span class="text-underline"><%= source.sourceName %></span>
+
+                                            <% if(source.sourceDesc !== "") { %>
+                                                <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= source.sourceDesc %>">
+                                                    <i class="fas fa-question-circle"></i>
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                        <p class="mb-0">
+                                            <%= source.coinAmount %>
+                                            <% if(source.timeframe === "day") { %>
+                                                / day
+                                            <% } else if(source.timeframe === "week") { %>
+                                                / week
+                                            <% } else { %>
+                                                / entire event
+                                            <% } %>        
+                                        </p>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        <% } %>
+
+                        <% if(coin.isUsedForRankUp) { %>
+                            <div class="w-100 font-weight-bold mt-4 mb-1">
+                                Rank Up Details
+                                <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= coin.rankUpCosts.details %>">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                            </div>
+
+                            <% if(coin.rankUpCosts.ranks.length > 0) { %>
+                                <div class="d-flex flex-wrap">
+                                    <% coin.rankUpCosts.ranks.forEach(rank => { %>
+                                        <div class="col-6 col-sm-3 text-center border border-dark py-2">
+                                            <div class="text-center text-underline mb-0">
+                                                <%= rank.rankName %>
+                                            </div>
+                                            <p class="mb-0">
+                                                <%= rank.totalCost %> coins
+                                            </p>
+                                        </div>
+                                    <% }) %>
+                                </div>
+                            <% } else { %>
+
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% }) %>
             </div>
         </div>
     </div>

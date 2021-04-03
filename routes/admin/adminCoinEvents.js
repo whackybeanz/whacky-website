@@ -75,12 +75,14 @@ router.get("/coin-event/:id", middleware.isAdmin, function(req, res) {
             const iconsById = IconHelper.compileIconsById(allIcons);
             // To calculate correct value, 1 extra day needs to be added to factor for end date (as event ends on selected date but 2359hrs)
             const durationWeeks = (Date.parse(coinEventData.eventDetails.endDate) - Date.parse(coinEventData.eventDetails.startDate) + 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000);
+            const coinGainsAndCosts = AdminHelper.getCoinGainsAndCosts(coinEventData);
 
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";
-            res.render("admin/coin-events/coinEventDetails", { icons: iconsById, coinEventData: coinEventData, durationWeeks: durationWeeks });
+            res.render("admin/coin-events/coinEventDetails", { icons: iconsById, coinEventData: coinEventData, durationWeeks: durationWeeks, coinGainsAndCosts: coinGainsAndCosts });
         })
         .catch(err => {
+            console.log(err);
             req.flash("error", `Error: ${err}`);
             res.redirect("/admin/coin-events");
         })
@@ -166,7 +168,8 @@ router.post("/coin-event/:id/coin/:coinId", middleware.isAdmin, function(req, re
     let coin = {
         'coinDetails.$.coinNotes': req.body.coinNotes,
         'coinDetails.$.mainSource': {
-            dailyMaxCapByWeek: req.body.coinCap,
+            coinCapType: req.body.coinCapType,
+            coinCapValues: req.body.coinCapValues,
             sundayMultiplierByWeek: req.body.sundayMaple,
         },
         'coinDetails.$.isUsedForRankUp': req.body.isUsedForRankUp === "yes",

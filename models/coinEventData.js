@@ -14,7 +14,8 @@ var coinEventData = new mongoose.Schema({
         iconId: String,
         coinNotes: String,
         mainSource: {
-            dailyMaxCapByWeek: [Number],
+            coinCapType: String,
+            coinCapValues: [Number],
             sundayMultiplierByWeek: [Number],
         },
         extraSources: [{

@@ -9,16 +9,16 @@
             <label for="coin-notes" class="col-sm-3 col-form-label font-weight-bold">Notes</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="coin-notes" name="coinNotes" placeholder="Notes" autocomplete="off" <% if(coinData.coinNotes) { %>value="<%= coinData.coinNotes %>"<% } %>>
-                <small class="text-info">Write any notes related to acquiring this coin (e.g. "This coin is obtained through mini games.")</small>
+                <small class="text-info">Write any notes related to acquiring this coin (e.g. "Obtained through mini games.")</small>
             </div>
         </div>
 
         <div class="form-group row mb-0">
             <label for="coin-notes" class="col-sm-3 col-form-label font-weight-bold">Used for Rank Up Costs?</label>
             <div class="col-sm-9 d-flex flex-wrap h-100">
-                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="timeframe-limits-radio-group">
+                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="rank-up-limits-radio-group">
                     <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="isUsedForRankUp" id="rank-up-no" value="" <% if(!coinData.isUsedForRankUp) { %>checked<% } %>>
+                        <input class="form-check-input" type="radio" name="isUsedForRankUp" id="rank-up-no" value="" <% if(!coinData.isUsedForRankUp) { %>checked<% } %> required>
                         <label class="form-check-label radio-select used-for-rank-up-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!coinData.isUsedForRankUp) { %>active<% } %>" for="rank-up-no" data-used-for-rank-up="">No</label>
                     </div>
                     <div class="col form-check p-0">
@@ -34,12 +34,29 @@
     <p class="text-info mb-2">Input fields are split by week. For 'Daily Coin Cap', enter the cap for a single day (and not summed across the week).</p>
     <div class="border border-dark rounded-sm px-3 py-3 mb-5">
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label font-weight-bold">Daily Coin Cap</label>
+            <label class="col-sm-3 col-form-label font-weight-bold">Coin Cap Type</label>
+            <div class="col-sm-9 d-flex flex-wrap h-100">
+                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="coin-cap-timeframe-radio-group">
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="coinCapType" id="cap-type-daily" value="daily" <% if(!coinData.coinCapType || coinData.coinCapType === "daily") { %>checked<% } %> required>
+                        <label class="form-check-label radio-select cap-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!coinData.coinCapType || coinData.coinCapType === "daily") { %>active<% } %>" for="cap-type-daily" data-cap-type="daily">Daily</label>
+                    </div>
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="coinCapType" id="cap-type-weekly" value="weekly" <% if(coinData.coinCapType === "weekly") { %>checked<% } %>>
+                        <label class="form-check-label radio-select cap-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(coinData.coinCapType === "weekly") { %>active<% } %>" for="cap-type-weekly" data-cap-type="weekly">Weekly</label>
+                    </div>
+                </div>
+                <small class="text-info">Refers to whether the coin cap is daily or weekly.</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Coin Cap Values</label>
             <div class="col-sm-9">
                 <div class="d-flex flex-wrap">
                     <% for(let i = 0; i < durationWeeks; i++) { %>
                         <div class="col-4 col-sm-3 px-0">
-                            <input type="number" class="form-control text-center" name="coinCap" placeholder="Week <%= i+1 %>" value="300">
+                            <input type="number" class="form-control text-center" name="coinCapValues" placeholder="Week <%= i+1 %>" 
+                                <% if(coinData.mainSource.coinCapValues[i]) { %>value="<%= coinData.mainSource.coinCapValues[i] %>"<% } %> required>
                         </div>
                     <% } %>
                 </div>
@@ -52,11 +69,12 @@
                 <div class="d-flex flex-wrap">
                     <% for(let i = 0; i < durationWeeks; i++) { %>
                         <div class="col-4 col-sm-3 px-0">
-                            <input type="number" class="form-control text-center" name="sundayMaple" placeholder="Week <%= i+1 %>" value="2">
+                            <input type="number" class="form-control text-center" name="sundayMaple" placeholder="Week <%= i+1 %>" 
+                                <% if(coinData.mainSource.sundayMultiplierByWeek[i]) { %>value="<%= coinData.mainSource.sundayMultiplierByWeek[i] %>"<% } %> required>
                         </div>
                     <% } %>
                 </div>
-                <small class="text-info">Leave field blank (or enter 1) if no multiplier effect for that week. If multiplier is x2, enter 2.</small>
+                <small class="text-info">If multiplier is x2, enter 2. Enter 1 if no multiplier effect for that week.</small>
             </div>
         </div>
     </div>
