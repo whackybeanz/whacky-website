@@ -16,7 +16,7 @@
                     <td class="align-middle py-2 position-relative">
                         <div class="d-flex flex-column flex-sm-row align-items-center text-center">
                             <% if(icons[`${item.iconId}`]) { %>
-                                <img class="item-img standard-img-size mr-0 mr-sm-2" src="<%= icons[`${item.iconId}`].imgUrl %>"> <%= icons[`${item.iconId}`].name %>
+                                <img class="mr-0 mr-sm-2" src="<%= icons[`${item.iconId}`].imgUrl %>"> <%= icons[`${item.iconId}`].name %>
                             <% } else { %>
                                 Invalid item ID (<%= item.iconId %>) received
                             <% } %>
@@ -55,17 +55,21 @@
                     <td class="table-cols-125 d-table-cell d-sm-none text-center align-middle py-2">
                         <img src="<%= icons[`${item.coinType}`].imgUrl.substring(0, icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) + "-mini" + icons[`${item.coinType}`].imgUrl.substring(icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) %>"> <%= item.price.toLocaleString('en-SG') %>
                         <br/>
-                        <%= item.quantity %>
-                        <% if(item.purchaseLimit === "character") { %>
-                            / character
-                        <% } else if(item.purchaseLimit === "world") { %>
-                            / world
-                        <% } %>
+                        <% if(item.quantity > 0) { %>
+                            <%= item.quantity %>
+                            <% if(item.purchaseLimit === "character") { %>
+                                / character
+                            <% } else if(item.purchaseLimit === "world") { %>
+                                / world
+                            <% } %>
 
-                        <% if(item.timeframeLimit === "day") { %>
-                            / day
-                        <% } else if(item.timeframeLimit === "week") { %>
-                            / week
+                            <% if(item.timeframeLimit === "day") { %>
+                                / day
+                            <% } else if(item.timeframeLimit === "week") { %>
+                                / week
+                            <% } %>
+                        <% } else { %>
+                            Unlimited
                         <% } %>
                     </td>
                     <td class="d-none d-sm-table-cell text-center align-middle py-2">
@@ -74,17 +78,21 @@
                         </div>
                     </td>
                     <td class="d-none d-sm-table-cell text-center align-middle py-2">
-                        <%= item.quantity %>
-                        <% if(item.purchaseLimit === "character") { %>
-                            <br/>Per character
-                        <% } else if(item.purchaseLimit === "world") { %>
-                            <br/>Per world
-                        <% } %>
+                        <% if(item.quantity > 0) { %>
+                            <%= item.quantity %>
+                            <% if(item.purchaseLimit === "character") { %>
+                                <br/>Per character
+                            <% } else if(item.purchaseLimit === "world") { %>
+                                <br/>Per world
+                            <% } %>
 
-                        <% if(item.timeframeLimit === "day") { %>
-                            <br/>Per day
-                        <% } else if(item.timeframeLimit === "week") { %>
-                            <br/>Per week
+                            <% if(item.timeframeLimit === "day") { %>
+                                <br/>Per day
+                            <% } else if(item.timeframeLimit === "week") { %>
+                                <br/>Per week
+                            <% } %>
+                        <% } else { %>
+                            Unlimited
                         <% } %>
                     </td>
                     <td class="text-center align-middle py-2">

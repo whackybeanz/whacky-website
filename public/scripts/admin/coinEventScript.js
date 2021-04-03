@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addCoinEventFormListener();
     deleteFormListener();
     addRankUpBtnListener();
+    addMoreItemsListener();
+    deleteAddedItemListener();
 });
 
 function addNewCoinIcon() {
@@ -12,7 +14,7 @@ function addNewCoinIcon() {
     if(addIconBtn) {
         addIconBtn.addEventListener("click", function() {
             const html = `<div class="d-flex align-items-center mb-2">
-                            <input type="text" class="col-11 form-control mr-2" name="coinIconIds" placeholder="Coin Icon ID" required autocomplete="off">
+                            <input type="text" class="col-11 form-control mr-2" name="coinIconIds" pattern="^[a-zA-Z0-9-]+$" placeholder="Coin Icon ID" required autocomplete="off">
                             <button type="button" class="remove-coin-icon-input btn text-danger d-flex align-items-center"><i class="fas fa-times"></i></button>
                         </div>`;
             addIconBtn.insertAdjacentHTML('beforebegin', html);
@@ -99,5 +101,42 @@ function addRankUpBtnListener() {
                 document.getElementById("rank-up-table").classList.add("d-none");
             }
         })
+    })
+}
+
+function addMoreItemsListener() {
+    const addMoreItemsBtn = document.getElementById("btn-add-more-items");
+
+    if(addMoreItemsBtn) {
+        addMoreItemsBtn.addEventListener("click", function() {
+            const html = `<div class="col-sm-4 px-0 px-sm-2">
+                            <div class="border border-dark rounded-sm px-3 py-3 mb-3 position-relative">
+                                <div class="delete-bulk-add-item-div text-danger position-absolute cursor-pointer">
+                                    <i class="fas fa-lg fa-times pointer-events-none"></i>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <input type="text" class="form-control text-center" placeholder="Item ID" name="itemId" pattern="^[a-zA-Z0-9-]+$" autocomplete="off" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <input type="number" class="form-control text-center" placeholder="Price" name="price" autocomplete="off" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <input type="number" class="form-control text-center" placeholder="Quantity" name="quantity" autocomplete="off">
+                                </div>
+                                <div class="form-group mb-0">
+                                    <input type="text" class="form-control text-center" placeholder="Notes" name="notes" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>`;
+            document.getElementById("bulk-add-item-list").insertAdjacentHTML('beforeend', html);
+        })
+    }
+}
+
+function deleteAddedItemListener() {
+    document.addEventListener("click", function(event) {
+        if(event.target && event.target.classList.contains("delete-bulk-add-item-div")) {
+            event.target.parentNode.parentNode.remove();
+        }
     })
 }

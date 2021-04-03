@@ -35,7 +35,8 @@ var coinEventData = new mongoose.Schema({
     }],
     shops: [{ 
         shopName: String, 
-        defaultCurrency: String, 
+        defaultCurrency: String,
+        defaultPurchaseLimit: String,
         defaultTradability: String, 
         shopNotes: String, 
         items: [{

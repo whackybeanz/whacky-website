@@ -31,12 +31,14 @@
                                 <i class="fas fa-caret-down mr-2"></i> Add Coin Shop Item
                             </h3>
                         </div>
-                        <div class="pot-list-section w-100 px-0 collapse show" id="add-coin-shop-item">
+                        <div class="pot-list-section w-100 px-0 collapse" id="add-coin-shop-item">
                             <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
                                 <%- include("../coin-shop-item/addUpdateCoinShopItemForm") %>
                             </div>
                         </div>
                     </div>
+
+                    <%- include("../coin-shop-item/bulkAddCoinShopItemsForm") %>
                 </div>
 
                 <form class="size-350 w-100" action="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/delete" method="POST" id="delete-coin-shop-form">

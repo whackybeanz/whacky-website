@@ -1,0 +1,52 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+    <div class="pot-list-section-subheader w-100">
+        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#bulk-add">
+            <i class="fas fa-caret-down mr-2"></i> Bulk Add Coin Shop Items
+        </h3>
+    </div>
+    <div class="pot-list-section w-100 px-0 collapse show" id="bulk-add">
+        <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+            <p class="text-info mb-0">Use this form to quickly add multiple items to the same coin shop. Currency, purchase limits and tradability will use defaults as defined by the coin shop. Timeframe will be set as N/A by default. Item ID and price are compulsory fields.</p>
+
+            <hr class="w-25 my-4">
+
+            <form class="font-form w-100 size-900" action="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAdd" method="POST">
+                <input type="hidden" name="defaultCurrency" <% if(locals.coinShopData && coinShopData.defaultCurrency) { %>value="<%= coinShopData.defaultCurrency %>"<% } %>>
+                <input type="hidden" name="defaultPurchaseLimit" <% if(locals.coinShopData && coinShopData.defaultPurchaseLimit) { %>value="<%= coinShopData.defaultPurchaseLimit %>"<% } %>>
+                <input type="hidden" name="defaultTradability" <% if(locals.coinShopData && coinShopData.defaultTradability) { %>value="<%= coinShopData.defaultTradability %>"<% } %>>
+                <input type="hidden" name="defaultTimeframe" value="none">
+
+                <div class="d-flex justify-content-center mb-3">
+                    <button type="button" class="col-sm-4 flex-grow btn btn-outline-info rounded-sm" id="btn-add-more-items">
+                        <i class="fas fa-plus mr-1"></i> Add More Items
+                    </button>
+                </div>
+
+                <div class="d-flex flex-wrap" id="bulk-add-item-list">
+                    <div class="col-12 col-sm-6 col-md-4 px-0 px-sm-2">
+                        <div class="border border-dark rounded-sm px-3 py-3 mb-3 position-relative">
+                            <div class="form-group mb-2">
+                                <input type="text" class="form-control text-center" placeholder="Item ID" name="itemId" pattern="^[a-zA-Z0-9-]+$" autocomplete="off" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <input type="number" class="form-control text-center" placeholder="Price" name="price" autocomplete="off" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <input type="number" class="form-control text-center" placeholder="Quantity" name="quantity" autocomplete="off">
+                            </div>
+                            <div class="form-group mb-0">
+                                <input type="text" class="form-control text-center" placeholder="Notes" name="notes" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 px-0">
+                    <button class="h-100 w-100 btn btn-sm btn-outline-info rounded-sm d-flex justify-content-center align-items-center" id="btn-add-coin-shop-item">
+                        <i class="fas fa-check mr-1"></i> Confirm Bulk Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

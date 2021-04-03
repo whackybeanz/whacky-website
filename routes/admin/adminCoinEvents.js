@@ -41,12 +41,12 @@ router.post("/coin-events", middleware.isAdmin, function(req, res) {
         if(!newCoinEvent.coinDetails) {
             newCoinEvent.coinDetails = [];
         }
-        newCoinEvent.coinDetails.push({ iconId: iconId })
+        newCoinEvent.coinDetails.push({ iconId: iconId.trim() })
     })
 
     // Update event currencies to be tagged to event
     let query = [];
-    req.body.coinIconIds.forEach(iconId => query.push({ id: iconId }));
+    req.body.coinIconIds.forEach(iconId => query.push({ id: iconId.trim() }));
     if(newCoinEvent.hasMesosShop) {
         query.push({ id: "mesos" });
     }
@@ -252,6 +252,7 @@ router.post("/coin-event/:id/shop/:shopId", middleware.isAdmin, function(req, re
     const coinShop = {
         'shops.$.shopName': req.body.shopName, 
         'shops.$.defaultCurrency': req.body.defaultCurrency, 
+        'shops.$.defaultPurchaseLimit': req.body.defaultPurchaseLimit, 
         'shops.$.defaultTradability': req.body.defaultTradability, 
         'shops.$.shopNotes': req.body.shopNotes, 
     }
@@ -283,9 +284,9 @@ router.post("/coin-event/:id/shop/:shopId/delete", middleware.isAdmin, function(
 
 router.post("/coin-event/:id/shop/:shopId/addItem", middleware.isAdmin, function(req, res) {
     const newCoinShopItem = {
-        iconId: req.body.itemId,
+        iconId: req.body.itemId.trim(),
         price: parseInt(req.body.price),
-        quantity: parseInt(req.body.quantity),
+        quantity: req.body.quantity ? parseInt(req.body.quantity) : -1,
         coinType: req.body.coinType,
         purchaseLimit: req.body.purchaseLimit,
         timeframeLimit: req.body.timeframeLimit,
@@ -299,7 +300,51 @@ router.post("/coin-event/:id/shop/:shopId/addItem", middleware.isAdmin, function
                 coinEventId: updatedCoinEvent.eventId,
                 shopNum: AdminHelper.retrieveShopNum(updatedCoinEvent, req.params.shopId)
             });
-            let updateIcon = Icon.updateOne({ id: req.body.itemId }, { $push: { usedInEvents: updatedCoinEvent.eventId }}, { new: true });
+            let updateIcon = Icon.updateOne({ id: req.body.itemId.trim() }, { $push: { usedInEvents: updatedCoinEvent.eventId }}, { new: true });
+
+            return Promise.all([compiledData, updateIcon]);
+        })
+        .then(([compiledData, updatedIcon]) => {
+            req.flash("success", "Coin shop added.");
+            res.redirect(`/coin-event/${compiledData.coinEventId}/shop/${compiledData.shopNum}`);
+        })
+        .catch(err => {
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })    
+})
+
+router.post("/coin-event/:id/shop/:shopId/bulkAdd", middleware.isAdmin, function(req, res) {
+    const itemIds = typeof req.body.itemId === "string" ? [req.body.itemId] : req.body.itemId;
+    const prices = typeof req.body.price === "string" ? [req.body.price] : req.body.price;
+    const quantities = typeof req.body.quantity === "string" ? [req.body.quantity] : req.body.quantity;
+    const notes = typeof req.body.notes === "string" ? [req.body.notes] : req.body.notes;
+
+    let itemList = [];
+
+    itemIds.forEach((itemId, index) => {
+        itemList.push({
+            iconId: itemId,
+            price: prices[index],
+            quantity: quantities[index],
+            coinType: req.body.defaultCurrency,
+            purchaseLimit: req.body.defaultPurchaseLimit,
+            timeframeLimit: req.body.defaultTimeframe,
+            tradability: req.body.defaultTradability,
+            itemNotes: notes[index],
+        })
+    })
+
+    CoinEvent.findOneAndUpdate({ _id: req.params.id, "shops._id": req.params.shopId }, { $push: { "shops.$.items": { $each: itemList } } }, { new: true })
+        .then(updatedCoinEvent => {
+            const compiledData = Promise.resolve({
+                coinEventId: updatedCoinEvent.eventId,
+                shopNum: AdminHelper.retrieveShopNum(updatedCoinEvent, req.params.shopId)
+            });
+
+            let query = [];
+            itemList.forEach(item => query.push({ id: item.iconId }));
+            let updateIcon = Icon.updateMany({ $or: query }, { $push: { usedInEvents: updatedCoinEvent.eventId }}, { new: true });
 
             return Promise.all([compiledData, updateIcon]);
         })
@@ -374,7 +419,7 @@ router.get("/coin-event/:id/shop/:shopNum/item/:itemIconId", middleware.isAdmin,
 router.post("/coin-event/:id/shop/:shopId/item/:itemId", middleware.isAdmin, function(req, res) {
     const updatedItem = {
         'shops.$[outer].items.$[inner].price': parseInt(req.body.price),
-        'shops.$[outer].items.$[inner].quantity': parseInt(req.body.quantity),
+        'shops.$[outer].items.$[inner].quantity': req.body.quantity ? parseInt(req.body.quantity) : -1,
         'shops.$[outer].items.$[inner].coinType': req.body.coinType,
         'shops.$[outer].items.$[inner].purchaseLimit': req.body.purchaseLimit,
         'shops.$[outer].items.$[inner].timeframeLimit': req.body.timeframeLimit,
