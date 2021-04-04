@@ -1,0 +1,138 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+    <div class="pot-list-section-subheader w-100">
+        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#coin-shop-<%= index %>">
+            <i class="fas fa-caret-down mr-2"></i> [<%= index+1 %>] <%= shop.shopName %>
+        </h3>
+    </div>
+    <div class="pot-list-section w-100 px-0 collapse show" id="coin-shop-<%= index %>">
+        <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+            <div class="size-900 w-100">
+                <table class="font-table w-100 table table-bordered table-hover mb-0" id="coin-shop-item-list">
+                    <thead>
+                        <tr>
+                            <th class="text-center text-sm-left align-middle py-2">Item / Notes</th>
+                            <th class="table-cols-100 d-table-cell d-sm-none align-middle text-center align-middle py-2">Price / Qty</th>
+                            <th class="table-cols-50 d-none d-sm-table-cell text-center align-middle py-2">Price</th>
+                            <th class="table-cols-50 d-none d-sm-table-cell text-center align-middle py-2">Quantity</th>
+                            <th class="table-cols-100 text-center align-middle py-2">Buying</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(shop.items.length > 0) { %>
+                            <% shop.items.forEach((item, itemIndex) => { %>
+                                <tr>
+                                    <td class="align-middle py-2 position-relative px-2">
+                                        <div class="d-flex flex-column flex-sm-row align-items-center text-center">
+                                            <% if(icons[`${item.iconId}`]) { %>
+                                                <img class="mr-0 mr-sm-2" src="<%= icons[`${item.iconId}`].imgUrl %>"> <%= icons[`${item.iconId}`].name %>
+                                            <% } else { %>
+                                                Invalid item ID (<%= item.iconId %>) received
+                                            <% } %>
+                                            <div>
+                                                <div class="d-inline d-sm-none">
+                                                    <% if(item.tradability === "untradable") { %>
+                                                        <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Untradable">
+                                                            <i class="fas fa-ban"></i>
+                                                        </div>
+                                                    <% } else if(item.tradability === "inter-acct") { %>
+                                                        <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Inter-Account Transactions only">
+                                                            <i class="fas fa-exchange-alt"></i>
+                                                        </div>
+                                                    <% } %>
+                                                </div>
+
+                                                <% if(item.itemNotes !== "") { %>
+                                                    <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= item.itemNotes %>">
+                                                        <i class="fas fa-info-circle"></i>
+                                                    </div>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="tradability-display d-none d-sm-block position-absolute">
+                                            <% if(item.tradability === "untradable") { %>
+                                                <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Untradable">
+                                                    <i class="fas fa-ban"></i>
+                                                </div>
+                                            <% } else if(item.tradability === "inter-acct") { %>
+                                                <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Inter-Account Transactions only">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                    </td>
+                                    <td class="table-cols-100 d-table-cell d-sm-none text-center align-middle py-2 px-2">
+                                        <img src="<%= icons[`${item.coinType}`].imgUrl.substring(0, icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) + "-mini" + icons[`${item.coinType}`].imgUrl.substring(icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) %>"> <%= item.price.toLocaleString('en-SG') %>
+                                        <br/>
+                                        <% if(item.quantity > 0) { %>
+                                            <%= item.quantity %>
+                                            <% if(item.purchaseLimit === "character") { %>
+                                                / character
+                                            <% } else if(item.purchaseLimit === "world") { %>
+                                                / world
+                                            <% } %>
+
+                                            <% if(item.timeframeLimit === "day") { %>
+                                                / day
+                                            <% } else if(item.timeframeLimit === "week") { %>
+                                                / week
+                                            <% } %>
+                                        <% } else { %>
+                                            Unlimited
+                                        <% } %>
+                                    </td>
+                                    <td class="table-cols-50 d-none d-sm-table-cell text-center align-middle py-2 px-2">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <input type="hidden" name="itemPrice" value="<%= item.price %>">
+                                            <input type="hidden" name="itemCoinType" value="<%= item.coinType %>">
+                                            <img class="mr-1" src="<%= icons[`${item.coinType}`].imgUrl.substring(0, icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) + "-mini" + icons[`${item.coinType}`].imgUrl.substring(icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) %>"> <%= item.price.toLocaleString('en-SG') %>
+                                        </div>
+                                    </td>
+                                    <td class="table-cols-50 d-none d-sm-table-cell text-center align-middle py-2 px-2">
+                                        <% if(item.quantity > 0) { %>
+                                            <%= item.quantity %>
+                                            <% if(item.purchaseLimit === "character") { %>
+                                                <br/>Per character
+                                            <% } else if(item.purchaseLimit === "world") { %>
+                                                <br/>Per world
+                                            <% } %>
+
+                                            <% if(item.timeframeLimit === "day") { %>
+                                                <br/>Per day
+                                            <% } else if(item.timeframeLimit === "week") { %>
+                                                <br/>Per week
+                                            <% } %>
+                                        <% } else { %>
+                                            Unlimited
+                                        <% } %>
+                                    </td>
+                                    <td class="text-center align-middle py-2 px-2">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div class="qty-minus-one d-flex align-items-center justify-content-center cursor-pointer" data-input-id="shop-<%= index %>-item-<%= itemIndex %>">
+                                                <i class="fas fa-minus text-danger"></i>
+                                            </div>
+                                            <input type="number" class="buy-item-input form-control text-center px-2" name="itemBuyQty" id="shop-<%= index %>-item-<%= itemIndex %>" value="">
+                                            <div class="qty-plus-one d-flex align-items-center justify-content-center cursor-pointer" data-input-id="shop-<%= index %>-item-<%= itemIndex %>">
+                                                <i class="fas fa-plus text-success"></i>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td class="text-center" colspan="5">- No items to display currently -</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
+                <div class="col-12 px-0 mt-4 d-flex justify-content-center">
+                    <button type="button" class="btn-update-expense col-sm-4 btn btn-sm btn-outline-info rounded-sm d-flex justify-content-center align-items-center">
+                        <span class="update-expense-text"><i class="fas fa-check mr-2"></i> Update Total Expense</span>
+                        <span class="save-success-text d-none">Expense updated & inputs saved!</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

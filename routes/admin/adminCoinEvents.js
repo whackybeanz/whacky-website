@@ -1,4 +1,5 @@
 var AdminHelper = require("../helpers/adminHelpers");
+var CoinEventHelper = require("../helpers/coinEventHelpers");
 var IconHelper = require("../helpers/iconHelpers");
 
 var express = require("express");
@@ -75,7 +76,7 @@ router.get("/coin-event/:id", middleware.isAdmin, function(req, res) {
             const iconsById = IconHelper.compileIconsById(allIcons);
             // To calculate correct value, 1 extra day needs to be added to factor for end date (as event ends on selected date but 2359hrs)
             const durationWeeks = (Date.parse(coinEventData.eventDetails.endDate) - Date.parse(coinEventData.eventDetails.startDate) + 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000);
-            const coinGainsAndCosts = AdminHelper.getCoinGainsAndCosts(coinEventData);
+            const coinGainsAndCosts = CoinEventHelper.getCoinGainsAndCosts(coinEventData);
 
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";

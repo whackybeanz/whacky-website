@@ -205,6 +205,15 @@ img {
     @include globals.for-size(xl) { width: 200px; }
 }
 
+.table-cols-100 {
+    width: 100px;
+
+    @include globals.for-size(sm) { width: 125px; }
+    @include globals.for-size(md) { width: 175px; }
+    @include globals.for-size(lg) { width: 200px; }
+    @include globals.for-size(xl) { width: 225px; }
+}
+
 .table-cols-125 {
     width: 125px;
 
@@ -447,4 +456,23 @@ form {
     &.small {
         height: 100px;
     }
+}
+
+.tradability-display {
+    top: 3px;
+    right: 5px;
+}
+
+.qty-minus-one, .qty-plus-one {
+    height: 32px;
+    width: 24px;
+}
+
+.buy-item-input {
+    width: 40px;
+
+    @include globals.for-size(sm) { width: 45px; }
+    @include globals.for-size(md) { width: 50px; }
+    @include globals.for-size(lg) { width: 55px; }
+    @include globals.for-size(xl) { width: 60px; }
 }

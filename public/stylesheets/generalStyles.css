@@ -275,6 +275,30 @@ img.small-img {
   }
 }
 
+.table-cols-100 {
+  width: 100px;
+}
+@media (min-width: 576px) {
+  .table-cols-100 {
+    width: 125px;
+  }
+}
+@media (min-width: 768px) {
+  .table-cols-100 {
+    width: 175px;
+  }
+}
+@media (min-width: 992px) {
+  .table-cols-100 {
+    width: 200px;
+  }
+}
+@media (min-width: 1200px) {
+  .table-cols-100 {
+    width: 225px;
+  }
+}
+
 .table-cols-125 {
   width: 125px;
 }
@@ -538,6 +562,40 @@ form .form-check .form-check-label:hover, form .form-check .form-check-label.act
 }
 .coin-event-banner.small {
   height: 100px;
+}
+
+.tradability-display {
+  top: 3px;
+  right: 5px;
+}
+
+.qty-minus-one, .qty-plus-one {
+  height: 32px;
+  width: 24px;
+}
+
+.buy-item-input {
+  width: 40px;
+}
+@media (min-width: 576px) {
+  .buy-item-input {
+    width: 45px;
+  }
+}
+@media (min-width: 768px) {
+  .buy-item-input {
+    width: 50px;
+  }
+}
+@media (min-width: 992px) {
+  .buy-item-input {
+    width: 55px;
+  }
+}
+@media (min-width: 1200px) {
+  .buy-item-input {
+    width: 60px;
+  }
 }
 
 /*# sourceMappingURL=generalStyles.css.map */

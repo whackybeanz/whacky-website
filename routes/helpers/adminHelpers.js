@@ -129,47 +129,4 @@ function retrieveShopNum(coinEvent, shopId) {
     return coinEvent.shops.findIndex(shop => shop._id.toString() === shopId);
 }
 
-function getCoinGainsAndCosts(coinEventData) {
-    let coinGainsAndCosts = {};
-
-    coinEventData.coinDetails.forEach((coinData, coinNum) => {
-        coinGainsAndCosts[coinData.iconId] = { maxPossibleCoins: 0, rankCosts: 0 };
-        let numEventWeeks = coinData.mainSource.coinCapValues.length;
-        let coinCapType = coinData.mainSource.coinCapType;
-
-        // First add all main source coin amounts together
-        for(let i = 0; i < numEventWeeks; i++) {
-            let coinCapValue = coinData.mainSource.coinCapValues[i];
-            let sundayMapleMultiplier = coinData.mainSource.sundayMultiplierByWeek[i];
-
-            // Coin cap type is either daily or weekly
-            // If daily, factor in sunday maple values in calculations
-            // If weekly, set value as retrieved
-            if(coinCapType === "daily") {
-                coinGainsAndCosts[coinData.iconId].maxPossibleCoins += coinCapValue * 6 + sundayMapleMultiplier * coinCapValue;
-            } else {
-                coinGainsAndCosts[coinData.iconId].maxPossibleCoins += coinCapValue;
-            }
-        }
-
-        // Add any extra sources of coins into total coin amount
-        coinData.extraSources.forEach(source => {
-            // Possible timeframes: day, week, event
-            if(source.timeframe === "day") {
-                coinGainsAndCosts[coinData.iconId].maxPossibleCoins += source.coinAmount * 7 * numEventWeeks;
-            } else if(source.timeframe === "week") {
-                coinGainsAndCosts[coinData.iconId].maxPossibleCoins += source.coinAmount * numEventWeeks;
-            } else {
-                coinGainsAndCosts[coinData.iconId].maxPossibleCoins += source.coinAmount;
-            }
-        })
-
-        if(coinData.isUsedForRankUp) {
-            coinGainsAndCosts[coinData.iconId].rankCosts = coinData.rankUpCosts.ranks.reduce((currTotal, rankDetails) => currTotal + rankDetails.totalCost, 0);
-        }
-    })
-
-    return coinGainsAndCosts;
-}
-
-module.exports = { getIconCategories, getPageSections, compileIconData, getDamageSkinCategories, compileDamageSkinData, retrieveShopNum, getCoinGainsAndCosts };
+module.exports = { getIconCategories, getPageSections, compileIconData, getDamageSkinCategories, compileDamageSkinData, retrieveShopNum };

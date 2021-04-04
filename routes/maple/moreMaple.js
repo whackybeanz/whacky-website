@@ -1,3 +1,4 @@
+var CoinEventHelper = require("../helpers/coinEventHelpers");
 var IconHelper = require("../helpers/iconHelpers");
 
 var express = require("express");
@@ -37,13 +38,22 @@ router.get("/events/coin-events", function(req, res) {
 })
 
 router.get("/events/coin-event/:eventId", function(req, res) {
-    CoinEvent.findOne({ isPublic: true, eventId: req.params.eventId })
-        .then(coinEventData => {
+    let findIconsInEvent = Icon.find({ usedInEvents: req.params.eventId });
+    let findCoinEvent = CoinEvent.findOne({ isPublic: true, eventId: req.params.eventId });
+
+    Promise.all([findIconsInEvent, findCoinEvent])
+        .then(([allIcons, coinEventData]) => {
+            const iconsById = IconHelper.compileIconsById(allIcons);
+            // To calculate correct value, 1 extra day needs to be added to factor for end date (as event ends on selected date but 2359hrs)
+            const durationWeeks = (Date.parse(coinEventData.eventDetails.endDate) - Date.parse(coinEventData.eventDetails.startDate) + 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000);
+            const coinGainsAndCosts = CoinEventHelper.getCoinGainsAndCosts(coinEventData);
+
             res.locals.section = "more-maple";
             res.locals.branch = "coin-events";
-            res.render("more-maple/coin-events/coinEventDetails", { coinEventData: coinEventData });
+            res.render("more-maple/coin-events/coinEventDetails", { icons: iconsById, coinEventData: coinEventData, durationWeeks: durationWeeks, coinGainsAndCosts: coinGainsAndCosts });
         })
         .catch(err => {
+            console.log(err);
             req.flash("error", `Error: ${err}`);
             res.redirect("back");
         })
