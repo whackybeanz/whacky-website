@@ -1,38 +1,10 @@
-var CommonHelper    = require("./helpers/commonHelpers");
-var IconHelper      = require("./helpers/iconHelpers");
+var IconHelper = require("../helpers/iconHelpers");
 
-var express     = require("express");
-var router      = express.Router();
+var express = require("express");
+var router  = express.Router();
 
-var Icon        = require("../models/iconData");
-var Homepage    = require("../models/homepageData");
-
-router.get("/", function(req, res) {
-    let getIcons = Icon.find({usedInSections: "homepage"});
-    let getHomepageDetails = Homepage.find();
-
-    Promise.all([getIcons, getHomepageDetails])
-        .then(([allIcons, homepageDetails]) => {
-            const compiledIcons = IconHelper.compileIcons(allIcons);
-            const allSections = [...new Set(homepageDetails.map(item => item.category))];
-            let sections = {};
-            allSections.forEach(section => sections[section] = []);
-
-            homepageDetails.forEach(function(item) {
-                sections[item.category].push(item);
-            });
-
-            sections["extras"].sort(CommonHelper.sortByName);
-
-            res.locals.section = "maple-index";
-            res.locals.extraStylesheet = "indexStyles";
-            res.render("mapleIndex", {sections: sections, icons: compiledIcons});
-        })
-        .catch(err => {
-            console.log(err);
-            res.redirect("back");
-        })
-})
+var Icon    = require("../../models/iconData");
+var CoinEvent = require("../../models/coinEventData");
 
 router.get("/events", function(req, res) {
     res.redirect("/events/tactical-relay");
@@ -49,6 +21,32 @@ router.get("/events/tactical-relay", function(req, res) {
     res.locals.section = "more-maple";
     res.locals.branch = "tactical-relay";
     res.render("more-maple/tactical-relay", {missionList: missionList, classSelect: classSelect});
+})
+
+router.get("/events/coin-events", function(req, res) {
+    CoinEvent.find({isPublic: true})
+        .then(allEvents => {
+            res.locals.section = "more-maple";
+            res.locals.branch = "coin-events";
+            res.render("more-maple/coin-events/coinEventsLanding", { allEvents: allEvents });
+        })
+        .catch(err => {
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
+})
+
+router.get("/events/coin-event/:eventId", function(req, res) {
+    CoinEvent.findOne({ isPublic: true, eventId: req.params.eventId })
+        .then(coinEventData => {
+            res.locals.section = "more-maple";
+            res.locals.branch = "coin-events";
+            res.render("more-maple/coin-events/coinEventDetails", { coinEventData: coinEventData });
+        })
+        .catch(err => {
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
 })
 
 router.get("/fun", function(req, res) {

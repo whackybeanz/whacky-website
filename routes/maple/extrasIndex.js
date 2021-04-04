@@ -1,18 +1,18 @@
-var IconHelper = require("./helpers/iconHelpers");
-var Helper = require("./helpers/extrasHelpers");
-var EXPStackingHelper = require("./helpers/expStackingHelpers");
-var middleware  = require("./middleware");
+var IconHelper = require("../helpers/iconHelpers");
+var Helper = require("../helpers/extrasHelpers");
+var EXPStackingHelper = require("../helpers/expStackingHelpers");
+var middleware  = require("../middleware");
 
 var express = require("express");
 var router  = express.Router();
-var Icon    = require("../models/iconData");
-var Equip   = require("../models/equipData");
-var Effect  = require("../models/setEffectData");
-var Soul    = require("../models/bossSoulData");
-var DamageSkin  = require("../models/damageSkinData");
-var MapLocations = require("../models/mapData");
-var Potentials = require("../models/potentialsData");
-var LatestUpdate = require("../models/latestUpdateData");
+var Icon    = require("../../models/iconData");
+var Equip   = require("../../models/equipData");
+var Effect  = require("../../models/setEffectData");
+var Soul    = require("../../models/bossSoulData");
+var DamageSkin  = require("../../models/damageSkinData");
+var MapLocations = require("../../models/mapData");
+var Potentials = require("../../models/potentialsData");
+var LatestUpdate = require("../../models/latestUpdateData");
 
 router.get("/", function(req, res) {
     res.redirect("/flames");

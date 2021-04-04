@@ -1,8 +1,8 @@
-var IconHelper = require("./helpers/iconHelpers");
+var IconHelper = require("../helpers/iconHelpers");
 
 var express = require("express");
 var router  = express.Router();
-var Icon    = require("../models/iconData");
+var Icon    = require("../../models/iconData");
 
 router.get("/", function(req, res) {
     res.render("beginner/index");

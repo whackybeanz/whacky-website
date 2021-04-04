@@ -8,19 +8,6 @@
   right: 0.25rem;
 }
 
-.coin-event-banner {
-  height: 150px;
-  object-fit: contain;
-  transition: all 0.2s;
-}
-.coin-event-banner:hover {
-  transform: scale(1.05);
-  transition: all 0.2s;
-}
-.coin-event-banner.small {
-  height: 100px;
-}
-
 .tradability-display {
   top: 3px;
   right: 5px;

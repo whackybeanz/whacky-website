@@ -527,4 +527,17 @@ form .form-check .form-check-label:hover, form .form-check .form-check-label.act
   grid-area: heart;
 }
 
+.coin-event-banner {
+  height: 150px;
+  object-fit: contain;
+  transition: all 0.2s;
+}
+.coin-event-banner:hover {
+  transform: scale(1.05);
+  transition: all 0.2s;
+}
+.coin-event-banner.small {
+  height: 100px;
+}
+
 /*# sourceMappingURL=generalStyles.css.map */
