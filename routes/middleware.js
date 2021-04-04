@@ -49,16 +49,21 @@ middlewareObj.isValidPotentialListFormInput = function(req, res, next) {
 }
 
 middlewareObj.isAdmin = function(req, res, next) {
-    const username = res.locals.currentUser.username;
+    if(res.locals.currentUser) {
+        const username = res.locals.currentUser.username;
 
-    User.findOne({ username: username }, function(err, user) {
-        if(user.isAdmin) {
-            return next();
-        } else {
-            req.flash("error", "You are not authorized to access this page.");
-            res.redirect("back");
-        }
-    })
+        User.findOne({ username: username }, function(err, user) {
+            if(user.isAdmin) {
+                return next();
+            } else {
+                req.flash("error", "You are not authorized to access this page.");
+                res.redirect("back");
+            }
+        })    
+    } else {
+        req.flash("error", "You are not authorized to access this page.");
+        res.redirect("back");
+    }
 }
 
 module.exports = middlewareObj;

@@ -81,7 +81,7 @@ router.get("/icon/:id", middleware.isAdmin, function(req, res) {
 router.post("/icon/:id", middleware.isAdmin, function(req, res) {
     const newIconData = AdminHelper.compileIconData(req.body); 
 
-    Icon.findOneAndUpdate({ _id: req.params.id }, newIconData, { new: true, overwrite: true }, function(err, updatedIcon) {
+    Icon.findOneAndUpdate({ _id: req.params.id }, newIconData, { new: true }, function(err, updatedIcon) {
         if(err) {
             console.log(err);
             res.redirect("back");
