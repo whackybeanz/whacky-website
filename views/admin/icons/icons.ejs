@@ -68,27 +68,37 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <% icons.forEach(function(icon) { %>
-                                                    <tr class="single-search-row" data-search-terms='["<%= icon.id.toLowerCase() %>", "<%= icon.name.toLowerCase() %>"<% if(selectedCategory === "equip") { %>, "<%= icon.category %>"<% } %>]'>
-                                                        <% if(selectedCategory === "equip") { %>
-                                                            <td class="text-center align-middle"><%= icon.category %></td>
-                                                        <% } %> 
-                                                        <td class="cell-icon-id align-middle"><%= icon.id %></td>
-                                                        <td class="align-middle"><%= icon.name %></td>
-                                                        <td class="align-middle"><%= icon.usedInSections.join(" / ") %></td>
-                                                        <td class="table-cols-75 text-center align-middle">
-                                                            <button type="button" class="btn-copy-to-clipboard btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Copy item ID">
-                                                                <i class="fas fa-copy pointer-events-none"></i>
-                                                            </button>
-                                                            <a href="/admin/icon/<%= icon._id %>" class="btn btn-outline-info btn-sm">
-                                                                <i class="fas fa-pen"></i>
-                                                            </a>
-                                                            <form action="/admin/icon/<%= icon._id %>/delete" method="POST" class="d-inline">
-                                                                <button type="submit" class="remove-item-btn btn btn-outline-danger btn-sm" data-name="<%= icon.name %>"><i class="fas fa-trash"></i></button>
-                                                            </form>
-                                                        </td>
+                                                <% if(icons.length > 0 ) { %>
+                                                    <% icons.forEach(function(icon) { %>
+                                                        <tr class="single-search-row" data-search-terms='["<%= icon.id.toLowerCase() %>", "<%= icon.name.toLowerCase() %>"<% if(selectedCategory === "equip") { %>, "<%= icon.category %>"<% } %>]'>
+                                                            <% if(selectedCategory === "equip") { %>
+                                                                <td class="text-center align-middle"><%= icon.category %></td>
+                                                            <% } %> 
+                                                            <td class="cell-icon-id align-middle"><%= icon.id %></td>
+                                                            <td class="align-middle"><%= icon.name %></td>
+                                                            <td class="align-middle">
+                                                                <% if(icon.usedInSections) { %>
+                                                                    <%= icon.usedInSections.join(" / ") %>
+                                                                <% } %>
+                                                            </td>
+                                                            <td class="table-cols-75 text-center align-middle">
+                                                                <button type="button" class="btn-copy-to-clipboard btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Copy item ID">
+                                                                    <i class="fas fa-copy pointer-events-none"></i>
+                                                                </button>
+                                                                <a href="/admin/icon/<%= icon._id %>" class="btn btn-outline-info btn-sm">
+                                                                    <i class="fas fa-pen"></i>
+                                                                </a>
+                                                                <form action="/admin/icon/<%= icon._id %>/delete" method="POST" class="d-inline">
+                                                                    <button type="submit" class="remove-item-btn btn btn-outline-danger btn-sm" data-name="<%= icon.name %>"><i class="fas fa-trash"></i></button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    <% }) %>
+                                                <% } else { %>
+                                                    <tr>
+                                                        <td class="text-center" colspan="5">No icons in section</td>
                                                     </tr>
-                                                <% }) %>
+                                                <% } %>
                                             </tbody>
                                         </table>
                                     </div>

@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addCoinEventFormListener();
     deleteFormListener();
     addRankUpBtnListener();
+    addToBulkAddFormListener();
     addMoreItemsListener();
     deleteAddedItemListener();
     pasteFromClipboardListener();
@@ -105,38 +106,71 @@ function addRankUpBtnListener() {
     })
 }
 
+function addToBulkAddFormListener() {
+    const commonItemAddBtns = document.querySelectorAll(".btn-add-to-bulk");
+
+    commonItemAddBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+            const iconId = this.dataset.iconId;
+            const firstBulkAddInputElem = document.querySelector(".paste-input");
+            
+            if(firstBulkAddInputElem.value === "") {
+                firstBulkAddInputElem.value = iconId;
+            } else {
+                const html = addIconInputHTML(iconId);
+                document.getElementById("bulk-add-item-list").insertAdjacentHTML('beforeend', html);
+            }
+
+            let feedbackTextElem = this.parentNode.querySelector(".add-icon-feedback");
+
+            feedbackTextElem.classList.remove('d-none');
+            window.setTimeout(() => {
+                feedbackTextElem.classList.add('d-none');
+            }, 1500)
+        })
+    })
+}
+
 function addMoreItemsListener() {
     const addMoreItemsBtn = document.getElementById("btn-add-more-items");
 
     if(addMoreItemsBtn) {
         addMoreItemsBtn.addEventListener("click", function() {
-            const html = `<div class="col-sm-4 px-0 px-sm-2">
-                            <div class="border border-dark rounded-sm px-3 py-3 mb-3 position-relative">
-                                <div class="delete-bulk-add-item-div text-danger position-absolute cursor-pointer">
-                                    <i class="fas fa-lg fa-times pointer-events-none"></i>
-                                </div>
-                                <div class="input-group mb-2">
-                                    <input type="text" class="paste-input form-control text-center" placeholder="Item ID" name="itemId" pattern="^[a-zA-Z0-9-]+$" autocomplete="off" required>
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn-paste-from-clipboard btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Paste from clipboard">
-                                            <i class="fas fa-clipboard pointer-events-none"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <input type="number" class="form-control text-center" placeholder="Price" name="price" autocomplete="off" required>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <input type="number" class="form-control text-center" placeholder="Quantity" name="quantity" autocomplete="off">
-                                </div>
-                                <div class="form-group mb-0">
-                                    <input type="text" class="form-control text-center" placeholder="Notes" name="notes" autocomplete="off">
-                                </div>
-                            </div>
-                        </div>`;
+            const html = addIconInputHTML();
             document.getElementById("bulk-add-item-list").insertAdjacentHTML('beforeend', html);
         })
     }
+}
+
+function addIconInputHTML(iconId = "") {
+    let html = "";
+
+    html += `<div class="col-sm-4 px-0 px-sm-2">
+                <div class="border border-dark rounded-sm px-3 py-3 mb-3 position-relative">
+                    <div class="delete-bulk-add-item-div text-danger position-absolute cursor-pointer">
+                        <i class="fas fa-lg fa-times pointer-events-none"></i>
+                    </div>
+                    <div class="input-group mb-2">
+                        <input type="text" class="paste-input form-control text-center" placeholder="Item ID" name="itemId" pattern="^[a-zA-Z0-9-]+$" autocomplete="off" value="${iconId}" required>
+                        <div class="input-group-append">
+                            <button type="button" class="btn-paste-from-clipboard btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Paste from clipboard">
+                                <i class="fas fa-clipboard pointer-events-none"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <input type="number" class="form-control text-center" placeholder="Price" name="price" autocomplete="off" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <input type="number" class="form-control text-center" placeholder="Quantity" name="quantity" autocomplete="off">
+                    </div>
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control text-center" placeholder="Notes" name="notes" autocomplete="off">
+                    </div>
+                </div>
+            </div>`;
+
+    return html;
 }
 
 function deleteAddedItemListener() {

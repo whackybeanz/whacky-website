@@ -52,7 +52,7 @@ router.post("/coin-events", middleware.isAdmin, function(req, res) {
         query.push({ id: "mesos" });
     }
 
-    let updateIconData = Icon.updateMany({ $or: query }, { $push: { usedInEvents: newCoinEvent.eventId }}, { new: true });
+    let updateIconData = Icon.updateMany({ $or: query }, { $addToSet: { usedInEvents: newCoinEvent.eventId }}, { new: true });
     let createCoinEvent = CoinEvent.create(newCoinEvent);
 
     Promise.all([updateIconData, createCoinEvent])
@@ -226,7 +226,7 @@ router.post("/coin-event/:id/coin/:coinId", middleware.isAdmin, function(req, re
 
 // Specific Coin Shop
 router.get("/coin-event/:id/shop/:shopNum", middleware.isAdmin, function(req, res) {
-    let findIconsInEvent = Icon.find({ usedInEvents: req.params.id });
+    let findIconsInEvent = Icon.find({ $or: [{usedInEvents: req.params.id }, {usedInEvents: "common"}] });
     let findCoinEvent = CoinEvent.findOne({ eventId: req.params.id });
 
     Promise.all([findIconsInEvent, findCoinEvent])
@@ -235,10 +235,13 @@ router.get("/coin-event/:id/shop/:shopNum", middleware.isAdmin, function(req, re
 
             if(!isNaN(shopNum) && shopNum < coinEventData.shops.length) {
                 const iconsById = IconHelper.compileIconsById(allIcons);
+                const commonIcons = allIcons.filter(icon => icon.usedInEvents.includes("common"))
+                                            .map(icon => { return { iconId: icon.id, iconName: icon.name, iconImg: icon.imgUrl } });
+
                 const coinShopData = coinEventData.shops[shopNum];
                 res.locals.extraStylesheet = "adminStyles";
                 res.locals.branch = "coin-events";
-                res.render("admin/coin-events/coin-shop/coinShopDetails", { icons: iconsById, coinEventData: coinEventData, coinShopData: coinShopData, shopNum: req.params.shopNum });
+                res.render("admin/coin-events/coin-shop/coinShopDetails", { icons: iconsById, commonIcons: commonIcons, coinEventData: coinEventData, coinShopData: coinShopData, shopNum: req.params.shopNum });
             } else {
                 throw new Error("Invalid shop number received");
             }
@@ -301,7 +304,7 @@ router.post("/coin-event/:id/shop/:shopId/addItem", middleware.isAdmin, function
                 coinEventId: updatedCoinEvent.eventId,
                 shopNum: AdminHelper.retrieveShopNum(updatedCoinEvent, req.params.shopId)
             });
-            let updateIcon = Icon.updateOne({ id: req.body.itemId.trim() }, { $push: { usedInEvents: updatedCoinEvent.eventId }}, { new: true });
+            let updateIcon = Icon.updateOne({ id: req.body.itemId.trim() }, { $addToSet: { usedInEvents: updatedCoinEvent.eventId }}, { new: true });
 
             return Promise.all([compiledData, updateIcon]);
         })
@@ -345,7 +348,7 @@ router.post("/coin-event/:id/shop/:shopId/bulkAdd", middleware.isAdmin, function
 
             let query = [];
             itemList.forEach(item => query.push({ id: item.iconId }));
-            let updateIcon = Icon.updateMany({ $or: query }, { $push: { usedInEvents: updatedCoinEvent.eventId }}, { new: true });
+            let updateIcon = Icon.updateMany({ $or: query }, { $addToSet: { usedInEvents: updatedCoinEvent.eventId }}, { new: true });
 
             return Promise.all([compiledData, updateIcon]);
         })

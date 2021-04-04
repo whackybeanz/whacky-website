@@ -16,7 +16,7 @@
                     <option value="map" <% if(locals.iconData && iconData.itemType === "map") { %>selected<% } %> data-img-main-folder="maps">Map</option>
                     <option value="boss" <% if(locals.iconData && iconData.itemType === "boss") { %>selected<% } %> data-img-main-folder="boss">Boss Monster</option>
                     <option value="boss-soul" <% if(locals.iconData && iconData.itemType === "boss-soul") { %>selected<% } %> data-img-main-folder="souls">Boss Soul</option>
-                    <option value="other" <% if(locals.iconData && iconData.itemType === "other") { %>selected<% } %> data-img-main-folder="">Other</option>
+                    <option value="event-currency" <% if(locals.iconData && iconData.itemType === "event-currency") { %>selected<% } %> data-img-main-folder="event" data-img-sub-folder="coin-events">Event Currency</option>
                 </select>
             </div>
         </div>
@@ -79,6 +79,30 @@
                         </label>
                     </div>
                 <% }) %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-3 font-weight-bold">Common Coin Shop Item?</div>
+            <div class="col-sm-9 d-flex flex-wrap h-100">
+                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="is-common-coin-item-radio-group">
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isCommonCoinShopItem" id="common-coin-item-no" value="" 
+                            <% if(!locals.iconData || (locals.iconData && !iconData.isCommonCoinShopItem)) { %>checked<% } %>>
+                        <label class="form-check-label radio-select is-common-coin-item-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 
+                            <% if(!locals.iconData || (locals.iconData && !iconData.isCommonCoinShopItem)) { %>active<% } %>" for="common-coin-item-no" data-is-common-coin-item="no">
+                            No
+                        </label>
+                    </div>
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isCommonCoinShopItem" id="common-coin-item-yes" value="yes" 
+                            <% if(locals.iconData && iconData.isCommonCoinShopItem) { %>checked<% } %>>
+                        <label class="form-check-label radio-select is-common-coin-item-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 
+                            <% if(locals.iconData && iconData.isCommonCoinShopItem) { %>active<% } %>" for="common-coin-item-yes" data-is-common-coin-item="yes">
+                            Yes
+                        </label>
+                    </div>
+                </div>
+                <small class="form-text text-info">Select Yes only if the item is a purchasable item from coin shops and are commonly available through the years.</small>
             </div>
         </div>
     </div>

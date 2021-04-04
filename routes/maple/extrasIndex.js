@@ -170,7 +170,7 @@ router.get("/damage-skins/:pageNum", function(req, res) {
         } else if(pageNum === 1) {
             query.push({ "letterCategory": " ??? (Unknown)"}, { "letterCategory": "0-9" }, { "letterCategory": "A" }, { "letterCategory": "B" });
         } else {
-            const skinsToFind = pagesArr[pageNum-1];
+            const skinsToFind = pagesArr[pageNum];
             for(letter of skinsToFind) {
                 query.push({ "letterCategory": letter });
             }

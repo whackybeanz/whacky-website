@@ -9,6 +9,7 @@ var iconSchema = new mongoose.Schema({
     name: String,
     imgUrl: String,
     usedInSections: { type: [String], default: [] },
+    isCommonCoinShopItem: Boolean,
     usedInEvents: [String],
 });
 

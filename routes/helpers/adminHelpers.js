@@ -1,7 +1,7 @@
 function getIconCategories() {
     const validIconCategories = [{ id: "equip", name: "Equips" }, { id: "use", name: "Use" }, { id: "setup", name: "Setup" }, 
     { id: "etc", name: "ETC" }, { id: "cash", name: "Cash Item" }, { id: "map", name: "Maps" }, { id: "boss", name: "Boss Monsters" }, 
-    { id: "boss-soul", name: "Boss Souls" }]
+    { id: "boss-soul", name: "Boss Souls" }, { id: "event-currency", name: "Event Currency" }];
 
     return validIconCategories;
 }
@@ -9,8 +9,7 @@ function getIconCategories() {
 function getPageSections() {
     const pageSections = [{ id: "homepage", name: "Homepage" }, { id: "spell-trace", name: "Spell Trace" }, { id: "flames", name: "Flames" }, 
     { id: "potentials", name: "Potentials" }, { id: "todd", name: "Todd's Hammer" }, { id: "star-force", name: "Star Force" }, 
-    { id: "soul-weapons", name: "Soul Weapons" }, { id: "exp-stacking", name: "EXP Stacking" }, { id: "boss-crystal", name: "Boss Crystals" },
-    { id: "event-items", name: "Event Items" }];
+    { id: "soul-weapons", name: "Soul Weapons" }, { id: "exp-stacking", name: "EXP Stacking" }, { id: "boss-crystal", name: "Boss Crystals" }];
 
     pageSections.sort(function(a, b) {
         let nameA = a.name.toUpperCase();
@@ -29,6 +28,7 @@ function compileIconData(body) {
         id: body.itemID,
         itemType: body.itemType,
         name: body.itemName,
+        isCommonCoinShopItem: body.isCommonCoinShopItem === "yes",
         imgUrl: body.imgPath,
     }
 
@@ -36,11 +36,16 @@ function compileIconData(body) {
         iconData.category = body.equipType;
     }
 
-    if(typeof body.sections === "string") {
-        iconData.usedInSections = [body.sections];
+    if(body.sections) {
+        if(typeof body.sections === "string") {
+            iconData.usedInSections = [body.sections];
+        } else {
+            iconData.usedInSections = body.sections;
+        }    
     } else {
-        iconData.usedInSections = body.sections;
+        iconData.usedInSections = [];
     }
+    
     iconData.imgUrl = body.imgPath.join("/");
 
     return iconData;

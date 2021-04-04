@@ -1,0 +1,53 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+    <div class="collapsible-section-subheader w-100">
+        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#bulk-add-common">
+            <i class="fas fa-caret-down mr-2"></i> Bulk Add Common Items
+        </h3>
+    </div>
+    <div class="collapsible-section w-100 px-0 collapse show" id="bulk-add-common">
+        <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+            <p class="mb-3">The table below contains items that commonly appear in coin shop events. Click on + to add the selected item to the submission form below (next section).</p>
+
+            <form class="size-720 w-100 mb-4" id="search-form">
+                <input type="text" class="form-control text-center" id="search-field" placeholder="Search icon ID or name..." autocomplete="off">
+                <small class="form-text text-center text-muted">Minimum 3 characters to begin search</small>
+            </form>
+
+            <div class="database-table size-720 w-100">
+                <table class="font-table w-100 table table-bordered table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th class="table-cols-100 align-middle">Icon ID</th>
+                            <th class="align-middle">Icon Name</th>
+                            <th class="table-cols-50 text-center align-middle">Tools</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(commonIcons.length > 0 ) { %>
+                            <% commonIcons.forEach(function(icon) { %>
+                                <tr class="single-search-row" data-search-terms='["<%= icon.iconId.toLowerCase() %>", "<%= icon.iconName.toLowerCase() %>"]'>
+                                    <td class="table-cols-75 cell-icon-id align-middle"><%= icon.iconId %></td>
+                                    <td class="align-middle">
+                                        <img class="mr-1" src="<%= icon.iconImg %>"> <%= icon.iconName %>        
+                                    </td>
+                                    <td class="table-cols-75 text-center align-middle">
+                                        <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center">
+                                            <button type="button" class="btn-add-to-bulk btn btn-outline-info btn-sm" data-icon-id="<%= icon.iconId %>">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                            <div class="add-icon-feedback text-info mt-2 mt-sm-0 ml-sm-2 d-none">Added!</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td class="text-center" colspan="3">No common coin shop items to display. Strange.</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

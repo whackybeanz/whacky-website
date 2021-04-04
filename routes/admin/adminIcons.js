@@ -15,7 +15,12 @@ router.get("/icons", middleware.isAdmin, function(req, res) {
 })
 
 router.post("/icons", middleware.isAdmin, function(req, res) {
-    const iconData = AdminHelper.compileIconData(req.body);
+    let iconData = AdminHelper.compileIconData(req.body);
+    let updatedDocument;
+
+    if(req.body.isCommonCoinShopItem === "yes") {
+        iconData.usedInEvents = ["common"];
+    }
 
     Icon.create(iconData, function(err, newIcon) {
         if(err) {
@@ -80,8 +85,15 @@ router.get("/icon/:id", middleware.isAdmin, function(req, res) {
 
 router.post("/icon/:id", middleware.isAdmin, function(req, res) {
     const newIconData = AdminHelper.compileIconData(req.body); 
+    let updatedDocument;
 
-    Icon.findOneAndUpdate({ _id: req.params.id }, newIconData, { new: true }, function(err, updatedIcon) {
+    if(req.body.isCommonCoinShopItem === "yes") {
+        updatedDocument = { $set: newIconData, $addToSet: { usedInEvents: "common" } };
+    } else {
+        updatedDocument = { $set: newIconData, $pull: { usedInEvents: "common" } };
+    }
+
+    Icon.findOneAndUpdate({ _id: req.params.id }, updatedDocument, { new: true }, function(err, updatedIcon) {
         if(err) {
             console.log(err);
             res.redirect("back");
