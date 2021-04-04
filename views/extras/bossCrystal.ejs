@@ -19,12 +19,12 @@
                         <p class="w-100 text-justify">The table below contains all Boss Crystal prices at <span class="font-weight-bold">full selling price</span> (i.e. the boss was killed in a party of 1 person), sorted alphabetically by boss. Click on any table header to sort the rows in ascending/descending order.</p>
 
                         <div class="w-100 font-form d-flex justify-content-center sort-boss-crystal-div mb-3">
-                            <div class="single-option-select select-sort-type text-center rounded-sm py-1 mx-2 cursor-pointer active" id="sort-by-boss">Sort by Boss</div>
-                            <div class="single-option-select select-sort-type text-center rounded-sm py-1 mx-2 cursor-pointer" id="sort-by-crystal">Sort by Price</div>
+                            <div class="single-option-select select-sort-type text-center rounded-sm py-1 mx-2 cursor-pointer active" id="sort-by-crystal">Sort by Price</div>
+                            <div class="single-option-select select-sort-type text-center rounded-sm py-1 mx-2 cursor-pointer" id="sort-by-boss">Sort by Boss</div>
                         </div>
 
                         <div class="position-relative w-100 size-720 d-flex justify-content-center">
-                            <div class="table-sort-div table-responsive-sm size-720 w-100 active" id="sort-by-boss-div">
+                            <div class="table-sort-div table-responsive-sm size-720 w-100" id="sort-by-boss-div" style="display: none">
                                 <table class="font-table table table-sm table-bordered table-hover mb-0">
                                     <thead>
                                         <tr>
@@ -102,7 +102,7 @@
                                 </table>
                             </div>
 
-                            <div class="table-sort-div table-responsive-sm size-350 w-100 position" id="sort-by-crystal-div" style="display: none">
+                            <div class="table-sort-div table-responsive-sm size-350 w-100 active" id="sort-by-crystal-div">
                                 <table class="font-table table table-sm table-bordered table-hover mb-0">
                                     <thead>
                                         <tr>
@@ -151,5 +151,5 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/scripts/bossCrystalScript.js"></script>
+<script type="text/javascript" src="/scripts/extras/bossCrystalScript.js"></script>
 <%- include("../partials/footer") %>

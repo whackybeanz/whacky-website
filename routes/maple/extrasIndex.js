@@ -25,7 +25,7 @@ router.get("/flames", function(req, res) {
             res.redirect("back");
         } else {
             const compiledIcons = IconHelper.compileIcons(allIcons);
-            res.locals.extraStylesheet = "extrasStyles";
+            res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "extras";
             res.locals.branch = "calc-flames";
             res.render("extras/flameCalc", {icons: compiledIcons});
@@ -41,7 +41,7 @@ router.get("/soul-tier-list", function(req, res) {
         .then(([allIcons, allSouls]) => {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             const soulsByTier = Helper.compileSoulsByTier(allSouls);
-            res.locals.extraStylesheet = "soulListStyles";
+            res.locals.extraStylesheet = "extras/soulListStyles";
             res.locals.section = "extras";
             res.locals.branch = "soul-tier-list";
             res.render("extras/soulTierList", {soulList: soulsByTier, icons: compiledIcons});
@@ -53,7 +53,7 @@ router.get("/soul-tier-list", function(req, res) {
 })
 
 router.get("/set-effects", function(req, res) {
-    res.locals.extraStylesheet = "setItemStyles";
+    res.locals.extraStylesheet = "extras/setItemStyles";
     res.locals.section = "extras";
     res.locals.branch = "calc-set-effects";
     res.render("extras/setEffectCalc");
@@ -83,7 +83,7 @@ router.get("/set-effects/:jobType", function(req, res) {
                             { key: "damagePercent", name: "Damage %", symbol: "%" }, { key: "bossPercent", name: "Boss Damage %", symbol: "%" }, { key: "iedPercent", name: "Ignore Enemy DEF %", symbol: "%" }, 
                             { key: "critDmgPercent", name: "Critical Damage %", symbol: "%" }];
 
-            res.locals.extraStylesheet = "setItemStyles";
+            res.locals.extraStylesheet = "extras/setItemStyles";
             res.locals.section = "extras";
             res.locals.branch = `calc-set-effects`;
             res.render("extras/setEffectCalcActive", {allEquipTypes: allEquipTypes, setItemsByItemPart: setItemsByItemPart, setItemsBySetName: setItemsBySetName, allSetEffects: setEffects, jobType: jobType, statTypes: possibleStatTypes, icons: compiledIcons });
@@ -129,7 +129,7 @@ router.get("/boss-crystal", function(req, res) {
             res.redirect("back");
         } else {
             const compiledIcons = IconHelper.compileIcons(allIcons);
-            res.locals.extraStylesheet = "extrasStyles";
+            res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "extras";
             res.locals.branch = "boss-crystal";
             const pricePerCrystalList = Helper.sortByPrice(bossList);
@@ -145,7 +145,7 @@ router.get("/todd-sequence", function(req, res) {
             res.redirect("back");
         } else {
             const compiledIcons = IconHelper.compileIcons(allIcons);
-            res.locals.extraStylesheet = "extrasStyles";
+            res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "extras";
             res.locals.branch = "todd-sequence";
             res.render("extras/toddSequence", {icons: compiledIcons});
@@ -192,10 +192,10 @@ router.get("/damage-skins/:pageNum", function(req, res) {
                     allSkins.forEach(skin => sortedSkins.newSkins.push(skin))
                 }
 
-                res.locals.extraStylesheet = "extrasStyles";
+                res.locals.extraStylesheet = "extras/extrasStyles";
                 res.locals.section = "extras";
                 res.locals.branch = "damage-skins";
-                res.render("extras/damageSkins", {sortedSkins: sortedSkins, pageNum: pageNum, pagesArr: pagesArr, dateUpdated: latestUpdate.lastUpdatedDate.damageSkins});
+                res.render("extras/damage-skins/damageSkins", {sortedSkins: sortedSkins, pageNum: pageNum, pagesArr: pagesArr, dateUpdated: latestUpdate.lastUpdatedDate.damageSkins});
             })
             .catch(err => {
                 console.log(err);
@@ -229,10 +229,10 @@ router.post("/damage-skin-details", function(req, res) {
         let getDamageSkins = DamageSkin.find({$or: query}).sort({ letterCategory: 1, shortName: 1 });
 
         getDamageSkins.then(allSkins => {
-            res.locals.extraStylesheet = "extrasStyles";
+            res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "extras";
             res.locals.branch = "damage-skins";
-            res.render("extras/damageSkinDetails", {allSkins: allSkins, prevUrl: prevUrl});
+            res.render("extras/damage-skins/damageSkinDetails", {allSkins: allSkins, prevUrl: prevUrl});
         })
         .catch(err => {
             console.log(err);
@@ -253,19 +253,19 @@ router.get("/damage-skin-details/:skinNum", function(req, res) {
             console.log(err);
             res.redirect("back");
         } else {
-            res.locals.extraStylesheet = "extrasStyles";
+            res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "extras";
             res.locals.branch = "damage-skins";
-            res.render("extras/damageSkinDetails", {allSkins: allSkins, prevUrl: prevUrl});
+            res.render("extras/damage-skins/damageSkinDetails", {allSkins: allSkins, prevUrl: prevUrl});
         }
     })
 })
 
 router.get("/exp-stacking", function(req, res) {
-    res.locals.extraStylesheet = "extrasStyles";
+    res.locals.extraStylesheet = "extras/extrasStyles";
     res.locals.section = "extras";
     res.locals.branch = "calc-exp-stacking";
-    res.render("extras/expStacking");
+    res.render("extras/exp-stacking/expStacking");
 })
 
 router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) {
@@ -276,7 +276,7 @@ router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) 
     const generalContentsEXP = EXPStackingHelper.calculateGeneralContentsEXP(expTable, charLevel);
 
     let getIcons = Icon.find({ usedInSections: "exp-stacking" });
-    res.locals.extraStylesheet = "extrasStyles";
+    res.locals.extraStylesheet = "extras/extrasStyles";
     res.locals.section = "extras";
     res.locals.branch = "calc-exp-stacking";
 
@@ -321,7 +321,7 @@ router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) 
         Promise.all([getMapRegions, getIcons])
             .then(([foundMaps, foundIcons]) => {
                 const compiledIcons = IconHelper.compileIcons(foundIcons);
-                res.render("extras/expStackingActive", {icons: compiledIcons, foundMaps: foundMaps, expTable: expTable, charLevel: charLevel, viewType: viewType, generalContentsEXP: generalContentsEXP});
+                res.render("extras/exp-stacking/expStackingActive", {icons: compiledIcons, foundMaps: foundMaps, expTable: expTable, charLevel: charLevel, viewType: viewType, generalContentsEXP: generalContentsEXP});
             })
             .catch(err => {
                 console.log(err);
@@ -331,7 +331,7 @@ router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) 
         Promise.resolve(getIcons)
             .then(foundIcons => {
                 const compiledIcons = IconHelper.compileIcons(foundIcons);
-                res.render("extras/expStackingActive", {icons: compiledIcons, expTable: expTable, charLevel: charLevel, viewType: viewType, generalContentsEXP: generalContentsEXP});
+                res.render("extras/exp-stacking/expStackingActive", {icons: compiledIcons, expTable: expTable, charLevel: charLevel, viewType: viewType, generalContentsEXP: generalContentsEXP});
             })
             .catch(err => {
                 console.log(err);
@@ -372,7 +372,7 @@ router.get("/potential-list", function(req, res) {
             .then(([allPotentials, foundIcons]) => {
                 const compiledIcons = IconHelper.compileIcons(foundIcons);
                 const potentialsByRank = Helper.groupByRank(allPotentials);
-                res.locals.extraStylesheet = "potentialListStyles";
+                res.locals.extraStylesheet = "extras/potentialListStyles";
                 res.locals.section = "extras";
                 res.locals.branch = "potential-list";
 
@@ -383,7 +383,7 @@ router.get("/potential-list", function(req, res) {
                 res.redirect("back");
             })
     } else {
-        res.locals.extraStylesheet = "potentialListStyles";
+        res.locals.extraStylesheet = "extras/potentialListStyles";
         res.locals.section = "extras";
         res.locals.branch = "potential-list";
         res.render("extras/potentialList");

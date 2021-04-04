@@ -1,10 +1,10 @@
 var express = require("express");
 var router  = express.Router();
-var middleware = require("./middleware");
+var middleware = require("../middleware");
 
-var iconRoutes = require("./admin/adminIcons");
-var damageSkinRoutes = require("./admin/adminDamageSkins");
-var coinEventRoutes = require("./admin/adminCoinEvents");
+var iconRoutes = require("./adminIcons");
+var damageSkinRoutes = require("./adminDamageSkins");
+var coinEventRoutes = require("./adminCoinEvents");
 
 router
     .get("/", middleware.isAdmin, function(req, res) {

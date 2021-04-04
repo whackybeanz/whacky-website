@@ -18,7 +18,7 @@ router.get("/events/tactical-relay", function(req, res) {
 
     var classSelect = ["pirate", "warrior", "mage", "archer", "thief"];
 
-    res.locals.extraStylesheet = "relayStyles";
+    res.locals.extraStylesheet = "more-maple/relayStyles";
     res.locals.section = "more-maple";
     res.locals.branch = "tactical-relay";
     res.render("more-maple/tactical-relay", {missionList: missionList, classSelect: classSelect});
@@ -29,6 +29,7 @@ router.get("/events/coin-events", function(req, res) {
         .then(allEvents => {
             res.locals.section = "more-maple";
             res.locals.branch = "coin-events";
+            res.locals.extraStylesheet = "more-maple/coinEventStyles";
             res.render("more-maple/coin-events/coinEventsLanding", { allEvents: allEvents });
         })
         .catch(err => {
@@ -48,6 +49,7 @@ router.get("/events/coin-event/:eventId", function(req, res) {
             const durationWeeks = (Date.parse(coinEventData.eventDetails.endDate) - Date.parse(coinEventData.eventDetails.startDate) + 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000);
             const coinGainsAndCosts = CoinEventHelper.getCoinGainsAndCosts(coinEventData);
 
+            res.locals.extraStylesheet = "more-maple/coinEventStyles";
             res.locals.section = "more-maple";
             res.locals.branch = "coin-events";
             res.render("more-maple/coin-events/coinEventDetails", { icons: iconsById, coinEventData: coinEventData, durationWeeks: durationWeeks, coinGainsAndCosts: coinGainsAndCosts });
@@ -64,7 +66,7 @@ router.get("/fun", function(req, res) {
 })
 
 router.get("/fun/crossword", function(req, res) {
-    res.locals.extraStylesheet = "xwordStyles";
+    res.locals.extraStylesheet = "more-maple/xwordStyles";
     res.locals.section = "more-maple";
     res.locals.branch = "crossword";
     res.render("more-maple/crossword");
