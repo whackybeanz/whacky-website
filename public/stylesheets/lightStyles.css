@@ -72,6 +72,12 @@ body .carousel.carousel-fade .carousel-inner .carousel-item .carousel-caption {
 body .carousel-control-prev, body .carousel-control-next {
   color: #212529;
 }
+body .collapsible-subheader, body .collapsible-section {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .collapsible-section-subheader {
+  background-color: rgba(206, 212, 218, 0.8);
+}
 body .pagination .page-item .page-link {
   background-color: rgba(255, 255, 255, 0.7);
   border-color: rgba(206, 212, 218, 0.8);
@@ -269,12 +275,6 @@ body .tab-pane .single-map-select:hover {
 body .tab-pane .single-map-select.active {
   background-color: #6cbb3c;
   transition: all 0.2s;
-}
-body .pot-list-subheader, body .pot-list-section {
-  border: 1px solid rgba(206, 212, 218, 0.8);
-}
-body .pot-list-section-subheader {
-  background-color: rgba(206, 212, 218, 0.8);
 }
 body .single-social a {
   color: #212529;

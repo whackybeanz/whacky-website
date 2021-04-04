@@ -114,6 +114,15 @@ body {
         color: globals.$light-mode-black;
     }
 
+    // Collapsibles
+    .collapsible-subheader, .collapsible-section {
+        border: 1px solid globals.$light-mode-grey;
+    }
+
+    .collapsible-section-subheader {
+        background-color: globals.$light-mode-grey;
+    }
+
     // Pagination
     .pagination {
         .page-item {
@@ -401,15 +410,6 @@ body {
                 transition: all 0.2s;
             }
         }
-    }
-
-    // Potential List
-    .pot-list-subheader, .pot-list-section {
-        border: 1px solid globals.$light-mode-grey;
-    }
-
-    .pot-list-section-subheader {
-        background-color: globals.$light-mode-grey;
     }
 
     // About

@@ -1,10 +1,10 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-    <div class="pot-list-section-subheader w-100">
+    <div class="collapsible-section-subheader w-100">
         <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#add-update-coin-event">
             <i class="fas fa-caret-down mr-2"></i> <% if(locals.coinEventData) { %>Update<% } else { %>Add<% } %> Coin Event
         </h3>
     </div>
-    <div class="pot-list-section w-100 px-0 collapse" id="add-update-coin-event">
+    <div class="collapsible-section w-100 px-0 collapse" id="add-update-coin-event">
         <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
             <form class="font-form w-100 size-900" 
                 action="<% if(locals.coinEventData) { %>/admin/coin-event/<%= coinEventData._id %><% } else { %>/admin/coin-events<% } %>" 
