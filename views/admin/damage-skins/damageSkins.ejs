@@ -1,0 +1,125 @@
+<%- include("../../partials/header") %>
+<%- include("../../partials/navbar") %>
+
+<div class="container-fluid content d-flex flex-column flex-md-row p-0">
+    <%- include("../adminSidebar") %>
+    <div class="main-content-div col p-0 position-relative">
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Damage Skins</h1>
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                </div>
+                <div class="d-flex w-100 flex-column align-items-center justify-content-center mb-3 py-3">
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <div class="collapsible-section-subheader w-100">
+                            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#add-damage-skin">
+                                <i class="fas fa-caret-down mr-2"></i> Add New Damage Skins
+                            </h3>
+                        </div>
+                        <div class="collapsible-section w-100 px-0 collapse" id="add-damage-skin">
+                            <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+                                <%- include("./damageSkinDataForm") %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <div class="collapsible-section-subheader w-100">
+                            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#damage-skin-db">
+                                <i class="fas fa-caret-down mr-2"></i> Damage Skin Database
+                            </h3>
+                        </div>
+                        <div class="collapsible-section w-100 px-0 collapse show" id="damage-skin-db">
+                            <div class="d-flex flex-column justify-content-center align-items-center px-3 pt-3 pb-3">
+                                <p>Select one of the following categories to view damage skins in that category.</p>
+                                <div class="col-12 d-flex justify-content-center flex-wrap px-0">
+                                    <% damageSkinCategories.forEach(function(category) { %>
+                                        <div class="col-4 col-md-3 px-1 mb-2">
+                                            <div class="single-option-select d-flex justify-content-center align-items-center rounded-sm position-relative py-1 px-2 <% if(locals.selectedCategory && selectedCategory === category.id) { %>active<% } %>">
+                                                <a href="/admin/damage-skins/<%= category.id %>" class="stretched-link text-decoration-none">
+                                                    <%= category.name %>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    <% }) %>
+                                </div>
+
+                                <% if(locals.damageSkins) { %>
+                                    <hr class="w-25">
+
+                                    <form class="size-720 w-100 mb-4" id="search-form">
+                                        <input type="text" class="form-control text-center" id="search-field" placeholder="Search damage skins..." autocomplete="off">
+                                        <small class="form-text text-center text-muted">Minimum 3 characters to begin search</small>
+                                    </form>
+
+                                    <div class="database-table size-900 w-100" id="damage-skin-table">
+                                        <table class="font-table w-100 table table-bordered table-hover mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="table-cols-50 align-middle text-center">Folder Number</th>
+                                                    <% if(selectedCategory === "new") { %>
+                                                        <th class="table-cols-50 align-middle text-center">Server Type</th>
+                                                    <% } %>
+                                                    <th class="align-middle">Name(s)</th>
+                                                    <th class="table-cols-75 text-center align-middle">Tools</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if(damageSkins.length > 0) { %>
+                                                    <% damageSkins.forEach(function(damageSkin) { %>
+                                                        <tr class="single-search-row" data-search-terms='["<%= damageSkin.shortName.toLowerCase() %>"<% if(damageSkin.altNames) { %><% damageSkin.altNames.forEach(function(altName) { %>, "<%= altName.toLowerCase() %>"<% }) %><% } %>]'>
+                                                            <td class="table-cols-50 align-middle text-center">
+                                                                <%= damageSkin.damageSkinId %>
+                                                                <% if(damageSkin.hasUnitSkin && damageSkin.unitDamageSkinId !== damageSkin.damageSkinId) { %>
+                                                                    (Reg)<br/>
+                                                                    <%= damageSkin.unitDamageSkinId %> (Unit)
+                                                                <% } %>
+                                                                <% if(!damageSkin.hasRegularSkin && damageSkin.hasUnitSkin) { %>
+                                                                    (Unit)
+                                                                <% } %>
+                                                            </td>
+                                                            <% if(selectedCategory === "new") { %>
+                                                                <td class="table-cols-50 align-middle text-center">
+                                                                    <%= damageSkin.isKMSskin ? "KMS" : "Non-KMS" %>
+                                                                </td>
+                                                            <% } %>
+                                                            <td class="align-middle single-search-cell">
+                                                                <%= damageSkin.shortName %>
+                                                                <% if(!damageSkin.hasRegularSkin && damageSkin.hasUnitSkin) { %>
+                                                                    (Unit)
+                                                                <% } %>
+                                                                <% if(damageSkin.altNames) { %>
+                                                                    (<%= damageSkin.altNames.join(" / ") %>)
+                                                                <% } %>
+                                                            </td>
+                                                            <td class="table-cols-75 text-center align-middle">
+                                                                <a href="/admin/damage-skin/<%= damageSkin._id %>" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
+                                                                <form action="/admin/damage-skin/<%= damageSkin._id %>/delete" method="POST" class="d-inline">
+                                                                    <button type="submit" class="remove-item-btn btn btn-outline-danger btn-sm" data-name="<%= damageSkin.name %>"><i class="fas fa-trash"></i></button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    <% }) %>
+                                                <% } else { %>
+                                                    <tr>
+                                                        <td class="text-center" colspan="4">No damage skin data available. Odd.</td>
+                                                    </tr>
+                                                <% } %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <% } %>                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/scripts/commonScript.js"></script>
+<script type="text/javascript" src="/scripts/admin/damageSkinScript.js"></script>
+<%- include("../../partials/footer") %>

@@ -1,0 +1,41 @@
+<div class="form-group row">
+    <label for="rank-up-notes" class="col-sm-3 col-form-label font-weight-bold">Notes</label>
+    <div class="col-sm-9">
+        <input type="text" class="form-control" id="rank-up-notes" name="rankUpNotes" placeholder="Notes" autocomplete="off" <% if(coinData.isUsedForRankUp) { %>value="<%= coinData.rankUpCosts.details %>"<% } %>>
+        <small class="text-info">Notes related to rank up mechanics (e.g. You must pay 200 coins per day for a certain number of days to reach the next rank).</small>
+    </div>
+</div>
+
+<table class="font-table w-100 table table-bordered table-hover mb-0">
+    <thead>
+        <tr>
+            <th class="py-2 text-center align-middle">
+                Rank Name
+            </th>
+            <th class="py-2 text-center align-middle">
+                Total Coin Cost
+                <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="If it costs 200 * 5 days to rank up, input 1000">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let i = 0; i < 10; i++) { %>
+            <tr>
+                <td class="py-2 px-2">
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control text-center px-2" name="rankName" autocomplete="off" 
+                            <% if(coinData.isUsedForRankUp && coinData.rankUpCosts.ranks[i]) { %>value="<%= coinData.rankUpCosts.ranks[i].rankName %>"<% } %>>
+                    </div>
+                </td>
+                <td class="table-cols-75 py-2 px-2">
+                    <div class="form-group mb-0">
+                        <input type="number" class="form-control text-center px-2" name="totalRankUpCost" autocomplete="off" 
+                            <% if(coinData.isUsedForRankUp && coinData.rankUpCosts.ranks[i]) { %>value="<%= coinData.rankUpCosts.ranks[i].totalCost %>"<% } %>>
+                    </div>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>

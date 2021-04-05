@@ -9,7 +9,7 @@ function compileIcons(icons) {
 }
 
 function compileIconsByClass(icons, equips) {
-    let compiledIcons = {}
+    let compiledIcons = {};
 
     equips.forEach(function(equip) {
         let matchingIconData = icons.find(icon => icon.id === equip.id);
@@ -19,4 +19,14 @@ function compileIconsByClass(icons, equips) {
     return compiledIcons;
 }
 
-module.exports = { compileIcons, compileIconsByClass };
+function compileIconsById(icons) {
+    let compiledIcons = {};
+
+    icons.forEach(icon => {
+        compiledIcons[icon.id] = { name: icon.name, imgUrl: icon.imgUrl };
+    })
+
+    return compiledIcons;
+}
+
+module.exports = { compileIcons, compileIconsByClass, compileIconsById };

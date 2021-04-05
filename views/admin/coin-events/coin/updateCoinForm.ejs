@@ -1,0 +1,111 @@
+<form class="font-form w-100 size-900" action="/admin/coin-event/<%= coinEventData._id %>/coin/<%= coinData._id %>" method="POST">
+    <h3 class="w-100 font-subheader font-weight-bold d-flex align-items-center justify-content-center mb-3">
+        <img class="mr-1" src="<%= icon.imgUrl %>"> <%= icon.name %>
+    </h3>
+
+    <h3 class="w-100 font-subsubheader font-weight-bold font-italic">General Data</h3>
+    <div class="border border-dark rounded-sm px-3 py-3 mb-5">
+        <div class="form-group row">
+            <label for="coin-notes" class="col-sm-3 col-form-label font-weight-bold">Notes</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="coin-notes" name="coinNotes" placeholder="Notes" autocomplete="off" <% if(coinData.coinNotes) { %>value="<%= coinData.coinNotes %>"<% } %>>
+                <small class="text-info">Write any notes related to acquiring this coin (e.g. "Obtained through mini games.")</small>
+            </div>
+        </div>
+
+        <div class="form-group row mb-0">
+            <label for="coin-notes" class="col-sm-3 col-form-label font-weight-bold">Used for Rank Up Costs?</label>
+            <div class="col-sm-9 d-flex flex-wrap h-100">
+                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="rank-up-limits-radio-group">
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isUsedForRankUp" id="rank-up-no" value="" <% if(!coinData.isUsedForRankUp) { %>checked<% } %> required>
+                        <label class="form-check-label radio-select used-for-rank-up-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!coinData.isUsedForRankUp) { %>active<% } %>" for="rank-up-no" data-used-for-rank-up="">No</label>
+                    </div>
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isUsedForRankUp" id="rank-up-yes" value="yes" <% if(coinData.isUsedForRankUp) { %>checked<% } %>>
+                        <label class="form-check-label radio-select used-for-rank-up-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(coinData.isUsedForRankUp) { %>active<% } %>" for="rank-up-yes" data-used-for-rank-up="yes">Yes</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Main Coin Source</h3>
+    <p class="mb-2">Input fields are split by week. For 'Daily Coin Cap', enter the cap for a <span class="font-weight-bold text-underline">single day</span> (and not summed across the week).</p>
+    <div class="border border-dark rounded-sm px-3 py-3 mb-5">
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Coin Cap Type</label>
+            <div class="col-sm-9 d-flex flex-wrap h-100">
+                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="coin-cap-timeframe-radio-group">
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="coinCapType" id="cap-type-daily" value="daily" <% if(!coinData.coinCapType || coinData.coinCapType === "daily") { %>checked<% } %> required>
+                        <label class="form-check-label radio-select cap-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!coinData.coinCapType || coinData.coinCapType === "daily") { %>active<% } %>" for="cap-type-daily" data-cap-type="daily">Daily</label>
+                    </div>
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="coinCapType" id="cap-type-weekly" value="weekly" <% if(coinData.coinCapType === "weekly") { %>checked<% } %>>
+                        <label class="form-check-label radio-select cap-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(coinData.coinCapType === "weekly") { %>active<% } %>" for="cap-type-weekly" data-cap-type="weekly">Weekly</label>
+                    </div>
+                </div>
+                <small class="text-info">Refers to whether the coin cap is daily or weekly.</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Coin Cap Values</label>
+            <div class="col-sm-9">
+                <div class="d-flex flex-wrap">
+                    <% for(let i = 0; i < durationWeeks; i++) { %>
+                        <div class="col-4 col-sm-3 px-0">
+                            <input type="number" class="form-control text-center" name="coinCapValues" placeholder="Week <%= i+1 %>" 
+                                <% if(coinData.mainSource.coinCapValues[i]) { %>value="<%= coinData.mainSource.coinCapValues[i] %>"<% } %> required>
+                        </div>
+                    <% } %>
+                </div>
+                <small class="text-info">Factor in any possible coin cap increases (e.g. through rank ups in events) when entering values. Do not factor external sources that allow you to go beyond the 'normal' coin cap.</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Sunday Maple Multiplier</label>
+            <div class="col-sm-9">
+                <div class="d-flex flex-wrap">
+                    <% for(let i = 0; i < durationWeeks; i++) { %>
+                        <div class="col-4 col-sm-3 px-0">
+                            <input type="number" class="form-control text-center" name="sundayMaple" placeholder="Week <%= i+1 %>" 
+                                <% if(coinData.mainSource.sundayMultiplierByWeek[i]) { %>value="<%= coinData.mainSource.sundayMultiplierByWeek[i] %>"<% } %> required>
+                        </div>
+                    <% } %>
+                </div>
+                <small class="text-info">If multiplier is x2, enter 2. Enter 1 if no multiplier effect for that week.</small>
+            </div>
+        </div>
+        <div class="form-group row mb-0">
+            <label class="col-sm-3 col-form-label font-weight-bold">Maximum Total</label>
+            <div class="col-sm-9">
+                <div class="col-sm-3 px-0">
+                    <input type="number" class="form-control text-center" id="max-total" name="maxTotal" autocomplete="off" 
+                        <% if(coinData.mainSource.maxTotal && coinData.mainSource.maxTotal > 0) { %>value="<%= coinData.mainSource.maxTotal %>"<% } %>>
+                </div>
+                <small class="text-info">Enter a value if there's an additional maximum total that can be received (e.g. coin is not rewarded after reaching maximum rank), otherwise leave blank.</small>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Additional Sources</h3>
+    <p class="mb-2">Insert any other sources for this coin here (e.g. if the boss dummy relay activity awards the same coins, it goes here). Leave fields empty if not applicable.</p>
+    <div class="border border-dark rounded-sm px-3 py-3 mb-5">
+        <%- include("./extraCoinSourceInput") %>
+    </div>
+
+    <div class="<% if(!coinData.isUsedForRankUp) { %>d-none<% } %>" id="rank-up-table">
+        <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Rank Details</h3>
+        <p class="text-info mb-2">Insert each rank and its cost on a separate row. Calculate the <span class="text-underline">individual rank's</span> coin cost requirement.</p>
+        <div class="border border-dark rounded-sm px-3 py-3 mb-5">
+            <%- include("./rankUpCostsInput") %>
+        </div>
+    </div>
+
+    <div class="col-12 px-0 mb-4">
+        <button class="h-100 w-100 btn btn-sm btn-outline-info rounded-sm d-flex justify-content-center align-items-center" id="btn-update-coin">
+            Update Coin Details
+        </button>
+    </div>
+</form>

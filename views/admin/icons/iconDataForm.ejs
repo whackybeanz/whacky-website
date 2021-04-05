@@ -1,0 +1,168 @@
+<form class="font-form w-100 size-900" 
+    action="<% if(locals.iconData) { %>/admin/icon/<%= iconData._id %><% } else { %>/admin/icons<% } %>"
+    method="POST">
+    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Icon Basic Info</h3>
+    <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
+        <div class="form-group row">
+            <label for="item-type" class="col-sm-3 col-form-label font-weight-bold">Item Type</label>
+            <div class="col-sm-9">
+                <select class="form-control px-2" name="itemType" id="item-type" required>
+                    <option value="" <% if(!locals.iconData) { %>selected<% } %> disabled hidden>-- Select Item Type --</option>
+                    <option value="equip" <% if(locals.iconData && iconData.itemType === "equip") { %>selected<% } %> data-img-main-folder="equips">Equip</option>
+                    <option value="use" <% if(locals.iconData && iconData.itemType === "use") { %>selected<% } %> data-img-main-folder="items" data-img-sub-folder="use">Use</option>
+                    <option value="setup" <% if(locals.iconData && iconData.itemType === "setup") { %>selected<% } %> data-img-main-folder="items" data-img-sub-folder="setup">Setup</option>
+                    <option value="etc" <% if(locals.iconData && iconData.itemType === "etc") { %>selected<% } %> data-img-main-folder="items" data-img-sub-folder="etc">ETC</option>
+                    <option value="cash" <% if(locals.iconData && iconData.itemType === "cash") { %>selected<% } %> data-img-main-folder="items" data-img-sub-folder="cash">Cash</option>
+                    <option value="map" <% if(locals.iconData && iconData.itemType === "map") { %>selected<% } %> data-img-main-folder="maps">Map</option>
+                    <option value="boss" <% if(locals.iconData && iconData.itemType === "boss") { %>selected<% } %> data-img-main-folder="boss">Boss Monster</option>
+                    <option value="boss-soul" <% if(locals.iconData && iconData.itemType === "boss-soul") { %>selected<% } %> data-img-main-folder="souls">Boss Soul</option>
+                    <option value="event-currency" <% if(locals.iconData && iconData.itemType === "event-currency") { %>selected<% } %> data-img-main-folder="event" data-img-sub-folder="coin-events">Event Currency</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row <% if(!locals.iconData || (locals.iconData && iconData.itemType !== "equip")) { %>d-none<% } %>" id="select-equip-type">
+            <label for="item-type" class="col-sm-3 col-form-label font-weight-bold">Equip Type</label>
+            <div class="col-sm-9">
+                <select class="form-control px-2" name="equipType" id="equip-type">
+                    <option value="" <% if(!locals.iconData) { %>selected<% } %> disabled hidden>-- Select Equip Type --</option>
+                    <option class="font-weight-bold" value="" disabled>[WSE]</option>
+                    <option <% if(locals.iconData && iconData.category === "weapon") { %>selected<% } %> value="weapon">Weapon</option>
+                    <option <% if(locals.iconData && iconData.category === "secondary") { %>selected<% } %> value="secondary">Secondary</option>
+                    <option <% if(locals.iconData && iconData.category === "emblem") { %>selected<% } %> value="emblem">Emblem</option>
+                    <option class="font-weight-bold" value="" disabled>[Armors]</option>
+                    <option <% if(locals.iconData && iconData.category === "hat") { %>selected<% } %> value="hat">Hat</option>
+                    <option <% if(locals.iconData && iconData.category === "top") { %>selected<% } %> value="top">Top</option>
+                    <option <% if(locals.iconData && iconData.category === "overall") { %>selected<% } %> value="overall">Overall</option>
+                    <option <% if(locals.iconData && iconData.category === "bottom") { %>selected<% } %> value="bottom">Bottom</option>
+                    <option <% if(locals.iconData && iconData.category === "gloves") { %>selected<% } %> value="gloves">Gloves</option>
+                    <option <% if(locals.iconData && iconData.category === "shoes") { %>selected<% } %> value="shoes">Shoes</option>
+                    <option <% if(locals.iconData && iconData.category === "cape") { %>selected<% } %> value="cape">Cape</option>
+                    <option class="font-weight-bold" value="" disabled>[Accessories]</option>
+                    <option <% if(locals.iconData && iconData.category === "face-acc") { %>selected<% } %> value="face-acc" data-img-sub-folder="face">Face Accessory</option>
+                    <option <% if(locals.iconData && iconData.category === "eye-acc") { %>selected<% } %> value="eye-acc" data-img-sub-folder="eye">Eye Accessory</option>
+                    <option <% if(locals.iconData && iconData.category === "ring") { %>selected<% } %> value="ring">Ring</option>
+                    <option <% if(locals.iconData && iconData.category === "earring") { %>selected<% } %> value="earring">Earrings</option>
+                    <option <% if(locals.iconData && iconData.category === "pendant") { %>selected<% } %> value="pendant">Pendant</option>
+                    <option <% if(locals.iconData && iconData.category === "belt") { %>selected<% } %> value="belt">Belt</option>
+                    <option <% if(locals.iconData && iconData.category === "shoulder") { %>selected<% } %> value="shoulder">Shoulder Decoration</option>
+                    <option <% if(locals.iconData && iconData.category === "badge") { %>selected<% } %> value="badge">Badge</option>
+                    <option <% if(locals.iconData && iconData.category === "medal") { %>selected<% } %> value="medal">Medal</option>
+                    <option <% if(locals.iconData && iconData.category === "pocket") { %>selected<% } %> value="pocket">Pocket</option>
+                    <option <% if(locals.iconData && iconData.category === "android") { %>selected<% } %> value="android">Android</option>
+                    <option <% if(locals.iconData && iconData.category === "heart") { %>selected<% } %> value="heart">Mechanical Heart</option>
+                    <option class="font-weight-bold" value="" disabled>[Others]</option>
+                    <option <% if(locals.iconData && iconData.category === "others") { %>selected<% } %> value="others">Others</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Item ID</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="item-id" name="itemID" placeholder="Item ID" pattern="^[a-zA-Z0-9-]+$" required autocomplete="off" <% if(locals.iconData) { %>value="<%= iconData.id %>"<% } %>>
+                <small class="form-text text-info">Use small case and dashes to connect words (something-like-this). ID will be filled as image file name automatically below.</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="item-name" class="col-sm-3 col-form-label font-weight-bold">Item Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="item-name" name="itemName" placeholder="Item Name" required autocomplete="off" <% if(locals.iconData) { %>value="<%= iconData.name %>"<% } %>>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-3 font-weight-bold">Sections Used</div>
+            <div class="col-12 col-sm-9 d-flex flex-wrap h-100">
+                <% pageSections.forEach(function(section) { %>
+                    <div class="form-check col-12 col-sm-6 col-md-4 px-1 mb-1">
+                        <input class="form-check-input" name="sections" type="checkbox" id="section-<%= section.id %>" value="<%= section.id %>" <% if(locals.iconData && iconData.usedInSections && iconData.usedInSections.includes(section.id)) { %>checked<% } %>>
+                        <label class="form-check-label single-checkbox col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer <% if(locals.iconData && iconData.usedInSections && iconData.usedInSections.includes(section.id)) { %>active<% } %>" for="section-<%= section.id %>">
+                            <%= section.name %>
+                        </label>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-3 font-weight-bold">Common Coin Shop Item?</div>
+            <div class="col-sm-9 d-flex flex-wrap h-100">
+                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="is-common-coin-item-radio-group">
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isCommonCoinShopItem" id="common-coin-item-no" value="" 
+                            <% if(!locals.iconData || (locals.iconData && !iconData.isCommonCoinShopItem)) { %>checked<% } %>>
+                        <label class="form-check-label radio-select is-common-coin-item-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 
+                            <% if(!locals.iconData || (locals.iconData && !iconData.isCommonCoinShopItem)) { %>active<% } %>" for="common-coin-item-no" data-is-common-coin-item="no">
+                            No
+                        </label>
+                    </div>
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isCommonCoinShopItem" id="common-coin-item-yes" value="yes" 
+                            <% if(locals.iconData && iconData.isCommonCoinShopItem) { %>checked<% } %>>
+                        <label class="form-check-label radio-select is-common-coin-item-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 
+                            <% if(locals.iconData && iconData.isCommonCoinShopItem) { %>active<% } %>" for="common-coin-item-yes" data-is-common-coin-item="yes">
+                            Yes
+                        </label>
+                    </div>
+                </div>
+                <small class="form-text text-info">Select Yes only if the item is a purchasable item from coin shops and are commonly available through the years.</small>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Icon Image Details</h3>
+    <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
+        <% if(locals.iconData) { %>
+            <div class="form-group row">
+                <label for="image-path-start" class="col-sm-3 col-form-label font-weight-bold">Image Preview</label>
+                <div class="col-sm-9">
+                    <img src="<%= iconData.imgUrl %>" alt="<%= iconData.name %>">
+                </div>
+            </div>
+        <% } %>
+
+        <div class="form-group row">
+            <div class="col-sm-3 font-weight-bold">Localhost?</div>
+            <div class="col-sm-9 d-flex flex-wrap h-100">
+                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="is-localhost-radio-group">
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isLocalhost" id="localhost-no" value="no" <% if(!locals.iconImgUrl || (locals.iconImgUrl && iconImgUrl.path.includes("whacky"))) { %>checked<% } %>>
+                        <label class="form-check-label radio-select is-localhost-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.iconImgUrl || (locals.iconImgUrl && iconImgUrl.path.includes("whacky"))) { %>active<% } %>" for="localhost-no" data-is-localhost="no">No</label>
+                    </div>
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isLocalhost" id="localhost-yes" value="yes" <% if(locals.iconImgUrl && !iconImgUrl.path.includes("whacky")) { %>checked<% } %>>
+                        <label class="form-check-label radio-select is-localhost-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.iconImgUrl && !iconImgUrl.path.includes("whacky")) { %>active<% } %>" for="localhost-yes" data-is-localhost="yes">Yes</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="image-path-start" class="col-sm-3 col-form-label font-weight-bold">Image Path</label>
+            <div class="col-sm-9">
+                <input type="text" class="font-form form-control-plaintext" id="image-path-start" name="imgPath" value="<% if(locals.iconImgUrl) { %><%= iconImgUrl.path %><% } else { %>https://whacky-website.s3-ap-southeast-1.amazonaws.com/images<% } %>" required autocomplete="off">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="image-path-end" class="col-sm-3 col-form-label font-weight-bold">Image Main Folder</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="image-main-folder" name="imgPath" placeholder="Main Folder" required autocomplete="off" <% if(locals.iconImgUrl) { %>value="<%= iconImgUrl.mainFolder %>"<% } %>>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="image-path-end" class="col-sm-3 col-form-label font-weight-bold">Image Subfolder</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="image-sub-folder" name="imgPath" placeholder="Subfolder" autocomplete="off" <% if(locals.iconImgUrl) { %>value="<%= iconImgUrl.subFolder %>"<% } %>>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="image-file-name" class="col-sm-3 col-form-label font-weight-bold">Image File Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="image-file-name" name="imgPath" placeholder="Image URL" required autocomplete="off" <% if(locals.iconImgUrl) { %>value="<%= iconImgUrl.fileName %>"<% } %>>
+                <small class="form-text text-info">Double check that the image is hosted on AWS in the correct folder with the correct name.</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <div class="col-12">
+            <button type="submit" class="w-100 btn btn-sm btn-outline-info"><% if(locals.iconData) { %>Update<% } else { %>Add<% } %> Icon Data</button>
+        </div>
+    </div>
+</form>

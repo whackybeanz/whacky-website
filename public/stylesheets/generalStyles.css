@@ -93,6 +93,10 @@
   max-width: 720px;
 }
 
+.size-900 {
+  max-width: 900px;
+}
+
 .index-collapse svg,
 .sidebar-collapse svg {
   transition: all linear 0.25s;
@@ -161,7 +165,7 @@ input[type=number] {
   -webkit-appearance: textfield;
 }
 
-input[type=radio] {
+input[type=radio], input[type=checkbox] {
   visibility: hidden;
 }
 
@@ -200,18 +204,123 @@ img.small-img {
 
 **********************/
 .table-cols-header {
-  min-width: 75px;
-  max-width: 150px;
+  width: 75px;
+}
+@media (min-width: 576px) {
+  .table-cols-header {
+    width: 90px;
+  }
+}
+@media (min-width: 768px) {
+  .table-cols-header {
+    width: 100px;
+  }
+}
+@media (min-width: 992px) {
+  .table-cols-header {
+    width: 125px;
+  }
+}
+@media (min-width: 1200px) {
+  .table-cols-header {
+    width: 150px;
+  }
 }
 
 .table-cols-50 {
-  min-width: 50px;
-  max-width: 125px;
+  width: 50px;
+}
+@media (min-width: 576px) {
+  .table-cols-50 {
+    width: 65px;
+  }
+}
+@media (min-width: 768px) {
+  .table-cols-50 {
+    width: 85px;
+  }
+}
+@media (min-width: 992px) {
+  .table-cols-50 {
+    width: 105px;
+  }
+}
+@media (min-width: 1200px) {
+  .table-cols-50 {
+    width: 125px;
+  }
+}
+
+.table-cols-75 {
+  width: 75px;
+}
+@media (min-width: 576px) {
+  .table-cols-75 {
+    width: 100px;
+  }
+}
+@media (min-width: 768px) {
+  .table-cols-75 {
+    width: 130px;
+  }
+}
+@media (min-width: 992px) {
+  .table-cols-75 {
+    width: 160px;
+  }
+}
+@media (min-width: 1200px) {
+  .table-cols-75 {
+    width: 200px;
+  }
+}
+
+.table-cols-100 {
+  width: 100px;
+}
+@media (min-width: 576px) {
+  .table-cols-100 {
+    width: 125px;
+  }
+}
+@media (min-width: 768px) {
+  .table-cols-100 {
+    width: 175px;
+  }
+}
+@media (min-width: 992px) {
+  .table-cols-100 {
+    width: 200px;
+  }
+}
+@media (min-width: 1200px) {
+  .table-cols-100 {
+    width: 225px;
+  }
 }
 
 .table-cols-125 {
-  min-width: 125px;
-  max-width: 300px;
+  width: 125px;
+}
+@media (min-width: 576px) {
+  .table-cols-125 {
+    width: 150px;
+  }
+}
+@media (min-width: 768px) {
+  .table-cols-125 {
+    width: 200px;
+  }
+}
+@media (min-width: 992px) {
+  .table-cols-125 {
+    width: 250px;
+  }
+}
+@media (min-width: 1200px) {
+  .table-cols-125 {
+    width: 300px;
+  }
 }
 
 .table-item-img,
@@ -225,6 +334,52 @@ img.small-img {
 }
 .table-sort-div .table-sort-header .table-sort-icon.active {
   opacity: 1;
+}
+
+/**********************
+
+    Forms
+
+**********************/
+form .form-control {
+  height: 32px;
+}
+form .form-check {
+  height: 32px;
+}
+form .form-check:first-of-type {
+  padding-left: 0 !important;
+}
+form .form-check:first-of-type .radio-select {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+form .form-check:last-of-type {
+  padding-right: 0 !important;
+}
+form .form-check:last-of-type .radio-select {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+form .form-check .radio-select {
+  height: 32px;
+  transition: all 0.3s;
+  line-height: 1;
+}
+form .form-check .radio-select:hover, form .form-check .radio-select.active {
+  font-weight: bold;
+  transition: all 0.3s;
+}
+form .form-check .form-check-input {
+  visibility: hidden;
+}
+form .form-check .form-check-label {
+  left: 0;
+  transition: all 0.3s;
+}
+form .form-check .form-check-label:hover, form .form-check .form-check-label.active {
+  font-weight: bold;
+  transition: all 0.3s;
 }
 
 /**********************
@@ -291,25 +446,11 @@ img.small-img {
     Other
 
 **********************/
-.single-option-select:hover, .single-option-select.active {
-  font-weight: bold;
-  transition: all 0.3s;
-}
-
-.radio-select-group .form-check:first-of-type .radio-select {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-.radio-select-group .form-check:last-of-type .radio-select {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-.radio-select-group .form-check .radio-select {
+.single-option-select {
   height: 32px;
   transition: all 0.3s;
-  line-height: 1;
 }
-.radio-select-group .form-check .radio-select:hover, .radio-select-group .form-check .radio-select.active {
+.single-option-select:hover, .single-option-select.active {
   font-weight: bold;
   transition: all 0.3s;
 }

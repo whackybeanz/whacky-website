@@ -1,0 +1,99 @@
+@use '../_global-styles' as globals;
+
+#equip-grid {
+    .equip-slot {
+        &#ring-1-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/ring/meister-signet.png"); }
+        &#ring-2-slot {  }
+        &#ring-3-slot {  }
+        &#ring-4-slot {  }
+        &#pocket-slot {  }
+        &#pendant-1-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/pendant/dom-pendant.png"); }
+        &#pendant-2-slot {  }
+        &#weapon-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/weapon/genesis-staff.png"); }
+        &#belt-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/belt/tyrant-belt.png"); }
+        &#hat-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/hat/faf-mage-hat.png"); }
+        &#face-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/face/meister-symbol.png"); }
+        &#eye-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/eye/papulatus-mark.png"); }
+        &#top-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/top/faf-mage-top.png"); }
+        &#bottom-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/bottom/faf-mage-bottom.png"); }
+        &#shoes-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/shoes/acs-shoes.png"); }
+        &#earring-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/earring/meister-studs.png"); }
+        &#shoulder-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/shoulder/acs-shoulder.png"); }
+        &#gloves-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/gloves/acs-glove.png"); }
+        &#android-slot {  }
+        &#emblem-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/emblem/gold-evan-emblem.png"); }
+        &#badge-slot {  }
+        &#medal-slot {  }
+        &#secondary-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/secondary/deimos-sage-shield.png"); }
+        &#cape-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/cape/acs-cape.png"); }
+        &#heart-slot { background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/equips/heart/outlaw-heart.png"); }
+    }
+}
+
+.bg-legendary { 
+    background-color: #77EE00;
+    color: globals.$dark-mode-black !important;
+}
+
+.bg-unique { 
+    background-color: #FFBB00; 
+    color: globals.$dark-mode-black !important;
+}
+
+.bg-epic { 
+    background-color: #5500CC;
+}
+
+.bg-rare { 
+    background-color: #0099FF;
+}
+
+.bg-rareWeak { 
+    background-color: #66FFFF; 
+    color: globals.$dark-mode-black !important;
+}
+
+.stat-type {
+    width: 125px;
+
+    @include globals.for-size(md) {
+        width: 150px;
+    }
+
+    @include globals.for-size(lg) {
+        width: 25%;
+    }    
+}
+
+.red-cube, .black-cube, .additional-cube {
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+
+    &.big-cube {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.red-cube {
+    border: 2px solid #FFAA00;
+    background-color: #DD2222;
+    color: #FFEEEE;
+}
+
+.black-cube {
+    border: 2px solid #FFAA00;
+    background-color: #111111;
+    color: #FFAA11;
+}
+
+.additional-cube {
+    background-color: #77DD00;
+    border: 2px solid #FFAA00;
+    color: #FFEEEE;
+}
+
+.line-height-1-5 {
+    line-height: 1.5;
+}

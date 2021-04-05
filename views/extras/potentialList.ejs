@@ -62,12 +62,12 @@
 
                     <% if(locals.potentialsByRank) { %>
                         <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                            <div class="pot-list-section-subheader w-100">
+                            <div class="collapsible-section-subheader w-100">
                                 <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#pot-weights-guide">
                                     <i class="fas fa-caret-down mr-2"></i> How do weights correspond to percentages?
                                 </h3>
                             </div>
-                            <div class="pot-list-section w-100 px-0 collapse" id="pot-weights-guide">
+                            <div class="collapsible-section w-100 px-0 collapse" id="pot-weights-guide">
                                 <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
                                     <p class="w-100 text-justify">You may have noticed that each potential stat is assigned a 'weight' value. This value determines the percentage chance of getting that stat on a particular line. To illustrate the calculation, we will utilize Mechanical Hearts, Legendary grade as an example. We will work on regular potentials.</p>
                                     <p class="w-100 text-justify">
@@ -100,12 +100,12 @@
                         </div>
 
                         <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                            <div class="pot-list-section-subheader w-100">
+                            <div class="collapsible-section-subheader w-100">
                                 <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#pot-summary">
                                     <i class="fas fa-caret-down mr-2"></i> Cube Summary
                                 </h3>
                             </div>
-                            <div class="pot-list-section w-100 px-0 collapse" id="pot-summary">
+                            <div class="collapsible-section w-100 px-0 collapse" id="pot-summary">
                                 <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
                                     <p class="w-100 text-justify mb-2">The table below displays the respective tier up rates for each cube:</p>
                                     <h2 class="font-subheader w-100 text-center mb-2">Tier-up Rates</h2>
@@ -361,12 +361,12 @@
                         </div>
 
                         <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                            <div class="pot-list-section-subheader w-100">
+                            <div class="collapsible-section-subheader w-100">
                                 <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#pot-reg">
                                     <i class="fas fa-caret-down mr-2"></i> Potentials - <%= locals.generalData.selectedPartName %>
                                 </h3>
                             </div>
-                            <div class="pot-list-section w-100 px-0 collapse show" id="pot-reg">
+                            <div class="collapsible-section w-100 px-0 collapse show" id="pot-reg">
                                 <p class="font-table px-3 mt-2 mb-2"></p>
 
                                 <div class="col-12 d-flex justify-content-center mt-3">
@@ -528,12 +528,12 @@
                         </div>
 
                         <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                            <div class="pot-list-section-subheader w-100">
+                            <div class="collapsible-section-subheader w-100">
                                 <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#pot-add">
                                     <i class="fas fa-caret-down mr-2"></i> Additional (Bonus) Potentials - <%= locals.generalData.selectedPartName %>
                                 </h3>
                             </div>
-                            <div class="pot-list-section w-100 px-0 collapse show" id="pot-add">
+                            <div class="collapsible-section w-100 px-0 collapse show" id="pot-add">
                                 <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3">
                                     <div class="col-12 d-flex justify-content-center mt-3">
                                         <div class="w-100 size-720">
@@ -676,5 +676,5 @@
 </div>
 
 <script type="text/javascript" src="/scripts/commonScript.js"></script>
-<script type="text/javascript" src="/scripts/potentialListScript.js"></script>
+<script type="text/javascript" src="/scripts/extras/potentialListScript.js"></script>
 <%- include("../partials/footer") %>

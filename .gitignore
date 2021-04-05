@@ -2,6 +2,7 @@
 public/images/
 seeds/
 views/template.ejs
+dev.js
 
 # Logs
 logs

@@ -1,0 +1,144 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+    <div class="collapsible-section-subheader w-100">
+        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 <% if(locals.coinShopData) { %>collapsed<% } %>" data-toggle="collapse" href="#add-coin-shop">
+            <i class="fas fa-caret-down mr-2"></i> <% if(locals.coinShopData) { %>Update<% } else { %>Add<% } %> Coin Shop
+        </h3>
+    </div>
+    <div class="collapsible-section w-100 px-0 collapse <% if(!locals.coinShopData) { %>show<% } %>" id="add-coin-shop">
+        <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+            <form class="font-form w-100 size-900" 
+                action="<% if(locals.coinShopData) { %>/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %><% } else { %>/admin/coin-event/<%= coinEventData._id %>/addShop<% } %>" 
+                method="POST" id="add-coin-shop-form">
+                <div class="border border-dark rounded-sm px-3 pt-3">
+                    <div class="form-group row">
+                        <label for="coin-shop-name" class="col-sm-3 col-form-label font-weight-bold">Shop Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="coin-shop-name" name="shopName" placeholder="Shop Name" required autocomplete="off" <% if(locals.coinShopData) { %>value="<%= coinShopData.shopName %>"<% } %>>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label font-weight-bold text-left">Default Currency</label>
+                        <div class="col-sm-9 radio-select-group d-flex flex-column justify-content-center">
+                            <div class="d-flex" id="default-currency-radio-group">
+                                <% coinEventData.coinDetails.forEach(function(coin, index) { %>
+                                    <div class="col form-check p-0">
+                                        <input class="form-check-input" id="coin-type-<%= coin.iconId %>" type="radio" name="defaultCurrency" value="<%= coin.iconId %>" required 
+                                            <% if((!locals.coinShopData && index === 0) || (locals.coinShopData && coinShopData.defaultCurrency === coin.iconId)) { %>checked<% } %>>
+                                        <label class="form-check-label radio-select coin-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
+                                            <% if((!locals.coinShopData && index === 0) || (locals.coinShopData && coinShopData.defaultCurrency === coin.iconId)) { %>active<% } %>" 
+                                            for="coin-type-<%= coin.iconId %>">
+                                            <img class="h-100 mr-0 mr-sm-1" src="<%= icons[`${coin.iconId}`].imgUrl %>">
+                                            <p class="font-small d-none d-sm-inline mb-0"><%= icons[`${coin.iconId}`].name %></p>
+                                        </label>
+                                    </div>
+                                <% }) %>
+                                <% if(locals.coinEventData && coinEventData.hasMesosShop) { %>
+                                    <div class="col form-check p-0">
+                                        <input class="form-check-input" id="coin-type-meso" type="radio" name="defaultCurrency" value="mesos" 
+                                            <% if(locals.coinShopData && coinShopData.defaultCurrency === "mesos") { %>checked<% } %>>
+                                        <label class="form-check-label radio-select coin-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
+                                            <% if(locals.coinShopData && coinShopData.defaultCurrency === "mesos") { %>active<% } %>" 
+                                            for="coin-type-meso">
+                                            <img class="h-100 mr-0 mr-sm-1" src="<%= icons['mesos'].imgUrl %>">
+                                            <p class="font-small d-none d-sm-inline mb-0"><%= icons['mesos'].name %></p>
+                                        </label>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <small class="text-info">Sets the default currency for all items in this shop. You can adjust each item's currency later if necessary.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label font-weight-bold text-left">Default Purchase Limit</label>
+                        <div class="col-sm-9 radio-select-group d-flex flex-column justify-content-center">
+                            <div class="d-flex" id="default-purchase-limit-radio-group">
+                                <div class="col form-check p-0">
+                                    <input class="form-check-input" id="default-purchase-limit-char" type="radio" name="defaultPurchaseLimit" value="character" required 
+                                        <% if(!locals.coinShopData || (locals.coinShopData && coinShopData.defaultPurchaseLimit === "character") || (locals.coinShopData && !coinShopData.defaultPurchaseLimit)) { %>checked<% } %>>
+                                    <label class="form-check-label radio-select item-limit-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
+                                        <% if(!locals.coinShopData || (locals.coinShopData && coinShopData.defaultPurchaseLimit === "character") || (locals.coinShopData && !coinShopData.defaultPurchaseLimit)) { %>active<% } %>" 
+                                        for="default-purchase-limit-char">
+                                        <i class="fas fa-lg fa-user mr-0 mr-sm-1"></i>
+                                        <p class="font-small d-none d-sm-inline mb-0">Per character</p>
+                                    </label>
+                                </div>
+                                <div class="col form-check p-0">
+                                    <input class="form-check-input" id="default-purchase-limit-world" type="radio" name="defaultPurchaseLimit" value="world"
+                                        <% if(locals.coinShopData && coinShopData.defaultPurchaseLimit === "world") { %>checked<% } %>>
+                                    <label class="form-check-label radio-select item-limit-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
+                                        <% if(locals.coinShopData && coinShopData.defaultPurchaseLimit === "world") { %>active<% } %>" 
+                                        for="default-purchase-limit-world">
+                                        <i class="fas fa-lg fa-globe-americas mr-0 mr-sm-1"></i>
+                                        <p class="font-small d-none d-sm-inline mb-0">Per world</p>
+                                    </label>
+                                </div>
+                                <div class="col form-check p-0">
+                                    <input class="form-check-input" id="default-purchase-limit-none" type="radio" name="defaultPurchaseLimit" value="none"
+                                        <% if(locals.coinShopData && coinShopData.defaultPurchaseLimit === "none") { %>checked<% } %>>
+                                    <label class="form-check-label radio-select item-limit-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1
+                                        <% if(locals.coinShopData && coinShopData.defaultPurchaseLimit === "none") { %>active<% } %>" 
+                                        for="default-purchase-limit-none">
+                                        <p class="font-small mb-0">N/A</p>
+                                    </label>
+                                </div>
+                            </div>
+                            <small class="text-info">Sets the default purchase limit for all items in this shop. You can adjust each item's purchase limit later if necessary.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label font-weight-bold text-left">Default Tradability</label>
+                        <div class="col-sm-9 radio-select-group d-flex flex-column justify-content-center">
+                            <div class="d-flex" id="default-tradability-radio-group">
+                                <div class="col form-check p-0">
+                                    <input class="form-check-input" id="default-trade-no" type="radio" name="defaultTradability" value="untradable" required 
+                                        <% if(!locals.coinShopData || (locals.coinShopData && coinShopData.defaultTradability === "untradable")) { %>checked<% } %>>
+                                    <label class="form-check-label radio-select item-tradability-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
+                                        <% if(!locals.coinShopData || (locals.coinShopData && coinShopData.defaultTradability === "untradable")) { %>active<% } %>" for="default-trade-no">
+                                        <i class="fas fa-lg fa-ban mr-0 mr-sm-1"></i>
+                                        <p class="font-small d-none d-sm-inline mb-0">Untradable</p>
+                                    </label>
+                                </div>
+                                <div class="col form-check p-0">
+                                    <input class="form-check-input" id="default-trade-inter" type="radio" name="defaultTradability" value="inter-acct" 
+                                        <% if(locals.coinShopData && coinShopData.defaultTradability === "inter-acct") { %>checked<% } %>>
+                                    <label class="form-check-label radio-select item-tradability-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
+                                        <% if(locals.coinShopData && coinShopData.defaultTradability === "inter-acct") { %>active<% } %>" for="default-trade-inter">
+                                        <i class="fas fa-lg fa-exchange-alt mr-0 mr-sm-1"></i>
+                                        <p class="font-small d-none d-sm-inline mb-0">Inter-account</p>
+                                    </label>
+                                </div>
+                                <div class="col form-check p-0">
+                                    <input class="form-check-input" id="default-trade-yes" type="radio" name="defaultTradability" value="tradable" 
+                                        <% if(locals.coinShopData && coinShopData.defaultTradability === "tradable") { %>checked<% } %>>
+                                    <label class="form-check-label radio-select item-tradability-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
+                                        <% if(locals.coinShopData && coinShopData.defaultTradability === "tradable") { %>active<% } %>" for="default-trade-yes">
+                                        <i class="fas fa-lg fa-check mr-0 mr-sm-1"></i>
+                                        <p class="font-small d-none d-sm-inline mb-0">Tradable</p>
+                                    </label>
+                                </div>
+                            </div>
+                            <small class="text-info">Sets the default tradability for all items in this shop. You can adjust each item's tradability later if necessary.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="coin-shop-notes" class="col-sm-3 col-form-label font-weight-bold">Notes</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="coin-shop-notes" name="shopNotes" placeholder="Notes" autocomplete="off" <% if(locals.coinShopData) { %>value="<%= coinShopData.shopNotes %>"<% } %>>
+                            <small class="text-info">Here, you can indicate any special notes about the shop / its items (e.g. 'This shop requires the Guardian rank to access' / 'All items are inter-account tradable.').</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <button type="submit" class="w-100 btn btn-sm btn-outline-info"><% if(locals.coinShopData) { %>Update<% } else { %>Add<% } %> Coin Shop</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

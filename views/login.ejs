@@ -1,0 +1,33 @@
+<%- include("partials/header") %>
+<%- include("partials/navbar") %>
+
+<div class="container-fluid content d-flex flex-column flex-md-row justify-content-center p-0">
+    <div class="main-content-div col px-0 position-relative">
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-4">
+                    <div class="w-100 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0">Login</h1>
+                    <div class="w-100 border-top border-dark"></div>
+                </div>
+                <div class="w-100 d-flex flex-wrap">
+                	<div class="w-100 d-flex justify-content-center">
+	                	<div class="size-720 w-100">
+		                	<form class="w-100 d-flex flex-column align-items-center justify-content-center" action="/login" method="POST">
+		                		<div class="form-group w-100">
+		                			<input type="text" class="form-control text-center" id="username" name="username" placeholder="Username" required autocomplete="off">
+		                		</div>
+		                		<div class="form-group w-100">
+		                			<input type="password" class="form-control text-center" id="password" name="password" placeholder="Password" required>
+		                		</div>
+		                		<button type="submit" class="w-100 btn btn-info">Submit</button>
+		                	</form>
+		                </div>
+	            	</div>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("partials/footer") %>

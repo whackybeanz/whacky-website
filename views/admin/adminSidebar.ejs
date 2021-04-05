@@ -1,0 +1,36 @@
+<nav class="sidebar sidebar-left font-sidebar col-12 col-lg-3 col-xl-2 p-0">
+    <div class="col-12 d-lg-block collapse px-0" id="sidebar-nav">
+        <div class="mb-0 px-4 px-lg-3 pt-4 mb-4">
+            <h1 class="font-weight-bold">Admin Panel</h1>
+            <ul class="mb-2 pl-3">
+                <div class="mb-4">
+                	<h2 class="list-style-type-none sidebar-collapse mb-1" data-toggle="collapse" href="#side-site">
+                        <i class="fas fa-caret-down"></i> Site Controls
+                    </h2>
+                    <ul class="pl-3 collapse show" id="side-site">
+                    	<li class="list-style-type-none mb-0">
+                            <a href="/admin/icons" class="sidebar-btn d-block py-1 text-decoration-none <% if(locals.branch && branch === "icons") { %>active<% } %>">&#8627; Icons</a>
+                        </li>
+                        <li class="list-style-type-none mb-0">
+                            <a href="/admin/damage-skins" class="sidebar-btn d-block py-1 text-decoration-none <% if(locals.branch && branch === "damage-skins") { %>active<% } %>">&#8627; Damage Skins</a>
+                        </li>
+                        <li class="list-style-type-none mb-0">
+                            <a href="/admin/coin-events" class="sidebar-btn d-block py-1 text-decoration-none <% if(locals.branch && branch === "coin-events") { %>active<% } %>">&#8627; Coin Events</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                	<h2 class="list-style-type-none sidebar-collapse mb-1" data-toggle="collapse" href="#side-users">
+                        <i class="fas fa-caret-down"></i> User Controls
+                    </h2>
+                    <ul class="pl-3 collapse show" id="side-users">
+                    	<li class="list-style-type-none mb-0">
+                            <a href="#" class="sidebar-btn d-block py-1 text-decoration-none">&#8627; User Database</a>
+                        </li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>

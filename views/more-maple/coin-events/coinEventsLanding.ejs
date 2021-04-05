@@ -1,0 +1,33 @@
+<%- include("../../partials/header") %>
+<%- include("../../partials/navbar") %>
+
+<div class="container-fluid content d-flex flex-column flex-md-row p-0">
+    <%- include("../../partials/sidebar") %>
+    <div class="main-content-div col px-0 position-relative">
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Coin Events / Shops</h1>
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                </div>
+
+                <div class="w-100 mb-3 d-flex flex-wrap">
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <p class="text-justify mb-0">Click on any banner below to view event details, coin shop items, and plan your purchases!</p>
+                    </div>
+
+                    <% allEvents.forEach(event => { %>
+                        <div class="col-12 col-sm-6 col-lg-4 mb-4">
+                            <a href="/maple/events/coin-event/<%= event.eventId %>">
+                                <img class="w-100 coin-event-banner" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= event.eventDetails.bannerImg %>">
+                            </a>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("../../partials/footer") %>

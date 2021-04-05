@@ -83,6 +83,22 @@ body.dark-mode {
         .form-control-plaintext {
             color: globals.$dark-mode-white;
         }
+
+        .form-check {
+            .form-check-label {
+                border: 1px solid globals.$dark-mode-grey;
+
+                &:hover, &.active {
+                    background-color: globals.$dark-mode-navy-grey;
+                    color: globals.$dark-mode-white;
+                }
+            }
+        }
+
+        option:disabled {
+            background-color: globals.$dark-mode-navy-grey-opaque;
+            color: globals.$dark-mode-white;
+        }
     }
     
     // Modal
@@ -124,6 +140,15 @@ body.dark-mode {
         &:hover, &:focus {
             color: globals.$dark-mode-white;
         }
+    }
+
+    // Collapsibles
+    .collapsible-subheader, .collapsible-section {
+        border: 1px solid globals.$dark-mode-grey;
+    }
+
+    .collapsible-section-subheader {
+        background-color: globals.$dark-mode-navy-grey-opaque;
     }
 
     // Pagination
@@ -225,10 +250,8 @@ body.dark-mode {
         background-color: globals.$dark-mode-black;
     }
 
-    .job-choice-div, .equip-choice, .sort-boss-crystal-div, .skin-select-div {
-        .single-option-select {
-            border: 1px solid globals.$dark-mode-grey;
-        }
+    .single-option-select {
+        border: 1px solid globals.$dark-mode-grey;
     }
 
     #soul-list-carousel {
@@ -278,7 +301,9 @@ body.dark-mode {
 
             .dmg-skin-body {
                 background-color: globals.$dark-mode-black-opaque;
+            }
 
+            .dmg-skin-tools {
                 .view-dmg-skin-btn, .add-dmg-skin-btn, .remove-dmg-skin-btn {
                     border: 1px solid globals.$dark-mode-grey;
                     background-color: globals.$dark-mode-black-opaque;
@@ -437,15 +462,6 @@ body.dark-mode {
                 transition: all 0.2s;
             }
         }
-    }
-
-    // Potential List
-    .pot-list-subheader, .pot-list-section {
-        border: 1px solid globals.$dark-mode-grey;
-    }
-
-    .pot-list-section-subheader {
-        background-color: globals.$dark-mode-navy-grey-opaque;
     }
 
     // About

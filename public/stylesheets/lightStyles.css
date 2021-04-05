@@ -51,6 +51,17 @@ body .sidebar .sidebar-btn:hover, body .sidebar .sidebar-btn.active {
   background-color: rgba(0, 0, 0, 0.075);
   color: #212529;
 }
+body form .form-check .form-check-label {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body form .form-check .form-check-label:hover, body form .form-check .form-check-label.active {
+  background-color: rgba(206, 212, 218, 0.8);
+  color: #212529;
+}
+body form option:disabled {
+  background-color: rgba(206, 212, 218, 0.8);
+  color: #212529;
+}
 body .modal .modal-content {
   border: 1px solid rgba(206, 212, 218, 0.8);
   color: #212529;
@@ -60,6 +71,12 @@ body .carousel.carousel-fade .carousel-inner .carousel-item .carousel-caption {
 }
 body .carousel-control-prev, body .carousel-control-next {
   color: #212529;
+}
+body .collapsible-subheader, body .collapsible-section {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .collapsible-section-subheader {
+  background-color: rgba(206, 212, 218, 0.8);
 }
 body .pagination .page-item .page-link {
   background-color: rgba(255, 255, 255, 0.7);
@@ -111,7 +128,7 @@ body .page-select a, body .single-option-select a {
 body .main-content-div {
   background-color: rgba(255, 255, 255, 0.7);
 }
-body .job-choice-div .single-option-select, body .equip-choice .single-option-select, body .sort-boss-crystal-div .single-option-select, body .skin-select-div .single-option-select {
+body .single-option-select {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
 body #soul-list-carousel .carousel-nav {
@@ -150,31 +167,31 @@ body .single-dmg-skin > div .dmg-skin-header {
 body .single-dmg-skin > div .dmg-skin-body {
   background-color: white;
 }
-body .single-dmg-skin > div .dmg-skin-body .view-dmg-skin-btn, body .single-dmg-skin > div .dmg-skin-body .add-dmg-skin-btn, body .single-dmg-skin > div .dmg-skin-body .remove-dmg-skin-btn {
+body .single-dmg-skin > div .dmg-skin-tools .view-dmg-skin-btn, body .single-dmg-skin > div .dmg-skin-tools .add-dmg-skin-btn, body .single-dmg-skin > div .dmg-skin-tools .remove-dmg-skin-btn {
   border: 1px solid rgba(206, 212, 218, 0.8);
   background-color: white;
   transition: all 0.2s;
 }
-body .single-dmg-skin > div .dmg-skin-body .view-dmg-skin-btn:hover, body .single-dmg-skin > div .dmg-skin-body .add-dmg-skin-btn:hover, body .single-dmg-skin > div .dmg-skin-body .remove-dmg-skin-btn:hover {
+body .single-dmg-skin > div .dmg-skin-tools .view-dmg-skin-btn:hover, body .single-dmg-skin > div .dmg-skin-tools .add-dmg-skin-btn:hover, body .single-dmg-skin > div .dmg-skin-tools .remove-dmg-skin-btn:hover {
   transition: all 0.2s;
   color: white;
 }
-body .single-dmg-skin > div .dmg-skin-body .view-dmg-skin-btn {
+body .single-dmg-skin > div .dmg-skin-tools .view-dmg-skin-btn {
   color: #212529;
 }
-body .single-dmg-skin > div .dmg-skin-body .view-dmg-skin-btn:hover {
+body .single-dmg-skin > div .dmg-skin-tools .view-dmg-skin-btn:hover {
   background-color: #212529;
 }
-body .single-dmg-skin > div .dmg-skin-body .add-dmg-skin-btn {
+body .single-dmg-skin > div .dmg-skin-tools .add-dmg-skin-btn {
   color: #6cbb3c;
 }
-body .single-dmg-skin > div .dmg-skin-body .add-dmg-skin-btn:hover {
+body .single-dmg-skin > div .dmg-skin-tools .add-dmg-skin-btn:hover {
   background-color: #6cbb3c;
 }
-body .single-dmg-skin > div .dmg-skin-body .remove-dmg-skin-btn {
+body .single-dmg-skin > div .dmg-skin-tools .remove-dmg-skin-btn {
   color: #dc3545;
 }
-body .single-dmg-skin > div .dmg-skin-body .remove-dmg-skin-btn:hover {
+body .single-dmg-skin > div .dmg-skin-tools .remove-dmg-skin-btn:hover {
   background-color: #dc3545;
 }
 body .single-dmg-skin.active > div {
@@ -258,12 +275,6 @@ body .tab-pane .single-map-select:hover {
 body .tab-pane .single-map-select.active {
   background-color: #6cbb3c;
   transition: all 0.2s;
-}
-body .pot-list-subheader, body .pot-list-section {
-  border: 1px solid rgba(206, 212, 218, 0.8);
-}
-body .pot-list-section-subheader {
-  background-color: rgba(206, 212, 218, 0.8);
 }
 body .single-social a {
   color: #212529;

@@ -1,0 +1,49 @@
+<form class="font-form w-100 size-900" action="/admin/system/updateLatestDamageSkins" method="POST">
+    <% if(locals.latestData) { %>
+        <% Object.keys(latestData.servers).forEach(function(server, index) { %>
+            <% if(index > 0) { %>
+                <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">New Skins - <%= latestData.servers[server].serverName %></h3>
+                <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
+                    <div class="form-group row">
+                        <label for="damage-skin-name" class="col-sm-3 col-form-label font-weight-bold">Patch Details</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="<%= server %>-patch-details" name="<%= server %>PatchDetails" placeholder="Patch Details" required autocomplete="off" value="<%= latestData.servers[`${server}`].currPatch %>">
+                            <small class="form-text text-info">Indicate patch name (e.g. NEO). Attach a month/year for further clarity (e.g. March 2021).</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="damage-skin-name" class="col-sm-3 col-form-label font-weight-bold">Skins</label>
+                        <div class="col-sm-9">
+                            <% if(latestData.damageSkins.list.length > 0) { %>
+                                <% latestData.damageSkins.list.forEach(function(skin) { %>
+                                    <% if(skin.skinServerType === server) { %>
+                                        <div class="single-option-select d-flex align-items-center py-1 mb-1 position-relative rounded-sm">
+                                            <input type="hidden" name="damageSkinId" value="<%= skin.damageSkinId %>">
+                                            <% if(skin.isUnitSkin) { %>
+                                                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>-unit.icon.png" class="mr-1">
+                                            <% } else { %>
+                                                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-1">
+                                            <% } %>
+                                            <%= skin.name %>
+                                            <div class="btn btn-sm btn-outline-danger remove-latest-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm position-absolute" data-damage-skin-id="<%= skin.damageSkinId %>" data-name="<%= skin.name %>">
+                                                <i class="fas fa-minus pointer-events-none"></i>
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                <% }) %>
+                            <% } else { %>
+                                No damage skin to display
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% }) %>
+
+        <div class="form-group row">
+            <div class="col-12">
+                <button type="submit" class="w-100 btn btn-sm btn-outline-info">Update Latest Damage Skin List</button>
+            </div>
+        </div>
+    <% } %>
+</form>

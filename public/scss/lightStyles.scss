@@ -72,6 +72,25 @@ body {
         }
     }
 
+    // Form
+    form {
+        .form-check {
+            .form-check-label {
+                border: 1px solid globals.$light-mode-grey;
+
+                &:hover, &.active {
+                    background-color: globals.$light-mode-grey;
+                    color: globals.$light-mode-black;
+                }
+            }
+        }
+
+        option:disabled {
+            background-color: globals.$light-mode-grey;
+            color: globals.$light-mode-black;
+        }
+    }
+
     // Modal
     .modal {
         .modal-content {
@@ -93,6 +112,15 @@ body {
 
     .carousel-control-prev, .carousel-control-next {
         color: globals.$light-mode-black;
+    }
+
+    // Collapsibles
+    .collapsible-subheader, .collapsible-section {
+        border: 1px solid globals.$light-mode-grey;
+    }
+
+    .collapsible-section-subheader {
+        background-color: globals.$light-mode-grey;
     }
 
     // Pagination
@@ -179,10 +207,8 @@ body {
         background-color: globals.$light-mode-white;
     }
 
-    .job-choice-div, .equip-choice, .sort-boss-crystal-div, .skin-select-div {
-        .single-option-select {
-            border: 1px solid globals.$light-mode-grey; 
-        }
+    .single-option-select {
+        border: 1px solid globals.$light-mode-grey; 
     }
 
     #soul-list-carousel {
@@ -234,7 +260,9 @@ body {
 
             .dmg-skin-body {
                 background-color: globals.$light-mode-white-opaque;
+            }
 
+            .dmg-skin-tools {
                 .view-dmg-skin-btn, .add-dmg-skin-btn, .remove-dmg-skin-btn {
                     border: 1px solid globals.$light-mode-grey;
                     background-color: globals.$light-mode-white-opaque;
@@ -382,15 +410,6 @@ body {
                 transition: all 0.2s;
             }
         }
-    }
-
-    // Potential List
-    .pot-list-subheader, .pot-list-section {
-        border: 1px solid globals.$light-mode-grey;
-    }
-
-    .pot-list-section-subheader {
-        background-color: globals.$light-mode-grey;
     }
 
     // About

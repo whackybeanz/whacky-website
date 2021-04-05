@@ -1,0 +1,58 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+    <div class="collapsible-section-subheader w-100">
+        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#bulk-add">
+            <i class="fas fa-caret-down mr-2"></i> Bulk Add - Submission Form
+        </h3>
+    </div>
+    <div class="collapsible-section w-100 px-0 collapse show" id="bulk-add">
+        <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+            <p>Use this form to quickly add multiple items to the same coin shop. Refer to the <a href="/admin/icons" target="_blank">Icons page</a> to retrieve icon IDs. If you added items from the [Bulk Add Common Items] section, they will appear here.</p>
+            <p class="mb-0">Currency, purchase limits and tradability will use defaults as defined by the coin shop at time of item addition. Timeframe will be set as N/A by default. Item ID and price are compulsory fields. Leave Quantity blank if unlimited.</p>
+
+            <hr class="w-25 my-4">
+
+            <form class="font-form w-100 size-900" action="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAdd" method="POST">
+                <input type="hidden" name="defaultCurrency" <% if(locals.coinShopData && coinShopData.defaultCurrency) { %>value="<%= coinShopData.defaultCurrency %>"<% } %>>
+                <input type="hidden" name="defaultPurchaseLimit" <% if(locals.coinShopData && coinShopData.defaultPurchaseLimit) { %>value="<%= coinShopData.defaultPurchaseLimit %>"<% } %>>
+                <input type="hidden" name="defaultTradability" <% if(locals.coinShopData && coinShopData.defaultTradability) { %>value="<%= coinShopData.defaultTradability %>"<% } %>>
+                <input type="hidden" name="defaultTimeframe" value="none">
+
+                <div class="d-flex justify-content-center mb-3">
+                    <button type="button" class="col-sm-4 flex-grow btn btn-outline-info rounded-sm" id="btn-add-more-items">
+                        <i class="fas fa-plus mr-1"></i> Add More Items
+                    </button>
+                </div>
+
+                <div class="d-flex flex-wrap" id="bulk-add-item-list">
+                    <div class="col-12 col-sm-6 col-md-4 px-0 px-sm-2">
+                        <div class="border border-dark rounded-sm px-3 py-3 mb-3 position-relative">
+                            <div class="input-group mb-2">
+                                <input type="text" class="paste-input form-control text-center" placeholder="Item ID" name="itemId" pattern="^[a-zA-Z0-9-]+$" autocomplete="off" required>
+                                <div class="input-group-append">
+                                    <button type="button" class="btn-paste-from-clipboard btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Paste from clipboard">
+                                        <i class="fas fa-clipboard pointer-events-none"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group mb-2">
+                                <input type="number" class="form-control text-center" placeholder="Price" name="price" autocomplete="off" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <input type="number" class="form-control text-center" placeholder="Quantity" name="quantity" autocomplete="off">
+                            </div>
+                            <div class="form-group mb-0">
+                                <input type="text" class="form-control text-center" placeholder="Notes" name="notes" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 px-0">
+                    <button class="h-100 w-100 btn btn-sm btn-outline-info rounded-sm d-flex justify-content-center align-items-center" id="btn-confirm-bulk-add">
+                        <i class="fas fa-check mr-1"></i> Confirm Bulk Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
