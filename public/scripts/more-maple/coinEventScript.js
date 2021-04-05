@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     loadSavedInputs();
+    addInputBlurListener();
     addQtyByOneListener();
     minusQtyByOneListener();   
     updateTotalExpenseListener(); 
@@ -42,7 +43,9 @@ function calculateAndDisplayTotalExpense() {
         let coinType = allCoinTypeInputs[index].value;
 
         if(!isNaN(buyQty)) {
-            totalExpense[coinType] += parseInt(priceInput.value) * buyQty;
+            if(buyQty >= 0 && buyQty <= 100) {
+                totalExpense[coinType] += parseInt(priceInput.value) * buyQty;
+            }
         }
     })
 
@@ -57,6 +60,22 @@ function calculateAndDisplayTotalExpense() {
     return allBuyQtyInputs;
 }
 
+function addInputBlurListener() {
+    const allInputs = document.querySelectorAll(".buy-item-input");
+
+    allInputs.forEach(input => {
+        input.addEventListener("blur", function() {
+            if(input.value < 0) {
+                input.value = 0;
+            }
+
+            if(input.value > 100) {
+                input.value = 100;
+            }
+        })
+    })
+}
+
 function addQtyByOneListener() {
     const addQtyBtns = document.querySelectorAll(".qty-plus-one");
 
@@ -65,8 +84,12 @@ function addQtyByOneListener() {
             let inputIdElem = document.getElementById(this.dataset.inputId);
             let inputValue = parseInt(inputIdElem.value);
 
-            if(!isNaN(inputValue) && inputValue > 0) {
-                inputIdElem.value = inputValue + 1;
+            console.log(inputValue);
+
+            if(!isNaN(inputValue)) {
+                if(inputValue > 0 && inputValue < 100) {
+                    inputIdElem.value = inputValue + 1;
+                }
             } else {
                 inputIdElem.value = 1;
             }
