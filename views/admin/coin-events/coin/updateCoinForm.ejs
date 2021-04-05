@@ -31,7 +31,7 @@
     </div>
 
     <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Main Coin Source</h3>
-    <p class="text-info mb-2">Input fields are split by week. For 'Daily Coin Cap', enter the cap for a single day (and not summed across the week).</p>
+    <p class="mb-2">Input fields are split by week. For 'Daily Coin Cap', enter the cap for a <span class="font-weight-bold text-underline">single day</span> (and not summed across the week).</p>
     <div class="border border-dark rounded-sm px-3 py-3 mb-5">
         <div class="form-group row">
             <label class="col-sm-3 col-form-label font-weight-bold">Coin Cap Type</label>
@@ -77,17 +77,27 @@
                 <small class="text-info">If multiplier is x2, enter 2. Enter 1 if no multiplier effect for that week.</small>
             </div>
         </div>
+        <div class="form-group row mb-0">
+            <label class="col-sm-3 col-form-label font-weight-bold">Maximum Total</label>
+            <div class="col-sm-9">
+                <div class="col-sm-3 px-0">
+                    <input type="number" class="form-control text-center" id="max-total" name="maxTotal" autocomplete="off" 
+                        <% if(coinData.mainSource.maxTotal && coinData.mainSource.maxTotal > 0) { %>value="<%= coinData.mainSource.maxTotal %>"<% } %>>
+                </div>
+                <small class="text-info">Enter a value if there's an additional maximum total that can be received (e.g. coin is not rewarded after reaching maximum rank), otherwise leave blank.</small>
+            </div>
+        </div>
     </div>
 
     <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Additional Sources</h3>
-    <p class="text-info mb-2">Insert any other sources for this coin here (e.g. if the boss dummy relay activity awards the same coins, it goes here). Leave fields empty if not applicable.</p>
+    <p class="mb-2">Insert any other sources for this coin here (e.g. if the boss dummy relay activity awards the same coins, it goes here). Leave fields empty if not applicable.</p>
     <div class="border border-dark rounded-sm px-3 py-3 mb-5">
         <%- include("./extraCoinSourceInput") %>
     </div>
 
     <div class="<% if(!coinData.isUsedForRankUp) { %>d-none<% } %>" id="rank-up-table">
-        <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Rank Up Cost Breakdown</h3>
-        <p class="text-info mb-2">Insert each rank and its cost on a separate row.</p>
+        <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Rank Details</h3>
+        <p class="text-info mb-2">Insert each rank and its cost on a separate row. Calculate the <span class="text-underline">individual rank's</span> coin cost requirement.</p>
         <div class="border border-dark rounded-sm px-3 py-3 mb-5">
             <%- include("./rankUpCostsInput") %>
         </div>

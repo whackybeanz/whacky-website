@@ -27,7 +27,14 @@
                 </td>
                 <td class="align-middle py-2">
                     <div class="d-flex flex-column align-items-start">
-                        <p class="mb-0">Max <span class="d-none d-sm-inline">Possible </span>Coins: <%= (coinGainsAndCosts[coin.iconId].mainSourceCoins + coinGainsAndCosts[coin.iconId].extraSourceCoins).toLocaleString('en-SG') %></p>
+                        <p class="mb-0">
+                            Max Possible Total: 
+                            <% if(coin.mainSource.maxTotal === 0) { %>
+                                <%= (coinGainsAndCosts[coin.iconId].mainSourceCoins + coinGainsAndCosts[coin.iconId].extraSourceCoins).toLocaleString('en-SG') %>
+                            <% } else { %>
+                                <%= coin.mainSource.maxTotal.toLocaleString('en-SG') %>
+                            <% } %>
+                        </p>
 
                         <% if(coin.extraSources.length > 0) { %>
                             <p class="mb-0">- Main Source: <%= coinGainsAndCosts[coin.iconId].mainSourceCoins.toLocaleString('en-SG') %></p>
@@ -38,8 +45,10 @@
                         <% } %>
 
                         <% if(coin.isUsedForRankUp) { %>
+                            <br/>
                             <p class="mb-0">Rank up costs: <%= coinGainsAndCosts[coin.iconId].rankCosts.toLocaleString('en-SG') %></p>
-                            <p class="mb-0">Amount Left: <%= (coinGainsAndCosts[coin.iconId].mainSourceCoins + coinGainsAndCosts[coin.iconId.extraSourceCoins] - coinGainsAndCosts[coin.iconId].rankCosts).toLocaleString('en-SG') %></p>
+                            <br/>
+                            <p class="font-weight-bold mb-0">Amount Left: <%= (coinGainsAndCosts[coin.iconId].mainSourceCoins + coinGainsAndCosts[coin.iconId].extraSourceCoins - coinGainsAndCosts[coin.iconId].rankCosts).toLocaleString('en-SG') %></p>
                         <% } %>
                     </div>
                 </td>

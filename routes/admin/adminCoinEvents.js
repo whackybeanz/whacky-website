@@ -127,7 +127,8 @@ router.post("/coin-event/:id/delete", middleware.isAdmin, function(req, res) {
 router.post("/coin-event/:id/addShop", middleware.isAdmin, function(req, res) {
     const coinShop = {
         shopName: req.body.shopName, 
-        defaultCurrency: req.body.defaultCurrency, 
+        defaultCurrency: req.body.defaultCurrency,
+        defaultPurchaseLimit: req.body.defaultPurchaseLimit,
         defaultTradability: req.body.defaultTradability, 
         shopNotes: req.body.shopNotes, 
     }
@@ -164,6 +165,8 @@ router.get("/coin-event/:id/coin/:coinIconId", middleware.isAdmin, function(req,
 })
 
 router.post("/coin-event/:id/coin/:coinId", middleware.isAdmin, function(req, res) {
+    const maxTotal = parseInt(req.body.maxTotal);
+
     // First assign basic coin data
     // Includes notes about coin, main source cap + sunday maple multiplier, and whether it's used for ranking up
     let coin = {
@@ -172,6 +175,7 @@ router.post("/coin-event/:id/coin/:coinId", middleware.isAdmin, function(req, re
             coinCapType: req.body.coinCapType,
             coinCapValues: req.body.coinCapValues,
             sundayMultiplierByWeek: req.body.sundayMaple,
+            maxTotal: (!isNaN(maxTotal) && maxTotal > 0) ? maxTotal : 0
         },
         'coinDetails.$.isUsedForRankUp': req.body.isUsedForRankUp === "yes",
     };
@@ -363,7 +367,7 @@ router.post("/coin-event/:id/shop/:shopId/bulkAdd", middleware.isAdmin, function
 })
 
 // Specific Coin Shop Item
-router.get("/coin-event/:id/shop/:shopNum/item/:itemIconId", middleware.isAdmin, function(req, res) {
+router.get("/coin-event/:id/shop/:shopNum/item/:itemId", middleware.isAdmin, function(req, res) {
     CoinEvent.findOne({ eventId: req.params.id })
         .then(coinEventData => {
             const shopNum = parseInt(req.params.shopNum);
@@ -371,7 +375,7 @@ router.get("/coin-event/:id/shop/:shopNum/item/:itemIconId", middleware.isAdmin,
             // First check if shop number is valid
             if(!isNaN(shopNum) && shopNum < coinEventData.shops.length) {
                 const coinShopData = coinEventData.shops[shopNum];
-                const coinShopItemData = coinEventData.shops[shopNum].items.find(item => item.iconId === req.params.itemIconId);
+                const coinShopItemData = coinEventData.shops[shopNum].items.find(item => item._id.toString() === req.params.itemId);
                 
                 // Then check if requested item exists in shop
                 if(coinShopItemData === undefined) {
@@ -390,7 +394,7 @@ router.get("/coin-event/:id/shop/:shopNum/item/:itemIconId", middleware.isAdmin,
                     if(coinEventData.hasMesosShop) {
                         query.push({ id: "mesos" });
                     }
-                    query.push({ id: req.params.itemIconId });
+                    query.push({ id: coinShopItemData.iconId });
 
                     let findIconsInEvent = Icon.find({ $or: query });
 

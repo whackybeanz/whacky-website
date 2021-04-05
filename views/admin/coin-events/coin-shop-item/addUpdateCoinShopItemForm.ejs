@@ -38,12 +38,12 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label font-weight-bold text-left">Coin Type</label>
             <div class="col-sm-9 radio-select-group d-flex justify-content-center" id="coin-type-radio-group">
-                <% coinEventData.coinDetails.forEach(function(coin) { %>
+                <% coinEventData.coinDetails.forEach(function(coin, index) { %>
                     <div class="col form-check p-0">
                         <input class="form-check-input" id="coin-type-<%= coin.iconId %>" type="radio" name="coinType" value="<%= coin.iconId %>" required 
-                            <% if((!locals.coinShopItemData && coinShopData.defaultCurrency === coin.iconId) || (locals.coinShopItemData && coinShopItemData.coinType === coin.iconId)) { %>checked<% } %>>
+                            <% if((!locals.coinShopItemData && coinShopData.defaultCurrency === coin.iconId) || (locals.coinShopItemData && coinShopItemData.coinType === coin.iconId) || (index === 0 && locals.coinShopItemData && !coinShopItemData.coinType)) { %>checked<% } %>>
                         <label class="form-check-label radio-select coin-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
-                            <% if((!locals.coinShopItemData && coinShopData.defaultCurrency === coin.iconId) || (locals.coinShopItemData && coinShopItemData.coinType === coin.iconId)) { %>active<% } %>" 
+                            <% if((!locals.coinShopItemData && coinShopData.defaultCurrency === coin.iconId) || (locals.coinShopItemData && coinShopItemData.coinType === coin.iconId) || (index === 0 && locals.coinShopItemData && !coinShopItemData.coinType)) { %>active<% } %>" 
                             for="coin-type-<%= coin.iconId %>">
                             <img class="h-100 mr-0 mr-sm-1" src="<%= icons[`${coin.iconId}`].imgUrl %>">
                             <p class="font-small d-none d-sm-inline mb-0"><%= icons[`${coin.iconId}`].name %></p>
@@ -69,9 +69,9 @@
             <div class="col-sm-9 radio-select-group d-flex justify-content-center" id="buy-limits-radio-group">
                 <div class="col form-check p-0">
                     <input class="form-check-input" id="purchase-limit-char" type="radio" name="purchaseLimit" value="character" required 
-                        <% if(!locals.coinShopItemData || (locals.coinShopItemData && coinShopItemData.purchaseLimit === "character")) { %>checked<% } %>>
+                        <% if((!locals.coinShopItemData && coinShopData.defaultPurchaseLimit === "character") || (locals.coinShopItemData && coinShopItemData.purchaseLimit === "character") || (locals.coinShopItemData && !coinShopItemData.purchaseLimit)) { %>checked<% } %>>
                     <label class="form-check-label radio-select item-limit-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
-                        <% if(!locals.coinShopItemData || (locals.coinShopItemData && coinShopItemData.purchaseLimit === "character")) { %>active<% } %>" 
+                        <% if((!locals.coinShopItemData && coinShopData.defaultPurchaseLimit === "character") || (locals.coinShopItemData && coinShopItemData.purchaseLimit === "character") || (locals.coinShopItemData && !coinShopItemData.purchaseLimit)) { %>active<% } %>" 
                         for="purchase-limit-char">
                         <i class="fas fa-lg fa-user mr-0 mr-sm-1"></i>
                         <p class="font-small d-none d-sm-inline mb-0">Per character</p>
@@ -137,9 +137,9 @@
             <div class="col-sm-9 radio-select-group d-flex justify-content-center" id="tradability-radio-group">
                 <div class="col form-check p-0">
                     <input class="form-check-input" id="trade-no" type="radio" name="itemTradability" value="untradable" required 
-                        <% if((!locals.coinShopItemData && coinShopData.defaultTradability === "untradable") || (locals.coinShopItemData && coinShopItemData.tradability === "untradable")) { %>checked<% } %>>
+                        <% if((!locals.coinShopItemData && coinShopData.defaultTradability === "untradable") || (locals.coinShopItemData && coinShopItemData.tradability === "untradable") || (locals.coinShopItemData && !coinShopItemData.tradability)) { %>checked<% } %>>
                     <label class="form-check-label radio-select item-tradability-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
-                        <% if((!locals.coinShopItemData && coinShopData.defaultTradability === "untradable") || (locals.coinShopItemData && coinShopItemData.tradability === "untradable")) { %>active<% } %>" for="trade-no">
+                        <% if((!locals.coinShopItemData && coinShopData.defaultTradability === "untradable") || (locals.coinShopItemData && coinShopItemData.tradability === "untradable") || (locals.coinShopItemData && !coinShopItemData.tradability)) { %>active<% } %>" for="trade-no">
                         <i class="fas fa-lg fa-ban mr-0 mr-sm-1"></i>
                         <p class="font-small d-none d-sm-inline mb-0">Untradable</p>
                     </label>

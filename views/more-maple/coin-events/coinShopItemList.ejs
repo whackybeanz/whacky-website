@@ -61,8 +61,9 @@
                                         </div>
                                     </td>
                                     <td class="table-cols-100 d-table-cell d-sm-none text-center align-middle py-2 px-2">
-                                        <img src="<%= icons[`${item.coinType}`].imgUrl.substring(0, icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) + "-mini" + icons[`${item.coinType}`].imgUrl.substring(icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) %>"> <%= item.price.toLocaleString('en-SG') %>
-                                        <br/>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <img class="mr-1" src="<%= icons[`${item.coinType}`].imgUrl.substring(0, icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) + "-mini" + icons[`${item.coinType}`].imgUrl.substring(icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) %>"> <%= item.price.toLocaleString('en-SG') %>
+                                        </div>
                                         <% if(item.quantity > 0) { %>
                                             <%= item.quantity %>
                                             <% if(item.purchaseLimit === "character") { %>

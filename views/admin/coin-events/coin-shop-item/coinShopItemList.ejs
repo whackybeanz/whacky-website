@@ -53,8 +53,9 @@
                         </div>
                     </td>
                     <td class="table-cols-125 d-table-cell d-sm-none text-center align-middle py-2">
-                        <img src="<%= icons[`${item.coinType}`].imgUrl.substring(0, icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) + "-mini" + icons[`${item.coinType}`].imgUrl.substring(icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) %>"> <%= item.price.toLocaleString('en-SG') %>
-                        <br/>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img class="mr-1" src="<%= icons[`${item.coinType}`].imgUrl.substring(0, icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) + "-mini" + icons[`${item.coinType}`].imgUrl.substring(icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) %>"> <%= item.price.toLocaleString('en-SG') %>
+                        </div>
                         <% if(item.quantity > 0) { %>
                             <%= item.quantity %>
                             <% if(item.purchaseLimit === "character") { %>
@@ -96,7 +97,7 @@
                         <% } %>
                     </td>
                     <td class="text-center align-middle py-2">
-                        <a href="/admin/coin-event/<%= coinEventData.eventId %>/shop/<%= shopNum %>/item/<%= item.iconId %>" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
+                        <a href="/admin/coin-event/<%= coinEventData.eventId %>/shop/<%= shopNum %>/item/<%= item._id %>" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
                         <form class="d-inline" action="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/item/<%= item._id %>/delete" method="POST">
                             <button type="submit" class="remove-item-btn btn btn-outline-danger btn-sm" 
                                 data-name="<% if(icons[`${item.iconId}`]) { %><%= icons[`${item.iconId}`].name %><% } else { %>undefined<% } %>">
