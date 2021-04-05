@@ -11,7 +11,7 @@ var passportLocalMongoose   = require("passport-local-mongoose");
 
 var indexRoutes     = require("./routes/index");
 var mapleRoutes     = require("./routes/maple/mapleIndex");
-var adminRoutes     = require("./routes/admin");
+var adminRoutes     = require("./routes/admin/adminIndex");
 
 var User = require("./models/users");
 
