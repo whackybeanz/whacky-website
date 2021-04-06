@@ -47,7 +47,7 @@ function getAllItemMaxQty(coinEventData, durationWeeks) {
     coinEventData.shops.forEach((shop, shopIndex) => {
         shop.items.forEach((item, itemIndex) => {
             if(item.timeframeLimit === "day") {
-                itemMaxQtys[`shop-${shopIndex}-item-${itemIndex}`] = item.quantity * durationWeeks * 7 + 5;
+                itemMaxQtys[`shop-${shopIndex}-item-${itemIndex}`] = item.quantity * (durationWeeks * 7 + 5);
             } else if(item.timeframeLimit === "week") {
                 itemMaxQtys[`shop-${shopIndex}-item-${itemIndex}`] = item.quantity * (durationWeeks + 1);
             } else {
