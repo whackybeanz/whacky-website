@@ -100,6 +100,9 @@ body.dark-mode .collapsible-subheader, body.dark-mode .collapsible-section {
 body.dark-mode .collapsible-section-subheader {
   background-color: #343a40;
 }
+body.dark-mode .collapsible-section {
+  background-color: rgba(0, 0, 0, 0.8);
+}
 body.dark-mode .pagination .page-item .page-link {
   background-color: rgba(0, 0, 0, 0.8);
   border-color: #454d55;

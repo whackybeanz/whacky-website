@@ -51,6 +51,14 @@ body .sidebar .sidebar-btn:hover, body .sidebar .sidebar-btn.active {
   background-color: rgba(0, 0, 0, 0.075);
   color: #212529;
 }
+body form .form-control {
+  background-color: white;
+  color: #212529;
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body form .form-control-plaintext {
+  color: #212529;
+}
 body form .form-check .form-check-label {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
@@ -77,6 +85,9 @@ body .collapsible-subheader, body .collapsible-section {
 }
 body .collapsible-section-subheader {
   background-color: rgba(206, 212, 218, 0.8);
+}
+body .collapsible-section {
+  background-color: rgba(255, 255, 255, 0.7);
 }
 body .pagination .page-item .page-link {
   background-color: rgba(255, 255, 255, 0.7);

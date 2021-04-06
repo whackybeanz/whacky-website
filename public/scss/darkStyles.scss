@@ -151,6 +151,10 @@ body.dark-mode {
         background-color: globals.$dark-mode-navy-grey-opaque;
     }
 
+    .collapsible-section {
+        background-color: globals.$dark-mode-black;
+    }
+
     // Pagination
     .pagination {
         .page-item {
