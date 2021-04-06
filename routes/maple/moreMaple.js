@@ -48,11 +48,20 @@ router.get("/events/coin-event/:eventId", function(req, res) {
             // To calculate correct value, 1 extra day needs to be added to factor for end date (as event ends on selected date but 2359hrs)
             const durationWeeks = (Date.parse(coinEventData.eventDetails.endDate) - Date.parse(coinEventData.eventDetails.startDate) + 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000);
             const coinGainsAndCosts = CoinEventHelper.getCoinGainsAndCosts(coinEventData);
+            const allItemMaxQty = CoinEventHelper.getAllItemMaxQty(coinEventData, durationWeeks);
+
+            const responseObj = {
+                icons: iconsById,
+                coinEventData: coinEventData,
+                durationWeeks: durationWeeks,
+                coinGainsAndCosts: coinGainsAndCosts,
+                allItemMaxQty: allItemMaxQty,
+            }
 
             res.locals.extraStylesheet = "more-maple/coinEventStyles";
             res.locals.section = "more-maple";
             res.locals.branch = "coin-events";
-            res.render("more-maple/coin-events/coinEventDetails", { icons: iconsById, coinEventData: coinEventData, durationWeeks: durationWeeks, coinGainsAndCosts: coinGainsAndCosts });
+            res.render("more-maple/coin-events/coinEventDetails", responseObj);
         })
         .catch(err => {
             console.log(err);

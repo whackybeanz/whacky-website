@@ -41,4 +41,22 @@ function getCoinGainsAndCosts(coinEventData) {
     return coinGainsAndCosts;
 }
 
-module.exports = { getCoinGainsAndCosts };
+function getAllItemMaxQty(coinEventData, durationWeeks) {
+    let itemMaxQtys = {};
+
+    coinEventData.shops.forEach((shop, shopIndex) => {
+        shop.items.forEach((item, itemIndex) => {
+            if(item.timeframeLimit === "day") {
+                itemMaxQtys[`shop-${shopIndex}-item-${itemIndex}`] = item.quantity * durationWeeks * 7 + 5;
+            } else if(item.timeframeLimit === "week") {
+                itemMaxQtys[`shop-${shopIndex}-item-${itemIndex}`] = item.quantity * (durationWeeks + 1);
+            } else {
+                itemMaxQtys[`shop-${shopIndex}-item-${itemIndex}`] = item.quantity;
+            }
+        })
+    })
+
+    return itemMaxQtys;
+}
+
+module.exports = { getCoinGainsAndCosts, getAllItemMaxQty };

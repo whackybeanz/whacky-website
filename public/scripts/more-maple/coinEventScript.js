@@ -65,12 +65,16 @@ function addInputBlurListener() {
 
     allInputs.forEach(input => {
         input.addEventListener("blur", function() {
+            const shopItemId = input.id;
+            const shopItemMaxQtyContent = document.getElementById(`${shopItemId}-max-qty`).textContent;
+            const shopItemMaxQty = isNaN(parseInt(shopItemMaxQtyContent)) ? 250 : parseInt(shopItemMaxQtyContent);
+
             if(input.value < 0) {
                 input.value = 0;
             }
 
-            if(input.value > 100) {
-                input.value = 100;
+            if(input.value > shopItemMaxQty) {
+                input.value = shopItemMaxQty;
             }
         })
     })

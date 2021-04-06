@@ -334,7 +334,7 @@ router.post("/coin-event/:id/shop/:shopId/bulkAdd", middleware.isAdmin, function
         itemList.push({
             iconId: itemId,
             price: prices[index],
-            quantity: quantities[index],
+            quantity: quantities[index] === "" ? -1 : quantities[index],
             coinType: req.body.defaultCurrency,
             purchaseLimit: req.body.defaultPurchaseLimit,
             timeframeLimit: req.body.defaultTimeframe,
