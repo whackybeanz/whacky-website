@@ -172,27 +172,11 @@
     }
 }
 
-.step-4-col {
-    width: 100px;
-
-    @include globals.for-size(sm) { width: 125px; }
-    @include globals.for-size(md) { width: 175px; }
-    @include globals.for-size(lg) { width: 200px; }
-    @include globals.for-size(xl) { width: 225px; }
-}
-
 .mult-cols {
     width: 75px;
 
     @include globals.for-size(sm) { width: 100px; }
     @include globals.for-size(md) { width: 125px; }
-}
-
-.map-name-col {
-    width: 150px;
-
-    @include globals.for-size(sm) { width: 200px; }
-    @include globals.for-size(md) { width: 250px; }
 }
 
 .quick-ref {

@@ -22,18 +22,18 @@
                 <table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th class="table-cols-50 text-center align-middle d-none d-sm-table-cell">Item Name</th>
+                            <th class="table-cols-50"></th>
+                            <th class="table-cols-75 text-center align-middle d-none d-sm-table-cell">Item Name</th>
                             <th class="text-center align-middle">Where to get?</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['spell-trace'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Spell Trace">
                                 <p class="mb-0 d-block d-sm-none">Spell Trace</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-sm-table-cell">Spell Trace</td>
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-sm-table-cell">Spell Trace</td>
                             <td class="text-center align-middle">
                                 <img class="item-img m-1" src="<%= icons['coin-crusader'].imgUrl %>" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Crusader Coins<br/>(35 coins = 100 traces)">
                                 <img class="item-img m-1" src="<%= icons['coin-enheim'].imgUrl %>" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Kritias shop<br/>(3 Enheim coins = 100 traces)">
@@ -57,11 +57,11 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['golden-hammer'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Golden Hammer">
                                 <p class="mb-0 d-block d-sm-none">Golden Hammer</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-sm-table-cell">Golden Hammer</td>
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-sm-table-cell">Golden Hammer</td>
                             <td class="text-center align-middle">
                                 <img class="item-img m-1" src="<%= icons['mp-box-6'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Monster Park Boxes (Tuesday, Saturday)">
                                 <img class="item-img m-1" src="<%= icons['pouch-3'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Bounty Hunter Pouches (Advanced, Premium)">
@@ -72,7 +72,7 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['golden-hammer'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Vicious Hammer">
                                 <p class="mb-0 d-block d-sm-none">Vicious Hammer</p>
                             </th>
@@ -113,33 +113,33 @@
                 <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-0">Reversing Failed Upgrade Slots</h3>
                 <p class="w-100 text-justify mb-2">If you failed your tracing attempt, there are scrolls you can utilize to retrieve the failed upgrade slots:</p>
 
-                <table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
+                <table class="font-table size-900 table table-sm table-bordered table-hover mb-0">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th class="table-cols-50 text-center align-middle d-none d-md-table-cell">Item Name</th>
-                            <th class="table-cols-125 text-left align-middle">
+                            <th class="table-cols-50"></th>
+                            <th class="table-cols-75 text-center align-middle d-none d-md-table-cell">Item Name</th>
+                            <th class="table-cols-75 text-left align-middle">
                                 <div class="d-block d-md-none font-weight-bold">[Item Name]</div>
                                 Function
                             </th>
                             <th class="table-cols-50 text-center align-middle d-md-table-cell">Spell Trace Cost</th>
-                            <th class="text-center align-middle">Other Sources</th>
+                            <th class="table-cols-100 text-center align-middle">Other Sources</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['scroll-css'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Pure Clean Slate Scroll">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 (Pure) Clean Slate Scroll
                             </td>
-                            <td class="table-cols-125 align-middle">
+                            <td class="align-middle">
                                 <div class="d-block d-md-none font-weight-bold">[(Pure) Clean Slate Scroll]</div>
                                 Restores 1 failed upgrade slot. 'Pure' versions have 0% chance of destruction if the scroll fails.
                             </td>
                             <td class="table-cols-50 text-center align-middle">2000 x <img src="<%= icons['spell-trace'].imgUrl %>"><br/>(5% success)</td>
-                            <td class="text-center align-middle">
+                            <td class="table-cols-100 text-center align-middle">
                                 <img class="item-img m-1" src="<%= icons['pouch-3'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Bounty Hunter Pouches (Advanced, Premium, 10% success)">
                                 <img class="item-img m-1" src="<%= icons['coin-union'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Union coin shop (10% success)">
                                 <img class="item-img m-1" src="<%= icons['coin-yu-garden'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Yu Garden coin shop (1/3/5% success, 2/6/10% item destroy chance if failed)">
@@ -148,20 +148,20 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['scroll-inno'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Innocence Scroll">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Innocence Scroll
                             </td>
-                            <td class="table-cols-125 align-middle">
+                            <td class="align-middle">
                                 <div class="d-block d-md-none font-weight-bold">[<%= icons['scroll-inno'].name %>]</div>
                                 Restores all upgrade slots (including succeeded ones). Slots added by Golden/Vicious hammers are erased. Also resets any Star Force on the equipment.
                             </td>
                             <td class="table-cols-50 text-center align-middle">
                                 5000 x <img src="<%= icons['spell-trace'].imgUrl %>"><br/>(30% success)
                             </td>
-                            <td class="text-center align-middle">
+                            <td class="table-cols-100 text-center align-middle">
                                 <img class="item-img m-1" src="<%= icons['pouch-3'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Bounty Hunter Pouches (Advanced, Premium, 50% success)">
                                 <img class="item-img m-1" src="<%= icons['eb-box'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Rare Treasure Chests from Elite Bosses (50% success)">
                                 <img class="item-img m-1" src="<%= icons['golden-apple-piece'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="50 Golden Apple Pieces = 1 scroll (50% success)"><br/>
@@ -169,20 +169,20 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['scroll-ark-inno'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ark Innocence Scroll">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Ark Innocence Scroll
                             </td>
-                            <td class="table-cols-125 align-middle">
+                            <td class="align-middle">
                                 <div class="d-block d-md-none font-weight-bold">[Ark Innocence Scroll]</div>
                                 Same as Innocence Scroll, but retains Star Force on the equipment.
                             </td>
                             <td class="table-cols-50 text-center align-middle">
                                 10000 x <img src="<%= icons['spell-trace'].imgUrl %>"><br/>(30% success)
                             </td>
-                            <td class="text-center align-middle">
+                            <td class="table-cols-100 text-center align-middle">
                                 N/A
                             </td>
                         </tr>
@@ -199,8 +199,8 @@
                 <table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th class="table-cols-50 text-center align-middle d-none d-md-table-cell">Item Name</th>
+                            <th class="table-cols-50"></th>
+                            <th class="table-cols-75 text-center align-middle d-none d-md-table-cell">Item Name</th>
                             <th class="table-cols-125 text-center align-middle">
                                 <div class="d-block d-md-none font-weight-bold">[Item Name]</div>
                                 Effect <br class="d-none d-md-block">(x10 for HP/MP)
@@ -210,10 +210,10 @@
                     </thead>
                     <tbody>
                         <tr class="table-rows">
-                            <th class="text-center align-middle" rowspan="3">
+                            <th class="table-cols-50 text-center align-middle" rowspan="3">
                                 <img src="<%= icons['scroll-chaos'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Chaos Scroll">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Chaos Scroll
                             </td>
                             <td class="table-cols-125 text-center align-middle">
@@ -227,7 +227,7 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Incredible Chaos Scroll
                             </td>
                             <td class="table-cols-125 text-center align-middle">
@@ -239,7 +239,7 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Miraculous Chaos Scroll
                             </td>
                             <td class="table-cols-125 text-center align-middle">
@@ -251,10 +251,10 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle" rowspan="2">
+                            <th class="table-cols-50 text-center align-middle" rowspan="2">
                                 <img src="<%= icons['scroll-csog'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Chaos Scroll of Goodness">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Chaos Scroll of Goodness
                             </td>
                             <td class="table-cols-125 text-center align-middle">
@@ -268,7 +268,7 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Incredible Chaos Scroll of Goodness (ICSOG)
                             </td>
                             <td class="table-cols-125 text-center align-middle">
@@ -293,9 +293,9 @@
                 <table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th class="table-cols-50 text-center align-middle d-none d-md-table-cell">Item Name</th>
-                            <th class="table-cols-125 text-left align-middle d-md-table-cell">
+                            <th class="table-cols-50"></th>
+                            <th class="table-cols-75 text-center align-middle d-none d-md-table-cell">Item Name</th>
+                            <th class="text-left align-middle d-md-table-cell">
                                 <div class="d-block d-md-none font-weight-bold">[Item Name]</div>
                                 Function
                             </th>
@@ -303,73 +303,73 @@
                     </thead>
                     <tbody>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['scroll-lucky-day'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Lucky Day Scroll">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Lucky Day Scroll
                             </td>
-                            <td class="table-cols-125 text-left align-middle">
+                            <td class="text-left align-middle">
                                 <div class="d-block d-md-none font-weight-bold">[Lucky Day Scroll]</div>
                                 Increases success rate of next scroll/spell trace enhancement by 10%.
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['scroll-protection'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Shielding Ward / Protection Scroll">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Shielding Ward / Protection Scroll
                             </td>
-                            <td class="table-cols-125 text-left align-middle">
+                            <td class="text-left align-middle">
                                 <div class="d-block d-md-none font-weight-bold">[Shielding Ward / Protection Scroll]</div>
                                 Protects regular (non-superior) items from destruction due to a failed scroll. Not usable on items 12* and above. Can be used with Shield Scrolls and Guardian Scrolls.
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['scroll-protection-superior'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Superior Shielding Ward">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Superior Shielding Ward
                             </td>
-                            <td class="table-cols-125 text-left align-middle">
+                            <td class="text-left align-middle">
                                 <div class="d-block d-md-none font-weight-bold">[Superior Shielding Ward]</div>
                                 Protects superior items from destruction due to a failed scroll. Not usable on items 7* and above. Can be used with Shield Scrolls and Guardian Scrolls.
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['scroll-shield'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Shield Scroll">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Shield Scroll
                             </td>
-                            <td class="table-cols-125 text-left align-middle">
+                            <td class="text-left align-middle">
                                 <div class="d-block d-md-none font-weight-bold">[Shield Scroll]</div>
                                 Prevents item from losing 1 upgrade slot if scrolling fails. Can be used with Shielding Ward and Guardian Scrolls.
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['scroll-guardian'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Guardian / Recovery Scroll">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Guardian / Recovery Scroll
                             </td>
-                            <td class="table-cols-125 text-left align-middle">
+                            <td class="text-left align-middle">
                                 <div class="d-block d-md-none font-weight-bold">[Guardian / Recovery Scroll]</div>
                                 Prevents scroll from disappearing if scrolling fails. Can be used with Shielding Wards and Shield Scrolls.
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['scroll-return'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Return Scroll">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">
                                 Return Scroll
                             </td>
-                            <td class="table-cols-125 text-left align-middle">
+                            <td class="text-left align-middle">
                                 <div class="d-block d-md-none font-weight-bold">[Return Scroll]</div>
                                 Gives you a choice to return your equipment stats to before the scroll was applied. Only returns stats that were changed due to scrolls that consume upgrade slots. Cannot be used with Shield Scrolls. Cannot be used on Zero weapons.
                             </td>
@@ -396,53 +396,53 @@
                 <table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th class="table-cols-50 text-center align-middle d-md-table-cell">Item Name</th>
-                            <th class="table-cols-50 text-center align-middle d-md-table-cell">When to use?</th>
+                            <th class="table-cols-50"></th>
+                            <th class="table-cols-75 text-center align-middle d-md-table-cell">Item Name</th>
+                            <th class="text-center align-middle d-md-table-cell">When to use?</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['scroll-inno'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Innocence Scroll">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-md-table-cell">
                                 Innocence Scroll
                             </td>
-                            <td class="table-cols-125 text-center align-middle">
+                            <td class="text-center align-middle">
                                 3 or more slots failed / item is 12* or less
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['scroll-inno'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ark Innocence Scroll">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-md-table-cell">
                                 Ark Innocence Scroll
                             </td>
-                            <td class="table-cols-125 text-center align-middle">
+                            <td class="text-center align-middle">
                                 3 or more slots failed / item is more than 12*
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['scroll-css'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Pure Clean Slate Scroll">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-md-table-cell">
                                 Pure Clean Slate Scroll
                             </td>
-                            <td class="table-cols-125 text-center align-middle">
+                            <td class="text-center align-middle">
                                 2 or fewer slots failed
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['golden-hammer'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Golden / Vicious Hammer">
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-md-table-cell">
+                            <td class="table-cols-75 text-center align-middle font-small d-md-table-cell">
                                 Golden / Vicious Hammer
                             </td>
-                            <td class="table-cols-125 text-center align-middle">
+                            <td class="text-center align-middle">
                                 Usually done last; 2 or fewer slots failed
                             </td>
                         </tr>

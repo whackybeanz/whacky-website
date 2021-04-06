@@ -37,7 +37,7 @@
                             <% if(charLevel >= 105) { %>
                                 <thead>
                                     <tr>
-                                        <th class="align-middle px-2">Content</th>
+                                        <th class="table-cols-100 align-middle px-2">Content</th>
                                         <th class="text-center align-middle">Details</th>
                                         <th class="text-center align-middle position-relative cursor-pointer" id="view-exp-type-col">EXP Amount <span id="view-exp-type">(%)</span></th>
                                     </tr>
@@ -54,12 +54,12 @@
 
                                 <% if(charLevel >= 105) { %>
                                     <tr>
-                                        <th class="step-4-col" id="monster-park-row" rowspan="<%= generalContentsEXP.monsterPark.length %>">
+                                        <th class="table-cols-100" id="monster-park-row" rowspan="<%= generalContentsEXP.monsterPark.length %>">
                                             <div class="d-flex align-items-center px-2">
                                                 <img src="<%= icons['map-monster-park'].imgUrl %>" class="mr-2"> Monster Park
                                             </div>
                                         </th>
-                                        <td class="step-4-col text-center align-middle"><%= generalContentsEXP.monsterPark[0].name %><br/>[Lv. <%= generalContentsEXP.monsterPark[0].recMinLevel %>~<%= generalContentsEXP.monsterPark[0].recMaxLevel %>]</td>
+                                        <td class="table-cols-100 text-center align-middle"><%= generalContentsEXP.monsterPark[0].name %><br/>[Lv. <%= generalContentsEXP.monsterPark[0].recMinLevel %>~<%= generalContentsEXP.monsterPark[0].recMaxLevel %>]</td>
                                         <td>
                                             <div class="d-flex col-12 flex-column px-0">
                                                 <div class="d-flex col-12 px-0">
@@ -92,7 +92,7 @@
                                     <% generalContentsEXP.monsterPark.forEach(function(content, index) { %>
                                         <% if(index > 0) { %>
                                         <tr>
-                                            <td class="step-4-col text-center align-middle">
+                                            <td class="table-cols-100 text-center align-middle">
                                                 <%= generalContentsEXP.monsterPark[index].name %><br/>[Lv. <%= generalContentsEXP.monsterPark[index].recMinLevel %>~<%= generalContentsEXP.monsterPark[index].recMaxLevel %>]
                                             </td>
                                             <td>
@@ -133,41 +133,41 @@
                                         <th colspan="3" class="empty-row py-2"></th>
                                     </tr>
                                     <tr>
-                                        <th class="step-4-col" rowspan="5">
+                                        <th class="table-cols-100" rowspan="5">
                                             <div class="d-flex align-items-center px-2">
                                                 <img src="<%= icons['growth-potion'].imgUrl %>" class="mr-2">
                                                 <span>EXP Growth Potion<sup class="text-danger">[!]</sup><sup class="text-info">[2]</sup></span>
                                             </div>
                                         </th>
-                                        <td class="step-4-col text-center align-middle">Potion 1<br/>[Lv. 200~209]</td>
+                                        <td class="table-cols-100 text-center align-middle">Potion 1<br/>[Lv. 200~209]</td>
                                         <td class="text-center align-middle" id="exp-potion1">
                                             <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.potion1.rawEXP.toLocaleString() %> EXP</span>
                                             <span class="view-percent-exp"><%= generalContentsEXP.expPotions.potion1.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="step-4-col text-center align-middle">Potion 2<br/>[Lv. 200~219]</td>
+                                        <td class="table-cols-100 text-center align-middle">Potion 2<br/>[Lv. 200~219]</td>
                                         <td class="text-center align-middle" id="exp-potion2">
                                             <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.potion2.rawEXP.toLocaleString() %> EXP</span>
                                             <span class="view-percent-exp"><%= generalContentsEXP.expPotions.potion2.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="step-4-col text-center align-middle">Potion 3<br/>[Lv. 200~229]</td>
+                                        <td class="table-cols-100 text-center align-middle">Potion 3<br/>[Lv. 200~229]</td>
                                         <td class="text-center align-middle" id="exp-potion3">
                                             <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.potion3.rawEXP.toLocaleString() %> EXP</span>
                                             <span class="view-percent-exp"><%= generalContentsEXP.expPotions.potion3.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="step-4-col text-center align-middle">Typhoon Growth Potion<br/>[Lv. 200~239]</td>
+                                        <td class="table-cols-100 text-center align-middle">Typhoon Growth Potion<br/>[Lv. 200~239]</td>
                                         <td class="text-center align-middle" id="exp-typhoon">
                                             <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.typhoon.rawEXP.toLocaleString() %> EXP</span>
                                             <span class="view-percent-exp"><%= generalContentsEXP.expPotions.typhoon.percentEXP %>%</span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="step-4-col text-center align-middle">Maximum Growth Potion<br/>[Lv. 200~249]</td>
+                                        <td class="table-cols-100 text-center align-middle">Maximum Growth Potion<br/>[Lv. 200~249]</td>
                                         <td class="text-center align-middle" id="exp-maximum">
                                             <span class="view-raw-exp d-none"><%= generalContentsEXP.expPotions.maximum.rawEXP.toLocaleString() %> EXP</span>
                                             <span class="view-percent-exp"><%= generalContentsEXP.expPotions.maximum.percentEXP %>%</span>
@@ -180,13 +180,13 @@
                                         <th colspan="3" class="empty-row py-2"></th>
                                     </tr>
                                     <tr>
-                                        <th class="step-4-col">
+                                        <th class="table-cols-100">
                                             <div class="d-flex align-items-center px-2">
                                                 <img src="<%= icons['map-dojo-center'].imgUrl %>" class="mr-2">
                                                 <span>Dojo Training Center</span>
                                             </div>
                                         </th>
-                                        <td class="step-4-col text-center align-middle px-2">
+                                        <td class="table-cols-100 text-center align-middle px-2">
                                             -
                                         </td>
                                         <td class="align-middle">
@@ -265,7 +265,7 @@
                                 </thead>
                                 <tbody>
                                     <tr class="single-map-display map-display-1">
-                                        <th class="text-left map-name-col px-2 py-2" id="map-name-1"></th>
+                                        <th class="table-cols-125 text-left px-2 py-2" id="map-name-1"></th>
                                         <td class="text-left px-2 py-2">
                                             <div class="col-12 d-flex flex-column px-0" id="monster-level-1"></div>
                                         </td>
@@ -274,7 +274,7 @@
                                         <th colspan="3" class="empty-row py-2"></th>
                                     </tr>
                                     <tr class="single-map-display map-display-2">
-                                        <th class="text-left map-name-col px-2 py-2" id="map-name-2"></th>
+                                        <th class="table-cols-125 text-left px-2 py-2" id="map-name-2"></th>
                                         <td class="text-left px-2 py-2">
                                             <div class="col-12 d-flex flex-column px-0" id="monster-level-2"></div>
                                         </td>
@@ -283,7 +283,7 @@
                                         <th colspan="3" class="empty-row py-2"></th>
                                     </tr>
                                     <tr class="single-map-display map-display-3">
-                                        <th class="text-left map-name-col px-2 py-2" id="map-name-3"></th>
+                                        <th class="table-cols-125 text-left px-2 py-2" id="map-name-3"></th>
                                         <td class="text-left px-2 py-2">
                                             <div class="col-12 d-flex flex-column px-0" id="monster-level-3"></div>
                                         </td>
@@ -292,7 +292,7 @@
                                         <th colspan="3" class="empty-row py-2"></th>
                                     </tr>
                                     <tr class="single-map-display map-display-4">
-                                        <th class="text-left map-name-col px-2 py-2" id="map-name-4"></th>
+                                        <th class="table-cols-125 text-left px-2 py-2" id="map-name-4"></th>
                                         <td class="text-left px-2 py-2">
                                             <div class="col-12 d-flex flex-column px-0" id="monster-level-4"></div>
                                         </td>
@@ -301,7 +301,7 @@
                                         <th colspan="3" class="empty-row py-2"></th>
                                     </tr>
                                     <tr class="single-map-display map-display-5">
-                                        <th class="text-left map-name-col px-2 py-2" id="map-name-5"></th>
+                                        <th class="table-cols-125 text-left px-2 py-2" id="map-name-5"></th>
                                         <td class="text-left px-2 py-2">
                                             <div class="col-12 d-flex flex-column px-0" id="monster-level-5"></div>
                                         </td>

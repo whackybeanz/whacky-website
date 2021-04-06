@@ -85,9 +85,9 @@
                 <table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th class="table-cols-125 align-middle text-left">Description</th>
-                            <th class="table-cols-header align-middle text-center">Examples</th>
+                            <th class="table-cols-100"></th>
+                            <th class="align-middle text-left">Description</th>
+                            <th class="table-cols-100 align-middle text-center">Examples</th>
 
                             <!--<th class="table-cols table-cols-desc text-center">"Normal" Equips</th>
                             <th class="table-cols table-cols-desc text-center">"Elite Boss" Equips</th>
@@ -96,9 +96,9 @@
                     </thead>
                     <tbody>
                         <tr class="table-rows">
-                            <th class="table-cols-header align-middle text-center">"Normal" Equips</th>
-                            <td class="table-cols-125 align-middle text-left font-small">Most equipment dropped by regular monsters fall into this category. Zero class weapons are also considered "Normal" weapons. Chaos Root Abyss boss helmets are "Normal" items as well.</td>
-                            <td class="table-cols-50 align-middle text-center">
+                            <th class="table-cols-100 align-middle text-center">"Normal" Equips</th>
+                            <td class="align-middle text-left font-small">Most equipment dropped by regular monsters fall into this category. Zero class weapons are also considered "Normal" weapons. Chaos Root Abyss boss helmets are "Normal" items as well.</td>
+                            <td class="table-cols-100 align-middle text-center">
                                 <img class="item-img m-1" src="<%= icons['abs-lapis'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Zero class weapons">
                                 <img class="item-img m-1" src="<%= icons['chaos-vellum-hat'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Chaos Root Abyss boss helmets">
                                 <img class="item-img m-1" src="<%= icons['meister-symbol'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Meister Symbols">
@@ -107,16 +107,16 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="table-cols-header align-middle text-center">"Elite Boss" Equips</th>
-                            <td class="table-cols-125 align-middle text-left font-small">Equipment collected during the Bonus Stage after killing Elite Bosses fall into this category.</td>
-                            <td class="table-cols-50 align-middle text-center font-small">
+                            <th class="table-cols-100 align-middle text-center">"Elite Boss" Equips</th>
+                            <td class="align-middle text-left font-small">Equipment collected during the Bonus Stage after killing Elite Bosses fall into this category.</td>
+                            <td class="table-cols-100 align-middle text-center font-small">
                                 N/A, see Description
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="table-cols-header align-middle text-center">"Special" Equips</th>
-                            <td class="table-cols-125 align-middle text-left font-small">Most unique equipment dropped directly by bosses and equipment crafted by shards/materials obtained from these bosses are considered "Special" items. There are also certain items not obtainable through bosses that belong to this category.</td>
-                            <td class="table-cols-50 align-middle text-center">
+                            <th class="table-cols-100 align-middle text-center">"Special" Equips</th>
+                            <td class="align-middle text-left font-small">Most unique equipment dropped directly by bosses and equipment crafted by shards/materials obtained from these bosses are considered "Special" items. There are also certain items not obtainable through bosses that belong to this category.</td>
+                            <td class="table-cols-100 align-middle text-center">
                                 <img class="item-img m-1" src="<%= icons['genesis-staff'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Genesis weapons">
                                 <img class="item-img m-1" src="<%= icons['acs-warrior-hat'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Arcaneshade items">
                                 <img class="item-img m-1" src="<%= icons['abs-cape'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Absolabs items">
@@ -138,28 +138,26 @@
                 <table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th class="text-center align-middle d-none d-md-table-cell">Item Name</th>
+                            <th class="table-cols-50"></th>
+                            <th class="table-cols-75 text-center align-middle">Item Name</th>
                             <th class="text-center align-middle">Where to get?</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-100'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Resurrection Flame Level 100">
-                                <p class="mb-0 d-block d-md-none">Resurrection Flame Level 100</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Flame Level 100</td>
+                            <td class="table-cols-75 text-center align-middle font-small ">Resurrection Flame Level 100</td>
                             <td class="text-center align-middle">
                                 <img class="item-img m-1" src="<%= icons['gacha-tix'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Gachapon">
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-110'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Resurrection Flame Level 110">
-                                <p class="mb-0 d-block d-md-none">Resurrection Flame Level 110</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Flame Level 110</td>
+                            <td class="table-cols-75 text-center align-middle font-small ">Resurrection Flame Level 110</td>
                             <td class="text-center align-middle">
                                 <img class="item-img border-img rounded-sm m-1" src="<%= icons['zakum'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Zakum (Normal, Chaos)">
                                 <img class="item-img border-img rounded-sm m-1" src="<%= icons['vellum'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Root Abyss bosses (Normal)">
@@ -168,11 +166,10 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-120'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Resurrection Flame Level 120">
-                                <p class="mb-0 d-block d-md-none">Resurrection Flame Level 120</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Flame Level 120</td>
+                            <td class="table-cols-75 text-center align-middle font-small ">Resurrection Flame Level 120</td>
                             <td class="text-center align-middle">
                                 <img class="item-img border-img rounded-sm m-1" src="<%= icons['hilla'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Hilla (Normal)">
                                 <img class="item-img border-img rounded-sm m-1" src="<%= icons['von-leon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Von Leon (Easy, Normal)">
@@ -181,11 +178,10 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-130'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Resurrection Flame Level 130">
-                                <p class="mb-0 d-block d-md-none">Resurrection Flame Level 130</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Flame Level 130</td>
+                            <td class="table-cols-75 text-center align-middle font-small ">Resurrection Flame Level 130</td>
                             <td class="text-center align-middle">
                                 <img class="item-img border-img rounded-sm m-1" src="<%= icons['hilla'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Hilla (Hard)">
                                 <img class="item-img border-img rounded-sm m-1" src="<%= icons['von-leon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Von Leon (Hard)">
@@ -194,21 +190,19 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-140'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Resurrection Flame Level 140">
-                                <p class="mb-0 d-block d-md-none">Resurrection Flame Level 140</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Flame Level 140</td>
+                            <td class="table-cols-75 text-center align-middle font-small ">Resurrection Flame Level 140</td>
                             <td class="text-center align-middle">
                                 <img class="item-img border-img rounded-sm m-1" src="<%= icons['cygnus'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Cygnus (Easy, Normal)">
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-150'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Resurrection Flame Level 150">
-                                <p class="mb-0 d-block d-md-none">Resurrection Flame Level 150</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Flame Level 150</td>
+                            <td class="table-cols-75 text-center align-middle font-small ">Resurrection Flame Level 150</td>
                             <td class="text-center align-middle">
                                 <img class="item-img border-img rounded-sm m-1" src="<%= icons['magnus-1'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Magnus (Hard)">
                                 <img class="item-img border-img rounded-sm m-1" src="<%= icons['vellum'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Root Abyss bosses (Chaos)">
@@ -232,19 +226,19 @@
                 <table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th class="text-center align-middle d-none d-md-table-cell">Item Name</th>
+                            <th class="table-cols-50"></th>
+                            <th class="table-cols-75 text-center align-middle d-none d-md-table-cell">Item Name</th>
                             <th class="text-center align-middle">Where to get?</th>
-                            <th class="text-center align-middle">Crafting Materials</th>
+                            <th class="table-cols-75 text-center align-middle">Crafting Materials</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-crimson'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Crimson Resurrection Flame">
                                 <p class="mb-0 d-block d-md-none">Crimson Resurrection Flame</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Crimson Resurrection Flame</td>
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">Crimson Resurrection Flame</td>
                             <td class="text-center align-middle font-small">
                                 <img class="item-img m-1" src="<%= icons['recipe-acc'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Accessory Crafting (Master Craftsman)">
                                 <img class="item-img m-1" src="<%= icons['coin-union'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Union coin shop">
@@ -257,7 +251,7 @@
                                 <img class="item-img m-1" src="<%= icons['mon-collect-box-3'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Monster Collection exploration rewards (6 hours, 24 hours)"><br/>
                                 Sudden Missions, Event coin shops
                             </td>
-                            <td class="table-cols-50 text-center align-middle font-small">
+                            <td class="table-cols-75 text-center align-middle font-small">
                                 30 x <img class="item-img m-1" src="<%= icons['essence-magic-crystal'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Magic Crystal"><br/>
                                 5 x <img class="item-img m-1" src="<%= icons['flame-fragment'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Resurrection Fragment"><br/>
                                 30 x <img class="item-img m-1" src="<%= icons['essence-mid'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Mid Spell Essence"><br/>
@@ -265,25 +259,25 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-obsidian'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Obsidian Resurrection Flame">
                                 <p class="mb-0 d-block d-md-none">Obsidian Resurrection Flame</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Obsidian Resurrection Flame</td>
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">Obsidian Resurrection Flame</td>
                             <td class="text-center align-middle font-small">
                                 <img class="item-img m-1" src="<%= icons['gacha-tix'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Gachapon"><br/>
                                 Cash Shop special sales
                             </td>
-                            <td class="table-cols table-cols-50 text-center align-middle font-small">
+                            <td class="table-cols-75 text-center align-middle font-small">
                                 -
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-rainbow'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Rainbow Resurrection Flame">
                                 <p class="mb-0 d-block d-md-none">Rainbow Resurrection Flame</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Rainbow Resurrection Flame</td>
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">Rainbow Resurrection Flame</td>
                             <td class="text-center align-middle font-small">
                                 <img class="item-img m-1" src="<%= icons['recipe-acc'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Accessory Crafting (Meister)">
                                 <img class="item-img m-1" src="<%= icons['pouch-4'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Bounty Hunter Pouches (Premium)">
@@ -293,7 +287,7 @@
                                 <img class="item-img m-1" src="<%= icons['mon-collect-box-4'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Monster Collection exploration rewards (24 hours)"><br/>
                                 Sudden Missions, Event coin shops
                             </td>
-                            <td class="table-cols-50 text-center align-middle font-small">
+                            <td class="table-cols-75 text-center align-middle font-small">
                                 40 x <img class="item-img m-1" src="<%= icons['essence-magic-crystal'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Magic Crystal"><br/>
                                 10 x <img class="item-img m-1" src="<%= icons['flame-fragment'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Resurrection Fragment"><br/>
                                 20 x <img class="item-img m-1" src="<%= icons['essence-high'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="High Spell Essence"><br/>
@@ -301,15 +295,15 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-black'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Black Resurrection Flame">
                                 <p class="mb-0 d-block d-md-none">Black Resurrection Flame</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Black Resurrection Flame</td>
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">Black Resurrection Flame</td>
                             <td class="text-center align-middle font-small">
                                 Event coin shops
                             </td>
-                            <td class="table-cols-50 text-center align-middle font-small">
+                            <td class="table-cols-75 text-center align-middle font-small">
                                 -
                             </td>
                         </tr>
@@ -323,29 +317,29 @@
                 <table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th class="text-center align-middle d-none d-md-table-cell">Item Name</th>
+                            <th clsas="table-cols-50"></th>
+                            <th class="table-cols-75 text-center align-middle d-none d-md-table-cell">Item Name</th>
                             <th class="text-center align-middle">Where to get?</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-fragment'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Resurrection Fragment">
                                 <p class="mb-0 d-block d-md-none">Resurrection Fragment</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Resurrection Fragment</td>
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">Resurrection Fragment</td>
                             <td class="text-center align-middle font-small">
                                 <img class="item-img m-1" src="<%= icons['extractor-scroll'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Extract flames using a Scroll Extractor"><sup class="text-info">[1]</sup><br/>
                                 Disassemble items as an Alchemist (Master Craftsman, Meister)
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-unextinguished'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Unextinguished Flame">
                                 <p class="mb-0 d-block d-md-none">Unextinguished Flame</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Unextinguished Flame</td>
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">Unextinguished Flame</td>
                             <td class="text-center align-middle font-small">
                                 <img class="item-img m-1" src="<%= icons['golden-shovel'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Harvesting Gold Flower, Mysterious Flower, Legendary Mysterious Flower successfully">
                                 <img class="item-img m-1" src="<%= icons['golden-pickaxe'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Mining Heartstone, Mysterious Vein, Legendary Mysterious Vein successfully">
@@ -355,11 +349,11 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['flame-never-extinguishing'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Never Extinguishing Flame">
                                 <p class="mb-0 d-block d-md-none">Never Extinguishing Flame</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Never Extinguishing Flame</td>
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">Never Extinguishing Flame</td>
                             <td class="text-center align-middle font-small">
                                 <img class="item-img m-1" src="<%= icons['golden-shovel'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Harvesting Gold Flower, Mysterious Flower, Legendary Mysterious Flower successfully">
                                 <img class="item-img m-1" src="<%= icons['golden-pickaxe'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Mining Heartstone, Mysterious Vein, Legendary Mysterious Vein successfully">
@@ -369,29 +363,29 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['essence-magic-crystal'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Magic Crystal">
                                 <p class="mb-0 d-block d-md-none">Magic Crystal</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Magic Crystal</td>
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">Magic Crystal</td>
                             <td class="text-center align-middle font-small" rowspan="3">
                                 <img class="item-img m-1" src="<%= icons['extractor-scroll'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Extract scrolls using a Scroll Extractor"><br/>
                                 Monster loot
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['essence-mid'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Mid Spell Essence">
                                 <p class="mb-0 d-block d-md-none">Mid Spell Essence</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">Mid Spell Essence</td>
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">Mid Spell Essence</td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="text-center align-middle">
+                            <th class="table-cols-50 text-center align-middle">
                                 <img src="<%= icons['essence-high'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="High Spell Essence">
                                 <p class="mb-0 d-block d-md-none">High Spell Essence</p>
                             </th>
-                            <td class="table-cols-50 text-center align-middle font-small d-none d-md-table-cell">High Spell Essence</td>
+                            <td class="table-cols-75 text-center align-middle font-small d-none d-md-table-cell">High Spell Essence</td>
                         </tr>
                     </tbody>
                 </table>

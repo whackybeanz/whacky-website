@@ -39,13 +39,13 @@
                 <table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
                     <thead>
                         <tr>
-                            <th class="table-cols-125 text-center align-middle">Property</th>
+                            <th class="table-cols-100 text-center align-middle">Property</th>
                             <th class="align-middle">Criteria</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="table-rows">
-                            <th class="table-cols-125 text-center align-middle">Item Level</th>
+                            <th class="table-cols-100 text-center align-middle">Item Level</th>
                             <td class="align-middle py-2">
                                 <p>RE must be +1 to +20 levels of EE (for EE level 99 and below).<br/>
                                 RE must be +1 to +10 levels of EE (for EE level 100 and above).</p>
@@ -62,7 +62,7 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="table-cols-125 text-center align-middle">Equipment Type</th>
+                            <th class="table-cols-100 text-center align-middle">Equipment Type</th>
                             <td class="align-middle py-2">
                                 <p>EE and RE must have matching item types (e.g. Hat to Hat, Staff to Staff). Overalls can be todded onto both Top and Bottom item types and vice-versa.</p>
                                 <p>EE and RE can belong to different classes (e.g. Mage hat to Warrior hat).</p>
@@ -89,52 +89,52 @@
                 <table class="font-table size-720 table table-sm table-bordered table-hover mb-0">
                     <thead>
                         <tr>
-                            <th class="table-cols-125 text-center align-middle">Item Property</th>
-                            <th class="table-cols-125 text-center align-middle">Transferred to RE?</th>
+                            <th class="table-cols-100 text-center align-middle">Item Property</th>
+                            <th class="table-cols-75 text-center align-middle">Transferred to RE?</th>
                             <th class="align-middle">Notes</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="table-rows">
-                            <th class="table-cols-125 text-center align-middle">
+                            <th class="table-cols-100 text-center align-middle">
                                 <img src="<%= icons['flame-crimson'].imgUrl %>">
                                 <img src="<%= icons['flame-rainbow'].imgUrl %>"><br/>
                                 Bonus Stats / Flame stats
                             </th>
-                            <td class="table-cols-125 text-center align-middle">No</td>
+                            <td class="table-cols-75 text-center align-middle">No</td>
                             <td class="align-middle">
                                 <p class="mb-0">RE retains the flame stats that it has during todding.</p>
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="table-cols-125 text-center align-middle">
+                            <th class="table-cols-100 text-center align-middle">
                                 <img src="<%= icons['spell-trace'].imgUrl %>">
                                 <img src="<%= icons['scroll-chaos'].imgUrl %>"><br/>
                                 Spell Trace / Scroll upgrades
                             </th>
-                            <td class="table-cols-125 text-center align-middle">No</td>
+                            <td class="table-cols-75 text-center align-middle">No</td>
                             <td class="align-middle">
                                 <p class="mb-2">If RE has upgrade slots left unused during todding, you will be given the choice to use up all upgrade slots with 100% scrolls free-of-charge.</p>
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="table-cols-125 text-center align-middle">
+                            <th class="table-cols-100 text-center align-middle">
                                 <img src="<%= icons['chair-sf'].imgUrl %>"><br/>
                                 Star Force
                             </th>
-                            <td class="table-cols-125 text-center align-middle">Yes, minus 1 star</td>
+                            <td class="table-cols-75 text-center align-middle">Yes, minus 1 star</td>
                             <td class="align-middle">
                                 <p>EE must have at least 1 star force.</p>
                                 <p class="mb-2">RE's existing star force is replaced by EE's star force (minus one).</p>
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="table-cols-125 text-center align-middle">
+                            <th class="table-cols-100 text-center align-middle">
                                 <img src="<%= icons['pot-scroll'].imgUrl %>">
                                 <img src="<%= icons['pot-scroll-add'].imgUrl %>"><br/>
                                 (Additional) Potentials
                             </th>
-                            <td class="table-cols-125 text-center align-middle">Yes, up to Epic potential</td>
+                            <td class="table-cols-75 text-center align-middle">Yes, up to Epic potential</td>
                             <td class="align-middle">
                                 <p>RE's existing potentials are replaced by EE's potentials.</p>
                                 <p>If EE has Unique/Legendary potential, downgrade potential lines to Epic rank of equivalent stat type (e.g. STR +12% at Legendary becomes STR +6% at Epic for a level 100+ item) during todding.</p>
@@ -142,31 +142,31 @@
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="table-cols-125 text-center align-middle">
+                            <th class="table-cols-100 text-center align-middle">
                                 <img src="<%= icons['soul-magnus'].imgUrl %>"><br/>
                                 Boss Souls
                             </th>
-                            <td class="table-cols-125 text-center align-middle">Yes</td>
+                            <td class="table-cols-75 text-center align-middle">Yes</td>
                             <td class="align-middle">
                                 <p>RE's existing boss soul/soul weapon status is replaced by EE's boss soul/soul weapon status.</p>
                                 <p class="mb-2">If RE was not a soul weapon, automatically transform into one and receive EE's boss soul.</p>
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="table-cols-125 text-center align-middle">Tradability</th>
-                            <td class="table-cols-125 text-center align-middle">No</td>
+                            <th class="table-cols-100 text-center align-middle">Tradability</th>
+                            <td class="table-cols-75 text-center align-middle">No</td>
                             <td class="align-middle">
                                 <p class="mb-2">RE's tradability remains unaffected (e.g. if EE was tradable, but RE was untradable, RE remains untradable after todding).</p>
                             </td>
                         </tr>
                         <tr class="table-rows">
-                            <th class="table-cols-125 text-center align-middle">
+                            <th class="table-cols-100 text-center align-middle">
                                 <img src="<%= icons['scroll-guardian'].imgUrl %>">
                                 <img src="<%= icons['scroll-shield'].imgUrl %>">
-                                <img src="<%= icons['scroll-protection'].imgUrl %>">
+                                <img src="<%= icons['scroll-protection'].imgUrl %>"><br/>
                                 Special Scroll usage
                             </th>
-                            <td class="table-cols-125 text-center align-middle">No</td>
+                            <td class="table-cols-75 text-center align-middle">No</td>
                             <td class="align-middle">
                                 <p class="mb-2">Any effects of Guardian Scrolls, Shielding Scrolls, Shielding Wards, etc. that exist on EE <span class="text-underline">will not</span> be transferred to RE.</p>
                             </td>
