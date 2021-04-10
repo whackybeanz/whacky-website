@@ -16,7 +16,7 @@ var adminRoutes     = require("./routes/admin/adminIndex");
 var User = require("./models/users");
 
 var port = process.env.PORT || 3005;
-var databaseUrl = process.env.DATABASEURL || "mongodb://localhost/maple-info";
+var databaseUrl = process.env.DATABASEURL || "mongodb://localhost/maple-info-db";
 mongoose.connect(databaseUrl, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 
 app.use(bodyParser.urlencoded({extended: true}));

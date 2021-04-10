@@ -254,7 +254,7 @@ function addSelectedItem(selectedItem, equipType, equipId, choiceImage) {
     }
 
     activateLuckyItem();
-    updateSetEffects();
+    equipId.includes("sengoku-wolf") ? updateSetEffects(1, "sengoku-era-3") : updateSetEffects();
     updateSetEffectMessage();
     updateTotalSetEffect();
 }
@@ -314,7 +314,7 @@ function activateLuckyItem() {
     Set Effect Display Updates
 
 ***************************/
-function updateSetEffects() {
+function updateSetEffects(changeEffectAmount, affectedSetName) {
     $(".set-item-effect-div").each(function() {
         var setName = $(this).data("setName");
         var numItemsEquipped = $(`.${setName}-set .set-items .active`).length;
@@ -328,6 +328,10 @@ function updateSetEffects() {
         $(`.${setName}-set .num-wearing-div div`).removeClass("active");
         for(var i = 1; i <= numItemsEquipped; i++) {
             $(`.${setName}-set .num-wearing-div .wearing-${i}`).addClass("active");
+        }
+
+        if(changeEffectAmount && setName && setName === affectedSetName) {
+            $(`.${setName}-set .num-wearing-div .wearing-${numItemsEquipped+1}`).addClass("active");
         }
     })
 }
@@ -344,7 +348,7 @@ function updateSetEffectMessage() {
 function updateTotalSetEffect() {
     var allStatTypes = { str: 0, dex: 0, int: 0, luk: 0, allStats: 0,
                         maxHp: 0, maxHpMp: 0, maxHpMpPercent: 0, def: 0, acc: 0, avoid: 0, 
-                        wama: 0, wa: 0, ma: 0, damagePercent: 0, bossPercent: 0, iedPercent: 0, critDmgPercent: 0 }
+                        wama: 0, wa: 0, ma: 0, damagePercent: 0, bossPercent: 0, iedPercent: 0, critDmgPercent: 0, speed: 0, jump: 0 }
     var currIed = 0;
 
     $(".num-wearing-div .set-effect.active .single-effect").map(function() {

@@ -67,7 +67,14 @@ router.get("/icon/:id", middleware.isAdmin, function(req, res) {
             const imgFolder = "/images";
             const urlIndex = icon.imgUrl.indexOf(imgFolder);
             const mainPath = icon.imgUrl.slice(0, urlIndex + imgFolder.length);
-            const [mainFolder, subFolder, fileName] = icon.imgUrl.slice(mainPath.length+1).split("/");
+            let [mainFolder, subFolder, fileName] = icon.imgUrl.slice(mainPath.length+1).split("/");
+
+            // If there were only mainFolder + fileName, the fileName will go to subFolder
+            // Swap subFolder's and fileName's content
+            if(typeof fileName === "undefined") {
+                fileName = subFolder;
+                subFolder = "";
+            }
 
             let iconImgUrlSplit = {
                 path: mainPath,

@@ -85,14 +85,22 @@ function addQtyByOneListener() {
 
     addQtyBtns.forEach(btn => {
         btn.addEventListener("click", function() {
-            let inputIdElem = document.getElementById(this.dataset.inputId);
+            const shopItemId = this.dataset.inputId;
+            const shopItemMaxQtyContent = document.getElementById(`${shopItemId}-max-qty`).textContent;
+            const shopItemMaxQty = isNaN(parseInt(shopItemMaxQtyContent)) ? 250 : parseInt(shopItemMaxQtyContent);
+
+            let inputIdElem = document.getElementById(shopItemId);
             let inputValue = parseInt(inputIdElem.value);
 
-            console.log(inputValue);
-
             if(!isNaN(inputValue)) {
-                if(inputValue > 0 && inputValue < 100) {
-                    inputIdElem.value = inputValue + 1;
+                if(inputValue > 0) {
+                    if(inputValue < shopItemMaxQty) {
+                        inputIdElem.value = inputValue + 1;    
+                    } else {
+                        inputIdElem.value = shopItemMaxQty;
+                    }
+                } else {
+                    inputIdElem.value = 1;    
                 }
             } else {
                 inputIdElem.value = 1;

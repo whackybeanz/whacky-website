@@ -81,7 +81,7 @@ router.get("/set-effects/:jobType", function(req, res) {
                             { key: "def", name: "DEF" }, { key: "acc", name: "Accuracy" }, { key: "avoid", name: "Avoidability" }, 
                             { key: "wa", name: "ATT" }, { key: "ma", name: "MATT" }, { key: "wama", name: "ATT/MATT" }, 
                             { key: "damagePercent", name: "Damage %", symbol: "%" }, { key: "bossPercent", name: "Boss Damage %", symbol: "%" }, { key: "iedPercent", name: "Ignore Enemy DEF %", symbol: "%" }, 
-                            { key: "critDmgPercent", name: "Critical Damage %", symbol: "%" }];
+                            { key: "critDmgPercent", name: "Critical Damage %", symbol: "%" }, { key: "speed", name: "Speed" }, { key: "jump", name: "Jump" }];
 
             res.locals.extraStylesheet = "extras/setItemStyles";
             res.locals.section = "extras";
@@ -96,6 +96,7 @@ router.get("/set-effects/:jobType", function(req, res) {
 
 router.get("/boss-crystal", function(req, res) {
     let bossList = [
+        { id: "akechi", easy: 0, normal: 28800000, hard: 0, chaos: 0 },
         { id: "arkarium", easy: 1152000, normal: 2520000, hard: 0, chaos: 0 },
         { id: "bm", easy: 0, normal: 0, hard: 500000000, chaos: 0 },
         { id: "crimson-queen", easy: 0, normal: 968000, hard: 0, chaos: 16200000 },
