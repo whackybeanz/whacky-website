@@ -114,6 +114,7 @@ function removeSetItem(selectedItem, equipType, equipId) {
 
     activateLuckyItem();
     updateSetEffects();
+    updateSpecialSets("sengoku-era-3", "sengoku-wolf");
     updateSetEffectMessage();
     updateTotalSetEffect();
 }
@@ -190,6 +191,7 @@ function addRingPendant(selectedItem, equipType, equipId, choiceImage) {
 
         activateLuckyItem();
         updateSetEffects();
+        updateSpecialSets("sengoku-era-3", "sengoku-wolf");
         updateSetEffectMessage();
         updateTotalSetEffect();
     } else {
@@ -254,7 +256,8 @@ function addSelectedItem(selectedItem, equipType, equipId, choiceImage) {
     }
 
     activateLuckyItem();
-    equipId.includes("sengoku-wolf") ? updateSetEffects(1, "sengoku-era-3") : updateSetEffects();
+    updateSetEffects()
+    updateSpecialSets("sengoku-era-3", "sengoku-wolf");
     updateSetEffectMessage();
     updateTotalSetEffect();
 }
@@ -329,11 +332,21 @@ function updateSetEffects(changeEffectAmount, affectedSetName) {
         for(var i = 1; i <= numItemsEquipped; i++) {
             $(`.${setName}-set .num-wearing-div .wearing-${i}`).addClass("active");
         }
-
-        if(changeEffectAmount && setName && setName === affectedSetName) {
-            $(`.${setName}-set .num-wearing-div .wearing-${numItemsEquipped+1}`).addClass("active");
-        }
     })
+}
+
+function updateSpecialSets(setName, weaponType) {
+    let specialSetElem = document.querySelector(`.${setName}-set`);
+
+    // If set is currently active due to presence of at least one item
+    if(specialSetElem.classList.contains("d-flex")) {
+        let activeWeapon = specialSetElem.querySelector(".set-items .set-effect.wearing-weapon.active");
+        
+        if(activeWeapon && activeWeapon.id.includes(weaponType)) {
+            let numActiveItems = specialSetElem.querySelectorAll(".set-items .set-effect.active").length;
+            $(`.${setName}-set .num-wearing-div .wearing-${numActiveItems+1}`).addClass("active");
+        }
+    }
 }
 
 function updateSetEffectMessage() {
