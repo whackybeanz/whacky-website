@@ -11,9 +11,9 @@
         <% coinEventData.coinDetails.forEach(coin => { %>
             <tr>
                 <td class="table-cols-125 text-center text-sm-left align-middle py-2 position-relative">
-                    <img class="mr-2" src="<%= icons[`${coin.iconId}`].imgUrl %>">
+                    <img class="mr-2" src="<% if(icons[`${coin.iconId}`]) { %><%= icons[`${coin.iconId}`].imgUrl %><% } %>">
                     <br class="d-inline d-sm-none">
-                    <%= icons[`${coin.iconId}`].name %>
+                    <% if(icons[`${coin.iconId}`]) { %><%= icons[`${coin.iconId}`].name %><% } %>
 
                     <% if(coin.coinNotes && coin.coinNotes !== "") { %>
                         <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= coin.coinNotes %>">

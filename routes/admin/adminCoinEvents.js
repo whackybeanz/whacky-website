@@ -447,7 +447,7 @@ router.post("/coin-event/:id/shop/:shopId/item/:itemId", middleware.isAdmin, fun
         .then(updatedCoinEvent => {
             const shopNum = AdminHelper.retrieveShopNum(updatedCoinEvent, req.params.shopId);
             req.flash("success", "Item updated");
-            res.redirect(`/admin/coin-event/${updatedCoinEvent.eventId}/shop/${shopNum}`)
+            res.redirect(`/admin/coin-event/${updatedCoinEvent.eventId}/shop/${shopNum}/item/${req.params.itemId}`);
         })
         .catch(err => {
             console.log(err);
