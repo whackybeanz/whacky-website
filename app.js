@@ -28,7 +28,7 @@ app.use(flash());
 app.use(session({
     secret: "whacky's website for maple stuff",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: new MongoStore({ mongoUrl: databaseUrl })
 }));
 app.use(passport.initialize());
