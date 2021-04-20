@@ -457,16 +457,19 @@ router.post("/coin-event/:id/shop/:shopId/item/:itemId", middleware.isAdmin, fun
 })
 
 router.post("/coin-event/:id/shop/:shopId/item/:itemId/delete", middleware.isAdmin, function(req, res) {
+    let response = {};
+
     CoinEvent.findOneAndUpdate({ _id: req.params.id, "shops._id": req.params.shopId }, { $pull: { 'shops.$.items': { _id: req.params.itemId } } }, { new: true })
         .then(updatedCoinEvent => {
             const shopNum = AdminHelper.retrieveShopNum(updatedCoinEvent, req.params.shopId);
-            req.flash("success", 'Item deletion successful.');
-            res.redirect(`/admin/coin-event/${updatedCoinEvent.eventId}/shop/${shopNum}`);
+            response.isSuccess = true;
+            res.send(response);
         })
         .catch(err => {
             console.log(err);
-            req.flash("error", `Error: ${err}`);
-            res.redirect("back");
+            response.isSuccess = false;
+            response.message = err;
+            res.send(response);
         })
 })
 

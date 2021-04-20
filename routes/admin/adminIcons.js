@@ -107,21 +107,26 @@ router.post("/icon/:id", middleware.isAdmin, function(req, res) {
         } else {
             const path = updatedIcon.itemType;
             console.log("Icon updated");
-            res.redirect(`/admin/icons/${path}`);
+            res.redirect(`/admin/icon/${req.params.id}`);
         }
     })
 })
 
 router.post("/icon/:id/delete", middleware.isAdmin, function(req, res) {
-    Icon.findOneAndDelete({ _id: req.params.id }, function(err) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    let response = {};
+
+    Icon.findOneAndDelete({ _id: req.params.id })
+        .then(() => {
             console.log("Icon deleted");
-            res.redirect("back");
-        }
-    })
+            response.isSuccess = true;
+            res.send(response);
+        })
+        .catch(err => {
+            console.log(err);
+            response.isSuccess = false;
+            response.message = err;
+            res.send(response);
+        })
 })
 
 module.exports = router;

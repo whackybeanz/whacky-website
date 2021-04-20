@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addItemIdInputListener();
     addLocalhostRadioListener();
     addCopyToClipboardListener();
+    removeIconListener();
 });
 
 function addIconTypeSelectListener() {
@@ -88,4 +89,32 @@ function getNode() {
     }, function() {
         
     });
+}
+
+function removeIconListener() {
+    const removeBtns = document.querySelectorAll(".remove-icon-btn");
+
+    removeBtns.forEach(function(btn) {
+        btn.addEventListener("click", function(event) {
+            if(confirm(`Do you really wish to remove [${this.dataset.name}]?`)) {
+                const iconId = this.dataset.iconId;
+
+                fetch(`/admin/icon/${iconId}/delete`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.isSuccess) {
+                            alert(`Deletion of [${this.dataset.name}] succeeded.`);
+                            this.parentNode.parentNode.remove();
+                        } else {
+                            alert(`Deletion of [${this.dataset.name}] failed. Please try again. Error: ${data.message}`);
+                        }
+                    })
+            } else {
+                event.preventDefault();
+            }
+        })
+    })
 }

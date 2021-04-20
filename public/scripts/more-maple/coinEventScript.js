@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addInputBlurListener();
     addQtyByOneListener();
     minusQtyByOneListener();   
-    updateTotalExpenseListener(); 
+    updateTotalExpenseListener();
 });
 
 function loadSavedInputs() {
@@ -132,10 +132,16 @@ function updateTotalExpenseListener() {
     updateExpenseBtns.forEach(btn => {
         btn.addEventListener("click", function() {
             let allBuyQtyInputs = calculateAndDisplayTotalExpense();
-            saveInputs(allBuyQtyInputs);
+            let isSaved = saveInputs(allBuyQtyInputs);
 
             this.querySelector(".update-expense-text").classList.toggle("d-none");
             this.querySelector(".save-success-text").classList.toggle("d-none");
+
+            if(isSaved) {
+                this.querySelector(".save-success-text").textContent = "Expense updated & inputs saved!";
+            } else {
+                this.querySelector(".save-success-text").textContent = "Expense updated!";
+            }
             
             window.setTimeout(() => {
                 this.querySelector(".update-expense-text").classList.toggle("d-none");
@@ -146,12 +152,33 @@ function updateTotalExpenseListener() {
 }
 
 function saveInputs(allBuyQtyInputs) {
+    const eventId = document.getElementById("event-id").value;
+    const savedData = JSON.parse(localStorage.getItem("coinEvent"));
+    const currSavedEventId = savedData.eventId;
+    const currSavedEventName = savedData.eventName || "???";
+
+    if(savedData !== null && eventId !== currSavedEventId) {
+        if(confirm(`You currently have saved data from another coin event: [${currSavedEventName}]. Proceeding with the save will overwrite your current saved data. Do you really wish to proceed?\n\nIf you click 'No', the total expense will still be updated for your reference, but no data will be saved.`)) {
+            proceedWithSave(allBuyQtyInputs, eventId);
+            return true;
+        } else {
+            calculateAndDisplayTotalExpense();
+            return false;
+        }
+    } else {
+        proceedWithSave(allBuyQtyInputs, eventId);
+        return true;
+    }
+}
+
+function proceedWithSave(allBuyQtyInputs, eventId) {
     let savedInputs = allBuyQtyInputs.map(input => {
         return { inputId: input.id, value: input.value};
     });
 
     let toSave = {
-        eventId: document.getElementById("event-id").value,
+        eventName: document.getElementById("event-name").textContent,
+        eventId: eventId,
         buyQtyInputs: savedInputs,
     }
 

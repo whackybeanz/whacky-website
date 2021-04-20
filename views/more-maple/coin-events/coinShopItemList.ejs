@@ -6,6 +6,9 @@
     </div>
     <div class="collapsible-section w-100 px-0 collapse show" id="coin-shop-<%= index %>">
         <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
+            <% if(shop.shopNotes) { %>
+                <p class="w-100 text-justify"><%= shop.shopNotes %></p>
+            <% } %>
             <div class="size-900 w-100">
                 <table class="font-table w-100 table table-bordered table-hover mb-0" id="coin-shop-item-list">
                     <thead>
@@ -134,8 +137,8 @@
 
                 <div class="col-12 px-0 mt-4 d-flex justify-content-center">
                     <button type="button" class="btn-update-expense col-sm-4 btn btn-sm btn-outline-info rounded-sm d-flex justify-content-center align-items-center">
-                        <span class="update-expense-text"><i class="fas fa-check mr-2"></i> Update Total Expense</span>
-                        <span class="save-success-text d-none">Expense updated & inputs saved!</span>
+                        <span class="update-expense-text"><i class="fas fa-check mr-2"></i> Update & Save Total Expense</span>
+                        <span class="save-success-text d-none"></span>
                     </button>
                 </div>
             </div>

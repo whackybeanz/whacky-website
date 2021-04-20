@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addMoreItemsListener();
     deleteAddedItemListener();
     pasteFromClipboardListener();
+    removeCoinShopItemListener();
 });
 
 function addNewCoinIcon() {
@@ -190,5 +191,35 @@ function pasteFromClipboardListener() {
                 
             });
         }
+    })
+}
+
+function removeCoinShopItemListener() {
+    const removeBtns = document.querySelectorAll(".remove-coin-shop-item-btn");
+
+    removeBtns.forEach(function(btn) {
+        btn.addEventListener("click", function(event) {
+            if(confirm(`Do you really wish to remove [${this.dataset.name}]?`)) {
+                const coinEventId = this.dataset.coinEventId;
+                const coinShopId = this.dataset.coinShopId;
+                const coinShopItemId = this.dataset.coinShopItemId;
+
+                fetch(`/admin/coin-event/${coinEventId}/shop/${coinShopId}/item/${coinShopItemId}/delete`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.isSuccess) {
+                            alert(`Deletion of [${this.dataset.name}] succeeded.`);
+                            this.parentNode.parentNode.remove();
+                        } else {
+                            alert(`Deletion of [${this.dataset.name}] failed. Please try again. Error: ${data.message}`);
+                        }
+                    })
+            } else {
+                event.preventDefault();
+            }
+        })
     })
 }

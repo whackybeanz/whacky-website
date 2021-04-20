@@ -85,12 +85,10 @@
                                                                 <button type="button" class="btn-copy-to-clipboard btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="left" title="Copy item ID">
                                                                     <i class="fas fa-copy pointer-events-none"></i>
                                                                 </button>
-                                                                <a href="/admin/icon/<%= icon._id %>" class="btn btn-outline-info btn-sm">
+                                                                <a href="/admin/icon/<%= icon._id %>" target="_blank" class="btn btn-outline-info btn-sm">
                                                                     <i class="fas fa-pen"></i>
                                                                 </a>
-                                                                <form action="/admin/icon/<%= icon._id %>/delete" method="POST" class="d-inline">
-                                                                    <button type="submit" class="remove-item-btn btn btn-outline-danger btn-sm" data-name="<%= icon.name %>"><i class="fas fa-trash"></i></button>
-                                                                </form>
+                                                                <button type="button" class="remove-icon-btn btn btn-outline-danger btn-sm" data-icon-id="<%= icon._id %>" data-name="<%= icon.name %>"><i class="fas fa-trash"></i></button>
                                                             </td>
                                                         </tr>
                                                     <% }) %>
