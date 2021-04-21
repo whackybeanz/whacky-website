@@ -154,10 +154,15 @@ function updateTotalExpenseListener() {
 function saveInputs(allBuyQtyInputs) {
     const eventId = document.getElementById("event-id").value;
     const savedData = JSON.parse(localStorage.getItem("coinEvent"));
-    const currSavedEventId = savedData.eventId || "???";
-    const currSavedEventName = savedData.eventName || "???";
-
+    let currSavedEventId = "???";
+    
+    if(savedData !== null) {
+        currSavedEventId = savedData.eventId;
+    }
+    
     if(savedData !== null && eventId !== currSavedEventId) {
+        const currSavedEventName = savedData.eventName || "???";
+        
         if(confirm(`You currently have saved data from another coin event: [${currSavedEventName}]. Proceeding with the save will overwrite your current saved data. Do you really wish to proceed?\n\nIf you click 'No', the total expense will still be updated for your reference, but no data will be saved.`)) {
             proceedWithSave(allBuyQtyInputs, eventId);
             return true;
