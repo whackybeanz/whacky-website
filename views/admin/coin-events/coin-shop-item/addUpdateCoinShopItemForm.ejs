@@ -23,6 +23,13 @@
             </div>
         </div>
         <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold text-left">Section Header</label>
+            <div class="col-sm-9">
+                <input type="text" class="font-small form-control text-center" name="sectionHeader" autocomplete="off" placeholder="Section Header" <% if(locals.coinShopItemData) { %>value="<%= coinShopItemData.sectionHeader %>"<% } %>>
+                <small class="text-info">Only insert details here if a section header is required.</small>
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-sm-3 col-form-label font-weight-bold text-left">Price per item</label>
             <div class="col-sm-9">
                 <input type="number" class="font-small form-control text-center" name="price" autocomplete="off" placeholder="Price" required <% if(locals.coinShopItemData) { %>value="<%= coinShopItemData.price %>"<% } %>>

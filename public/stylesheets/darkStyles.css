@@ -117,6 +117,9 @@ body.dark-mode table.table-bordered td, body.dark-mode table.table-bordered th {
 body.dark-mode table.table-bordered th.empty-row {
   background-color: rgba(0, 0, 0, 0.8);
 }
+body.dark-mode table.table-bordered tr.tr-section-header {
+  background-color: rgba(0, 0, 0, 0.8);
+}
 body.dark-mode .radio-select-group .form-check .radio-select {
   border: 1px solid #454d55;
 }

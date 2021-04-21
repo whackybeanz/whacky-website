@@ -42,6 +42,7 @@ var coinEventData = new mongoose.Schema({
         shopNotes: String, 
         items: [{
             iconId: String,
+            sectionHeader: String,
             price: Number,
             quantity: Number,
             coinType: String,

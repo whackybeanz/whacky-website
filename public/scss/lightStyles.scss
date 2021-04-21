@@ -154,14 +154,25 @@ body {
         }
     }
 
+    // Table
+    table {
+        &.table-bordered {
+            tr {
+                &.tr-section-header {
+                    background-color: globals.$light-mode-grey;
+                }
+            }
+        }
+    }
+
     // Button
     .action-button {
         color: globals.$light-mode-black;
-        border: 1px solid globals.$dark-mode-grey;
+        border: 1px solid globals.$light-mode-grey;
         transition: background-color 0.2s;
 
         &:hover {
-            background-color: globals.$dark-mode-grey;
+            background-color: globals.$light-mode-grey;
             transition: background-color 0.2s;
         }
     }

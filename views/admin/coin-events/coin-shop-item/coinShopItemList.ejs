@@ -12,6 +12,13 @@
     <tbody>
         <% if(coinShopData.items.length > 0) { %>
             <% coinShopData.items.forEach(item => { %>
+                <% if(item.sectionHeader) { %>
+                    <tr class="tr-section-header">
+                        <th colspan="5" class="font-subsubheader text-center py-1">
+                            <%= item.sectionHeader %>
+                        </th>
+                    </tr>
+                <% } %>
                 <tr>
                     <td class="align-middle py-2 position-relative">
                         <div class="d-flex flex-column flex-sm-row align-items-center text-center">

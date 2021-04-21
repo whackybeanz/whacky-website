@@ -184,6 +184,12 @@ body.dark-mode {
                     background-color: globals.$dark-mode-black;
                 }
             }
+
+            tr {
+                &.tr-section-header {
+                    background-color: globals.$dark-mode-black;
+                }
+            }
         }
     }
 

@@ -291,7 +291,7 @@ router.post("/coin-event/:id/shop/:shopId/delete", middleware.isAdmin, function(
 })
 
 router.post("/coin-event/:id/shop/:shopId/addItem", middleware.isAdmin, function(req, res) {
-    const newCoinShopItem = {
+    let newCoinShopItem = {
         iconId: req.body.itemId.trim(),
         price: parseInt(req.body.price),
         quantity: req.body.quantity ? parseInt(req.body.quantity) : -1,
@@ -300,6 +300,10 @@ router.post("/coin-event/:id/shop/:shopId/addItem", middleware.isAdmin, function
         timeframeLimit: req.body.timeframeLimit,
         tradability: req.body.itemTradability,
         itemNotes: req.body.itemNotes
+    };
+
+    if(req.body.sectionHeader !== "") {
+        newCoinShopItem.sectionHeader = req.body.sectionHeader;
     }
 
     CoinEvent.findOneAndUpdate({ _id: req.params.id, "shops._id": req.params.shopId }, { $push: { "shops.$.items": newCoinShopItem } }, { new: true })
@@ -425,7 +429,7 @@ router.get("/coin-event/:id/shop/:shopNum/item/:itemId", middleware.isAdmin, fun
 })
 
 router.post("/coin-event/:id/shop/:shopId/item/:itemId", middleware.isAdmin, function(req, res) {
-    const updatedItem = {
+    let updatedItem = {
         'shops.$[outer].items.$[inner].price': parseInt(req.body.price),
         'shops.$[outer].items.$[inner].quantity': req.body.quantity ? parseInt(req.body.quantity) : -1,
         'shops.$[outer].items.$[inner].coinType': req.body.coinType,
@@ -433,6 +437,10 @@ router.post("/coin-event/:id/shop/:shopId/item/:itemId", middleware.isAdmin, fun
         'shops.$[outer].items.$[inner].timeframeLimit': req.body.timeframeLimit,
         'shops.$[outer].items.$[inner].tradability': req.body.itemTradability,
         'shops.$[outer].items.$[inner].itemNotes': req.body.itemNotes
+    };
+
+    if(req.body.sectionHeader !== "") {
+        updatedItem['shops.$[outer].items.$[inner].sectionHeader'] = req.body.sectionHeader;
     }
 
     // Finds the matching coin event _id, and sets the above properties for changing
