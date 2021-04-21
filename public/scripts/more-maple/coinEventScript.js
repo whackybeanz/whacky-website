@@ -154,7 +154,7 @@ function updateTotalExpenseListener() {
 function saveInputs(allBuyQtyInputs) {
     const eventId = document.getElementById("event-id").value;
     const savedData = JSON.parse(localStorage.getItem("coinEvent"));
-    const currSavedEventId = savedData.eventId;
+    const currSavedEventId = savedData.eventId || "???";
     const currSavedEventName = savedData.eventName || "???";
 
     if(savedData !== null && eventId !== currSavedEventId) {
