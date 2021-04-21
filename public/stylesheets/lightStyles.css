@@ -98,7 +98,7 @@ body .pagination .page-item:hover .page-link, body .pagination .page-item.active
   background-color: rgba(206, 212, 218, 0.8);
 }
 body table.table-bordered tr.tr-section-header {
-  background-color: rgba(206, 212, 218, 0.8);
+  background-color: rgba(0, 0, 0, 0.075);
 }
 body .action-button {
   color: #212529;
