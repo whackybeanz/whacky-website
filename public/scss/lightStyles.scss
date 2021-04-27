@@ -383,17 +383,13 @@ body {
         border: 2px solid globals.$light-mode-grey;
     }
 
-    .dmg-skin-table {
-        & > thead {
-            background-color: globals.$light-mode-light-grey;
+    #dmg-skin-carousel {
+        .carousel-nav {
+            border-bottom: 1px solid globals.$light-mode-grey;
         }
 
-        & > tbody {
-            background-color: globals.$light-mode-white-opaque;
-
-            .mobile-th {
-                border: 1px solid globals.$light-mode-grey;
-            }
+        .carousel-item {
+            border: 1px solid globals.$light-mode-grey;
         }
     }
 

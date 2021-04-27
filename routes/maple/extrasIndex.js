@@ -222,7 +222,7 @@ router.post("/damage-skin-details", function(req, res) {
     if(Array.isArray(selectedSkinNums)) {
         selectedSkinNums.forEach(function(skinNum) {
             if(parseInt(skinNum) && totalLoadedSkins < MAX_NUM_SKINS) {
-                query.push({ "damageSkinId": parseInt(skinNum) });
+                query.push({ "folderNum": parseInt(skinNum) });
                 totalLoadedSkins++;
             }
         })
@@ -249,7 +249,7 @@ router.get("/damage-skin-details/:skinNum", function(req, res) {
     const skinNum = req.params.skinNum;
     const prevUrl = req.header("Referer") || "./maple/extras/damage-skins";
 
-    DamageSkin.find({damageSkinId: skinNum}, function(err, allSkins) {
+    DamageSkin.find({folderNum: skinNum}, function(err, allSkins) {
         if(err) {
             console.log(err);
             res.redirect("back");

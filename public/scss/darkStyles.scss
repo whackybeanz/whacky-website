@@ -419,17 +419,13 @@ body.dark-mode {
         border: 2px solid globals.$dark-mode-grey;
     }
 
-    .dmg-skin-table.table-dark {
-        & > thead {
-            background-color: globals.$dark-mode-navy-grey-opaque;
+    #dmg-skin-carousel {
+        .carousel-nav {
+            border-bottom: 1px solid globals.$dark-mode-grey;
         }
 
-        & > tbody {
-            background-color: globals.$dark-mode-black-opaque;
-
-            .mobile-th {
-                border: 1px solid globals.$dark-mode-grey;
-            }
+        .carousel-item {
+            border: 1px solid globals.$dark-mode-grey;
         }
     }
 

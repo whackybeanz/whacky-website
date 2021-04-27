@@ -252,13 +252,10 @@ body .single-selected-skin .remove-selected-dmg-skin-btn:hover {
 body .quick-jump-div {
   border: 2px solid rgba(206, 212, 218, 0.8);
 }
-body .dmg-skin-table > thead {
-  background-color: rgba(0, 0, 0, 0.075);
+body #dmg-skin-carousel .carousel-nav {
+  border-bottom: 1px solid rgba(206, 212, 218, 0.8);
 }
-body .dmg-skin-table > tbody {
-  background-color: white;
-}
-body .dmg-skin-table > tbody .mobile-th {
+body #dmg-skin-carousel .carousel-item {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
 body .exp-stack-section-subheader, body .exp-stack-section {

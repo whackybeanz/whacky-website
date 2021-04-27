@@ -297,13 +297,10 @@ body.dark-mode .single-selected-skin .remove-selected-dmg-skin-btn:hover {
 body.dark-mode .quick-jump-div {
   border: 2px solid #454d55;
 }
-body.dark-mode .dmg-skin-table.table-dark > thead {
-  background-color: #343a40;
+body.dark-mode #dmg-skin-carousel .carousel-nav {
+  border-bottom: 1px solid #454d55;
 }
-body.dark-mode .dmg-skin-table.table-dark > tbody {
-  background-color: black;
-}
-body.dark-mode .dmg-skin-table.table-dark > tbody .mobile-th {
+body.dark-mode #dmg-skin-carousel .carousel-item {
   border: 1px solid #454d55;
 }
 body.dark-mode .exp-stack-section-subheader, body.dark-mode .exp-stack-section {

@@ -9,32 +9,32 @@
         <div class="d-flex flex-wrap w-100">
             <% if(sortedSkins[letter].length > 0) { %>
                 <% sortedSkins[letter].forEach(function(skin) { %>
-                <div class="single-dmg-skin d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" id="skin-num-<%= skin.damageSkinId %>" data-skin-num="<%= skin.damageSkinId %>" data-skin-name="<%= skin.shortName %>" data-has-regular-skin="<%= skin.hasRegularSkin %>" <% if(skin.hasUnitSkin) { %>data-has-unit-skin="<%= skin.hasUnitSkin %>" data-unit-skin-num="<%= skin.unitDamageSkinId %><% } %>">
+                <div class="single-dmg-skin d-flex col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-2 mb-3" id="skin-num-<%= skin.folderNum %>" data-skin-num="<%= skin.folderNum %>" data-skin-name="<%= skin.shortName %>" data-has-regular-skin="<%= skin.hasRegularSkin %>" <% if(skin.hasUnitSkin) { %>data-has-unit-skin="<%= skin.hasUnitSkin %>" data-unit-skin-num="<%= skin.unitFolderNum %><% } %>">
                     <div class="font-table w-100 d-flex flex-column align-items-center">
                         <div class="dmg-skin-header w-100 d-flex align-items-center font-weight-bold px-2 py-1">
                             <% if(skin.hasRegularSkin) { %>
-                                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.icon.png" class="mr-1">
+                                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.icon.png" class="mr-1">
                             <% } %>
 
                             <% if(skin.hasUnitSkin) { %>
-                                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.icon.png" class="mr-1">
+                                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-unit.icon.png" class="mr-1">
                             <% } %>
                             <%= skin.shortName %>
                         </div>
-                        <div class="dmg-skin-body w-100 d-flex flex-grow-1 justify-content-center align-items-center position-relative px-3 py-2">
-                            <% if(skin.damageSkinId === -1) { %>
+                        <div class="dmg-skin-body w-100 d-flex flex-grow-1 text-center justify-content-center align-items-center position-relative px-3 py-2">
+                            <% if(skin.folderNum === -1) { %>
                             It's invisible. You see no numbers. Move along~
-                            <% } else if(skin.damageSkinId === 1011 || skin.name === "???") { %>
+                            <% } else if(skin.folderNum === 1011 || skin.name === "???") { %>
                             No sample image available.
                             <% } else { %>
                                 <% if(skin.hasUnitSkin) { %>
-                                    <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.unitDamageSkinId %>-unit.sample.png" class="mh-100 img-fluid">
+                                    <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-unit.sample.png" class="mh-100 img-fluid">
                                 <% } else { %>
-                                    <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.damageSkinId %>/<%= skin.damageSkinId %>.sample.png" class="mh-100 img-fluid">
+                                    <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.sample.png" class="mh-100 img-fluid">
                                 <% } %>
                             <% } %>
                             <div class="dmg-skin-tools position-absolute">
-                                <a href="/maple/extras/damage-skin-details/<%= skin.damageSkinId %>" class="btn btn-sm view-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="View damage skin">
+                                <a href="/maple/extras/damage-skin-details/<%= skin.folderNum %>" class="btn btn-sm view-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="View damage skin">
                                     <i class="fas fa-eye"></i>
                                 </a>
                                 <div class="btn btn-sm add-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="Add to cart">

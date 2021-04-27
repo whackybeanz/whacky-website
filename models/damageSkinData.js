@@ -4,40 +4,48 @@ var damageSkinSchema = new mongoose.Schema({
     // Basic Info
     isNewSkin: { type: Boolean, default: false },
     isKMSskin: { type: Boolean, default: true },
-    isCustomSkin: Boolean,
     hasRegularSkin: { type: Boolean, default: true },
     hasUnitSkin: Boolean,
+    isCustomSkin: Boolean,
     name: String,
     shortName: { type: String, index: true },
     letterCategory: String,
     altNames: { type: [String], default: undefined },
     notes: String,
 
-    // Regular Skin Info
-    damageSkinId: { type: Number, index: true },
-    itemId: String,
-    
-    // Unit Skin Info
-    unitDamageSkinId: Number,
+    folderNum: { type: Number, index: true },
+    regularItemId: String,
+    unitFolderNum: Number,
     unitItemId: String,
 
-    // Custom Skin Info
-    numAssetsToLoad: Number,
+    screenshots: [ { fileName: String, caption: String, credits: String } ],
 
-    // Damage Skin Details
-    hasEffect: { type: Boolean, default: true },
-    hasCounter: { type: Boolean, default: false },
-    hasShot: { type: Boolean, default: false },
-    hasCri0Nums: { type: Boolean, default: true },
-    hasCri1Nums: { type: Boolean, default: true },
-    hasRed1Nums: { type: Boolean, default: true },
-
-    // Damage Skin Shared Image Assets
-    // For skins that use repeated image assets for certain digits by pulling from other image assets within itself
-    diffCri0Nums: { type: [String], default: undefined },
-    diffCri1Nums: { type: [String], default: undefined },
-    diffRed0Nums: { type: [String], default: undefined },
-    diffRed1Nums: { type: [String], default: undefined },
+    // Critical hits, regular hits, unit displays, custom damage skin displays
+    digits: {
+        critical: {
+            hasEffect: { type: Boolean, default: true },
+            cri1Assets: ["String"],
+            isLoadCri0: { type: Boolean, default: false },
+            cri0Assets: ["String"],
+        },
+        regular: {
+            red1Assets: ["String"],
+            isLoadRed0: { type: Boolean, default: false },
+            red0Assets: ["String"],
+        },
+        unitAssets: {
+            hasKR: Boolean,
+            hasEN: Boolean,
+        },
+        custom: {
+            numAssetsToLoad: Number, 
+        },
+        // Guard, Miss, Resist, Counter, Shot
+        combatMessage: {
+            hasCounter: { type: Boolean, default: false },
+            hasShot: { type: Boolean, default: false },
+        }
+    },
 });
 
 module.exports = mongoose.model("Damage Skin", damageSkinSchema);
