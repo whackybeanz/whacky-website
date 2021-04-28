@@ -56,82 +56,99 @@ function getDamageSkinCategories() {
     return damageSkinCategories;
 }
 
+function getDamageSkinProperties() {
+    const unitTypes = [{ id: "kr", name: "Korean (억/만)" }, { id: "en", name: "English (B/M/K)" }];
+    const combatMessages = [{ id: "Miss", name: "Miss" }, { id: "guard", name: "Guard" }, { id: "resist", name: "Resist" }, { id: "counter", name: "Counter" }, { id: "shot", name: "Shot" }];
+
+    return { unitTypes: unitTypes, combatMessages: combatMessages };
+}
+
 function compileDamageSkinData(body) {
-    const damageSkinData = {
+    let damageSkinData = {
         isNewSkin: body.isNewSkin === "yes",
         isKMSskin: body.isKMSskin === "yes",
         hasRegularSkin: body.hasRegularSkin === "yes",
         name: body.name,
         shortName: body.name.replace(/(Damage Skin \- | Damage Skin)/, ""),
 
-        damageSkinId: parseInt(body.damageSkinId),
-        itemId: body.itemId,
-
-        hasEffect: body.hasEffect === "yes",
-        hasCounter: body.hasCounter === "yes",
-        hasShot: body.hasShot === "yes",
-        hasCri1Nums: body.hasCri1Nums === "yes",
-        hasRed1Nums: body.hasRed1Nums === "yes",
+        folderNum: parseInt(body.folderNum),
+        regularItemId: body.regularItemId,
+        
+        digits: {
+            combatMessages: body.combatMessages
+        },
     }
+    damageSkinData.letterCategory = getLetterCategory(damageSkinData.shortName);
 
-    if(body.altNames !== "") {
-        damageSkinData.altNames = body.altNames.split(" / ");
-    }
+    if(body.altNames !== "") { damageSkinData.altNames = body.altNames.split(" / "); }
+    if(body.notes) { damageSkinData.notes = body.notes; }
 
-    if(body.notes) {
-        damageSkinData.notes = body.notes;
-    }
-
+    // Custom skin details
     if(body.isCustomSkin === "yes") {
         damageSkinData.isCustomSkin = true;
-        damageSkinData.numAssetsToLoad = parseInt(body.numAssetsToLoad);
+        damageSkinData.digits.customNumAssetsToLoad = parseInt(body.numAssetsToLoad);
     }
 
+    // Unit skin details
     if(body.hasUnitSkin === "yes") {
         damageSkinData.hasUnitSkin = true;
-        damageSkinData.unitDamageSkinId = parseInt(body.unitDamageSkinId);
+        damageSkinData.unitFolderNum = parseInt(body.unitFolderNum);
         damageSkinData.unitItemId = body.unitItemId;
+        damageSkinData.digits.unitTypes = body.unitTypes;
     }
 
-    if(body.diffCri0Nums.filter(elem => elem === "").length < 10) {
-        damageSkinData.diffCri0Nums = body.diffCri0Nums;
+    // Damage skin digit assets
+    if(body.hasEffect) { damageSkinData.hasEffect = body.hasEffect; }
+
+    if(body.cri1Assets && body.cri1Assets.some(elem => elem !== "")) { 
+        if(!damageSkinData.digits.critical) { damageSkinData.digits.critical = {}; }
+        damageSkinData.digits.critical.cri1Assets = body.cri1Assets; 
     }
 
-    if(body.diffCri1Nums.filter(elem => elem === "").length < 10) {
-        damageSkinData.diffCri1Nums = body.diffCri1Nums;
+    if(body.isLoadCri0) { damageSkinData.digits.critical.isLoadCri0 = body.isLoadCri0 === "yes"; }
+
+    if(body.cri0Assets && body.cri0Assets.some(elem => elem !== "")) { 
+        if(!damageSkinData.digits.critical) { damageSkinData.digits.critical = {}; }
+        damageSkinData.digits.critical.cri0Assets = body.cri0Assets; 
     }
 
-    if(body.diffRed0Nums.filter(elem => elem === "").length < 10) {
-        damageSkinData.diffRed0Nums = body.diffRed0Nums;
+    if(body.red1Assets && body.red1Assets.some(elem => elem !== "")) { 
+        if(!damageSkinData.digits.regular) { damageSkinData.digits.regular = {}; }
+        damageSkinData.digits.regular.red1Assets = body.red1Assets; 
     }
 
-    if(body.diffRed1Nums.filter(elem => elem === "").length < 10) {
-        damageSkinData.diffRed1Nums = body.diffRed1Nums;
-    }
+    if(body.isLoadRed0) { damageSkinData.digits.regular.isLoadRed0 = body.isLoadRed0 === "yes"; }
 
-    const startingLetter = damageSkinData.shortName.charAt(0);
-    
-    if(startingLetter === "?") {
-        damageSkinData.letterCategory = " ??? (Unknown)"; // Starting space is intentional to be sorted first
-    } else {
-        if(parseInt(startingLetter)) {
-            // If starting letter is a number
-            damageSkinData.letterCategory = "0-9"
-        } else {
-            // If starting letter is a letter
-            if(startingLetter === "[") {
-                damageSkinData.letterCategory = shortName.charAt(1);
-            } else {
-                damageSkinData.letterCategory = startingLetter;
-            }
-        }
+    if(body.red0Assets && body.red0Assets.some(elem => elem !== "")) { 
+        if(!damageSkinData.digits.regular) { damageSkinData.digits.regular = {}; }
+        damageSkinData.digits.regular.red0Assets = body.red0Assets; 
     }
 
     return damageSkinData;
+}
+
+function getLetterCategory(shortName) {
+    const startingLetter = shortName.charAt(0);
+    
+    if(startingLetter === "?") {
+        return " ??? (Unknown)"; // Starting space is intentional to be sorted first
+    } else {
+        if(parseInt(startingLetter)) {
+            // If starting letter is a number
+            return "0-9";
+        } else {
+            // If starting letter is a letter
+            if(startingLetter === "[") {
+                return shortName.charAt(1);
+            } else {
+                return startingLetter;
+            }
+        }
+    }
 }
 
 function retrieveShopNum(coinEvent, shopId) {
     return coinEvent.shops.findIndex(shop => shop._id.toString() === shopId);
 }
 
-module.exports = { getIconCategories, getPageSections, compileIconData, getDamageSkinCategories, compileDamageSkinData, retrieveShopNum };
+module.exports = { getIconCategories, getPageSections, compileIconData, getDamageSkinCategories, getDamageSkinProperties, compileDamageSkinData, retrieveShopNum };

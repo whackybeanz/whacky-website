@@ -127,7 +127,7 @@
                                     KR units
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center mb-2">
-                                    <% if(skin.digits.unitAssets.hasKR) { %>
+                                    <% if(skin.digits.unitTypes.includes("kr")) { %>
                                         <img class="mx-2" src="/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>.NoCustom.NoCri0.3.png">
                                         <img class="mx-2" src="/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>.NoCustom.NoCri0.4.png">
                                     <% } else { %>
@@ -142,7 +142,7 @@
                                     EN units
                                 </div>
                                 <div class="flex-grow-1 d-flex justify-content-center align-items-center mb-2">
-                                    <% if(skin.digits.unitAssets.hasEN) { %>
+                                    <% if(skin.digits.unitTypes.includes("en")) { %>
                                         <img class="mx-2" src="/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en.NoCustom.NoCri0.3.png">
                                         <img class="mx-2" src="/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en.NoCustom.NoCri0.4.png">
                                     <% } else { %>
@@ -158,20 +158,11 @@
                     <div class="table-cols-100 d-flex align-items-center justify-content-center font-weight-bold px-3 py-3">Combat Messages</div>
                     <div class="w-100 d-flex justify-content-center align-items-center flex-wrap border-left border-dark py-3 px-3">
                         <% if(skin.folderNum !== -1) { %>
-                            <img class="mx-2 my-2" src="/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed0.Miss.png">
-
-                            <% if(skin.folderNum !== 1344) { %>
-                                <img class="mx-2 my-2" src="/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed0.guard.png">
-                                <img class="mx-2 my-2" src="/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed0.resist.png">
-                            <% } %>
-
-                            <% if(skin.digits.combatMessage.hasCounter) { %>
-                                <img class="mx-2 my-2" src="/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed0.counter.png">
-                            <% } %>
-
-                            <% if(skin.digits.combatMessage.hasShot) { %>
-                                <img class="mx-2 my-2" src="/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed0.shot.png">
-                            <% } %>
+                            <% ["Miss", "guard", "resist", "counter", "shot"].forEach(msg => { %>
+                                <% if(skin.digits.combatMessages.includes(msg)) { %>
+                                    <img class="mx-2 my-2" src="/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed0.<%= msg %>.png">
+                                <% } %>
+                            <% }) %>
                         <% } else { %>
                             -
                         <% } %>

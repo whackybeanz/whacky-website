@@ -105,15 +105,33 @@
         <div class="form-group row">
             <label for="damage-skin-id" class="col-sm-3 col-form-label font-weight-bold">Folder Number</label>
             <div class="col-sm-9">
-                <input type="number" class="form-control" id="damage-skin-id" name="damageSkinId" placeholder="Folder Number" required autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.damageSkinId %>"<% } %>>
+                <input type="number" class="form-control" id="damage-skin-id" name="folderNum" placeholder="Folder Number" required autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.folderNum %>"<% } %>>
                 <small class="form-text text-info">Refers to folder number as seen in Effects.img &gt; DamageSkin. If only unit version available, enter that folder number.</small>
             </div>
         </div>
         <div class="form-group row">
             <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Item ID</label>
             <div class="col-sm-9">
-                <input type="number" class="form-control" id="item-id" name="itemId" placeholder="Item ID" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.itemId %>"<% } %>>
+                <input type="number" class="form-control" id="item-id" name="regularItemId" placeholder="Item ID" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.regularItemId %>"<% } %>>
                 <small class="form-text text-info">Refers to 7-digit numerical ID attached to each item asset. Leave blank if there is no non-unit version.</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Available Combat Messages<br/>(Check all that apply)</label>
+            <div class="col-12 col-sm-9 d-flex flex-wrap h-100">
+                <% skinProperties.combatMessages.forEach(function(msg) { %>
+                    <div class="form-check col-12 col-sm-6 col-md-4 px-1 mb-1">
+                        <input class="form-check-input" name="combatMessages" type="checkbox" id="msg-<%= msg.id %>" value="<%= msg.id %>" 
+                            <% if((locals.damageSkinData && damageSkinData.digits.combatMessages.includes(msg.id)) || 
+                                (!locals.damageSkinData && (msg.id === "Miss" || msg.id === "guard" || msg.id === "resist"))) { %>checked<% } %>>
+                        <label class="form-check-label single-checkbox col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer 
+                            <% if((locals.damageSkinData && damageSkinData.digits.combatMessages.includes(msg.id)) || 
+                                (!locals.damageSkinData && (msg.id === "Miss" || msg.id === "guard" || msg.id === "resist"))) { %>active<% } %>"
+                            id="msg-<%= msg.id %>-label" for="msg-<%= msg.id %>">
+                            <%= msg.name %>
+                        </label>
+                    </div>
+                <% }) %>
             </div>
         </div>
     </div>
@@ -124,7 +142,7 @@
             <div class="form-group row">
                 <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Unit Folder Number</label>
                 <div class="col-sm-9">
-                    <input type="number" class="form-control" id="unit-damage-skin-id" name="unitDamageSkinId" placeholder="Unit Folder Number" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.unitDamageSkinId %>"<% } %>>
+                    <input type="number" class="form-control" id="unit-damage-skin-id" name="unitFolderNum" placeholder="Unit Folder Number" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.unitFolderNum %>"<% } %>>
                     <small class="form-text text-info">Refers to folder number as seen in Effects.img &gt; DamageSkin</small>
                 </div>
             </div>
@@ -133,6 +151,21 @@
                 <div class="col-sm-9">
                     <input type="number" class="form-control" id="unit-item-id" name="unitItemId" placeholder="Unit Item ID" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.unitItemId %>"<% } %>>
                     <small class="form-text text-info">Refers to 7-digit numerical ID attached to each item asset.</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Available Units<br/>(Check all that apply)</label>
+                <div class="col-12 col-sm-9 d-flex flex-wrap h-100">
+                    <% skinProperties.unitTypes.forEach(function(unit) { %>
+                        <div class="form-check col-12 col-sm-6 col-md-4 px-1 mb-1">
+                            <input class="form-check-input" name="unitTypes" type="checkbox" id="unit-<%= unit.id %>" value="<%= unit.id %>" 
+                                <% if((locals.damageSkinData && damageSkinData.digits.unitTypes.includes(unit.id)) || (!locals.damageSkinData && unit.id === "kr")) { %>checked<% } %>>
+                            <label class="form-check-label single-checkbox col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer 
+                                <% if((locals.damageSkinData && damageSkinData.digits.unitTypes.includes(unit.id)) || (!locals.damageSkinData && unit.id === "kr")) { %>active<% } %>" for="unit-<%= unit.id %>">
+                                <%= unit.name %>
+                            </label>
+                        </div>
+                    <% }) %>
                 </div>
             </div>
         </div>
@@ -150,151 +183,94 @@
         </div>
     </div>
 
-    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Damage Skin Details</h3>
-    <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
-        <div class="form-group row">
-            <div class="col-sm-3 font-weight-bold">Has Effect?</div>
-            <div class="col-sm-9 d-flex flex-wrap h-100">
-                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="has-effect-radio-group">
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasEffect" id="effect-yes" value="yes" <% if(!locals.damageSkinData || (locals.damageSkinData && damageSkinData.hasEffect)) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-effect-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.damageSkinData || (locals.damageSkinData && damageSkinData.hasEffect)) { %>active<% } %>" for="effect-yes">Yes</label>
+    <% if(locals.damageSkinData) { %>
+        <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Damage Skin Details - Critical Hits</h3>
+        <p class="text-info">Leave blank if there are no shared assets within the entire respective subsection. If shared assets are present, for each digit, indicate the folder/digit that is shared (e.g. Cri1.0 = the digit shares assets with digit 0 in Cri1 folder). If digit is unique, enter a dash "-".</p>
+        <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
+            <div class="form-group row">
+                <div class="col-sm-3 font-weight-bold">Has Effect?</div>
+                <div class="col-sm-9 d-flex flex-wrap h-100">
+                    <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="has-effect-radio-group">
+                        <div class="col form-check p-0">
+                            <input class="form-check-input" type="radio" name="hasEffect" id="effect-yes" value="yes" <% if(damageSkinData.hasEffect) { %>checked<% } %>>
+                            <label class="form-check-label radio-select has-effect-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(damageSkinData.hasEffect) { %>active<% } %>" for="effect-yes">Yes</label>
+                        </div>
+                        <div class="col form-check p-0">
+                            <input class="form-check-input" type="radio" name="hasEffect" id="effect-no" value="" <% if(!damageSkinData.hasEffect) { %>checked<% } %>>
+                            <label class="form-check-label radio-select has-effect-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!damageSkinData.hasEffect) { %>active<% } %>" for="effect-no">No</label>
+                        </div>
                     </div>
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasEffect" id="effect-no" value="" <% if(locals.damageSkinData && !damageSkinData.hasEffect) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-effect-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.damageSkinData && !damageSkinData.hasEffect) { %>active<% } %>" for="effect-no">No</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label font-weight-bold">Cri1 Assets</label>
+                <div class="col-sm-9 d-flex flex-wrap">
+                    <% for(let i = 0; i < 10; i++) { %>
+                        <input type="text" class="col-6 col-sm-4 col-md-3 form-control text-center d-inline mb-1" name="cri1Assets" placeholder="digit-<%= i %>" pattern="^[a-zA-Z0-9.-]+$" autocomplete="off" <% if(damageSkinData.digits.critical.cri1Assets) { %>value="<%= damageSkinData.digits.critical.cri1Assets[i] %>"<% } %>>
+                    <% }%>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3 font-weight-bold">Load Cri0 Assets?</div>
+                <div class="col-sm-9 d-flex flex-wrap h-100">
+                    <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="load-cri0-radio-group">
+                        <div class="col form-check p-0">
+                            <input class="form-check-input" type="radio" name="isLoadCri0" id="cri0-yes" value="yes" <% if(damageSkinData.digits.critical.isLoadCri0) { %>checked<% } %>>
+                            <label class="form-check-label radio-select load-cri0-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(damageSkinData.digits.critical.isLoadCri0) { %>active<% } %>" for="cri0-yes">Yes</label>
+                        </div>
+                        <div class="col form-check p-0">
+                            <input class="form-check-input" type="radio" name="isLoadCri0" id="cri0-no" value="" <% if(!damageSkinData.digits.critical.isLoadCri0) { %>checked<% } %>>
+                            <label class="form-check-label radio-select load-cri0-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!damageSkinData.digits.critical.isLoadCri0) { %>active<% } %>" for="cri0-no">No</label>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label font-weight-bold">Cri0 Assets</label>
+                <div class="col-sm-9 d-flex flex-wrap">
+                    <% for(let i = 0; i < 10; i++) { %>
+                        <input type="text" class="col-6 col-sm-4 col-md-3 form-control text-center d-inline mb-1" name="cri0Assets" placeholder="digit-<%= i %>" pattern="^[a-zA-Z0-9.-]+$" autocomplete="off" <% if(damageSkinData.digits.critical.cri0Assets) { %>value="<%= damageSkinData.digits.critical.cri0Assets[i] %>"<% } %>>
+                    <% }%>
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-sm-3 font-weight-bold">Has Counter?</div>
-            <div class="col-sm-9 d-flex flex-wrap h-100">
-                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="has-counter-radio-group">
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasCounter" id="counter-yes" value="yes" <% if(locals.damageSkinData && damageSkinData.hasCounter) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-counter-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.damageSkinData && damageSkinData.hasCounter) { %>active<% } %>" for="counter-yes" id="counter-label-yes">Yes</label>
-                    </div>
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasCounter" id="counter-no" value="" <% if(!locals.damageSkinData || (locals.damageSkinData && !damageSkinData.hasCounter)) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-counter-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.damageSkinData || (locals.damageSkinData && !damageSkinData.hasCounter)) { %>active<% } %>" for="counter-no" id="counter-label-no">No</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-3 font-weight-bold">Has Shot?</div>
-            <div class="col-sm-9 d-flex flex-wrap h-100">
-                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="has-shot-radio-group">
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasShot" id="shot-yes" value="yes" <% if(locals.damageSkinData && damageSkinData.hasShot) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-shot-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.damageSkinData && damageSkinData.hasShot) { %>active<% } %>" for="shot-yes" id="shot-label-yes">Yes</label>
-                    </div>
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasShot" id="shot-no" value="" <% if(!locals.damageSkinData || (locals.damageSkinData && !damageSkinData.hasShot)) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-shot-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.damageSkinData || (locals.damageSkinData && !damageSkinData.hasShot)) { %>active<% } %>" for="shot-no" id="shot-label-no">No</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--<div class="form-group row">
-            <div class="col-sm-3 font-weight-bold">Has Unique Cri0?</div>
-            <div class="col-sm-9 d-flex flex-wrap h-100">
-                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="has-cri0-radio-group">
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasCri0Nums" id="cri0-yes" value="yes" <% if(!locals.damageSkinData || (locals.damageSkinData && damageSkinData.hasCri0Nums)) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-cri0-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.damageSkinData || (locals.damageSkinData && damageSkinData.hasCri0Nums)) { %>active<% } %>" for="cri0-yes">Yes</label>
-                    </div>
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasCri0Nums" id="cri0-no" value="" <% if(locals.damageSkinData && !damageSkinData.hasEffect) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-cri0-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.damageSkinData && !damageSkinData.hasCri0Nums) { %>active<% } %>" for="cri0-no">No</label>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-        <div class="form-group row">
-            <div class="col-sm-3 font-weight-bold">Has Unique Cri1?</div>
-            <div class="col-sm-9 d-flex flex-wrap h-100">
-                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="has-cri1-radio-group">
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasCri1Nums" id="cri1-yes" value="yes" <% if(!locals.damageSkinData || (locals.damageSkinData && damageSkinData.hasCri1Nums)) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-cri1-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.damageSkinData || (locals.damageSkinData && damageSkinData.hasCri1Nums)) { %>active<% } %>" for="cri1-yes">Yes</label>
-                    </div>
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasCri1Nums" id="cri1-no" value="" <% if(locals.damageSkinData && !damageSkinData.hasCri1Nums) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-cri1-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.damageSkinData && !damageSkinData.hasCri1Nums) { %>active<% } %>" for="cri1-no">No</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--<div class="form-group row">
-            <div class="col-sm-3 font-weight-bold">Has Unique Red0?</div>
-            <div class="col-sm-9 d-flex flex-wrap h-100">
-                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="has-red0-radio-group">
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasRed0Nums" id="red0-yes" value="yes" <% if(!locals.damageSkinData || (locals.damageSkinData && damageSkinData.hasRed0Nums)) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-red0-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.damageSkinData || (locals.damageSkinData && damageSkinData.hasRed0Nums)) { %>active<% } %>" for="red0-yes">Yes</label>
-                    </div>
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasRed0Nums" id="red0-no" value="" <% if(locals.damageSkinData && !damageSkinData.hasRed0Nums) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-red0-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.damageSkinData && !damageSkinData.hasRed0Nums) { %>active<% } %>" for="red0-no">No</label>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-        <div class="form-group row">
-            <div class="col-sm-3 font-weight-bold">Has Unique Red1?</div>
-            <div class="col-sm-9 d-flex flex-wrap h-100">
-                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="has-red1-radio-group">
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasRed1Nums" id="red1-yes" value="yes" <% if(!locals.damageSkinData || (locals.damageSkinData && damageSkinData.hasRed1Nums)) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-red1-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.damageSkinData || (locals.damageSkinData && damageSkinData.hasRed1Nums)) { %>active<% } %>" for="red1-yes">Yes</label>
-                    </div>
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="hasRed1Nums" id="red1-no" value="" <% if(locals.damageSkinData && !damageSkinData.hasRed1Nums) { %>checked<% } %>>
-                        <label class="form-check-label radio-select has-red1-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.damageSkinData && !damageSkinData.hasRed1Nums) { %>active<% } %>" for="red1-no">No</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Damage Skin Shared Image Assets</h3>
-    <p class="text-info">Leave blank if there are no shared assets within the respective subsection. If shared assets are present, for each digit, indicate the folder/digit that is shared (e.g. Cri1.0 = the digit shares assets with digit 0 in Cri1 folder). If digit is unique, enter a dash "-".</p>
-    <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label font-weight-bold">Cri0 Shared Assets</label>
-            <div class="col-sm-9 d-flex flex-wrap">
-                <% for(let i = 0; i < 10; i++) { %>
-                    <input type="text" class="col-6 col-sm-4 col-md-3 form-control text-center d-inline mb-1" name="diffCri0Nums" placeholder="digit-<%= i %>" pattern="^[a-zA-Z0-9.-]+$" autocomplete="off" <% if(locals.damageSkinData && damageSkinData.diffCri0Nums) { %>value="<%= damageSkinData.diffCri0Nums[i] %>"<% } %>>
-                <% }%>
+        <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Damage Skin Details - Regular Hits</h3>
+        <p class="text-info">Leave blank if there are no shared assets within the entire respective subsection. If shared assets are present, for each digit, indicate the folder/digit that is shared (e.g. Cri1.0 = the digit shares assets with digit 0 in Cri1 folder). If digit is unique, enter a dash "-".</p>
+        <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label font-weight-bold">Red1 Assets</label>
+                <div class="col-sm-9 d-flex flex-wrap">
+                    <% for(let i = 0; i < 10; i++) { %>
+                        <input type="text" class="col-6 col-sm-4 col-md-3 form-control text-center d-inline mb-1" name="red1Assets" placeholder="digit-<%= i %>" pattern="^[a-zA-Z0-9.-]+$" autocomplete="off" <% if(damageSkinData.digits.regular.red1Assets) { %>value="<%= damageSkinData.digits.regular.red1Assets[i] %>"<% } %>>
+                    <% }%>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3 font-weight-bold">Load Red0 Assets?</div>
+                <div class="col-sm-9 d-flex flex-wrap h-100">
+                    <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="load-red0-radio-group">
+                        <div class="col form-check p-0">
+                            <input class="form-check-input" type="radio" name="isLoadRed0" id="red0-yes" value="yes" <% if(damageSkinData.digits.regular.isLoadRed0) { %>checked<% } %>>
+                            <label class="form-check-label radio-select load-red0-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(damageSkinData.digits.regular.isLoadRed0) { %>active<% } %>" for="red0-yes">Yes</label>
+                        </div>
+                        <div class="col form-check p-0">
+                            <input class="form-check-input" type="radio" name="isLoadRed0" id="red0-no" value="" <% if(!damageSkinData.digits.regular.isLoadRed0) { %>checked<% } %>>
+                            <label class="form-check-label radio-select load-red0-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!damageSkinData.digits.regular.isLoadRed0) { %>active<% } %>" for="red0-no">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label font-weight-bold">Red0 Assets</label>
+                <div class="col-sm-9 d-flex flex-wrap">
+                    <% for(let i = 0; i < 10; i++) { %>
+                        <input type="text" class="col-6 col-sm-4 col-md-3 form-control text-center d-inline mb-1" name="red0Assets" placeholder="digit-<%= i %>" pattern="^[a-zA-Z0-9.-]+$" autocomplete="off" <% if(damageSkinData.digits.regular.red0Assets) { %>value="<%= damageSkinData.digits.regular.red0Assets[i] %>"<% } %>>
+                    <% }%>
+                </div>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label font-weight-bold">Cri1 Shared Assets</label>
-            <div class="col-sm-9 d-flex flex-wrap">
-                <% for(let i = 0; i < 10; i++) { %>
-                    <input type="text" class="col-6 col-sm-4 col-md-3  form-control text-center d-inline mb-1" name="diffCri1Nums" placeholder="digit-<%= i %>" pattern="^[a-zA-Z0-9.-]+$" autocomplete="off" <% if(locals.damageSkinData && damageSkinData.diffCri1Nums) { %>value="<%= damageSkinData.diffCri1Nums[i] %>"<% } %>>
-                <% }%>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label font-weight-bold">Red0 Shared Assets</label>
-            <div class="col-sm-9 d-flex flex-wrap">
-                <% for(let i = 0; i < 10; i++) { %>
-                    <input type="text" class="col-6 col-sm-4 col-md-3  form-control text-center d-inline mb-1" name="diffRed0Nums" placeholder="digit-<%= i %>" pattern="^[a-zA-Z0-9.-]+$" autocomplete="off" <% if(locals.damageSkinData && damageSkinData.diffRed0Nums) { %>value="<%= damageSkinData.diffRed0Nums[i] %>"<% } %>>
-                <% }%>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label font-weight-bold">Red1 Shared Assets</label>
-            <div class="col-sm-9 d-flex flex-wrap">
-                <% for(let i = 0; i < 10; i++) { %>
-                    <input type="text" class="col-6 col-sm-4 col-md-3  form-control text-center d-inline mb-1" name="diffRed1Nums" placeholder="digit-<%= i %>" pattern="^[a-zA-Z0-9.-]+$" autocomplete="off" <% if(locals.damageSkinData && damageSkinData.diffRed1Nums) { %>value="<%= damageSkinData.diffRed1Nums[i] %>"<% } %>>
-                <% }%>
-            </div>
-        </div>
-    </div>
+    <% } %>
 
     <div class="form-group row">
         <div class="col-12">

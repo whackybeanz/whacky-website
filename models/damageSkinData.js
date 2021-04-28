@@ -33,18 +33,9 @@ var damageSkinSchema = new mongoose.Schema({
             isLoadRed0: { type: Boolean, default: false },
             red0Assets: ["String"],
         },
-        unitAssets: {
-            hasKR: Boolean,
-            hasEN: Boolean,
-        },
-        custom: {
-            numAssetsToLoad: Number, 
-        },
-        // Guard, Miss, Resist, Counter, Shot
-        combatMessage: {
-            hasCounter: { type: Boolean, default: false },
-            hasShot: { type: Boolean, default: false },
-        }
+        unitTypes: [String],
+        customNumAssetsToLoad: Number,
+        combatMessages: [String] // Guard, Miss, Resist, Counter, Shot
     },
 });
 

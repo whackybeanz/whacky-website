@@ -16,6 +16,7 @@ router.get("/damage-skins", middleware.isAdmin, function(req, res) {
 // Valid req.params.category values: new, kms, non-kms
 router.get("/damage-skins/:category", function(req, res) {
     const selectedCategory = req.params.category;
+    const skinProperties = AdminHelper.getDamageSkinProperties();
 
     //let latestUpdate = LatestUpdate.findOne({});
     let findDamageSkins;
@@ -30,7 +31,7 @@ router.get("/damage-skins/:category", function(req, res) {
             const damageSkinCategories = AdminHelper.getDamageSkinCategories();
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "damage-skins";
-            res.render("admin/damage-skins/damageSkins", {selectedCategory: selectedCategory, damageSkinCategories: damageSkinCategories, damageSkins: foundDamageSkins});
+            res.render("admin/damage-skins/damageSkins", {selectedCategory: selectedCategory, damageSkinCategories: damageSkinCategories, skinProperties: skinProperties, damageSkins: foundDamageSkins});
         })
         .catch(err => {
             console.log(err);
@@ -60,6 +61,8 @@ router.post("/damage-skins", middleware.isAdmin, function(req, res) {
 })
 
 router.get("/damage-skin/:id", middleware.isAdmin, function(req, res) {
+    const skinProperties = AdminHelper.getDamageSkinProperties();
+
     DamageSkin.findOne({ _id: req.params.id }, function(err, damageSkin) {
         if(err) {
             console.log(err);
@@ -68,7 +71,7 @@ router.get("/damage-skin/:id", middleware.isAdmin, function(req, res) {
             const prevUrl = `/admin/damage-skins/${damageSkin.isKMSskin ? "kms" : "non-kms"}`;
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "damage-skins";
-            res.render("admin/damage-skins/damageSkinData", {prevUrl: prevUrl, damageSkinData: damageSkin });
+            res.render("admin/damage-skins/damageSkinData", { prevUrl: prevUrl, damageSkinData: damageSkin, skinProperties: skinProperties });
         }
     })
 })
@@ -76,14 +79,13 @@ router.get("/damage-skin/:id", middleware.isAdmin, function(req, res) {
 router.post("/damage-skin/:id", middleware.isAdmin, function(req, res) {
     const newDamageSkinData = AdminHelper.compileDamageSkinData(req.body);
 
-    DamageSkin.findOneAndUpdate({ _id: req.params.id }, newDamageSkinData, { new: true, overwrite: true }, function(err, updatedSkin) {
+    DamageSkin.findOneAndUpdate({ _id: req.params.id }, { $set: newDamageSkinData }, { new: true }, function(err, updatedSkin) {
         if(err) {
             console.log(err);
             res.redirect("back");
         } else {
-            const path = updatedSkin.isKMSskin ? "kms" : "non-kms";
             console.log("Damage skin updated");
-            res.redirect(`/admin/damage-skins/${path}`);
+            res.redirect(`/admin/damage-skin/${req.params.id}`);
         }
     })
 })

@@ -10,13 +10,26 @@ function addServerTypeRadioListener() {
 
     radioBtns.forEach(function(btn) {
         btn.addEventListener("click", function() {
+            document.getElementById("msg-Miss").checked = true;
+            document.getElementById("msg-Miss-label").classList.add("active");
+
+            document.getElementById("msg-guard").checked = true;
+            document.getElementById("msg-guard-label").classList.add("active");
+
+            document.getElementById("msg-resist").checked = true;
+            document.getElementById("msg-resist-label").classList.add("active");
+
             if(this.dataset.isKmsSkin === "yes") {
-                document.getElementById("counter-label-no").click();
-                document.getElementById("shot-label-no").click();
+                document.getElementById("msg-counter").checked = false;
+                document.getElementById("msg-counter-label").classList.remove("active");
+                document.getElementById("msg-shot").checked = false;
+                document.getElementById("msg-shot-label").classList.remove("active");
             } else {
                 document.getElementById("unit-skin-label-no").click();
-                document.getElementById("counter-label-yes").click();
-                document.getElementById("shot-label-yes").click();
+                document.getElementById("msg-counter").checked = true;
+                document.getElementById("msg-counter-label").classList.add("active");
+                document.getElementById("msg-shot").checked = true;
+                document.getElementById("msg-shot-label").classList.add("active");
             }
         })
     })
