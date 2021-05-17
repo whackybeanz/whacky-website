@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     deleteAddedItemListener();
     pasteFromClipboardListener();
     removeCoinShopItemListener();
+    moveItemPositions();
 });
 
 function addNewCoinIcon() {
@@ -219,6 +220,46 @@ function removeCoinShopItemListener() {
                     })
             } else {
                 event.preventDefault();
+            }
+        })
+    })
+}
+
+function moveItemPositions() {
+    moveItemUp();
+    moveItemDown();
+}
+
+function moveItemUp() {
+    const moveItemUpBtns = document.querySelectorAll(".move-item-up-btn");
+
+    moveItemUpBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+            let nodeToMove = this.parentNode.parentNode.parentNode.parentNode;
+            console.log(nodeToMove);
+            let nodeParent = nodeToMove.parentNode;
+            let siblingNode = nodeToMove.previousElementSibling;
+
+            if(siblingNode !== null) {
+                nodeParent.insertBefore(nodeToMove, siblingNode);
+            }
+        })
+    })
+}
+
+function moveItemDown() {
+    const moveItemDownBtns = document.querySelectorAll(".move-item-down-btn");
+
+    moveItemDownBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+            let nodeToMove = this.parentNode.parentNode.parentNode.parentNode;
+            let nodeParent = nodeToMove.parentNode;
+            let siblingNode = nodeToMove.nextElementSibling;
+
+            console.log(siblingNode.classList);
+
+            if(siblingNode !== null) {
+                nodeParent.insertBefore(nodeToMove, siblingNode.nextElementSibling);
             }
         })
     })

@@ -66,4 +66,30 @@ middlewareObj.isAdmin = function(req, res, next) {
     }
 }
 
+middlewareObj.isValidOrdering = function(req, res, next) {
+    try {
+        let toValidate = req.body.order;
+        let hasNaN = req.body.order.filter(i => isNaN(parseInt(i)));
+
+        if(hasNaN.length > 0) {
+            throw new Error("Invalid item order number");
+        }
+
+        if(new Set(toValidate).size !== toValidate.length) {
+            throw new Error("Duplicate item order numbers");
+        }
+
+        let hasOutOfRangeNumbers = toValidate.filter(orderNum => (parseInt(orderNum) > toValidate.length-1 || orderNum < 0));
+
+        if(hasOutOfRangeNumbers.length > 0) {
+            throw new Error("Has out-of-range item order numbers");
+        }
+
+        next();
+    } catch (err) {
+        req.flash("error", `Error: ${err}`);
+        res.redirect("back");
+    }
+}
+
 module.exports = middlewareObj;

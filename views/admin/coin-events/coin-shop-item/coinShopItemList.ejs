@@ -1,121 +1,136 @@
 <h3 class="w-100 font-subheader font-weight-bold mb-2">Shop Item List</h3>
-<table class="font-table w-100 table table-bordered table-hover mb-5" id="coin-shop-item-list">
-    <thead>
-        <tr>
-            <th class="text-center text-sm-left align-middle py-2">Item / Notes</th>
-            <th class="table-cols-125 d-table-cell d-sm-none align-middle text-center align-middle py-2">Price / Qty</th>
-            <th class="d-none d-sm-table-cell text-center align-middle py-2">Price</th>
-            <th class="d-none d-sm-table-cell text-center align-middle py-2">Quantity</th>
-            <th class="text-center align-middle py-2">Tools</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% if(coinShopData.items.length > 0) { %>
-            <% coinShopData.items.forEach(item => { %>
-                <% if(item.sectionHeader) { %>
-                    <tr class="tr-section-header">
-                        <th colspan="5" class="font-subsubheader text-center py-1">
-                            <%= item.sectionHeader %>
-                        </th>
-                    </tr>
-                <% } %>
-                <tr>
-                    <td class="align-middle py-2 position-relative">
-                        <div class="d-flex flex-column flex-sm-row align-items-center text-center">
-                            <% if(icons[`${item.iconId}`]) { %>
-                                <img class="mr-0 mr-sm-2" src="<%= icons[`${item.iconId}`].imgUrl %>"> <%= icons[`${item.iconId}`].name %>
-                            <% } else { %>
-                                Invalid item ID (<%= item.iconId %>) received
-                            <% } %>
-                            <div>
-                                <div class="d-inline d-sm-none">
-                                    <% if(item.tradability === "untradable") { %>
-                                        <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Untradable">
-                                            <i class="fas fa-ban"></i>
-                                        </div>
-                                    <% } else if(item.tradability === "inter-acct") { %>
-                                        <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Inter-Account Transactions only">
-                                            <i class="fas fa-exchange-alt"></i>
+<p>Section headers are created by the item immediately following the header. Ignore the header's position when reordering items. Update the respective item(s) input fields to reflect where the header should be after reordering if necessary.</p>
+
+<form class="d-flex flex-column align-items-center" action="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/reorder" method="POST">
+    <table class="font-table w-100 table table-bordered table-hover mb-3" id="coin-shop-item-list">
+        <thead>
+            <tr>
+                <th class="text-center table-cols-50"></th>
+                <th class="text-center text-sm-left align-middle py-2">Item / Notes</th>
+                <th class="table-cols-125 d-table-cell d-sm-none align-middle text-center align-middle py-2">Price / Qty</th>
+                <th class="d-none d-sm-table-cell text-center align-middle py-2">Price</th>
+                <th class="d-none d-sm-table-cell text-center align-middle py-2">Quantity</th>
+                <th class="text-center align-middle py-2">Tools</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(coinShopData.items.length > 0) { %>
+                <% coinShopData.items.forEach((item, index) => { %>
+                    <% if(item.sectionHeader && item.sectionHeader !== "") { %>
+                        <tr class="tr-section-header">
+                            <th colspan="5" class="font-subsubheader text-center py-1">
+                                <%= item.sectionHeader %>
+                            </th>
+                        </tr>
+                    <% } %>
+                    <tr id="item-<%= index %>">
+                        <td class="align-middle">
+                            <div class="form-group row mb-0">
+                                <div class="col-12 d-flex justify-content-around">
+                                    <input type="hidden" name="order" value="<%= index %>">
+                                    <div class="move-item-up-btn cursor-pointer p-1"><i class="fas fa-lg fa-angle-up"></i></div>
+                                    <div class="move-item-down-btn cursor-pointer p-1"><i class="fas fa-lg fa-angle-down"></i></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle py-2 position-relative">
+                            <div class="d-flex flex-column flex-sm-row align-items-center text-center">
+                                <% if(icons[`${item.iconId}`]) { %>
+                                    <img class="mr-0 mr-sm-2" src="<%= icons[`${item.iconId}`].imgUrl %>"> <%= icons[`${item.iconId}`].name %>
+                                <% } else { %>
+                                    Invalid item ID (<%= item.iconId %>) received
+                                <% } %>
+                                <div>
+                                    <div class="d-inline d-sm-none">
+                                        <% if(item.tradability === "untradable") { %>
+                                            <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Untradable">
+                                                <i class="fas fa-ban"></i>
+                                            </div>
+                                        <% } else if(item.tradability === "inter-acct") { %>
+                                            <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Inter-Account Transactions only">
+                                                <i class="fas fa-exchange-alt"></i>
+                                            </div>
+                                        <% } %>
+                                    </div>
+
+                                    <% if(item.itemNotes !== "") { %>
+                                        <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= item.itemNotes %>">
+                                            <i class="fas fa-info-circle"></i>
                                         </div>
                                     <% } %>
                                 </div>
-
-                                <% if(item.itemNotes !== "") { %>
-                                    <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= item.itemNotes %>">
-                                        <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="tradability-display d-none d-sm-block position-absolute">
+                                <% if(item.tradability === "untradable") { %>
+                                    <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Untradable">
+                                        <i class="fas fa-ban"></i>
+                                    </div>
+                                <% } else if(item.tradability === "inter-acct") { %>
+                                    <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Inter-Account Transactions only">
+                                        <i class="fas fa-exchange-alt"></i>
                                     </div>
                                 <% } %>
                             </div>
-                        </div>
-                        <div class="tradability-display d-none d-sm-block position-absolute">
-                            <% if(item.tradability === "untradable") { %>
-                                <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Untradable">
-                                    <i class="fas fa-ban"></i>
-                                </div>
-                            <% } else if(item.tradability === "inter-acct") { %>
-                                <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Inter-Account Transactions only">
-                                    <i class="fas fa-exchange-alt"></i>
-                                </div>
-                            <% } %>
-                        </div>
-                    </td>
-                    <td class="table-cols-125 d-table-cell d-sm-none text-center align-middle py-2">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <img class="mr-1" src="<%= icons[`${item.coinType}`].imgUrl.substring(0, icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) + "-mini" + icons[`${item.coinType}`].imgUrl.substring(icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) %>"> <%= item.price.toLocaleString('en-SG') %>
-                        </div>
-                        <% if(item.quantity > 0) { %>
-                            <%= item.quantity %>
-                            <% if(item.purchaseLimit === "character") { %>
-                                / character
-                            <% } else if(item.purchaseLimit === "world") { %>
-                                / world
-                            <% } %>
+                        </td>
+                        <td class="table-cols-125 d-table-cell d-sm-none text-center align-middle py-2">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="mr-1" src="<%= icons[`${item.coinType}`].imgUrl.substring(0, icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) + "-mini" + icons[`${item.coinType}`].imgUrl.substring(icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) %>"> <%= item.price.toLocaleString('en-SG') %>
+                            </div>
+                            <% if(item.quantity > 0) { %>
+                                <%= item.quantity %>
+                                <% if(item.purchaseLimit === "character") { %>
+                                    / character
+                                <% } else if(item.purchaseLimit === "world") { %>
+                                    / world
+                                <% } %>
 
-                            <% if(item.timeframeLimit === "day") { %>
-                                / day
-                            <% } else if(item.timeframeLimit === "week") { %>
-                                / week
+                                <% if(item.timeframeLimit === "day") { %>
+                                    / day
+                                <% } else if(item.timeframeLimit === "week") { %>
+                                    / week
+                                <% } %>
+                            <% } else { %>
+                                Unlimited
                             <% } %>
-                        <% } else { %>
-                            Unlimited
-                        <% } %>
-                    </td>
-                    <td class="d-none d-sm-table-cell text-center align-middle py-2">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <img class="mr-1" src="<%= icons[`${item.coinType}`].imgUrl.substring(0, icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) + "-mini" + icons[`${item.coinType}`].imgUrl.substring(icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) %>"> <%= item.price.toLocaleString('en-SG') %>
-                        </div>
-                    </td>
-                    <td class="d-none d-sm-table-cell text-center align-middle py-2">
-                        <% if(item.quantity > 0) { %>
-                            <%= item.quantity %>
-                            <% if(item.purchaseLimit === "character") { %>
-                                <br/>Per character
-                            <% } else if(item.purchaseLimit === "world") { %>
-                                <br/>Per world
-                            <% } %>
+                        </td>
+                        <td class="d-none d-sm-table-cell text-center align-middle py-2">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="mr-1" src="<%= icons[`${item.coinType}`].imgUrl.substring(0, icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) + "-mini" + icons[`${item.coinType}`].imgUrl.substring(icons[`${item.coinType}`].imgUrl.lastIndexOf(".")) %>"> <%= item.price.toLocaleString('en-SG') %>
+                            </div>
+                        </td>
+                        <td class="d-none d-sm-table-cell text-center align-middle py-2">
+                            <% if(item.quantity > 0) { %>
+                                <%= item.quantity %>
+                                <% if(item.purchaseLimit === "character") { %>
+                                    <br/>Per character
+                                <% } else if(item.purchaseLimit === "world") { %>
+                                    <br/>Per world
+                                <% } %>
 
-                            <% if(item.timeframeLimit === "day") { %>
-                                <br/>Per day
-                            <% } else if(item.timeframeLimit === "week") { %>
-                                <br/>Per week
+                                <% if(item.timeframeLimit === "day") { %>
+                                    <br/>Per day
+                                <% } else if(item.timeframeLimit === "week") { %>
+                                    <br/>Per week
+                                <% } %>
+                            <% } else { %>
+                                Unlimited
                             <% } %>
-                        <% } else { %>
-                            Unlimited
-                        <% } %>
-                    </td>
-                    <td class="text-center align-middle py-2">
-                        <a href="/admin/coin-event/<%= coinEventData.eventId %>/shop/<%= shopNum %>/item/<%= item._id %>" target="_blank" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
-                        <button type="button" class="remove-coin-shop-item-btn btn btn-outline-danger btn-sm" data-coin-event-id="<%= coinEventData._id %>" data-coin-shop-id="<%= coinShopData._id %>" data-coin-shop-item-id="<%= item._id %>"
-                            data-name="<% if(icons[`${item.iconId}`]) { %><%= icons[`${item.iconId}`].name %><% } else { %>undefined<% } %>">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
+                        </td>
+                        <td class="text-center align-middle py-2">
+                            <a href="/admin/coin-event/<%= coinEventData.eventId %>/shop/<%= shopNum %>/item/<%= item._id %>" target="_blank" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
+                            <button type="button" class="remove-coin-shop-item-btn btn btn-outline-danger btn-sm" data-coin-event-id="<%= coinEventData._id %>" data-coin-shop-id="<%= coinShopData._id %>" data-coin-shop-item-id="<%= item._id %>"
+                                data-name="<% if(icons[`${item.iconId}`]) { %><%= icons[`${item.iconId}`].name %><% } else { %>undefined<% } %>">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td class="text-center" colspan="5">- No items added yet. Why not add some? -</td>
                 </tr>
-            <% }) %>
-        <% } else { %>
-            <tr>
-                <td class="text-center" colspan="5">- No items added yet. Why not add some? -</td>
-            </tr>
-        <% } %>
-    </tbody>
-</table>
+            <% } %>
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-outline-info btn-sm mb-5"><i class="fas fa-save"></i> Save current item order</button>
+</form>

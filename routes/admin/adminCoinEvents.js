@@ -370,6 +370,29 @@ router.post("/coin-event/:id/shop/:shopId/bulkAdd", middleware.isAdmin, function
         })    
 })
 
+router.post("/coin-event/:id/shop/:shopId/reorder", middleware.isAdmin, middleware.isValidOrdering, function(req, res) {
+    CoinEvent.findOne({ _id: req.params.id })
+        .then(coinEventData => {
+            //const coinShopData = coinEventData.shops[shopNum];
+            const shopData = coinEventData.shops.find(shop => shop._id.toString() === req.params.shopId);
+            const shopItemData = shopData.items;
+            let reorderedIndex = req.body.order.map(i => parseInt(i));
+            let reorderedCoinShopItems = reorderedIndex.map(i => shopItemData[i]);
+
+            return CoinEvent.findOneAndUpdate({ "shops._id": req.params.shopId }, { $set: { 'shops.$.items': reorderedCoinShopItems } }, { new: true })
+        })
+        .then(updatedCoinEvent => {
+            const shopNum = AdminHelper.retrieveShopNum(updatedCoinEvent, req.params.shopId);
+            req.flash("success", `Coin shop items reordered`);
+            res.redirect(`/admin/coin-event/${updatedCoinEvent.eventId}/shop/${shopNum}`);
+        })
+        .catch(err => {
+            console.log(err);
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
+})
+
 // Specific Coin Shop Item
 router.get("/coin-event/:id/shop/:shopNum/item/:itemId", middleware.isAdmin, function(req, res) {
     CoinEvent.findOne({ eventId: req.params.id })
@@ -430,6 +453,7 @@ router.get("/coin-event/:id/shop/:shopNum/item/:itemId", middleware.isAdmin, fun
 
 router.post("/coin-event/:id/shop/:shopId/item/:itemId", middleware.isAdmin, function(req, res) {
     let updatedItem = {
+        'shops.$[outer].items.$[inner].sectionHeader': req.body.sectionHeader,
         'shops.$[outer].items.$[inner].price': parseInt(req.body.price),
         'shops.$[outer].items.$[inner].quantity': req.body.quantity ? parseInt(req.body.quantity) : -1,
         'shops.$[outer].items.$[inner].coinType': req.body.coinType,
@@ -438,10 +462,6 @@ router.post("/coin-event/:id/shop/:shopId/item/:itemId", middleware.isAdmin, fun
         'shops.$[outer].items.$[inner].tradability': req.body.itemTradability,
         'shops.$[outer].items.$[inner].itemNotes': req.body.itemNotes
     };
-
-    if(req.body.sectionHeader !== "") {
-        updatedItem['shops.$[outer].items.$[inner].sectionHeader'] = req.body.sectionHeader;
-    }
 
     // Finds the matching coin event _id, and sets the above properties for changing
     // Filter the nested array by outer/inner variables corresponding to shop _id and item _id respectively to target the correct item
