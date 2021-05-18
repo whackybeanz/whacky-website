@@ -102,6 +102,21 @@ body {
     }
 
     // Modal
+    .modal-btn-trigger {
+        border: 2px solid globals.$light-mode-grey;
+        background-color: globals.$light-mode-white-opaque;
+        transition: all 0.2s;
+
+        &.flash {
+            background-color: globals.$light-mode-green;
+        }
+
+        &:hover {
+            background-color: globals.$light-mode-grey;
+            transition: all 0.2s;
+        }
+    }
+
     .modal {
         .modal-content {
             border: 1px solid globals.$light-mode-grey;
@@ -185,6 +200,16 @@ body {
             &:hover, &.active {
                 background-color: globals.$light-mode-grey;
                 border-color: globals.$light-mode-grey;
+            }
+        }
+    }
+
+    .nav-pills {
+        .nav-link {
+            color: globals.$light-mode-black;
+
+            &:hover, &.active {
+                background-color: globals.$light-mode-grey;
             }
         }
     }
@@ -334,21 +359,14 @@ body {
         }
     }
 
-    .btn-dmg-skin-modal, #num-selected-skins {
+    #num-selected-skins {
         border: 2px solid globals.$light-mode-grey;
         background-color: globals.$light-mode-white-opaque;
         transition: all 0.2s;
     }
 
     .btn-dmg-skin-modal {
-        &.flash {
-            background-color: globals.$light-mode-green;
-        }
-
         &:hover {
-            background-color: globals.$light-mode-grey;
-            transition: all 0.2s;
-
             #num-selected-skins {
                 background-color: globals.$light-mode-grey;
                 transition: all 0.2s;
@@ -431,6 +449,12 @@ body {
                 transition: all 0.2s;
             }
         }
+    }
+
+    // Coin Events
+    #active-profile {
+        border: 2px solid globals.$light-mode-grey;
+        background-color: globals.$light-mode-white-opaque;
     }
 
     // About

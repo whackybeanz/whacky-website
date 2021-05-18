@@ -3,6 +3,7 @@
 
 <div class="container-fluid content d-flex flex-column flex-md-row p-0">
     <%- include("../../partials/sidebar") %>
+
     <div class="main-content-div col px-0 position-relative">
         <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
             <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
@@ -25,22 +26,61 @@
                     <a href="/maple/events/coin-events" class="btn btn-sm btn-outline-info px-3"><i class="fas fa-angle-double-left"></i> Back to Coin Events List</a>
                 </div>
 
-                <div class="size-900 w-100">
-                    <%- include("./coinSummary") %>
+                <div class="w-100 mb-3">
+                    <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Instructions</h2>
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <p class="w-100 text-justify">Click on Shopping Cart, Shop List or Coin Breakdown buttons to view respective details. You can save up to five profiles worth of shopping data. To save data to that profile, click on the save icon (bottom right). The active profile that data is saved to is displayed to the left of the icon. Click on the profile name to rotate between each profile.</p>
+                    </div>
                 </div>
-                <%- include("../../admin/coin-events/coin/coinBreakdown") %>
 
-                <hr class="w-25 mt-0 mb-4">
+                <div class="w-100">
+                    <ul class="nav nav-pills d-flex justify-content-center" id="coinEventTabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#cart" id="cart-pill" data-toggle="pill" role="tab">Shopping Cart</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#shop-item-list" id="shop-item-list-pill" data-toggle="pill" role="tab">Coin Shop List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#coin-breakdown" id="coin-breakdown-pill" data-toggle="pill" role="tab">Coin Amounts Breakdown</a>
+                        </li>
+                    </ul>
 
-                <form class="w-100">
-                    <input type="hidden" value="<%= coinEventData.eventId %>" id="event-id">
+                    <div class="w-100 py-3 tab-content d-flex justify-content-center" id="coinEventTabsContent">
+                        <div class="w-100 tab-pane border-0 fade show active" id="cart" role="tabpanel" aria-labelledby="cart-tab">...</div>
+                        <div class="w-100 tab-pane border-0 fade" id="shop-item-list" role="tabpanel" aria-labelledby="shop-item-list-tab">
+                            <form class="w-100 mb-4 mb-lg-0">
+                                <input type="hidden" value="<%= coinEventData.eventId %>" id="event-id">
 
-                    <% coinEventData.shops.forEach((shop, index) => { %>
-                        <%- include("./coinShopItemList", { shop: shop, index: index }) %>
-                    <% }) %>
-                </form>
+                                <% coinEventData.shops.forEach((shop, index) => { %>
+                                    <%- include("./coinShopItemList", { shop: shop, index: index }) %>
+                                <% }) %>
+                            </form>
+                        </div>
+                        <div class="w-100 tab-pane border-0 fade" id="coin-breakdown" role="tabpanel" aria-labelledby="coin-breakdown-tab">
+                            <div class="d-flex justify-content-center">
+                                <div class="size-900 w-100">
+                                    <%- include("./coinSummary") %>
+                                </div>
+                            </div>
+                            <%- include("../../admin/coin-events/coin/coinBreakdownDetails") %>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="font-small position-fixed px-2 py-1 cursor-pointer rounded-lg text-center border-right-0" id="active-profile">
+        <div class="w-100" id="profile-1-name">OnyxBasilisk</div>
+        <div class="d-none" id="profile-2-name">Profile 2</div>
+        <div class="d-none" id="profile-3-name">Profile 3</div>
+        <div class="d-none" id="profile-4-name">Profile 4</div>
+        <div class="d-none" id="profile-5-name">Profile 5</div>
+    </div>
+
+    <div class="modal-btn-trigger position-fixed cursor-pointer d-flex justify-content-center align-items-center" id="btn-save">
+        <i class="far fa-lg fa-save"></i>
     </div>
 </div>
 

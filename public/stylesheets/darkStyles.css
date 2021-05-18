@@ -70,6 +70,15 @@ body.dark-mode form option:disabled {
   background-color: #343a40;
   color: rgba(255, 255, 255, 0.8);
 }
+body.dark-mode .modal-btn-trigger {
+  border: 2px solid #454d55;
+  background-color: black;
+  transition: all 0.2s;
+}
+body.dark-mode .modal-btn-trigger:hover {
+  background-color: #454d55;
+  transition: all 0.2s;
+}
 body.dark-mode .modal .modal-content {
   border: 1px solid #454d55;
   color: rgba(255, 255, 255, 0.8);
@@ -142,6 +151,12 @@ body.dark-mode .nav-tabs {
 body.dark-mode .nav-tabs .nav-link:hover, body.dark-mode .nav-tabs .nav-link.active {
   background-color: #454d55;
   border-color: rgba(52, 58, 64, 0.8);
+}
+body.dark-mode .nav-pills .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .nav-pills .nav-link:hover, body.dark-mode .nav-pills .nav-link.active {
+  background-color: #454d55;
 }
 body.dark-mode .tab-pane {
   border: 1px solid rgba(52, 58, 64, 0.8);
@@ -234,13 +249,9 @@ body.dark-mode .single-dmg-skin.active > div {
 body.dark-mode .single-dmg-skin.active > div .dmg-skin-header {
   background-color: #4aa02c;
 }
-body.dark-mode .btn-dmg-skin-modal, body.dark-mode #num-selected-skins {
+body.dark-mode #num-selected-skins {
   border: 2px solid #454d55;
   background-color: black;
-  transition: all 0.2s;
-}
-body.dark-mode .btn-dmg-skin-modal:hover {
-  background-color: #454d55;
   transition: all 0.2s;
 }
 body.dark-mode .btn-dmg-skin-modal:hover #num-selected-skins {
@@ -332,6 +343,10 @@ body.dark-mode .tab-pane .single-map-select:hover {
 body.dark-mode .tab-pane .single-map-select.active {
   background-color: #4aa02c;
   transition: all 0.2s;
+}
+body.dark-mode #active-profile {
+  border: 2px solid rgba(52, 58, 64, 0.8);
+  background-color: black;
 }
 body.dark-mode .single-social a {
   color: rgba(255, 255, 255, 0.8);

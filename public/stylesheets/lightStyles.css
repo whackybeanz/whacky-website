@@ -70,6 +70,18 @@ body form option:disabled {
   background-color: rgba(206, 212, 218, 0.8);
   color: #212529;
 }
+body .modal-btn-trigger {
+  border: 2px solid rgba(206, 212, 218, 0.8);
+  background-color: white;
+  transition: all 0.2s;
+}
+body .modal-btn-trigger.flash {
+  background-color: #6cbb3c;
+}
+body .modal-btn-trigger:hover {
+  background-color: rgba(206, 212, 218, 0.8);
+  transition: all 0.2s;
+}
 body .modal .modal-content {
   border: 1px solid rgba(206, 212, 218, 0.8);
   color: #212529;
@@ -115,6 +127,12 @@ body .nav-tabs {
 body .nav-tabs .nav-link:hover, body .nav-tabs .nav-link.active {
   background-color: rgba(206, 212, 218, 0.8);
   border-color: rgba(206, 212, 218, 0.8);
+}
+body .nav-pills .nav-link {
+  color: #212529;
+}
+body .nav-pills .nav-link:hover, body .nav-pills .nav-link.active {
+  background-color: rgba(206, 212, 218, 0.8);
 }
 body .tab-pane {
   border: 1px solid rgba(206, 212, 218, 0.8);
@@ -214,16 +232,9 @@ body .single-dmg-skin.active > div {
 body .single-dmg-skin.active > div .dmg-skin-header {
   background-color: #6cbb3c;
 }
-body .btn-dmg-skin-modal, body #num-selected-skins {
+body #num-selected-skins {
   border: 2px solid rgba(206, 212, 218, 0.8);
   background-color: white;
-  transition: all 0.2s;
-}
-body .btn-dmg-skin-modal.flash {
-  background-color: #6cbb3c;
-}
-body .btn-dmg-skin-modal:hover {
-  background-color: rgba(206, 212, 218, 0.8);
   transition: all 0.2s;
 }
 body .btn-dmg-skin-modal:hover #num-selected-skins {
@@ -286,6 +297,10 @@ body .tab-pane .single-map-select:hover {
 body .tab-pane .single-map-select.active {
   background-color: #6cbb3c;
   transition: all 0.2s;
+}
+body #active-profile {
+  border: 2px solid rgba(206, 212, 218, 0.8);
+  background-color: white;
 }
 body .single-social a {
   color: #212529;
