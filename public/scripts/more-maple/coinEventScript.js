@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addInputBlurListener();
     addQtyByOneListener();
     minusQtyByOneListener();   
-    updateTotalExpenseListener();
     saveExpensesListener();
 });
 
@@ -47,8 +46,11 @@ function displayExpenses(isDisplayAllProfiles = true, activeProfileNum = undefin
 }
 
 function displaySingleProfileExpense(savedInputs, profileNum) {
-    // Hide all shops from view
+    // Hide expense summary and all shops from view
     // Clear all previous expenses listed in profile
+    document.getElementById(`profile-${profileNum}-shop-list`).classList.remove("d-flex");
+    document.getElementById(`profile-${profileNum}-shop-list`).classList.add("d-none");
+
     let profileShops = document.querySelectorAll(`.profile-${profileNum}-single-shop`);
 
     profileShops.forEach((shop, shopIndex) => {
@@ -63,7 +65,18 @@ function displaySingleProfileExpense(savedInputs, profileNum) {
     let profileExpenses = savedInputs.profiles[`profile-${profileNum}`];
 
     if(profileExpenses.length > 0) {
+        document.getElementById(`profile-${profileNum}-shop-list`).classList.add("d-flex");
+        document.getElementById(`profile-${profileNum}-shop-list`).classList.remove("d-none");
         document.getElementById(`profile-${profileNum}-no-expense-msg`).classList.add("d-none");  
+
+        let allCoinTypeInputs = Array.from(document.getElementsByName("itemCoinType"));
+        let allCoinTypes = [...new Set(allCoinTypeInputs.map(input => input .value))];
+
+        let expenseByCurrency = {};
+
+        allCoinTypes.forEach(coin => {
+            expenseByCurrency[coin] = 0;
+        })
 
         profileExpenses.forEach(expense => {
             const shopListContainer = document.getElementById(`profile-${profileNum}-shop-${expense.shopId}`);
@@ -75,15 +88,22 @@ function displaySingleProfileExpense(savedInputs, profileNum) {
             let qtyPurchased = parseInt(expense.qtyPurchased);
             let itemPricePerUnit = parseInt(document.getElementById(`shop-${expense.shopId}-item-${expense.itemId}-price`).value);
             let currencyImgSrc = document.getElementById(`shop-${expense.shopId}-item-${expense.itemId}-currency`).value;
+            let currencyId = document.getElementById(`shop-${expense.shopId}-item-${expense.itemId}-coinType`).value;
+
+            expenseByCurrency[currencyId] += qtyPurchased * itemPricePerUnit;
 
             let html = `<tr class="single-item-expense">`
-                html +=    `<td>${itemName}</td>`;
-                html +=    `<td class="text-center">${qtyPurchased}</td>`;
-                html +=    `<td class="text-center"><img src="${currencyImgSrc}"> ${itemPricePerUnit.toLocaleString('en-SG')}</td>`;
-                html +=    `<td class="text-center"><img src="${currencyImgSrc}"> ${(qtyPurchased * itemPricePerUnit).toLocaleString('en-SG')}</td>`;
+                html +=    `<td class="align-middle">${itemName}</td>`;
+                html +=    `<td class="table-cols-50 text-center align-middle">${qtyPurchased}</td>`;
+                html +=    `<td class="table-cols-100 text-center align-middle"><img src="${currencyImgSrc}"> ${itemPricePerUnit.toLocaleString('en-SG')}</td>`;
+                html +=    `<td class="table-cols-100 text-center align-middle"><img src="${currencyImgSrc}"> ${(qtyPurchased * itemPricePerUnit).toLocaleString('en-SG')}</td>`;
                 html += `</tr>`;
 
             expenseContainer.insertAdjacentHTML('beforeend', html)
+        })
+
+        Object.keys(expenseByCurrency).forEach(coinId => {
+            document.getElementById(`profile-${profileNum}-${coinId}`).textContent = expenseByCurrency[coinId].toLocaleString('en-SG');
         })
     }
 }
