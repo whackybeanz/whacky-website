@@ -1,9 +1,13 @@
+let currProfileNum = 1;
+
 document.addEventListener("DOMContentLoaded", function(event) {
-    loadSavedInputs();
+    //loadSavedInputs();
+    displayExpenses();
     addInputBlurListener();
     addQtyByOneListener();
     minusQtyByOneListener();   
     updateTotalExpenseListener();
+    saveExpensesListener();
 });
 
 function loadSavedInputs() {
@@ -14,50 +18,74 @@ function loadSavedInputs() {
         const eventIdViewed = document.getElementById("event-id").value;
 
         if(savedData.eventId === eventIdViewed) {
-            savedData.buyQtyInputs.forEach(input => {
-                let inputValue = parseInt(input.value);
+            if(savedData.eventId === "hotel-maple") {
+                savedData.buyQtyInputs.forEach(input => {
+                    let inputValue = parseInt(input.value);
 
-                if(!isNaN(inputValue) && inputValue > 0) {
-                    document.getElementById(input.inputId).value = inputValue;
-                }
-            })
-
-            calculateAndDisplayTotalExpense();
+                    if(!isNaN(inputValue) && inputValue > 0) {
+                        document.getElementById(input.inputId).value = inputValue;
+                    }
+                })    
+            }
         }        
     }
 }
 
-function calculateAndDisplayTotalExpense() {
-    let allPriceInputs = Array.from(document.getElementsByName("itemPrice"));
-    let allCoinTypeInputs = Array.from(document.getElementsByName("itemCoinType"));
-    let allCoinTypes = [...new Set(allCoinTypeInputs.map(input => input.value))];
-    let allBuyQtyInputs = Array.from(document.getElementsByName("itemBuyQty"));
+function displayExpenses(isDisplayAllProfiles = true, activeProfileNum = undefined) {
+    const savedInputs = JSON.parse(localStorage.getItem("coinEventTest"));
+    const NUM_PROFILES = 10;
 
-    let totalExpense = {};
-    allCoinTypes.forEach(coinType => {
-        totalExpense[coinType] = 0;
-    })
-
-    allPriceInputs.forEach((priceInput, index) => {
-        let buyQty = parseInt(allBuyQtyInputs[index].value);
-        let coinType = allCoinTypeInputs[index].value;
-
-        if(!isNaN(buyQty)) {
-            if(buyQty >= 0 && buyQty <= 100) {
-                totalExpense[coinType] += parseInt(priceInput.value) * buyQty;
+    if(isDisplayAllProfiles) {
+        for(let i = 0; i < NUM_PROFILES; i++) { 
+            if(savedInputs.profiles[`profile-${i}`] !== undefined) {
+                displaySingleProfileExpense(savedInputs, i);
             }
         }
+    } else {
+        displaySingleProfileExpense(savedInputs, activeProfileNum);
+    }
+}
+
+function displaySingleProfileExpense(savedInputs, profileNum) {
+    // Hide all shops from view
+    // Clear all previous expenses listed in profile
+    let profileShops = document.querySelectorAll(`.profile-${profileNum}-single-shop`);
+
+    profileShops.forEach((shop, shopIndex) => {
+        shop.classList.add("d-none");
+        document.getElementById(`profile-${profileNum}-no-expense-msg`).classList.remove("d-none");
+        document.getElementById(`profile-${profileNum}-shop-${shopIndex}-expenses`).innerHTML = "";
     })
 
-    Object.keys(totalExpense).forEach(coinType => {
-        if(totalExpense[coinType] > 0) { 
-            document.getElementById(`${coinType}-total-expense`).textContent = totalExpense[coinType].toLocaleString('en-SG');
-        } else {
-            document.getElementById(`${coinType}-total-expense`).textContent = "-";
-        }
-    })
+    // Retrieve all expenses
+    // Display shop that has relevant expense
+    // Create table rows representing each item's data
+    let profileExpenses = savedInputs.profiles[`profile-${profileNum}`];
 
-    return allBuyQtyInputs;
+    if(profileExpenses.length > 0) {
+        document.getElementById(`profile-${profileNum}-no-expense-msg`).classList.add("d-none");  
+
+        profileExpenses.forEach(expense => {
+            const shopListContainer = document.getElementById(`profile-${profileNum}-shop-${expense.shopId}`);
+            shopListContainer.classList.remove("d-none");
+
+            const expenseContainer = document.getElementById(`profile-${profileNum}-shop-${expense.shopId}-expenses`);
+            
+            let itemName = document.getElementById(`shop-${expense.shopId}-item-${expense.itemId}-name`).value;
+            let qtyPurchased = parseInt(expense.qtyPurchased);
+            let itemPricePerUnit = parseInt(document.getElementById(`shop-${expense.shopId}-item-${expense.itemId}-price`).value);
+            let currencyImgSrc = document.getElementById(`shop-${expense.shopId}-item-${expense.itemId}-currency`).value;
+
+            let html = `<tr class="single-item-expense">`
+                html +=    `<td>${itemName}</td>`;
+                html +=    `<td class="text-center">${qtyPurchased}</td>`;
+                html +=    `<td class="text-center"><img src="${currencyImgSrc}"> ${itemPricePerUnit.toLocaleString('en-SG')}</td>`;
+                html +=    `<td class="text-center"><img src="${currencyImgSrc}"> ${(qtyPurchased * itemPricePerUnit).toLocaleString('en-SG')}</td>`;
+                html += `</tr>`;
+
+            expenseContainer.insertAdjacentHTML('beforeend', html)
+        })
+    }
 }
 
 function addInputBlurListener() {
@@ -126,32 +154,40 @@ function minusQtyByOneListener() {
     })
 }
 
-function updateTotalExpenseListener() {
-    const updateExpenseBtns = document.querySelectorAll(".btn-update-expense");
+function saveExpensesListener() {
+    let saveBtn = document.getElementById("btn-save");
 
-    updateExpenseBtns.forEach(btn => {
-        btn.addEventListener("click", function() {
-            let allBuyQtyInputs = calculateAndDisplayTotalExpense();
-            let isSaved = saveInputs(allBuyQtyInputs);
+    saveBtn.addEventListener("click", function() {
+        let activeProfileElem = document.querySelector(".single-profile-name.active");
+        let activeProfileNum = parseInt(activeProfileElem.dataset.profileNum);
 
-            this.querySelector(".update-expense-text").classList.toggle("d-none");
-            this.querySelector(".save-success-text").classList.toggle("d-none");
+        let totalExpenses = calculateTotalExpense();
+        let isSaved = saveInputs(totalExpenses, activeProfileNum);
 
-            if(isSaved) {
-                this.querySelector(".save-success-text").textContent = "Expense updated & inputs saved!";
-            } else {
-                this.querySelector(".save-success-text").textContent = "Expense updated!";
-            }
-            
-            window.setTimeout(() => {
-                this.querySelector(".update-expense-text").classList.toggle("d-none");
-                this.querySelector(".save-success-text").classList.toggle("d-none");
-            }, 3000)
-        })
+        if(isSaved) {
+            displayExpenses(false, activeProfileNum);
+        }
     })
 }
 
-function saveInputs(allBuyQtyInputs) {
+function calculateTotalExpense() {
+    let allBuyQtyInputs = Array.from(document.getElementsByName("itemBuyQty")); // Get all possible item inputs
+    let validBuyQtyInputs = allBuyQtyInputs.filter(input => (!isNaN(parseInt(input.value)) && parseInt(input.value) > 0)); // Retrieve only valid item inputs for saving
+
+    let profileExpenses = [];
+
+    validBuyQtyInputs.forEach(input => {
+        profileExpenses.push({ 
+            shopId: input.dataset.shopId,
+            itemId: input.dataset.itemId,
+            qtyPurchased: input.value,
+        });
+    })
+
+    return profileExpenses;
+}
+
+function saveInputs(totalExpenses, profileNum) {
     const eventId = document.getElementById("event-id").value;
     const savedData = JSON.parse(localStorage.getItem("coinEvent"));
     let currSavedEventId = "???";
@@ -163,29 +199,32 @@ function saveInputs(allBuyQtyInputs) {
     if(savedData !== null && eventId !== currSavedEventId) {
         const currSavedEventName = savedData.eventName || "???";
         
-        if(confirm(`You currently have saved data from another coin event: [${currSavedEventName}]. Proceeding with the save will overwrite your current saved data. Do you really wish to proceed?\n\nIf you click 'No', the total expense will still be updated for your reference, but no data will be saved.`)) {
-            proceedWithSave(allBuyQtyInputs, eventId);
+        if(confirm(`You currently have saved data from another coin event: [${currSavedEventName}]. Proceeding with the save will overwrite your saved data from that coin event. Do you really wish to proceed?`)) {
+            proceedWithSave(totalExpenses, eventId, profileNum);
             return true;
         } else {
-            calculateAndDisplayTotalExpense();
             return false;
         }
     } else {
-        proceedWithSave(allBuyQtyInputs, eventId);
+        proceedWithSave(totalExpenses, eventId, profileNum);
         return true;
     }
 }
 
-function proceedWithSave(allBuyQtyInputs, eventId) {
-    let savedInputs = allBuyQtyInputs.map(input => {
-        return { inputId: input.id, value: input.value};
-    });
+function proceedWithSave(totalExpenses, eventId, profileNum) {
+    const savedData = JSON.parse(localStorage.getItem("coinEventTest"));
+    let toSave = {};
 
-    let toSave = {
-        eventName: document.getElementById("event-name").textContent,
-        eventId: eventId,
-        buyQtyInputs: savedInputs,
+    if(savedData !== null) {
+        toSave = savedData;
+    } else {
+        toSave = {
+            eventName: document.getElementById("event-name").textContent,
+            eventId: eventId,
+            profiles: { },
+        }
     }
-
-    localStorage.setItem("coinEvent", JSON.stringify(toSave));
+    toSave.profiles[`profile-${profileNum}`] = totalExpenses;
+    
+    localStorage.setItem("coinEventTest", JSON.stringify(toSave));
 }

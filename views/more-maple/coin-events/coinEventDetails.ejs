@@ -47,7 +47,9 @@
                     </ul>
 
                     <div class="w-100 py-3 tab-content d-flex justify-content-center" id="coinEventTabsContent">
-                        <div class="w-100 tab-pane border-0 fade show active" id="cart" role="tabpanel" aria-labelledby="cart-tab">...</div>
+                        <div class="w-100 tab-pane border-0 fade show active" id="cart" role="tabpanel" aria-labelledby="cart-tab">
+                            <%- include("./shoppingCart") %>
+                        </div>
                         <div class="w-100 tab-pane border-0 fade" id="shop-item-list" role="tabpanel" aria-labelledby="shop-item-list-tab">
                             <form class="w-100 mb-4 mb-lg-0">
                                 <input type="hidden" value="<%= coinEventData.eventId %>" id="event-id">
@@ -72,11 +74,11 @@
     </div>
 
     <div class="font-small position-fixed px-2 py-1 cursor-pointer rounded-lg text-center border-right-0" id="active-profile">
-        <div class="w-100" id="profile-1-name">OnyxBasilisk</div>
-        <div class="d-none" id="profile-2-name">Profile 2</div>
-        <div class="d-none" id="profile-3-name">Profile 3</div>
-        <div class="d-none" id="profile-4-name">Profile 4</div>
-        <div class="d-none" id="profile-5-name">Profile 5</div>
+        <div class="single-profile-name active" id="profile-1-name" data-profile-num="0">Profile 1</div>
+        <div class="single-profile-name d-none" id="profile-2-name" data-profile-num="1">Profile 2</div>
+        <div class="single-profile-name d-none" id="profile-3-name" data-profile-num="2">Profile 3</div>
+        <div class="single-profile-name d-none" id="profile-4-name" data-profile-num="3">Profile 4</div>
+        <div class="single-profile-name d-none" id="profile-5-name" data-profile-num="4">Profile 5</div>
     </div>
 
     <div class="modal-btn-trigger position-fixed cursor-pointer d-flex justify-content-center align-items-center" id="btn-save">

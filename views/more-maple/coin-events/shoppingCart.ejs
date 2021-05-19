@@ -1,0 +1,33 @@
+<% for(let i = 0; i < 10; i++) { %>
+    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+        <div class="collapsible-section-subheader w-100">
+            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#cart-<%= i %>">
+                <i class="fas fa-caret-down mr-2"></i> <span id="profile-name-<%= i %>">Profile [<%= i+1 %>]</span>
+            </h3>
+        </div>
+        <div class="collapsible-section w-100 px-3 pt-3 collapse show" id="cart-<%= i %>">
+            <div class="d-flex flex-column align-items-center">
+                <% coinEventData.shops.forEach((shop, shopIndex) => { %>
+                    <div class="size-720 w-100 d-none profile-<%= i %>-single-shop" id="profile-<%= i %>-shop-<%= shopIndex %>">
+                        <h4 class="w-100 font-subsubheader"><%= shop.shopName %></h4>
+                            
+                        <table class="font-table w-100 table table-bordered table-hover mb-3">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th class="table-cols-50 text-center">Qty</th>
+                                    <th class="table-cols-75 text-center">Price/Unit</th>
+                                    <th class="table-cols-100 text-center">Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="profile-<%= i %>-shop-<%= shopIndex %>-expenses">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                <% }) %>
+            </div>
+            <p class="w-100 text-center" id="profile-<%= i %>-no-expense-msg">- No items added to this cart yet -</p>
+        </div>
+    </div>
+<% } %>
