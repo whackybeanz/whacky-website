@@ -1,57 +1,36 @@
-<% for(let i = 0; i < 10; i++) { %>
-    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-        <div class="collapsible-section-subheader w-100">
-            <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#cart-<%= i %>">
-                <i class="fas fa-caret-down mr-2"></i> <span id="profile-name-<%= i %>">Profile [<%= i+1 %>]</span>
-            </h3>
+<form class="w-100 px-3">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="size-350 w-100 form-group row d-flex align-items-center">
+            <label class="col-5 font-weight-bold px-2 mb-0 text-left text-sm-center" for="profile-select">Select profile:</label>
+            <select class="col-7 form-control px-2 py-0" id="profile-select">
+                <% for(let i = 0; i < 10; i++) { %>
+                    <option value="<%= i %>" id="option-profile-<%= i %>-name"></option>
+                <% } %>
+            </select>
         </div>
-        <div class="collapsible-section w-100 px-3 pt-3 collapse show" id="cart-<%= i %>">
-            <div class="d-none flex-column align-items-center" id="profile-<%= i %>-shop-list">
-                <div class="size-350 w-100 mb-4">
-                    <table class="font-table w-100 table table-bordered table-hover mb-0">
-                        <thead>
-                            <tr>
-                                <th class="font-subsubheader text-center" colspan="2">Expense Summary</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% coinEventData.coinDetails.forEach(coin => { %>
-                                <tr>
-                                    <td class="align-middle">
-                                        <img class="mr-2" src="<%= icons[`${coin.iconId}`].imgUrl %>">
-                                        <%= icons[`${coin.iconId}`].name %>
-                                    </td>
-                                    <td class="align-middle text-center" id="profile-<%= i %>-<%= coin.iconId %>">
-                                        0
-                                    </td>
-                                </tr>
-                            <% }) %>
-                            <% if(coinEventData.hasMesosShop) { %>
-                                <tr>
-                                    <td class="align-middle">
-                                        <img class="mr-2" src="<%= icons['mesos'].imgUrl %>">
-                                        Mesos
-                                    </td>
-                                    <td class="align-middle text-center" id="profile-<%= i %>-mesos">
-                                        0
-                                    </td>
-                                </tr>
-                            <% } %>
-                        </tbody>
-                    </table>
-                </div>
+    </div>
+</form>
+
+<% for(let i = 0; i < 10; i++) { %>
+    <div class="single-profile font-content w-100 <% if(i !== 0) { %>d-none<% } %>" id="profile-<%= i %>-cart">
+        <div class="d-none flex-column align-items-center" id="profile-<%= i %>-shop-list">
+            <div class="size-900 w-100 mb-4">
+                <table class="font-table w-100 table table-bordered table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th class="py-2">Item Name</th>
+                            <th class="table-cols-50 text-center py-2">Qty</th>
+                            <th class="table-cols-100 text-center py-2">Total Price</th>
+                        </tr>
+                    </thead>
+                </table>
 
                 <% coinEventData.shops.forEach((shop, shopIndex) => { %>
-                    <div class="size-900 w-100 d-none profile-<%= i %>-single-shop" id="profile-<%= i %>-shop-<%= shopIndex %>">
-                        <h4 class="w-100 font-subsubheader"><%= shop.shopName %></h4>
-                            
-                        <table class="font-table w-100 table table-bordered table-hover mb-3">
+                    <div class="d-none profile-<%= i %>-single-shop" id="profile-<%= i %>-shop-<%= shopIndex %>">                            
+                        <table class="font-table w-100 table table-bordered table-hover mb-0">
                             <thead>
-                                <tr>
-                                    <th>Item Name</th>
-                                    <th class="table-cols-50 text-center">Qty</th>
-                                    <th class="table-cols-100 text-center">Price/Unit</th>
-                                    <th class="table-cols-100 text-center">Total Price</th>
+                                <tr class="tr-section-header">
+                                    <th class="font-subsubheader pt-3 pb-1" colspan="3"><%= shop.shopName %></th>
                                 </tr>
                             </thead>
                             <tbody id="profile-<%= i %>-shop-<%= shopIndex %>-expenses"></tbody>
@@ -59,7 +38,14 @@
                     </div>
                 <% }) %>
             </div>
-            <p class="w-100 text-center" id="profile-<%= i %>-no-expense-msg">- No items added to this cart yet -</p>
+
+            <div class="size-350 w-100 form-group row">
+                <button class="btn-load-profile w-100 btn btn-sm btn-outline-info" type="button" data-profile-num="<%= i %>">
+                    <span class="load-default-msg">Load Profile to Item List</span>
+                    <span class="load-success-msg d-none"><i class="fas fa-lg fa-check"></i> Loaded</span>
+                </button>
+            </div>
         </div>
+        <p class="w-100 text-center" id="profile-<%= i %>-no-expense-msg">- No items added to this cart yet -</p>
     </div>
 <% } %>

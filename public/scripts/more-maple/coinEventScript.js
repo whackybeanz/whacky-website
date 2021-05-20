@@ -1,12 +1,27 @@
-let currProfileNum = 1;
+const NUM_PROFILES = 10;
 
 document.addEventListener("DOMContentLoaded", function(event) {
+    // On page load
     //loadSavedInputs();
     displayExpenses();
+
+    // Respective tab's select listener
+    sectionSelectListener();
+    shopSelectListener();
+    profileSelectListener();
+
+    // Expense summary page listeners
+    profileNameBlurListener();
+
+    // Shop item list page listeners
     addInputBlurListener();
     addQtyByOneListener();
-    minusQtyByOneListener();   
+    minusQtyByOneListener();
+    rotateSaveProfileListener();
     saveExpensesListener();
+
+    // Shopping cart page listeners
+    loadProfileBtnListener();
 });
 
 function loadSavedInputs() {
@@ -32,17 +47,22 @@ function loadSavedInputs() {
 
 function displayExpenses(isDisplayAllProfiles = true, activeProfileNum = undefined) {
     const savedInputs = JSON.parse(localStorage.getItem("coinEventTest"));
-    const NUM_PROFILES = 10;
-
-    if(isDisplayAllProfiles) {
-        for(let i = 0; i < NUM_PROFILES; i++) { 
-            if(savedInputs.profiles[`profile-${i}`] !== undefined) {
-                displaySingleProfileExpense(savedInputs, i);
+    
+    if(savedInputs && Object.keys(savedInputs).length !== 0) {
+        if(isDisplayAllProfiles) {
+            for(let i = 0; i < NUM_PROFILES; i++) { 
+                if(savedInputs.profiles[`profile-${i}`] !== undefined) {
+                    displaySingleProfileExpense(savedInputs, i);
+                }
             }
+            loadProfile(savedInputs);
+        } else {
+            displaySingleProfileExpense(savedInputs, activeProfileNum);
         }
+        displayProfileNames(false, savedInputs);
     } else {
-        displaySingleProfileExpense(savedInputs, activeProfileNum);
-    }
+        displayProfileNames();
+    }    
 }
 
 function displaySingleProfileExpense(savedInputs, profileNum) {
@@ -62,7 +82,7 @@ function displaySingleProfileExpense(savedInputs, profileNum) {
     // Retrieve all expenses
     // Display shop that has relevant expense
     // Create table rows representing each item's data
-    let profileExpenses = savedInputs.profiles[`profile-${profileNum}`];
+    let profileExpenses = savedInputs.profiles[`profile-${profileNum}`].expenses;
 
     if(profileExpenses.length > 0) {
         document.getElementById(`profile-${profileNum}-shop-list`).classList.add("d-flex");
@@ -85,6 +105,7 @@ function displaySingleProfileExpense(savedInputs, profileNum) {
             const expenseContainer = document.getElementById(`profile-${profileNum}-shop-${expense.shopId}-expenses`);
             
             let itemName = document.getElementById(`shop-${expense.shopId}-item-${expense.itemId}-name`).value;
+            let tradability = document.getElementById(`shop-${expense.shopId}-item-${expense.itemId}-tradability`).value;
             let qtyPurchased = parseInt(expense.qtyPurchased);
             let itemPricePerUnit = parseInt(document.getElementById(`shop-${expense.shopId}-item-${expense.itemId}-price`).value);
             let currencyImgSrc = document.getElementById(`shop-${expense.shopId}-item-${expense.itemId}-currency`).value;
@@ -93,19 +114,124 @@ function displaySingleProfileExpense(savedInputs, profileNum) {
             expenseByCurrency[currencyId] += qtyPurchased * itemPricePerUnit;
 
             let html = `<tr class="single-item-expense">`
-                html +=    `<td class="align-middle">${itemName}</td>`;
-                html +=    `<td class="table-cols-50 text-center align-middle">${qtyPurchased}</td>`;
-                html +=    `<td class="table-cols-100 text-center align-middle"><img src="${currencyImgSrc}"> ${itemPricePerUnit.toLocaleString('en-SG')}</td>`;
-                html +=    `<td class="table-cols-100 text-center align-middle"><img src="${currencyImgSrc}"> ${(qtyPurchased * itemPricePerUnit).toLocaleString('en-SG')}</td>`;
+                html +=    `<td class="align-middle py-2 position-relative">${itemName}`;
+                html +=        `<div class="tradability-display position-absolute">`
+
+            if(tradability === "x") {
+                html +=            `<div class="d-inline ml-1 text-danger" data-toggle="tooltip" data-placement="bottom" title="Untradable"><i class="fas fa-ban"></i></div>`;
+            } else if(tradability === "i") {
+                html +=            `<div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Inter-Account Transactions only"><i class="fas fa-exchange-alt"></i></div>`;
+            }
+                html +=        `</div>`;
+                html +=    `</td>`;
+                html +=    `<td class="table-cols-50 text-center align-middle py-2">${qtyPurchased}</td>`;
+                //html +=    `<td class="table-cols-100 text-center align-middle py-2"><img src="${currencyImgSrc}"> ${itemPricePerUnit.toLocaleString('en-SG')}</td>`;
+                html +=    `<td class="table-cols-100 text-center align-middle py-2"><img src="${currencyImgSrc}"> ${(qtyPurchased * itemPricePerUnit).toLocaleString('en-SG')}</td>`;
                 html += `</tr>`;
 
             expenseContainer.insertAdjacentHTML('beforeend', html)
         })
 
         Object.keys(expenseByCurrency).forEach(coinId => {
-            document.getElementById(`profile-${profileNum}-${coinId}`).textContent = expenseByCurrency[coinId].toLocaleString('en-SG');
+            if(parseInt(expenseByCurrency[coinId]) !== 0) {
+                document.getElementById(`profile-${profileNum}-${coinId}`).textContent = expenseByCurrency[coinId].toLocaleString('en-SG');
+            } else {
+                document.getElementById(`profile-${profileNum}-${coinId}`).textContent = "-";    
+            }
         })
     }
+}
+
+function loadProfile(savedData, profileNum = 0) {
+    if(Object.keys(savedData).length !== 0) {
+        const eventIdViewed = document.getElementById("event-id").value;
+
+        if(savedData.eventId === eventIdViewed) {
+            let profileData = savedData.profiles[`profile-${profileNum}`]
+
+            if(profileData !== undefined) {
+                let allBuyQtyInputs = document.getElementsByName("itemBuyQty");
+                allBuyQtyInputs.forEach(input => input.value = "");
+
+                profileData.expenses.forEach(item => {
+                    document.getElementById(`shop-${item.shopId}-item-${item.itemId}`).value = parseInt(item.qtyPurchased);
+                })
+            }
+        }
+    }
+}
+
+function displayProfileNames(isDisplayDefaultNames = true, savedData) {
+    for(let i = 0; i < 10; i++) {
+        if(isDisplayDefaultNames) {
+            document.getElementById(`profile-${i}-name`).value = `Profile ${i+1}`;
+            document.getElementById(`option-profile-${i}-name`).textContent = `Profile ${i+1}`;
+            document.getElementById(`active-profile-${i}-name`).textContent = `Profile ${i+1}`;
+        } else {
+            if(savedData.profiles[`profile-${i}`] !== undefined) {
+                document.getElementById(`profile-${i}-name`).value = savedData.profiles[`profile-${i}`].profileName;
+                document.getElementById(`option-profile-${i}-name`).textContent = savedData.profiles[`profile-${i}`].profileName;
+                document.getElementById(`active-profile-${i}-name`).textContent = savedData.profiles[`profile-${i}`].profileName;
+            } else {
+                document.getElementById(`profile-${i}-name`).value = `Profile ${i+1}`;
+                document.getElementById(`option-profile-${i}-name`).textContent = `Profile ${i+1}`;
+                document.getElementById(`active-profile-${i}-name`).textContent = `Profile ${i+1}`;
+            }
+        }
+    }
+}
+
+function sectionSelectListener() {
+    const sectionSelects = document.querySelectorAll(".single-section-select");
+
+    sectionSelects.forEach(section => {
+        section.addEventListener("click", function() {
+            if(this.id === "shop-item-list-pill") {
+                document.getElementById("save-container").classList.remove("d-none");
+            } else {
+                document.getElementById("save-container").classList.add("d-none");
+            }
+        })
+    })
+}
+
+function shopSelectListener() {
+    const shopSelect = document.getElementById("shop-select");
+
+    shopSelect.addEventListener("change", function() {
+        const allShopElems = document.querySelectorAll(".single-shop");
+
+        allShopElems.forEach(shop => {
+            shop.classList.add("d-none");
+        })
+
+        document.getElementById(`coin-shop-${this.value}`).classList.remove("d-none");
+    })
+}
+
+function profileSelectListener() {
+    const profileSelect = document.getElementById("profile-select");
+
+    profileSelect.addEventListener("change", function() {
+        const allProfileElems = document.querySelectorAll(".single-profile");
+
+        allProfileElems.forEach(profile => {
+            profile.classList.add("d-none");
+        })
+
+        document.getElementById(`profile-${this.value}-cart`).classList.remove("d-none");
+    })
+}
+
+function profileNameBlurListener() {
+    let allProfileInputs = document.querySelectorAll(".single-profile-name-input");
+
+    allProfileInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            document.getElementById(`option-profile-${this.dataset.profileNum}-name`).textContent = this.value;
+            document.getElementById(`active-profile-${this.dataset.profileNum}-name`).textContent = this.value;
+        })
+    })
 }
 
 function addInputBlurListener() {
@@ -174,6 +300,23 @@ function minusQtyByOneListener() {
     })
 }
 
+function rotateSaveProfileListener() {
+    let activeProfileElems = document.querySelectorAll(".single-profile-name");
+
+    activeProfileElems.forEach(elem => {
+        elem.addEventListener("click", function() {
+            let currProfileToSave = parseInt(this.dataset.profileNum);
+
+            this.classList.add("d-none");
+            this.classList.remove("active");
+
+            let newProfileToSave = (currProfileToSave + 1) % NUM_PROFILES;
+            document.getElementById(`active-profile-${newProfileToSave}-name`).classList.remove("d-none");
+            document.getElementById(`active-profile-${newProfileToSave}-name`).classList.add("active");
+        })
+    })
+}
+
 function saveExpensesListener() {
     let saveBtn = document.getElementById("btn-save");
 
@@ -186,6 +329,16 @@ function saveExpensesListener() {
 
         if(isSaved) {
             displayExpenses(false, activeProfileNum);
+
+            document.querySelector(".save-icon.fa-save").classList.toggle("d-none");
+            document.querySelector(".save-success-icon.fa-check").classList.toggle("d-none");
+            document.getElementById("btn-save").classList.toggle("bg-success");
+
+            window.setTimeout(() => {
+                this.querySelector(".save-icon.fa-save").classList.toggle("d-none");
+                this.querySelector(".save-success-icon.fa-check").classList.toggle("d-none");
+                document.getElementById("btn-save").classList.toggle("bg-success");
+            }, 2000)
         }
     })
 }
@@ -209,33 +362,40 @@ function calculateTotalExpense() {
 
 function saveInputs(totalExpenses, profileNum) {
     const eventId = document.getElementById("event-id").value;
-    const savedData = JSON.parse(localStorage.getItem("coinEvent"));
+    const savedData = JSON.parse(localStorage.getItem("coinEventTest"));
     let currSavedEventId = "???";
     
     if(savedData !== null) {
         currSavedEventId = savedData.eventId;
     }
-    
-    if(savedData !== null && eventId !== currSavedEventId) {
-        const currSavedEventName = savedData.eventName || "???";
-        
-        if(confirm(`You currently have saved data from another coin event: [${currSavedEventName}]. Proceeding with the save will overwrite your saved data from that coin event. Do you really wish to proceed?`)) {
-            proceedWithSave(totalExpenses, eventId, profileNum);
+
+    // If saved data does not exist, proceed to create a new save
+    // Else, if saved data's event ID is same as currently viewed event ID, use saved data and override only specific information
+    // Otherwise, prompt user to confirm replacement and create a new save if confirmed
+    if(savedData === null) {
+        proceedWithSave(savedData, totalExpenses, eventId, profileNum, false);
+        return true;
+    } else {
+        if(eventId === currSavedEventId) {
+            proceedWithSave(savedData, totalExpenses, eventId, profileNum);
             return true;
         } else {
-            return false;
+            const currSavedEventName = savedData.eventName || "???";
+        
+            if(confirm(`You currently have saved data from another coin event: [${currSavedEventName}]. Proceeding with the save will overwrite your saved data from that coin event. Do you really wish to proceed?`)) {
+                proceedWithSave(savedData, totalExpenses, eventId, profileNum, false);
+                return true;
+            } else {
+                return false;
+            }
         }
-    } else {
-        proceedWithSave(totalExpenses, eventId, profileNum);
-        return true;
     }
 }
 
-function proceedWithSave(totalExpenses, eventId, profileNum) {
-    const savedData = JSON.parse(localStorage.getItem("coinEventTest"));
+function proceedWithSave(savedData, totalExpenses, eventId, profileNum, isPreserveSaveData = true) {
     let toSave = {};
 
-    if(savedData !== null) {
+    if(isPreserveSaveData) {
         toSave = savedData;
     } else {
         toSave = {
@@ -244,7 +404,35 @@ function proceedWithSave(totalExpenses, eventId, profileNum) {
             profiles: { },
         }
     }
-    toSave.profiles[`profile-${profileNum}`] = totalExpenses;
+
+    toSave.profiles[`profile-${profileNum}`] = {
+        profileName: document.getElementById(`profile-${profileNum}-name`).value,
+        expenses: totalExpenses
+    };
     
     localStorage.setItem("coinEventTest", JSON.stringify(toSave));
+}
+
+function loadProfileBtnListener() {
+    const loadProfileBtns = document.querySelectorAll(".btn-load-profile");
+    const savedData = JSON.parse(localStorage.getItem("coinEventTest"));
+
+    loadProfileBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+            loadProfile(savedData, this.dataset.profileNum);
+
+            document.querySelector(".single-profile-name.active").classList.add("d-none");
+            document.querySelector(".single-profile-name.active").classList.remove("active");
+            document.getElementById(`active-profile-${this.dataset.profileNum}-name`).classList.remove("d-none");
+            document.getElementById(`active-profile-${this.dataset.profileNum}-name`).classList.add("active");
+
+            this.querySelector(".load-default-msg").classList.toggle("d-none");
+            this.querySelector(".load-success-msg").classList.toggle("d-none");
+
+            window.setTimeout(() => {
+                this.querySelector(".load-default-msg").classList.toggle("d-none");
+                this.querySelector(".load-success-msg").classList.toggle("d-none");
+            }, 2000)
+        })
+    })
 }

@@ -34,30 +34,47 @@
                 </div>
 
                 <div class="w-100">
-                    <ul class="nav nav-pills d-flex justify-content-center" id="coinEventTabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#cart" id="cart-pill" data-toggle="pill" role="tab">Shopping Cart</a>
+                    <ul class="nav nav-pills d-flex justify-content-center mb-4" id="coinEventTabs" role="tablist">
+                        <li class="nav-item mx-1">
+                            <a class="single-section-select nav-link active" href="#expense-summary" id="expense-summary-pill" data-toggle="pill" role="tab">Expense Summary</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#shop-item-list" id="shop-item-list-pill" data-toggle="pill" role="tab">Coin Shop List</a>
+                        <li class="nav-item mx-1">
+                            <a class="single-section-select nav-link" href="#shop-item-list" id="shop-item-list-pill" data-toggle="pill" role="tab">Item List</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#coin-breakdown" id="coin-breakdown-pill" data-toggle="pill" role="tab">Coin Amounts Breakdown</a>
+                        <li class="nav-item mx-1">
+                            <a class="single-section-select nav-link" href="#cart" id="cart-pill" data-toggle="pill" role="tab">Shopping Cart</a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="single-section-select nav-link" href="#coin-breakdown" id="coin-breakdown-pill" data-toggle="pill" role="tab">Coin Breakdown</a>
                         </li>
                     </ul>
 
-                    <div class="w-100 py-3 tab-content d-flex justify-content-center" id="coinEventTabsContent">
-                        <div class="w-100 tab-pane border-0 fade show active" id="cart" role="tabpanel" aria-labelledby="cart-tab">
-                            <%- include("./shoppingCart") %>
+                    <div class="w-100 tab-content d-flex justify-content-center py-3" id="coinEventTabsContent">
+                        <div class="w-100 tab-pane border-0 fade show active" id="expense-summary" role="tabpanel" aria-labelledby="cart-tab">
+                            <%- include("./expenseSummary") %>
                         </div>
                         <div class="w-100 tab-pane border-0 fade" id="shop-item-list" role="tabpanel" aria-labelledby="shop-item-list-tab">
                             <form class="w-100 mb-4 mb-lg-0">
                                 <input type="hidden" value="<%= coinEventData.eventId %>" id="event-id">
 
+                                <div class="d-flex justify-content-center px-3">
+                                    <div class="size-350 w-100 form-group row d-flex align-items-center">
+                                        <label class="col-5 font-weight-bold px-2 mb-0 text-left text-sm-center" for="shop-select">Select shop:</label>
+                                        <select class="col-7 form-control px-2 py-0" id="shop-select">
+                                            <% coinEventData.shops.forEach((shop, index) => { %>
+                                                <option value="<%= index %>"><%= shop.shopName %></option>
+                                            <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <% coinEventData.shops.forEach((shop, index) => { %>
                                     <%- include("./coinShopItemList", { shop: shop, index: index }) %>
                                 <% }) %>
                             </form>
+                        </div>
+                        <div class="w-100 tab-pane border-0 fade" id="cart" role="tabpanel" aria-labelledby="cart-tab">
+                            <%- include("./shoppingCart") %>
                         </div>
                         <div class="w-100 tab-pane border-0 fade" id="coin-breakdown" role="tabpanel" aria-labelledby="coin-breakdown-tab">
                             <div class="d-flex justify-content-center">
@@ -73,16 +90,17 @@
         </div>
     </div>
 
-    <div class="font-small position-fixed px-2 py-1 cursor-pointer rounded-lg text-center border-right-0" id="active-profile">
-        <div class="single-profile-name active" id="profile-1-name" data-profile-num="0">Profile 1</div>
-        <div class="single-profile-name d-none" id="profile-2-name" data-profile-num="1">Profile 2</div>
-        <div class="single-profile-name d-none" id="profile-3-name" data-profile-num="2">Profile 3</div>
-        <div class="single-profile-name d-none" id="profile-4-name" data-profile-num="3">Profile 4</div>
-        <div class="single-profile-name d-none" id="profile-5-name" data-profile-num="4">Profile 5</div>
-    </div>
+    <div class="d-none" id="save-container">
+        <div class="font-small position-fixed cursor-pointer rounded-lg text-center border-right-0" id="active-profile">
+            <% for(let i = 0; i < 10; i++) { %>
+                <div class="w-100 single-profile-name px-2 py-1 <% if(i !== 0) { %>d-none<% } else { %>active<% } %>" id="active-profile-<%= i %>-name" data-profile-num="<%= i %>"></div>
+            <% } %>
+        </div>
 
-    <div class="modal-btn-trigger position-fixed cursor-pointer d-flex justify-content-center align-items-center" id="btn-save">
-        <i class="far fa-lg fa-save"></i>
+        <div class="modal-btn-trigger position-fixed cursor-pointer d-flex justify-content-center align-items-center" id="btn-save">
+            <i class="save-icon far fa-lg fa-save"></i>
+            <i class="save-success-icon fas fa-lg fa-check d-none"></i>
+        </div>
     </div>
 </div>
 

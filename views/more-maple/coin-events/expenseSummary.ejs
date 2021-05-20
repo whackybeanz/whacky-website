@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-center">
+    <form class="w-100 d-flex justify-content-center">
+        <table class="font-table w-100 size-900 table table-bordered table-hover mb-3">
+            <thead>
+                <tr>
+                    <th class="table-cols-100"></th>
+                    <% coinEventData.coinDetails.forEach(coin => { %>
+                        <th class="text-center align-middle align-md-bottom py-2">
+                            <img class="d-none d-md-inline" src="<%= icons[`${coin.iconId}`].imgUrl %>">
+                            <div class=""><%= icons[`${coin.iconId}`].name %></div>
+                        </th>
+                    <% }) %>
+
+                    <% if(coinEventData.hasMesosShop) { %>
+                        <th class="text-center align-middle align-md-bottom py-2">
+                            <img class="d-none d-md-inline" src="<%= icons['mesos'].imgUrl %>">
+                            <div class="">Mesos</div>
+                        </th>
+                    <% } %>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < 10; i++) { %>
+                    <tr>
+                        <th class="table-cols-100 py-2">
+                            <input type="text" class="single-profile-name-input form-control font-form" placeholder="Enter profile name" id="profile-<%= i %>-name" value="" data-profile-num="<%= i %>" maxlength="25">
+                        </th>
+
+                        <% coinEventData.coinDetails.forEach(coin => { %>
+                            <td class="align-middle text-center py-2" id="profile-<%= i %>-<%= coin.iconId %>"></td>
+                        <% }) %>
+
+                        <% if(coinEventData.hasMesosShop) { %>
+                            <td class="align-middle text-center py-2" id="profile-<%= i %>-mesos"></td>
+                        <% } %>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </form>
+</div>
