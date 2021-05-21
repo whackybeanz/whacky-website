@@ -248,6 +248,7 @@ body.dark-mode {
 
             &:hover, &.active {
                 background-color: globals.$dark-mode-grey;
+                color: globals.$dark-mode-white;
             }
         }
     }

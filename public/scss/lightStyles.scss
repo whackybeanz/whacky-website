@@ -210,6 +210,7 @@ body {
 
             &:hover, &.active {
                 background-color: globals.$light-mode-grey;
+                color: globals.$light-mode-black;
             }
         }
     }

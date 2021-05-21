@@ -37,6 +37,19 @@
                         </table>
                     </div>
                 <% }) %>
+
+                <% if(coinEventData.coinDetails.some(coin => coin.isUsedForRankUp)) { %>
+                    <div class="d-none profile-<%= i %>-single-shop" id="profile-<%= i %>-shop-rank-up">                            
+                        <table class="font-table w-100 table table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="tr-section-header">
+                                    <th class="font-subsubheader pt-3 pb-1" colspan="3">Rank Up Costs</th>
+                                </tr>
+                            </thead>
+                            <tbody id="profile-<%= i %>-shop-rank-up-expenses"></tbody>
+                        </table>
+                    </div>
+                <% } %>
             </div>
 
             <div class="size-350 w-100 form-group row">

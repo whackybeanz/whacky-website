@@ -26,15 +26,52 @@
                     <a href="/maple/events/coin-events" class="btn btn-sm btn-outline-info px-3"><i class="fas fa-angle-double-left"></i> Back to Coin Events List</a>
                 </div>
 
-                <div class="w-100 mb-3">
-                    <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Instructions</h2>
-                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                        <p class="w-100 text-justify">Click on Shopping Cart, Shop List or Coin Breakdown buttons to view respective details. You can save up to five profiles worth of shopping data. To save data to that profile, click on the save icon (bottom right). The active profile that data is saved to is displayed to the left of the icon. Click on the profile name to rotate between each profile.</p>
+                <div class="mb-4 border border-dark rounded-sm py-2 px-3">
+                    <p class="w-100 text-justify mb-0"><span class="text-info font-weight-bold text-underline">Update (22 May 2021)</span></p>
+                    <p class="w-100 text-justify">Support for multi-profile expense tracking has been added.</p>
+                    <p class="w-100 text-justify">For users of this site before 22 May 2021, if you are accessing the Hotel Maple event page for the first time after this update, your previously saved expense data has been auto-loaded in the Item List page.</p>
+                    <p class="w-100 text-justify mb-0">To migrate this data to a profile, please select a profile to save to and click on the Save button (bottom right icon in the Item List page) first before proceeding with any other expense tracking. Thanks!</p>
+                </div>
+
+                <div class="w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                    <div class="collapsible-section-subheader w-100">
+                        <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#instructions">
+                            <i class="fas fa-caret-down mr-2"></i> Guide / Instructions
+                        </h3>
+                    </div>
+                    <div class="font-table collapsible-section w-100 px-3 collapse" id="instructions">
+                        <div class="py-2">
+                            <p class="w-100 font-weight-bold mb-1">Icon guide</p>
+                            <ul>
+                                <li><i class="fas fa-info-circle"></i> Mouse over for more info</li>
+                                <li><i class="fas fa-exchange-alt"></i> Inter-account Tradable</li>
+                                <li><i class="fas fa-ban text-danger"></i> Untradable</li>
+                            </ul>
+                            <p class="w-100 font-weight-bold mb-1">Expense Summary</p>
+                            <ul>
+                                <li>A summary of all expenses, split into each profile. Profiles can be renamed.</li>
+                            </ul>
+                            <p class="w-100 font-weight-bold mb-1">Item List</p>
+                            <ul>
+                                <li>Displays all shop items + rank up purchases. Click on the dropdown to select which shop to view. Enter the quantity for items you wish to purchase.</li>
+                                <li>Click on the save button (bottom right) to save all item purchases to the active profile (shown beside the save button).</li>
+                                <li>Click on the profile name beside the save button to rotate the current active profile.</li>
+                            </ul>
+                            <p class="w-100 font-weight-bold mb-1">Shopping Cart</p>
+                            <ul>
+                                <li>Displays all your item purchases, split by profile. Click on the dropdown to select which profile to view.</li>
+                                <li>Click on "Load Profile to Item List" to load all expenses from the selected profile to the Item List tab. This will also set the loaded profile as the active one to be saved to.</li>
+                            </ul>
+                            <p class="w-100 font-weight-bold mb-1">Coin Breakdown</p>
+                            <ul>
+                                <li>Displays data regarding each coin, where to get them, maximum possible amounts, and rank up costs (if any).</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="w-100">
-                    <ul class="nav nav-pills d-flex justify-content-center mb-4" id="coinEventTabs" role="tablist">
+                    <ul class="nav nav-pills d-flex justify-content-center mt-3 mb-4" id="coinEventTabs" role="tablist">
                         <li class="nav-item mx-1">
                             <a class="single-section-select nav-link active" href="#expense-summary" id="expense-summary-pill" data-toggle="pill" role="tab">Expense Summary</a>
                         </li>
@@ -54,16 +91,20 @@
                             <%- include("./expenseSummary") %>
                         </div>
                         <div class="w-100 tab-pane border-0 fade" id="shop-item-list" role="tabpanel" aria-labelledby="shop-item-list-tab">
-                            <form class="w-100 mb-4 mb-lg-0">
+                            <form class="w-100 mb-4 mb-sm-3 mb-md-0 d-flex flex-column align-items-center justify-content-center">
                                 <input type="hidden" value="<%= coinEventData.eventId %>" id="event-id">
 
-                                <div class="d-flex justify-content-center px-3">
-                                    <div class="size-350 w-100 form-group row d-flex align-items-center">
+                                <div class="size-350 w-100 d-flex justify-content-center px-3">
+                                    <div class="w-100 form-group row d-flex align-items-center">
                                         <label class="col-5 font-weight-bold px-2 mb-0 text-left text-sm-center" for="shop-select">Select shop:</label>
                                         <select class="col-7 form-control px-2 py-0" id="shop-select">
                                             <% coinEventData.shops.forEach((shop, index) => { %>
                                                 <option value="<%= index %>"><%= shop.shopName %></option>
                                             <% }) %>
+
+                                            <% if(coinEventData.coinDetails.some(coin => coin.isUsedForRankUp)) { %>
+                                                <option value="rank-up">Rank Up Costs</option>
+                                            <% } %>
                                         </select>
                                     </div>
                                 </div>
@@ -71,6 +112,17 @@
                                 <% coinEventData.shops.forEach((shop, index) => { %>
                                     <%- include("./coinShopItemList", { shop: shop, index: index }) %>
                                 <% }) %>
+
+                                <% if(coinEventData.coinDetails.some(coin => coin.isUsedForRankUp)) { %>
+                                    <%- include("./rankUpCostItemList") %>
+                                <% } %>
+
+                                <div class="size-350 w-100 mb-3 mb-md-0">
+                                    <button class="w-100 btn btn-sm btn-outline-danger" type="button" id="btn-erase-inputs">
+                                        <span class="erase-default-msg">Erase all Item List inputs</span>
+                                        <span class="erase-success-msg d-none"><i class="fas fa-lg fa-check"></i> Erased</span>
+                                    </button>
+                                </div>
                             </form>
                         </div>
                         <div class="w-100 tab-pane border-0 fade" id="cart" role="tabpanel" aria-labelledby="cart-tab">
@@ -78,7 +130,7 @@
                         </div>
                         <div class="w-100 tab-pane border-0 fade" id="coin-breakdown" role="tabpanel" aria-labelledby="coin-breakdown-tab">
                             <div class="d-flex justify-content-center">
-                                <div class="size-900 w-100">
+                                <div class="size-900 w-100 d-flex flex-column align-items-center">
                                     <%- include("./coinSummary") %>
                                 </div>
                             </div>

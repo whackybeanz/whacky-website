@@ -27,11 +27,11 @@
                         </th>
 
                         <% coinEventData.coinDetails.forEach(coin => { %>
-                            <td class="align-middle text-center py-2" id="profile-<%= i %>-<%= coin.iconId %>"></td>
+                            <td class="profile-<%= i %>-single-currency-expense align-middle text-center py-2" id="profile-<%= i %>-<%= coin.iconId %>"></td>
                         <% }) %>
 
                         <% if(coinEventData.hasMesosShop) { %>
-                            <td class="align-middle text-center py-2" id="profile-<%= i %>-mesos"></td>
+                            <td class="profile-<%= i %>-single-currency-expense align-middle text-center py-2" id="profile-<%= i %>-mesos"></td>
                         <% } %>
                     </tr>
                 <% } %>

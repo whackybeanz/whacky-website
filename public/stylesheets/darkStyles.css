@@ -157,6 +157,7 @@ body.dark-mode .nav-pills .nav-link {
 }
 body.dark-mode .nav-pills .nav-link:hover, body.dark-mode .nav-pills .nav-link.active {
   background-color: #454d55;
+  color: rgba(255, 255, 255, 0.8);
 }
 body.dark-mode .tab-pane {
   border: 1px solid rgba(52, 58, 64, 0.8);

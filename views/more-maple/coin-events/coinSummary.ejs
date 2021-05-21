@@ -1,20 +1,19 @@
-<table class="font-table w-100 table table-bordered table-hover mb-4">
+<table class="font-table size-720 w-100 table table-bordered table-hover mb-4">
     <thead>
         <tr>
-            <th class="table-cols-125 text-center text-sm-left align-middle py-2">Currency</th>
+            <th class="text-center text-sm-left align-middle py-2">Currency</th>
             <th class="align-middle py-2">Currency Numbers</th>
-            <th class="text-center align-middle py-2">
-                Total Expense
-                <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="For GMS players, meso expenses are likely incorrect due to server pricing differences.">
-                    <i class="fas fa-info-circle"></i>
-                </div>
-            </th>
+            <% if(coinEventData.coinDetails.some(coin => coin.isUsedForRankUp)) { %>
+                <th class="table-cols-75 text-center align-middle py-2">
+                    Rank Up Costs
+                </th>
+            <% } %>
         </tr>
     </thead>
     <tbody>
         <% coinEventData.coinDetails.forEach(coin => { %>
             <tr>
-                <td class="table-cols-125 text-center text-sm-left align-middle py-2 position-relative">
+                <td class="text-center text-sm-left align-middle py-2 position-relative">
                     <img class="mr-2" src="<%= icons[`${coin.iconId}`].imgUrl %>">
                     <br class="d-inline d-sm-none">
                     <%= icons[`${coin.iconId}`].name %>
@@ -28,7 +27,7 @@
                 <td class="align-middle py-2">
                     <div class="d-flex flex-column align-items-start">
                         <p class="mb-0">
-                            Max Possible Total: 
+                            <span class="font-weight-bold">Max Possible Total:</span>
                             <% if(coin.mainSource.maxTotal === 0) { %>
                                 <%= (coinGainsAndCosts[coin.iconId].mainSourceCoins + coinGainsAndCosts[coin.iconId].extraSourceCoins).toLocaleString('en-SG') %>
                             <% } else { %>
@@ -37,24 +36,25 @@
                         </p>
 
                         <% if(coin.extraSources.length > 0) { %>
-                            <p class="mb-0">- Main Source: <%= coinGainsAndCosts[coin.iconId].mainSourceCoins.toLocaleString('en-SG') %></p>
+                            <ul class="pl-4 mb-0">
+                                <li>Main Source: <%= coinGainsAndCosts[coin.iconId].mainSourceCoins.toLocaleString('en-SG') %></li>
 
-                            <% if(coinGainsAndCosts[coin.iconId].extraSourceCoins > 0) { %>
-                                <p class="mb-0">- Extra Sources: <%= coinGainsAndCosts[coin.iconId].extraSourceCoins.toLocaleString('en-SG') %></p>
-                            <% } %>
-                        <% } %>
-
-                        <% if(coin.isUsedForRankUp) { %>
-                            <br/>
-                            <p class="mb-0">Rank up costs: <%= coinGainsAndCosts[coin.iconId].rankCosts.toLocaleString('en-SG') %></p>
-                            <br/>
-                            <p class="font-weight-bold mb-0">Amount Left: <%= (coinGainsAndCosts[coin.iconId].mainSourceCoins + coinGainsAndCosts[coin.iconId].extraSourceCoins - coinGainsAndCosts[coin.iconId].rankCosts).toLocaleString('en-SG') %></p>
+                                <% if(coinGainsAndCosts[coin.iconId].extraSourceCoins > 0) { %>
+                                    <li>Extra Sources: <%= coinGainsAndCosts[coin.iconId].extraSourceCoins.toLocaleString('en-SG') %></li>
+                                <% } %>
+                            </ul>
                         <% } %>
                     </div>
                 </td>
-                <td class="text-center align-middle py-2" id="<%= coin.iconId %>-total-expense">
-                    -
-                </td>
+                <% if(coinEventData.coinDetails.some(coin => coin.isUsedForRankUp)) { %>
+                    <td class="table-cols-75 text-center align-middle py-2">
+                        <% if(coin.isUsedForRankUp) { %>
+                            <%= coinGainsAndCosts[coin.iconId].rankCosts.toLocaleString('en-SG') %>
+                        <% } else { %>
+                            -
+                        <% } %>
+                    </td>
+                <% } %>
             </tr>
         <% }) %>
         <% if(coinEventData.hasMesosShop) { %>
@@ -67,9 +67,11 @@
                 <td class="align-middle py-2">
                     -
                 </td>
-                <td class="text-center align-middle py-2" id="mesos-total-expense">
-                    -
-                </td>
+                <% if(coinEventData.coinDetails.some(coin => coin.isUsedForRankUp)) { %>
+                    <td class="text-center align-middle py-2" id="mesos-total-expense">
+                        -
+                    </td>
+                <% } %>
             </tr>
         <% } %>
     </tbody>

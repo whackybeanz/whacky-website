@@ -133,6 +133,7 @@ body .nav-pills .nav-link {
 }
 body .nav-pills .nav-link:hover, body .nav-pills .nav-link.active {
   background-color: rgba(206, 212, 218, 0.8);
+  color: #212529;
 }
 body .tab-pane {
   border: 1px solid rgba(206, 212, 218, 0.8);
