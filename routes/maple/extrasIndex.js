@@ -117,6 +117,7 @@ router.get("/boss-crystal", function(req, res) {
         { id: "pink-bean", easy: 0, normal: 1404500, hard: 0, chaos: 12800000 },
         { id: "pnou", easy: 0, normal: 15312500, hard: 0, chaos: 0 },
         { id: "ranmaru", easy: 0, normal: 648000, hard: 2664500, chaos: 0 },
+        { id: "seren", easy: 0, normal: 0, hard: 0, chaos: 0 },
         { id: "vellum", easy: 0, normal: 968000, hard: 0, chaos: 21012500 },
         { id: "von-bon", easy: 0, normal: 968000, hard: 0, chaos: 16200000 },
         { id: "von-leon", easy: 1058000, normal: 1458000, hard: 2450000, chaos: 0 },
