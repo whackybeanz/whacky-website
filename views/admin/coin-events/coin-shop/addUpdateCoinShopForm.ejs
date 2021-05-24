@@ -11,14 +11,22 @@
                 method="POST" id="add-coin-shop-form">
                 <div class="border border-dark rounded-sm px-3 pt-3">
                     <div class="form-group row">
-                        <label for="coin-shop-name" class="col-sm-3 col-form-label font-weight-bold">Shop Name</label>
+                        <label for="coin-shop-name" class="col-sm-3 col-form-label font-weight-bold">Shop Name<span class="text-danger">*</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="coin-shop-name" name="shopName" placeholder="Shop Name" required autocomplete="off" <% if(locals.coinShopData) { %>value="<%= coinShopData.shopName %>"<% } %>>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label font-weight-bold text-left">Default Currency</label>
+                        <label for="preview-url" class="col-sm-3 col-form-label font-weight-bold">Cosmetics Preview Image File Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="preview-url" name="previewURL" placeholder="Cosmetics Preview Image File Name" autocomplete="off" <% if(locals.coinShopData) { %>value="<%= coinShopData.previewURL %>"<% } %>>
+                            <small class="text-info">Insert only the image file name. Image should be saved to /images/event/coin-events/<%= coinEventData.eventId %> folder in AWS.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label font-weight-bold text-left">Default Currency<span class="text-danger">*</label>
                         <div class="col-sm-9 radio-select-group d-flex flex-column justify-content-center">
                             <div class="d-flex" id="default-currency-radio-group">
                                 <% coinEventData.coinDetails.forEach(function(coin, index) { %>
@@ -51,7 +59,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label font-weight-bold text-left">Default Purchase Limit</label>
+                        <label class="col-sm-3 col-form-label font-weight-bold text-left">Default Purchase Limit<span class="text-danger">*</label>
                         <div class="col-sm-9 radio-select-group d-flex flex-column justify-content-center">
                             <div class="d-flex" id="default-purchase-limit-radio-group">
                                 <div class="col form-check p-0">
@@ -89,7 +97,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label font-weight-bold text-left">Default Tradability</label>
+                        <label class="col-sm-3 col-form-label font-weight-bold text-left">Default Tradability<span class="text-danger">*</label>
                         <div class="col-sm-9 radio-select-group d-flex flex-column justify-content-center">
                             <div class="d-flex" id="default-tradability-radio-group">
                                 <div class="col form-check p-0">

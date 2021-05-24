@@ -259,6 +259,7 @@ router.get("/coin-event/:id/shop/:shopNum", middleware.isAdmin, function(req, re
 router.post("/coin-event/:id/shop/:shopId", middleware.isAdmin, function(req, res) {
     const coinShop = {
         'shops.$.shopName': req.body.shopName, 
+        'shops.$.previewURL': req.body.previewURL,
         'shops.$.defaultCurrency': req.body.defaultCurrency, 
         'shops.$.defaultPurchaseLimit': req.body.defaultPurchaseLimit, 
         'shops.$.defaultTradability': req.body.defaultTradability, 
