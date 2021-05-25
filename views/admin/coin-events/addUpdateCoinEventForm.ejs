@@ -67,7 +67,7 @@
                         <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Banner Image File Name</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="banner-img-file-name" name="bannerFileName" placeholder="Banner Image File Name" required autocomplete="off" <% if(locals.coinEventData) { %>value="<%= coinEventData.eventDetails.bannerImg %>"<% } %>>
-                            <small class="form-text text-info">Will be displayed as banner image when listed. Only insert image file name (e.g. image.jpg). Recommended dimensions: 325px by 150px (or similar ratio)</small>
+                            <small class="form-text text-info">Will be displayed as banner image when listed. Only insert image file name (e.g. image.jpg). Recommended dimensions: 325px by 150px (or similar ratio). Banner should be placed in the same folder as currency icons.</small>
                         </div>
                     </div>
                 </div>
