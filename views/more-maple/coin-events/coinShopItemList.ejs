@@ -5,6 +5,12 @@
                 <p class="w-100 font-table text-justify"><%= shop.shopNotes %></p>
             <% } %>
 
+            <% if(shop.previewURL && shop.previewURL !== "") { %>
+                <div class="d-flex justify-content-center mb-3">
+                    <a href="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= coinEventData.eventId %>/<%= shop.previewURL %>.png" target="_blank" class="btn btn-sm btn-outline-info"><i class="fas fa-eye"></i> Preview Cosmetics <sup><i class="fas fa-external-link-alt"></i></sup></a>
+                </div>
+            <% } %>
+
             <table class="font-table w-100 table table-bordered table-hover mb-0">
                 <thead>
                     <tr>

@@ -13,7 +13,7 @@
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
                 </div>
 
-                <img class="coin-event-banner small mb-0" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= coinEventData.eventDetails.bannerImg %>">
+                <img class="coin-event-banner small mb-0" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= coinEventData.eventId %>/<%= coinEventData.eventDetails.bannerImg %>">
                 <small>
                     <%= coinEventData.eventDetails.startDate.toLocaleDateString('en-SG', {month: 'short', day: '2-digit', year: 'numeric' }) %> to 
                     <%= coinEventData.eventDetails.endDate.toLocaleDateString('en-SG', {month: 'short', day: '2-digit', year: 'numeric' }) %>

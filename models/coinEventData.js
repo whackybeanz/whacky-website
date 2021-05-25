@@ -33,9 +33,16 @@ var coinEventData = new mongoose.Schema({
                 totalCost: Number
             }]
         },
+        isFromWeeklyBoss: Boolean,
+        bossCoinDetails: [{
+            bossName: String,
+            difficulty: String,
+            coinAmount: Number,        
+        }]
     }],
     shops: [{ 
         shopName: String, 
+        previewURL: String,
         defaultCurrency: String,
         defaultPurchaseLimit: String,
         defaultTradability: String, 

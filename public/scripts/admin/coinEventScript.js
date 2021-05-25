@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addCoinEventFormListener();
     deleteFormListener();
     addRankUpBtnListener();
+    isFromWeeklyBossBtnListener();
     addToBulkAddFormListener();
     addMoreItemsListener();
     deleteAddedItemListener();
@@ -103,6 +104,20 @@ function addRankUpBtnListener() {
                 document.getElementById("rank-up-table").classList.remove("d-none");
             } else {
                 document.getElementById("rank-up-table").classList.add("d-none");
+            }
+        })
+    })
+}
+
+function isFromWeeklyBossBtnListener() {
+    const radioBtns = document.querySelectorAll(".from-weekly-boss-input");
+
+    radioBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+            if(this.dataset.fromWeeklyBoss === "yes") {
+                document.getElementById("boss-coin-values").classList.remove("d-none");
+            } else {
+                document.getElementById("boss-coin-values").classList.add("d-none");
             }
         })
     })
