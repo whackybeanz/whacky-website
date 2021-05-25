@@ -6,12 +6,12 @@
         <div class="col-sm-9 d-flex flex-wrap h-100">
             <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="coin-cap-timeframe-radio-group">
                 <div class="col form-check p-0">
-                    <input class="form-check-input" type="radio" name="coinCapType" id="cap-type-daily" value="daily" <% if(!coinData.coinCapType || coinData.coinCapType === "daily") { %>checked<% } %> required>
-                    <label class="form-check-label radio-select cap-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!coinData.coinCapType || coinData.coinCapType === "daily") { %>active<% } %>" for="cap-type-daily" data-cap-type="daily">Daily</label>
+                    <input class="form-check-input" type="radio" name="coinCapType" id="cap-type-daily" value="daily" <% if(!coinData.mainSource.coinCapType || coinData.mainSource.coinCapType === "daily") { %>checked<% } %> required>
+                    <label class="form-check-label radio-select cap-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!coinData.mainSource.coinCapType || coinData.mainSource.coinCapType === "daily") { %>active<% } %>" for="cap-type-daily" data-cap-type="daily">Daily</label>
                 </div>
                 <div class="col form-check p-0">
-                    <input class="form-check-input" type="radio" name="coinCapType" id="cap-type-weekly" value="weekly" <% if(coinData.coinCapType === "weekly") { %>checked<% } %>>
-                    <label class="form-check-label radio-select cap-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(coinData.coinCapType === "weekly") { %>active<% } %>" for="cap-type-weekly" data-cap-type="weekly">Weekly</label>
+                    <input class="form-check-input" type="radio" name="coinCapType" id="cap-type-weekly" value="weekly" <% if(coinData.mainSource.coinCapType === "weekly") { %>checked<% } %>>
+                    <label class="form-check-label radio-select cap-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(coinData.mainSource.coinCapType === "weekly") { %>active<% } %>" for="cap-type-weekly" data-cap-type="weekly">Weekly</label>
                 </div>
             </div>
             <small class="text-info">Refers to whether the coin cap is daily or weekly.</small>
