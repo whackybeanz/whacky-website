@@ -1,54 +1,58 @@
-<table class="font-table w-100 table table-bordered table-hover mb-0">
-    <thead>
-        <tr>
-            <th class="py-2 text-center align-middle">
-                Activity Name
-                <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="E.g. Boss Dummy Relay">
-                    <i class="fas fa-info-circle"></i>
-                </div>
-            </th>
-            <th class="py-2 text-center align-middle">
-                Description
-                <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="E.g. Defeat as many statues as you can in 120 seconds">
-                    <i class="fas fa-info-circle"></i>
-                </div>
-            </th>
-            <th class="table-cols-50 py-2 text-center align-middle">Coin Amount</th>
-            <th class="table-cols-75 py-2 text-center align-middle">Timeframe</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% for(let i = 0; i < 5; i++) { %>
+<h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Additional Sources</h3>
+<p class="mb-2">Insert any other sources for this coin here (e.g. if the boss dummy relay activity awards the same coins, it goes here). Leave fields empty if not applicable.</p>
+<div class="border border-dark rounded-sm px-3 py-3 mb-5">
+    <table class="font-table w-100 table table-bordered table-hover mb-0">
+        <thead>
             <tr>
-                <td class="py-2 px-2">
-                    <div class="form-group mb-0">
-                        <input type="text" class="form-control text-center px-2" name="activityNames" autocomplete="off" 
-                            <% if(coinData.extraSources[i]) { %>value="<%= coinData.extraSources[i].sourceName %>"<% } %>>
+                <th class="py-2 text-center align-middle">
+                    Activity Name
+                    <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="E.g. Boss Dummy Relay">
+                        <i class="fas fa-info-circle"></i>
                     </div>
-                </td>
-                <td class="py-2 px-2">
-                    <div class="form-group mb-0">
-                        <input type="text" class="form-control text-center px-2" name="activityDescriptions" autocomplete="off" 
-                            <% if(coinData.extraSources[i]) { %>value="<%= coinData.extraSources[i].sourceDesc %>"<% } %>>
+                </th>
+                <th class="py-2 text-center align-middle">
+                    Description
+                    <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="E.g. Defeat as many statues as you can in 120 seconds">
+                        <i class="fas fa-info-circle"></i>
                     </div>
-                </td>
-                <td class="table-cols-50 py-2 px-2">
-                    <div class="form-group mb-0">
-                        <input type="number" class="form-control text-center px-2" name="extraSourceCoinAmounts" autocomplete="off" 
-                            <% if(coinData.extraSources[i]) { %>value="<%= coinData.extraSources[i].coinAmount %>"<% } %>>
-                    </div>
-                </td>
-                <td class="table-cols-75 py-2 px-2">
-                    <div class="form-group mb-0">
-                        <select class="form-control px-2" name="coinSourceTimeframes">
-                            <option value="" <% if(coinData.extraSources[i] && coinData.extraSources[i].timeframe === "") { %>selected<% } %>></option>
-                            <option value="day" <% if(coinData.extraSources[i] && coinData.extraSources[i].timeframe === "day") { %>selected<% } %>>Per day</option>
-                            <option value="week" <% if(coinData.extraSources[i] && coinData.extraSources[i].timeframe === "week") { %>selected<% } %>>Per week</option>
-                            <option value="event" <% if(coinData.extraSources[i] && coinData.extraSources[i].timeframe === "event") { %>selected<% } %>>Entire event</option>
-                        </select>
-                    </div>
-                </td>
+                </th>
+                <th class="table-cols-50 py-2 text-center align-middle">Coin Amount</th>
+                <th class="table-cols-75 py-2 text-center align-middle">Timeframe</th>
             </tr>
-        <% } %>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < 5; i++) { %>
+                <tr>
+                    <td class="py-2 px-2">
+                        <div class="form-group mb-0">
+                            <input type="text" class="form-control text-center px-2" name="activityNames" autocomplete="off" 
+                                <% if(coinData.extraSources[i]) { %>value="<%= coinData.extraSources[i].sourceName %>"<% } %>>
+                        </div>
+                    </td>
+                    <td class="py-2 px-2">
+                        <div class="form-group mb-0">
+                            <input type="text" class="form-control text-center px-2" name="activityDescriptions" autocomplete="off" 
+                                <% if(coinData.extraSources[i]) { %>value="<%= coinData.extraSources[i].sourceDesc %>"<% } %>>
+                        </div>
+                    </td>
+                    <td class="table-cols-50 py-2 px-2">
+                        <div class="form-group mb-0">
+                            <input type="number" class="form-control text-center px-2" name="extraSourceCoinAmounts" autocomplete="off" 
+                                <% if(coinData.extraSources[i]) { %>value="<%= coinData.extraSources[i].coinAmount %>"<% } %>>
+                        </div>
+                    </td>
+                    <td class="table-cols-75 py-2 px-2">
+                        <div class="form-group mb-0">
+                            <select class="form-control px-2" name="coinSourceTimeframes">
+                                <option value="" <% if(coinData.extraSources[i] && coinData.extraSources[i].timeframe === "") { %>selected<% } %>></option>
+                                <option value="day" <% if(coinData.extraSources[i] && coinData.extraSources[i].timeframe === "day") { %>selected<% } %>>Per day</option>
+                                <option value="week" <% if(coinData.extraSources[i] && coinData.extraSources[i].timeframe === "week") { %>selected<% } %>>Per week</option>
+                                <option value="event" <% if(coinData.extraSources[i] && coinData.extraSources[i].timeframe === "event") { %>selected<% } %>>Entire event</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

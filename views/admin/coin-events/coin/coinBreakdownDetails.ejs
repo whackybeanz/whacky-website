@@ -30,12 +30,16 @@
                                         <tr>
                                             <th class="text-center py-2">Week <%= index+1 %></th>
                                             <td class="text-center py-2">
-                                                <%= coinCap %> 
+                                                <% if(coinCap !== 0) { %>
+                                                    <%= coinCap %> 
 
-                                                <% if(coin.mainSource.coinCapType === "daily") { %>
-                                                    / day
+                                                    <% if(coin.mainSource.coinCapType === "daily") { %>
+                                                        / day
+                                                    <% } else { %>
+                                                        / week
+                                                    <% } %>
                                                 <% } else { %>
-                                                    / week
+                                                    -
                                                 <% } %>
                                             </td>
                                             <td class="text-center py-2">
@@ -142,6 +146,33 @@
                         <% } %>
                     <% } else { %>
                         - Huh, there's no data here yet. Weird. -
+                    <% } %>
+
+                    <% if(coin.isFromWeeklyBoss) { %>
+                        <div class="size-350 w-100 mx-3">
+                            <p class="font-weight-bold w-100 mb-1">Boss Coin Amounts</p>
+
+                            <table class="font-table w-100 table table-bordered table-hover mb-3">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2">Boss</th>
+                                        <th class="text-center py-2">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% [...new Set(coin.bossCoinDetails.map(perBossDetails => perBossDetails.coinAmount))].forEach(coinAmount => { %>
+                                        <tr>
+                                            <td class="py-2">
+                                                <% coin.bossCoinDetails.filter(perBossDetails => perBossDetails.coinAmount === coinAmount).forEach(boss => { %>
+                                                    <%= boss.bossName %> (<%= boss.difficulty.charAt(0).toUpperCase() + boss.difficulty.slice(1) %>) <br/>
+                                                <% }) %>
+                                            </td>
+                                            <td class="text-center align-middle py-2"><%= coinAmount %></td>
+                                        </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
                     <% } %>
                 </div>
             </div>

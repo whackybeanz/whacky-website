@@ -9,6 +9,7 @@ var middleware = require("../middleware");
 
 var CoinEvent    = require("../../models/coinEventData");
 var Icon         = require("../../models/iconData");
+var Boss        = require("../../models/bossData");
 
 // Coin Event List
 router.get("/coin-events", middleware.isAdmin, function(req, res) {
@@ -148,15 +149,16 @@ router.post("/coin-event/:id/addShop", middleware.isAdmin, function(req, res) {
 router.get("/coin-event/:id/coin/:coinIconId", middleware.isAdmin, function(req, res) {
     let findIcon = Icon.findOne({ usedInEvents: req.params.id, id: req.params.coinIconId });
     let findCoinEvent = CoinEvent.findOne({ eventId: req.params.id });
+    let findBosses = Boss.find({ mainRank: { $gte: 1 } }).sort({ mainRank: 1, subRank: 1, crystalValue: 1, bossName: 1 });
 
-    Promise.all([findIcon, findCoinEvent])
-        .then(([icon, coinEventData]) => {
+    Promise.all([findIcon, findCoinEvent, findBosses])
+        .then(([icon, coinEventData, bossData]) => {
             const coinData = coinEventData.coinDetails.find(coin => coin.iconId === req.params.coinIconId);
             const durationWeeks = (Date.parse(coinEventData.eventDetails.endDate) - Date.parse(coinEventData.eventDetails.startDate) + 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000);
 
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";
-            res.render("admin/coin-events/coin/coinDetails", { icon: icon, coinEventData: coinEventData, coinData: coinData, durationWeeks: durationWeeks });
+            res.render("admin/coin-events/coin/coinDetails", { icon: icon, coinEventData: coinEventData, coinData: coinData, durationWeeks: durationWeeks, bossData: bossData });
         })
         .catch(err => {
             req.flash("error", `Error: ${err}`);
@@ -178,6 +180,7 @@ router.post("/coin-event/:id/coin/:coinId", middleware.isAdmin, function(req, re
             maxTotal: (!isNaN(maxTotal) && maxTotal > 0) ? maxTotal : 0
         },
         'coinDetails.$.isUsedForRankUp': req.body.isUsedForRankUp === "yes",
+        'coinDetails.$.isFromWeeklyBoss': req.body.isFromWeeklyBoss === "yes",
     };
 
     // Add to coin data any extra sources for receiving this coin
@@ -214,6 +217,25 @@ router.post("/coin-event/:id/coin/:coinId", middleware.isAdmin, function(req, re
     } else {
         coin['coinDetails.$.rankUpCosts.details'] = "";
         coin['coinDetails.$.rankUpCosts.ranks'] = [];
+    }
+
+    // If the coin is obtained from weekly bosses, add the relevant bosses and coin amounts
+    if(req.body.isFromWeeklyBoss === "yes") {
+        let bossCoinDetails = [];
+
+        req.body.bossName.forEach((boss, index) => {
+            let coinAmount = parseInt(req.body.bossCoinAmount[index]);
+
+            if(isNaN(coinAmount)) {
+                coinAmount = 0;
+            }
+
+            if(boss !== "" && coinAmount !== 0) {
+                bossCoinDetails.push({ bossName: boss, difficulty: req.body.bossDifficulty[index], coinAmount: coinAmount });
+            }
+        })
+
+        coin['coinDetails.$.bossCoinDetails'] = bossCoinDetails;
     }
 
     CoinEvent.findOneAndUpdate({"coinDetails._id": req.params.coinId}, { $set: coin }, { new: true })
