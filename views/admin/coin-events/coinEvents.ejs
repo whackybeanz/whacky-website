@@ -30,7 +30,7 @@
                                 <% allEvents.forEach(event => { %>
                                     <div class="col-12 col-md-6 col-lg-4 mb-4">
                                         <a href="/admin/coin-event/<%= event.eventId %>">
-                                            <img class="w-100 coin-event-banner" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= event.eventDetails.bannerImg %>">
+                                            <img class="w-100 coin-event-banner" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= event.eventId %>/<%= event.eventDetails.bannerImg %>">
                                         </a>
                                     </div>
                                 <% }) %>
