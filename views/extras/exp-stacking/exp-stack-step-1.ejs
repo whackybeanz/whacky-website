@@ -12,63 +12,57 @@
     <div class="exp-stack-section w-100 px-0 collapse <% if(!locals.expTable && !locals.charLevel && !locals.viewType) { %>show<% } %>" id="step-1">
         <div class="w-100 d-flex justify-content-center px-3 pt-3 pb-2">
             <form class="font-form size-720 w-100 d-flex flex-column justify-content-center align-items-center" action="/maple/extras/exp-stacking" method="POST">
-                <div class="col-12">
-                    <div class="form-group row d-flex align-items-start">
-                        <label for="exp-table-used" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">EXP Table to Use</label>
-                        <div class="col-8 col-md-6 px-0 d-flex flex-column">
-                            <select class="form-control px-2" name="expTable" id="exp-table-used">
-                                <option value="neo" <% if(locals.expTable === "neo") { %>selected<% } %>>NEO</option>
-                                <option value="rise" <% if(!locals.expTable || locals.expTable === "rise") { %>selected<% } %>>RISE</option>
-                                <option value="glory" <% if(locals.expTable === "glory") { %>selected<% } %>>GLORY</option>
-                                <option value="black" <% if(locals.expTable === "black") { %>selected<% } %>>BLACK</option>
-                                <option value="v" <% if(locals.expTable === "v") { %>selected<% } %>>V</option>
-                                <option value="bigbang" <% if(locals.expTable === "bigbang") { %>selected<% } %>>BIG BANG</option>
-                            </select>
-                            <small id="patch-details" class="form-text text-info">
-                                - Released in KMS in December 2020<br/>
-                                - Level cap raised to 300<br/>
-                                - Level 210 to 250 EXP reductions
-                            </small>
-                        </div>
+                <div class="w-100 form-group row d-flex align-items-start">
+                    <label for="exp-table-used" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">EXP Table to Use</label>
+                    <div class="col-8 col-sm-9 px-0 d-flex flex-column">
+                        <select class="form-control px-2" name="expTable" id="exp-table-used">
+                            <option value="neo" <% if(!locals.expTable || locals.expTable === "neo") { %>selected<% } %>>NEO</option>
+                            <option value="rise" <% if(locals.expTable === "rise") { %>selected<% } %>>RISE</option>
+                            <option value="glory" <% if(locals.expTable === "glory") { %>selected<% } %>>GLORY</option>
+                            <option value="black" <% if(locals.expTable === "black") { %>selected<% } %>>BLACK</option>
+                            <option value="v" <% if(locals.expTable === "v") { %>selected<% } %>>V</option>
+                            <option value="bigbang" <% if(locals.expTable === "bigbang") { %>selected<% } %>>BIG BANG</option>
+                        </select>
+                        <small id="patch-details" class="form-text text-info">
+                            - Released in KMS in December 2020<br/>
+                            - Level cap raised to 300<br/>
+                            - Level 210 to 250 EXP reductions
+                        </small>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="form-group row d-flex align-items-start">
-                        <label for="gear-level" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">Character Level</label>
-                        <div class="col-8 col-md-6 px-0 d-flex flex-column">
-                            <input class="font-small w-100 form-control text-left rounded-sm" name="charLevel" type="number" id="char-level" 
-                                value="<% if(!locals.charLevel) { %>210<% } else { %><%= locals.charLevel%><% } %>" 
-                                min="70" max="300" required>
-                            <small id="allowed-levels" class="form-text text-info">Allowed values: 70 to <span id="max-level">299</span></small>
-                        </div>
+
+                <div class="w-100 form-group row d-flex align-items-start">
+                    <label for="gear-level" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">Character Level</label>
+                    <div class="col-8 col-sm-9 px-0 d-flex flex-column">
+                        <input class="font-small w-100 form-control text-left rounded-sm" name="charLevel" type="number" id="char-level" 
+                            value="<% if(!locals.charLevel) { %>210<% } else { %><%= locals.charLevel%><% } %>" 
+                            min="70" max="300" required>
+                        <small id="allowed-levels" class="form-text text-info">Allowed values: 70 to <span id="max-level">299</span></small>
                     </div>
                 </div>
-                <div class="col-12 mb-2">
-                    <div class="form-group row d-flex align-items-start">
-                        <label for="viewTypeRadio" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">View Type</label>
-                        <div class="col-8 col-md-6 px-0 radio-select-group d-flex justify-content-center">
-                            <div class="col form-check p-0">
-                                <input class="form-check-input" type="radio" name="viewTypeRadio" id="view-type-simple" value="Simplified" <% if(!locals.viewType || locals.viewType === "Simplified") { %>checked<% } %>>
-                                <label class="form-check-label font-small radio-select view-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.viewType || locals.viewType === "Simplified") { %>active<% } %>" for="view-type-simple">Simplified View</label>
-                            </div>
-                            <div class="col form-check p-0">
-                                <input class="form-check-input" type="radio" name="viewTypeRadio" id="view-type-detailed" value="Detailed" <% if(locals.viewType === "Detailed") { %>checked<% } %>>
-                                <label class="form-check-label font-small radio-select view-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.viewType === "Detailed") { %>active<% } %>" for="view-type-detailed">Detailed View</label>
-                            </div>
+
+                <div class="w-100 form-group row d-flex align-items-start">
+                    <label for="viewTypeRadio" class="col-4 col-sm-3 col-form-label font-weight-bold text-left pl-0">View Type</label>
+                    <div class="col-8 col-sm-9 px-0 radio-select-group d-flex justify-content-center">
+                        <div class="col form-check p-0">
+                            <input class="form-check-input" type="radio" name="viewTypeRadio" id="view-type-simple" value="Simplified" <% if(!locals.viewType || locals.viewType === "Simplified") { %>checked<% } %>>
+                            <label class="form-check-label font-small radio-select view-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.viewType || locals.viewType === "Simplified") { %>active<% } %>" for="view-type-simple">Simplified View</label>
+                        </div>
+                        <div class="col form-check p-0">
+                            <input class="form-check-input" type="radio" name="viewTypeRadio" id="view-type-detailed" value="Detailed" <% if(locals.viewType === "Detailed") { %>checked<% } %>>
+                            <label class="form-check-label font-small radio-select view-type-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.viewType === "Detailed") { %>active<% } %>" for="view-type-detailed">Detailed View</label>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-12">
-                    <div class="form-group row mb-2">
-                        <button type="submit" class="btn btn-sm btn-outline-info col-12 col-sm-11 col-md-9 py-1 px-2 rounded-sm font-weight-bold text-center" id="btn-start-calc">
-                            <% if(locals.expTable && locals.charLevel && locals.viewType) { %>
-                                <i class="fas fa-redo-alt"></i> Refresh
-                            <% } else { %>
-                                <i class="fas fa-check"></i> Begin
-                            <% } %>
-                        </button>
-                    </div>
+                <div class="w-100 form-group row mb-2">
+                    <button type="submit" class="btn btn-sm btn-outline-info col-12 py-1 px-2 rounded-sm font-weight-bold text-center" id="btn-start-calc">
+                        <% if(locals.expTable && locals.charLevel && locals.viewType) { %>
+                            <i class="fas fa-redo-alt"></i> Refresh
+                        <% } else { %>
+                            <i class="fas fa-check"></i> Begin
+                        <% } %>
+                    </button>
                 </div>
             </form>
         </div>
