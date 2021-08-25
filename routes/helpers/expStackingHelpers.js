@@ -328,54 +328,58 @@ function calculateDojoEXP(expTableSelected, charLevel, expToLevel) {
     let dojoEXPData = {};
 
     if(charLevel >= 105) {
-        let levelDiff;
-
-        if(charLevel < 220) {
-            // For character levels with scaling dojo EXP, calculate expected duration
-            if(charLevel < 200) {
-                levelDiff = 200 - charLevel;
-            } else {
-                levelDiff = 220 - charLevel;    
-            }
-
+        if(charLevel < 200) {
+            // For characters below 200, also calculate EXP to reach 200 from input level
+            let expToLevel, numTicks;
             let totalNumTicks = 0;
+            let levelDiff = 200 - charLevel;
 
             for(let i = 0; i < levelDiff; i++) {
-                let expToLevel = calculateEXPRequired(expTableSelected, charLevel+i);
-                let numTicks = expToLevel / expPerTick[charLevel+i - 105];
+                expToLevel = calculateEXPRequired(expTableSelected, charLevel+i);
+                numTicks = expToLevel / expPerTick[charLevel+i - 105];
                 totalNumTicks += numTicks;
 
+                // Calculate EXP to next immediate level
                 if(i === 0) {
-                    const oneLevelMins = Math.ceil(totalNumTicks * 5 / 60);
-                    const oneLevelHrs = Math.trunc(oneLevelMins / 60);
-
-                    dojoEXPData.per5sRaw = expPerTick[charLevel - 105];
-                    dojoEXPData.per5sPercent = (expPerTick[charLevel-105] / expToLevel * 100).toFixed(3);
-                    dojoEXPData.perHrRaw = expPerTick[charLevel - 105] * 60;
-                    dojoEXPData.perHrPercent = (expPerTick[charLevel-105] * 60 / expToLevel * 100).toFixed(3);
-                    dojoEXPData.toLevel = `~${oneLevelHrs}hrs ${oneLevelMins - oneLevelHrs * 60}mins`
+                    dojoEXPData = getDojoEXPData(charLevel, expToLevel, numTicks, expPerTick);
                 }
             }
+            
+            totalNumTicks = Math.ceil(totalNumTicks);
+            const totalMins = Math.ceil(totalNumTicks * 5 / 60);
+            const totalHrs = Math.trunc(totalMins / 60);
+            dojoEXPData.to200 = `${totalHrs}hrs ${totalMins - totalHrs * 60}mins`;
+        } else if (charLevel < 220) {
+            // For characters below 220, only calculate EXP to next immediate level
+            let expToLevel = calculateEXPRequired(expTableSelected, charLevel);
+            let numTicks = expToLevel / expPerTick[charLevel - 105];
 
-            if(charLevel < 200) {
-                totalNumTicks = Math.ceil(totalNumTicks);
-                const totalMins = Math.ceil(totalNumTicks * 5 / 60);
-                const totalHrs = Math.trunc(totalMins / 60);
-
-                dojoEXPData.to200 = `${totalHrs}hrs ${totalMins - totalHrs * 60}mins`;
-            } else {
-                dojoEXPData.to200 = "";
-            }
+            dojoEXPData = getDojoEXPData(charLevel, expToLevel, numTicks, expPerTick);
+            dojoEXPData.to200 = "";
         } else {
-            // For characters 220 and beyond, retrieve standard values and return
+            // For characters 220+
             dojoEXPData.per5sRaw = expPerTick[expPerTick.length - 1];
             dojoEXPData.per5sPercent = (expPerTick[expPerTick.length - 1] / expToLevel * 100).toFixed(3);
-            dojoEXPData.perHrRaw = expPerTick[expPerTick.length - 1] * 60;
-            dojoEXPData.perHrPercent = (expPerTick[expPerTick.length - 1] * 60 / expToLevel * 100).toFixed(3);
+            dojoEXPData.perHrRaw = expPerTick[expPerTick.length - 1] * 12 * 60;
+            dojoEXPData.perHrPercent = (expPerTick[expPerTick.length - 1] * 12 * 60 / expToLevel * 100).toFixed(3);
             dojoEXPData.toLevel = `Not worth it`;
             dojoEXPData.to200 = "";
         }
     }
+
+    return dojoEXPData;
+}
+
+function getDojoEXPData(charLevel, expToLevel, numTicks, expPerTick) {
+    const oneLevelMins = Math.ceil(numTicks * 5 / 60);
+    const oneLevelHrs = Math.trunc(oneLevelMins / 60);
+
+    let dojoEXPData = {};
+    dojoEXPData.per5sRaw = expPerTick[charLevel - 105];
+    dojoEXPData.per5sPercent = (expPerTick[charLevel-105] / expToLevel * 100).toFixed(3);
+    dojoEXPData.perHrRaw = expPerTick[charLevel - 105] * 12 * 60; // Per tick = 5 seconds
+    dojoEXPData.perHrPercent = (expPerTick[charLevel-105] * 12 * 60 / expToLevel * 100).toFixed(3);
+    dojoEXPData.toLevel = `~${oneLevelHrs}hrs ${oneLevelMins - oneLevelHrs * 60}mins`;
 
     return dojoEXPData;
 }
