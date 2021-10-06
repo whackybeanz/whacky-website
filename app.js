@@ -1,6 +1,6 @@
 var express                 = require("express");
 var app                     = express();
-var bodyParser              = require("body-parser");
+//var bodyParser              = require("body-parser");
 var mongoose                = require("mongoose");
 var flash                   = require("connect-flash");
 var session                 = require("express-session");
@@ -19,8 +19,11 @@ var port = process.env.PORT || 3005;
 var databaseUrl = process.env.DATABASEURL || "mongodb://localhost/maple-info-db";
 mongoose.connect(databaseUrl, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 
-app.use(bodyParser.urlencoded({extended: true}));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(flash());
 

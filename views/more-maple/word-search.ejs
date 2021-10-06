@@ -1,0 +1,56 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="container-fluid content d-flex flex-column flex-md-row p-0">
+    <%- include("../partials/sidebar") %>
+    <div class="main-content-div col px-0 position-relative">
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Word Search</h1>
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                </div>
+
+                <div class="w-100 mb-3">
+                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
+                        <p class="text-justify mb-0">20 Maplestory-themed words are listed below and hidden within this board! Can you find them all?</p>
+                    </div>
+
+                    <div class="w-100 d-flex flex-column align-items-center">
+                        <form class="word-search-board-form mb-4 position-relative">
+                            <div class="word-search-board w-100 h-100">
+                                <% board.forEach((row, rowNum) => { %>
+                                    <% row.forEach((col, colNum) => { %>
+                                        <div class="single-square w-100 h-100 position-relative font-weight-bold d-flex justify-content-center align-items-center text-uppercase cursor-pointer position-relative" data-row-num="<%= rowNum %>" data-col-num="<%= colNum %>" id="square-<%= rowNum %>-<%= colNum %>">
+                                            <%= col %>
+                                        </div>
+                                    <% }) %>
+                                <% }) %>
+                            </div>
+                            <div class="word-search-board-blocker font-form w-100 h-100 d-none align-items-center position-absolute px-3">
+                                <div class="w-100 d-flex flex-column justify-content-center align-items-center text-center" id="submit-board-div">
+                                    <p class="font-weight-bold">Sweet! You found all the words! Now type your Discord profile name and submit!</p>
+
+                                    <div class="w-75 form-group">
+                                        <input type="text" class="form-control text-center" id="discord-name" name="discordName" placeholder="(E.g. whacky)" autocomplete="off" required>
+                                    </div>
+                                    <button type="submit" class="w-75 submit-board-btn btn btn-outline-warning font-weight-bold">Submit Board</button>
+                                </div>
+                                <div class="w-100 d-none text-center font-weight-bold" id="submit-status-div"></div>
+                            </div>
+                        </form>
+                        <div class="word-list px-3 d-flex flex-wrap text-center">
+                            <% wordList.forEach((word, index) => { %>
+                                <div class="word-to-find col-6 col-sm-4 col-md-3 mb-2 font-weight-bold" id="word-<%= index %>"><%= word %></div>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/scripts/more-maple/wordSearchScript.js"></script>
+<%- include("../partials/footer") %>

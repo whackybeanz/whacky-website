@@ -1,0 +1,91 @@
+@use '../_global-styles' as globals;
+
+.word-search-board-form {
+    width: 375px;
+    height: 375px;
+
+    @include globals.for-size(lg) {
+        width: 450px;
+        height: 450px;
+    }
+
+    @include globals.for-size(xl) {
+        width: 525px;
+        height: 525px;
+    }
+
+    .word-search-board {
+        display: grid;
+        grid-template: repeat(15, 25px) / repeat(15, 25px);
+
+        @include globals.for-size(lg) {
+            grid-template: repeat(15, 30px) / repeat(15, 30px);
+        }
+
+        @include globals.for-size(xl) {
+            grid-template: repeat(15, 35px) / repeat(15, 35px);
+        }
+
+        .single-square {
+            background-color: white;
+            color: black;
+
+            &:hover, &.selected {
+                background-color: #17a2b8;
+            }
+
+            &.selected {
+                color: white;
+            }
+
+            &.highlight {
+                hr {
+                    border-color: black;
+
+                    &.horz {
+                        width: 100%;
+                    }   
+
+                    &.vert {
+                        width: 100%;
+                        transform: rotate(90deg);
+                    }
+
+                    &.diag-45, &.diag-135 {
+                        width: 35px;
+
+                        @include globals.for-size(lg) {
+                            width: 42px;
+                        }
+
+                        @include globals.for-size(xl) {
+                            width: 49.5px;
+                        }
+                    }
+
+                    &.diag-45 {
+                        transform: rotate(45deg);
+                    }
+
+                    &.diag-135 {
+                        transform: rotate(135deg);
+                    }
+                }
+            }
+        }
+    }
+
+    .word-search-board-blocker {
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.95);
+    }
+}
+
+.word-list {
+    .word-to-find {
+        &.word-found {
+            text-decoration: line-through;
+            color: rgba(255, 255, 255, 0.3);
+        }
+    }    
+}

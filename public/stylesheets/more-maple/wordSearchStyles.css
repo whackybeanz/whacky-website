@@ -1,0 +1,80 @@
+.word-search-board-form {
+  width: 375px;
+  height: 375px;
+}
+@media (min-width: 992px) {
+  .word-search-board-form {
+    width: 450px;
+    height: 450px;
+  }
+}
+@media (min-width: 1200px) {
+  .word-search-board-form {
+    width: 525px;
+    height: 525px;
+  }
+}
+.word-search-board-form .word-search-board {
+  display: grid;
+  grid-template: repeat(15, 25px)/repeat(15, 25px);
+}
+@media (min-width: 992px) {
+  .word-search-board-form .word-search-board {
+    grid-template: repeat(15, 30px)/repeat(15, 30px);
+  }
+}
+@media (min-width: 1200px) {
+  .word-search-board-form .word-search-board {
+    grid-template: repeat(15, 35px)/repeat(15, 35px);
+  }
+}
+.word-search-board-form .word-search-board .single-square {
+  background-color: white;
+  color: black;
+}
+.word-search-board-form .word-search-board .single-square:hover, .word-search-board-form .word-search-board .single-square.selected {
+  background-color: #17a2b8;
+}
+.word-search-board-form .word-search-board .single-square.selected {
+  color: white;
+}
+.word-search-board-form .word-search-board .single-square.highlight hr {
+  border-color: black;
+}
+.word-search-board-form .word-search-board .single-square.highlight hr.horz {
+  width: 100%;
+}
+.word-search-board-form .word-search-board .single-square.highlight hr.vert {
+  width: 100%;
+  transform: rotate(90deg);
+}
+.word-search-board-form .word-search-board .single-square.highlight hr.diag-45, .word-search-board-form .word-search-board .single-square.highlight hr.diag-135 {
+  width: 35px;
+}
+@media (min-width: 992px) {
+  .word-search-board-form .word-search-board .single-square.highlight hr.diag-45, .word-search-board-form .word-search-board .single-square.highlight hr.diag-135 {
+    width: 42px;
+  }
+}
+@media (min-width: 1200px) {
+  .word-search-board-form .word-search-board .single-square.highlight hr.diag-45, .word-search-board-form .word-search-board .single-square.highlight hr.diag-135 {
+    width: 49.5px;
+  }
+}
+.word-search-board-form .word-search-board .single-square.highlight hr.diag-45 {
+  transform: rotate(45deg);
+}
+.word-search-board-form .word-search-board .single-square.highlight hr.diag-135 {
+  transform: rotate(135deg);
+}
+.word-search-board-form .word-search-board-blocker {
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+.word-list .word-to-find.word-found {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/*# sourceMappingURL=wordSearchStyles.css.map */
