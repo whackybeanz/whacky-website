@@ -1,3 +1,21 @@
+function sortByCategory(allEvents) {
+    let eventsByCategory = {
+        ongoing: [],
+        upcoming: [],
+        ended: []
+    };
+
+    allEvents.forEach(event => {
+        if(event.category) {
+            eventsByCategory[event.category].push(event);
+        } else {
+            eventsByCategory['ended'].push(event);
+        }
+    })
+
+    return eventsByCategory;
+}
+
 function getCoinGainsAndCosts(coinEventData) {
     let coinGainsAndCosts = {};
 
@@ -59,4 +77,4 @@ function getAllItemMaxQty(coinEventData, durationWeeks) {
     return itemMaxQtys;
 }
 
-module.exports = { getCoinGainsAndCosts, getAllItemMaxQty };
+module.exports = { sortByCategory, getCoinGainsAndCosts, getAllItemMaxQty };

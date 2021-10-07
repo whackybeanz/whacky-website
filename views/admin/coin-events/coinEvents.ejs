@@ -25,16 +25,8 @@
                                 <i class="fas fa-caret-down mr-2"></i> All Coin Events
                             </h3>
                         </div>
-                        <div class="collapsible-section w-100 px-0 collapse show" id="coin-event-list">
-                            <div class="d-flex justify-content-start flex-wrap px-3 pt-3 pb-3">
-                                <% allEvents.forEach(event => { %>
-                                    <div class="col-12 col-md-6 col-lg-4 mb-4">
-                                        <a href="/admin/coin-event/<%= event.eventId %>">
-                                            <img class="h-100 w-100 coin-event-banner" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= event.eventId %>/<%= event.eventDetails.bannerImg %>">
-                                        </a>
-                                    </div>
-                                <% }) %>
-                            </div>
+                        <div class="collapsible-section w-100 px-0 collapse show px-3 pt-3" id="coin-event-list">
+                            <%- include("./coinEventsByCategory") %>
                         </div>
                     </div>
                 </div>

@@ -18,15 +18,18 @@ router.get("/coin-events", middleware.isAdmin, function(req, res) {
             req.flash("error", `Error: ${err}`);
             res.redirect("back");
         } else {
+            let eventsByCategory = CoinEventHelper.sortByCategory(allEvents);
+            
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";
-            res.render("admin/coin-events/coinEvents", { allEvents: allEvents });
+            res.render("admin/coin-events/coinEvents", { eventsByCategory: eventsByCategory });
         }
     })
 })
 
 router.post("/coin-events", middleware.isAdmin, function(req, res) {
     let newCoinEvent = {
+        category: req.body.category,
         isPublic: req.body.isPublic === "yes",
         addedOrUpdatedOn: Date.now(),
         eventId: req.body.eventId,
@@ -92,6 +95,7 @@ router.get("/coin-event/:id", middleware.isAdmin, function(req, res) {
 
 router.post("/coin-event/:id", middleware.isAdmin, function(req, res) {
     const updatedCoinEvent = {
+        category: req.body.category,
         isPublic: req.body.isPublic === "yes",
         addedOrUpdatedOn: Date.now(),
         eventDetails: {

@@ -3,6 +3,7 @@ var mongoose = require("mongoose");
 var coinEventData = new mongoose.Schema({
     addedOrUpdatedOn: Date,
     isPublic: { type: Boolean, default: true },
+    category: String,
     eventId: String,
     eventDetails: {
         name: String,

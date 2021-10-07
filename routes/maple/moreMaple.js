@@ -28,10 +28,12 @@ router.get("/events/tactical-relay", function(req, res) {
 router.get("/events/coin-events", function(req, res) {
     CoinEvent.find({isPublic: true})
         .then(allEvents => {
+            let eventsByCategory = CoinEventHelper.sortByCategory(allEvents);
+
             res.locals.section = "more-maple";
             res.locals.branch = "coin-events";
             res.locals.extraStylesheet = "more-maple/coinEventStyles";
-            res.render("more-maple/coin-events/coinEventsLanding", { allEvents: allEvents });
+            res.render("more-maple/coin-events/coinEventsLanding", { eventsByCategory: eventsByCategory });
         })
         .catch(err => {
             req.flash("error", `Error: ${err}`);

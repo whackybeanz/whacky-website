@@ -117,6 +117,13 @@
                                     <%- include("./rankUpCostItemList") %>
                                 <% } %>
 
+                                <div class="size-350 w-100 mb-3">
+                                    <button class="btn-save w-100 btn btn-sm btn-outline-info" type="button" id="btn-save-bottom">
+                                        <p class="save-default-msg mb-0">Save expenses to current profile</p>
+                                        <p class="save-success-msg d-none mb-0"><i class="fas fa-lg fa-check"></i> Saved!</p>
+                                    </button>
+                                </div>
+
                                 <div class="size-350 w-100 mb-3 mb-md-0">
                                     <button class="w-100 btn btn-sm btn-outline-danger" type="button" id="btn-erase-inputs">
                                         <span class="erase-default-msg">Erase all Item List inputs</span>
@@ -149,7 +156,7 @@
             <% } %>
         </div>
 
-        <div class="modal-btn-trigger position-fixed cursor-pointer d-flex justify-content-center align-items-center" id="btn-save">
+        <div class="btn-save modal-btn-trigger position-fixed cursor-pointer d-flex justify-content-center align-items-center" id="btn-save-round">
             <i class="save-icon far fa-lg fa-save"></i>
             <i class="save-success-icon fas fa-lg fa-check d-none"></i>
         </div>

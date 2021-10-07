@@ -385,6 +385,7 @@ function rotateSaveProfileListener() {
             let newProfileToSave = (currProfileToSave + 1) % NUM_PROFILES;
             document.getElementById(`active-profile-${newProfileToSave}-name`).classList.remove("d-none");
             document.getElementById(`active-profile-${newProfileToSave}-name`).classList.add("active");
+            document.getElementById('saving-profile').textContent = document.getElementById(`active-profile-${newProfileToSave}-name`).textContent;
         })
     })
 }
@@ -392,28 +393,34 @@ function rotateSaveProfileListener() {
 // When user clicks on save button, calculate total expenses of profile, save this data, and display purchased items in cart
 // Also toggle save button's view when save succeeds
 function saveExpensesListener() {
-    let saveBtn = document.getElementById("btn-save");
+    let saveBtns = document.querySelectorAll(".btn-save");
 
-    saveBtn.addEventListener("click", function() {
-        let activeProfileElem = document.querySelector(".single-profile-name.active");
-        let activeProfileNum = parseInt(activeProfileElem.dataset.profileNum);
+    saveBtns.forEach(saveBtn => {
+        saveBtn.addEventListener("click", function() {
+            let activeProfileElem = document.querySelector(".single-profile-name.active");
+            let activeProfileNum = parseInt(activeProfileElem.dataset.profileNum);
 
-        let totalExpenses = compileTotalExpense();
-        let isSaved = saveInputs(totalExpenses, activeProfileNum);
+            let totalExpenses = compileTotalExpense();
+            let isSaved = saveInputs(totalExpenses, activeProfileNum);
 
-        if(isSaved) {
-            displayExpenses(false, activeProfileNum);
+            if(isSaved) {
+                displayExpenses(false, activeProfileNum);
 
-            document.querySelector(".save-icon.fa-save").classList.toggle("d-none");
-            document.querySelector(".save-success-icon.fa-check").classList.toggle("d-none");
-            document.getElementById("btn-save").classList.toggle("bg-success");
+                document.querySelector(".save-icon.fa-save").classList.toggle("d-none");
+                document.querySelector(".save-success-icon.fa-check").classList.toggle("d-none");
+                document.getElementById("btn-save-round").classList.toggle("bg-success");
+                document.querySelector(".save-default-msg").classList.toggle("d-none");
+                document.querySelector(".save-success-msg").classList.toggle("d-none");
 
-            window.setTimeout(() => {
-                this.querySelector(".save-icon.fa-save").classList.toggle("d-none");
-                this.querySelector(".save-success-icon.fa-check").classList.toggle("d-none");
-                document.getElementById("btn-save").classList.toggle("bg-success");
-            }, 2000)
-        }
+                window.setTimeout(() => {
+                    document.querySelector(".save-icon.fa-save").classList.toggle("d-none");
+                    document.querySelector(".save-success-icon.fa-check").classList.toggle("d-none");
+                    document.getElementById("btn-save-round").classList.toggle("bg-success");
+                    document.querySelector(".save-default-msg").classList.toggle("d-none");
+                    document.querySelector(".save-success-msg").classList.toggle("d-none");
+                }, 2000)
+            }
+        })
     })
 }
 

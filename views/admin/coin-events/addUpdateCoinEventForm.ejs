@@ -12,7 +12,17 @@
                 <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Event Basic Info</h3>
                 <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
                     <div class="form-group row">
-                        <div class="col-sm-3 font-weight-bold">Public?</div>
+                        <label for="category-select" class="col-sm-3 col-form-label font-weight-bold">Event is...</label>
+                        <div class="col-sm-9">
+                            <select class="form-control col-sm-6 py-0" name="category" id="category-select">
+                                <option value="ongoing" <% if(!locals.coinEventData || (locals.coinEventData && coinEventData.category === "ongoing")) { %>selected<% } %>>Ongoing</option>
+                                <option value="upcoming" <% if(locals.coinEventData && coinEventData.category === "upcoming") { %>selected<% } %>>Upcoming</option>
+                                <option value="ended" <% if(locals.coinEventData && coinEventData.category === "ended") { %>selected<% } %>>Ended</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="is-public-radio-group" class="col-sm-3 col-form-label font-weight-bold">Publicly Viewable?</label>
                         <div class="col-sm-9 d-flex flex-wrap h-100">
                             <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="is-public-radio-group">
                                 <div class="col form-check p-0">

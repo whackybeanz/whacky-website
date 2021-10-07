@@ -17,13 +17,9 @@
                         <p class="text-justify mb-0">Click on any banner below to view event details, coin shop items, and plan your purchases!</p>
                     </div>
 
-                    <% allEvents.forEach(event => { %>
-                        <div class="col-12 col-sm-6 col-lg-4 mb-4">
-                            <a href="/maple/events/coin-event/<%= event.eventId %>">
-                                <img class="h-100 w-100 coin-event-banner" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= event.eventId %>/<%= event.eventDetails.bannerImg %>">
-                            </a>
-                        </div>
-                    <% }) %>
+                    <div class="d-flex flex-column">
+                        <%- include("../../admin/coin-events/coinEventsByCategory") %>
+                    </div>
                 </div>
             </div>
         </div>
