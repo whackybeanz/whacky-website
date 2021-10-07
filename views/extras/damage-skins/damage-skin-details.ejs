@@ -4,8 +4,31 @@
             <i class="fas fa-caret-down"></i> Screenshots
         </h3>
         <div class="collapsible-section px-0 collapse show" id="ds-<%= skin.folderNum %>-screenshots">
-            <div class="py-3">
-                - Coming Soon -
+            <div class="position-relative py-3">
+                <% if(!skin.screenshotTypes || skin.screenshotTypes === null) { %>
+                    - No screenshots available yet. Wanna contribute? <a href="https://docs.google.com/spreadsheets/d/1A1bGj9uCLAMAJBXsNPwtF3ydt15C7zQc6Tdbt1tOlMI/edit?usp=sharing" target="_blank">Click me!</a> -
+                <% } else { %>
+                    <% if(skin.screenshotTypes.includes("reg")) { %>
+                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>-ss-1.png">
+                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>-ss-2.png">
+                        <br/>
+                    <% } %>
+
+                    <% if(skin.screenshotTypes.includes("unit-kr")) { %>
+                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-ss-1.png">
+                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-ss-2.png">
+                        <br/>
+                    <% } %>
+
+                    <% if(skin.screenshotTypes.includes("unit-en")) { %>
+                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en-ss-1.png">
+                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en-ss-2.png">
+                    <% } %>
+
+                    <% if(skin.screenshotCredits) { %>
+                        <div class="screenshot-credits font-small mt-2">[Image credits] - <%= skin.screenshotCredits %></div>
+                    <% } %>
+                <% } %>
             </div>
         </div>
     </div>

@@ -17,21 +17,21 @@ var damageSkinSchema = new mongoose.Schema({
     regularItemId: String,
     unitFolderNum: Number,
     unitItemId: String,
-
-    screenshots: [ { fileName: String, caption: String, credits: String } ],
+    screenshotTypes: [String],
+    screenshotCredits: String,
 
     // Critical hits, regular hits, unit displays, custom damage skin displays
     digits: {
         critical: {
             hasEffect: { type: Boolean, default: true },
-            cri1Assets: ["String"],
+            cri1Assets: [String],
             isLoadCri0: { type: Boolean, default: false },
-            cri0Assets: ["String"],
+            cri0Assets: [String],
         },
         regular: {
-            red1Assets: ["String"],
+            red1Assets: [String],
             isLoadRed0: { type: Boolean, default: false },
-            red0Assets: ["String"],
+            red0Assets: [String],
         },
         unitTypes: [String],
         customNumAssetsToLoad: Number,

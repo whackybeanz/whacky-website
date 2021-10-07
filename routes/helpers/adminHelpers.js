@@ -73,6 +73,8 @@ function compileDamageSkinData(body) {
 
         folderNum: parseInt(body.folderNum),
         regularItemId: body.regularItemId,
+        screenshotTypes: body.screenshotTypes,
+        screenshotCredits: body.screenshotCredits,
         
         digits: {
             combatMessages: body.combatMessages
