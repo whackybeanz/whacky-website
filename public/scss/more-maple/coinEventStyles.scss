@@ -1,8 +1,7 @@
 @use '../_global-styles' as globals;
 
 .coin-event-banner {
-    height: 150px;
-    object-fit: contain;
+    object-fit: cover;
     transition: all 0.2s;
 
     &:hover {
