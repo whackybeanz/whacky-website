@@ -112,6 +112,12 @@
   margin-bottom: 0 !important;
 }
 
+#char-level {
+  font-size: 64px;
+  width: 125px;
+  background-color: transparent;
+}
+
 .item-square {
   height: 40px;
   width: 40px;
@@ -147,6 +153,27 @@
 
 .quick-ref {
   right: 1rem;
+}
+
+.single-daily-quest, .single-mp-dungeon {
+  opacity: 0.25;
+  transition: all 0.2s;
+}
+.single-daily-quest.active, .single-mp-dungeon.active {
+  cursor: pointer;
+  opacity: 1;
+}
+.single-daily-quest.active:hover, .single-mp-dungeon.active:hover {
+  transition: all 0.2s;
+}
+
+#monster-park-list, #selected-mp-dungeon, #event-exp-table-details, #dojo-exp-table-details {
+  height: 350px;
+  overflow: auto;
+}
+
+#selected-mp-dungeon {
+  top: 0;
 }
 
 /*# sourceMappingURL=extrasStyles.css.map */

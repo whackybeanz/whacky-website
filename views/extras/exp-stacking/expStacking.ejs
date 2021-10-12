@@ -8,10 +8,20 @@
             <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
                 <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
-                    <h1 class="font-header w-100 text-center m-0 px-0">EXP Stacking Calculator</h1>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Everything EXP</h1>
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
                 </div>
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+                <div class="d-flex flex-column justify-content-center align-items-center text-info mb-0">
+                    <div class="d-flex align-items-center">
+                        <h2 class="font-subheader mb-0">Level</h2>
+                        <input type="number" id="char-level" class="font-weight-bold text-info text-center border-0 py-0 mb-3 mx-3" value="250">
+                        <button type="button" class="d-none btn btn-sm btn-outline-info" id="btn-update-level"><i class="fas fa-check"></i></button>
+                    </div>
+                </div>
+
+
+                <ul class="nav nav-pills d-flex justify-content-center mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item mx-1">
                         <a class="nav-link active" id="pills-growth-pots-tab" data-toggle="pill" href="#pills-growth-pots" role="tab" aria-controls="pills-growth-pots" aria-selected="true">Growth Potions</a>
                     </li>
@@ -32,33 +42,21 @@
                     </li>
                 </ul>
                 <div class="w-100 tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade rounded-sm show active" id="pills-growth-pots" role="tabpanel" aria-labelledby="pills-growth-pots-tab">...</div>
-                    <div class="tab-pane fade rounded-sm" id="pills-exp-contents" role="tabpanel" aria-labelledby="pills-exp-contents-tab">
-                        
+                    <div class="tab-pane fade border-0 rounded-sm show active" id="pills-growth-pots" role="tabpanel" aria-labelledby="pills-growth-pots-tab">...</div>
+                    <div class="tab-pane fade border-0 rounded-sm" id="pills-exp-contents" role="tabpanel" aria-labelledby="pills-exp-contents-tab">
+                        <%- include("./exp-contents") %>
                     </div>
                     <div class="tab-pane fade border-0" id="pills-exp-mult" role="tabpanel" aria-labelledby="pills-exp-mult-tab">
                         
                     </div>
-                    <div class="tab-pane fade rounded-sm" id="pills-monster-exp" role="tabpanel" aria-labelledby="pills-monster-exp-tab">...</div>
-                    <div class="tab-pane fade rounded-sm" id="pills-exp-table" role="tabpanel" aria-labelledby="pills-exp-table-tab">
+                    <div class="tab-pane fade border-0 rounded-sm" id="pills-monster-exp" role="tabpanel" aria-labelledby="pills-monster-exp-tab">...</div>
+                    <div class="tab-pane fade border-0 rounded-sm" id="pills-exp-table" role="tabpanel" aria-labelledby="pills-exp-table-tab">
                         <%- include("./exp-tables") %>
                     </div>
                     <div class="tab-pane fade border-0" id="pills-credits" role="tabpanel" aria-labelledby="pills-credits-tab">
                         <%- include("./exp-stack-credits") %>
                     </div>
                 </div>
-
-
-
-
-                <!--<div class="w-100 mb-3">
-                    <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Instructions</h2>
-                    <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
-                        <p class="w-100 text-justify">This calculator helps you determine your current EXP multiplier, and expected EXP gains on certain content.</p>
-                        <p class="w-100 text-justify">To view expected EXP rates on only 'general content' (Monster Park, EXP Growth Potions), select 'Simplified' for View Type. To view expected EXP rates for both 'general content' and 'hunting content' (monster EXP), select 'Detailed'.</p>
-                    </div>
-                    <%- include("./exp-stack-step-1") %>
-                </div>-->
             </div>
         </div>
     </div>

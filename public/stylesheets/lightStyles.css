@@ -270,11 +270,14 @@ body #dmg-skin-carousel .carousel-nav {
 body #dmg-skin-carousel .carousel-item {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
-body .exp-stack-section-subheader, body .exp-stack-section {
+body .exp-stack-section {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
 body .exp-stack-section-subheader {
   background-color: rgba(206, 212, 218, 0.8);
+}
+body .exp-stack-section-content {
+  background-color: white;
 }
 body .single-exp-stack {
   border: 1px solid rgba(206, 212, 218, 0.8);
@@ -298,6 +301,12 @@ body .tab-pane .single-map-select:hover {
 body .tab-pane .single-map-select.active {
   background-color: #6cbb3c;
   transition: all 0.2s;
+}
+body .single-daily-quest.active:hover, body .single-mp-dungeon.active:hover {
+  background-color: rgba(206, 212, 218, 0.8);
+}
+body #selected-mp-dungeon {
+  background-color: white;
 }
 body #active-profile {
   border: 2px solid rgba(206, 212, 218, 0.8);

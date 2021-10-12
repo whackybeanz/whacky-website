@@ -1,46 +1,35 @@
-const patchDetails = {
-    neo: {
-        details: ["Released in KMS in December 2020", "Level cap raised to 300", "Level 210 to 250 EXP reductions"],
-        maxLevel: 300,
-    },
-    rise: {
-        details: ["Released in KMS in December 2020", "Level 170 to 199 EXP reductions"],
-        maxLevel: 275,
-    },
-    glory: {
-        details: ["Released in KMS in July 2019", "Level 220 to 234 EXP reductions"],
-        maxLevel: 275,
-    },
-    black: {
-        details: ["Released in KMS in June 2018", "Level 201 to 220 EXP reductions", "Level cap raised to 275"],
-        maxLevel: 275,
-    },
-    v: {
-        details: ["Released in KMS in July 2016", "Level 66 to 200 EXP reductions", "Level cap raised to 250"],
-        maxLevel: 250,
-    },
-    bigbang: {
-        details: ["Released in KMS in July 2010", "EXP reduced across all levels"],
-        maxLevel: 250,
-    }
-}
-
 document.addEventListener("DOMContentLoaded", function(event) {
-    /*const initSelectedField = document.getElementById("exp-table-used").value;
-    populateStep1Details(initSelectedField);
-    addEXPTableSelectListener();
-    addViewTypeBtnListeners();
-    addStartCalcBtnListener();
-    addViewEXPTypeListener();*/
-
-    loadEXPTableDetails();
-})
-
-function loadEXPTableDetails() {
     loadEXPTableHistory();
     loadCurrentEXPTable();
+    loadEventEXPTable();
+    loadDojoEXPTable();
+    loadSavedData();
+
+    addDailyQuestListeners();
+    addMonsterParkListeners();
+    addResetMonsterParkListener();
+
+    changeLevelListener();
+})
+
+/***********************
+ * 
+ * Basic getters
+ * 
+ * *********************/
+function getCharLevel() {
+    return parseInt(document.getElementById("char-level").value);
 }
 
+function getExpTNL(charLevel) {
+    return parseInt(document.getElementById(`${charLevel}-exp-tnl`).dataset.rawExpTnl);
+}
+
+/***********************
+ * 
+ * Loading of EXP Tables
+ * 
+ * *********************/
 function loadEXPTableHistory() {
     EXP_TABLE_HISTORY.forEach(history => {
         document
@@ -78,7 +67,7 @@ function loadCurrentEXPTable() {
                 .getElementById(`exp-table-${index}`)
                 .insertAdjacentHTML('beforeend', `<tr>
                     <th scope="row" class="text-center">${levelRange.startLevel+arrayNum} > ${levelRange.startLevel+arrayNum+1}</th>
-                    <td class="text-center" id="${levelRange.startLevel+arrayNum}-exp-tnl">${rawEXP.toLocaleString('en-SG')}</td>
+                    <td class="text-center" id="${levelRange.startLevel+arrayNum}-exp-tnl" data-raw-exp-tnl="${rawEXP}">${rawEXP.toLocaleString('en-SG')}</td>
                     <td class="text-center">${prevEXP === -1 ? "-" : (rawEXP / prevEXP * 100 - 100).toFixed(1).replace(/[.,]0$/, "") + "%" }</td>
                 </tr>`);
 
@@ -87,87 +76,305 @@ function loadCurrentEXPTable() {
     })
 }
 
-// Populates "tooltip" below each input field for patch details and restrictions
-function populateStep1Details(selectedField) {
-    let patchDetailsField = document.getElementById("patch-details");
-    patchDetailsField.innerHTML = "";
-    
-    patchDetails[selectedField].details.forEach(function(detail) {
-        patchDetailsField.appendChild(document.createTextNode(`- ${detail}`));
-        patchDetailsField.appendChild(document.createElement('br'));
-        document.getElementById("max-level").textContent = patchDetails[selectedField].maxLevel-1;
+function loadEventEXPTable() {
+    let startingLevel = 200;
+    let expTNL = 0;
+
+    EVENT_EXP_TABLE.forEach((expValue, index) => {
+        expTNL = parseInt(document.getElementById(`${startingLevel + index}-exp-tnl`).dataset.rawExpTnl);
+
+        document
+                .getElementById(`event-exp-table`)
+                .insertAdjacentHTML('beforeend', `<tr>
+                    <th scope="row" class="text-center">${startingLevel + index} > ${startingLevel + index + 1}</th>
+                    <td class="text-center align-middle">${expTNL.toLocaleString('en-SG')}</td>
+                    <td class="text-center align-middle" id="${startingLevel + index}-event-exp" data-raw-exp="${expValue}">${expValue === -1 ? "???" : expValue.toLocaleString('en-SG')}</td>
+                    <td class="text-center align-middle text-info font-weight-bold">${expValue === -1 ? "-" : (expValue / expTNL*100).toFixed(3) + "%"}</td>
+                </tr>`);
     })
 }
 
-function addEXPTableSelectListener() {
-    const expTableSelectField = document.getElementById("exp-table-used");
+function loadDojoEXPTable() {
+    let startingLevel = 105;
+    let expTNL = 0;
 
-    expTableSelectField.addEventListener("change", (event) => {
-        const selectedField = event.target.value;
-        populateStep1Details(selectedField);
+    DOJO_EXP_TABLE.forEach((expValue, index) => {
+        expTNL = parseInt(document.getElementById(`${startingLevel + index}-exp-tnl`).dataset.rawExpTnl);
+
+        document
+                .getElementById(`dojo-exp-table`)
+                .insertAdjacentHTML('beforeend', `<tr>
+                    <th scope="row" class="text-center align-middle">${startingLevel + index} > ${startingLevel + index + 1}</th>
+                    <td class="text-center align-middle">${expTNL.toLocaleString('en-SG')}</td>
+                    <td class="text-center align-middle">${expValue.toLocaleString('en-SG')} / tick<br/>${(expValue*12*60).toLocaleString('en-SG')} / hour</td>
+                    <td class="text-center align-middle text-info font-weight-bold">${(expValue / expTNL*100).toFixed(3) + "%"} / tick<br/>${(expValue*12*60 / expTNL*100).toFixed(3) + "%"} / hour</td>
+                </tr>`);
+    })
+
+    document
+        .getElementById(`dojo-exp-table`)
+        .insertAdjacentHTML('beforeend', `<tr>
+            <th scope="row" class="text-center align-middle">220+</th>
+            <td class="text-center align-middle" colspan="3">EXP per tick is same as 219 > 220. It's not worth AFK-ing for EXP beyond this point f3</td>
+        </tr>`);
+}
+
+/***********************
+ * 
+ * Load any available saved data from LocalStorage
+ * 
+ * If no data has been saved, use website defaults (level 225)
+ * - Calculate potion EXP values based on default level
+ * - Update available daily quests (and % EXP gain from each daily)
+ * - Calculate and display expected EXP value (and %) from event minigames
+ * 
+ * If data is available, do the following:
+ * - Calculate potion EXP values based on saved level
+ * - Activate all selected daily quests, and calculate and display total value (and %)
+ * - Display selected monster park (if any)
+ * - Calculate and display expected EXP value (and %) from event minigames
+ * - Activate all selected EXP multipliers
+ * 
+ * ***********************/
+function loadSavedData() {
+    let savedData = localStorage.getItem("everythingEXP");
+
+    if(savedData === null) {
+        updateAvailableDailyQuests();
+        calcEventEXPPercent();
+    } else {
+        // loadSavedEXPContents();
+        // loadSavedEXPMultipliers();
+    }
+}
+
+/***********************
+ * 
+ * Div, Button, Input Listeners
+ * 
+ * *********************/
+// For all daily quests, add or remove selected state (a check mark) based on user interaction
+// Then, calculate sum of total dailies EXP based on all selected dailies
+function addDailyQuestListeners() {
+    let allDailiesElems = document.querySelectorAll(".single-daily-quest");
+
+    allDailiesElems.forEach(elem => {
+        elem.addEventListener("click", () => {
+            if(elem.classList.contains("active")) {
+                if(elem.classList.contains("selected")) {
+                    elem.classList.remove("selected");
+                    elem.querySelector(".selected-mark").classList.add("d-none");
+                } else {
+                    elem.classList.add("selected");
+                    elem.querySelector(".selected-mark").classList.remove("d-none");
+                }
+            }
+
+            calcTotalDailiesEXP();
+        })
     })
 }
 
-function addViewTypeBtnListeners() {
-    const viewTypeBtns = Array.from(document.querySelectorAll(".view-type-input"));
+// For all monster park dungeons, first check if selected dungeon is actually available (active)
+// - If active, update selected state based on latest-clicked dungeon
+// - Then, proceed to calculate % EXP gains from monster park
+function addMonsterParkListeners() {
+    let allMonsterParkElems = document.querySelectorAll(".single-mp-dungeon");
 
-    viewTypeBtns.forEach(function(btn) {
-        btn.addEventListener("click", function() {
-            if(!this.classList.contains("active")) {
-                document.querySelector(".view-type-input.active").classList.remove("active");
-                this.classList.add("active");
+    allMonsterParkElems.forEach(elem => {
+        elem.addEventListener("click", () => {
+            if(elem.classList.contains("active")) {
+                let currSelectedMonsterParkElem = document.querySelector(".single-mp-dungeon.selected");
+
+                if(currSelectedMonsterParkElem !== null) {
+                    currSelectedMonsterParkElem.classList.remove("selected");
+                }
+
+                elem.classList.add("selected");
+                calcMonsterParkPercent();
             }
         })
     })
 }
 
-// On click of "Begin", check if user entered valid character level
-// If invalid, display relevant error message and maximum allowed level input
-function addStartCalcBtnListener() {
-    const startCalcBtn = document.getElementById("btn-start-calc");
+// Disable table view for monster park dungeon when reset option is selected
+function addResetMonsterParkListener() {
+    let resetMPbtn = document.getElementById("btn-reset-monster-park");
 
-    startCalcBtn.addEventListener("click", (event) => {
-        const expTableSelected = document.getElementById("exp-table-used").value;
-        const charLevelInput = parseInt(document.getElementById("char-level").value);
-        const maxAllowedLevelInput = patchDetails[expTableSelected].maxLevel;
-        const minAllowedLevelInput = 50;
+    resetMPbtn.addEventListener("click", event => {
+        document.getElementById("monster-park-default-display").classList.remove("d-none");
+        document.getElementById("monster-park-selected-display").classList.add("d-none");
+        document.getElementById("selected-mp-dungeon").classList.remove('d-flex');
+        document.getElementById("selected-mp-dungeon").classList.add('d-none');
+    })
+}
 
-        if(isNaN(charLevelInput) || charLevelInput < minAllowedLevelInput || charLevelInput >= maxAllowedLevelInput) {
-            event.preventDefault();
-            document.getElementById("allowed-levels").classList.add("text-danger");
-            document.getElementById("max-level").textContent = maxAllowedLevelInput-1;
+/***********************
+ * 
+ * When user clicks out of level input box, first validate input
+ * 
+ * If input is valid, do the following:
+ * - Update available daily quests (and % EXP gain from each daily) based on new level value
+ * - Update what monster park dungeons are still available for selection based on new level value
+ * 
+ * - Calculate and display daily quest total EXP value based on still-available-and-selected dailies
+ * - Calculate and display monster park EXP value if dungeon is still active and selected
+ * 
+ * ***********************/
+function changeLevelListener() {
+    let charLevelInput = document.getElementById("char-level");
+
+    charLevelInput.addEventListener("focusout", event => {
+        let charLevel = parseInt(charLevelInput.value)
+
+        if(isNaN(charLevel) || charLevel <= 0 || charLevel >= 300) {
+            let everythingEXP = localStorage.getItem("everythingEXP");
+
+            if(everythingEXP === null) {
+                charLevelInput.value = 250;
+            } else {
+                charLevelInput.value = JSON.parse(everythingEXP).charLevel;
+            }
         } else {
-            document.getElementById("allowed-levels").classList.remove("text-danger");
+            updateAvailableDailyQuests();
+            updateAvailableMonsterParkDungeons();
+            calcTotalDailiesEXP();
+            calcMonsterParkPercent();
         }
     })
 }
 
-// Toggles view between raw EXP value and percent EXP value
-let isViewEXPPercent = true;
+/***********************
+ * 
+ * Determine based on the current user level input if a particular daily is still available at that level
+ * For each daily in the entire list:
+ * - If not available, remove active state. If it was previously selected, also remove selected state.
+ * - If newly (or still) available, add active state. Also calculate the raw/% EXP of this active daily.
+ * 
+ * ***********************/
+function updateAvailableDailyQuests() {
+    let charLevel = getCharLevel();
+    let expTNL = getExpTNL(charLevel);
+    let allDailiesElems = document.querySelectorAll(".single-daily-quest");
 
-function addViewEXPTypeListener() {
-    const expTypeElem = document.getElementById("view-exp-type-col");
+    allDailiesElems.forEach(dailyElem => {
+        let dailyQuestDetails = dailyElem.querySelector(".daily-quest-details");
+        let dailyQuestRawEXP = parseInt(dailyQuestDetails.dataset.rawExp);
 
-    if(expTypeElem) {
-        expTypeElem.addEventListener("click", function() {
-            const allPercentEXPElem = Array.from(document.querySelectorAll(".view-percent-exp"));
-            const allRawEXPElem = Array.from(document.querySelectorAll(".view-raw-exp"));
+        if(charLevel < parseInt(dailyQuestDetails.dataset.minLevel)) {
+            dailyElem.classList.remove("active");
+            dailyElem.classList.remove("selected");
+            dailyElem.querySelector(".selected-mark").classList.add("d-none");
+            dailyQuestDetails.querySelector(".percent-exp").textContent = "-";
+        } else {
+            dailyElem.classList.add("active");
 
-            allPercentEXPElem.forEach(function(elem) {
-                elem.classList.toggle("d-none");
-            })
-
-            allRawEXPElem.forEach(function(elem) {
-                elem.classList.toggle("d-none");
-            })
-
-            isViewEXPPercent = !isViewEXPPercent;
-
-            if(isViewEXPPercent) {
-                document.getElementById("view-exp-type").textContent = "(%)";
-            } else {
-                document.getElementById("view-exp-type").textContent = "(Raw EXP)";
+            if(dailyQuestRawEXP !== 0) {
+                let dailyQuestPercentEXP = (dailyQuestRawEXP / expTNL * 100).toFixed(3);
+                dailyQuestDetails.querySelector(".percent-exp").textContent = dailyQuestPercentEXP + "%";
             }
-        })
+        }
+    })
+}
+
+/***********************
+ * 
+ * Determine based on the current user level input if a particular monster park dungeon is still available at that level
+ * For each monster park dungeon in the entire list:
+ * - If not available, remove active state. If it was previously selected, also remove selected state.
+ * - If newly (or still) available, add active state.
+ * 
+ * ***********************/ 
+function updateAvailableMonsterParkDungeons() {
+    let charLevel = getCharLevel();
+    let allMonsterParkElems = document.querySelectorAll(".single-mp-dungeon");
+
+    allMonsterParkElems.forEach(monsterParkElem => {
+        let mpDetails = monsterParkElem.querySelector(".mp-details");
+
+        if(charLevel < parseInt(mpDetails.dataset.minLevel)) {
+            monsterParkElem.classList.remove("active");
+            monsterParkElem.classList.remove("selected");
+        } else {
+            monsterParkElem.classList.add("active");
+        }
+    })
+}
+
+// Calculate EXP from selected daily quests (must be both active and selected)
+// Displays both raw value and % value
+function calcTotalDailiesEXP() {
+    let allActiveDailies = document.querySelectorAll(".single-daily-quest.active.selected");
+    let charLevel = getCharLevel();
+    let expTNL = getExpTNL(charLevel);
+    let totalEXP = 0;
+
+    allActiveDailies.forEach(elem => {
+        totalEXP += parseInt(elem.querySelector(".daily-quest-details").dataset.rawExp);
+    })
+    
+    document.getElementById("selected-dailies-total-raw-exp").textContent = (totalEXP).toLocaleString("en-SG") + " EXP";
+    document.getElementById("selected-dailies-total-percent-exp").textContent = (totalEXP / expTNL * 100).toFixed(3) + "%";
+}
+
+// Check if any monster park dungeon is still currently selected
+// If dungeon is still active and selected, update displayed EXP table for monster park dungeon values
+// If not selected anymore, reset views related to monster park EXP table and prompt user to select dungeon
+function calcMonsterParkPercent() {
+    let selectedDungeon = document.querySelector(".single-mp-dungeon.selected");
+
+    if(selectedDungeon !== null) {
+        let charLevel = getCharLevel();
+        let expTNL = getExpTNL(charLevel); 
+        let mpDetails = selectedDungeon.querySelector(".mp-details");
+
+        document.getElementById("monster-park-exp-table").innerHTML = "";
+
+        for(let i = 1; i <= 7; i++) {
+            let rawExp = mpDetails.dataset.rawExp;
+
+            document
+                .getElementById("monster-park-exp-table")
+                .insertAdjacentHTML('beforeend', `<tr>
+                    <th scope="row" class="text-center">${i}</th>
+                    <td class="text-center">
+                        ${(rawExp * i).toLocaleString('en-SG')} EXP / <span class="font-weight-bold text-info">${((rawExp * i) / expTNL * 100).toFixed(3)}%</span>
+                    </td>
+                    <td class="text-center">
+                        ${(Math.round(rawExp * 1.5) * i).toLocaleString('en-SG')} EXP / <span class="font-weight-bold text-info">${((Math.round(rawExp * 1.5) * i) / expTNL * 100).toFixed(3)}%</span>
+                    </td>
+                    <td class="text-center">
+                        ${(rawExp * 2 * i).toLocaleString('en-SG')} EXP / <span class="font-weight-bold text-info">${((rawExp * 2 * i) / expTNL * 100).toFixed(3)}%</span>
+                    </td>
+                </tr>`);
+        }
+
+        document.getElementById("monster-park-default-display").classList.add("d-none");
+        document.getElementById("monster-park-selected-display").classList.remove("d-none");
+        document.getElementById("selected-mp-dungeon-name").innerHTML = `<img src="${selectedDungeon.querySelector(".mp-dungeon-img").src}" class="mr-2"> Monster Park - ${mpDetails.dataset.name}`;
+        document.getElementById("selected-mp-dungeon").classList.remove('d-none');
+        document.getElementById("selected-mp-dungeon").classList.add('d-flex');
+    } else {
+        document.getElementById("monster-park-exp-table").innerHTML = "";
+        document.getElementById("monster-park-default-display").classList.remove("d-none");
+        document.getElementById("monster-park-selected-display").classList.add("d-none");
+        document.getElementById("selected-mp-dungeon").classList.add('d-none');
+        document.getElementById("selected-mp-dungeon").classList.remove('d-flex');
+    }
+}
+
+// Calculate EXP obtained from event minigames and display total EXP (and %)
+function calcEventEXPPercent() {
+    let charLevel = getCharLevel();
+    let expTNL = getExpTNL(charLevel);
+    let eventExpPerRun = parseInt(document.getElementById(`${charLevel}-event-exp`).dataset.rawExp);
+
+    if(eventExpPerRun !== -1) {
+        let eventTotalPercentExp = (eventExpPerRun * 2 / expTNL * 100).toFixed(3);
+        document.getElementById("event-per-day-raw-exp").textContent = (eventExpPerRun * 2).toLocaleString('en-SG') + " EXP";
+        document.getElementById("event-per-day-percent-exp").textContent = eventTotalPercentExp + "%";
+    } else {
+        document.getElementById("event-per-day-raw-exp").textContent = "-";
+        document.getElementById("event-per-day-percent-exp").textContent = "-";
     }
 }

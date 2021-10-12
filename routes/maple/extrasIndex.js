@@ -267,7 +267,20 @@ router.get("/exp-stacking", function(req, res) {
     res.locals.extraStylesheet = "extras/extrasStyles";
     res.locals.section = "extras";
     res.locals.branch = "calc-exp-stacking";
-    res.render("extras/exp-stacking/expStacking");
+
+    let getIcons = Icon.find({ usedInSections: "exp-stacking" });
+
+    Promise.all([getIcons])
+        .then(([foundIcons]) => {
+            const compiledIcons = IconHelper.compileIcons(foundIcons);
+            const expContents = EXPStackingHelper.getEXPContentsValues();
+
+            res.render("extras/exp-stacking/expStacking", { icons: compiledIcons, expContents: expContents });
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) {
