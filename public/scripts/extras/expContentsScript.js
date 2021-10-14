@@ -1,17 +1,3 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-    loadEXPTableHistory();
-    loadCurrentEXPTable();
-    loadEventEXPTable();
-    loadDojoEXPTable();
-    loadSavedData();
-
-    addDailyQuestListeners();
-    addMonsterParkListeners();
-    addResetMonsterParkListener();
-
-    changeLevelListener();
-})
-
 /***********************
  * 
  * Basic getters
@@ -121,35 +107,6 @@ function loadDojoEXPTable() {
 
 /***********************
  * 
- * Load any available saved data from LocalStorage
- * 
- * If no data has been saved, use website defaults (level 225)
- * - Calculate potion EXP values based on default level
- * - Update available daily quests (and % EXP gain from each daily)
- * - Calculate and display expected EXP value (and %) from event minigames
- * 
- * If data is available, do the following:
- * - Calculate potion EXP values based on saved level
- * - Activate all selected daily quests, and calculate and display total value (and %)
- * - Display selected monster park (if any)
- * - Calculate and display expected EXP value (and %) from event minigames
- * - Activate all selected EXP multipliers
- * 
- * ***********************/
-function loadSavedData() {
-    let savedData = localStorage.getItem("everythingEXP");
-
-    if(savedData === null) {
-        updateAvailableDailyQuests();
-        calcEventEXPPercent();
-    } else {
-        // loadSavedEXPContents();
-        // loadSavedEXPMultipliers();
-    }
-}
-
-/***********************
- * 
  * Div, Button, Input Listeners
  * 
  * *********************/
@@ -171,6 +128,7 @@ function addDailyQuestListeners() {
             }
 
             calcTotalDailiesEXP();
+            saveEXPContentData();
         })
     })
 }
@@ -192,6 +150,7 @@ function addMonsterParkListeners() {
 
                 elem.classList.add("selected");
                 calcMonsterParkPercent();
+                saveEXPContentData();
             }
         })
     })
@@ -202,10 +161,12 @@ function addResetMonsterParkListener() {
     let resetMPbtn = document.getElementById("btn-reset-monster-park");
 
     resetMPbtn.addEventListener("click", event => {
+        document.querySelector(".single-mp-dungeon.selected").classList.remove("selected");
         document.getElementById("monster-park-default-display").classList.remove("d-none");
         document.getElementById("monster-park-selected-display").classList.add("d-none");
         document.getElementById("selected-mp-dungeon").classList.remove('d-flex');
         document.getElementById("selected-mp-dungeon").classList.add('d-none');
+        saveEXPContentData();
     })
 }
 
@@ -240,6 +201,8 @@ function changeLevelListener() {
             updateAvailableMonsterParkDungeons();
             calcTotalDailiesEXP();
             calcMonsterParkPercent();
+            calcEventEXPPercent();
+            saveEXPContentData();
         }
     })
 }
@@ -377,4 +340,30 @@ function calcEventEXPPercent() {
         document.getElementById("event-per-day-raw-exp").textContent = "-";
         document.getElementById("event-per-day-percent-exp").textContent = "-";
     }
+}
+
+function saveEXPContentData() {
+    let savedData = JSON.parse(localStorage.getItem("everythingEXP"));
+
+    let charLevel = getCharLevel();
+    let selectedDailies = document.querySelectorAll(".single-daily-quest.active.selected");
+    let selectedMonsterPark = document.querySelector(".single-mp-dungeon.active.selected");
+
+    let toSave = {
+        charLevel: charLevel,
+        dailies: [],
+        monsterPark: selectedMonsterPark !== null ? selectedMonsterPark.id : "",
+    }
+
+    selectedDailies.forEach(daily => {
+        toSave.dailies.push(daily.id);
+    })
+
+    if(savedData === null) {
+        savedData = { expContents: toSave };
+    } else {
+        savedData.expContents = toSave;
+    }
+
+    localStorage.setItem("everythingEXP", JSON.stringify(savedData));
 }
