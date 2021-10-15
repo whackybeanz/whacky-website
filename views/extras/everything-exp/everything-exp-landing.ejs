@@ -41,7 +41,9 @@
                     </li>
                 </ul>
                 <div class="w-100 tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade border-0 rounded-sm show active" id="pills-growth-pots" role="tabpanel" aria-labelledby="pills-growth-pots-tab">...</div>
+                    <div class="tab-pane fade border-0 rounded-sm show active" id="pills-growth-pots" role="tabpanel" aria-labelledby="pills-growth-pots-tab">
+                        <%- include("./growth-potions") %>
+                    </div>
                     <div class="tab-pane fade border-0 rounded-sm" id="pills-exp-contents" role="tabpanel" aria-labelledby="pills-exp-contents-tab">
                         <%- include("./exp-contents") %>
                     </div>
@@ -53,7 +55,7 @@
                         <%- include("./exp-tables") %>
                     </div>
                     <div class="tab-pane fade border-0" id="pills-credits" role="tabpanel" aria-labelledby="pills-credits-tab">
-                        <%- include("./exp-stack-credits") %>
+                        <%- include("./exp-credits") %>
                     </div>
                 </div>
             </div>

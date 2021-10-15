@@ -52,14 +52,18 @@ function loadSavedData() {
 function loadEXPContentsData(savedData) {
     document.getElementById("char-level").value = savedData.charLevel;
 
-    savedData.dailies.forEach(daily => {
-        document.getElementById(daily).classList.add("selected");
-        document.getElementById(daily).querySelector(".selected-mark").classList.remove("d-none");
-    })
-    calcTotalDailiesEXP();
+    if(savedData.dailies.length !== 0) {
+        savedData.dailies.forEach(daily => {
+            document.getElementById(daily).classList.add("selected");
+            document.getElementById(daily).querySelector(".selected-mark").classList.remove("d-none");
+        })
+        calcTotalDailiesEXP();
+    }
 
-    document.getElementById(savedData.monsterPark).classList.add("selected");
-    calcMonsterParkPercent();
+    if(savedData.monsterPark !== "") {
+        document.getElementById(savedData.monsterPark).classList.add("selected");
+        calcMonsterParkPercent();
+    }
 }
 
 function loadSavedEXPMultipliers(savedData) {

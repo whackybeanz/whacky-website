@@ -1,0 +1,65 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="w-100 d-flex flex-column justify-content-center px-3 py-3">
+        <div class="exp-stack-section rounded-sm mb-5">
+            <div class="exp-stack-section-subheader text-center py-1">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                     <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2"> Credits
+                </h2>
+            </div>
+            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center py-3">
+                <div class="w-100 d-flex flex-column justify-content-start align-items-center px-3">
+                    <div class="w-100 mb-3">
+                        <h2 class="font-subsubheader font-weight-bold text-underline mb-2" id="credits-ack">Acknowledgements</h2>
+                        <div class="font-content w-100 mb-4">
+                            <p class="text-justify">Many thanks to the respective Inven threads and StrategyWiki's <a href="https://strategywiki.org/wiki/MapleStory/EXP_and_Pet_Closeness" target="_blank">EXP Table</a> and <a href="https://strategywiki.org/wiki/MapleStory/Formulas#EXP_stacking">EXP Stacking formulas</a> for making this possible. Also, shoutout to players from the <a href="https://discord.gg/NNpqZsZ" target="_blank">MapleSEA Discord</a> for helping contribute information to make this page even better!</p>
+
+                            <p class="text-justify mb-1">EXP Contents data:</p>
+                            <ul>
+                                <li><a href="#" target="_blank">Maple LIVE minigame EXP Table</a></li>
+                                <li><a href="#" target="_blank">Mu Lung Dojo EXP Table</a></li>
+                            </ul>
+
+                            <!--<p class="text-justify mb-1">EXP table data over the years:</p>
+                            <ul>
+                                <li><a href="http://m.inven.co.kr/board/maple/2304/24769" target="_blank">NEO</a> (Level cap raised to 300, Level 210 to 250 EXP reductions)</li>
+                                <li><a href="http://m.inven.co.kr/board/maple/2304/18454" target="_blank">RISE</a> (Level 170 to 199 EXP reductions)</li>
+                                <li><a href="http://m.inven.co.kr/board/maple/2304/16215" target="_blank">GLORY</a> (Level 220 to 234 EXP reductions)</li>
+                                <li><a href="http://m.inven.co.kr/board/maple/2304/11072" target="_blank">BLACK</a> (Level 201 to 219 EXP reductions, Level cap raised to 275)</li>
+                                <li><a href="http://m.inven.co.kr/board/maple/2304/13331" target="_blank">Complete EXP Table post-BLACK patch changes</a></li>
+                                <li><a href="https://blog.naver.com/13333331/220758186233" target="_blank">Complete EXP Table post-V patch</a></li>
+                                <li><a href="https://blog.naver.com/13333331/178536039" target="_blank">Complete EXP Table post-BIG BANG patch</a></li>
+                            </ul>-->
+                        </div>
+                    </div>
+                    <div class="w-100 mb-0">
+                        <h2 class="font-subsubheader font-weight-bold text-underline mb-2" id="credits-contact">Contact</h2>
+                        <div class="font-content w-100">
+                            <p class="text-justify mb-0">If you spot any errors, please contact <a href="https://www.discord.com/users/119446116843388929">whacky#7051 on Discord</a> with the list of corrections to make. Thank you!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="exp-stack-section rounded-sm mb-5">
+            <div class="exp-stack-section-subheader text-center py-1">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                     <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2"> EXP Table History
+                </h2>
+            </div>
+            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center py-3">
+                <table class='font-table size-720 w-100 table table-sm table-bordered table-hover mb-0'>
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Patch Content</th>
+                            <th scope="col" class="px-2">Details</th>
+                            <th scope="col" class="text-center">EXP Table URL</th>
+                        </tr>
+                    </thead>
+                    <tbody id='exp-table-history'>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
