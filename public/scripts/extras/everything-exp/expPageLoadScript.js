@@ -1,10 +1,14 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    // EXP Contents
     loadEXPTableHistory();
     loadCurrentEXPTable();
     loadEventEXPTable();
     loadDojoEXPTable();
 
+    // Growth Potions
+    loadGrowthPotionsEXPTable();
+    addPotionTableSelectListener();
+
+    // EXP Contents
     addDailyQuestListeners();
     addMonsterParkListeners();
     addResetMonsterParkListener();
@@ -18,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Load data
     loadSavedData();
+    changeLevelListener();
 })
 
 /***********************
@@ -40,17 +45,18 @@ function loadSavedData() {
     let savedData = JSON.parse(localStorage.getItem("everythingEXP"));
 
     if(savedData !== null) {
-        loadEXPContentsData(savedData.expContents);
+        loadEXPContentsData(savedData.expContents, savedData.charLevel);
         loadSavedEXPMultipliers(savedData.expMultipliers);
     }
 
+    updatePerPotionEXPPercent();
     updateAvailableDailyQuests();
     updateAvailableMonsterParkDungeons();
     calcEventEXPPercent();
 }
 
-function loadEXPContentsData(savedData) {
-    document.getElementById("char-level").value = savedData.charLevel;
+function loadEXPContentsData(savedData, charLevel) {
+    document.getElementById("char-level").value = charLevel;
 
     if(savedData.dailies.length !== 0) {
         savedData.dailies.forEach(daily => {
@@ -84,4 +90,44 @@ function loadSavedEXPMultipliers(savedData) {
     }
 
     getTotalMultiplier();
+}
+
+/***********************
+ * 
+ * When user clicks out of level input box, first validate input
+ * 
+ * If input is valid, do the following:
+ * - Retrieve new potion EXP based on this new level
+ * 
+ * - Update available daily quests (and % EXP gain from each daily) based on new level value
+ * - Update what monster park dungeons are still available for selection based on new level value
+ * 
+ * - Calculate and display daily quest total EXP value based on still-available-and-selected dailies
+ * - Calculate and display monster park EXP value if dungeon is still active and selected
+ * 
+ * ***********************/
+function changeLevelListener() {
+    let charLevelInput = document.getElementById("char-level");
+
+    charLevelInput.addEventListener("focusout", event => {
+        let charLevel = parseInt(charLevelInput.value)
+
+        if(isNaN(charLevel) || charLevel <= 0 || charLevel >= 300) {
+            let everythingEXP = localStorage.getItem("everythingEXP");
+
+            if(everythingEXP === null) {
+                charLevelInput.value = 225;
+            } else {
+                charLevelInput.value = JSON.parse(everythingEXP).charLevel;
+            }
+        } else {
+            updatePerPotionEXPPercent();
+            updateAvailableDailyQuests();
+            updateAvailableMonsterParkDungeons();
+            calcTotalDailiesEXP();
+            calcMonsterParkPercent();
+            calcEventEXPPercent();
+            saveEXPContentData();
+        }
+    })
 }

@@ -1,67 +1,8 @@
 /***********************
  * 
- * Basic getters
- * 
- * *********************/
-function getCharLevel() {
-    return parseInt(document.getElementById("char-level").value);
-}
-
-function getExpTNL(charLevel) {
-    return parseInt(document.getElementById(`${charLevel}-exp-tnl`).dataset.rawExpTnl);
-}
-
-/***********************
- * 
  * Loading of EXP Tables
  * 
  * *********************/
-function loadEXPTableHistory() {
-    EXP_TABLE_HISTORY.forEach(history => {
-        document
-                .getElementById(`exp-table-history`)
-                .insertAdjacentHTML('beforeend', `<tr>
-                    <th scope="row" class="align-middle text-center">${history.name}</th>
-                    <td class="py-2 px-2">${history.details.join("<br/>")}</td>
-                    <td class="align-middle text-center"><a class="text-info" href="${history.url}" target="_blank">Click me!</a></td>
-                </tr>`);
-    })
-}
-
-function loadCurrentEXPTable() {
-    let prevEXP = -1;
-
-    CURR_EXP_TABLE.forEach((levelRange, index) => {
-        let html = `<div class="w-100 col-12 col-sm-6 col-xl-4 d-flex flex-column align-items-center mb-4"><h2 class="font-subsubheader font-weight-bold text-underline mb-2">${levelRange.name}</h2>
-
-        <table class='font-table size-350 table table-sm table-bordered table-hover'>
-            <thead>
-                <tr>
-                    <th scope="col" class="text-center">Level</th>
-                    <th scope="col" class="text-center">EXP To Next Level</th>
-                    <th scope="col" class="text-center">% increase</th>
-                </tr>
-            </thead>
-            <tbody id='exp-table-${index}'>
-            </tbody>
-        </table></div>`;
-
-        document.getElementById("curr-exp-tables").insertAdjacentHTML('beforeend', html);
-
-        levelRange.values.forEach((rawEXP, arrayNum) => {
-            document
-                .getElementById(`exp-table-${index}`)
-                .insertAdjacentHTML('beforeend', `<tr>
-                    <th scope="row" class="text-center">${levelRange.startLevel+arrayNum} > ${levelRange.startLevel+arrayNum+1}</th>
-                    <td class="text-center" id="${levelRange.startLevel+arrayNum}-exp-tnl" data-raw-exp-tnl="${rawEXP}">${rawEXP.toLocaleString('en-SG')}</td>
-                    <td class="text-center">${prevEXP === -1 ? "-" : (rawEXP / prevEXP * 100 - 100).toFixed(1).replace(/[.,]0$/, "") + "%" }</td>
-                </tr>`);
-
-            prevEXP = rawEXP;
-        })
-    })
-}
-
 function loadEventEXPTable() {
     let startingLevel = 200;
     let expTNL = 0;
@@ -73,7 +14,6 @@ function loadEventEXPTable() {
                 .getElementById(`event-exp-table`)
                 .insertAdjacentHTML('beforeend', `<tr>
                     <th scope="row" class="text-center">${startingLevel + index} > ${startingLevel + index + 1}</th>
-                    <td class="text-center align-middle">${expTNL.toLocaleString('en-SG')}</td>
                     <td class="text-center align-middle" id="${startingLevel + index}-event-exp" data-raw-exp="${expValue}">${expValue === -1 ? "???" : expValue.toLocaleString('en-SG')}</td>
                     <td class="text-center align-middle text-info font-weight-bold">${expValue === -1 ? "-" : (expValue / expTNL*100).toFixed(3) + "%"}</td>
                 </tr>`);
@@ -91,7 +31,6 @@ function loadDojoEXPTable() {
                 .getElementById(`dojo-exp-table`)
                 .insertAdjacentHTML('beforeend', `<tr>
                     <th scope="row" class="text-center align-middle">${startingLevel + index} > ${startingLevel + index + 1}</th>
-                    <td class="text-center align-middle">${expTNL.toLocaleString('en-SG')}</td>
                     <td class="text-center align-middle">${expValue.toLocaleString('en-SG')} / tick<br/>${(expValue*12*60).toLocaleString('en-SG')} / hour</td>
                     <td class="text-center align-middle text-info font-weight-bold">${(expValue / expTNL*100).toFixed(3) + "%"} / tick<br/>${(expValue*12*60 / expTNL*100).toFixed(3) + "%"} / hour</td>
                 </tr>`);
@@ -101,7 +40,7 @@ function loadDojoEXPTable() {
         .getElementById(`dojo-exp-table`)
         .insertAdjacentHTML('beforeend', `<tr>
             <th scope="row" class="text-center align-middle">220+</th>
-            <td class="text-center align-middle" colspan="3">EXP per tick is same as 219 > 220. It's not worth AFK-ing for EXP beyond this point f3</td>
+            <td class="text-center align-middle" colspan="2">EXP per tick is same as 219 > 220. It's not worth AFK-ing for EXP beyond this point f3</td>
         </tr>`);
 }
 
@@ -167,43 +106,6 @@ function addResetMonsterParkListener() {
         document.getElementById("selected-mp-dungeon").classList.remove('d-flex');
         document.getElementById("selected-mp-dungeon").classList.add('d-none');
         saveEXPContentData();
-    })
-}
-
-/***********************
- * 
- * When user clicks out of level input box, first validate input
- * 
- * If input is valid, do the following:
- * - Update available daily quests (and % EXP gain from each daily) based on new level value
- * - Update what monster park dungeons are still available for selection based on new level value
- * 
- * - Calculate and display daily quest total EXP value based on still-available-and-selected dailies
- * - Calculate and display monster park EXP value if dungeon is still active and selected
- * 
- * ***********************/
-function changeLevelListener() {
-    let charLevelInput = document.getElementById("char-level");
-
-    charLevelInput.addEventListener("focusout", event => {
-        let charLevel = parseInt(charLevelInput.value)
-
-        if(isNaN(charLevel) || charLevel <= 0 || charLevel >= 300) {
-            let everythingEXP = localStorage.getItem("everythingEXP");
-
-            if(everythingEXP === null) {
-                charLevelInput.value = 250;
-            } else {
-                charLevelInput.value = JSON.parse(everythingEXP).charLevel;
-            }
-        } else {
-            updateAvailableDailyQuests();
-            updateAvailableMonsterParkDungeons();
-            calcTotalDailiesEXP();
-            calcMonsterParkPercent();
-            calcEventEXPPercent();
-            saveEXPContentData();
-        }
     })
 }
 
@@ -330,7 +232,13 @@ function calcMonsterParkPercent() {
 function calcEventEXPPercent() {
     let charLevel = getCharLevel();
     let expTNL = getExpTNL(charLevel);
-    let eventExpPerRun = parseInt(document.getElementById(`${charLevel}-event-exp`).dataset.rawExp);
+
+    let eventExpTableCell = document.getElementById(`${charLevel}-event-exp`);
+    let eventExpPerRun = -1;
+
+    if(eventExpTableCell) {
+        eventExpPerRun = parseInt(eventExpTableCell.dataset.rawExp);
+    }     
 
     if(eventExpPerRun !== -1) {
         let eventTotalPercentExp = (eventExpPerRun * 2 / expTNL * 100).toFixed(3);
@@ -350,7 +258,6 @@ function saveEXPContentData() {
     let selectedMonsterPark = document.querySelector(".single-mp-dungeon.active.selected");
 
     let toSave = {
-        charLevel: charLevel,
         dailies: [],
         monsterPark: selectedMonsterPark !== null ? selectedMonsterPark.id : "",
     }
@@ -360,8 +267,9 @@ function saveEXPContentData() {
     })
 
     if(savedData === null) {
-        savedData = { expContents: toSave };
+        savedData = { charLevel: charLevel, expContents: toSave };
     } else {
+        savedData.charLevel = charLevel;
         savedData.expContents = toSave;
     }
 

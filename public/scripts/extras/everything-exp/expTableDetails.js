@@ -173,3 +173,12 @@ const DOJO_EXP_TABLE = [
     91397, 93878, 96390, 99190, 101747, 104317, 106917, 109813, 112457, 115113, 
     118097, 120797, 123832, 126575, 129343, 132447, 135258, 138418, 144473, 147367,
 ];
+
+const POTION_EXP_TABLE = {
+    extreme: { name: "Extreme Growth Potion", minLevel: 141, maxLevel: 199 },
+    potion1: { name: "Growth Potion 1", minLevel: 200, maxLevel: 209 },
+    potion2: { name: "Growth Potion 2", minLevel: 200, maxLevel: 219 },
+    potion3: { name: "Growth Potion 3", minLevel: 200, maxLevel: 229 },
+    typhoon: { name: "Typhoon Growth Potion", minLevel: 200, maxLevel: 239 },
+    maximum: { name: "Maximum Growth Potion", minLevel: 200, maxLevel: 249 },
+};

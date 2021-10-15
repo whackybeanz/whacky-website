@@ -6,7 +6,17 @@
                     <img src="<%= icons['growth-potion'].imgUrl %>" class="mr-2"> Summary
                 </h2>
             </div>
-            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center pt-2">
+            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center pt-3">
+                <table class="font-table size-720 w-100 table table-sm table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="align-middle">Potion Type</th>
+                            <th scope="col" class="text-center">EXP From Potion</th>
+                        </tr>
+                    </thead>
+                    <tbody id='per-potion-exp-table'>
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -26,7 +36,25 @@
                     <img src="<%= icons['growth-potion'].imgUrl %>" class="mr-2"> EXP Tables
                 </h2>
             </div>
-            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center pt-2">
+            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center pt-3">
+                <form class="w-100 d-flex flex-column align-items-center">
+                    <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
+                        <label for="potion-exp-table-select" class="font-weight-bold col-form-label">Select Potion</label>
+                        <div class="col-sm-6 col-md-4">
+                            <select class="form-control" id="potion-exp-table-select">
+                                <option value="extreme">Extreme Growth Potion</option>
+                                <option value="potion1">Growth Potion 1</option>
+                                <option value="potion2">Growth Potion 2</option>
+                                <option value="potion3">Growth Potion 3</option>
+                                <option value="typhoon">Typhoon Growth Potion</option>
+                                <option value="maximum">Maximum Growth Potion</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <p class="mb-4" id="egp-chart-msg">To see the probabilities of X level ups at level Y when using an Extreme Growth Potion, <a href='https://whacky-website.s3.ap-southeast-1.amazonaws.com/images/guide/egp-chart.jpg' target='_blank'>click here</a>.</p>
+
+                <div class="table-responsive d-flex flex-wrap justify-content-center" id="potion-exp-table-details"></div>
             </div>
         </div>
     </div>
