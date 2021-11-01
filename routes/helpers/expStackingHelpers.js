@@ -46,4 +46,4 @@ function getEXPContentsValues() {
     return expContents;
 }
 
-module.exports = { calculateGeneralContentsEXP, getEXPContentsValues };
+module.exports = { getEXPContentsValues };
