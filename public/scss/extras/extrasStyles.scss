@@ -154,6 +154,7 @@
     font-size: 64px;
     width: 125px;
     background-color: transparent;
+    line-height: 0;
 }
 
 .item-square {
@@ -210,4 +211,17 @@
 
 #selected-mp-dungeon {
     top: 0;
+}
+
+.monster-list-table-img-div {
+    top: 0;
+    left: 0;
+    background-position: center right;
+    background-repeat: no-repeat;
+    opacity: 0.25;
+}
+
+.monster-list-table-details {
+    top: 0;
+    left: 0;
 }

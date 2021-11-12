@@ -20,6 +20,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addEXPStackSelectListener();
     addEXPStackInputListener();
 
+    // Monster EXP
+    addRefreshMonsterListListener();
+    updateNumKillsInputListener();
+
     // Load data
     loadSavedData();
     changeLevelListener();

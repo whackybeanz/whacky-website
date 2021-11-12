@@ -270,6 +270,9 @@ body #dmg-skin-carousel .carousel-nav {
 body #dmg-skin-carousel .carousel-item {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
+body #char-level {
+  border-bottom: 2px solid #212529 !important;
+}
 body .exp-stack-section {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }

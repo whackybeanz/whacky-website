@@ -46,4 +46,25 @@ function getEXPContentsValues() {
     return expContents;
 }
 
-module.exports = { getEXPContentsValues };
+function groupMonstersByMap(icons, monsterList) {
+    const allMaps = [...new Set(monsterList.map(monster => monster.mapId))];
+    let monstersByMap = {};
+
+    allMaps.forEach(mapIconId => {
+        let matchingMapIconData = icons.find(icon => icon.id === mapIconId);
+
+        monstersByMap[mapIconId] = {
+            mapIconImgUrl: matchingMapIconData.imgUrl,
+            mapIconName: matchingMapIconData.name,
+            monsterList: [],
+        }
+    })
+
+    monsterList.forEach(monster => {
+        monstersByMap[monster.mapId].monsterList.push(monster);
+    })
+
+    return monstersByMap;
+}
+
+module.exports = { getEXPContentsValues, groupMonstersByMap };

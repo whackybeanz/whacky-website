@@ -1,3 +1,5 @@
+// On page load, generate all tables in EXP Tables section for the respective growth potions
+// Make Extreme Growth Potion be the first displayed table on page load always
 function loadGrowthPotionsEXPTable() {
     let divToAppend = document.getElementById("potion-exp-table-details");
 
@@ -10,6 +12,15 @@ function loadGrowthPotionsEXPTable() {
     })
 }
 
+/****************
+ * 
+ * See expTableDetails for all "optimal" min/max levels for the respective potions
+ * For each potion, split into two tables -- Level 200 to 250 / Level 250 to 300
+ * For each table, first populate table headers
+ * For each table row, display the % gain (if not 100%) to 3 d.p. when the potion is used, and also calculate the raw EXP gain
+ * If gain is 100%, highlight row in blue text
+ * 
+ * **************/
 function addExpTable(potionType, minLevel, maxLevel) {
     let levelRange = [
         { name: "Level 200 to 250", startLevel: 200, endLevel: 250 },
@@ -32,7 +43,7 @@ function addExpTable(potionType, minLevel, maxLevel) {
 
         document.getElementById(`potion-${potionType}-div`).insertAdjacentHTML('beforeend', html);
 
-        let maxLevelExpTNL = getExpTNL(maxLevel)
+        let maxLevelExpTNL = getExpTNL(maxLevel);
 
         for(let i = levelRange.startLevel; i < levelRange.endLevel; i++) {
             let percentGain = 100.000;
@@ -56,6 +67,7 @@ function addExpTable(potionType, minLevel, maxLevel) {
     })
 }
 
+// Toggle view of potion EXP chart whenever select option is changed
 function addPotionTableSelectListener() {
     const potionExpTableSelect = document.getElementById("potion-exp-table-select");
 
@@ -78,6 +90,8 @@ function addPotionTableSelectListener() {
     })
 }
 
+// Updates potion EXP values in Summary section
+// Erase current table and rebuild table rows
 function updatePerPotionEXPPercent() {
     let charLevel = getCharLevel();
     let tableToPopulate = document.getElementById("per-potion-exp-table");
@@ -99,10 +113,18 @@ function updatePerPotionEXPPercent() {
             displayedPercent = (potionValue / expTNL * 100).toFixed(3) + "%";
         }
 
-        tableToPopulate
-            .insertAdjacentHTML('beforeend', `<tr>
-                <th scope="col" class="align-middle">${currPotion.name} (Level ${currPotion.minLevel}~${currPotion.maxLevel})</th>
-                <td class="text-center">${displayedValue} / <span class="text-info font-weight-bold">${displayedPercent}</span></td>
-            </tr>`);
+        if(potion === "extreme" && charLevel >= 141 && charLevel < 200) {
+            tableToPopulate
+                .insertAdjacentHTML('beforeend', `<tr>
+                    <th scope="col" class="align-middle">${currPotion.name} (Level ${currPotion.minLevel}~${currPotion.maxLevel})</th>
+                    <td class="text-center">Amount varies - see EXP Tables section below</td>
+                </tr>`);
+        } else {
+            tableToPopulate
+                .insertAdjacentHTML('beforeend', `<tr>
+                    <th scope="col" class="align-middle">${currPotion.name} (Level ${currPotion.minLevel}~${currPotion.maxLevel})</th>
+                    <td class="text-center">${displayedValue} / <span class="text-info font-weight-bold">${displayedPercent}</span></td>
+                </tr>`);
+        }
     })
 }

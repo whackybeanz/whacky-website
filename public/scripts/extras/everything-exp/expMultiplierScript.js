@@ -1,6 +1,10 @@
+/***********************
+ * 
+ * Button, Select, Input Listeners
+ * 
+ * *********************/
 // On click of any exp stack, check category of selected item
-// If within category 1/2/3, disable other active states within category
-// Activate selected item
+// If within category 1/2/3, disable other active states within category and activate selected item
 function addEXPStackBtnListener() {
     const singleEXPStackBtn = Array.from(document.querySelectorAll(".single-exp-stack"));
 
@@ -59,6 +63,7 @@ function addEXPStackInputListener() {
     })
 }
 
+// Checks if Category 1 has Premium Service coupon active
 function checkIsCat1Premium() {
     let anyActiveCat1Elem = document.querySelector(".category-1.active");
 
@@ -69,6 +74,11 @@ function checkIsCat1Premium() {
     }
 }
 
+/***********************
+ * 
+ * EXP Multiplier calculations
+ * 
+ * *********************/
 function updateMultiplier(categoryNum) {
     let multiplierValue = 1;
     let isCat1Premium = checkIsCat1Premium();

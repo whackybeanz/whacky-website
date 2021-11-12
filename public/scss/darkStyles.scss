@@ -449,6 +449,10 @@ body.dark-mode {
     }
 
     // EXP Stacking
+    #char-level {
+        border-bottom: 2px solid globals.$dark-mode-grey !important;
+    }
+
     .exp-stack-section {
         border: 1px solid globals.$dark-mode-grey;
     }
