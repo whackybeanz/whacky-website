@@ -1,0 +1,30 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="w-100 d-flex flex-column justify-content-center px-3 py-3">
+        <div class="exp-stack-section rounded-sm">
+            <div class="exp-stack-section-subheader text-center">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="<%= icons['boss-icon'].imgUrl %>" class="mr-2"> Monster EXP
+                </h2>
+                <div class="pb-2">
+                    <button class="btn btn-sm btn-outline-info font-weight-bold" id="btn-refresh-monster-list"><i class="fas fa-redo-alt"></i> Refresh / Retrieve Monster List</button>
+                    <p class="mb-0 d-none" id="refresh-cd">Refresh cooldown... (<span id="refresh-cd-num-secs">10</span> seconds)</p>
+                </div>
+            </div>
+            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center pt-3">
+                <div class="w-100 d-flex flex-column justify-content-start align-items-center px-3">
+                    <p class="w-100 mb-1">Notes:</p>
+                    <ul class="w-100">
+                        <li>Click on <span class="text-info font-weight-bold">Refresh / Retrieve Monster List</span> button above to begin, or to refresh data if any changes (e.g. EXP Buff multiplier) was made.</li>
+                        <li>Only monsters above level 70 are displayed. Monster lists are generated up to &#177;10 levels of character level.</li>
+                        <li>Level difference to monsters affects Base EXP per monster kill: &#177;1 Level = 20% bonus / &#177;4 Levels = 10% bonus / &#177;9 Levels = 5% bonus.</li>
+                        <li>EXP Buff multiplier value is obtained from the EXP Multipliers tab.</li>
+                    </ul>
+
+                    <div class="w-100 d-flex flex-column align-items-center" id="monster-list-container">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

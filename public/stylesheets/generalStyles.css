@@ -341,7 +341,7 @@ img.small-img {
     Forms
 
 **********************/
-form .form-control {
+form .form-control, form .form-control-plaintext {
   height: 32px;
 }
 form .form-check {

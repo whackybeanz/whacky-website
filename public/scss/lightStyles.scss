@@ -413,12 +413,20 @@ body {
     }
 
     // EXP Stacking
-    .exp-stack-section-subheader, .exp-stack-section {
+    #char-level {
+        border-bottom: 2px solid globals.$light-mode-black !important;
+    }
+
+    .exp-stack-section {
         border: 1px solid globals.$light-mode-grey;
     }
 
     .exp-stack-section-subheader {
         background-color: globals.$light-mode-grey;
+    }
+
+    .exp-stack-section-content {
+        background-color: globals.$light-mode-white-opaque;
     }
 
     .single-exp-stack {
@@ -450,6 +458,18 @@ body {
                 transition: all 0.2s;
             }
         }
+    }
+
+    .single-daily-quest, .single-mp-dungeon {
+        &.active {
+            &:hover {
+                background-color: globals.$light-mode-grey;
+            }
+        }
+    }
+
+    #selected-mp-dungeon {
+        background-color: globals.$light-mode-white-opaque;
     }
 
     // Coin Events

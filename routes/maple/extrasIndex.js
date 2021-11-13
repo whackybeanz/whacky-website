@@ -11,6 +11,7 @@ var Effect  = require("../../models/setEffectData");
 var Soul    = require("../../models/bossSoulData");
 var DamageSkin  = require("../../models/damageSkinData");
 var MapLocations = require("../../models/mapData");
+var Monster = require("../../models/monsterData");
 var Potentials = require("../../models/potentialsData");
 var LatestUpdate = require("../../models/latestUpdateData");
 
@@ -263,11 +264,72 @@ router.get("/damage-skin-details/:skinNum", function(req, res) {
     })
 })
 
-router.get("/exp-stacking", function(req, res) {
+router.get("/everything-exp", function(req, res) {
     res.locals.extraStylesheet = "extras/extrasStyles";
     res.locals.section = "extras";
     res.locals.branch = "calc-exp-stacking";
-    res.render("extras/exp-stacking/expStacking");
+
+    let getIcons = Icon.find({ usedInSections: "exp-stacking" });
+
+    Promise.all([getIcons])
+        .then(([foundIcons]) => {
+            const compiledIcons = IconHelper.compileIcons(foundIcons);
+            const expContents = EXPStackingHelper.getEXPContentsValues();
+
+            res.render("extras/everything-exp/everything-exp-landing", { icons: compiledIcons, expContents: expContents });
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
+})
+
+router.get("/everything-exp/monster-list/:charLevel", function(req, res) {
+    let CURR_MAX_MONSTER_LEVEL = 275;
+    let charLevel = parseInt(req.params.charLevel);
+    let response = {};
+
+    if(!isNaN(charLevel)) {
+        if(charLevel >= 1 && charLevel < 300) {
+            let minMonsterLevel, maxMonsterLevel;
+
+            // Determine monster level range to query for
+            // If charLevel is above (presently) 265, check if charLevel is above 275. If above, then limit range to 265~275.
+            // Otherwise, set minMonsterLevel to -10 of charLevel, but fix max at 275.
+            if(charLevel > CURR_MAX_MONSTER_LEVEL - 10) {
+                minMonsterLevel = charLevel > CURR_MAX_MONSTER_LEVEL ? CURR_MAX_MONSTER_LEVEL - 10 : charLevel - 10;
+                maxMonsterLevel = CURR_MAX_MONSTER_LEVEL;
+            } else {
+                minMonsterLevel = charLevel >= 71 ? charLevel - 10 : 71;
+                maxMonsterLevel = charLevel + 10;
+            }
+
+            // Retrieve only monsters that are within the min/max levels, and match the required minimum encounter level (or are freely found)
+            let getIcons = Icon.find({ usedInSections: "exp-stacking" });
+            let getMonsters = Monster.find({ 
+                $and: [
+                    { monsterLevel: { $lte: maxMonsterLevel, $gte: minMonsterLevel } }, 
+                    { $or: [{ minEncounterLevel : { $exists: false } }, { minEncounterLevel: { $lte: charLevel } }] }
+                ]
+            }).sort({ monsterLevel: 1, monsterEXP: 1 });
+
+            Promise.all([getIcons, getMonsters])
+                .then(([icons, monsterList]) => {
+                    response.monsterListByMap = EXPStackingHelper.groupMonstersByMap(icons, monsterList);
+                    res.send(response);
+                })
+                .catch(err => {
+                    response.err = `Error encountered: ${err}`;
+                    res.send(response);
+                })
+        } else {
+            response.err = "Character level out of range";
+            res.send(response);
+        }
+    } else {
+        response.err = "Invalid character level"
+        res.send(response);
+    }
 })
 
 router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) {

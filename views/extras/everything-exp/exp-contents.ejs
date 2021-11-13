@@ -1,0 +1,129 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="w-100 d-flex flex-column justify-content-center px-3 py-3">
+        <div class="exp-stack-section rounded-sm mb-5">
+            <div class="exp-stack-section-subheader text-center pb-2">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="<%= icons['map-rte'].imgUrl %>" class="mr-2"> Daily Quests
+                </h2>
+                <p class="mb-0">
+                    Selected dailies EXP total = <span id="selected-dailies-total-raw-exp">0 EXP</span> / <span class="text-info font-weight-bold" id="selected-dailies-total-percent-exp">0.000%</span>
+                </p>
+            </div>
+            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center pt-2">
+                <% expContents.dailies.forEach(daily => { %>
+                    <div class="single-daily-quest col-12 col-sm-4 col-lg-6 col-xl-4 d-flex align-items-center rounded-sm py-2 mb-3 active" id="daily-<%= daily.iconId%>">
+                        <div>
+                            <img src="<%= icons[daily.iconId].imgUrl %>" class="mr-3">
+                        </div>
+                        <div class="daily-quest-details" data-name="<%= daily.name %>" data-min-level="<%= daily.recMinLevel %>" data-raw-exp="<%= daily.rawEXP %>">
+                            <p class="mb-0">
+                                <span class="selected-mark text-info d-none">[<i class="fas fa-check"></i>]</span> <span class="font-weight-bold"><%= daily.name %></span>
+                            </p>
+                            <% if(daily.rawEXP !== 0) { %>
+                                <%= daily.rawEXP.toLocaleString('en-SG') %> EXP / <span class="text-info percent-exp font-weight-bold">0.000%</span>
+                            <% } else { %>
+                                - / <span class="text-info percent-exp font-weight-bold">-</span>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>                
+
+        <div class="exp-stack-section rounded-sm mb-5">
+            <div class="exp-stack-section-subheader text-center">
+                <div id="monster-park-default-display">
+                    <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                        <img src="<%= icons['map-monster-park'].imgUrl %>" class="mr-2"> Monster Park
+                    </h2>
+                    <p class="mb-0 pb-2">
+                        Select a dungeon below
+                    </p>
+                </div>
+                <div class="d-none" id="monster-park-selected-display">
+                    <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0" id="selected-mp-dungeon-name"></h2>
+                </div>
+            </div>
+            <div class="exp-stack-section-content font-form position-relative">
+                <div class="d-flex flex-wrap py-2" id="monster-park-list">
+                    <% expContents.monsterPark.forEach(dungeon => { %>
+                        <div class="single-mp-dungeon col-12 col-sm-6 col-xl-4 d-flex align-items-center rounded-sm py-2 mb-3 active" id="mp-<%= dungeon.iconId %>">
+                            <div>
+                                <img src="<%= icons[dungeon.iconId].imgUrl %>" class="mp-dungeon-img mr-3">
+                            </div>
+                            <div class="mp-details" data-name="<%= dungeon.name %>" data-min-level="<%= dungeon.baseMinLevel %>" data-raw-exp="<%= dungeon.rawEXP %>">
+                                <p class="font-weight-bold mb-0">
+                                    <%= dungeon.name %>
+                                </p>
+                                - <%= dungeon.rawEXP.toLocaleString('en-SG') %> EXP (Mon-Sat)<br/>
+                                - <%= Math.round(dungeon.rawEXP * 1.5).toLocaleString('en-SG') %> EXP (Sun)<br/>
+                                - <%= Math.round(dungeon.rawEXP * 2).toLocaleString('en-SG') %> EXP (Sunday Maple)
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+                <div class="exp-stack-section-content table-responsive d-none position-absolute w-100 h-100 flex-column justify-content-center align-items-center py-3" id="selected-mp-dungeon">
+                    <table class="font-table size-720 w-100 table table-sm table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">Num runs</th>
+                                <th scope="col" class="text-center">EXP (Mon-Sat)</th>
+                                <th scope="col" class="text-center">EXP (Sunday)</th>
+                                <th scope="col" class="text-center">EXP (Sunday Maple)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="" id='monster-park-exp-table'>
+                        </tbody>
+                    </table>
+
+                    <button type="button" class="btn btn-sm btn-outline-info font-weight-bold" id="btn-reset-monster-park"><i class="fas fa-pen"></i> Change dungeon</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="exp-stack-section rounded-sm mb-5">
+            <div class="exp-stack-section-subheader text-center pb-2">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="<%= icons['map-maple-live'].imgUrl %>" class="mr-2"> Event Minigames
+                </h2>
+                <p class="mb-0">
+                    EXP per day (2 runs) = <span id="event-per-day-raw-exp">0 EXP</span> / <span class="font-weight-bold text-info" id="event-per-day-percent-exp">0.000%</span>
+                </p>
+            </div>
+            <div class="exp-stack-section-content table-responsive font-form d-flex flex-column align-items-center pt-3" id="event-exp-table-details">
+                <table class="font-table size-720 w-100 table table-sm table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Level</th>
+                            <th scope="col" class="text-center">EXP per run</th>
+                            <th scope="col" class="text-center text-info">% per run</th>
+                        </tr>
+                    </thead>
+                    <tbody class="mb-3" id='event-exp-table'>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="exp-stack-section rounded-sm mb-5">
+            <div class="exp-stack-section-subheader text-center">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="<%= icons['map-dojo-center'].imgUrl %>" class="mr-2"> Mu Lung Dojo
+                </h2>
+            </div>
+            <div class="exp-stack-section-content table-responsive font-form d-flex flex-wrap justify-content-center pt-3" id="dojo-exp-table-details">
+                <table class="font-table size-720 w-100 table table-sm table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Level</th>
+                            <th scope="col" class="text-center">EXP obtained</th>
+                            <th scope="col" class="text-center text-info">%</th>
+                        </tr>
+                    </thead>
+                    <tbody class="mb-3" id='dojo-exp-table'>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
