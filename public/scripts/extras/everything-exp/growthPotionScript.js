@@ -12,6 +12,227 @@ function loadGrowthPotionsEXPTable() {
     })
 }
 
+function loadPotionListeners() {
+    potionCalcInputListener();
+    potionCalcAddListener();
+    potionCalcRemoveAllListener();
+    currLevelInputListener();
+    currExpPercentInputListener();
+    currExpRawInputListener();
+    calcNewExpBtnListener();
+    potionTableSelectListener();
+}
+
+/****************
+ * 
+ * Potion Calculator quantity verification / addition
+ * 
+ * **************/
+function potionCalcInputListener() {
+    let numPotionsInput = document.getElementById("potion-calc-qty-input");
+
+    numPotionsInput.addEventListener("change", () => {
+        let numPotions = parseInt(numPotionsInput.value);
+
+        if(isNaN(numPotions) || numPotions < 1) {
+            numPotionsInput.value = 1;
+        }
+
+        if(numPotions > 100) {
+            numPotionsInput.value = 100;
+        }
+    })
+}
+
+function potionCalcAddListener() {
+    let addPotionToCalcBtn = document.getElementById("btn-add-potion-calc");
+
+    addPotionToCalcBtn.addEventListener("click", () => {
+        let potionId = document.getElementById("potion-exp-calc-select").value;
+        let quantity = parseInt(document.getElementById("potion-calc-qty-input").value);
+
+        if(isValidAddQuantity(potionId, quantity)) {
+            document.getElementById("no-potion-added-msg").classList.add("d-none");
+            document.getElementById("btn-calc-pot-result").classList.remove("d-none");
+            document.getElementById("btn-remove-all-potions").classList.remove("d-none");
+            addPotionToCalc(potionId, quantity);
+        }
+    })
+}
+
+function isValidAddQuantity(potionId, quantity) {
+    const MAX_ALLOWED_POTION_QTY = 100;
+    let currAddedPotions = document.getElementById("potion-exp-calc-table").querySelectorAll(`.add-potion-${potionId}`);
+    let currAddedPotionsQty = 0;
+    let statusMessage = document.getElementById('add-potion-calc-status');
+
+    if(currAddedPotions !== null) {
+        currAddedPotions.forEach(potion => {
+            currAddedPotionsQty += parseInt(potion.dataset.qty);
+        })
+    }
+
+    if(currAddedPotionsQty + quantity > MAX_ALLOWED_POTION_QTY) {
+        statusMessage.classList.remove("d-none");
+        statusMessage.innerHTML = `Failed to add - will exceed max of 100<br/>(Current added total: ${currAddedPotionsQty} / Attempted to add: ${quantity} / Available quantity: ${MAX_ALLOWED_POTION_QTY - currAddedPotionsQty})`;
+
+        window.setTimeout(() => {
+            statusMessage.classList.add("d-none");
+        }, 5000)
+        return false;
+    } else {
+        statusMessage.classList.add("d-none");
+        return true;
+    }
+}
+
+function addPotionToCalc(potionId, quantity) {
+    let potionName = POTION_EXP_TABLE[potionId].name;
+    let tableDisplay = document.getElementById("potion-exp-calc-table");
+
+    let html = "";
+
+    if(tableDisplay.querySelector(".single-potion-add")) {
+        html += `<div class="font-subsubheader mx-2">&#187</div>`;
+    }
+
+    html += `<div class="single-potion-add add-potion-${potionId} font-small text-center my-1" data-potion-type="${potionId}" data-qty="${quantity}">
+            <span class="font-weight-bold">${potionName}</span><br/>x${quantity}
+        </div>`
+
+    tableDisplay.insertAdjacentHTML('beforeend', html);
+}
+
+function potionCalcRemoveAllListener() {
+    let removeAllPotionBtn = document.getElementById("btn-remove-all-potions");
+
+    removeAllPotionBtn.addEventListener("click", () => {
+        document.getElementById("potion-exp-calc-table").innerHTML = "";
+        document.getElementById("no-potion-added-msg").classList.remove("d-none");
+        document.getElementById("btn-calc-pot-result").classList.add("d-none");
+        removeAllPotionBtn.classList.add("d-none");
+    })
+}
+
+/****************
+ * 
+ * Potion Calculator execute calculation
+ * 
+ * **************/
+function currLevelInputListener() {
+    let levelInput = document.getElementById("start-potion-char-level");
+
+    levelInput.addEventListener("change", () => {
+        let levelInputValue = parseInt(levelInput.value)
+        let currExpPercentInput = document.getElementById("start-potion-char-exp-percent");
+        let currExpRawInput = document.getElementById("start-potion-char-exp-raw");
+
+        currExpPercentInput.value = 0.000;
+        currExpRawInput.value = 0;
+
+        if(isNaN(levelInputValue) || levelInputValue < 200) {
+            levelInput.value = 200;
+        }
+
+        if(levelInputValue > 299) {
+            levelInput.value = 299;
+        }
+    })
+}
+
+function currExpPercentInputListener() {
+    let expPercentInput = document.getElementById("start-potion-char-exp-percent");
+
+    expPercentInput.addEventListener("change", () => {
+        let expRawInput = document.getElementById("start-potion-char-exp-raw");
+        let levelInputValue = parseInt(document.getElementById("start-potion-char-level").value);
+        let expPercentInputValue = parseFloat(expPercentInput.value);
+
+        if(isNaN(expPercentInputValue) || expPercentInputValue < 0) {
+            expPercentInput.value = 0.000;
+            expRawInput.value = 0;
+        }
+
+        if(expPercentInputValue > 100) {
+            document.getElementById("btn-calc-pot-result").classList.add("d-none");
+            document.getElementById("exp-percent-input-error").classList.remove("d-none");
+        } else {
+            if(document.querySelectorAll(".single-potion-add").length !== 0) {
+                document.getElementById("btn-calc-pot-result").classList.remove("d-none");
+            }
+            document.getElementById("exp-percent-input-error").classList.add("d-none");
+            expRawInput.value = parseInt(document.getElementById(`${levelInputValue}-exp-tnl`).dataset.rawExpTnl * expPercentInputValue / 100.00);
+        }
+    })
+}
+
+function currExpRawInputListener() {
+    let expRawInput = document.getElementById("start-potion-char-exp-raw");
+
+    expRawInput.addEventListener("change", () => {
+        let expPercentInput = document.getElementById("start-potion-char-exp-percent");
+        let levelInputValue = parseInt(document.getElementById("start-potion-char-level").value);
+        let expRawInputValue = parseInt(expRawInput.value);
+
+        if(isNaN(expRawInputValue) || expRawInputValue < 0) {
+            expRawInput.value = 0;
+            expPercentInput.value = 0.000;
+        }
+
+        if(expRawInputValue > document.getElementById(`${levelInputValue}-exp-tnl`).dataset.rawExpTnl) {
+            document.getElementById("btn-calc-pot-result").classList.add("d-none");
+            document.getElementById("exp-raw-input-error").classList.remove("d-none");
+        } else {
+            if(document.querySelectorAll(".single-potion-add").length !== 0) {
+                document.getElementById("btn-calc-pot-result").classList.remove("d-none");
+            }
+            
+            document.getElementById("exp-raw-input-error").classList.add("d-none");
+            expPercentInput.value = (expRawInputValue / getExpTNL(levelInputValue) * 100).toFixed(3);
+        }
+    })
+}
+
+function calcNewExpBtnListener() {
+    let calcExpBtn = document.getElementById("btn-calc-pot-result");
+    let currLevel = parseInt(document.getElementById("start-potion-char-level").value);
+    let currExp = parseInt(document.getElementById("start-potion-char-exp-raw").value);
+
+    calcExpBtn.addEventListener("click", () => {
+        let allAddedPotions = document.querySelectorAll(".single-potion-add");
+
+        allAddedPotions.forEach(potion => {
+            let potionType = potion.dataset.potionType;
+            let numPotionsUsed = potion.dataset.qty;
+
+            [currLevel, currExp] = calcNewExp(currLevel, currExp, potionType, numPotionsUsed);
+        })
+
+        document.getElementById("end-potion-char-level").value = currLevel;
+        document.getElementById("end-potion-char-exp-percent").value = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)} %`;
+        document.getElementById("end-potion-char-exp-raw").value = `${currExp.toLocaleString("en-SG")} EXP`;
+    })
+}
+
+function calcNewExp(currLevel, currExp, potionType, numPotionsUsed) {
+    let newLevel = currLevel;
+    let newExp = currExp;
+
+    for(let i = 0; i < numPotionsUsed; i++) {
+        let expTNL = getExpTNL(newLevel);
+        let expFromPotion = parseInt(document.getElementById(`potion-${potionType}-level-${newLevel}-exp`).dataset.potionRawExp);
+
+        if(newExp + expFromPotion >= expTNL) {
+            newLevel++;
+            newExp = newExp + expFromPotion - expTNL;
+        } else {
+            newExp += expFromPotion;
+        }
+    }
+
+    return [newLevel, newExp];
+}
+
 /****************
  * 
  * See expTableDetails for all "optimal" min/max levels for the respective potions
@@ -68,7 +289,7 @@ function addExpTable(potionType, minLevel, maxLevel) {
 }
 
 // Toggle view of potion EXP chart whenever select option is changed
-function addPotionTableSelectListener() {
+function potionTableSelectListener() {
     const potionExpTableSelect = document.getElementById("potion-exp-table-select");
 
     potionExpTableSelect.addEventListener("change", function(event) {

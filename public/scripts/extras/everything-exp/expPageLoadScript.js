@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Growth Potions
     loadGrowthPotionsEXPTable();
-    addPotionTableSelectListener();
+    loadPotionListeners();
 
     // EXP Contents
     addDailyQuestListeners();
