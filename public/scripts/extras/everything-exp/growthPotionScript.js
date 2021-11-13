@@ -195,10 +195,10 @@ function currExpRawInputListener() {
 
 function calcNewExpBtnListener() {
     let calcExpBtn = document.getElementById("btn-calc-pot-result");
-    let currLevel = parseInt(document.getElementById("start-potion-char-level").value);
-    let currExp = parseInt(document.getElementById("start-potion-char-exp-raw").value);
 
     calcExpBtn.addEventListener("click", () => {
+        let currLevel = parseInt(document.getElementById("start-potion-char-level").value);
+        let currExp = parseInt(document.getElementById("start-potion-char-exp-raw").value);
         let allAddedPotions = document.querySelectorAll(".single-potion-add");
 
         allAddedPotions.forEach(potion => {

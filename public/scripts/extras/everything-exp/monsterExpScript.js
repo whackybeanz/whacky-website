@@ -108,11 +108,11 @@ function populateMonsterTables(charLevel, mapIndex, monster, monsterIndex, expMu
             </div>
         </td>
         <td class="${monster.isBoss ? "text-info font-weight-bold" : "" } align-middle text-center">
-            <form>
+            
                 <div class="form-group mb-0">
                     <input type="number" class="single-num-kills-input form-control text-center px-2" value="1000" id="map-${mapIndex}-monster-${monsterIndex}-num-kills-input" data-map-index="${mapIndex}" data-monster-index="${monsterIndex}">
                 </div>
-            </form>
+            
         </td>
         <td class="${monster.isBoss ? "text-info font-weight-bold" : "" } align-middle text-center">
             <div class="d-flex flex-column">
