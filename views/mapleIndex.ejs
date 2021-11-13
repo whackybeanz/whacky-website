@@ -49,9 +49,9 @@
                                     </div>
                                 </div>-->
                                 <h3 class="font-index-subsubheader mb-2">Equipment Guide</h3>
-                                <div class="d-flex flex-wrap mb-2">
+                                <div class="d-flex flex-wrap">
                                     <% sections.beginner.forEach(function(guide) { %>
-                                    <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-2">
+                                    <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-3">
                                         <a href="<%= guide.pageUrl %>" class="stretched-link text-decoration-none">
                                             <div class="w-100 h-100 d-flex align-items-center">
                                                 <div class="page-select-img-div d-flex justify-content-center px-2 py-1">
@@ -78,7 +78,7 @@
                                 <div class="d-flex flex-wrap mb-3">
                                     <% sections.extras.forEach(function(page) { %>
                                         <% if(page.isCalculator) { %>
-                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-2">
+                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-3">
                                             <a href="<%= page.pageUrl %>" class="stretched-link text-decoration-none">
                                                 <div class="w-100 h-100 d-flex align-items-center">
                                                     <div class="page-select-img-div d-flex justify-content-center px-3 py-1">
@@ -93,10 +93,10 @@
                                 </div>
 
                                 <h3 class="font-index-subsubheader mb-2">Info Sheets</h3>
-                                <div class="d-flex flex-wrap mb-2">
+                                <div class="d-flex flex-wrap">
                                     <% sections.extras.forEach(function(page) { %>
                                         <% if(page.isInfoSheet) { %>
-                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-2">
+                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-3">
                                             <a href="<%= page.pageUrl %>" class="stretched-link text-decoration-none">
                                                 <div class="w-100 h-100 d-flex align-items-center">
                                                     <div class="page-select-img-div d-flex justify-content-center px-3 py-1">
@@ -139,7 +139,7 @@
                                 <div class="d-flex flex-wrap mb-3">
                                     <% sections.moreMaple.forEach(function(page) { %>
                                         <% if(page.isEvent) { %>
-                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-2">
+                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-3">
                                             <a href="<%= page.pageUrl %>" class="stretched-link text-decoration-none">
                                                 <div class="w-100 h-100 d-flex align-items-center">
                                                     <div class="page-select-img-div d-flex justify-content-center px-3 py-1">
@@ -154,10 +154,10 @@
                                 </div>
 
                                 <h3 class="font-index-subsubheader mb-2">Fun Corner</h3>
-                                <div class="d-flex flex-wrap mb-2">
+                                <div class="d-flex flex-wrap">
                                     <% sections.moreMaple.forEach(function(page) { %>
                                         <% if(page.isFunCorner) { %>
-                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-2">
+                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-3">
                                             <a href="<%= page.pageUrl %>" class="stretched-link text-decoration-none">
                                                 <div class="w-100 h-100 d-flex align-items-center">
                                                     <div class="page-select-img-div d-flex justify-content-center px-3 py-1">
@@ -181,9 +181,9 @@
                         </div>
                         <div class="index-section px-0 collapse show" id="side-others">
                             <div class="d-flex flex-column px-3 pt-3">
-                                <div class="d-flex flex-wrap mb-2">
+                                <div class="d-flex flex-wrap">
                                     <% sections.others.forEach(function(page) { %>
-                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-2">
+                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-3">
                                             <a href="<%= page.pageUrl %>" class="stretched-link text-decoration-none" target="_blank">
                                                 <div class="w-100 h-100 d-flex align-items-center">
                                                     <div class="page-select-img-div d-flex justify-content-center px-3 py-1">
@@ -206,9 +206,9 @@
                         </div>
                         <div class="index-section px-0 collapse show" id="side-quicklinks">
                             <div class="d-flex flex-column px-3 pt-3">
-                                <div class="d-flex flex-wrap mb-2">
+                                <div class="d-flex flex-wrap">
                                     <% sections.quicklinks.forEach(function(page) { %>
-                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-2">
+                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-3">
                                             <a href="<%= page.pageUrl %>" class="stretched-link text-decoration-none" target="_blank">
                                                 <div class="w-100 h-100 d-flex align-items-center">
                                                     <% if(icons[page.iconId]) { %><img src="<%= icons[page.iconId].imgUrl %>" class="maple-logos inline-div-img h-100 px-3 py-1"><% } %>

@@ -9,7 +9,7 @@
                     Selected dailies EXP total = <span id="selected-dailies-total-raw-exp">0 EXP</span> / <span class="text-info font-weight-bold" id="selected-dailies-total-percent-exp">0.000%</span>
                 </p>
             </div>
-            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center pt-2">
+            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center px-3 pt-3">
                 <% expContents.dailies.forEach(daily => { %>
                     <div class="single-daily-quest col-12 col-sm-4 col-lg-6 col-xl-4 d-flex align-items-center rounded-sm py-2 mb-3 active" id="daily-<%= daily.iconId%>">
                         <div>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="exp-stack-section-content font-form position-relative">
-                <div class="d-flex flex-wrap py-2" id="monster-park-list">
+                <div class="d-flex flex-wrap px-3 pt-3" id="monster-park-list">
                     <% expContents.monsterPark.forEach(dungeon => { %>
                         <div class="single-mp-dungeon col-12 col-sm-6 col-xl-4 d-flex align-items-center rounded-sm py-2 mb-3 active" id="mp-<%= dungeon.iconId %>">
                             <div>

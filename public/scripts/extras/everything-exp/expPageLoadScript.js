@@ -50,7 +50,10 @@ function loadSavedData() {
 
     if(savedData !== null) {
         loadEXPContentsData(savedData.expContents, savedData.charLevel);
-        loadSavedEXPMultipliers(savedData.expMultipliers);
+
+        if(savedData.expMultipliers !== undefined) {
+            loadSavedEXPMultipliers(savedData.expMultipliers);
+        }
     }
 
     updatePerPotionEXPPercent();
