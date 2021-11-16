@@ -213,6 +213,20 @@
                                             </div>
                                             <div class="d-flex align-items-center mb-1">
                                                 <span class="col-6 col-md-5 text-left">
+                                                    <img class="item-square" src="<%= icons['eluna-buff'].imgUrl %>">
+                                                    Eluna Earrings/Pendant
+                                                </span>
+                                                <select class="single-exp-stack-select font-table col-4 form-control px-2" id="eluna-buff" data-category-num="5" data-select-type="elunaBuff">
+                                                    <option value="0" selected>N/A</option>
+                                                    <option value="2">+2% EXP</option>
+                                                    <option value="4">+4% EXP</option>
+                                                    <option value="6">+6% EXP</option>
+                                                    <option value="8">+8% EXP</option>
+                                                    <option value="10">+10% EXP</option>
+                                                </select>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-1">
+                                                <span class="col-6 col-md-5 text-left">
                                                     <img class="item-square" src="<%= icons['ring-of-clan'].imgUrl %>">
                                                     Ring of Clan<sup class="text-info">[1]</sup>
                                                 </span>
@@ -262,14 +276,14 @@
                                                     Union Board EXP tiles
                                                     <div class="d-inline" data-toggle="tooltip" data-placement="bottom" title="+0.25% per square / Max +10.00%"><i class="fas fa-question-circle"></i></div>
                                                 </span>
-                                                <input type="number" class="single-exp-stack-input font-table col-2 form-control mr-2" id="union-board-tiles" value="0" data-category-num="5" data-input-type="unionBoard">%
+                                                <input type="number" class="single-exp-stack-input font-table col-2 form-control mr-2" id="union-board-tiles" value="0" data-category-num="5" data-input-type="unionBoard" data-max-value="10">%
                                             </div>
                                             <div class="d-flex align-items-center mb-1">
                                                 <span class="col-6 col-md-5 text-left">
                                                     <img class="item-square" src="<%= icons['swan-dream'].imgUrl %>">
-                                                    Event Titles
+                                                    Events / Event Titles
                                                 </span>
-                                                <input type="number" class="single-exp-stack-input font-table col-2 form-control mr-2" id="event-titles" value="0" data-category-num="5" data-input-type="eventTitle">%
+                                                <input type="number" class="single-exp-stack-input font-table col-2 form-control mr-2" id="event-titles" value="0" data-category-num="5" data-input-type="eventTitle" data-max-value="15">%
                                             </div>
                                             <div class="d-flex align-items-center mb-1">
                                                 <span class="col-6 col-md-5 text-left">
@@ -277,7 +291,7 @@
                                                     Hyper Stats
                                                     <div class="d-inline" data-toggle="tooltip" data-placement="bottom" title="+0.50% to +10% depending on level"><i class="fas fa-question-circle"></i></div>
                                                 </span>
-                                                <input type="number" class="single-exp-stack-input font-table col-2 form-control mr-2" id="hyper-stats" value="0" data-category-num="5" data-input-type="hyperStats">%
+                                                <input type="number" class="single-exp-stack-input font-table col-2 form-control mr-2" id="hyper-stats" value="0" data-category-num="5" data-input-type="hyperStats" data-max-value="10">%
                                             </div>
                                             <div class="d-flex align-items-center mb-1">
                                                 <span class="col-6 col-md-5 text-left">
@@ -285,7 +299,7 @@
                                                     (Decent) Holy Symbol
                                                     <div class="d-inline" data-toggle="tooltip" data-placement="bottom" title="(Decent Holy Symbol) +20% to +35% based on skill level / (Holy Symbol) +25% or +50% depending on party member distance from user"><i class="fas fa-question-circle"></i></div>
                                                 </span>
-                                                <input type="number" class="single-exp-stack-input font-table col-2 form-control mr-2" id="holy-symbol" value="0" data-category-num="5" data-input-type="holySymbol">%
+                                                <input type="number" class="single-exp-stack-input font-table col-2 form-control mr-2" id="holy-symbol" value="0" data-category-num="5" data-input-type="holySymbol" data-max-value="50">%
                                             </div>
                                         </div>
                                     </td>

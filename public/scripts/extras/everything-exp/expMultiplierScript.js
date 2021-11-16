@@ -53,8 +53,12 @@ function addEXPStackInputListener() {
 
     expStackInputFields.forEach(function(inputField) {
         inputField.addEventListener("change", function(event) {
-            if(inputField.value === "" || isNaN(inputField.value)) {
+            if(inputField.value === "" || isNaN(parseInt(inputField.value)) || parseFloat(inputField.value) < 0) {
                 inputField.value = 0;
+            }
+
+            if(parseFloat(inputField.value) > parseInt(inputField.dataset.maxValue)) {
+                inputField.value = parseInt(inputField.dataset.maxValue);
             }
             updateMultiplier(categoryNum);
             getTotalMultiplier();
