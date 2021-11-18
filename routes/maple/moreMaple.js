@@ -22,6 +22,7 @@ router.get("/events/tactical-relay", function(req, res) {
     res.locals.extraStylesheet = "more-maple/relayStyles";
     res.locals.section = "more-maple";
     res.locals.branch = "tactical-relay";
+    res.locals.title = "Tactical Relay";
     res.render("more-maple/tactical-relay", {missionList: missionList, classSelect: classSelect});
 })
 
@@ -33,6 +34,7 @@ router.get("/events/coin-events", function(req, res) {
             res.locals.section = "more-maple";
             res.locals.branch = "coin-events";
             res.locals.extraStylesheet = "more-maple/coinEventStyles";
+            res.locals.title = "Coin Events / Shops";
             res.render("more-maple/coin-events/coinEventsLanding", { eventsByCategory: eventsByCategory });
         })
         .catch(err => {
@@ -64,6 +66,7 @@ router.get("/events/coin-event/:eventId", function(req, res) {
             res.locals.extraStylesheet = "more-maple/coinEventStyles";
             res.locals.section = "more-maple";
             res.locals.branch = "coin-events";
+            res.locals.title = `Coin Event Details (${coinEventData.eventDetails.name})`
             res.render("more-maple/coin-events/coinEventDetails", responseObj);
         })
         .catch(err => {
@@ -81,6 +84,7 @@ router.get("/fun/crossword", function(req, res) {
     res.locals.extraStylesheet = "more-maple/xwordStyles";
     res.locals.section = "more-maple";
     res.locals.branch = "crossword";
+    res.locals.title = "Crossword Puzzle";
     res.render("more-maple/crossword");
 })
 
@@ -106,6 +110,7 @@ router.get("/fun/word-search", function(req, res) {
     res.locals.extraStylesheet = "more-maple/wordSearchStyles";
     res.locals.section = "more-maple";
     res.locals.branch = "word-search";
+    res.locals.title = "Word Search";
 
     let board = [['A', 'N', 'I', 'N', 'S', 'Q', 'J', 'A', 'C', 'T', 'S', 'C', 'M', 'D', 'G'],
                 ['R', 'R', 'A', 'H', 'E', 'T', 'U', 'Z', 'R', 'L', 'A', 'E', 'E', 'I', 'R'],

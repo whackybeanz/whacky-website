@@ -29,6 +29,7 @@ router.get("/flames", function(req, res) {
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "extras";
             res.locals.branch = "calc-flames";
+            res.locals.title = "Flame Stats Calculator";
             res.render("extras/flameCalc", {icons: compiledIcons});
         }
     })
@@ -45,6 +46,7 @@ router.get("/soul-tier-list", function(req, res) {
             res.locals.extraStylesheet = "extras/soulListStyles";
             res.locals.section = "extras";
             res.locals.branch = "soul-tier-list";
+            res.locals.title = "Soul Tier List";
             res.render("extras/soulTierList", {soulList: soulsByTier, icons: compiledIcons});
         })
         .catch(err => {
@@ -57,6 +59,7 @@ router.get("/set-effects", function(req, res) {
     res.locals.extraStylesheet = "extras/setItemStyles";
     res.locals.section = "extras";
     res.locals.branch = "calc-set-effects";
+    res.locals.title = "Set Effects Calculator";
     res.render("extras/setEffectCalc");
 })
 
@@ -87,6 +90,7 @@ router.get("/set-effects/:jobType", function(req, res) {
             res.locals.extraStylesheet = "extras/setItemStyles";
             res.locals.section = "extras";
             res.locals.branch = `calc-set-effects`;
+            res.locals.title = `Set Effects Calculator (${jobType.charAt(0).toUpperCase() + jobType.slice(1)})`;
             res.render("extras/setEffectCalcActive", {allEquipTypes: allEquipTypes, setItemsByItemPart: setItemsByItemPart, setItemsBySetName: setItemsBySetName, allSetEffects: setEffects, jobType: jobType, statTypes: possibleStatTypes, icons: compiledIcons });
         })
         .catch(err => {
@@ -136,6 +140,7 @@ router.get("/boss-crystal", function(req, res) {
             res.locals.section = "extras";
             res.locals.branch = "boss-crystal";
             const pricePerCrystalList = Helper.sortByPrice(bossList);
+            res.locals.title = "Boss Crystal Prices";
             res.render("extras/bossCrystal", {bossList: bossList, crystalList: pricePerCrystalList, icons: compiledIcons});
         }
     })
@@ -151,6 +156,7 @@ router.get("/todd-sequence", function(req, res) {
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "extras";
             res.locals.branch = "todd-sequence";
+            res.locals.title = "Todding Sequence";
             res.render("extras/toddSequence", {icons: compiledIcons});
         }
     })
@@ -198,6 +204,7 @@ router.get("/damage-skins/:pageNum", function(req, res) {
                 res.locals.extraStylesheet = "extras/extrasStyles";
                 res.locals.section = "extras";
                 res.locals.branch = "damage-skins";
+                res.locals.title = "Damage Skins";
                 res.render("extras/damage-skins/damageSkins", {sortedSkins: sortedSkins, pageNum: pageNum, pagesArr: pagesArr, dateUpdated: latestUpdate.lastUpdatedDate.damageSkins});
             })
             .catch(err => {
@@ -235,6 +242,7 @@ router.post("/damage-skin-details", function(req, res) {
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "extras";
             res.locals.branch = "damage-skins";
+            res.locals.title = "Damage Skins Details (Bulk)";
             res.render("extras/damage-skins/damageSkinDetails", {allSkins: allSkins, prevUrl: prevUrl});
         })
         .catch(err => {
@@ -259,6 +267,7 @@ router.get("/damage-skin-details/:skinNum", function(req, res) {
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "extras";
             res.locals.branch = "damage-skins";
+            res.locals.title = "Damage Skin Details (Single)";
             res.render("extras/damage-skins/damageSkinDetails", {allSkins: allSkins, prevUrl: prevUrl});
         }
     })
@@ -268,6 +277,7 @@ router.get("/everything-exp", function(req, res) {
     res.locals.extraStylesheet = "extras/extrasStyles";
     res.locals.section = "extras";
     res.locals.branch = "calc-exp-stacking";
+    res.locals.title = "Everything EXP";
 
     let getIcons = Icon.find({ usedInSections: "exp-stacking" });
 
@@ -332,78 +342,6 @@ router.get("/everything-exp/monster-list/:charLevel", function(req, res) {
     }
 })
 
-router.post("/exp-stacking", middleware.isValidEXPFormInput, function(req, res) {
-    const expTable = req.body.expTable;
-    let charLevel = parseInt(req.body.charLevel);
-    const viewType = req.body.viewTypeRadio;
-
-    const generalContentsEXP = EXPStackingHelper.calculateGeneralContentsEXP(expTable, charLevel);
-
-    let getIcons = Icon.find({ usedInSections: "exp-stacking" });
-    res.locals.extraStylesheet = "extras/extrasStyles";
-    res.locals.section = "extras";
-    res.locals.branch = "calc-exp-stacking";
-
-    if(viewType === "Detailed") {
-        // Retrieve map data that meets these conditions:
-        // 1) For maps that are not level restricted, get regions with monsters that are at least +-20 of character level
-        // 2) For maps that are level restricted, get regions that players have access to, with monsters that are +-20 of character level
-        let query = [];
-        const findUnrestrictedMaps = {
-            $and: [{ isEnforceStartLevel: false },
-                    { $or: [
-                        { $and: [
-                            { firstMonsterLevel: { $gte: charLevel-20 } },
-                            { firstMonsterLevel: { $lte: charLevel+20 } }
-                        ]},
-                        { $and: [
-                            { lastMonsterLevel: { $gte: charLevel-20 } },
-                            { lastMonsterLevel: { $lte: charLevel+20 } }
-                        ]}
-                    ]}
-                ]};
-
-        const findRestrictedMaps = { 
-            $and: [{ isEnforceStartLevel: true }, 
-                    { regionStartLevel: { $lte: charLevel } }, 
-                    { $or: [
-                        { $and: [
-                            { firstMonsterLevel: { $gte: charLevel-20 } },
-                            { firstMonsterLevel: { $lte: charLevel+20 } }
-                        ]},
-                        { $and: [
-                            { lastMonsterLevel: { $gte: charLevel-20 } },
-                            { lastMonsterLevel: { $lte: charLevel+20 } }
-                        ]}
-                    ]}
-                ]};
-
-        query.push(findUnrestrictedMaps, findRestrictedMaps);
-
-        let getMapRegions = MapLocations.find({ $or: query }).sort({ firstMonsterLevel: 1, regionStartLevel: 1, lastMonsterLevel: 1 });
-
-        Promise.all([getMapRegions, getIcons])
-            .then(([foundMaps, foundIcons]) => {
-                const compiledIcons = IconHelper.compileIcons(foundIcons);
-                res.render("extras/exp-stacking/expStackingActive", {icons: compiledIcons, foundMaps: foundMaps, expTable: expTable, charLevel: charLevel, viewType: viewType, generalContentsEXP: generalContentsEXP});
-            })
-            .catch(err => {
-                console.log(err);
-                res.redirect("back");
-            })
-    } else {
-        Promise.resolve(getIcons)
-            .then(foundIcons => {
-                const compiledIcons = IconHelper.compileIcons(foundIcons);
-                res.render("extras/exp-stacking/expStackingActive", {icons: compiledIcons, expTable: expTable, charLevel: charLevel, viewType: viewType, generalContentsEXP: generalContentsEXP});
-            })
-            .catch(err => {
-                console.log(err);
-                res.redirect("back");
-            })
-    }
-})
-
 router.get("/potential-list", function(req, res) {
     let selectedPartType = req.query.itemType;
 
@@ -439,6 +377,7 @@ router.get("/potential-list", function(req, res) {
                 res.locals.extraStylesheet = "extras/potentialListStyles";
                 res.locals.section = "extras";
                 res.locals.branch = "potential-list";
+                res.locals.title = `List of Potentials (${validItemParts[selectedPartType]})`;
 
                 res.render("extras/potentialList", { icons: compiledIcons, potentialsByRank: potentialsByRank, generalData: generalData });
             })
@@ -450,6 +389,7 @@ router.get("/potential-list", function(req, res) {
         res.locals.extraStylesheet = "extras/potentialListStyles";
         res.locals.section = "extras";
         res.locals.branch = "potential-list";
+        res.locals.title = "List of Potentials";
         res.render("extras/potentialList");
     }
 })

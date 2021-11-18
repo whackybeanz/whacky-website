@@ -25,13 +25,13 @@
                     <% if(shop.items.length > 0) { %>
                         <% shop.items.forEach((item, itemIndex) => { %>
                             <% if(item.sectionHeader) { %>
-                                <tr class="tr-section-header">
+                                <tr class="tr-section-header single-item item-<%= item.tradability %>">
                                     <th colspan="5" class="font-subsubheader text-center py-1">
                                         <%= item.sectionHeader %>
                                     </th>
                                 </tr>
                             <% } %>
-                            <tr>
+                            <tr class="single-item item-<%= item.tradability %>">
                                 <td class="align-middle py-2 position-relative px-2">
                                     <div class="d-flex align-items-center text-center">
                                         <div class="d-flex justify-content-start align-items-center text-left">

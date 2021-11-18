@@ -12,11 +12,13 @@ router.get("/about", function(req, res) {
     res.locals.extraStylesheet = "aboutStyles";
     res.locals.section = "about";
     res.locals.branch = "";
+    res.locals.title = "About Me";
     res.render("about");
 })
 
 router.get("/login", function(req, res) {
     res.locals.section = "";
+    res.locals.title = "Login";
     res.render("login");
 })
 

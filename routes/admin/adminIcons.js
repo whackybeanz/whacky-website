@@ -11,6 +11,7 @@ router.get("/icons", middleware.isAdmin, function(req, res) {
     const pageSections = AdminHelper.getPageSections();
     res.locals.extraStylesheet = "adminStyles";
     res.locals.branch = "icons";
+    res.locals.title = "Admin (Icons)";
     res.render("admin/icons/icons", {iconCategories: iconCategories, pageSections: pageSections});
 })
 
@@ -48,6 +49,7 @@ router.get("/icons/:category", middleware.isAdmin, function(req, res) {
 
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "icons";
+            res.locals.title = "Admin (Icons)";
             res.render("admin/icons/icons", {selectedCategory: selectedCategory, iconCategories: iconCategories, pageSections: pageSections, icons: foundIcons})
         }
     })
@@ -89,6 +91,7 @@ router.get("/icon/:id", middleware.isAdmin, function(req, res) {
 
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "icons";
+            res.locals.title = "Admin (Icons)";
             res.render("admin/icons/iconData", {iconCategories: iconCategories, pageSections: pageSections, prevUrl: prevUrl, iconData: icon, iconImgUrl: iconImgUrlSplit });
         }
     })

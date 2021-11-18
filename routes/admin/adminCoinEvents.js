@@ -22,6 +22,7 @@ router.get("/coin-events", middleware.isAdmin, function(req, res) {
             
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";
+            res.locals.title = "Admin (Coin Events)";
             res.render("admin/coin-events/coinEvents", { eventsByCategory: eventsByCategory });
         }
     })
@@ -84,6 +85,7 @@ router.get("/coin-event/:id", middleware.isAdmin, function(req, res) {
 
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";
+            res.locals.title = "Admin (Coin Events)";
             res.render("admin/coin-events/coinEventDetails", { icons: iconsById, coinEventData: coinEventData, durationWeeks: durationWeeks, coinGainsAndCosts: coinGainsAndCosts });
         })
         .catch(err => {
@@ -162,6 +164,7 @@ router.get("/coin-event/:id/coin/:coinIconId", middleware.isAdmin, function(req,
 
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";
+            res.locals.title = "Admin (Coin Events)";
             res.render("admin/coin-events/coin/coinDetails", { icon: icon, coinEventData: coinEventData, coinData: coinData, durationWeeks: durationWeeks, bossData: bossData });
         })
         .catch(err => {
@@ -271,6 +274,7 @@ router.get("/coin-event/:id/shop/:shopNum", middleware.isAdmin, function(req, re
                 const coinShopData = coinEventData.shops[shopNum];
                 res.locals.extraStylesheet = "adminStyles";
                 res.locals.branch = "coin-events";
+                res.locals.title = "Admin (Coin Events)";
                 res.render("admin/coin-events/coin-shop/coinShopDetails", { icons: iconsById, commonIcons: commonIcons, coinEventData: coinEventData, coinShopData: coinShopData, shopNum: req.params.shopNum });
             } else {
                 throw new Error("Invalid shop number received");
@@ -469,6 +473,7 @@ router.get("/coin-event/:id/shop/:shopNum/item/:itemId", middleware.isAdmin, fun
             }
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";
+            res.locals.title = "Admin (Coin Events)";
             res.render("admin/coin-events/coin-shop-item/coinShopItemDetails", responseObj);
         })
         .catch(err => {

@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Respective tab's select listener
     sectionSelectListener();
+    tradabilitySelectListener();
     shopSelectListener();
     profileSelectListener();
 
@@ -257,6 +258,24 @@ function sectionSelectListener() {
                 document.getElementById("save-container").classList.add("d-none");
             }
         })
+    })
+}
+
+function tradabilitySelectListener() {
+    const tradabilitySelect = document.getElementById("tradability-select");
+
+    tradabilitySelect.addEventListener("change", function() {
+        let selectedTradability = this.value;
+
+        if(selectedTradability === "all") {
+            document.querySelectorAll(".single-item")
+                .forEach(item => item.classList.remove("d-none"));
+        } else {
+            document.querySelectorAll(".single-item")
+                .forEach(item => item.classList.add("d-none"));
+            document.querySelectorAll(`.item-${selectedTradability}`)
+                .forEach(item => item.classList.remove("d-none"));
+        }
     })
 }
 

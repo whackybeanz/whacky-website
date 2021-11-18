@@ -21,6 +21,7 @@ router.get("/equip-guide/spell-trace", function(req, res) {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.section = "newbies";
             res.locals.branch = "spell-trace";
+            res.locals.title = "About Spell Trace";
             res.render("beginner/spell-trace/spellTraceIndex", {icons: compiledIcons});
         }
     })
@@ -35,6 +36,7 @@ router.get("/equip-guide/star-force", function(req, res) {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.section = "newbies";
             res.locals.branch = "star-force";
+            res.locals.title = "About Star Force";
             res.render("beginner/star-force/starForceIndex", {icons: compiledIcons});
         }
     })
@@ -49,6 +51,7 @@ router.get("/equip-guide/potentials", function(req, res) {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.section = "newbies";
             res.locals.branch = "potentials";
+            res.locals.title = "About Potentials";
             res.render("beginner/potentials/potentialsIndex", {icons: compiledIcons});
         }
     })
@@ -63,6 +66,7 @@ router.get("/equip-guide/flames", function(req, res) {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.section = "newbies";
             res.locals.branch = "flames";
+            res.locals.title = "About Flames";
             res.render("beginner/flames/flameIndex", {icons: compiledIcons});
         }
     })
@@ -77,6 +81,7 @@ router.get("/equip-guide/soul-weapons", function(req, res) {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.section = "newbies";
             res.locals.branch = "soul-weapons";
+            res.locals.title = "About Soul Weapons";
             res.render("beginner/soul-weapons/soulWeaponIndex", {icons: compiledIcons});
         }
     })
@@ -91,6 +96,7 @@ router.get("/equip-guide/set-effects", function(req, res) {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.section = "newbies";
             res.locals.branch = "set-effects";
+            res.locals.title = "About Set Effects";
             res.render("beginner/set-effects/setEffectIndex", {icons: compiledIcons});
         }
     })
@@ -105,6 +111,7 @@ router.get("/equip-guide/todd-hammer", function(req, res) {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.section = "newbies";
             res.locals.branch = "todd-hammer";
+            res.locals.title = "About Todd's Hammer";
             res.render("beginner/todd-hammer/toddIndex", {icons: compiledIcons});
         }
     })

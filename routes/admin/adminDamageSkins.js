@@ -31,6 +31,7 @@ router.get("/damage-skins/:category", function(req, res) {
             const damageSkinCategories = AdminHelper.getDamageSkinCategories();
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "damage-skins";
+            res.locals.title = "Admin (Damage Skins)";
             res.render("admin/damage-skins/damageSkins", {selectedCategory: selectedCategory, damageSkinCategories: damageSkinCategories, skinProperties: skinProperties, damageSkins: foundDamageSkins});
         })
         .catch(err => {
@@ -71,6 +72,7 @@ router.get("/damage-skin/:id", middleware.isAdmin, function(req, res) {
             const prevUrl = `/admin/damage-skins/${damageSkin.isKMSskin ? "kms" : "non-kms"}`;
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "damage-skins";
+            res.locals.title = "Admin (Damage Skins)";
             res.render("admin/damage-skins/damageSkinData", { prevUrl: prevUrl, damageSkinData: damageSkin, skinProperties: skinProperties });
         }
     })

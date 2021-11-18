@@ -12,6 +12,7 @@
                     <h1 class="font-header w-100 text-center m-0 px-0">Coin Event Details - <span id="event-name"><%= coinEventData.eventDetails.name %></span></h1>
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
                 </div>
+                <div class="col-12 text-muted text-center font-small mb-3">(Updated on 18 Nov 2021 - Added item tradability filtering in Item List)</div>
 
                 <img class="coin-event-banner small mb-0" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= coinEventData.eventId %>/<%= coinEventData.eventDetails.bannerImg %>">
                 <small>
@@ -87,9 +88,18 @@
                             <form class="w-100 mb-4 mb-sm-3 mb-md-0 d-flex flex-column align-items-center justify-content-center">
                                 <input type="hidden" value="<%= coinEventData.eventId %>" id="event-id">
 
-                                <div class="size-350 w-100 d-flex justify-content-center px-3">
+                                <div class="size-350 w-100 d-flex flex-column align-items-center justify-content-center">
                                     <div class="w-100 form-group row d-flex align-items-center">
-                                        <label class="col-5 font-weight-bold px-2 mb-0 text-left text-sm-center" for="shop-select">Select shop:</label>
+                                        <label class="col-5 font-weight-bold px-2 mb-0 text-left" for="tradability-select">Item tradability</label>
+                                        <select class="col-7 form-control px-2 py-0" id="tradability-select">
+                                            <option value="all">Show all</option>
+                                            <option value="tradable">Tradable</option>
+                                            <option value="inter-acct">Inter-account Tradable</option>
+                                            <option value="untradable">Untradable</option>
+                                        </select>
+                                    </div>
+                                    <div class="w-100 form-group row d-flex align-items-center">
+                                        <label class="col-5 font-weight-bold px-2 mb-0 text-left" for="shop-select">Select shop</label>
                                         <select class="col-7 form-control px-2 py-0" id="shop-select">
                                             <% coinEventData.shops.forEach((shop, index) => { %>
                                                 <option value="<%= index %>"><%= shop.shopName %></option>
