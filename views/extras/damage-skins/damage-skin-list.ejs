@@ -2,7 +2,19 @@
 <div class="col-12 mb-4 px-0">
     <div class="dmg-skin-section-subheader">
         <h3 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
-            <i class="fas fa-caret-down"></i> <% if(pageNum > 0) { %><%= letter %><% } else { %>New Skins (Updated <% if(dateUpdated) { %><%= dateUpdated %><% } else { %>N/A<% } %>)<% } %>
+            <i class="fas fa-caret-down"></i>
+
+            <% if(page === "new") { %>
+                New Skins (Updated <% if(dateUpdated) { %><%= dateUpdated %><% } else { %>N/A<% } %>)
+            <% }%>
+
+            <% if(page === "unit") { %>
+                Unit Skins
+            <% }%>
+
+            <% if(parseInt(page) >= 0) { %>
+                <%= letter %>
+            <% } %>
         </h3>
     </div>
     <div class="dmg-skin-section px-0 collapse show pt-3" id="skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">

@@ -163,20 +163,28 @@ router.get("/todd-sequence", function(req, res) {
 })
 
 router.get("/damage-skins", function(req, res) {
-    res.redirect("./damage-skins/0");
+    res.redirect("./damage-skins/new");
 })
 
-router.get("/damage-skins/:pageNum", function(req, res) {
-    const pageNum = parseInt(req.params.pageNum);
-    const pagesArr = ["New Skins", "???, 0-9, AB", "C", "DEF", "GHI", "JKL", "MNO", "PQR", "S", "TUVWXYZ"];
-
+router.get("/damage-skins/:page", function(req, res) {
+    const page = req.params.page;
+    const pageNum = parseInt(page);
+    const pagesArr = ["???, 0-9, AB", "C", "DEF", "GHI", "JKL", "MNO", "PQR", "S", "TUVWXYZ"];
     let query = [];
-    //let getDocCount = DamageSkin.estimatedDocumentCount();
+    let isValidSearch = false;
+
+    if(page === "new") {
+        query.push({ isNewSkin: true });
+        isValidSearch = true;
+    }
+
+    if(page === "unit") {
+        query.push({ hasUnitSkin: true });
+        isValidSearch = true;
+    }   
 
     if(!isNaN(pageNum) && pageNum >= 0 && pageNum-1 < pagesArr.length) {
         if(pageNum === 0) {
-            query.push({ isNewSkin: true });
-        } else if(pageNum === 1) {
             query.push({ "letterCategory": " ??? (Unknown)"}, { "letterCategory": "0-9" }, { "letterCategory": "A" }, { "letterCategory": "B" });
         } else {
             const skinsToFind = pagesArr[pageNum];
@@ -184,38 +192,45 @@ router.get("/damage-skins/:pageNum", function(req, res) {
                 query.push({ "letterCategory": letter });
             }
         }
+        isValidSearch = true;
+    }
 
-        let getLatestUpdate = LatestUpdate.findOne({});
-        let getDamageSkins = DamageSkin.find({$or: query}).sort({ letterCategory: 1, shortName: 1 });
-
-        Promise.all([getLatestUpdate, getDamageSkins])
-            .then(([latestUpdate, allSkins]) => {
-                let sortedSkins = {};
-
-                if(pageNum !== 0) {
-                    const allCategories = [...new Set(allSkins.map(skin => skin.letterCategory))];
-                    allCategories.forEach(category => sortedSkins[category] = []);
-                    allSkins.forEach(skin => sortedSkins[skin.letterCategory].push(skin));
-                } else {
-                    sortedSkins.newSkins = [];
-                    allSkins.forEach(skin => sortedSkins.newSkins.push(skin))
-                }
-
-                res.locals.extraStylesheet = "extras/extrasStyles";
-                res.locals.section = "extras";
-                res.locals.branch = "damage-skins";
-                res.locals.title = "Damage Skins";
-                res.render("extras/damage-skins/damageSkins", {sortedSkins: sortedSkins, pageNum: pageNum, pagesArr: pagesArr, dateUpdated: latestUpdate.lastUpdatedDate.damageSkins});
-            })
-            .catch(err => {
-                console.log(err);
-                res.redirect("back");
-            })
+    if(isValidSearch) {
+        getMatchingDamageSkins(query, page, pagesArr, res);
     } else {
         console.log("Invalid page number");
         res.redirect("back");
     }
 })
+
+function getMatchingDamageSkins(query, page, pagesArr, res) {
+    let getLatestUpdate = LatestUpdate.findOne({});
+    let getDamageSkins = DamageSkin.find({$or: query}).sort({ letterCategory: 1, shortName: 1 });
+
+    Promise.all([getLatestUpdate, getDamageSkins])
+        .then(([latestUpdate, allSkins]) => {
+            let sortedSkins = {};
+
+            if(page === "new" || page === "unit") {
+                sortedSkins.newSkins = [];
+                allSkins.forEach(skin => sortedSkins.newSkins.push(skin))
+            } else {
+                const allCategories = [...new Set(allSkins.map(skin => skin.letterCategory))];
+                allCategories.forEach(category => sortedSkins[category] = []);
+                allSkins.forEach(skin => sortedSkins[skin.letterCategory].push(skin));
+            }
+
+            res.locals.extraStylesheet = "extras/extrasStyles";
+            res.locals.section = "extras";
+            res.locals.branch = "damage-skins";
+            res.locals.title = "Damage Skins";
+            res.render("extras/damage-skins/damageSkins", {sortedSkins: sortedSkins, page: page, pagesArr: pagesArr, dateUpdated: latestUpdate.lastUpdatedDate.damageSkins});
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
+}
 
 router.get("/damage-skin-details", function(req, res) {
     res.redirect("back");
