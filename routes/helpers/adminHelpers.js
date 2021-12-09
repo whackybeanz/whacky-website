@@ -71,6 +71,9 @@ function compileDamageSkinData(body) {
         name: body.name,
         shortName: body.name.replace(/(Damage Skin \- | Damage Skin)/, ""),
 
+        isInCurrentBox: body.isInCurrentBox === "yes",
+        isJobSkin: body.isJobSkin === "yes",
+
         folderNum: parseInt(body.folderNum),
         regularItemId: body.regularItemId,
         screenshotTypes: body.screenshotTypes,

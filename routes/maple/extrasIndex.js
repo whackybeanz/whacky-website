@@ -181,7 +181,17 @@ router.get("/damage-skins/:page", function(req, res) {
     if(page === "unit") {
         query.push({ hasUnitSkin: true });
         isValidSearch = true;
-    }   
+    }
+
+    if(page === "box") {
+        query.push({ isInCurrentBox: true });
+        isValidSearch = true;
+    }
+
+    if(page === "job") {
+        query.push({ isJobSkin: true });
+        isValidSearch = true;
+    }
 
     if(!isNaN(pageNum) && pageNum >= 0 && pageNum-1 < pagesArr.length) {
         if(pageNum === 0) {

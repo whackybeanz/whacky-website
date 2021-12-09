@@ -13,6 +13,9 @@ var damageSkinSchema = new mongoose.Schema({
     altNames: { type: [String], default: undefined },
     notes: String,
 
+    isInCurrentBox: Boolean,
+    isJobSkin: Boolean,
+
     folderNum: { type: Number, index: true },
     regularItemId: String,
     unitFolderNum: Number,

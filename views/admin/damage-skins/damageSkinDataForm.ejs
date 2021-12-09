@@ -183,6 +183,40 @@
         </div>
     </div>
 
+    <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Damage Skin Box Info</h3>
+    <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
+        <div class="form-group row">
+            <div class="col-sm-3 font-weight-bold">Is in current box?</div>
+            <div class="col-sm-9 d-flex flex-wrap h-100">
+                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="is-in-current-box-radio-group">
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isInCurrentBox" id="in-current-box-yes" value="yes" <% if(locals.damageSkinData && damageSkinData.isInCurrentBox) { %>checked<% } %>>
+                        <label class="form-check-label radio-select is-in-current-box-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.damageSkinData && damageSkinData.isInCurrentBox) { %>active<% } %>" for="in-current-box-yes" data-is-in-current-box="yes" id="in-current-box-label-yes">Yes</label>
+                    </div>
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isInCurrentBox" id="in-current-box-no" value="" <% if(!locals.damageSkinData || (locals.damageSkinData && !damageSkinData.isInCurrentBox)) { %>checked<% } %>>
+                        <label class="form-check-label radio-select is-in-current-box-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.damageSkinData || (locals.damageSkinData && !damageSkinData.isInCurrentBox)) { %>active<% } %>" for="in-current-box-no" data-is-in-current-box="no" id="in-current-box-label-no">No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-3 font-weight-bold">Is job skin?</div>
+            <div class="col-sm-9 d-flex flex-wrap h-100">
+                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="is-job-skin-radio-group">
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isJobSkin" id="job-skin-yes" value="yes" <% if(locals.damageSkinData && damageSkinData.isJobSkin) { %>checked<% } %>>
+                        <label class="form-check-label radio-select is-job-skin-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.damageSkinData && damageSkinData.isJobSkin) { %>active<% } %>" for="job-skin-yes" data-is-job-skin="yes" id="job-skin-label-yes">Yes</label>
+                    </div>
+                    <div class="col form-check p-0">
+                        <input class="form-check-input" type="radio" name="isJobSkin" id="job-skin-no" value="" <% if(!locals.damageSkinData || (locals.damageSkinData && !damageSkinData.isJobSkin)) { %>checked<% } %>>
+                        <label class="form-check-label radio-select is-job-skin-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.damageSkinData || (locals.damageSkinData && !damageSkinData.isJobSkin)) { %>active<% } %>" for="job-skin-no" data-is-job-skin="no" id="job-skin-label-no">No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Screenshots Info</h3>
     <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
         <div class="form-group row">

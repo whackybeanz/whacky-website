@@ -17,7 +17,7 @@
                 <div class="w-100 mb-3">
                     <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Info Sheet Details</h2>
 
-                    <p class="w-100 text-justify">All names are as seen in MapleSEA. Note that not all skins are available in game -- they may not be released or are upcoming releases. Damage skins may have multiple names. Many thanks to <a href="https://github.com/IkaEren" target="_blank">Zamiel</a> and <a href="https://github.com/angelsl/reWZ" target="_blank">reWZ</a> for providing damage skin details that made this page a possibility.</p>
+                    <p class="w-100 text-justify">All names are as seen in MapleSEA. Note that not all skins are available in game -- they may not be released or are upcoming releases. Damage skins may have multiple names. Many thanks to <a href="https://github.com/IkaEren" target="_blank">Zamiel</a> and <a href="https://github.com/angelsl/reWZ" target="_blank">reWZ</a> for extracting and providing initial damage skin details.</p>
 
                     <ul class="px-0 mb-4">
                         <p class="mb-1"><i class="fas fa-eye"></i> : View respective damage skin details</p>
@@ -25,15 +25,29 @@
                     </ul>
 
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-wrap pt-2 mb-3">
-                        <div class="size-720 w-100 d-flex justify-content-center flex-wrap">
-                            <div class="skin-select-div col-4 text-center px-2">
-                                <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "new") { %>active<% } %>">
-                                    <a href="/maple/extras/damage-skins/new" class="stretched-link text-decoration-none">Newly Released</a>
+                        <div class="size-720 w-100 d-flex flex-column justify-content-center align-items-center">
+                            <div class="w-100 d-flex justify-content-center">
+                                <div class="skin-select-div col-4 text-center px-1 mb-1">
+                                    <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "new") { %>active<% } %>">
+                                        <a href="/maple/extras/damage-skins/new" class="stretched-link text-decoration-none">Newly Released</a>
+                                    </div>
+                                </div>
+                                <div class="skin-select-div col-4 text-center px-1 mb-1">
+                                    <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "unit") { %>active<% } %>">
+                                        <a href="/maple/extras/damage-skins/unit" class="stretched-link text-decoration-none">Unit Skins</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="skin-select-div col-4 text-center px-2">
-                                <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "unit") { %>active<% } %>">
-                                    <a href="/maple/extras/damage-skins/unit" class="stretched-link text-decoration-none">Unit Skins</a>
+                            <div class="w-100 d-flex justify-content-center">
+                                <div class="skin-select-div col-4 text-center px-1">
+                                    <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "box") { %>active<% } %>">
+                                        <a href="/maple/extras/damage-skins/box" class="stretched-link text-decoration-none">Random Skin Box</a>
+                                    </div>
+                                </div>
+                                <div class="skin-select-div col-4 text-center px-1">
+                                    <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "job") { %>active<% } %>">
+                                        <a href="/maple/extras/damage-skins/job" class="stretched-link text-decoration-none">Job Damage Skins</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +56,7 @@
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-wrap mb-4">
                         <div class="size-720 w-100 d-flex justify-content-center flex-wrap">
                             <% pagesArr.forEach(function(pageName, index) { %>
-                            <div class="skin-select-div col-4 text-center px-2 mb-3">
+                            <div class="skin-select-div col-4 text-center px-1 mb-1">
                                 <div class="single-option-select rounded-sm position-relative py-1 <% if(parseInt(page) === index) { %>active<% } %>">
                                     <a href="/maple/extras/damage-skins/<%= index %>" class="stretched-link text-decoration-none"><%= pageName %></a>
                                 </div>

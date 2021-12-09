@@ -17,7 +17,7 @@ var User = require("./models/users");
 
 var port = process.env.PORT || 3005;
 var databaseUrl = process.env.DATABASEURL || "mongodb://localhost/maple-info-db";
-mongoose.connect(databaseUrl, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false});
+mongoose.connect(databaseUrl);
 
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({extended: true}));
