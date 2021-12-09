@@ -221,7 +221,7 @@ function getMatchingDamageSkins(query, page, pagesArr, res) {
         .then(([latestUpdate, allSkins]) => {
             let sortedSkins = {};
 
-            if(page === "new" || page === "unit") {
+            if(page === "new" || page === "unit" || page === "box" || page === "job") {
                 sortedSkins.newSkins = [];
                 allSkins.forEach(skin => sortedSkins.newSkins.push(skin))
             } else {
