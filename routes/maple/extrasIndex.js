@@ -109,7 +109,8 @@ router.get("/boss-crystal", function(req, res) {
         { id: "damien", easy: 0, normal: 33800000, hard: 70312500, chaos: 0 },
         { id: "djunkel", easy: 0, normal: 52812500, hard: 0, chaos: 96800000 },
         { id: "dusk", easy: 0, normal: 49612500, hard: 0, chaos: 92450000 },
-        { id: "heretic-hilla", easy: 0, normal: 0, hard: 110450000, chaos: 0 },
+        { id: "ga-slime", easy: 0, normal: 34322000, hard: 0, chaos: 90312500 },
+        { id: "heretic-hilla", easy: 0, normal: 139668296, hard: 110450000, chaos: 0 },
         { id: "hilla", easy: 0, normal: 800000, hard: 11250000, chaos: 0 },
         { id: "horntail", easy: 882000, normal: 1012500, hard: 0, chaos: 1352000 },
         { id: "julieta", easy: 0, normal: 1200000, hard: 0, chaos: 0 },
@@ -122,11 +123,11 @@ router.get("/boss-crystal", function(req, res) {
         { id: "pink-bean", easy: 0, normal: 1404500, hard: 0, chaos: 12800000 },
         { id: "pnou", easy: 0, normal: 15312500, hard: 0, chaos: 0 },
         { id: "ranmaru", easy: 0, normal: 648000, hard: 2664500, chaos: 0 },
-        { id: "seren", easy: 0, normal: 0, hard: 0, chaos: 0 },
+        { id: "seren", easy: 0, normal: 181116193, hard: 151250000, chaos: 0 },
         { id: "vellum", easy: 0, normal: 968000, hard: 0, chaos: 21012500 },
         { id: "von-bon", easy: 0, normal: 968000, hard: 0, chaos: 16200000 },
         { id: "von-leon", easy: 1058000, normal: 1458000, hard: 2450000, chaos: 0 },
-        { id: "will", easy: 0, normal: 46512500, hard: 88200000, chaos: 0 },
+        { id: "will", easy: 51138596, normal: 46512500, hard: 88200000, chaos: 0 },
         { id: "zakum", easy: 200000, normal: 612500, hard: 0, chaos: 16200000 },
     ];
 

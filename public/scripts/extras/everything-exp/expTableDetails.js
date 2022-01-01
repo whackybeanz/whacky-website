@@ -1,5 +1,10 @@
 const EXP_TABLE_HISTORY = [
     {
+        name: "DESTINY",
+        details: ["Released in KMS on 30 December 2021", "Level 250 to 259 EXP reductions"],
+        url: "https://m.inven.co.kr/board/maple/2304/29604?",
+    },
+    {
         isCurrent: true,
         name: "NEO",
         details: ["Released in KMS in December 2020", "Level cap raised to 300", "Level 210 to 250 EXP reductions"],
@@ -108,6 +113,10 @@ const CURR_EXP_TABLE = [
         name: "Level 250 to 275",
         startLevel: 250,
         values: [
+            /*
+            1004220024186,1034346624911,1065377023658,1097338334367,1130258484398,
+            1164166238929,1199091226096,1235063962878,1272115881764,1310279358216,
+            */
             1313764762354,1326902409977,1340171434076,1353573148416,1367108879900,
             1380779968699,1394587768385,1408533646068,1422618982528,1436845172353,
             2902427248153,2931451520634,2960766035840,2990373696198,3020277433159,
