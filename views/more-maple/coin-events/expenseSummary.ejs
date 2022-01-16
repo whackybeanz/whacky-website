@@ -6,15 +6,15 @@
                     <th class="table-cols-100"></th>
                     <% coinEventData.coinDetails.forEach(coin => { %>
                         <th class="text-center align-middle align-md-bottom py-2">
-                            <img class="d-none d-md-inline" src="<%= icons[`${coin.iconId}`].imgUrl %>">
-                            <div class=""><%= icons[`${coin.iconId}`].name %></div>
+                            <img class="" src="<%= icons[`${coin.iconId}`].imgUrl %>">
+                            <div class="d-none d-md-inline"><%= icons[`${coin.iconId}`].name %></div>
                         </th>
                     <% }) %>
 
                     <% if(coinEventData.hasMesosShop) { %>
                         <th class="text-center align-middle align-md-bottom py-2">
-                            <img class="d-none d-md-inline" src="<%= icons['mesos'].imgUrl %>">
-                            <div class="">Mesos</div>
+                            <img class="" src="<%= icons['mesos'].imgUrl %>">
+                            <div class="d-none d-md-inline">Mesos</div>
                         </th>
                     <% } %>
                 </tr>

@@ -283,7 +283,7 @@ function addExpTable(potionType, minLevel, maxLevel) {
                 .insertAdjacentHTML('beforeend', `<tr>
                     <th scope="row" class="text-center">${i} > ${i+1}</th>
                     <td scope="row" class="text-center ${percentGain === 100.000 ? "text-info font-weight-bold" : "" }" data-potion-raw-exp="${rawExpGain}" id="potion-${potionType}-level-${i}-exp">${percentGain.toFixed(3) + "%"}</td>
-                <tr>`);
+                </tr>`);
         }
     })
 }

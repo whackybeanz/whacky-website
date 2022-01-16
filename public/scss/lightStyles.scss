@@ -1,7 +1,7 @@
 @use '_global-styles' as globals;
 
 body {
-    background-image: linear-gradient(to bottom, globals.$light-mode-white, globals.$light-mode-white), url("../public-images/light.jpg");
+    background-image: linear-gradient(to bottom, globals.$light-mode-white, globals.$light-mode-white), url("../public-images/light.webp");
     background-color: globals.$light-mode-white-opaque;
     color: globals.$light-mode-black;
 

@@ -1,3 +1,4 @@
+var compression             = require("compression");
 var express                 = require("express");
 var app                     = express();
 //var bodyParser              = require("body-parser");
@@ -19,6 +20,7 @@ var port = process.env.PORT || 3005;
 var databaseUrl = process.env.DATABASEURL || "mongodb://localhost/maple-info-db";
 mongoose.connect(databaseUrl);
 
+app.use(compression());
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
