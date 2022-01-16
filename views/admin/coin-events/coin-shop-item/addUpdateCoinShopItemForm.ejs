@@ -18,7 +18,7 @@
             <div class="col-sm-9">
                 <input type="text" class="font-small <% if(!locals.coinShopItemData) { %>form-control<% } else { %>form-control-plaintext<% } %> text-center" pattern="^[a-zA-Z0-9-]+$" name="itemId" autocomplete="off" placeholder="Item ID" required <% if(locals.coinShopItemData) { %>value="<%= coinShopItemData.iconId %>"<% } %>>
                 <% if(!locals.coinShopItemData) { %>
-                    <small class="text-info">Use the <a href="/admin/icons" target="_blank">Icons page</a> to retrieve each icon ID. <span class="text-danger">Cannot be changed once set.</span></small>
+                    <small class="text-custom">Use the <a href="/admin/icons" target="_blank">Icons page</a> to retrieve each icon ID. <span class="text-danger">Cannot be changed once set.</span></small>
                 <% } %>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <label class="col-sm-3 col-form-label font-weight-bold text-left">Section Header</label>
             <div class="col-sm-9">
                 <input type="text" class="font-small form-control text-center" name="sectionHeader" autocomplete="off" placeholder="Section Header" <% if(locals.coinShopItemData) { %>value="<%= coinShopItemData.sectionHeader %>"<% } %>>
-                <small class="text-info">Only insert details here if a section header is required.</small>
+                <small class="text-custom">Only insert details here if a section header is required.</small>
             </div>
         </div>
         <div class="form-group row">
@@ -39,7 +39,7 @@
             <label class="col-sm-3 col-form-label font-weight-bold text-left">Quantity</label>
             <div class="col-sm-9">
                 <input type="number" class="font-small form-control text-center" name="quantity" autocomplete="off" placeholder="Quantity" <% if(locals.coinShopItemData && locals.coinShopItemData.quantity > 0) { %>value="<%= coinShopItemData.quantity %>"<% } %>>
-                <small class="text-info">Refers to purchase limit as displayed in game when item is hovered over. For example, if five can be bought per week, put 5. If one can be bought per character, put 1. If no limit, leave blank.</small>
+                <small class="text-custom">Refers to purchase limit as displayed in game when item is hovered over. For example, if five can be bought per week, put 5. If one can be bought per character, put 1. If no limit, leave blank.</small>
             </div>
         </div>
         <div class="form-group row">
@@ -178,7 +178,7 @@
             </div>
         </div>
         <div class="col-12 px-0">
-            <button class="h-100 w-100 btn btn-sm btn-outline-info rounded-sm d-flex justify-content-center align-items-center" id="btn-add-coin-shop-item">
+            <button class="h-100 w-100 btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center" id="btn-add-coin-shop-item">
                 <i class="fas fa-plus mr-1"></i> <% if(!locals.coinShopItemData) { %>Add New<% } else { %>Update<% } %> Item
             </button>
         </div>

@@ -23,7 +23,7 @@ function loadEXPTableHistory() {
                 .insertAdjacentHTML('beforeend', `<tr>
                     <th scope="row" class="align-middle text-center">${history.name}</th>
                     <td class="py-2 px-2">${history.details.join("<br/>")}</td>
-                    <td class="align-middle text-center"><a class="text-info" href="${history.url}" target="_blank">Click me!</a></td>
+                    <td class="align-middle text-center"><a class="text-custom" href="${history.url}" target="_blank">Click me!</a></td>
                 </tr>`);
     })
 }

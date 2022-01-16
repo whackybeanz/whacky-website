@@ -170,7 +170,7 @@ function addIconInputHTML(iconId = "") {
                     <div class="input-group mb-2">
                         <input type="text" class="paste-input form-control text-center" placeholder="Item ID" name="itemId" pattern="^[a-zA-Z0-9-]+$" autocomplete="off" value="${iconId}" required>
                         <div class="input-group-append">
-                            <button type="button" class="btn-paste-from-clipboard btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="bottom" title="Paste from clipboard">
+                            <button type="button" class="btn-paste-from-clipboard btn btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="bottom" title="Paste from clipboard">
                                 <i class="fas fa-clipboard pointer-events-none"></i>
                             </button>
                         </div>

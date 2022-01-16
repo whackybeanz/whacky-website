@@ -117,7 +117,7 @@
                             <% } %>
                         </td>
                         <td class="text-center align-middle py-2">
-                            <a href="/admin/coin-event/<%= coinEventData.eventId %>/shop/<%= shopNum %>/item/<%= item._id %>" target="_blank" class="btn btn-outline-info btn-sm"><i class="fas fa-pen"></i></a>
+                            <a href="/admin/coin-event/<%= coinEventData.eventId %>/shop/<%= shopNum %>/item/<%= item._id %>" target="_blank" class="btn btn-outline-custom btn-sm"><i class="fas fa-pen"></i></a>
                             <button type="button" class="remove-coin-shop-item-btn btn btn-outline-danger btn-sm" data-coin-event-id="<%= coinEventData._id %>" data-coin-shop-id="<%= coinShopData._id %>" data-coin-shop-item-id="<%= item._id %>"
                                 data-name="<% if(icons[`${item.iconId}`]) { %><%= icons[`${item.iconId}`].name %><% } else { %>undefined<% } %>">
                                 <i class="fas fa-trash"></i>
@@ -132,5 +132,5 @@
             <% } %>
         </tbody>
     </table>
-    <button type="submit" class="btn btn-outline-info btn-sm mb-5"><i class="fas fa-save"></i> Save current item order</button>
+    <button type="submit" class="btn btn-outline-custom btn-sm mb-5"><i class="fas fa-save"></i> Save current item order</button>
 </form>

@@ -35,7 +35,7 @@ function retrieveMonsterData() {
             if(data.err) {
                 container.insertAdjacentHTML('beforeend', `<p class="text-danger text-center">An error occurred while retrieving data [${data.err}]</p>`);
             } else {
-                container.insertAdjacentHTML('beforeend', `<p class="font-subsubheader font-weight-bold mt-4 mb-0" id="monster-list-exp-mult" data-exp-mult="${expMultiplier}">Current EXP Buffs Multiplier: <span class="text-info">x${expMultiplier.toFixed(2)}</span></p>`)
+                container.insertAdjacentHTML('beforeend', `<p class="font-subsubheader font-weight-bold mt-4 mb-0" id="monster-list-exp-mult" data-exp-mult="${expMultiplier}">Current EXP Buffs Multiplier: <span class="text-custom">x${expMultiplier.toFixed(2)}</span></p>`)
 
                 Object.keys(data.monsterListByMap).forEach((mapId, mapIndex) => {
                     container.insertAdjacentHTML('beforeend', createMonsterTables(mapId, data.monsterListByMap[mapId]))
@@ -97,7 +97,7 @@ function populateMonsterTables(charLevel, mapIndex, monster, monsterIndex, expMu
     let levelDiffModifier = getModifier(charLevel, monster.monsterLevel); 
     
     return `<tr>
-        <td class="${monster.isBoss ? "text-info font-weight-bold" : "" } align-middle position-relative">
+        <td class="${monster.isBoss ? "text-custom font-weight-bold" : "" } align-middle position-relative">
             <div class="monster-list-table-img-div w-100 h-100 position-absolute py-2 pr-3" style="background-image: url('${monster.imgUrl}');">
 
             </div>
@@ -107,14 +107,14 @@ function populateMonsterTables(charLevel, mapIndex, monster, monsterIndex, expMu
                 <p class="mb-0 ml-2">- Base EXP Bonus: <span id="map-${mapIndex}-monster-${monsterIndex}-level-diff-mod" data-level-diff-mod="${levelDiffModifier}">x${levelDiffModifier}</span></p>
             </div>
         </td>
-        <td class="${monster.isBoss ? "text-info font-weight-bold" : "" } align-middle text-center">
+        <td class="${monster.isBoss ? "text-custom font-weight-bold" : "" } align-middle text-center">
             
                 <div class="form-group mb-0">
                     <input type="number" class="single-num-kills-input form-control text-center px-2" value="1000" id="map-${mapIndex}-monster-${monsterIndex}-num-kills-input" data-map-index="${mapIndex}" data-monster-index="${monsterIndex}">
                 </div>
             
         </td>
-        <td class="${monster.isBoss ? "text-info font-weight-bold" : "" } align-middle text-center">
+        <td class="${monster.isBoss ? "text-custom font-weight-bold" : "" } align-middle text-center">
             <div class="d-flex flex-column">
                 <div class="d-flex">
                     <div class="col-6 px-2 text-right">Base EXP</div>

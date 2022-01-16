@@ -6,7 +6,7 @@
                     <img src="<%= icons['map-rte'].imgUrl %>" class="mr-2"> Daily Quests
                 </h2>
                 <p class="mb-0">
-                    Selected dailies EXP total = <span id="selected-dailies-total-raw-exp">0 EXP</span> / <span class="text-info font-weight-bold" id="selected-dailies-total-percent-exp">0.000%</span>
+                    Selected dailies EXP total = <span id="selected-dailies-total-raw-exp">0 EXP</span> / <span class="text-custom font-weight-bold" id="selected-dailies-total-percent-exp">0.000%</span>
                 </p>
             </div>
             <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center px-3 pt-3">
@@ -17,12 +17,12 @@
                         </div>
                         <div class="daily-quest-details" data-name="<%= daily.name %>" data-min-level="<%= daily.recMinLevel %>" data-raw-exp="<%= daily.rawEXP %>">
                             <p class="mb-0">
-                                <span class="selected-mark text-info d-none">[<i class="fas fa-check"></i>]</span> <span class="font-weight-bold"><%= daily.name %></span>
+                                <span class="selected-mark text-custom d-none">[<i class="fas fa-check"></i>]</span> <span class="font-weight-bold"><%= daily.name %></span>
                             </p>
                             <% if(daily.rawEXP !== 0) { %>
-                                <%= daily.rawEXP.toLocaleString('en-SG') %> EXP / <span class="text-info percent-exp font-weight-bold">0.000%</span>
+                                <%= daily.rawEXP.toLocaleString('en-SG') %> EXP / <span class="text-custom percent-exp font-weight-bold">0.000%</span>
                             <% } else { %>
-                                - / <span class="text-info percent-exp font-weight-bold">-</span>
+                                - / <span class="text-custom percent-exp font-weight-bold">-</span>
                             <% } %>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                         </tbody>
                     </table>
 
-                    <button type="button" class="btn btn-sm btn-outline-info font-weight-bold" id="btn-reset-monster-park"><i class="fas fa-pen"></i> Change dungeon</button>
+                    <button type="button" class="btn btn-sm btn-outline-custom font-weight-bold" id="btn-reset-monster-park"><i class="fas fa-pen"></i> Change dungeon</button>
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                     <img src="<%= icons['map-maple-live'].imgUrl %>" class="mr-2"> Event Minigames
                 </h2>
                 <p class="mb-0">
-                    EXP per day (2 runs) = <span id="event-per-day-raw-exp">0 EXP</span> / <span class="font-weight-bold text-info" id="event-per-day-percent-exp">0.000%</span>
+                    EXP per day (2 runs) = <span id="event-per-day-raw-exp">0 EXP</span> / <span class="font-weight-bold text-custom" id="event-per-day-percent-exp">0.000%</span>
                 </p>
             </div>
             <div class="exp-stack-section-content table-responsive font-form d-flex flex-column align-items-center pt-3" id="event-exp-table-details">
@@ -96,7 +96,7 @@
                         <tr>
                             <th scope="col" class="text-center">Level</th>
                             <th scope="col" class="text-center">EXP per run</th>
-                            <th scope="col" class="text-center text-info">% per run</th>
+                            <th scope="col" class="text-center text-custom">% per run</th>
                         </tr>
                     </thead>
                     <tbody class="mb-3" id='event-exp-table'>
@@ -117,7 +117,7 @@
                         <tr>
                             <th scope="col" class="text-center">Level</th>
                             <th scope="col" class="text-center">EXP obtained</th>
-                            <th scope="col" class="text-center text-info">%</th>
+                            <th scope="col" class="text-center text-custom">%</th>
                         </tr>
                     </thead>
                     <tbody class="mb-3" id='dojo-exp-table'>

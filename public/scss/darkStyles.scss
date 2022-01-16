@@ -5,6 +5,21 @@ body.dark-mode {
     background-color: globals.$dark-mode-black;
     color: globals.$dark-mode-white;
 
+    .text-custom {
+        color: globals.$highlight-orange;
+    }
+
+    .btn-outline-custom {
+        color: globals.$highlight-orange;
+        border-color: globals.$highlight-orange;
+
+        &:hover {
+            color: globals.$dark-mode-black-opaque;
+            background-color: globals.$highlight-orange;
+            border-color: globals.$highlight-orange;
+        }
+    }
+
     // Navbar 
     .navbar {
         border-bottom: 1px solid globals.$dark-mode-grey;
@@ -185,9 +200,13 @@ body.dark-mode {
 
     // Table
     table {
+        background-color: globals.$dark-mode-navy-grey-opaque;
+        color: globals.$dark-mode-white;
+
         &.table-bordered {
-            td, th {
+            td, th, thead th {
                 color: globals.$dark-mode-white;
+                border-color: globals.$dark-mode-grey;
             }
 
             th {
@@ -199,6 +218,15 @@ body.dark-mode {
             tr {
                 &.tr-section-header {
                     background-color: globals.$dark-mode-black;
+                }
+            }
+
+            &.table-hover {
+                tbody {
+                    tr:hover {
+                        color: globals.$dark-mode-white;
+                        background-color: globals.$dark-mode-white-transparent;
+                    }
                 }
             }
         }
@@ -303,7 +331,7 @@ body.dark-mode {
         border: 1px solid globals.$dark-mode-grey;
     }
 
-    .todd-table.table-dark {
+    .todd-table {
         background-color: transparent;
 
         & > thead {

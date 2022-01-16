@@ -5,6 +5,21 @@ body {
     background-color: globals.$light-mode-white-opaque;
     color: globals.$light-mode-black;
 
+    .text-custom {
+        color: globals.$highlight-blue;
+    }
+
+    .btn-outline-custom {
+        color: globals.$highlight-blue;
+        border-color: globals.$highlight-blue;
+
+        &:hover {
+            color: globals.$light-mode-white-opaque;
+            background-color: globals.$highlight-blue;
+            border-color: globals.$highlight-blue;
+        }
+    }
+
     // Navbar 
     .navbar {
         border-bottom: 1px solid globals.$light-mode-light-grey;

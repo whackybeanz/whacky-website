@@ -3,6 +3,18 @@ body.dark-mode {
   background-color: rgba(0, 0, 0, 0.8);
   color: rgba(255, 255, 255, 0.8);
 }
+body.dark-mode .text-custom {
+  color: #ffc107;
+}
+body.dark-mode .btn-outline-custom {
+  color: #ffc107;
+  border-color: #ffc107;
+}
+body.dark-mode .btn-outline-custom:hover {
+  color: black;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
 body.dark-mode .navbar {
   border-bottom: 1px solid #454d55;
 }
@@ -120,14 +132,23 @@ body.dark-mode .pagination .page-item .page-link {
 body.dark-mode .pagination .page-item:hover .page-link, body.dark-mode .pagination .page-item.active .page-link {
   background-color: #454d55;
 }
-body.dark-mode table.table-bordered td, body.dark-mode table.table-bordered th {
+body.dark-mode table {
+  background-color: #343a40;
   color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode table.table-bordered td, body.dark-mode table.table-bordered th, body.dark-mode table.table-bordered thead th {
+  color: rgba(255, 255, 255, 0.8);
+  border-color: #454d55;
 }
 body.dark-mode table.table-bordered th.empty-row {
   background-color: rgba(0, 0, 0, 0.8);
 }
 body.dark-mode table.table-bordered tr.tr-section-header {
   background-color: rgba(0, 0, 0, 0.8);
+}
+body.dark-mode table.table-bordered.table-hover tbody tr:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.075);
 }
 body.dark-mode .radio-select-group .form-check .radio-select {
   border: 1px solid #454d55;
@@ -193,13 +214,13 @@ body.dark-mode .single-set-effect {
   background-color: rgba(52, 58, 64, 0.8);
   border: 1px solid #454d55;
 }
-body.dark-mode .todd-table.table-dark {
+body.dark-mode .todd-table {
   background-color: transparent;
 }
-body.dark-mode .todd-table.table-dark > thead {
+body.dark-mode .todd-table > thead {
   background-color: #343a40;
 }
-body.dark-mode .todd-table.table-dark > tbody {
+body.dark-mode .todd-table > tbody {
   background-color: #454d55;
 }
 body.dark-mode .dmg-skin-section-subheader, body.dark-mode .dmg-skin-section {

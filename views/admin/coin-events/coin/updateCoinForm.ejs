@@ -9,7 +9,7 @@
             <label for="coin-notes" class="col-sm-3 col-form-label font-weight-bold">Notes</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="coin-notes" name="coinNotes" placeholder="Notes" autocomplete="off" <% if(coinData.coinNotes) { %>value="<%= coinData.coinNotes %>"<% } %>>
-                <small class="text-info">Write any notes related to acquiring this coin (e.g. "Obtained through mini games.")</small>
+                <small class="text-custom">Write any notes related to acquiring this coin (e.g. "Obtained through mini games.")</small>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
     <%- include("./rankUpCostsInput") %>
 
     <div class="col-12 px-0 mb-4">
-        <button class="h-100 w-100 btn btn-sm btn-outline-info rounded-sm d-flex justify-content-center align-items-center" id="btn-update-coin">
+        <button class="h-100 w-100 btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center" id="btn-update-coin">
             Update Coin Details
         </button>
     </div>

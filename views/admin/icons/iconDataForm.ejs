@@ -59,7 +59,7 @@
             <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Item ID</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="item-id" name="itemID" placeholder="Item ID" pattern="^[a-zA-Z0-9-]+$" required autocomplete="off" <% if(locals.iconData) { %>value="<%= iconData.id %>"<% } %>>
-                <small class="form-text text-info">Use small case and dashes to connect words (something-like-this). ID will be filled as image file name automatically below.</small>
+                <small class="form-text text-custom">Use small case and dashes to connect words (something-like-this). ID will be filled as image file name automatically below.</small>
             </div>
         </div>
         <div class="form-group row">
@@ -102,7 +102,7 @@
                         </label>
                     </div>
                 </div>
-                <small class="form-text text-info">Select Yes only if the item is a purchasable item from coin shops and are commonly available through the years.</small>
+                <small class="form-text text-custom">Select Yes only if the item is a purchasable item from coin shops and are commonly available through the years.</small>
             </div>
         </div>
     </div>
@@ -155,14 +155,14 @@
             <label for="image-file-name" class="col-sm-3 col-form-label font-weight-bold">Image File Name</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="image-file-name" name="imgPath" placeholder="Image URL" required autocomplete="off" <% if(locals.iconImgUrl) { %>value="<%= iconImgUrl.fileName %>"<% } %>>
-                <small class="form-text text-info">Double check that the image is hosted on AWS in the correct folder with the correct name.</small>
+                <small class="form-text text-custom">Double check that the image is hosted on AWS in the correct folder with the correct name.</small>
             </div>
         </div>
     </div>
     
     <div class="form-group row">
         <div class="col-12">
-            <button type="submit" class="w-100 btn btn-sm btn-outline-info"><% if(locals.iconData) { %>Update<% } else { %>Add<% } %> Icon Data</button>
+            <button type="submit" class="w-100 btn btn-sm btn-outline-custom"><% if(locals.iconData) { %>Update<% } else { %>Add<% } %> Icon Data</button>
         </div>
     </div>
 </form>

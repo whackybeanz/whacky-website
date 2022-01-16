@@ -1,12 +1,12 @@
 <div class="<% if(!coinData.isUsedForRankUp) { %>d-none<% } %>" id="rank-up-table">
     <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Rank Details</h3>
-    <p class="text-info mb-2">Insert each rank and its cost on a separate row. Calculate the <span class="text-underline">individual rank's</span> coin cost requirement.</p>
+    <p class="text-custom mb-2">Insert each rank and its cost on a separate row. Calculate the <span class="text-underline">individual rank's</span> coin cost requirement.</p>
     <div class="border border-dark rounded-sm px-3 py-3 mb-5">
         <div class="form-group row">
             <label for="rank-up-notes" class="col-sm-3 col-form-label font-weight-bold">Notes</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="rank-up-notes" name="rankUpNotes" placeholder="Notes" autocomplete="off" <% if(coinData.isUsedForRankUp) { %>value="<%= coinData.rankUpCosts.details %>"<% } %>>
-                <small class="text-info">Notes related to rank up mechanics (e.g. You must pay 200 coins per day for a certain number of days to reach the next rank).</small>
+                <small class="text-custom">Notes related to rank up mechanics (e.g. You must pay 200 coins per day for a certain number of days to reach the next rank).</small>
             </div>
         </div>
 

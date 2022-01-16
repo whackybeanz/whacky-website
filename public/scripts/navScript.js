@@ -41,10 +41,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             toggleLightBtn.classList.add("d-flex");
             navBar.classList.remove("navbar-light", "bg-light");
             navBar.classList.add("navbar-dark", "bg-dark");
-
-            if(tableBordered !== null) {
-                tableBordered.classList.add("table-dark");
-            }
         } else {
             toggleLightBtn.classList.remove("d-flex");
             toggleLightBtn.classList.add("d-none");
@@ -52,10 +48,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             toggleDarkBtn.classList.add("d-flex");
             navBar.classList.remove("navbar-dark", "bg-dark");
             navBar.classList.add("navbar-light", "bg-light");
-
-            if(tableBordered !== null) {
-                tableBordered.classList.remove("table-dark");
-            }
         }
     }
 })

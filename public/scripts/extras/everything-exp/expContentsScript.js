@@ -15,7 +15,7 @@ function loadEventEXPTable() {
                 .insertAdjacentHTML('beforeend', `<tr>
                     <th scope="row" class="text-center">${startingLevel + index} > ${startingLevel + index + 1}</th>
                     <td class="text-center align-middle" id="${startingLevel + index}-event-exp" data-raw-exp="${expValue}">${expValue === -1 ? "???" : expValue.toLocaleString('en-SG')}</td>
-                    <td class="text-center align-middle text-info font-weight-bold">${expValue === -1 ? "-" : (expValue / expTNL*100).toFixed(3) + "%"}</td>
+                    <td class="text-center align-middle text-custom font-weight-bold">${expValue === -1 ? "-" : (expValue / expTNL*100).toFixed(3) + "%"}</td>
                 </tr>`);
     })
 }
@@ -32,7 +32,7 @@ function loadDojoEXPTable() {
                 .insertAdjacentHTML('beforeend', `<tr>
                     <th scope="row" class="text-center align-middle">${startingLevel + index} > ${startingLevel + index + 1}</th>
                     <td class="text-center align-middle">${expValue.toLocaleString('en-SG')} / tick<br/>${(expValue*12*60).toLocaleString('en-SG')} / hour</td>
-                    <td class="text-center align-middle text-info font-weight-bold">${(expValue / expTNL*100).toFixed(3) + "%"} / tick<br/>${(expValue*12*60 / expTNL*100).toFixed(3) + "%"} / hour</td>
+                    <td class="text-center align-middle text-custom font-weight-bold">${(expValue / expTNL*100).toFixed(3) + "%"} / tick<br/>${(expValue*12*60 / expTNL*100).toFixed(3) + "%"} / hour</td>
                 </tr>`);
     })
 
@@ -203,13 +203,13 @@ function calcMonsterParkPercent() {
                 .insertAdjacentHTML('beforeend', `<tr>
                     <th scope="row" class="text-center">${i}</th>
                     <td class="text-center">
-                        ${(rawExp * i).toLocaleString('en-SG')} EXP / <span class="font-weight-bold text-info">${((rawExp * i) / expTNL * 100).toFixed(3)}%</span>
+                        ${(rawExp * i).toLocaleString('en-SG')} EXP / <span class="font-weight-bold text-custom">${((rawExp * i) / expTNL * 100).toFixed(3)}%</span>
                     </td>
                     <td class="text-center">
-                        ${(Math.round(rawExp * 1.5) * i).toLocaleString('en-SG')} EXP / <span class="font-weight-bold text-info">${((Math.round(rawExp * 1.5) * i) / expTNL * 100).toFixed(3)}%</span>
+                        ${(Math.round(rawExp * 1.5) * i).toLocaleString('en-SG')} EXP / <span class="font-weight-bold text-custom">${((Math.round(rawExp * 1.5) * i) / expTNL * 100).toFixed(3)}%</span>
                     </td>
                     <td class="text-center">
-                        ${(rawExp * 2 * i).toLocaleString('en-SG')} EXP / <span class="font-weight-bold text-info">${((rawExp * 2 * i) / expTNL * 100).toFixed(3)}%</span>
+                        ${(rawExp * 2 * i).toLocaleString('en-SG')} EXP / <span class="font-weight-bold text-custom">${((rawExp * 2 * i) / expTNL * 100).toFixed(3)}%</span>
                     </td>
                 </tr>`);
         }

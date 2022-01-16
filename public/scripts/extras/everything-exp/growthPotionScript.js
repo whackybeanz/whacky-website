@@ -282,7 +282,7 @@ function addExpTable(potionType, minLevel, maxLevel) {
                 .getElementById(`potion-${potionType}-table-${index}-details`)
                 .insertAdjacentHTML('beforeend', `<tr>
                     <th scope="row" class="text-center">${i} > ${i+1}</th>
-                    <td scope="row" class="text-center ${percentGain === 100.000 ? "text-info font-weight-bold" : "" }" data-potion-raw-exp="${rawExpGain}" id="potion-${potionType}-level-${i}-exp">${percentGain.toFixed(3) + "%"}</td>
+                    <td scope="row" class="text-center ${percentGain === 100.000 ? "text-custom font-weight-bold" : "" }" data-potion-raw-exp="${rawExpGain}" id="potion-${potionType}-level-${i}-exp">${percentGain.toFixed(3) + "%"}</td>
                 </tr>`);
         }
     })
@@ -344,7 +344,7 @@ function updatePerPotionEXPPercent() {
             tableToPopulate
                 .insertAdjacentHTML('beforeend', `<tr>
                     <th scope="col" class="align-middle">${currPotion.name} (Level ${currPotion.minLevel}~${currPotion.maxLevel})</th>
-                    <td class="text-center">${displayedValue} / <span class="text-info font-weight-bold">${displayedPercent}</span></td>
+                    <td class="text-center">${displayedValue} / <span class="text-custom font-weight-bold">${displayedPercent}</span></td>
                 </tr>`);
         }
     })

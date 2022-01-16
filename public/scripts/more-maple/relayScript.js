@@ -1,6 +1,10 @@
-$(function() {
+document.addEventListener("DOMContentLoaded", function(event) { 
     updateTableDates(true);
     generateSavedInputs();
+
+    sectionViewToggle();
+    settingsListeners();
+    tableListener();
 })
 
 function updateTableDates(isNewDateCreation) {
@@ -112,91 +116,106 @@ function generateSavedInputs() {
     }
 }
 
-$(".section-show-hide").on("click", function() {
-    var sectionType = $(this).data("section");
-    $(this).find(".far").toggleClass("d-none");
-    $(`.relay-${sectionType}`).toggleClass("d-none");
-})
+function sectionViewToggle() {
+    $(".section-show-hide").on("click", function() {
+        var sectionType = $(this).data("section");
+        $(this).find(".far").toggleClass("d-none");
+        $(`.relay-${sectionType}`).toggleClass("d-none");
+    })
+}
 
-// Settings
-$("#select-date").on("blur", function() {
-    localStorage.setItem("relayStartDate", $(this).val());
-    updateTableDates(false);
-})
+function settingsListeners() {
+    // Settings
+    $("#select-date").on("blur", function() {
+        localStorage.setItem("relayStartDate", $(this).val());
+        updateTableDates(false);
+    })
 
-$("#is-perfect-score").on("change", function() {
-    if($(this).prop("checked")) {
-        localStorage.setItem("isPerfectScore", true);
+    $("#is-perfect-score").on("change", function() {
+        if($(this).prop("checked")) {
+            localStorage.setItem("isPerfectScore", true);
 
-        $(".class-input").map(function(index, elem) {
-            var classType = $(elem).data("class");
-            var characterNum = $(elem).data("num");
-            var extraPlaceholderText = "";
+            $(".class-input").map(function(index, elem) {
+                var classType = $(elem).data("class");
+                var characterNum = $(elem).data("num");
+                var extraPlaceholderText = "";
 
-            if(characterNum === 1) {
-                extraPlaceholderText = " (Level 200+)";
-            } else if(characterNum === 2) {
-                extraPlaceholderText = " (Arcane River)";
-            }
-            
-            $(elem).attr("placeholder", `${classType} ${characterNum}${extraPlaceholderText}`)
-        })
-        $(".level-200-form-checkbox").addClass("d-none");
-    } else {
-        localStorage.setItem("isPerfectScore", false);
+                if(characterNum === 1) {
+                    extraPlaceholderText = " (Level 200+)";
+                } else if(characterNum === 2) {
+                    extraPlaceholderText = " (Arcane River)";
+                }
+                
+                $(elem).attr("placeholder", `${classType} ${characterNum}${extraPlaceholderText}`)
+            })
+            $(".level-200-form-checkbox").addClass("d-none");
+        } else {
+            localStorage.setItem("isPerfectScore", false);
 
-        $(".class-input").map(function(index, elem) {
-            var classType = $(elem).data("class");
-            var characterNum = $(elem).data("num");
-            $(elem).attr("placeholder", `${classType} ${characterNum}`);
-        })
-        $(".level-200-form-checkbox").removeClass("d-none");
-    }
-
-    $(".over-200-checkbox").toggleClass("d-none");
-})
-
-$("#all-level-200").change(function() {
-    localStorage.setItem("isAll200", this.checked);
-    $(".over-200-checkbox").prop("checked", this.checked);
-})
-
-$(".input-list").on("change", ".over-200-checkbox", function() {
-    if($(this).prop("checked")) {
-        var numChecked = $(".over-200-checkbox:checked").length;
-        var numCheckboxes = $(".over-200-checkbox").length;
-
-        if(numChecked === numCheckboxes) {
-            $("#all-level-200").prop("checked", true);
-            localStorage.setItem("isAll200", true);
+            $(".class-input").map(function(index, elem) {
+                var classType = $(elem).data("class");
+                var characterNum = $(elem).data("num");
+                $(elem).attr("placeholder", `${classType} ${characterNum}`);
+            })
+            $(".level-200-form-checkbox").removeClass("d-none");
         }
-    } else {
-        $("#all-level-200").prop("checked", false);
-        localStorage.setItem("isAll200", false);
-    }
-})
 
-$(".add-character-btn").on("click", function(event) {
-    event.preventDefault();
+        $(".over-200-checkbox").toggleClass("d-none");
+    })
 
-    var addClassType = $(this).data("class");
-    var numCharacters = $(`.input-${addClassType}-list .class-input`).length;
-    var isPerfectScore = $("#is-perfect-score").prop("checked") ? "d-none" : ""
-    var isAll200 = $("#all-level-200").prop("checked") ? "checked" : "";
-    
-    $(`.input-${addClassType}-list`).append(`<div class="position-relative">
-        <input type="text" placeholder="${addClassType} ${numCharacters+1}" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" data-class="${addClassType}" data-num="${numCharacters+1}">
-        <input type="checkbox" class="form-check-input over-200-checkbox ${isPerfectScore} position-absolute" data-class="${addClassType}" data-num="${numCharacters+1}" ${isAll200}>
-    </div>`)
+    $("#all-level-200").change(function() {
+        localStorage.setItem("isAll200", this.checked);
+        $(".over-200-checkbox").prop("checked", this.checked);
+    })
 
-    localStorage.setItem(`${addClassType}NumExtraInputs`, numCharacters+1-2);
-})
+    $(".input-list").on("change", ".over-200-checkbox", function() {
+        if($(this).prop("checked")) {
+            var numChecked = $(".over-200-checkbox:checked").length;
+            var numCheckboxes = $(".over-200-checkbox").length;
 
-$(".generate-score-btn").on("click", function(event) {
-    event.preventDefault();
-    createPlanner();
-    saveData();
-})
+            if(numChecked === numCheckboxes) {
+                $("#all-level-200").prop("checked", true);
+                localStorage.setItem("isAll200", true);
+            }
+        } else {
+            $("#all-level-200").prop("checked", false);
+            localStorage.setItem("isAll200", false);
+        }
+    })
+
+    $(".add-character-btn").on("click", function(event) {
+        event.preventDefault();
+
+        var addClassType = $(this).data("class");
+        var numCharacters = $(`.input-${addClassType}-list .class-input`).length;
+        var isPerfectScore = $("#is-perfect-score").prop("checked") ? "d-none" : ""
+        var isAll200 = $("#all-level-200").prop("checked") ? "checked" : "";
+        
+        $(`.input-${addClassType}-list`).append(`<div class="position-relative">
+            <input type="text" placeholder="${addClassType} ${numCharacters+1}" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" data-class="${addClassType}" data-num="${numCharacters+1}">
+            <input type="checkbox" class="form-check-input over-200-checkbox ${isPerfectScore} position-absolute" data-class="${addClassType}" data-num="${numCharacters+1}" ${isAll200}>
+        </div>`)
+
+        localStorage.setItem(`${addClassType}NumExtraInputs`, numCharacters+1-2);
+    })
+
+    $(".generate-score-btn").on("click", function(event) {
+        event.preventDefault();
+        createPlanner();
+        saveData();
+    })
+
+    $(".restart-btn").on("click", function() {
+        var confirmRestart = window.confirm("Restarting will erase ALL saved data. Do you wish to continue?");
+
+        if(confirmRestart) {
+            var displayType = localStorage.getItem("pageDisplayType");
+            localStorage.clear();
+            localStorage.setItem("pageDisplayType", displayType);
+            location.reload();
+        }
+    })
+}
 
 function createPlanner() {
     if($("#is-perfect-score").prop("checked")) {
@@ -421,33 +440,24 @@ function saveData() {
     localStorage.setItem("savedCharList", JSON.stringify(savedCharList));
 }
 
-$(".restart-btn").on("click", function() {
-    var confirmRestart = window.confirm("Restarting will erase ALL saved data. Do you wish to continue?");
+function tableListener() {
+    // Generated table
+    $("#is-focus-current-day").change(function() {
+        localStorage.setItem("isFocusCurrentDay", this.checked);
 
-    if(confirmRestart) {
-        var displayType = localStorage.getItem("pageDisplayType");
-        localStorage.clear();
-        localStorage.setItem("pageDisplayType", displayType);
-        location.reload();
-    }
-})
+        if($(this).prop("checked")) {
+            $(".single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score").addClass("inactive");
+            $(".curr-day").removeClass("inactive");
+        } else {
+            $(".single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score").removeClass("inactive");
+        }
+    })
 
-// Generated table
-$("#is-focus-current-day").change(function() {
-    localStorage.setItem("isFocusCurrentDay", this.checked);
+    $(".next-week").on("click", function() {
+        $(".prev-week, .week-1, .week-2").toggleClass("d-none");
+    })
 
-    if($(this).prop("checked")) {
-        $(".single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score").addClass("inactive");
-        $(".curr-day").removeClass("inactive");
-    } else {
-        $(".single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score").removeClass("inactive");
-    }
-})
-
-$(".next-week").on("click", function() {
-    $(".prev-week, .week-1, .week-2").toggleClass("d-none");
-})
-
-$(".prev-week").on("click", function() {
-    $(".next-week, .week-1, .week-2").toggleClass("d-none");
-})
+    $(".prev-week").on("click", function() {
+        $(".next-week, .week-1, .week-2").toggleClass("d-none");
+    })
+}

@@ -3,6 +3,18 @@ body {
   background-color: white;
   color: #212529;
 }
+body .text-custom {
+  color: #17a2b8;
+}
+body .btn-outline-custom {
+  color: #17a2b8;
+  border-color: #17a2b8;
+}
+body .btn-outline-custom:hover {
+  color: white;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
 body .navbar {
   border-bottom: 1px solid rgba(0, 0, 0, 0.075);
 }

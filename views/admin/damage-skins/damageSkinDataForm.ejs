@@ -82,14 +82,14 @@
             <label for="damage-skin-name" class="col-sm-3 col-form-label font-weight-bold">Name</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="damage-skin-name" name="name" placeholder="Damage Skin Name" required autocomplete="off" value="<% if(locals.damageSkinData) { %><%= damageSkinData.name %><% } else { %>Damage Skin - <% } %>">
-                <small class="form-text text-info">Full item name (e.g. Damage Skin - Default). If unknown name, type ???.</small>
+                <small class="form-text text-custom">Full item name (e.g. Damage Skin - Default). If unknown name, type ???.</small>
             </div>
         </div>
         <div class="form-group row">
             <label for="alt-names" class="col-sm-3 col-form-label font-weight-bold">Alternate Names</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="alt-names" name="altNames" placeholder="Alternate Names" autocomplete="off" <% if(locals.damageSkinData && damageSkinData.altNames) { %>value="<%= damageSkinData.altNames.join(" / ") %>"<% } %>>
-                <small class="form-text text-info">Separate each alternate name with space-forward slash-space " / ". Use shortened names (Default instead of Damage Skin - Default) unless damage skin's name does not start with "Damage Skin -".</small>
+                <small class="form-text text-custom">Separate each alternate name with space-forward slash-space " / ". Use shortened names (Default instead of Damage Skin - Default) unless damage skin's name does not start with "Damage Skin -".</small>
             </div>
         </div>
         <div class="form-group row">
@@ -106,14 +106,14 @@
             <label for="damage-skin-id" class="col-sm-3 col-form-label font-weight-bold">Folder Number</label>
             <div class="col-sm-9">
                 <input type="number" class="form-control" id="damage-skin-id" name="folderNum" placeholder="Folder Number" required autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.folderNum %>"<% } %>>
-                <small class="form-text text-info">Refers to folder number as seen in Effects.img &gt; DamageSkin. If only unit version available, enter that folder number.</small>
+                <small class="form-text text-custom">Refers to folder number as seen in Effects.img &gt; DamageSkin. If only unit version available, enter that folder number.</small>
             </div>
         </div>
         <div class="form-group row">
             <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Item ID</label>
             <div class="col-sm-9">
                 <input type="number" class="form-control" id="item-id" name="regularItemId" placeholder="Item ID" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.regularItemId %>"<% } %>>
-                <small class="form-text text-info">Refers to 7-digit numerical ID attached to each item asset. Leave blank if there is no non-unit version.</small>
+                <small class="form-text text-custom">Refers to 7-digit numerical ID attached to each item asset. Leave blank if there is no non-unit version.</small>
             </div>
         </div>
         <div class="form-group row">
@@ -143,14 +143,14 @@
                 <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Unit Folder Number</label>
                 <div class="col-sm-9">
                     <input type="number" class="form-control" id="unit-damage-skin-id" name="unitFolderNum" placeholder="Unit Folder Number" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.unitFolderNum %>"<% } %>>
-                    <small class="form-text text-info">Refers to folder number as seen in Effects.img &gt; DamageSkin</small>
+                    <small class="form-text text-custom">Refers to folder number as seen in Effects.img &gt; DamageSkin</small>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Unit Item ID</label>
                 <div class="col-sm-9">
                     <input type="number" class="form-control" id="unit-item-id" name="unitItemId" placeholder="Unit Item ID" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.unitItemId %>"<% } %>>
-                    <small class="form-text text-info">Refers to 7-digit numerical ID attached to each item asset.</small>
+                    <small class="form-text text-custom">Refers to 7-digit numerical ID attached to each item asset.</small>
                 </div>
             </div>
             <div class="form-group row">
@@ -256,7 +256,7 @@
 
     <% if(locals.damageSkinData) { %>
         <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Damage Skin Details - Critical Hits</h3>
-        <p class="text-info">Leave blank if there are no shared assets within the entire respective subsection. If shared assets are present, for each digit, indicate the folder/digit that is shared (e.g. Cri1.0 = the digit shares assets with digit 0 in Cri1 folder). If digit is unique, enter a dash "-".</p>
+        <p class="text-custom">Leave blank if there are no shared assets within the entire respective subsection. If shared assets are present, for each digit, indicate the folder/digit that is shared (e.g. Cri1.0 = the digit shares assets with digit 0 in Cri1 folder). If digit is unique, enter a dash "-".</p>
         <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
             <div class="form-group row">
                 <div class="col-sm-3 font-weight-bold">Has Effect?</div>
@@ -307,7 +307,7 @@
         </div>
 
         <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-1">Damage Skin Details - Regular Hits</h3>
-        <p class="text-info">Leave blank if there are no shared assets within the entire respective subsection. If shared assets are present, for each digit, indicate the folder/digit that is shared (e.g. Cri1.0 = the digit shares assets with digit 0 in Cri1 folder). If digit is unique, enter a dash "-".</p>
+        <p class="text-custom">Leave blank if there are no shared assets within the entire respective subsection. If shared assets are present, for each digit, indicate the folder/digit that is shared (e.g. Cri1.0 = the digit shares assets with digit 0 in Cri1 folder). If digit is unique, enter a dash "-".</p>
         <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label font-weight-bold">Red1 Assets</label>
@@ -345,7 +345,7 @@
 
     <div class="form-group row">
         <div class="col-12">
-            <button type="submit" class="w-100 btn btn-sm btn-outline-info"><% if(locals.damageSkinData) { %>Update<% } else { %>Add<% } %> Damage Skin Data</button>
+            <button type="submit" class="w-100 btn btn-sm btn-outline-custom"><% if(locals.damageSkinData) { %>Update<% } else { %>Add<% } %> Damage Skin Data</button>
         </div>
     </div>
 </form>

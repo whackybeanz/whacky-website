@@ -13,10 +13,14 @@ $dark-mode-black: rgba(0, 0, 0, 0.8);
 $dark-mode-black-opaque: rgba(0, 0, 0, 1.0);
 $dark-mode-green: rgba(74, 160, 44, 1.0);
 $dark-mode-grey: rgba(69, 77, 85, 1.0);
+$dark-mode-white-transparent: rgba(255, 255, 255, 0.075);
 $dark-mode-white: rgba(255, 255, 255, 0.8);
 $dark-mode-white-opaque: rgba(255, 255, 255, 1.0);
 $dark-mode-navy-grey: rgba(52, 58, 64, 0.8);
 $dark-mode-navy-grey-opaque: rgba(52, 58, 64, 1.0);
+
+$highlight-orange: rgba(255, 193, 7, 1);
+$highlight-blue: rgba(23, 162, 184, 1);
 
 // Media queries
 @mixin for-size($size) {

@@ -21,7 +21,7 @@
                         <label for="preview-url" class="col-sm-3 col-form-label font-weight-bold">Cosmetics Preview Image File Name</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="preview-url" name="previewURL" placeholder="Cosmetics Preview Image File Name" autocomplete="off" <% if(locals.coinShopData) { %>value="<%= coinShopData.previewURL %>"<% } %>>
-                            <small class="text-info">Insert only the image file name. Image should be saved to /images/event/coin-events/<%= coinEventData.eventId %> folder in AWS.</small>
+                            <small class="text-custom">Insert only the image file name. Image should be saved to /images/event/coin-events/<%= coinEventData.eventId %> folder in AWS.</small>
                         </div>
                     </div>
 
@@ -54,7 +54,7 @@
                                     </div>
                                 <% } %>
                             </div>
-                            <small class="text-info">Sets the default currency for all items in this shop. You can adjust each item's currency later if necessary.</small>
+                            <small class="text-custom">Sets the default currency for all items in this shop. You can adjust each item's currency later if necessary.</small>
                         </div>
                     </div>
 
@@ -92,7 +92,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <small class="text-info">Sets the default purchase limit for all items in this shop. You can adjust each item's purchase limit later if necessary.</small>
+                            <small class="text-custom">Sets the default purchase limit for all items in this shop. You can adjust each item's purchase limit later if necessary.</small>
                         </div>
                     </div>
 
@@ -128,7 +128,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <small class="text-info">Sets the default tradability for all items in this shop. You can adjust each item's tradability later if necessary.</small>
+                            <small class="text-custom">Sets the default tradability for all items in this shop. You can adjust each item's tradability later if necessary.</small>
                         </div>
                     </div>
 
@@ -136,13 +136,13 @@
                         <label for="coin-shop-notes" class="col-sm-3 col-form-label font-weight-bold">Notes</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="coin-shop-notes" name="shopNotes" placeholder="Notes" autocomplete="off" <% if(locals.coinShopData) { %>value="<%= coinShopData.shopNotes %>"<% } %>>
-                            <small class="text-info">Here, you can indicate any special notes about the shop / its items (e.g. 'This shop requires the Guardian rank to access' / 'All items are inter-account tradable.').</small>
+                            <small class="text-custom">Here, you can indicate any special notes about the shop / its items (e.g. 'This shop requires the Guardian rank to access' / 'All items are inter-account tradable.').</small>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-12">
-                            <button type="submit" class="w-100 btn btn-sm btn-outline-info"><% if(locals.coinShopData) { %>Update<% } else { %>Add<% } %> Coin Shop</button>
+                            <button type="submit" class="w-100 btn btn-sm btn-outline-custom"><% if(locals.coinShopData) { %>Update<% } else { %>Add<% } %> Coin Shop</button>
                         </div>
                     </div>
                 </div>
