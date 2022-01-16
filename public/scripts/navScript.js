@@ -3,16 +3,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const pageDisplayType = localStorage.getItem("pageDisplayType");
     const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-    if(pageDisplayType === "dark") {
-        document.documentElement.classList.remove("light-mode");
-        document.documentElement.classList.add("dark-mode");
-        document.body.classList.toggle("dark-mode");
-    } else if(pageDisplayType === "light") {
-        document.documentElement.classList.add("light-mode");
-        document.documentElement.classList.remove("dark-mode");
-        document.body.classList.toggle("light-mode");
-    }
-
     updateButtonDisplay(pageDisplayType);
 
     // Overrides system preferences when clicked
@@ -40,14 +30,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
         let navBar = document.querySelector(".navbar");
         let tableBordered = document.querySelector(".table-bordered");
 
-        if(displayType === "dark") {
+        if(displayType === "dark" || displayType === null) {
+            document.documentElement.classList.remove("light-mode");
+            document.documentElement.classList.add("dark-mode");
+            document.body.classList.remove("light-mode");
+            document.body.classList.add("dark-mode");
             toggleDarkBtn.classList.remove("d-flex");
             toggleDarkBtn.classList.add("d-none");
             toggleLightBtn.classList.remove("d-none");
             toggleLightBtn.classList.add("d-flex");
             navBar.classList.remove("navbar-light", "bg-light");
-            navBar.classList.add("navbar-dark", "bg-dark");
+            navBar.classList.add("navbar-dark", "bg-dark")
         } else {
+            document.documentElement.classList.add("light-mode");
+            document.documentElement.classList.remove("dark-mode");
+            document.body.classList.add("light-mode");
+            document.body.classList.remove("dark-mode");
             toggleLightBtn.classList.remove("d-flex");
             toggleLightBtn.classList.add("d-none");
             toggleDarkBtn.classList.remove("d-none");
