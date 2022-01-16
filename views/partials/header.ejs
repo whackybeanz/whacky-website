@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--<link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">-->
     <style type="text/css">
-        .hidden { display: none; }
+        html {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/public-images/dark.webp');
+        }
+
+        .hidden { display: none }
     </style>
     <link rel="shortcut icon" href="/public-images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -32,15 +36,11 @@
       gtag('config', 'G-ZHMYZ8F0SW');
     </script>
     <script type="text/javascript">
-        let htmlDoc = document.documentElement;
-
-        htmlDoc.classList.add("hidden");
-
         document.addEventListener("DOMContentLoaded", function(event) { 
-            htmlDoc.classList.remove("hidden");
+            document.body.classList.remove("hidden");
         })
     </script>
     <script src="https://kit.fontawesome.com/6d7440431d.js" crossorigin="anonymous" defer></script>
 </head>
-<body>
+<body class="hidden">
     
