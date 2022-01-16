@@ -32,40 +32,47 @@ const MIN_NUM_ITEMS_FOR_LUCKY_EFFECT = 3;
     $(`.equip-${jobType}, .equip-common, .set-effect-${jobType}, .set-effect-common`).removeClass("d-none").addClass("d-flex");
 })*/
 
+document.addEventListener("DOMContentLoaded", function(event) { 
+    carouselNavigation();
+    carouselItemSelection();
+})
+
 /***************************
 
     Carousel Navigation
 
 ***************************/
-$(".equip-slot").on("click", function() {
-    var equipType = $(this).data("equipType");
-    currNavIndex = $(this).data("equipTypeIndex");
-    $(".carousel-header").text(allItemTypes[currNavIndex])
-    $(`.equip-select-div`).removeClass("active");
-    $(`.equip-select-${equipType}`).addClass("active");
+function carouselNavigation() {
+    $(".equip-slot").on("click", function() {
+        var equipType = $(this).data("equipType");
+        currNavIndex = $(this).data("equipTypeIndex");
+        $(".carousel-header").text(allItemTypes[currNavIndex])
+        $(`.equip-select-div`).removeClass("active");
+        $(`.equip-select-${equipType}`).addClass("active");
 
-    updateCarouselNavText(currNavIndex);
-})
+        updateCarouselNavText(currNavIndex);
+    })
 
-$(".carousel-control-prev").on("click", function() {
-    currNavIndex--;
-    if(currNavIndex < 0) {
-        currNavIndex = allItemTypes.length -1;
-    }
+    $(".carousel-control-prev").on("click", function() {
+        currNavIndex--;
+        if(currNavIndex < 0) {
+            currNavIndex = allItemTypes.length -1;
+        }
 
-    $(".carousel-header").text(allItemTypes[currNavIndex])
-    updateCarouselNavText(currNavIndex);
-})
+        $(".carousel-header").text(allItemTypes[currNavIndex])
+        updateCarouselNavText(currNavIndex);
+    })
 
-$(".carousel-control-next").on("click", function() {
-    currNavIndex++;
-    if(currNavIndex >= allItemTypes.length) {
-        currNavIndex = 0;
-    }
+    $(".carousel-control-next").on("click", function() {
+        currNavIndex++;
+        if(currNavIndex >= allItemTypes.length) {
+            currNavIndex = 0;
+        }
 
-    $(".carousel-header").text(allItemTypes[currNavIndex])
-    updateCarouselNavText(currNavIndex);
-})
+        $(".carousel-header").text(allItemTypes[currNavIndex])
+        updateCarouselNavText(currNavIndex);
+    })
+}
 
 function updateCarouselNavText(currNavIndex) {
     var nextIndex = (currNavIndex + 1) % allItemTypes.length;
@@ -85,18 +92,20 @@ function updateCarouselNavText(currNavIndex) {
     Carousel Item Selection
 
 ***************************/
-$(".single-equip-choice").on("click", function(event) {
-    var equipType = $(this).data("equipType");
-    var choiceImage = $(this).data("choiceImg");
-    var equipId = $(this).data("itemId");
-    var isLuckyItem = $(this).data("isLuckyItem");
+function carouselItemSelection() {
+    $(".single-equip-choice").on("click", function(event) {
+        var equipType = $(this).data("equipType");
+        var choiceImage = $(this).data("choiceImg");
+        var equipId = $(this).data("itemId");
+        var isLuckyItem = $(this).data("isLuckyItem");
 
-    if($(this).hasClass("active")) {
-        removeSetItem($(this), equipType, equipId);
-    } else {
-        addSetItem($(this), equipType, equipId, choiceImage);
-    }
-})
+        if($(this).hasClass("active")) {
+            removeSetItem($(this), equipType, equipId);
+        } else {
+            addSetItem($(this), equipType, equipId, choiceImage);
+        }
+    })
+}
 
 function removeSetItem(selectedItem, equipType, equipId) {
     var isLuckyItem = selectedItem.data("isLuckyItem");
