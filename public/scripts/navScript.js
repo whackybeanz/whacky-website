@@ -4,8 +4,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
     if(pageDisplayType === "dark") {
+        document.documentElement.classList.remove("light-mode");
+        document.documentElement.classList.add("dark-mode");
         document.body.classList.toggle("dark-mode");
     } else if(pageDisplayType === "light") {
+        document.documentElement.classList.add("light-mode");
+        document.documentElement.classList.remove("dark-mode");
         document.body.classList.toggle("light-mode");
     }
 
@@ -16,9 +20,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     toggleBtns.forEach(btn => {
         btn.addEventListener("click", function() {
             if (prefersDarkScheme.matches) {
+                document.documentElement.classList.toggle("light-mode");
                 document.body.classList.toggle("light-mode");
                 var theme = document.body.classList.contains("light-mode") ? "light" : "dark";
             } else {
+                document.documentElement.classList.toggle("dark-mode");
                 document.body.classList.toggle("dark-mode");
                 var theme = document.body.classList.contains("dark-mode") ? "dark" : "light";
             }

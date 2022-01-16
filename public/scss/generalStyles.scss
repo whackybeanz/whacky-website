@@ -106,7 +106,6 @@
 html, body {
     font-size: 12px;
     scroll-padding-top: 3rem;
-    height: 100%;
 
     @include globals.for-size(sm) { font-size: 13px; }
     @include globals.for-size(md) { font-size: 14px; }
@@ -115,9 +114,8 @@ html, body {
 }
 
 body {
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: transparent;
+    height: 100%;
 
     .content {
         min-height: 100%;

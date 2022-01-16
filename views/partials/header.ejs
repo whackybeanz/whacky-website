@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark-mode">
 <head>
     <title><% if(locals.title) { %><%= locals.title %> - <% } %>Maple Info Corner</title>
     <meta charset="utf-8">
@@ -7,7 +7,14 @@
     <!--<link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">-->
     <style type="text/css">
         html {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/public-images/dark.webp');
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url("/public-images/light.webp");
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+
+        html.dark-mode {
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/public-images/dark.webp');
         }
 
         .hidden { display: none }
