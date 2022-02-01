@@ -18,7 +18,10 @@
                         <a class="nav-link active" id="pills-symbol-calcs-tab" data-toggle="pill" href="#pills-symbol-calcs" role="tab" aria-controls="pills-symbol-calcs" aria-selected="true">Calculators</a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" id="pills-symbol-tables-tab" data-toggle="pill" href="#pills-symbol-tables" role="tab" aria-controls="pills-symbol-tables" aria-selected="false">EXP / Cost Table</a>
+                        <a class="nav-link" id="pills-symbol-cost-table-tab" data-toggle="pill" href="#pills-symbol-cost-table" role="tab" aria-controls="pills-symbol-cost-table" aria-selected="false">Meso Cost Table</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" id="pills-symbol-exp-table-tab" data-toggle="pill" href="#pills-symbol-exp-table" role="tab" aria-controls="pills-symbol-exp-table" aria-selected="false">EXP Table</a>
                     </li>
                     <li class="nav-item mx-1">
                         <a class="nav-link" id="pills-credits-tab" data-toggle="pill" href="#pills-credits" role="tab" aria-controls="pills-credits" aria-selected="false">Credits</a>
@@ -28,8 +31,11 @@
                     <div class="tab-pane fade border-0 rounded-sm show active" id="pills-symbol-calcs" role="tabpanel" aria-labelledby="pills-symbol-calcs">
                         <%- include("./symbol-calcs") %>
                     </div>
-                    <div class="tab-pane fade border-0 rounded-sm" id="pills-symbol-tables" role="tabpanel" aria-labelledby="pills-symbol-tables">
-                        <%- include("./symbol-tables") %>
+                    <div class="tab-pane fade border-0 rounded-sm" id="pills-symbol-cost-table" role="tabpanel" aria-labelledby="pills-symbol-tables">
+                        <%- include("./symbol-cost-table") %>
+                    </div>
+                    <div class="tab-pane fade border-0 rounded-sm" id="pills-symbol-exp-table" role="tabpanel" aria-labelledby="pills-symbol-tables">
+                        <%- include("./symbol-exp-table") %>
                     </div>
                     <div class="tab-pane fade border-0" id="pills-credits" role="tabpanel" aria-labelledby="pills-credits-tab">
                         <%- include("./symbol-credits") %>
@@ -41,4 +47,6 @@
 </div>
 
 <script type="text/javascript" src="/scripts/commonScript.js"></script>
+<script type="text/javascript" src="/scripts/extras/symbol-calc/symbolDataTableDetails.js"></script>
+<script type="text/javascript" src="/scripts/extras/symbol-calc/symbolPageLoadScript.js"></script>
 <%- include("../../partials/footer") %>
