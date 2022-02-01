@@ -1,0 +1,34 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="w-100 d-flex flex-column justify-content-center px-3 py-3">
+        <div class="exp-stack-section rounded-sm mb-5">
+            <div class="exp-stack-section-subheader text-center">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="<%= icons['symbol-rte'].imgUrl %>" class="mr-2"> EXP / Cost Table
+                </h2>
+            </div>
+            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center pt-3">
+                <form class="w-100 d-flex flex-column align-items-center">
+                    <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
+                        <label for="symbol-exp-table-select" class="font-weight-bold col-form-label">Select Symbol</label>
+                        <div class="col-sm-6 col-md-4">
+                            <select class="form-control" id="symbol-exp-table-select">
+                                <option class="font-weight-bold" value="" disabled>Arcane Symbols</option>
+                                <option value="rte">Road to Extinction</option>
+                                <option value="cci">Chew Chew Island</option>
+                                <option value="lach">Lacheln</option>
+                                <option value="arcana">Arcana</option>
+                                <option value="moras">Moras</option>
+                                <option value="esfera">Esfera</option>
+                                <option class="font-weight-bold" value="" disabled>Authentic Symbols</option>
+                                <option value="cernium">Cernium</option>
+                                <option value="arcs">Hotel Arcs</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="table-responsive d-flex flex-wrap justify-content-center" id="symbol-exp-table-details"></div>
+            </div>
+        </div>
+    </div>
+</div>
