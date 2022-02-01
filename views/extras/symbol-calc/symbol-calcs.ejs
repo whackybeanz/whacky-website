@@ -17,10 +17,37 @@
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
                      <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2"> Arcane Symbol Catalyst
                 </h2>
+                <p class="mb-0 pb-2">
+                    Transfer your symbol to another character (lose 20% of total symbol EXP)
+                </p>
             </div>
             <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center py-3">
                 <div class="w-100 d-flex flex-column justify-content-start align-items-center px-3">
-                    
+                    <div class="w-100 d-flex flex-column flex-sm-row mb-0">
+                        <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start px-0">
+                            <div class="form-group row w-100 d-flex mb-2">
+                                <label class="col-6 font-weight-bold col-form-label text-right">Start Level</label>
+                                <input type="number" id="start-symbol-level" class="form-control col-4 px-2" value="20">
+                            </div>
+                            <div class="form-group row w-100 d-flex mb-2">
+                                <label class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
+                                <input type="number" id="start-symbol-exp-raw" class="col-4 form-control px-2" value="0">
+                                <p class="font-small offset-6 text-custom mb-0">(<span id="max-possible-symbols-before">0</span> more symbols to max)</p>
+                            </div>
+                        </form>
+
+                        <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start text-custom px-0">
+                            <div class="form-group row w-100 d-flex mb-2">
+                                <label class="col-6 font-weight-bold col-form-label text-right">End Level</label>
+                                <input type="number" id="end-symbol-level" class="form-control-plaintext col-4 text-custom px-2" value="18" readonly>
+                            </div>
+                            <div class="form-group row w-100 d-flex mb-2">
+                                <label class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
+                                <input type="text" id="end-symbol-exp-raw" class="col-6 form-control-plaintext text-custom px-2" value="172 / 335" readonly>
+                                <p class="font-small offset-6 text-custom mb-0">(<span id="max-possible-symbols-after">535</span> more symbols to max)</p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

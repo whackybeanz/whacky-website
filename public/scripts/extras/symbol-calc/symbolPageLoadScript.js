@@ -1,13 +1,110 @@
+const MAX_ARC_SYMBOL_LEVEL = 20;
+
 document.addEventListener("DOMContentLoaded", () => {
-    loadSymbolEXPTables();
+    symbolStartLevelInputListener();
+    symbolStartExpInputListener();
+    loadSymbolExpTables();
     loadSymbolCostTables();
     symbolCostTableSelectListener();
 });
 
-function loadSymbolEXPTables() {
+function getSymbolTotalExp(symbolLevel) {
+    return parseInt(document.getElementById(`arc-${symbolLevel}-total-exp`).dataset.totalExp);
+}
+
+function getSymbolExpTnl(symbolLevel) {
+    return parseInt(document.getElementById(`arc-${symbolLevel}-exp-tnl`).dataset.rawExpTnl);
+}
+
+function symbolStartLevelInputListener() {
+    let levelInputElem = document.getElementById("start-symbol-level");
+    let expValueInputElem = document.getElementById("start-symbol-exp-raw");
+
+    levelInputElem.addEventListener("change", () => {
+        validateLevelInput(levelInputElem, expValueInputElem);
+        validateExpInput(levelInputElem, expValueInputElem);
+        calcEndSymbolStats(levelInputElem, expValueInputElem);
+    })
+}
+
+function symbolStartExpInputListener() {
+    let levelInputElem = document.getElementById("start-symbol-level");
+    let expValueInputElem = document.getElementById("start-symbol-exp-raw");
+
+    expValueInputElem.addEventListener("change", () => {        
+        validateLevelInput(levelInputElem, expValueInputElem);
+        validateExpInput(levelInputElem, expValueInputElem);
+        calcEndSymbolStats(levelInputElem, expValueInputElem);
+    })
+}
+
+function validateLevelInput(levelInputElem, expValueInputElem) {    
+    let symbolLevel = parseInt(levelInputElem.value);
+
+    if(isNaN(symbolLevel) || symbolLevel > 20) {
+        levelInputElem.value = 20;
+        expValueInputElem.value = 0;
+    }
+
+    if(symbolLevel < 2) {
+        levelInputElem.value = 2;
+        expValueInputElem.value = 0;
+    }
+}
+
+function validateExpInput(levelInputElem, expValueInputElem) {
+    let symbolLevel = parseInt(levelInputElem.value);
+    let currSymbolExp = parseInt(expValueInputElem.value);
+    let maxTotalSymbols = getSymbolTotalExp(MAX_ARC_SYMBOL_LEVEL-1);
+    let currTotalUsedSymbols = getSymbolTotalExp(symbolLevel-1) || 0;
+    let maxPossibleSymbolsLeft = maxTotalSymbols - currTotalUsedSymbols;
+
+    if(isNaN(currSymbolExp) || currSymbolExp < 0 ) {
+        expValueInputElem.value = 0;
+    }
+
+    if(symbolLevel === MAX_ARC_SYMBOL_LEVEL) {
+        expValueInputElem.value = 0;
+    }
+
+    if(currSymbolExp > maxPossibleSymbolsLeft) {
+        expValueInputElem.value = maxPossibleSymbolsLeft;
+    }
+
+    document.getElementById("max-possible-symbols-before").textContent = maxPossibleSymbolsLeft - expValueInputElem.value;
+}
+
+function calcEndSymbolStats(levelInputElem, expValueInputElem) {
+    let symbolLevel = parseInt(levelInputElem.value);
+    let currSymbolExp = parseInt(expValueInputElem.value);
+    let maxTotalSymbols = getSymbolTotalExp(MAX_ARC_SYMBOL_LEVEL-1);
+    let currTotalSymbols = getSymbolTotalExp(symbolLevel-1) + currSymbolExp;
+    let afterCatalystTotalSymbols = Math.ceil(currTotalSymbols * 0.8);
+
+    let newSymbolLevel = 0;
+
+    for(let i = 1; i < MAX_ARC_SYMBOL_LEVEL; i++) {
+        let currTotalUsedSymbols = getSymbolTotalExp(i);
+
+        if(afterCatalystTotalSymbols < currTotalUsedSymbols) {
+            newSymbolLevel = i;
+            break;
+        }
+    }
+
+    let remainingSymbols = afterCatalystTotalSymbols - getSymbolTotalExp(newSymbolLevel-1);
+    let newSymbolLevelExpRequired = getSymbolExpTnl(newSymbolLevel);
+    let numSymbolsToMax = maxTotalSymbols - afterCatalystTotalSymbols;
+
+    document.getElementById("end-symbol-level").value = newSymbolLevel;
+    document.getElementById("end-symbol-exp-raw").value = `${remainingSymbols} / ${newSymbolLevelExpRequired}`;
+    document.getElementById("max-possible-symbols-after").textContent = numSymbolsToMax;
+}
+
+function loadSymbolExpTables() {
     let totalSymbolEXP;
 
-    SYMBOL_EXP_TABLE.forEach((symbolType, index) => {
+    SYMBOL_EXP_TABLE.forEach(symbolType => {
         totalSymbolEXP = 0;
         let html = `<div class="w-100 col-12 col-sm-6 col-xl-4 d-flex flex-column align-items-center mb-4"><h2 class="font-subsubheader font-weight-bold text-underline mb-2">${symbolType.name}</h2>
 
@@ -19,7 +116,7 @@ function loadSymbolEXPTables() {
                     <th scope="col" class="text-center">Total Symbols</th>
                 </tr>
             </thead>
-            <tbody id='symbol-exp-table-${index}'>
+            <tbody id='symbol-exp-table-${symbolType.id}'>
             </tbody>
         </table></div>`;
 
@@ -29,11 +126,11 @@ function loadSymbolEXPTables() {
             totalSymbolEXP += rawEXP;
 
             document
-                .getElementById(`symbol-exp-table-${index}`)
+                .getElementById(`symbol-exp-table-${symbolType.id}`)
                 .insertAdjacentHTML('beforeend', `<tr>
                     <th scope="row" class="text-center">${symbolType.startLevel+arrayNum} > ${symbolType.startLevel+arrayNum+1}</th>
-                    <td class="text-center" id="${symbolType.startLevel+arrayNum}-exp-tnl" data-raw-exp-tnl="${rawEXP}">${rawEXP.toLocaleString('en-SG')}</td>
-                    <td class="text-center">${totalSymbolEXP.toLocaleString('en-SG')}</td>
+                    <td class="text-center" id="${symbolType.id}-${symbolType.startLevel+arrayNum}-exp-tnl" data-raw-exp-tnl="${rawEXP}">${rawEXP.toLocaleString('en-SG')}</td>
+                    <td class="text-center" id="${symbolType.id}-${symbolType.startLevel+arrayNum}-total-exp" data-total-exp="${totalSymbolEXP}">${totalSymbolEXP.toLocaleString('en-SG')}</td>
                 </tr>`);
         })
     })
@@ -71,15 +168,15 @@ function addCostTable(symbol) {
     populateCostTable(symbol);
 }
 
-/********
+/***************
  * Populates each row (level) of symbol upgrade cost.
  * 
  * For Arcane Symbols, there are symbol cost adjustments to be noted due to
  * upcoming DESTINY patch.
  * 
  * Display both pre- and post-DESTINY cost details where applicable and percentage change.
- * ******/
-function populateCostTable() {
+ * *************/
+function populateCostTable(symbol) {
     let totalCost = 0;
     let totalPostDestinyCost = 0;
 

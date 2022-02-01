@@ -1,6 +1,7 @@
 const SYMBOL_EXP_TABLE = [
     {
         name: "Arcane Symbols",
+        id: "arc",
         startLevel: 1,
         values: [
             12, 15, 20, 27, 36,
@@ -11,6 +12,7 @@ const SYMBOL_EXP_TABLE = [
     },
     {
         name: "Authentic Symbols",
+        id: "aut",
         startLevel: 1,
         values: [
             29, 76, 141, 224, 325,
