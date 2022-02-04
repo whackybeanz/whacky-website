@@ -376,8 +376,22 @@ router.get("/symbol-calc", function(req, res) {
 
     Icon.find({ usedInSections: "symbol-calc" })
         .then(foundIcons => {
+            const symbolData = {
+                arc: {
+                    name: "Arcane Force",
+                    maxLevel: 20,
+                    list: [{ id: 'rte', baseSymbolGain: 22 }, { id: 'cci', baseSymbolGain: 23 }, 
+                           { id: 'lacheln', baseSymbolGain: 19 }, { id: 'arcana', baseSymbolGain: 18 },
+                           { id: 'moras', baseSymbolGain: 14 }, { id: 'esfera', baseSymbolGain: 14}],
+                },
+                aut: {
+                    name: "Authentic Force",
+                    maxLevel: 11,
+                    list: [{ id: 'cernium', baseSymbolGain: 10}, { id: 'hotel-arcs', baseSymbolGain: 5 }],
+                }
+            }
             const compiledIcons = IconHelper.compileIcons(foundIcons);
-            res.render("extras/symbol-calc/symbol-calc-landing", { icons: compiledIcons });
+            res.render("extras/symbol-calc/symbol-calc-landing", { icons: compiledIcons, symbolData: symbolData });
         })
         .catch(err => {
             console.log(err);
