@@ -1,11 +1,9 @@
-const MAX_ARC_SYMBOL_LEVEL = 20;
-const MAX_AUT_SYMBOL_LEVEL = 11;
-
 document.addEventListener("DOMContentLoaded", () => {
     loadSymbolExpTables();
     loadSymbolCostTables();
 
     calcDefaultSymbolUpgradeCosts();
+
     catalystStartLevelInputListener();
     catalystStartExpInputListener();
     symbolCostTableSelectListener();
@@ -117,10 +115,10 @@ function populateCostTable(symbol) {
             .getElementById(`symbol-${symbol.id}-table-details`)
             .insertAdjacentHTML('beforeend', `<tr>
                 <th scope="row" class="text-center align-middle">${i} > ${i+1}</th>
-                <td scope="row" class="text-center data-raw-cost="${symbolCost}" data-new-cost="" id="symbol-${symbol.id}-level-${i}-cost">
+                <td scope="row" class="text-center data-raw-cost-tnl="${symbolCost}" id="symbol-${symbol.id}-level-${i}-cost">
                     ${displayedCost}
                 </td>
-                <td scope="row" class="text-center data-raw-cost="${symbolCost}" data-new-raw-cost="" id="symbol-${symbol.id}-level-${i}-total-cost">
+                <td scope="row" class="text-center data-raw-total-cost="${totalCost}" id="symbol-${symbol.id}-level-${i}-total-cost">
                     ${displayedTotalCost}
                 </td>
             </tr>`);

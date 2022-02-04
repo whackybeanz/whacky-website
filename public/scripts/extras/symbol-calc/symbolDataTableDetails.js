@@ -1,3 +1,8 @@
+const MAX_SYMBOL_LEVEL = {
+    arc: 20,
+    aut: 11,
+}
+
 const SYMBOL_EXP_TABLE = [
     {
         name: "Arcane Symbols",
@@ -30,6 +35,7 @@ const SYMBOL_MAX_LEVEL = {
 const SYMBOL_COST_TABLE = [
     {
         name: "Road to Extinction",
+        symbolGroup: "arc",
         id: "rte",
         values: [
             9500000, 16630000, 23760000, 30890000, 38020000,
@@ -46,6 +52,7 @@ const SYMBOL_COST_TABLE = [
     },
     {
         name: "Chew Chew Island",
+        symbolGroup: "arc",
         id: "cci",
         values: [
             19040000, 25640000, 32240000, 38840000, 45440000,
@@ -62,6 +69,7 @@ const SYMBOL_COST_TABLE = [
     },
     {
         name: "Lacheln",
+        symbolGroup: "arc",
         id: "lach",
         values: [
             19040000, 25640000, 32240000, 38840000, 45440000,
@@ -78,6 +86,7 @@ const SYMBOL_COST_TABLE = [
     },
     {
         name: "Arcana",
+        symbolGroup: "arc",
         id: "arcana",
         values: [
             19040000, 25640000, 32240000, 38840000, 45440000,
@@ -94,6 +103,7 @@ const SYMBOL_COST_TABLE = [
     },
     {
         name: "Moras",
+        symbolGroup: "arc",
         id: "moras",
         values: [
             19040000, 25640000, 32240000, 38840000, 45440000,
@@ -110,6 +120,7 @@ const SYMBOL_COST_TABLE = [
     },
     {
         name: "Esfera",
+        symbolGroup: "arc",
         id: "esfera",
         values: [
             19040000, 25640000, 32240000, 38840000, 45440000,
@@ -126,6 +137,7 @@ const SYMBOL_COST_TABLE = [
     },
     {
         name: "Cernium",
+        symbolGroup: "aut",
         id: "cernium",
         values: [
             185400000, 273900000, 362300000, 450700000, 539200000,
@@ -134,6 +146,7 @@ const SYMBOL_COST_TABLE = [
     },
     {
         name: "Hotel Arcs",
+        symbolGroup: "aut",
         id: "hotel-arcs",
         values: [
             203900000, 301200000, 398500000, 495700000, 593100000,

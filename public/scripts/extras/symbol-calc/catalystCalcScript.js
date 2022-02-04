@@ -15,7 +15,7 @@ function validateCatalystSymbolLevelInput(levelInputElem, expValueInputElem) {
 function validateSymbolExpInput(levelInputElem, expValueInputElem) {
     let symbolLevel = parseInt(levelInputElem.value);
     let currSymbolExp = parseInt(expValueInputElem.value);
-    let maxTotalSymbols = getSymbolTotalExp("arc", MAX_ARC_SYMBOL_LEVEL-1);
+    let maxTotalSymbols = getSymbolTotalExp("arc", MAX_SYMBOL_LEVEL['arc']-1);
     let currTotalUsedSymbols = getSymbolTotalExp("arc", symbolLevel-1) || 0;
     let maxPossibleSymbolsLeft = maxTotalSymbols - currTotalUsedSymbols;
 
@@ -23,7 +23,7 @@ function validateSymbolExpInput(levelInputElem, expValueInputElem) {
         expValueInputElem.value = 0;
     }
 
-    if(symbolLevel === MAX_ARC_SYMBOL_LEVEL) {
+    if(symbolLevel === MAX_SYMBOL_LEVEL['arc']) {
         expValueInputElem.value = 0;
     }
 
@@ -59,13 +59,13 @@ function catalystStartExpInputListener() {
 function calcEndSymbolStats(levelInputElem, expValueInputElem) {
     let symbolLevel = parseInt(levelInputElem.value);
     let currSymbolExp = parseInt(expValueInputElem.value);
-    let maxTotalSymbols = getSymbolTotalExp("arc", MAX_ARC_SYMBOL_LEVEL-1);
+    let maxTotalSymbols = getSymbolTotalExp("arc", MAX_SYMBOL_LEVEL['arc']-1);
     let currTotalSymbols = getSymbolTotalExp("arc", symbolLevel-1) + currSymbolExp;
     let afterCatalystTotalSymbols = Math.ceil(currTotalSymbols * 0.8);
 
     let newSymbolLevel = 0;
 
-    for(let i = 1; i < MAX_ARC_SYMBOL_LEVEL; i++) {
+    for(let i = 1; i < MAX_SYMBOL_LEVEL['arc']; i++) {
         let currTotalUsedSymbols = getSymbolTotalExp("arc", i);
 
         if(afterCatalystTotalSymbols < currTotalUsedSymbols) {

@@ -4,7 +4,11 @@
  * 
  * *************/
 function getSymbolTotalExp(symbolGroup, symbolLevel) {
-    return parseInt(document.getElementById(`${symbolGroup}-${symbolLevel}-total-exp`).dataset.totalExp);
+    if(symbolLevel === 0) {
+        return 0;
+    } else {
+        return parseInt(document.getElementById(`${symbolGroup}-${symbolLevel}-total-exp`).dataset.totalExp);
+    }
 }
 
 function getSymbolExpTnl(symbolGroup, symbolLevel) {
