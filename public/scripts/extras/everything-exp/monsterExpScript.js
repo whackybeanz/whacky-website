@@ -94,7 +94,8 @@ function createMonsterTables(mapId, mapData) {
 // Create number input field for changing of no. monster kills
 // Display base, after-base-bonus, and after-exp-buff-multiplier EXPs
 function populateMonsterTables(charLevel, mapIndex, monster, monsterIndex, expMultiplier) {
-    let levelDiffModifier = getModifier(charLevel, monster.monsterLevel); 
+    let levelDiffModifier = getModifier(charLevel, monster.monsterLevel);
+    let expTNL = getExpTNL(charLevel);
     
     return `<tr>
         <td class="${monster.isBoss ? "text-custom font-weight-bold" : "" } align-middle position-relative">
@@ -131,7 +132,10 @@ function populateMonsterTables(charLevel, mapIndex, monster, monsterIndex, expMu
                 <div>-----</div>
                 <div class="d-flex font-weight-bold">
                     <div class="col-6 px-2 text-right"><span id="map-${mapIndex}-monster-${monsterIndex}-num-kills-display">1,000</span> kill(s)</div>
-                    <div class="col-6 px-2 text-left"><span id="map-${mapIndex}-monster-${monsterIndex}-total-kill-exp">${(Math.round(Math.round(monster.monsterEXP * levelDiffModifier) * expMultiplier) * 1000).toLocaleString("en-SG")}</span> EXP</div>
+                    <div class="col-6 px-2 text-left">
+                        <p class="mb-0"><span id="map-${mapIndex}-monster-${monsterIndex}-total-kill-exp">${(Math.round(Math.round(monster.monsterEXP * levelDiffModifier) * expMultiplier) * 1000).toLocaleString("en-SG")}</span> EXP</p>
+                        <p class="text-custom font-weight-normal mb-0">[<span id="map-${mapIndex}-monster-${monsterIndex}-percent-exp">${((Math.round(Math.round(monster.monsterEXP * levelDiffModifier) * expMultiplier) * 1000) / expTNL * 100).toFixed(3)}</span>%]</p>
+                    </div>
                 </div>
             </div>
         </td>
@@ -198,8 +202,10 @@ function updateNumKillsInputListener() {
             }
 
             let totalKillExp = Math.round(Math.round(baseExp * levelDiffMod) * expBuffMultiplier) * numKillsInput;
+            let expTNL = getExpTNL(getCharLevel());
             document.getElementById(`map-${mapIndex}-monster-${monsterIndex}-num-kills-display`).textContent = numKillsInput.toLocaleString('en-SG');
             document.getElementById(`map-${mapIndex}-monster-${monsterIndex}-total-kill-exp`).textContent = totalKillExp.toLocaleString('en-SG');
+            document.getElementById(`map-${mapIndex}-monster-${monsterIndex}-percent-exp`).textContent = (totalKillExp / expTNL * 100).toFixed(3);
         }
     })
 }
