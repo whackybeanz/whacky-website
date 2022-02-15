@@ -517,4 +517,9 @@ body {
     .horz-partition {
         border-top: 1px solid globals.$light-mode-grey;
     }
+
+    // Symbol Calculator
+    .single-cost-breakdown {
+        border-color: globals.$light-mode-grey;
+    }
 }

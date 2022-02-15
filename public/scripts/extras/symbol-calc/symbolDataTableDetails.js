@@ -26,12 +26,6 @@ const SYMBOL_EXP_TABLE = [
     }
 ];
 
-const SYMBOL_MAX_LEVEL = {
-    rte: 20, cci: 20, lach: 20,
-    arcana: 20, moras: 20, esfera: 20,
-    cernium: 11, "hotel-arcs": 11,
-};
-
 const SYMBOL_COST_TABLE = [
     {
         name: "Road to Extinction",
@@ -70,7 +64,7 @@ const SYMBOL_COST_TABLE = [
     {
         name: "Lacheln",
         symbolGroup: "arc",
-        id: "lach",
+        id: "lacheln",
         values: [
             19040000, 25640000, 32240000, 38840000, 45440000,
             52040000, 58640000, 65240000, 71840000, 78440000,

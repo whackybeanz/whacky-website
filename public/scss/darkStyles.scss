@@ -567,4 +567,9 @@ body.dark-mode {
     .horz-partition {
         border-top: 1px solid globals.$dark-mode-grey;
     }
+
+    // Symbol Calculator
+    .single-cost-breakdown {
+        border-color: globals.$dark-mode-grey;
+    }
 }

@@ -12,11 +12,26 @@ function calcDefaultSymbolUpgradeCosts() {
 
         if(dataIsValid) {
             calcSymbolUpgradeCosts(symbolData);
+            updateSummary(symbolData);
         } else {
             symbolData.totalMesoReqElem.textContent = "??";
             symbolData.totalSymbolReqElem.textContent = "??";
             symbolData.totalDaysReqElem.textContent = "??";
         }
+    })
+}
+
+function symbolUpgradeSelectListener() {
+    const symbolUpgradeSelect = document.getElementById("symbol-upgrade-select");
+
+    symbolUpgradeSelect.addEventListener("change", function(event) {
+        let currActiveDiv = document.querySelector(".single-symbol-div.active");
+
+        currActiveDiv.classList.remove("active");
+        currActiveDiv.classList.add("d-none");
+
+        document.getElementById(`symbol-${this.value}-upgrade`).classList.add("active");
+        document.getElementById(`symbol-${this.value}-upgrade`).classList.remove("d-none");
     })
 }
 
@@ -130,6 +145,7 @@ function attachListeners(symbolData) {
                     calcNewEndLevel(symbolData);
                 }
                 calcSymbolUpgradeCosts(symbolData);
+                updateSummary(symbolData);
             } else {
                 symbolData.totalMesoReqElem.textContent = "??";
                 symbolData.totalSymbolReqElem.textContent = "??";
@@ -170,6 +186,9 @@ function calcNewEndLevel(symbolData) {
  * 
  * ********************/
 function calcSymbolUpgradeCosts(symbolData) {
+    let symbolId = symbolData.symbolId;
+    let symbolGroup = symbolData.symbolGroup;
+
     let currLevel = parseInt(symbolData.currLevelElem.value);
     let currCount = parseInt(symbolData.currCountElem.value);
     let endLevel = parseInt(symbolData.endLevelElem.value);
@@ -184,6 +203,27 @@ function calcSymbolUpgradeCosts(symbolData) {
         totalSymbolsReq = endCount - currCount;
         totalDaysReq = Math.ceil(totalSymbolsReq / symbolsPerDay);
     } else {
+        // Calculate mesos cost
+        totalMesosReq = getSymbolTotalCost(symbolId, endLevel-1) - getSymbolTotalCost(symbolId, currLevel-1);
+        document.getElementById(`${symbolId}-total-meso-req`).textContent = totalMesosReq.toLocaleString('en-SG');
 
+        if(symbolData.symbolGroup === "arc") {
+            let totalNewMesoReq = getSymbolNewTotalCost(symbolId, endLevel-1) - getSymbolNewTotalCost(symbolId, currLevel-1);
+            document.getElementById(`${symbolId}-total-new-meso-req`).textContent = totalNewMesoReq.toLocaleString('en-SG');
+        }
+
+        // Calculate symbols cost
+        totalSymbolsReq = getSymbolTotalExp(symbolGroup, endLevel-1) - getSymbolTotalExp(symbolGroup, currLevel-1) + endCount - currCount;
+
+        // Calculate number of days needed
+        totalDaysReq = Math.ceil(totalSymbolsReq / symbolsPerDay);
     }
+
+    document.getElementById(`${symbolId}-total-symbols-req`).textContent = totalSymbolsReq.toLocaleString('en-SG');
+    document.getElementById(`${symbolId}-total-days-req`).textContent = totalDaysReq.toLocaleString('en-SG');
+
+    let today = Date.parse(new Date());
+    let endDay = today + (totalDaysReq-1) * 24 * 60 * 60 * 1000;
+    
+    document.getElementById(`${symbolId}-date-complete`).textContent = new Date(endDay).toLocaleDateString('en-SG', { day: "numeric", month: "short", year: "numeric" });
 }

@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadSymbolCostTables();
 
     calcDefaultSymbolUpgradeCosts();
+    symbolUpgradeSelectListener();
 
     catalystStartLevelInputListener();
     catalystStartExpInputListener();
@@ -52,33 +53,23 @@ function loadSymbolExpTables() {
 // Create containers for each symbol's cost table data and show RTE's table by default on load
 function loadSymbolCostTables() {
     SYMBOL_COST_TABLE.forEach(symbol => {
-        document
-            .getElementById("symbol-cost-table-details")
-            .insertAdjacentHTML('beforeend', `<div class="single-symbol-cost-table-div w-100 ${symbol.id === "rte" ? "d-flex" : "d-none"} flex-wrap justify-content-center" id="symbol-${symbol.id}-div"></div>`);
+        let html = `<div class="w-100 col-12 d-flex flex-column align-items-center mb-4">
+        <table class='font-table size-720 table table-sm table-bordered table-hover' id='symbol-${symbol.id}-cost-table'>
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Level</th>
+                    <th scope="col" class="text-center">Cost</th>
+                    <th scope="col" class="text-center">Total Cost</th>
+                </tr>
+            </thead>
+            <tbody id='symbol-${symbol.id}-table-details'>
+            </tbody>
+        </table></div>`;
 
-        addCostTable(symbol);
+        document.getElementById(`symbol-${symbol.id}-div`).insertAdjacentHTML('beforeend', html);
+
+        populateCostTable(symbol);
     })
-}
-
-// Create skeleton table containing headers for each symbol
-function addCostTable(symbol) {
-    let html = `<div class="w-100 col-12 d-flex flex-column align-items-center mb-4"><h2 class="font-subsubheader font-weight-bold text-underline mb-2">${symbol.name}</h2>
-
-    <table class='font-table size-720 table table-sm table-bordered table-hover' id='symbol-${symbol.id}-cost-table'>
-        <thead>
-            <tr>
-                <th scope="col" class="text-center">Level</th>
-                <th scope="col" class="text-center">Cost</th>
-                <th scope="col" class="text-center">Total Cost</th>
-            </tr>
-        </thead>
-        <tbody id='symbol-${symbol.id}-table-details'>
-        </tbody>
-    </table></div>`;
-
-    document.getElementById(`symbol-${symbol.id}-div`).insertAdjacentHTML('beforeend', html);
-
-    populateCostTable(symbol);
 }
 
 /***************
@@ -93,7 +84,7 @@ function populateCostTable(symbol) {
     let totalCost = 0;
     let totalPostDestinyCost = 0;
 
-    for(let i = 1; i < SYMBOL_MAX_LEVEL[symbol.id]; i++) {
+    for(let i = 1; i < MAX_SYMBOL_LEVEL[symbol.symbolGroup]; i++) {
         let symbolCost = symbol.values[i-1];
         totalCost += symbolCost;
 
@@ -118,7 +109,7 @@ function populateCostTable(symbol) {
                 <td scope="row" class="text-center data-raw-cost-tnl="${symbolCost}" id="symbol-${symbol.id}-level-${i}-cost">
                     ${displayedCost}
                 </td>
-                <td scope="row" class="text-center data-raw-total-cost="${totalCost}" id="symbol-${symbol.id}-level-${i}-total-cost">
+                <td scope="row" class="text-center" data-raw-total-cost="${totalCost}" data-raw-new-total-cost="${totalPostDestinyCost}" id="symbol-${symbol.id}-level-${i}-total-cost">
                     ${displayedTotalCost}
                 </td>
             </tr>`);

@@ -397,5 +397,8 @@ body.dark-mode .about-logo.youtube-logo {
 body.dark-mode .horz-partition {
   border-top: 1px solid #454d55;
 }
+body.dark-mode .single-cost-breakdown {
+  border-color: #454d55;
+}
 
 /*# sourceMappingURL=darkStyles.css.map */

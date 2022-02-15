@@ -380,14 +380,14 @@ router.get("/symbol-calc", function(req, res) {
                 arc: {
                     name: "Arcane Force",
                     maxLevel: 20,
-                    list: [{ id: 'rte', baseSymbolGain: 22 }, { id: 'cci', baseSymbolGain: 23 }, 
-                           { id: 'lacheln', baseSymbolGain: 19 }, { id: 'arcana', baseSymbolGain: 18 },
-                           { id: 'moras', baseSymbolGain: 14 }, { id: 'esfera', baseSymbolGain: 14}],
+                    list: [{ id: 'rte', name: "Road to Extinction", baseSymbolGain: 22 }, { id: 'cci', name: "Chew Chew Island", baseSymbolGain: 23 }, 
+                           { id: 'lacheln', name: "Lacheln", baseSymbolGain: 19 }, { id: 'arcana', name: "Arcana", baseSymbolGain: 18 },
+                           { id: 'moras', name: "Moras", baseSymbolGain: 14 }, { id: 'esfera', name: "Esfera", baseSymbolGain: 14}],
                 },
                 aut: {
                     name: "Authentic Force",
                     maxLevel: 11,
-                    list: [{ id: 'cernium', baseSymbolGain: 10}, { id: 'hotel-arcs', baseSymbolGain: 5 }],
+                    list: [{ id: 'cernium', name: "Cernium", baseSymbolGain: 10}, { id: 'hotel-arcs', name: "Hotel Arcs", baseSymbolGain: 5 }],
                 }
             }
             const compiledIcons = IconHelper.compileIcons(foundIcons);

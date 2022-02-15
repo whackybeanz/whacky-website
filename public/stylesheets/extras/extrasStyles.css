@@ -199,4 +199,10 @@
   left: 0;
 }
 
+@media (min-width: 576px) {
+  .single-cost-breakdown {
+    border-left: 1px solid;
+  }
+}
+
 /*# sourceMappingURL=extrasStyles.css.map */

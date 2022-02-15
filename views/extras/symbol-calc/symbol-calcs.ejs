@@ -7,24 +7,37 @@
                 </h2>
             </div>
             <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center py-3">
-                <form class="w-100 d-flex flex-column justify-content-start align-items-center px-3">
-                    <% Object.keys(symbolData).forEach(symbolGroup => { %>
-                        <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-2">
-                             <%= symbolData[symbolGroup].name %>
-                        </h2>
+                <form class="w-100 d-flex flex-column align-items-center mb-2">
+                    <div class="form-group row w-100 d-flex justify-content-center align-items-center">
+                        <label for="symbol-upgrade-select" class="font-weight-bold col-form-label">Select Symbol</label>
+                        <div class="col-sm-6 col-md-4">
+                            <select class="form-control" id="symbol-upgrade-select">
+                                <% Object.keys(symbolData).forEach(symbolGroup => { %>
+                                    <option class="font-weight-bold" value="" disabled><%= symbolData[symbolGroup].name %></option>
 
-                        <div class="w-100 d-flex flex-wrap mb-4">
-                            <% symbolData[symbolGroup].list.forEach(symbol => { %>
-                                <div class="single-symbol-div col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 px-1 mb-2" data-symbol-group="<%= symbolGroup%>" data-symbol-id="<%= symbol.id %>">
-                                    <div class="border rounded-lg py-2">
-                                        <div class="d-flex justify-content-center align-items-center mb-3">
-                                            <img src="<%= icons[`symbol-${symbol.id}`].imgUrl %>" alt="<%= icons[`symbol-${symbol.id}`].name %>" class="mr-1">
-                                            <p class="font-weight-bold mb-0"><%= icons[`symbol-${symbol.id}`].name.split(": ")[1] %></p>
-                                        </div>
-                                        <div class="font-form d-flex flex-wrap">
+                                    <% symbolData[symbolGroup].list.forEach(symbol => { %>
+                                        <option value="<%= symbol.id %>"><%= symbol.name %></option>
+                                    <% }) %>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+                <form class="w-100 d-flex flex-wrap justify-content-center align-items-center px-3">
+                    <% Object.keys(symbolData).forEach(symbolGroup => { %>
+                        <% symbolData[symbolGroup].list.forEach(symbol => { %>
+                            <div class="single-symbol-div col-12 col-md-10 col-lg-12 col-xl-9 px-1 <% if(symbol.id !== 'rte') { %>d-none<% } else { %>active<% } %>" id="symbol-<%= symbol.id %>-upgrade" data-symbol-group="<%= symbolGroup%>" data-symbol-id="<%= symbol.id %>">
+                                <div class="rounded-lg py-2">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="<%= icons[`symbol-${symbol.id}`].imgUrl %>" alt="<%= icons[`symbol-${symbol.id}`].name %>" class="mr-1">
+                                        <p class="font-weight-bold mb-0"><%= icons[`symbol-${symbol.id}`].name.split(": ")[1] %></p>
+                                    </div>
+                                    <div class="font-form d-flex flex-wrap">
+                                        <div class="col-12 col-sm-6 d-flex flex-wrap align-items-center py-3">
                                             <div class="form-group col-12 d-flex flex-column align-items-center text-center mb-2">
-                                                <label for="<%= symbol.id %>-end-level" class="col-form-label">Symbol gain per day</label>
-                                                <input type="number" class="form-control col-6 text-center" id="<%= symbol.id %>-gain-per-day" value="<%= symbol.baseSymbolGain %>">
+                                            <label for="<%= symbol.id %>-end-level" class="col-form-label">Symbol gain per day</label>
+                                            <input type="number" class="form-control col-6 text-center" id="<%= symbol.id %>-gain-per-day" value="<%= symbol.baseSymbolGain %>">
                                             </div>
                                             <div class="form-group col-6 text-center mb-2">
                                                 <label for="<%= symbol.id %>-curr-level" class="col-form-label">Current Level</label>
@@ -52,16 +65,26 @@
                                                 <label for="<%= symbol.id %>-end-symbol-count" class="col-form-label">Symbol Count</label>
                                                 <input type="number" class="form-control text-center" id="<%= symbol.id %>-end-symbol-count" value="0">
                                             </div>
-                                            <div class="col-12 text-center mt-3">
-                                                <span id="<%= symbol.id %>-total-meso-req">0</span> mesos<br/>
-                                                <span id="<%= symbol.id %>-total-symbols-req">0</span> symbols<br/>
-                                                <span id="<%= symbol.id %>-total-days-req">0</span> days
-                                            </div>
+                                        </div>
+                                        <div class="single-cost-breakdown col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center text-center mt-3">
+                                            <p>
+                                                <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-symbols-req">0</span> total symbols
+                                            </p>
+                                            <p>
+                                                <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-meso-req">0</span> mesos<br/>
+                                                <% if(symbolGroup === "arc") { %>
+                                                    ( <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-new-meso-req">0</span> mesos after DESTINY )<br/>
+                                                <% } %>
+                                            </p>
+                                            <p>
+                                                <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-days-req">0</span> days<br/>
+                                                ( Complete on <span class="text-custom font-weight-bold" id="<%= symbol.id %>-date-complete"></span> )
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                            <% }) %>
-                        </div>
+                            </div>
+                        <% }) %>
                     <% }) %>
                 </form>
             </div>
@@ -76,32 +99,30 @@
                 </p>
             </div>
             <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center py-3">
-                <div class="w-100 d-flex flex-column justify-content-start align-items-center px-3">
-                    <div class="w-100 d-flex flex-column flex-sm-row mb-0">
-                        <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start px-0">
-                            <div class="form-group row w-100 d-flex mb-2">
-                                <label class="col-6 font-weight-bold col-form-label text-right">Start Level</label>
-                                <input type="number" id="catalyst-start-symbol-level" class="form-control col-4 px-2" value="20">
-                            </div>
-                            <div class="form-group row w-100 d-flex mb-2">
-                                <label class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
-                                <input type="number" id="catalyst-start-symbol-exp-raw" class="col-4 form-control px-2" value="0">
-                                <p class="font-small offset-6 text-custom mb-0">(<span id="max-possible-symbols-before">0</span> more symbols to max)</p>
-                            </div>
-                        </form>
+                <div class="w-100 d-flex flex-wrap mb-0">
+                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start px-0 mb-4 mb-sm-0">
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label class="col-6 font-weight-bold col-form-label text-right">Start Level</label>
+                            <input type="number" id="catalyst-start-symbol-level" class="form-control col-4 px-2" value="20">
+                        </div>
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
+                            <input type="number" id="catalyst-start-symbol-exp-raw" class="col-4 form-control px-2" value="0">
+                            <p class="font-small offset-6 text-custom mb-0">(<span id="max-possible-symbols-before">0</span> more symbols to max)</p>
+                        </div>
+                    </form>
 
-                        <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start text-custom px-0">
-                            <div class="form-group row w-100 d-flex mb-2">
-                                <label class="col-6 font-weight-bold col-form-label text-right">End Level</label>
-                                <input type="number" id="catalyst-end-symbol-level" class="form-control-plaintext col-4 text-custom px-2" value="18" readonly>
-                            </div>
-                            <div class="form-group row w-100 d-flex mb-2">
-                                <label class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
-                                <input type="text" id="catalyst-end-symbol-exp-raw" class="col-6 form-control-plaintext text-custom px-2" value="172 / 335" readonly>
-                                <p class="font-small offset-6 text-custom mb-0">(<span id="max-possible-symbols-after">535</span> more symbols to max)</p>
-                            </div>
-                        </form>
-                    </div>
+                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-center text-custom px-0">
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label class="col-6 font-weight-bold col-form-label text-right">End Level</label>
+                            <input type="number" id="catalyst-end-symbol-level" class="form-control-plaintext col-4 text-custom px-2" value="18" readonly>
+                        </div>
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
+                            <input type="text" id="catalyst-end-symbol-exp-raw" class="col-6 form-control-plaintext text-custom px-2" value="172 / 335" readonly>
+                            <p class="font-small offset-6 text-custom mb-0">(<span id="max-possible-symbols-after">535</span> more symbols to max)</p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
