@@ -199,6 +199,14 @@
   left: 0;
 }
 
+.single-symbol-btn {
+  height: 50px;
+  width: 50px;
+}
+.single-symbol-btn:focus {
+  box-shadow: none;
+}
+
 @media (min-width: 576px) {
   .single-cost-breakdown {
     border-left: 1px solid;

@@ -342,7 +342,13 @@ body .about-logo.youtube-logo {
 body .horz-partition {
   border-top: 1px solid rgba(206, 212, 218, 0.8);
 }
-body .single-cost-breakdown {
+body .single-symbol-btn:hover, body .single-symbol-btn.active {
+  background-color: rgba(206, 212, 218, 0.8);
+}
+body .single-symbol-div > div {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .single-symbol-div .single-cost-breakdown {
   border-color: rgba(206, 212, 218, 0.8);
 }
 

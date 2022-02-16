@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     loadSymbolCostTables();
 
     calcDefaultSymbolUpgradeCosts();
-    symbolUpgradeSelectListener();
+    symbolSelectListener();
+    expOverflowInputListeners();
 
     catalystStartLevelInputListener();
     catalystStartExpInputListener();

@@ -236,6 +236,15 @@
 }
 
 // Symbol Calculator
+.single-symbol-btn {
+    height: 50px;
+    width: 50px;
+
+    &:focus {
+        box-shadow: none;
+    }
+}
+
 .single-cost-breakdown {
     @include globals.for-size(sm) {
         border-left: 1px solid;

@@ -569,7 +569,19 @@ body.dark-mode {
     }
 
     // Symbol Calculator
-    .single-cost-breakdown {
-        border-color: globals.$dark-mode-grey;
+    .single-symbol-btn {
+        &:hover, &.active {
+            background-color: globals.$dark-mode-navy-grey-opaque;
+        }
+    }
+
+    .single-symbol-div {
+        & > div {
+            border: 1px solid globals.$dark-mode-grey;
+        }
+
+        .single-cost-breakdown {
+            border-color: globals.$dark-mode-grey;
+        }
     }
 }

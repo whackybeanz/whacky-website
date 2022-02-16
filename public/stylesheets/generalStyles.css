@@ -177,6 +177,10 @@ input[type=radio], input[type=checkbox] {
     Images
 
 **********************/
+img {
+  height: auto;
+  width: auto;
+}
 img.item-img {
   cursor: help;
 }

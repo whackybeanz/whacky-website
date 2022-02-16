@@ -519,7 +519,19 @@ body {
     }
 
     // Symbol Calculator
-    .single-cost-breakdown {
-        border-color: globals.$light-mode-grey;
+    .single-symbol-btn {
+        &:hover, &.active {
+            background-color: globals.$light-mode-grey;
+        }
+    }
+
+    .single-symbol-div {
+        & > div {
+            border: 1px solid globals.$light-mode-grey;
+        }
+
+        .single-cost-breakdown {
+            border-color: globals.$light-mode-grey;
+        }
     }
 }

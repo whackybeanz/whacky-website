@@ -31,7 +31,7 @@ function validateSymbolExpInput(levelInputElem, expValueInputElem) {
         expValueInputElem.value = maxPossibleSymbolsLeft;
     }
 
-    document.getElementById("max-possible-symbols-before").textContent = maxPossibleSymbolsLeft - expValueInputElem.value;
+    document.getElementById("max-possible-symbols-before").textContent = (maxPossibleSymbolsLeft - expValueInputElem.value).toLocaleString('en-SG');
 }
 
 function catalystStartLevelInputListener() {
@@ -80,5 +80,5 @@ function calcEndSymbolStats(levelInputElem, expValueInputElem) {
 
     document.getElementById("catalyst-end-symbol-level").value = newSymbolLevel;
     document.getElementById("catalyst-end-symbol-exp-raw").value = `${remainingSymbols} / ${newSymbolLevelExpRequired}`;
-    document.getElementById("max-possible-symbols-after").textContent = numSymbolsToMax;
+    document.getElementById("max-possible-symbols-after").textContent = numSymbolsToMax.toLocaleString('en-SG');
 }

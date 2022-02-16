@@ -12,26 +12,37 @@ function calcDefaultSymbolUpgradeCosts() {
 
         if(dataIsValid) {
             calcSymbolUpgradeCosts(symbolData);
-            updateSummary(symbolData);
         } else {
             symbolData.totalMesoReqElem.textContent = "??";
             symbolData.totalSymbolReqElem.textContent = "??";
             symbolData.totalDaysReqElem.textContent = "??";
+            document.getElementById(`${symbolData.symbolId}-date-complete`).textContent = "??";
+
+            if(symbolData.symbolGroup === "arc") {
+                document.getElementById(`${symbolData.symbolId}-total-new-meso-req`).textContent = "??";                    
+            }
         }
     })
 }
 
-function symbolUpgradeSelectListener() {
-    const symbolUpgradeSelect = document.getElementById("symbol-upgrade-select");
+function symbolSelectListener() {
+    const allSymbols = document.querySelectorAll(".single-symbol-btn");
 
-    symbolUpgradeSelect.addEventListener("change", function(event) {
-        let currActiveDiv = document.querySelector(".single-symbol-div.active");
+    allSymbols.forEach(symbol => {
+        symbol.addEventListener("click", () => {
+            if(!symbol.classList.contains("active")) {
+                let currActiveSymbol = document.querySelector(".single-symbol-btn.active");
+                let currActiveDiv = document.querySelector(".single-symbol-div.active");
 
-        currActiveDiv.classList.remove("active");
-        currActiveDiv.classList.add("d-none");
+                currActiveDiv.classList.remove("active");
+                currActiveDiv.classList.add("d-none");
+                currActiveSymbol.classList.remove("active");
 
-        document.getElementById(`symbol-${this.value}-upgrade`).classList.add("active");
-        document.getElementById(`symbol-${this.value}-upgrade`).classList.remove("d-none");
+                symbol.classList.add("active");
+                document.getElementById(`symbol-${symbol.dataset.viewSymbol}-upgrade`).classList.add("active");
+                document.getElementById(`symbol-${symbol.dataset.viewSymbol}-upgrade`).classList.remove("d-none");
+            }
+        })
     })
 }
 
@@ -139,43 +150,19 @@ function attachListeners(symbolData) {
             let dataIsValid = validateSymbolUpgradeInputs(symbolData);
 
             if(dataIsValid) {
-                // Only execute a check for end-level calculation if input changes
-                // were made from Current Level / Symbol Count inputs
-                if(input.id.includes("curr")) {
-                    calcNewEndLevel(symbolData);
-                }
                 calcSymbolUpgradeCosts(symbolData);
-                updateSummary(symbolData);
             } else {
                 symbolData.totalMesoReqElem.textContent = "??";
                 symbolData.totalSymbolReqElem.textContent = "??";
                 symbolData.totalDaysReqElem.textContent = "??";
+                document.getElementById(`${symbolData.symbolId}-date-complete`).textContent = "??";
+
+                if(symbolData.symbolGroup === "arc") {
+                    document.getElementById(`${symbolData.symbolId}-total-new-meso-req`).textContent = "??";                    
+                }
             }
         })
     })
-}
-
-function calcNewEndLevel(symbolData) {
-    let currLevel = parseInt(symbolData.currLevelElem.value);
-    let currCount = parseInt(symbolData.currCountElem.value);
-    let symbolsTnl = getSymbolExpTnl(symbolData.symbolGroup, currLevel);
-
-    if(currCount > symbolsTnl) {
-        let currTotalSymbols = currCount;
-        let newSymbolLevel = currLevel;
-
-        for(let i = currLevel; i < MAX_SYMBOL_LEVEL[symbolData.symbolGroup]; i++) {
-            if(currTotalSymbols >= getSymbolExpTnl(symbolData.symbolGroup, i)) {
-                currTotalSymbols = currTotalSymbols - getSymbolExpTnl(symbolData.symbolGroup, i);
-                newSymbolLevel += 1;
-            } else {
-                break;
-            }
-        }
-
-        symbolData.endLevelElem.value = newSymbolLevel;
-        symbolData.endCountElem.value = currTotalSymbols;
-    }
 }
 
 /*********************
@@ -226,4 +213,76 @@ function calcSymbolUpgradeCosts(symbolData) {
     let endDay = today + (totalDaysReq-1) * 24 * 60 * 60 * 1000;
     
     document.getElementById(`${symbolId}-date-complete`).textContent = new Date(endDay).toLocaleDateString('en-SG', { day: "numeric", month: "short", year: "numeric" });
+}
+
+/*********************
+ * 
+ * Used in EXP Overflow calculations
+ * 
+ * ********************/
+function expOverflowInputListeners() {
+    let symbolTypeSelectElem = document.getElementById("overflow-symbol-group-select");
+    let currLevelElem = document.getElementById("overflow-start-symbol-level");
+    let currCountElem = document.getElementById("overflow-start-symbol-exp-raw");
+
+    [symbolTypeSelectElem, currLevelElem, currCountElem].forEach(elem => {
+        elem.addEventListener("change", () => {
+            let symbolData = {
+                symbolGroup: symbolTypeSelectElem.value,
+                currLevelElem: currLevelElem,
+                currCountElem: currCountElem,
+                endLevelElem: document.getElementById("overflow-end-symbol-level"),
+                endCountElem: document.getElementById("overflow-end-symbol-exp-raw"),
+            };
+
+            if(parseInt(currLevelElem.value) === MAX_SYMBOL_LEVEL[symbolData.symbolGroup]) {
+                symbolData.endLevelElem.value = `${MAX_SYMBOL_LEVEL[symbolData.symbolGroup]}`;
+                symbolData.endCountElem.value = "MAX";
+                document.getElementById("overflow-max-possible-symbols-after").textContent = "0";
+            }
+
+            if(parseInt(currLevelElem.value) >= 1 && 
+                parseInt(currLevelElem.value) <= MAX_SYMBOL_LEVEL[symbolData.symbolGroup]-1 && 
+                parseInt(currCountElem.value) >= 0) {
+                calcNewEndLevel(symbolData);
+            }
+        })
+    })
+}
+
+function calcNewEndLevel(symbolData) {
+    let currLevel = parseInt(symbolData.currLevelElem.value);
+    let currCount = parseInt(symbolData.currCountElem.value);
+    let symbolsTnl = getSymbolExpTnl(symbolData.symbolGroup, currLevel);
+    let symbolsUsedSoFar = getSymbolTotalExp(symbolData.symbolGroup, currLevel-1) + currCount;
+    let currTotalSymbols = currCount;
+    let newSymbolLevel = currLevel;
+
+    if(currCount >= symbolsTnl) {
+        for(let i = currLevel; i < MAX_SYMBOL_LEVEL[symbolData.symbolGroup]; i++) {
+            symbolsTnl = getSymbolExpTnl(symbolData.symbolGroup, i);
+
+            if(currTotalSymbols >= getSymbolExpTnl(symbolData.symbolGroup, i)) {
+                currTotalSymbols = currTotalSymbols - symbolsTnl;
+                newSymbolLevel += 1;
+            } else {
+                break;
+            }
+        }
+    }
+
+    // Update final result displays
+    symbolData.endLevelElem.value = newSymbolLevel;
+
+    if(newSymbolLevel === MAX_SYMBOL_LEVEL[symbolData.symbolGroup]) {
+        symbolData.endCountElem.value = "MAX";
+        document.getElementById("overflow-max-possible-symbols-after").textContent = "0";            
+    } else {
+        symbolData.endCountElem.value = `${currTotalSymbols} / ${symbolsTnl}`;
+
+        let maxTotalSymbols = getSymbolTotalExp(symbolData.symbolGroup, MAX_SYMBOL_LEVEL[symbolData.symbolGroup]-1);
+        let numSymbolsToMax = maxTotalSymbols - symbolsUsedSoFar;
+
+        document.getElementById("overflow-max-possible-symbols-after").textContent = numSymbolsToMax.toLocaleString("en-SG");
+    }
 }
