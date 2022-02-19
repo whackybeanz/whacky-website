@@ -1,3 +1,59 @@
+function loadCalcTabData() {
+    loadSavedData();
+
+    // Symbol Progress Tracker
+    calcDefaultSymbolUpgradeCosts();
+    symbolSelectListener();
+    symbolProgressListener();
+    symbolUpgradeListener();
+
+    // EXP Overflow
+    expOverflowInputListeners();
+
+    // Catalyst
+    catalystStartLevelInputListener();
+    catalystStartExpInputListener();
+}
+
+function loadSavedData() {
+    let savedData = JSON.parse(localStorage.getItem("symbolCalc"));
+
+    if(savedData !== null) {
+        Object.keys(savedData).forEach(symbolId => {
+            let symbolGroup = (SYMBOL_COST_TABLE.filter(symbolData => symbolData.id === symbolId))[0].symbolGroup;
+            let symbolData = getUpgradeInputData(symbolGroup, symbolId);
+            
+            symbolData.currLevelElem.value = savedData[symbolId].currLevel;
+            symbolData.currCountElem.value = savedData[symbolId].currCount;
+            symbolData.endLevelElem.value = savedData[symbolId].endLevel;
+            symbolData.endCountElem.value = savedData[symbolId].endCount;
+            symbolData.symbolsPerDayElem.value = savedData[symbolId].symbolsPerDay;
+
+            toggleProgressBtnDisplay(symbolData);
+            toggleUpgradeBtnDisplay(symbolData);
+            updateSymbolLevelDisplay(symbolData);
+        })
+    }
+}
+
+// Retrieves all input/output data contained within a singular symbol
+function getUpgradeInputData(symbolGroup, symbolId) {
+    return {
+        symbolId: symbolId,
+        symbolGroup: symbolGroup,
+
+        currLevelElem: document.getElementById(`${symbolId}-curr-level`),
+        currCountElem: document.getElementById(`${symbolId}-curr-symbol-count`),
+        endLevelElem: document.getElementById(`${symbolId}-end-level`),
+        endCountElem: document.getElementById(`${symbolId}-end-symbol-count`),
+        symbolsPerDayElem: document.getElementById(`${symbolId}-gain-per-day`),
+
+        totalMesoReqElem: document.getElementById(`${symbolId}-total-meso-req`),
+        totalSymbolReqElem: document.getElementById(`${symbolId}-total-symbols-req`),
+        totalDaysReqElem: document.getElementById(`${symbolId}-total-days-req`),
+    };
+}
+
 // On page load, calculate all symbol upgrade costs
 // Validate all inputs and attach change listeners to each input field
 // If valid, execute calculation; else hide values
@@ -46,21 +102,70 @@ function symbolSelectListener() {
     })
 }
 
-function getUpgradeInputData(symbolGroup, symbolId) {
-    return {
-        symbolId: symbolId,
-        symbolGroup: symbolGroup,
+function symbolProgressListener() {
+    let allProgressBtns = document.querySelectorAll(".single-progress-btn");
 
-        currLevelElem: document.getElementById(`${symbolId}-curr-level`),
-        currCountElem: document.getElementById(`${symbolId}-curr-symbol-count`),
-        endLevelElem: document.getElementById(`${symbolId}-end-level`),
-        endCountElem: document.getElementById(`${symbolId}-end-symbol-count`),
-        symbolsPerDayElem: document.getElementById(`${symbolId}-gain-per-day`),
+    allProgressBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            let symbolData = getUpgradeInputData(btn.dataset.symbolGroup, btn.dataset.symbolId);
+            symbolData.currCountElem.value = parseInt(symbolData.currCountElem.value) + parseInt(symbolData.symbolsPerDayElem.value);
 
-        totalMesoReqElem: document.getElementById(`${symbolId}-total-meso-req`),
-        totalSymbolReqElem: document.getElementById(`${symbolId}-total-symbols-req`),
-        totalDaysReqElem: document.getElementById(`${symbolId}-total-days-req`),
+            toggleProgressBtnDisplay(symbolData);
+            toggleUpgradeBtnDisplay(symbolData);
+            calcSymbolUpgradeCosts(symbolData);
+            saveSymbolCalcInputs(symbolData);
+        })
+    })
+}
+
+function symbolUpgradeListener() {
+    let allUpgradeBtns = document.querySelectorAll(".single-upgrade-btn");
+
+    allUpgradeBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            let symbolData = getUpgradeInputData(btn.dataset.symbolGroup, btn.dataset.symbolId)
+            let currLevel = parseInt(symbolData.currLevelElem.value);
+            let currCount = parseInt(symbolData.currCountElem.value);
+            let symbolsReqTnl = getSymbolExpTnl(symbolData.symbolGroup, currLevel);
+            let newLevel = currLevel + 1;
+
+            symbolData.currLevelElem.value = newLevel
+            symbolData.currCountElem.value = currCount - symbolsReqTnl;
+
+            toggleUpgradeBtnDisplay(symbolData);
+            calcSymbolUpgradeCosts(symbolData);
+            updateSymbolLevelDisplay(symbolData);
+            saveSymbolCalcInputs(symbolData);
+        });
+    })
+}
+
+function updateSymbolLevelDisplay(symbolData) {
+    if(parseInt(symbolData.currLevelElem.value) === 20) {
+        symbolData.currCountElem.value = 0;
+        document.getElementById(`${symbolData.symbolId}-curr-level-display`).textContent = `MAX`;
+    } else {
+        document.getElementById(`${symbolData.symbolId}-curr-level-display`).textContent = `Lv. ${symbolData.currLevelElem.value}`; 
+    }
+}
+
+function saveSymbolCalcInputs(symbolData) {
+    let savedData = JSON.parse(localStorage.getItem("symbolCalc"));
+
+    let toSave = {
+        currLevel: parseInt(symbolData.currLevelElem.value),
+        currCount: parseInt(symbolData.currCountElem.value),
+        endLevel: parseInt(symbolData.endLevelElem.value),
+        endCount: parseInt(symbolData.endCountElem.value),
+        symbolsPerDay: parseInt(symbolData.symbolsPerDayElem.value),
     };
+
+    if(savedData === null) {
+        savedData = {};
+    } 
+    savedData[`${symbolData.symbolId}`] = toSave;
+
+    localStorage.setItem("symbolCalc", JSON.stringify(savedData));
 }
 
 /************
@@ -80,11 +185,11 @@ function validateSymbolUpgradeInputs(symbolData) {
         return false;
     }
 
-    if(currLevel < 1 || currLevel >= 20 || currLevel > endLevel || endLevel < 1 || endLevel > MAX_SYMBOL_LEVEL[symbolData.symbolGroup]) {
+    if(currLevel < 1 || currLevel > 20 || currLevel > endLevel || endLevel < 1 || endLevel > MAX_SYMBOL_LEVEL[symbolData.symbolGroup]) {
         return false;
     }
 
-    if(currLevel === endLevel && currCount > endCount) {
+    if(currLevel === endLevel && currCount > endCount && currLevel !== 20) {
         return false;
     }
 
@@ -150,6 +255,16 @@ function attachListeners(symbolData) {
             let dataIsValid = validateSymbolUpgradeInputs(symbolData);
 
             if(dataIsValid) {
+                if(input.id.includes("curr-level")) {
+                    updateSymbolLevelDisplay(symbolData);
+                }
+
+                if(input.id.includes("curr-level") || input.id.includes("curr-symbol-count")) {
+                    toggleProgressBtnDisplay(symbolData);
+                    toggleUpgradeBtnDisplay(symbolData);
+                }
+
+                saveSymbolCalcInputs(symbolData);
                 calcSymbolUpgradeCosts(symbolData);
             } else {
                 symbolData.totalMesoReqElem.textContent = "??";
@@ -163,6 +278,27 @@ function attachListeners(symbolData) {
             }
         })
     })
+}
+
+function toggleProgressBtnDisplay(symbolData) {
+    let currTotalSymbols = getSymbolTotalExp(symbolData.symbolGroup, parseInt(symbolData.currLevelElem.value)-1) + parseInt(symbolData.currCountElem.value);
+    let maxTotalSymbols = getSymbolTotalExp(symbolData.symbolGroup, MAX_SYMBOL_LEVEL[symbolData.symbolGroup]-1);
+
+    if(currTotalSymbols >= maxTotalSymbols) {
+        document.getElementById(`${symbolData.symbolId}-progress-btn`).classList.add("d-none");
+    } else {
+        document.getElementById(`${symbolData.symbolId}-progress-btn`).classList.remove("d-none");
+    }
+}
+
+function toggleUpgradeBtnDisplay(symbolData) {
+    let symbolTnl = getSymbolExpTnl(symbolData.symbolGroup, parseInt(symbolData.currLevelElem.value));
+
+    if(parseInt(symbolData.currCountElem.value) >= symbolTnl && parseInt(symbolData.currLevelElem.value) < MAX_SYMBOL_LEVEL[symbolData.symbolGroup]) {
+        document.getElementById(`${symbolData.symbolId}-upgrade-btn`).classList.remove("d-none");
+    } else {
+        document.getElementById(`${symbolData.symbolId}-upgrade-btn`).classList.add("d-none");
+    }
 }
 
 /*********************
@@ -187,14 +323,20 @@ function calcSymbolUpgradeCosts(symbolData) {
     let totalDaysReq = 0;
 
     if(currLevel === endLevel) {
-        totalSymbolsReq = endCount - currCount;
-        totalDaysReq = Math.ceil(totalSymbolsReq / symbolsPerDay);
-    } else {
-        // Calculate mesos cost
-        totalMesosReq = getSymbolTotalCost(symbolId, endLevel-1) - getSymbolTotalCost(symbolId, currLevel-1);
-        document.getElementById(`${symbolId}-total-meso-req`).textContent = totalMesosReq.toLocaleString('en-SG');
+        totalMesosReq = 0;
 
-        if(symbolData.symbolGroup === "arc") {
+        if(symbolGroup === "arc") {
+            let totalNewMesoReq = 0;
+            document.getElementById(`${symbolId}-total-new-meso-req`).textContent = totalNewMesoReq.toLocaleString('en-SG');
+        }
+
+        totalSymbolsReq = endCount - currCount;
+        totalDaysReq = Math.abs(Math.ceil(totalSymbolsReq / symbolsPerDay));
+    } else {
+        // Calculate meso cost
+        totalMesosReq = getSymbolTotalCost(symbolId, endLevel-1) - getSymbolTotalCost(symbolId, currLevel-1);
+
+        if(symbolGroup === "arc") {
             let totalNewMesoReq = getSymbolNewTotalCost(symbolId, endLevel-1) - getSymbolNewTotalCost(symbolId, currLevel-1);
             document.getElementById(`${symbolId}-total-new-meso-req`).textContent = totalNewMesoReq.toLocaleString('en-SG');
         }
@@ -203,86 +345,19 @@ function calcSymbolUpgradeCosts(symbolData) {
         totalSymbolsReq = getSymbolTotalExp(symbolGroup, endLevel-1) - getSymbolTotalExp(symbolGroup, currLevel-1) + endCount - currCount;
 
         // Calculate number of days needed
-        totalDaysReq = Math.ceil(totalSymbolsReq / symbolsPerDay);
+        totalDaysReq = Math.abs(Math.ceil(totalSymbolsReq / symbolsPerDay));
     }
 
+    if(totalSymbolsReq < 0) {
+        totalSymbolsReq = 0;
+    }
+
+    document.getElementById(`${symbolId}-total-meso-req`).textContent = totalMesosReq.toLocaleString('en-SG');
     document.getElementById(`${symbolId}-total-symbols-req`).textContent = totalSymbolsReq.toLocaleString('en-SG');
     document.getElementById(`${symbolId}-total-days-req`).textContent = totalDaysReq.toLocaleString('en-SG');
 
     let today = Date.parse(new Date());
-    let endDay = today + (totalDaysReq-1) * 24 * 60 * 60 * 1000;
+    let endDay = today + totalDaysReq * 24 * 60 * 60 * 1000;
     
     document.getElementById(`${symbolId}-date-complete`).textContent = new Date(endDay).toLocaleDateString('en-SG', { day: "numeric", month: "short", year: "numeric" });
-}
-
-/*********************
- * 
- * Used in EXP Overflow calculations
- * 
- * ********************/
-function expOverflowInputListeners() {
-    let symbolTypeSelectElem = document.getElementById("overflow-symbol-group-select");
-    let currLevelElem = document.getElementById("overflow-start-symbol-level");
-    let currCountElem = document.getElementById("overflow-start-symbol-exp-raw");
-
-    [symbolTypeSelectElem, currLevelElem, currCountElem].forEach(elem => {
-        elem.addEventListener("change", () => {
-            let symbolData = {
-                symbolGroup: symbolTypeSelectElem.value,
-                currLevelElem: currLevelElem,
-                currCountElem: currCountElem,
-                endLevelElem: document.getElementById("overflow-end-symbol-level"),
-                endCountElem: document.getElementById("overflow-end-symbol-exp-raw"),
-            };
-
-            if(parseInt(currLevelElem.value) === MAX_SYMBOL_LEVEL[symbolData.symbolGroup]) {
-                symbolData.endLevelElem.value = `${MAX_SYMBOL_LEVEL[symbolData.symbolGroup]}`;
-                symbolData.endCountElem.value = "MAX";
-                document.getElementById("overflow-max-possible-symbols-after").textContent = "0";
-            }
-
-            if(parseInt(currLevelElem.value) >= 1 && 
-                parseInt(currLevelElem.value) <= MAX_SYMBOL_LEVEL[symbolData.symbolGroup]-1 && 
-                parseInt(currCountElem.value) >= 0) {
-                calcNewEndLevel(symbolData);
-            }
-        })
-    })
-}
-
-function calcNewEndLevel(symbolData) {
-    let currLevel = parseInt(symbolData.currLevelElem.value);
-    let currCount = parseInt(symbolData.currCountElem.value);
-    let symbolsTnl = getSymbolExpTnl(symbolData.symbolGroup, currLevel);
-    let symbolsUsedSoFar = getSymbolTotalExp(symbolData.symbolGroup, currLevel-1) + currCount;
-    let currTotalSymbols = currCount;
-    let newSymbolLevel = currLevel;
-
-    if(currCount >= symbolsTnl) {
-        for(let i = currLevel; i < MAX_SYMBOL_LEVEL[symbolData.symbolGroup]; i++) {
-            symbolsTnl = getSymbolExpTnl(symbolData.symbolGroup, i);
-
-            if(currTotalSymbols >= getSymbolExpTnl(symbolData.symbolGroup, i)) {
-                currTotalSymbols = currTotalSymbols - symbolsTnl;
-                newSymbolLevel += 1;
-            } else {
-                break;
-            }
-        }
-    }
-
-    // Update final result displays
-    symbolData.endLevelElem.value = newSymbolLevel;
-
-    if(newSymbolLevel === MAX_SYMBOL_LEVEL[symbolData.symbolGroup]) {
-        symbolData.endCountElem.value = "MAX";
-        document.getElementById("overflow-max-possible-symbols-after").textContent = "0";            
-    } else {
-        symbolData.endCountElem.value = `${currTotalSymbols} / ${symbolsTnl}`;
-
-        let maxTotalSymbols = getSymbolTotalExp(symbolData.symbolGroup, MAX_SYMBOL_LEVEL[symbolData.symbolGroup]-1);
-        let numSymbolsToMax = maxTotalSymbols - symbolsUsedSoFar;
-
-        document.getElementById("overflow-max-possible-symbols-after").textContent = numSymbolsToMax.toLocaleString("en-SG");
-    }
 }

@@ -243,6 +243,14 @@
     &:focus {
         box-shadow: none;
     }
+
+    .single-symbol-img {
+        top: 2px;
+    }
+
+    .single-symbol-level {
+        bottom: 0px;
+    }
 }
 
 .single-cost-breakdown {

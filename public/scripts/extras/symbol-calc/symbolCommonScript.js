@@ -12,7 +12,11 @@ function getSymbolTotalExp(symbolGroup, symbolLevel) {
 }
 
 function getSymbolExpTnl(symbolGroup, symbolLevel) {
-    return parseInt(document.getElementById(`${symbolGroup}-${symbolLevel}-exp-tnl`).dataset.rawExpTnl);
+    if(symbolLevel >= MAX_SYMBOL_LEVEL[symbolGroup]) {
+        return -1;
+    } else {
+        return parseInt(document.getElementById(`${symbolGroup}-${symbolLevel}-exp-tnl`).dataset.rawExpTnl);
+    }
 }
 
 // Retrieves current patch values

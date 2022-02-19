@@ -9,9 +9,9 @@
             <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center py-3 px-3">
                 <p class="w-100 mb-1">Notes:</p>
                 <ul class="w-100 mb-3">
-                    <li>Click on <span class="text-custom font-weight-bold">Add to all Symbols</span> button above to quickly add symbols for all non-completed symbols (value added is based on what is displayed in each individual symbol).</li>
-                    <li>Alternatively, click on <span class="text-custom font-weight-bold">Add Symbol Count</span> within each respective symbol for separate additions instead.</li>
-                    <li>Click on <span class="text-custom font-weight-bold">Upgrade Symbol</span> within each respective symbol to progress it to the next level.</li>
+                    <li>Click on <span class="text-custom font-weight-bold">Progress All Symbols</span> button above to quickly progress all non-completed symbols (value added is based on what is displayed in each individual symbol).</li>
+                    <li>Alternatively, click on <span class="text-custom font-weight-bold">Progress</span> within each respective symbol for separate additions instead.</li>
+                    <li>Click on <span class="text-custom font-weight-bold">Upgrade</span> within each respective symbol to progress it to the next level.</li>
                 </ul>
 
                 <div class="text-center mb-3">
@@ -19,7 +19,10 @@
                     <% Object.keys(symbolData).forEach(symbolGroup => { %>
                         <div class="d-flex flex-wrap justify-content-center">
                             <% symbolData[symbolGroup].list.forEach(symbol => { %>
-                                <button class="single-symbol-btn btn d-flex justify-content-center align-items-center mx-1 <% if(symbol.id === 'rte') { %>active<% } %>" type="button" data-view-symbol="<%= symbol.id %>"><img src="<%= icons[`symbol-${symbol.id}`].imgUrl %>" width="38" height="38" alt="<%= icons[`symbol-${symbol.id}`].name %>"></button>
+                                <button class="single-symbol-btn btn d-flex justify-content-center align-items-start position-relative mx-1 <% if(symbol.id === 'rte') { %>active<% } %>" type="button" data-view-symbol="<%= symbol.id %>">
+                                    <img src="<%= icons[`symbol-${symbol.id}`].imgUrl %>" width="38" height="38" alt="<%= icons[`symbol-${symbol.id}`].name %>" class="single-symbol-img position-absolute">
+                                    <small class="single-symbol-level position-absolute text-custom font-weight-bold mb-0" id="<%= symbol.id %>-curr-level-display">Lv. 1</small>
+                                </button>
                             <% }) %>
                         </div>
                     <% }) %>
@@ -57,7 +60,7 @@
                                                 <input type="number" class="form-control text-center" id="<%= symbol.id %>-end-symbol-count" value="0">
                                             </div>
                                         </div>
-                                        <div class="single-cost-breakdown col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center text-center mt-3">
+                                        <div class="single-cost-breakdown col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center text-center px-2 mt-3">
                                             <p>
                                                 <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-symbols-req">0</span> symbols to go
                                             </p>
@@ -71,6 +74,10 @@
                                                 <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-days-req">0</span> days needed<br/>
                                                 ( Complete on <span class="text-custom font-weight-bold" id="<%= symbol.id %>-date-complete"></span> )
                                             </p>
+                                            <div class="d-flex justify-content-center align-items-center flex-row flex-sm-column flex-md-row mt-3">
+                                                <button type="button" class="single-progress-btn btn btn-outline-custom mx-2 mb-sm-2 mb-md-0" id="<%= symbol.id %>-progress-btn" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>"><i class="fas fa-flag-checkered"></i> Progress</button>
+                                                <button type="button" class="single-upgrade-btn btn btn-outline-success d-none mx-2" id="<%= symbol.id %>-upgrade-btn" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>"><i class="fas fa-angle-double-up"></i> Upgrade</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

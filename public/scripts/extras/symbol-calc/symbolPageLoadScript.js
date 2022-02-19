@@ -1,13 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     loadSymbolExpTables();
     loadSymbolCostTables();
-
-    calcDefaultSymbolUpgradeCosts();
-    symbolSelectListener();
-    expOverflowInputListeners();
-
-    catalystStartLevelInputListener();
-    catalystStartExpInputListener();
+    loadCalcTabData();
     symbolCostTableSelectListener();
 });
 

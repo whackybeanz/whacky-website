@@ -206,6 +206,12 @@
 .single-symbol-btn:focus {
   box-shadow: none;
 }
+.single-symbol-btn .single-symbol-img {
+  top: 2px;
+}
+.single-symbol-btn .single-symbol-level {
+  bottom: 0px;
+}
 
 @media (min-width: 576px) {
   .single-cost-breakdown {
