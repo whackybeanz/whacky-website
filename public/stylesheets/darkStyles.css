@@ -397,5 +397,14 @@ body.dark-mode .about-logo.youtube-logo {
 body.dark-mode .horz-partition {
   border-top: 1px solid #454d55;
 }
+body.dark-mode .single-symbol-btn:hover, body.dark-mode .single-symbol-btn.active {
+  background-color: #343a40;
+}
+body.dark-mode .single-symbol-div > div {
+  border: 1px solid #454d55;
+}
+body.dark-mode .single-symbol-div .single-cost-breakdown {
+  border-color: #454d55;
+}
 
 /*# sourceMappingURL=darkStyles.css.map */

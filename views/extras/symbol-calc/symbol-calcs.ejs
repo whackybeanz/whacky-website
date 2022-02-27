@@ -1,0 +1,181 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="w-100 d-flex flex-column justify-content-center px-3 py-3">
+        <div class="exp-stack-section rounded-sm mb-5">
+            <div class="exp-stack-section-subheader text-center pt-1 pb-2">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                     <img src="<%= icons['symbol-default'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['symbol-default'].name %>"> Symbol Progress Tracker
+                </h2>
+                <button type="button" class="btn btn-outline-custom btn-sm font-weight-bold" id="btn-progress-all"><i class="fas fa-flag-checkered"></i> Progress All Symbols</button>
+                <p class="mb-0 d-none" id="refresh-cd">Progressing all symbols... (Cool down <span id="refresh-cd-num-secs">3</span> seconds)</p>
+            </div>
+            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center py-3 px-3">
+                <p class="w-100 mb-1">Notes:</p>
+                <ul class="w-100 mb-3">
+                    <li>Click on <span class="text-custom font-weight-bold">Progress All Symbols</span> button above to quickly progress all non-completed symbols (value added is based on what is displayed in each individual symbol).</li>
+                    <li>Alternatively, click on <span class="text-custom font-weight-bold">Progress</span> within each respective symbol for separate additions instead.</li>
+                    <li>Symbols are <span class="text-underline">not</span> automatically upgraded. Symbols that can be upgraded will display a <i class="fas fa-angle-double-up text-success"></i> icon.</li>
+                    <li>Click on <span class="text-custom font-weight-bold">Upgrade</span> within each respective symbol to progress it to the next level.</li>
+                    <li>The completion date will change daily even after you have maxed the symbol. This is intended behavior.</li>
+                </ul>
+
+                <div class="text-center mb-3">
+                    <p class="font-weight-bold mb-1">Select Symbol:</p>
+                    <% Object.keys(symbolData).forEach(symbolGroup => { %>
+                        <div class="d-flex flex-wrap justify-content-center">
+                            <% symbolData[symbolGroup].list.forEach(symbol => { %>
+                                <button class="single-symbol-btn btn d-flex justify-content-center align-items-start position-relative mx-1 <% if(symbol.id === 'rte') { %>active<% } %>" id="symbol-btn-<%= symbol.id %>" type="button" data-view-symbol="<%= symbol.id %>">
+                                    <img src="<%= icons[`symbol-${symbol.id}`].imgUrl %>" width="38" height="38" alt="<%= icons[`symbol-${symbol.id}`].name %>" class="single-symbol-img position-absolute">
+                                    <small class="single-symbol-level position-absolute text-custom font-weight-bold mb-0" id="<%= symbol.id %>-curr-level-display">Lv. 1</small>
+                                    <i class="fas fa-angle-double-up single-symbol-upgrade-available text-success position-absolute d-none"></i>
+                                </button>
+                            <% }) %>
+                        </div>
+                    <% }) %>
+                </div>
+
+                <form class="w-100 d-flex flex-wrap justify-content-center align-items-center px-3">
+                    <% Object.keys(symbolData).forEach(symbolGroup => { %>
+                        <% symbolData[symbolGroup].list.forEach(symbol => { %>
+                            <div class="single-symbol-div col-12 col-md-10 col-lg-12 col-xl-9 px-1 <% if(symbol.id !== 'rte') { %>d-none<% } else { %>active<% } %>" id="symbol-<%= symbol.id %>-upgrade" data-symbol-group="<%= symbolGroup%>" data-symbol-id="<%= symbol.id %>">
+                                <div class="rounded-lg py-2">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="<%= icons[`symbol-${symbol.id}`].imgUrl %>" alt="<%= icons[`symbol-${symbol.id}`].name %>" class="mr-1" width="38" height="38" alt="<%= icons[`symbol-${symbol.id}`].name %>">
+                                        <p class="font-weight-bold mb-0"><%= icons[`symbol-${symbol.id}`].name.split(": ")[1] %></p>
+                                    </div>
+                                    <div class="font-form d-flex flex-wrap">
+                                        <div class="col-12 col-sm-6 d-flex flex-wrap align-items-center py-3">
+                                            <div class="form-group col-12 d-flex flex-column align-items-center text-center mb-2">
+                                            <label for="<%= symbol.id %>-end-level" class="col-form-label">Symbol gain per day</label>
+                                            <input type="number" class="form-control col-6 text-center" id="<%= symbol.id %>-gain-per-day" value="<%= symbol.baseSymbolGain %>">
+                                            </div>
+                                            <div class="form-group col-6 text-center mb-2">
+                                                <label for="<%= symbol.id %>-curr-level" class="col-form-label">Current Level</label>
+                                                <input type="number" class="form-control text-center" id="<%= symbol.id %>-curr-level" value="1">
+                                            </div>
+                                            <div class="form-group col-6 text-center mb-2">
+                                                <label for="<%= symbol.id %>-curr-symbol-count" class="col-form-label">Symbol Count</label>
+                                                <input type="number" class="form-control text-center" id="<%= symbol.id %>-curr-symbol-count" value="0">
+                                            </div>
+                                            <div class="form-group col-6 text-center mb-2">
+                                                <label for="<%= symbol.id %>-end-level" class="col-form-label">Target Level</label>
+                                                <input type="number" class="form-control text-center" id="<%= symbol.id %>-end-level" value="<%= symbolData[symbolGroup].maxLevel %>">
+                                            </div>
+                                            <div class="form-group col-6 text-center mb-2">
+                                                <label for="<%= symbol.id %>-end-symbol-count" class="col-form-label">Symbol Count</label>
+                                                <input type="number" class="form-control text-center" id="<%= symbol.id %>-end-symbol-count" value="0">
+                                            </div>
+                                        </div>
+                                        <div class="single-cost-breakdown col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center text-center px-2 mt-3">
+                                            <p>
+                                                <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-symbols-req">0</span> symbols to go
+                                            </p>
+                                            <p>
+                                                <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-meso-req">0</span> mesos<br/>
+                                                <% if(symbolGroup === "arc") { %>
+                                                    ( <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-new-meso-req">0</span> mesos after DESTINY )<br/>
+                                                <% } %>
+                                            </p>
+                                            <p>
+                                                <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-days-req">0</span> days needed<br/>
+                                                ( Complete on <span class="text-custom font-weight-bold" id="<%= symbol.id %>-date-complete"></span> )
+                                            </p>
+                                            <div class="d-flex justify-content-center align-items-center flex-row flex-sm-column flex-md-row mt-3">
+                                                <button type="button" class="single-progress-btn btn btn-outline-custom mx-2 mb-sm-2 mb-md-0" id="<%= symbol.id %>-progress-btn" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>"><i class="fas fa-flag-checkered"></i> Progress</button>
+                                                <button type="button" class="single-upgrade-btn btn btn-outline-success d-none mx-2" id="<%= symbol.id %>-upgrade-btn" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>"><i class="fas fa-angle-double-up"></i> Upgrade</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% }) %>
+                </form>
+            </div>
+        </div>
+
+        <div class="exp-stack-section rounded-sm mb-5">
+            <div class="exp-stack-section-subheader text-center py-1">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                     <img src="<%= icons['symbol-default'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['symbol-default'].name %>"> EXP Overflow
+                </h2>
+                <p class="mb-0 pb-2">
+                    What level will your symbol end up at?
+                </p>
+            </div>
+            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center py-3">
+                <div class="w-100 d-flex flex-wrap mb-0">
+                    <form class="col-12 w-100 px-0 mb-4 mb-sm-3">
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label for="overflow-symbol-group-select" class="col-6 font-weight-bold col-form-label text-right">Symbol Type</label>
+                            <select class="form-control col-4 col-md-3 px-2" id="overflow-symbol-group-select">
+                                <option value="arc" selected>Arcane Symbols</option>
+                                <option value="aut">Authentic Symbols</option>
+                            </select>
+                        </div>
+                    </form>
+
+                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-start align-items-start px-0 mb-4 mb-sm-0">
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label for="overflow-start-symbol-level" class="col-6 font-weight-bold col-form-label text-right">Start Level</label>
+                            <input type="number" id="overflow-start-symbol-level" class="form-control col-4 px-2" value="1">
+                        </div>
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label for="overflow-start-symbol-exp-raw" class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
+                            <input type="number" id="overflow-start-symbol-exp-raw" class="col-4 form-control px-2" value="12">
+                        </div>
+                    </form>
+
+                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-start align-items-start text-custom px-0">
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label for="overflow-end-symbol-level" class="col-6 font-weight-bold col-form-label text-right">End Level</label>
+                            <input type="number" id="overflow-end-symbol-level" class="form-control-plaintext col-4 text-custom px-2" value="2" readonly>
+                        </div>
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label for="overflow-end-symbol-exp-raw" class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
+                            <input type="text" id="overflow-end-symbol-exp-raw" class="col-6 form-control-plaintext text-custom px-2" value="0 / 15" readonly>
+                            <p class="font-small offset-6 text-custom mb-0">(<span id="overflow-max-possible-symbols-after">2,667</span> more symbols to max)</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="exp-stack-section rounded-sm mb-5">
+            <div class="exp-stack-section-subheader text-center py-1">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                     <img src="<%= icons['arcane-catalyst'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['arcane-catalyst'].name %>"> Arcane Symbol Catalyst
+                </h2>
+                <p class="mb-0 pb-2">
+                    Transfer your symbol to another character (lose 20% of total symbol EXP)
+                </p>
+            </div>
+            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center py-3">
+                <div class="w-100 d-flex flex-wrap mb-0">
+                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start px-0 mb-4 mb-sm-0">
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label for="catalyst-start-symbol-level" class="col-6 font-weight-bold col-form-label text-right">Start Level</label>
+                            <input type="number" id="catalyst-start-symbol-level" class="form-control col-4 px-2" value="20">
+                        </div>
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label for="catalyst-start-symbol-exp-raw" class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
+                            <input type="number" id="catalyst-start-symbol-exp-raw" class="col-4 form-control px-2" value="0">
+                            <p class="font-small offset-6 text-custom mb-0">(<span id="max-possible-symbols-before">0</span> more symbols to max)</p>
+                        </div>
+                    </form>
+
+                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start text-custom px-0">
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label for="catalyst-end-symbol-level" class="col-6 font-weight-bold col-form-label text-right">End Level</label>
+                            <input type="number" id="catalyst-end-symbol-level" class="form-control-plaintext col-4 text-custom px-2" value="18" readonly>
+                        </div>
+                        <div class="form-group row w-100 d-flex mb-2">
+                            <label for="catalyst-end-symbol-exp-raw" class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
+                            <input type="text" id="catalyst-end-symbol-exp-raw" class="col-6 form-control-plaintext text-custom px-2" value="172 / 335" readonly>
+                            <p class="font-small offset-6 text-custom mb-0">(<span id="max-possible-symbols-after">535</span> more symbols to max)</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

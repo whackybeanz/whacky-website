@@ -368,6 +368,37 @@ router.get("/everything-exp/monster-list/:charLevel", function(req, res) {
     }
 })
 
+router.get("/symbol-calc", function(req, res) {
+    res.locals.extraStylesheet = "extras/extrasStyles";
+    res.locals.section = "extras";
+    res.locals.branch = "calc-symbol-calc";
+    res.locals.title = "Everything Symbols";
+
+    Icon.find({ usedInSections: "symbol-calc" })
+        .then(foundIcons => {
+            const symbolData = {
+                arc: {
+                    name: "Arcane Force",
+                    maxLevel: 20,
+                    list: [{ id: 'rte', name: "Road to Extinction", baseSymbolGain: 22 }, { id: 'cci', name: "Chew Chew Island", baseSymbolGain: 23 }, 
+                           { id: 'lacheln', name: "Lacheln", baseSymbolGain: 19 }, { id: 'arcana', name: "Arcana", baseSymbolGain: 18 },
+                           { id: 'moras', name: "Moras", baseSymbolGain: 14 }, { id: 'esfera', name: "Esfera", baseSymbolGain: 14}],
+                },
+                aut: {
+                    name: "Authentic Force",
+                    maxLevel: 11,
+                    list: [{ id: 'cernium', name: "Cernium", baseSymbolGain: 10}, { id: 'hotel-arcs', name: "Hotel Arcs", baseSymbolGain: 5 }],
+                }
+            }
+            const compiledIcons = IconHelper.compileIcons(foundIcons);
+            res.render("extras/symbol-calc/symbol-calc-landing", { icons: compiledIcons, symbolData: symbolData });
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
+})
+
 router.get("/potential-list", function(req, res) {
     let selectedPartType = req.query.itemType;
 

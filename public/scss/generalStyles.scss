@@ -147,6 +147,9 @@ input[type="radio"], input[type="checkbox"] {
 
 **********************/
 img {
+    height: auto;
+    width: auto;
+
     &.item-img {
         cursor: help;
 

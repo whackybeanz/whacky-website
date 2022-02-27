@@ -199,4 +199,29 @@
   left: 0;
 }
 
+.single-symbol-btn {
+  height: 50px;
+  width: 50px;
+}
+.single-symbol-btn:focus {
+  box-shadow: none;
+}
+.single-symbol-btn .single-symbol-img {
+  top: 2px;
+}
+.single-symbol-btn .single-symbol-level {
+  bottom: 2px;
+  line-height: 1;
+}
+.single-symbol-btn .single-symbol-upgrade-available {
+  top: 2px;
+  left: 2px;
+}
+
+@media (min-width: 576px) {
+  .single-cost-breakdown {
+    border-left: 1px solid;
+  }
+}
+
 /*# sourceMappingURL=extrasStyles.css.map */

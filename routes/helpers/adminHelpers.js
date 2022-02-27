@@ -9,7 +9,7 @@ function getIconCategories() {
 function getPageSections() {
     const pageSections = [{ id: "homepage", name: "Homepage" }, { id: "spell-trace", name: "Spell Trace" }, { id: "flames", name: "Flames" }, 
     { id: "potentials", name: "Potentials" }, { id: "todd", name: "Todd's Hammer" }, { id: "todd-sequence", name: "Todd Sequence" }, { id: "star-force", name: "Star Force" }, 
-    { id: "soul-weapons", name: "Soul Weapons" }, { id: "exp-stacking", name: "EXP Stacking" }, { id: "boss-crystal", name: "Boss Crystals" }];
+    { id: "soul-weapons", name: "Soul Weapons" }, { id: "exp-stacking", name: "EXP Stacking" }, { id: "boss-crystal", name: "Boss Crystals" }, { id: "symbol-calc", name: "Symbols"}];
 
     pageSections.sort(function(a, b) {
         let nameA = a.name.toUpperCase();

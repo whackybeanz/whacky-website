@@ -1,0 +1,43 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="w-100 d-flex flex-column justify-content-center px-3 py-3">
+        <div class="exp-stack-section rounded-sm mb-5">
+            <div class="exp-stack-section-subheader text-center">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="<%= icons['symbol-default'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['symbol-default'].name %>"> Cost Table
+                </h2>
+            </div>
+            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center pt-3">
+                <form class="w-100 d-flex flex-column align-items-center">
+                    <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
+                        <label for="symbol-cost-table-select" class="font-weight-bold col-form-label">Select Symbol</label>
+                        <div class="col-sm-6 col-md-4">
+                            <select class="form-control" id="symbol-cost-table-select">
+                                <% Object.keys(symbolData).forEach(symbolGroup => { %>
+                                    <option class="font-weight-bold" value="" disabled><%= symbolData[symbolGroup].name %></option>
+
+                                    <% symbolData[symbolGroup].list.forEach(symbol => { %>
+                                        <option value="<%= symbol.id %>"><%= symbol.name %></option>
+                                    <% }) %>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <p class="mb-4 px-3 text-center" id="symbol-cost-change-msg">All Arcane Symbol costs will undergo a change during the DESTINY patch.<br/>The tables below will show both before and after DESTINY patch costs where applicable.</p>
+
+                <div class="table-responsive d-flex flex-wrap justify-content-center" id="symbol-cost-table-details">
+                    <% Object.keys(symbolData).forEach(symbolGroup => { %>
+                        <% symbolData[symbolGroup].list.forEach(symbol => { %>
+                            <div class="single-symbol-cost-table-div w-100 <%= symbol.id === "rte" ? "d-flex" : "d-none" %> flex-wrap justify-content-center" id="symbol-<%= symbol.id %>-div">
+                                <h2 class="font-subsubheader font-weight-bold d-flex align-items-center mb-2">
+                                    <img src="<%= icons[`symbol-${symbol.id}`].imgUrl %>" class="mr-2">
+                                    <%= symbol.name %>
+                                </h2>
+                            </div>
+                        <% }) %>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

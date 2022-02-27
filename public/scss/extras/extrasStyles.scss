@@ -234,3 +234,33 @@
     top: 0;
     left: 0;
 }
+
+// Symbol Calculator
+.single-symbol-btn {
+    height: 50px;
+    width: 50px;
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    .single-symbol-img {
+        top: 2px;
+    }
+
+    .single-symbol-level {
+        bottom: 2px;
+        line-height: 1;
+    }
+
+    .single-symbol-upgrade-available {
+        top: 2px;
+        left: 2px;
+    }
+}
+
+.single-cost-breakdown {
+    @include globals.for-size(sm) {
+        border-left: 1px solid;
+    }
+}
