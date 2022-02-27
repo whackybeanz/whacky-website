@@ -136,38 +136,4 @@ router.get("/fun/word-search", function(req, res) {
     res.render("more-maple/word-search", { board: board, wordList: wordList });
 })
 
-router.post("/fun/word-search", function(req, res)  {
-    let discordName = req.body.name;
-    let submittedBoard = req.body.grid;
-
-    let grid = [[1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1],
-                [1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1],
-                [1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-                [1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-                [1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
-                [1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-                [0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
-                [0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0],
-                [0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0],
-                [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1],
-                [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-                [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0]]
-
-    if(JSON.stringify(submittedBoard) === JSON.stringify(grid)) {
-        Fun.create({name: discordName, timeCreated: new Date()}, function(err, newName) {
-            if(err) {
-                res.send({ isErr: true, err: err });
-            } else {
-                console.log(`New name added: ${discordName}`)
-                res.send({ isErr: false, isValid: true });
-            }
-        })
-    } else {
-        res.send({ isErr: false, isValid: false });
-    }
-})
-
 module.exports = router;
