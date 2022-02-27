@@ -67,9 +67,26 @@
 .word-search-board-form .word-search-board .single-square.highlight hr.diag-135 {
   transform: rotate(135deg);
 }
-.word-search-board-form .word-search-board-blocker {
+.word-search-board-form #word-search-board-blocker {
   top: 0;
   background-color: rgba(0, 0, 0, 0.95);
+}
+.word-search-board-form #word-search-board-blocker.complete {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.word-search-board-form #word-search-board-blocker #close-board-btn {
+  top: 0.5rem;
+  right: 0.5rem;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  width: 25px;
+  height: 25px;
+  transition: all 0.2s;
+}
+.word-search-board-form #word-search-board-blocker #close-board-btn:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
+  transition: all 0.2s;
 }
 
 .word-list .word-to-find.word-found {

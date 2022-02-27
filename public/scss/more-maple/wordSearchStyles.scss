@@ -75,9 +75,29 @@
         }
     }
 
-    .word-search-board-blocker {
+    #word-search-board-blocker {
         top: 0;
         background-color: rgba(0, 0, 0, 0.95);
+
+        &.complete {
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+
+        #close-board-btn {
+            top: 0.5rem;
+            right: 0.5rem;
+            border-radius: 50%;
+            border: 2px solid globals.$dark-mode-white;
+            width: 25px;
+            height: 25px;
+            transition: all 0.2s;
+
+            &:hover {
+                background-color: globals.$dark-mode-white;
+                color: globals.$dark-mode-black;
+                transition: all 0.2s;
+            }
+        }        
     }
 }
 

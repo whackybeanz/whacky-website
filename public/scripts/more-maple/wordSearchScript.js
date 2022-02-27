@@ -35,43 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
-    addSubmitBoardListener();
+    closeBoardListener();
 })
 
-function addSubmitBoardListener() {
-    let submitBoardBtn = document.querySelector(".submit-board-btn")
+function closeBoardListener() {
+    let closeBtn = document.getElementById("close-board-btn");
 
-    submitBoardBtn.addEventListener("click", event => {
-        event.preventDefault();
-
-        let discordName = document.getElementById("discord-name").value;
-
-        fetch("/maple/fun/word-search", {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify({ name: discordName, grid: grid })
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("submit-board-div").classList.add("d-none");
-            document.getElementById("submit-board-div").classList.remove("d-flex");
-            document.getElementById("submit-status-div").classList.remove("d-none");
-
-            if(data.isErr) {
-                throw Error(data.err);
-            } else {
-                if(data.isValid) {
-                    document.getElementById("submit-status-div").textContent = "Details successfully submitted! Thanks for participating~";
-                } else {
-                    document.getElementById("submit-status-div").textContent = "Welp. The correct board doesn't match up so your submission is invalid. Guess you'll need to restart!";
-                }
-            }
-        })
-        .catch(error => {
-            document.getElementById("submit-status-div").textContent = `Something went wrong! ${error}`;
-        })
+    closeBtn.addEventListener("click", () => {
+        document.getElementById("congrats-msg").classList.add("d-none");
+        document.getElementById("congrats-msg").classList.remove("d-flex");
+        document.getElementById("word-search-board-blocker").classList.add("complete");
     })
 }
 
@@ -221,7 +194,7 @@ function checkRemainingWords() {
     let remainingWords = Array.from(document.querySelectorAll(".word-to-find")).filter(elem => elem.classList.contains("word-found") === false);
 
     if(remainingWords.length === 0) {
-         document.querySelector(".word-search-board-blocker").classList.remove("d-none")
-         document.querySelector(".word-search-board-blocker").classList.add("d-flex")
+         document.getElementById("word-search-board-blocker").classList.remove("d-none")
+         document.getElementById("word-search-board-blocker").classList.add("d-flex")
     }
 }

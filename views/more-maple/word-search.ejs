@@ -28,16 +28,13 @@
                                     <% }) %>
                                 <% }) %>
                             </div>
-                            <div class="word-search-board-blocker font-form w-100 h-100 d-none align-items-center position-absolute px-3">
-                                <div class="w-100 d-flex flex-column justify-content-center align-items-center text-center" id="submit-board-div">
-                                    <p class="font-weight-bold">Sweet! You found all the words! Now type your Discord profile name and submit!</p>
-
-                                    <div class="w-75 form-group">
-                                        <input type="text" class="form-control text-center" id="discord-name" name="discordName" placeholder="(E.g. whacky)" autocomplete="off" required>
-                                    </div>
-                                    <button type="submit" class="w-75 submit-board-btn btn btn-outline-warning font-weight-bold">Submit Board</button>
+                            <div class="font-form w-100 h-100 position-absolute d-none" id="word-search-board-blocker">
+                                <div class="w-100 h-100 d-flex flex-column align-items-center text-center font-weight-bold justify-content-center position-relative" id="congrats-msg">
+                                    <div class="position-absolute cursor-pointer" id="close-board-btn">&times;</div>
+                                    <p>You found all the words! Yay!</p>
+                                    <p>... Yep. That's it. Uh... enjoy your day~ &#10084;</p>
+                                    <img src='https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/sleeping-mir.gif'>
                                 </div>
-                                <div class="w-100 d-none text-center font-weight-bold" id="submit-status-div"></div>
                             </div>
                         </form>
                         <div class="word-list px-3 d-flex flex-wrap text-center">
