@@ -2,6 +2,7 @@ function loadCalcTabData() {
     loadSavedData();
 
     // Symbol Progress Tracker
+    progressAllSymbolListener();
     calcDefaultSymbolUpgradeCosts();
     symbolSelectListener();
     symbolProgressListener();
@@ -52,6 +53,28 @@ function getUpgradeInputData(symbolGroup, symbolId) {
         totalSymbolReqElem: document.getElementById(`${symbolId}-total-symbols-req`),
         totalDaysReqElem: document.getElementById(`${symbolId}-total-days-req`),
     };
+}
+
+function progressAllSymbolListener() {
+    // On click, hide button and display cooldown message + progress non-maxed symbols
+    let progressAllBtn = document.getElementById("btn-progress-all");
+    let refreshCdMessage = document.getElementById("refresh-cd");
+
+    progressAllBtn.addEventListener("click", () => {
+        progressAllBtn.classList.add("d-none");
+        refreshCdMessage.classList.remove("d-none");
+
+        window.setTimeout(() => {
+            progressAllBtn.classList.remove("d-none");
+            refreshCdMessage.classList.add("d-none");
+        }, 3000)
+
+        let allSymbols = document.querySelectorAll(".single-symbol-div");
+
+        allSymbols.forEach(symbol => {
+            progressSymbol(symbol.dataset.symbolGroup, symbol.dataset.symbolId);
+        })
+    })
 }
 
 // On page load, calculate all symbol upgrade costs
@@ -107,15 +130,23 @@ function symbolProgressListener() {
 
     allProgressBtns.forEach(btn => {
         btn.addEventListener("click", () => {
-            let symbolData = getUpgradeInputData(btn.dataset.symbolGroup, btn.dataset.symbolId);
-            symbolData.currCountElem.value = parseInt(symbolData.currCountElem.value) + parseInt(symbolData.symbolsPerDayElem.value);
-
-            toggleProgressBtnDisplay(symbolData);
-            toggleUpgradeBtnDisplay(symbolData);
-            calcSymbolUpgradeCosts(symbolData);
-            saveSymbolCalcInputs(symbolData);
+            progressSymbol(btn.dataset.symbolGroup, btn.dataset.symbolId);
         })
     })
+}
+
+function progressSymbol(symbolGroup, symbolId) {
+    let symbolData = getUpgradeInputData(symbolGroup, symbolId);
+
+    if(symbolData.currLevelElem.value < MAX_SYMBOL_LEVEL[symbolData.symbolGroup]) {
+        symbolData.currCountElem.value = parseInt(symbolData.currCountElem.value) + parseInt(symbolData.symbolsPerDayElem.value);
+
+        toggleSymbolsProgressedDisplay(symbolData);
+        toggleProgressBtnDisplay(symbolData);
+        toggleUpgradeBtnDisplay(symbolData);
+        calcSymbolUpgradeCosts(symbolData);
+        saveSymbolCalcInputs(symbolData);
+    }
 }
 
 function symbolUpgradeListener() {
@@ -141,7 +172,7 @@ function symbolUpgradeListener() {
 }
 
 function updateSymbolLevelDisplay(symbolData) {
-    if(parseInt(symbolData.currLevelElem.value) === 20) {
+    if(parseInt(symbolData.currLevelElem.value) === MAX_SYMBOL_LEVEL[symbolData.symbolGroup]) {
         symbolData.currCountElem.value = 0;
         document.getElementById(`${symbolData.symbolId}-curr-level-display`).textContent = `MAX`;
     } else {
@@ -280,6 +311,14 @@ function attachListeners(symbolData) {
     })
 }
 
+function toggleSymbolsProgressedDisplay(symbolData) {
+    document.getElementById(`symbol-btn-${symbolData.symbolId}`).classList.add("btn-outline-custom");
+
+    window.setTimeout(() => {
+        document.getElementById(`symbol-btn-${symbolData.symbolId}`).classList.remove("btn-outline-custom");
+    }, 3000)
+}
+
 function toggleProgressBtnDisplay(symbolData) {
     let currTotalSymbols = getSymbolTotalExp(symbolData.symbolGroup, parseInt(symbolData.currLevelElem.value)-1) + parseInt(symbolData.currCountElem.value);
     let maxTotalSymbols = getSymbolTotalExp(symbolData.symbolGroup, MAX_SYMBOL_LEVEL[symbolData.symbolGroup]-1);
@@ -296,8 +335,10 @@ function toggleUpgradeBtnDisplay(symbolData) {
 
     if(parseInt(symbolData.currCountElem.value) >= symbolTnl && parseInt(symbolData.currLevelElem.value) < MAX_SYMBOL_LEVEL[symbolData.symbolGroup]) {
         document.getElementById(`${symbolData.symbolId}-upgrade-btn`).classList.remove("d-none");
+        document.getElementById(`symbol-btn-${symbolData.symbolId}`).querySelector(".single-symbol-upgrade-available").classList.remove("d-none");
     } else {
         document.getElementById(`${symbolData.symbolId}-upgrade-btn`).classList.add("d-none");
+        document.getElementById(`symbol-btn-${symbolData.symbolId}`).querySelector(".single-symbol-upgrade-available").classList.add("d-none");
     }
 }
 
