@@ -15,7 +15,7 @@ var pendantRingDetails = {
         itemIds: ["", "", "", ""]
     }
 }
-var equippedLuckyItems = {};
+var equippedLuckyItems = [];
 var priorityList = [];
 var isEquippedOverall = false;
 
@@ -129,8 +129,11 @@ function removeSetItem(selectedItem, equipType, equipId) {
 }
 
 function removeLuckyItem(itemPriorityToRemove) {
-    delete equippedLuckyItems[itemPriorityToRemove];
-    priorityList = priorityList.filter(priority => priority !== itemPriorityToRemove);
+    let luckyItemToRemoveIndex = equippedLuckyItems.findIndex(elem => elem.priority === itemPriorityToRemove);
+    let priorityToRemoveIndex = priorityList.findIndex(elem => elem === itemPriorityToRemove);
+
+    equippedLuckyItems = equippedLuckyItems.filter((item, index) => index !== luckyItemToRemoveIndex);
+    priorityList = priorityList.filter((priority, index) => index !== priorityToRemoveIndex);
 }
 
 function removeRingPendant(selectedItem, equipType, equipId) {
@@ -176,10 +179,11 @@ function addLuckyItem(selectedItem, equipType) {
     priorityList.push(selectedItemPriority);
     priorityList.sort((a, b) => a - b);
 
-    equippedLuckyItems[selectedItemPriority] = {
+    equippedLuckyItems.push({
+        priority: selectedItemPriority,
         name: selectedItem.data("equipName"), 
         type: selectedItem.data("equipType")
-    }
+    })
 }
 
 function addRingPendant(selectedItem, equipType, equipId, choiceImage) {
@@ -239,6 +243,17 @@ function addSelectedItem(selectedItem, equipType, equipId, choiceImage) {
     // Highlight newly active item from user selection
     var setType = selectedItem.data("setType");
     
+    // If previous item was a lucky item of the same item type, remove it from list of equipped lucky items
+    // As activated lucky item will be the same type/priority regardless of which set it is in, no need to
+    // retrieve individual equip types/priorities
+    var isLuckyItemActive = ($(`.set-items .lucky-item.active`).length > 0);
+    var isLuckyItemSameType = (equipType === $(`.set-items .lucky-item.active`).data("equipType"));
+
+    if(isLuckyItemActive && isLuckyItemSameType) {
+        var itemPriorityToRemove = $(`.set-items .lucky-item.active`).data("itemPriority");
+        removeLuckyItem(itemPriorityToRemove);
+    }
+
     if(equipType === "weapon") {
         $(`.wearing-${equipType}`).removeClass("active").addClass("d-none");
         $(`.wearing-${equipType}.choose-weapon-text`).removeClass("d-none");
@@ -251,17 +266,6 @@ function addSelectedItem(selectedItem, equipType, equipId, choiceImage) {
 
     if(equipType === "top") {
         isEquippedOverall = selectedItem.data("isOverall") || false;
-    }
-    
-    // If previous item was a lucky item of the same item type, remove it from list of equipped lucky items
-    // As activated lucky item will be the same type/priority regardless of which set it is in, no need to
-    // retrieve individual equip types/priorities
-    var isLuckyItemActive = ($(`.set-items .lucky-item.active`).length > 0);
-    var isLuckyItemSameType = (equipType === $(`.set-items .lucky-item.active`).data("equipType"));
-
-    if(isLuckyItemActive && isLuckyItemSameType) {
-        var itemPriorityToRemove = $(`.set-items .lucky-item.active`).data("itemPriority");
-        removeLuckyItem(itemPriorityToRemove);
     }
 
     activateLuckyItem();
@@ -297,7 +301,8 @@ function activateLuckyItem() {
             return false;
         }
 
-        var luckyItemType = equippedLuckyItems[priority].type;
+        var foundLuckyItem = equippedLuckyItems.find(elem => elem.priority === priority)
+        let luckyItemType = foundLuckyItem.type;
 
         $(".set-item-effect-div.d-flex").each(function() {
             var numWearableItemsOfType = $(`.set-items .wearing-${luckyItemType}`, this).length;
@@ -312,7 +317,7 @@ function activateLuckyItem() {
 
                 if($(`.set-items .set-effect.active`, this).length >= MIN_NUM_ITEMS_FOR_LUCKY_EFFECT) {
                     $(".set-items .lucky-item", this).addClass('d-flex active')
-                                                     .text(equippedLuckyItems[priority].name)
+                                                     .text(foundLuckyItem.name)
                                                      .data({"itemPriority": priority, "equipType": luckyItemType});
                     hasActiveLuckyItem = true;
                 }
