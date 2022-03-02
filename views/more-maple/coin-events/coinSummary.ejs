@@ -36,13 +36,15 @@
                         </p>
 
                         <% if(coin.extraSources.length > 0) { %>
-                            <ul class="pl-4 mb-0">
+                            <ul class="pl-4 mb-3">
                                 <li>Main Source: <%= coinGainsAndCosts[coin.iconId].mainSourceCoins.toLocaleString('en-SG') %></li>
 
                                 <% if(coinGainsAndCosts[coin.iconId].extraSourceCoins > 0) { %>
                                     <li>Extra Sources: <%= coinGainsAndCosts[coin.iconId].extraSourceCoins.toLocaleString('en-SG') %></li>
                                 <% } %>
                             </ul>
+
+                            <p class="text-custom mb-0">Note:<br/>Main Source coins are generally per-character.<br/>Extra Source coins are generally per-world.</p>
                         <% } %>
                     </div>
                 </td>
