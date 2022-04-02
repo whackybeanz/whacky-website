@@ -43,6 +43,10 @@ router.post("/coin-events", middleware.isAdmin, function(req, res) {
         hasMesosShop: req.body.hasMesosShop === "yes",
     }
 
+    if(typeof req.body.coinIconIds === "string") {
+        req.body.coinIconIds = [req.body.coinIconIds];
+    }
+
     req.body.coinIconIds.forEach(iconId => {
         if(!newCoinEvent.coinDetails) {
             newCoinEvent.coinDetails = [];
