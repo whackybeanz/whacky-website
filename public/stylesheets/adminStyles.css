@@ -7,6 +7,27 @@
 .coin-event-banner {
   object-fit: cover;
   transition: all 0.2s;
+  height: 175px;
+}
+@media (min-width: 576px) {
+  .coin-event-banner {
+    height: 150px;
+  }
+}
+@media (min-width: 768px) {
+  .coin-event-banner {
+    height: 175px;
+  }
+}
+@media (min-width: 992px) {
+  .coin-event-banner {
+    height: 175px;
+  }
+}
+@media (min-width: 1200px) {
+  .coin-event-banner {
+    height: 175px;
+  }
 }
 .coin-event-banner:hover {
   transform: scale(1.05);

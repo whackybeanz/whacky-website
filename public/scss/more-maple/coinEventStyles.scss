@@ -3,6 +3,12 @@
 .coin-event-banner {
     object-fit: cover;
     transition: all 0.2s;
+    height: 175px;
+
+    @include globals.for-size(sm) { height: 150px; }
+    @include globals.for-size(md) { height: 175px; }
+    @include globals.for-size(lg) { height: 175px; }
+    @include globals.for-size(xl) { height: 175px; }
 
     &:hover {
         transform: scale(1.05);
