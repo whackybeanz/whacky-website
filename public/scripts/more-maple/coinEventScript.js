@@ -194,10 +194,16 @@ function populateExpensesInCart(profileExpenses, profileNum) {
         expenseContainer.insertAdjacentHTML('beforeend', html)
     })
 
+    const eventIdViewed = document.getElementById("event-id").value;
+
     // For each currency within this event, update the profile's expense under Expense Summary
     Object.keys(expenseByCurrency).forEach(coinId => {
         if(parseInt(expenseByCurrency[coinId]) !== 0) {
-            document.getElementById(`profile-${profileNum}-${coinId}`).textContent = expenseByCurrency[coinId].toLocaleString('en-SG');
+            if(eventIdViewed === "blooming-forest" && coinId === "blooming-coin") {
+                document.getElementById(`profile-${profileNum}-${coinId}`).innerHTML = `${(expenseByCurrency[coinId] * 0.8).toLocaleString('en-SG')} (MSEA)<br/>${expenseByCurrency[coinId].toLocaleString('en-SG')} (KMS)`;
+            } else {
+                document.getElementById(`profile-${profileNum}-${coinId}`).textContent = expenseByCurrency[coinId].toLocaleString('en-SG');
+            }
         } else {
             document.getElementById(`profile-${profileNum}-${coinId}`).textContent = "-";    
         }

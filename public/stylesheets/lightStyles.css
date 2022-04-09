@@ -283,13 +283,13 @@ body #dmg-skin-carousel .carousel-item {
 body #char-level {
   border-bottom: 2px solid #212529 !important;
 }
-body .exp-stack-section {
+body .pill-section {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
-body .exp-stack-section-subheader {
+body .pill-section-subheader {
   background-color: rgba(206, 212, 218, 0.8);
 }
-body .exp-stack-section-content {
+body .pill-section-content {
   background-color: white;
 }
 body .single-exp-stack {

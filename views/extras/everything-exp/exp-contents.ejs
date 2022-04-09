@@ -1,7 +1,7 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
     <div class="w-100 d-flex flex-column justify-content-center px-3 py-3">
-        <div class="exp-stack-section rounded-sm mb-5">
-            <div class="exp-stack-section-subheader text-center pb-2">
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center pb-2">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
                     <img src="<%= icons['map-rte'].imgUrl %>" class="mr-2"> Daily Quests
                 </h2>
@@ -9,7 +9,7 @@
                     Selected dailies EXP total = <span id="selected-dailies-total-raw-exp">0 EXP</span> / <span class="text-custom font-weight-bold" id="selected-dailies-total-percent-exp">0.000%</span>
                 </p>
             </div>
-            <div class="exp-stack-section-content font-form d-flex flex-wrap justify-content-center px-3 pt-3">
+            <div class="pill-section-content font-form d-flex flex-wrap justify-content-center px-3 pt-3">
                 <% expContents.dailies.forEach(daily => { %>
                     <div class="single-daily-quest col-12 col-sm-4 col-lg-6 col-xl-4 d-flex align-items-center rounded-sm py-2 mb-3 active" id="daily-<%= daily.iconId%>">
                         <div>
@@ -30,8 +30,8 @@
             </div>
         </div>                
 
-        <div class="exp-stack-section rounded-sm mb-5">
-            <div class="exp-stack-section-subheader text-center">
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center">
                 <div id="monster-park-default-display">
                     <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
                         <img src="<%= icons['map-monster-park'].imgUrl %>" class="mr-2"> Monster Park
@@ -44,7 +44,7 @@
                     <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0" id="selected-mp-dungeon-name"></h2>
                 </div>
             </div>
-            <div class="exp-stack-section-content font-form position-relative">
+            <div class="pill-section-content font-form position-relative">
                 <div class="d-flex flex-wrap px-3 pt-3" id="monster-park-list">
                     <% expContents.monsterPark.forEach(dungeon => { %>
                         <div class="single-mp-dungeon col-12 col-sm-6 col-xl-4 d-flex align-items-center rounded-sm py-2 mb-3 active" id="mp-<%= dungeon.iconId %>">
@@ -62,7 +62,7 @@
                         </div>
                     <% }) %>
                 </div>
-                <div class="exp-stack-section-content table-responsive d-none position-absolute w-100 h-100 flex-column justify-content-center align-items-center py-3" id="selected-mp-dungeon">
+                <div class="pill-section-content table-responsive d-none position-absolute w-100 h-100 flex-column justify-content-center align-items-center py-3" id="selected-mp-dungeon">
                     <table class="font-table size-720 w-100 table table-sm table-bordered table-hover">
                         <thead>
                             <tr>
@@ -81,8 +81,8 @@
             </div>
         </div>
 
-        <div class="exp-stack-section rounded-sm mb-5">
-            <div class="exp-stack-section-subheader text-center pb-2">
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center pb-2">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
                     <img src="<%= icons['map-maple-live'].imgUrl %>" class="mr-2"> Event Minigames
                 </h2>
@@ -90,7 +90,7 @@
                     EXP per day (2 runs) = <span id="event-per-day-raw-exp">0 EXP</span> / <span class="font-weight-bold text-custom" id="event-per-day-percent-exp">0.000%</span>
                 </p>
             </div>
-            <div class="exp-stack-section-content table-responsive font-form d-flex flex-column align-items-center pt-3" id="event-exp-table-details">
+            <div class="pill-section-content table-responsive font-form d-flex flex-column align-items-center pt-3" id="event-exp-table-details">
                 <table class="font-table size-720 w-100 table table-sm table-bordered table-hover">
                     <thead>
                         <tr>
@@ -105,13 +105,13 @@
             </div>
         </div>
 
-        <div class="exp-stack-section rounded-sm mb-5">
-            <div class="exp-stack-section-subheader text-center">
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
                     <img src="<%= icons['map-dojo-center'].imgUrl %>" class="mr-2"> Mu Lung Dojo Training Center
                 </h2>
             </div>
-            <div class="exp-stack-section-content table-responsive font-form d-flex flex-wrap justify-content-center pt-3" id="dojo-exp-table-details">
+            <div class="pill-section-content table-responsive font-form d-flex flex-wrap justify-content-center pt-3" id="dojo-exp-table-details">
                 <table class="font-table size-720 w-100 table table-sm table-bordered table-hover">
                     <thead>
                         <tr>

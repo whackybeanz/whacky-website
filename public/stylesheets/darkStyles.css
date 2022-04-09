@@ -337,13 +337,13 @@ body.dark-mode #dmg-skin-carousel .carousel-item {
 body.dark-mode #char-level {
   border-bottom: 2px solid #454d55 !important;
 }
-body.dark-mode .exp-stack-section {
+body.dark-mode .pill-section {
   border: 1px solid #454d55;
 }
-body.dark-mode .exp-stack-section-subheader {
+body.dark-mode .pill-section-subheader {
   background-color: #343a40;
 }
-body.dark-mode .exp-stack-section-content {
+body.dark-mode .pill-section-content {
   background-color: black;
 }
 body.dark-mode .single-exp-stack {
