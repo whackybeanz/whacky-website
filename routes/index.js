@@ -13,7 +13,7 @@ router.get("/about", function(req, res) {
     res.locals.section = "about";
     res.locals.branch = "";
     res.locals.title = "About Me";
-    res.render("about");
+    res.render("about/about-landing");
 })
 
 router.get("/login", function(req, res) {

@@ -1,0 +1,40 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="container-fluid content d-flex flex-column flex-md-row justify-content-center p-0">
+    <div class="main-content-div col px-0 position-relative">
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-4">
+                    <div class="w-100 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0">About Me</h1>
+                    <div class="w-100 border-top border-dark"></div>
+                </div>
+                <ul class="nav nav-pills d-flex justify-content-center mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active" id="pills-intro-tab" data-toggle="pill" href="#pills-intro" role="tab" aria-controls="pills-intro" aria-selected="true">Introduction</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" id="pills-plans-tab" data-toggle="pill" href="#pills-plans" role="tab" aria-controls="pills-plans" aria-selected="false">Site Plans / Contact</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" id="pills-support-tab" data-toggle="pill" href="#pills-support" role="tab" aria-controls="pills-support" aria-selected="false">Support</a>
+                    </li>
+                </ul>
+                <div class="w-100 tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade border-0 rounded-sm show active" id="pills-intro" role="tabpanel" aria-labelledby="pills-intro">
+                        <%- include("introduction") %>
+                    </div>
+                    <div class="tab-pane fade border-0 rounded-sm" id="pills-plans" role="tabpanel" aria-labelledby="pills-plans">
+                        <%- include("site-plans") %>
+                    </div>
+                    <div class="tab-pane fade border-0" id="pills-support" role="tabpanel" aria-labelledby="pills-support">
+                        <%- include("support") %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

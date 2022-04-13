@@ -394,6 +394,9 @@ body.dark-mode .about-logo.gmail-logo {
 body.dark-mode .about-logo.youtube-logo {
   background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/youtube-logo-dark.png");
 }
+body.dark-mode .about-logo.ko-fi-logo {
+  background-color: #454d55;
+}
 body.dark-mode .horz-partition {
   border-top: 1px solid #454d55;
 }

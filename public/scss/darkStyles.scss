@@ -562,6 +562,10 @@ body.dark-mode {
         &.youtube-logo {
             background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/youtube-logo-dark.png");
         }
+
+        &.ko-fi-logo {
+            background-color: globals.$dark-mode-grey;
+        }
     }
 
     .horz-partition {
