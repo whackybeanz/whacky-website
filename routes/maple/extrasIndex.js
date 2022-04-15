@@ -114,6 +114,7 @@ router.get("/boss-crystal", function(req, res) {
         { id: "hilla", easy: 0, normal: 800000, hard: 11250000, chaos: 0 },
         { id: "horntail", easy: 882000, normal: 1012500, hard: 0, chaos: 1352000 },
         { id: "julieta", easy: 0, normal: 1200000, hard: 0, chaos: 0 },
+        { id: "kalos", easy: 0, normal: 0, hard: 0, chaos: 300000000 },
         { id: "kawoong", easy: 0, normal: 1250000, hard: 0, chaos: 0 },
         { id: "lotus", easy: 0, normal: 32512500, hard: 74112500, chaos: 0 },
         { id: "lucid", easy: 35112500, normal: 40612500, hard: 80000000, chaos: 0 },
