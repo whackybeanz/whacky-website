@@ -11,36 +11,44 @@
                     <h1 class="font-header w-100 text-center m-0 px-0">Everything EXP</h1>
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
                 </div>
-                <div class="col-12 text-muted text-center font-small mb-3">(Updated on 13 Feb 2022 - Added % EXP displays for Monster EXP)</div>
+                <div class="col-12 text-muted text-center font-small mb-3">(Updated on 03 May 2022 - Added dailies EXP calculator; reorganized content)</div>
 
                 <div class="d-flex align-items-center">
                     <h2 class="font-subheader mb-0">Level</h2>
                     <input type="number" id="char-level" class="font-weight-bold text-custom text-center border-0 py-0 mb-3 mx-3" value="225">
                 </div>
 
-
                 <ul class="nav nav-pills d-flex justify-content-center mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item mx-1">
-                        <a class="nav-link active" id="pills-exp-contents-tab" data-toggle="pill" href="#pills-exp-contents" role="tab" aria-controls="pills-exp-contents" aria-selected="true">EXP Contents</a>
+                        <a class="nav-link active" id="pills-dailies-calc-tab" data-toggle="pill" href="#pills-dailies-calc" role="tab" aria-controls="pills-dailies-calc" aria-selected="true">Dailies - EXP Calculator</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" id="pills-dailies-tab" data-toggle="pill" href="#pills-dailies" role="tab" aria-controls="pills-dailies" aria-selected="true">Dailies - EXP Breakdown</a>
                     </li>
                     <li class="nav-item mx-1">
                         <a class="nav-link" id="pills-growth-pots-tab" data-toggle="pill" href="#pills-growth-pots" role="tab" aria-controls="pills-growth-pots" aria-selected="false">Growth Potions</a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" id="pills-exp-mult-tab" data-toggle="pill" href="#pills-exp-mult" role="tab" aria-controls="pills-exp-mult" aria-selected="false">EXP Multipliers</a>
+                        <a class="nav-link" id="pills-exp-mult-tab" data-toggle="pill" href="#pills-exp-mult" role="tab" aria-controls="pills-exp-mult" aria-selected="false">EXP Buffs & Multipliers</a>
                     </li>
                     <li class="nav-item mx-1">
                         <a class="nav-link" id="pills-monster-exp-tab" data-toggle="pill" href="#pills-monster-exp" role="tab" aria-controls="pills-monster-exp" aria-selected="false">Monster EXP</a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" id="pills-exp-table-tab" data-toggle="pill" href="#pills-exp-table" role="tab" aria-controls="pills-exp-table" aria-selected="false">EXP Table</a>
+                        <a class="nav-link" id="pills-afk-content-tab" data-toggle="pill" href="#pills-afk-content" role="tab" aria-controls="pills-afk-content" aria-selected="true">AFK Content EXP Table</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" id="pills-exp-table-tab" data-toggle="pill" href="#pills-exp-table" role="tab" aria-controls="pills-exp-table" aria-selected="false">Level EXP Table</a>
                     </li>
                     <li class="nav-item mx-1">
                         <a class="nav-link" id="pills-credits-tab" data-toggle="pill" href="#pills-credits" role="tab" aria-controls="pills-credits" aria-selected="false">Credits</a>
                     </li>
                 </ul>
                 <div class="w-100 tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade border-0 rounded-sm show active" id="pills-exp-contents" role="tabpanel" aria-labelledby="pills-exp-contents-tab">
+                    <div class="tab-pane fade border-0 rounded-sm show active" id="pills-dailies-calc" role="tabpanel" aria-labelledby="pills-exp-contents-calc-tab">
+                        <%- include("./exp-contents-calc") %>
+                    </div>
+                    <div class="tab-pane fade border-0 rounded-sm" id="pills-dailies" role="tabpanel" aria-labelledby="pills-exp-contents-tab">
                         <%- include("./exp-contents") %>
                     </div>
                     <div class="tab-pane fade border-0 rounded-sm" id="pills-growth-pots" role="tabpanel" aria-labelledby="pills-growth-pots-tab">
@@ -51,6 +59,9 @@
                     </div>
                     <div class="tab-pane fade border-0 rounded-sm" id="pills-monster-exp" role="tabpanel" aria-labelledby="pills-monster-exp-tab">
                         <%- include("./monster-exp") %>
+                    </div>
+                    <div class="tab-pane fade border-0 rounded-sm" id="pills-afk-content" role="tabpanel" aria-labelledby="pills-afk-content-tab">
+                        <%- include("./afk-exp-contents") %>
                     </div>
                     <div class="tab-pane fade border-0 rounded-sm" id="pills-exp-table" role="tabpanel" aria-labelledby="pills-exp-table-tab">
                         <%- include("./exp-tables") %>

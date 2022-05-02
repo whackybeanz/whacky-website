@@ -491,7 +491,7 @@ body.dark-mode {
         background-color: globals.$dark-mode-black-opaque;
     }
 
-    .single-exp-stack {
+    .single-exp-stack, .single-exp-content {
         border: 1px solid globals.$dark-mode-grey;
         transition: all 0.2s;
 

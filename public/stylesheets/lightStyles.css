@@ -292,14 +292,14 @@ body .pill-section-subheader {
 body .pill-section-content {
   background-color: white;
 }
-body .single-exp-stack {
+body .single-exp-stack, body .single-exp-content {
   border: 1px solid rgba(206, 212, 218, 0.8);
   transition: all 0.2s;
 }
-body .single-exp-stack:hover {
+body .single-exp-stack:hover, body .single-exp-content:hover {
   border: 1px solid #6cbb3c;
 }
-body .single-exp-stack.active {
+body .single-exp-stack.active, body .single-exp-content.active {
   background-color: #6cbb3c;
   transition: all 0.2s;
 }

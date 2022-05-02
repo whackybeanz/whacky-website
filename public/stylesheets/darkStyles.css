@@ -346,15 +346,15 @@ body.dark-mode .pill-section-subheader {
 body.dark-mode .pill-section-content {
   background-color: black;
 }
-body.dark-mode .single-exp-stack {
+body.dark-mode .single-exp-stack, body.dark-mode .single-exp-content {
   border: 1px solid #454d55;
   transition: all 0.2s;
 }
-body.dark-mode .single-exp-stack:hover {
+body.dark-mode .single-exp-stack:hover, body.dark-mode .single-exp-content:hover {
   border: 1px solid #4aa02c;
   transition: all 0.2s;
 }
-body.dark-mode .single-exp-stack.active {
+body.dark-mode .single-exp-stack.active, body.dark-mode .single-exp-content.active {
   background-color: #4aa02c;
   transition: all 0.2s;
 }

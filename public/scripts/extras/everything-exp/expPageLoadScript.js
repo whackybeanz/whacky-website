@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     loadEXPTableHistory();
     loadCurrentEXPTable();
-    loadEventEXPTable();
+    //loadEventEXPTable();
     loadDojoEXPTable();
 
     // Growth Potions
@@ -59,7 +59,7 @@ function loadSavedData() {
     updatePerPotionEXPPercent();
     updateAvailableDailyQuests();
     updateAvailableMonsterParkDungeons();
-    calcEventEXPPercent();
+    //calcEventEXPPercent();
 }
 
 function loadEXPContentsData(savedData, charLevel) {
@@ -133,7 +133,7 @@ function changeLevelListener() {
             updateAvailableMonsterParkDungeons();
             calcTotalDailiesEXP();
             calcMonsterParkPercent();
-            calcEventEXPPercent();
+            //calcEventEXPPercent();
             saveEXPContentData();
         }
     })

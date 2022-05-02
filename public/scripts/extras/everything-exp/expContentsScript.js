@@ -3,23 +3,6 @@
  * Loading of EXP Tables
  * 
  * *********************/
-function loadEventEXPTable() {
-    let startingLevel = 200;
-    let expTNL = 0;
-
-    EVENT_EXP_TABLE.forEach((expValue, index) => {
-        expTNL = parseInt(document.getElementById(`${startingLevel + index}-exp-tnl`).dataset.rawExpTnl);
-
-        document
-                .getElementById(`event-exp-table`)
-                .insertAdjacentHTML('beforeend', `<tr>
-                    <th scope="row" class="text-center">${startingLevel + index} > ${startingLevel + index + 1}</th>
-                    <td class="text-center align-middle" id="${startingLevel + index}-event-exp" data-raw-exp="${expValue}">${expValue === -1 ? "???" : expValue.toLocaleString('en-SG')}</td>
-                    <td class="text-center align-middle text-custom font-weight-bold">${expValue === -1 ? "-" : (expValue / expTNL*100).toFixed(3) + "%"}</td>
-                </tr>`);
-    })
-}
-
 function loadDojoEXPTable() {
     let startingLevel = 105;
     let expTNL = 0;
@@ -229,7 +212,7 @@ function calcMonsterParkPercent() {
 }
 
 // Calculate EXP obtained from event minigames and display total EXP (and %)
-function calcEventEXPPercent() {
+/*function calcEventEXPPercent() {
     let charLevel = getCharLevel();
     let expTNL = getExpTNL(charLevel);
 
@@ -248,7 +231,7 @@ function calcEventEXPPercent() {
         document.getElementById("event-per-day-raw-exp").textContent = "-";
         document.getElementById("event-per-day-percent-exp").textContent = "-";
     }
-}
+}*/
 
 function saveEXPContentData() {
     let savedData = JSON.parse(localStorage.getItem("everythingEXP"));
