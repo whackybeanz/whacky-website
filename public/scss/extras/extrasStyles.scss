@@ -157,6 +157,15 @@
     line-height: 0;
 }
 
+#dailies-container {
+    border: none;
+
+    .selected-daily {
+        top: -5px;
+        right: -5px;
+    }
+}
+
 .item-square {
     height: 40px;
     width: 40px;
@@ -204,8 +213,13 @@
     }   
 }
 
-#monster-park-list, #selected-mp-dungeon, #event-exp-table-details, #dojo-exp-table-details {
+#monster-park-list, #selected-mp-dungeon, #event-exp-table-details {
     height: 350px;
+    overflow: auto;
+}
+
+#dojo-exp-table-details {
+    height: 500px;
     overflow: auto;
 }
 

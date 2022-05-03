@@ -61,3 +61,75 @@ function loadCurrentEXPTable() {
         })
     })
 }
+
+/***********************
+ * 
+ * Validation functions
+ * 
+ * *********************/
+function validateCurrLevelInput(elemIds) {
+    let levelInput = document.getElementById(elemIds.charLevelInputId);
+
+    levelInput.addEventListener("change", () => {
+        let levelInputValue = parseInt(levelInput.value)
+        let currExpPercentInput = document.getElementById(elemIds.currExpPercentInputId);
+        let currExpRawInput = document.getElementById(elemIds.currExpRawInputId);
+
+        currExpPercentInput.value = 0.000;
+        currExpRawInput.value = 0;
+
+        if(isNaN(levelInputValue) || levelInputValue < 200) {
+            levelInput.value = 200;
+        }
+
+        if(levelInputValue > 299) {
+            levelInput.value = 299;
+        }
+    })
+}
+
+function validateCurrExpPercentInput(elemIds){
+    let expPercentInput = document.getElementById(elemIds.currExpPercentInputId);
+
+    expPercentInput.addEventListener("change", () => {
+        let expRawInput = document.getElementById(elemIds.currExpRawInputId);
+        let levelInputValue = parseInt(document.getElementById(elemIds.charLevelInputId).value);
+        let expPercentInputValue = parseFloat(expPercentInput.value);
+
+        if(isNaN(expPercentInputValue) || expPercentInputValue < 0) {
+            expPercentInput.value = 0.000;
+            expRawInput.value = 0;
+        }
+
+        if(expPercentInputValue > 100) {
+            document.getElementById(elemIds.calcBtnId).classList.add("d-none");
+            document.getElementById(elemIds.currExpPercentErrorMsgId).classList.remove("d-none");
+        } else if(expPercentInputValue > 0) {
+            document.getElementById(elemIds.currExpPercentErrorMsgId).classList.add("d-none");
+            expRawInput.value = parseInt(document.getElementById(`${levelInputValue}-exp-tnl`).dataset.rawExpTnl * expPercentInputValue / 100.00);
+        }
+    })
+}
+
+function validateCurrExpRawInput(elemIds) {
+    let expRawInput = document.getElementById("start-potion-char-exp-raw");
+
+    expRawInput.addEventListener("change", () => {
+        let expPercentInput = document.getElementById("start-potion-char-exp-percent");
+        let levelInputValue = parseInt(document.getElementById("start-potion-char-level").value);
+        let expRawInputValue = parseInt(expRawInput.value);
+
+        if(isNaN(expRawInputValue) || expRawInputValue < 0) {
+            expRawInput.value = 0;
+            expPercentInput.value = 0.000;
+        }
+
+        if(expRawInputValue > document.getElementById(`${levelInputValue}-exp-tnl`).dataset.rawExpTnl) {
+            document.getElementById("btn-calc-pot-result").classList.add("d-none");
+            document.getElementById("exp-raw-input-error").classList.remove("d-none");
+        } else if(expRawInputValue > 0) {            
+            document.getElementById("exp-raw-input-error").classList.add("d-none");
+            expPercentInput.value = (expRawInputValue / getExpTNL(levelInputValue) * 100).toFixed(3);
+        }
+    })
+}

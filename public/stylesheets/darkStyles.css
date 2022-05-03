@@ -346,6 +346,11 @@ body.dark-mode .pill-section-subheader {
 body.dark-mode .pill-section-content {
   background-color: black;
 }
+@media (min-width: 768px) {
+  body.dark-mode #dailies-container {
+    border-right: 1px solid #454d55;
+  }
+}
 body.dark-mode .single-exp-stack, body.dark-mode .single-exp-content {
   border: 1px solid #454d55;
   transition: all 0.2s;

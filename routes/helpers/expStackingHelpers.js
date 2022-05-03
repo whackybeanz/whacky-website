@@ -40,7 +40,13 @@ function getEXPContentsValues() {
             { iconId: "map-cernium", name: "Cernium", recMinLevel: 260, isEnforceMinLevel: true, rawEXP: 0 },
             { iconId: "map-cernium-2", name: "Burning Cernium", recMinLevel: 265, isEnforceMinLevel: true, rawEXP: 0 },
             { iconId: "map-hotel-arcs", name: "Hotel Arcs", recMinLevel: 270, isEnforceMinLevel: true, rawEXP: 0 },
-        ]
+        ],
+        others: [
+            { iconId: "symbol-rte", name: "Erda Spectrum", recMinLevel: 200, isEnforceMinLevel: true, rawEXP: 87026100 },
+            { iconId: "symbol-cci", name: "Hungry Muto (Easy)", recMinLevel: 210, isEnforceMinLevel: true, rawEXP: 202262000 },
+            { iconId: "symbol-cci", name: "Hungry Muto (Normal)", recMinLevel: 210, isEnforceMinLevel: true, rawEXP: 242714400 },
+            { iconId: "symbol-cci", name: "Hungry Muto (Hard)", recMinLevel: 210, isEnforceMinLevel: true, rawEXP: 323619200 },
+        ],
     }
 
     return expContents;

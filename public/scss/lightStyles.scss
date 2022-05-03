@@ -442,6 +442,10 @@ body {
         background-color: globals.$light-mode-white-opaque;
     }
 
+    #dailies-container {
+        @include globals.for-size(md) { border-right: 1px solid globals.$light-mode-grey; }
+    }
+
     .single-exp-stack, .single-exp-content {
         border: 1px solid globals.$light-mode-grey;
         transition: all 0.2s;

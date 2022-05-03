@@ -1,19 +1,19 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     loadEXPTableHistory();
     loadCurrentEXPTable();
-    //loadEventEXPTable();
-    loadDojoEXPTable();
+
+    // Dailies Calculator
+    loadDailiesCalcListeners();
+
+    // Dailies
+    addDailyQuestListeners();
+    addMonsterParkListeners();
+    addResetMonsterParkListener();
+    changeLevelListener();
 
     // Growth Potions
     loadGrowthPotionsEXPTable();
     loadPotionListeners();
-
-    // EXP Contents
-    addDailyQuestListeners();
-    addMonsterParkListeners();
-    addResetMonsterParkListener();
-
-    changeLevelListener();
 
     // EXP Multipliers
     addEXPStackBtnListener();
@@ -23,6 +23,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // Monster EXP
     addRefreshMonsterListListener();
     updateNumKillsInputListener();
+
+    // AFK Contents
+    loadDojoEXPTable();
 
     // Load data
     loadSavedData();
@@ -133,7 +136,6 @@ function changeLevelListener() {
             updateAvailableMonsterParkDungeons();
             calcTotalDailiesEXP();
             calcMonsterParkPercent();
-            //calcEventEXPPercent();
             saveEXPContentData();
         }
     })

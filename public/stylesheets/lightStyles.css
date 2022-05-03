@@ -292,6 +292,11 @@ body .pill-section-subheader {
 body .pill-section-content {
   background-color: white;
 }
+@media (min-width: 768px) {
+  body #dailies-container {
+    border-right: 1px solid rgba(206, 212, 218, 0.8);
+  }
+}
 body .single-exp-stack, body .single-exp-content {
   border: 1px solid rgba(206, 212, 218, 0.8);
   transition: all 0.2s;

@@ -1,34 +1,5 @@
 /***********************
  * 
- * Loading of EXP Tables
- * 
- * *********************/
-function loadDojoEXPTable() {
-    let startingLevel = 105;
-    let expTNL = 0;
-
-    DOJO_EXP_TABLE.forEach((expValue, index) => {
-        expTNL = parseInt(document.getElementById(`${startingLevel + index}-exp-tnl`).dataset.rawExpTnl);
-
-        document
-                .getElementById(`dojo-exp-table`)
-                .insertAdjacentHTML('beforeend', `<tr>
-                    <th scope="row" class="text-center align-middle">${startingLevel + index} > ${startingLevel + index + 1}</th>
-                    <td class="text-center align-middle">${expValue.toLocaleString('en-SG')} / tick<br/>${(expValue*12*60).toLocaleString('en-SG')} / hour</td>
-                    <td class="text-center align-middle text-custom font-weight-bold">${(expValue / expTNL*100).toFixed(3) + "%"} / tick<br/>${(expValue*12*60 / expTNL*100).toFixed(3) + "%"} / hour</td>
-                </tr>`);
-    })
-
-    document
-        .getElementById(`dojo-exp-table`)
-        .insertAdjacentHTML('beforeend', `<tr>
-            <th scope="row" class="text-center align-middle">220+</th>
-            <td class="text-center align-middle" colspan="2">EXP per tick is same as 219 > 220. It's not worth AFK-ing for EXP beyond this point f3</td>
-        </tr>`);
-}
-
-/***********************
- * 
  * Div, Button, Input Listeners
  * 
  * *********************/
@@ -210,28 +181,6 @@ function calcMonsterParkPercent() {
         document.getElementById("selected-mp-dungeon").classList.remove('d-flex');
     }
 }
-
-// Calculate EXP obtained from event minigames and display total EXP (and %)
-/*function calcEventEXPPercent() {
-    let charLevel = getCharLevel();
-    let expTNL = getExpTNL(charLevel);
-
-    let eventExpTableCell = document.getElementById(`${charLevel}-event-exp`);
-    let eventExpPerRun = -1;
-
-    if(eventExpTableCell) {
-        eventExpPerRun = parseInt(eventExpTableCell.dataset.rawExp);
-    }     
-
-    if(eventExpPerRun !== -1) {
-        let eventTotalPercentExp = (eventExpPerRun * 2 / expTNL * 100).toFixed(3);
-        document.getElementById("event-per-day-raw-exp").textContent = (eventExpPerRun * 2).toLocaleString('en-SG') + " EXP";
-        document.getElementById("event-per-day-percent-exp").textContent = eventTotalPercentExp + "%";
-    } else {
-        document.getElementById("event-per-day-raw-exp").textContent = "-";
-        document.getElementById("event-per-day-percent-exp").textContent = "-";
-    }
-}*/
 
 function saveEXPContentData() {
     let savedData = JSON.parse(localStorage.getItem("everythingEXP"));

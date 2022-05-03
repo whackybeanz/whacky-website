@@ -491,6 +491,10 @@ body.dark-mode {
         background-color: globals.$dark-mode-black-opaque;
     }
 
+    #dailies-container {
+        @include globals.for-size(md) { border-right: 1px solid globals.$dark-mode-grey; }
+    }
+
     .single-exp-stack, .single-exp-content {
         border: 1px solid globals.$dark-mode-grey;
         transition: all 0.2s;
