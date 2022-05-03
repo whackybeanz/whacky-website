@@ -29,7 +29,7 @@
                                 <% if(index === 6) { %>
                                     <div class="w-100"></div>
                                 <% } %>
-                                <div class="single-exp-content calc-daily-quest rounded-sm cursor-pointer mx-1 my-1 position-relative" id="calc-daily-<%= daily.iconId %>" data-value="<%= daily.rawEXP %>">
+                                <div class="single-exp-content calc-daily-quest rounded-sm cursor-pointer mx-1 my-1 position-relative" id="calc-daily-<%= daily.iconId %>" data-raw-exp="<%= daily.rawEXP %>">
                                     <img class="item-square" src="<%= icons[daily.iconId].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="<%= daily.name %>">
                                     <i class="fas fa-check fa-lg selected-daily text-custom position-absolute d-none"></i>
                                 </div>
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
-                                <input type="number" id="num-mp" class="form-control col-2 col-sm-1 px-2 text-center" placeholder="Qty" value="0">
+                                <input type="number" id="num-monster-park" class="form-control col-2 col-sm-1 px-2 text-center" placeholder="Qty" value="2">
                                 <div class="col-8 col-md-9 px-2">
                                     <select class="form-control" id="monster-park-select">
                                         <option value="0" selected disabled hidden>- Select Monster Park -</option>
@@ -80,15 +80,15 @@
                                 </div>
                             </div>
                             <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-0">
-                                <input type="number" id="num-exp-minigame"class="form-control col-2 col-sm-1 px-2 text-center" placeholder="Qty" value="0">
+                                <input type="number" id="num-exp-minigame" class="form-control col-2 col-sm-1 px-2 text-center" placeholder="Qty" value="0">
                                 <div class="col-8 col-md-9 px-2">
                                     <select class="form-control" id="exp-minigame-select">
-                                        <option value="0" selected disabled hidden>- Select EXP Minigame -</option>
+                                        <option value="" selected disabled hidden>- Select EXP Minigame -</option>
                                         <option value="live">Maple LIVE</option>
-                                        <option value="destiny">DESTINY</option>
-                                        <option value="momentree-2F">Momentree - Wardrobe 2F</option>
-                                        <option value="momentree-3F">Momentree - Wardrobe 3F</option>
-                                        <option value="momentree-4F">Momentree - Wardrobe 4F</option>
+                                        <option value="destiny" data-multiplier="1">DESTINY</option>
+                                        <option value="destiny" data-multiplier="1.4">Momentree - Wardrobe 2F</option>
+                                        <option value="destiny" data-multiplier="2">Momentree - Wardrobe 3F</option>
+                                        <option value="destiny" data-multiplier="2.5">Momentree - Wardrobe 4F</option>
                                     </select>
                                 </div>
                             </div>
@@ -99,17 +99,18 @@
                 <div class="col-12 d-block d-md-none text-center mb-3">---</div>
 
                 <form class="w-100 size-720">
-                    <div class="form-group row w-100 d-flex justify-content-center mb-3">
+                    <div class="form-group row w-100 d-flex justify-content-center mb-2">
                         <label class="font-weight-bold col-3 col-md-2 col-form-label text-right">Start Date</label>
                         <input type="date" id="dailies-start-date" class="form-control col-4 col-md-3 px-2" value="<%= new Date().toLocaleDateString('en-CA') %>">
                     </div>
-                    <div class="form-group row w-100 d-flex justify-content-center mb-3">
+                    <div class="form-group row w-100 d-flex justify-content-center mb-0">
                         <label class="font-weight-bold col-3 col-md-2 col-form-label text-right">End Date</label>
                         <input type="date" id="dailies-end-date" class="form-control col-4 col-md-3 px-2" value="<%= new Date().toLocaleDateString('en-CA') %>">
                     </div>
+                    <p class="w-100 font-small text-danger text-center d-none mt-2 mb-0" id="calc-dailies-date-input-error"></p>
                 </form>
 
-                <div class="col-12 text-center mb-3">---</div>
+                <div class="col-12 text-center mt-3 mb-3">---</div>
 
                 <div class="w-100 d-flex flex-column flex-sm-row align-items-start mb-3">
                     <form class="col-12 col-sm-6 w-100 px-0">

@@ -1,9 +1,10 @@
 function loadDailiesCalcListeners() {
     toggleDailiesBtnListener();
+    dailiesDateInputListener();
     dailiesCalcCurrLevelInputListener();
     dailiesCalcCurrExpPercentInputListener();
     dailiesCalcCurrExpRawInputListener();
-    //dailiesCalcNewExpBtnListener();
+    dailiesCalcNewExpBtnListener();
 }
 
 function toggleDailiesBtnListener() {
@@ -27,17 +28,31 @@ function toggleDailiesBtnListener() {
  * Dailies Calculator input field change listener and validation
  * 
  * **************/
+function dailiesDateInputListener() {
+    let elemIds = {
+        parentContainerId: "calc-exp-contents",
+        startDateId: "dailies-start-date",
+        endDateId: "dailies-end-date",
+        calcBtnId: "btn-calc-dailies-exp-result",
+        dateErrorMsgId: "calc-dailies-date-input-error",
+    };
+    validateDateInput(elemIds);
+}
+
 function dailiesCalcCurrLevelInputListener() {
     let elemIds = {
+        parentContainerId: "calc-exp-contents",
         charLevelInputId: "start-calc-dailies-char-level",
         currExpPercentInputId: "start-calc-dailies-char-exp-percent",
         currExpRawInputId: "start-calc-dailies-char-exp-raw",
+        calcBtnId: "btn-calc-dailies-exp-result",
     };
     validateCurrLevelInput(elemIds);
 }
 
 function dailiesCalcCurrExpPercentInputListener() {
     let elemIds = {
+        parentContainerId: "calc-exp-contents",
         charLevelInputId: "start-calc-dailies-char-level",
         currExpPercentInputId: "start-calc-dailies-char-exp-percent",
         currExpRawInputId: "start-calc-dailies-char-exp-raw",
@@ -49,6 +64,7 @@ function dailiesCalcCurrExpPercentInputListener() {
 
 function dailiesCalcCurrExpRawInputListener() {
     let elemIds = {
+        parentContainerId: "calc-exp-contents",
         charLevelInputId: "start-calc-dailies-char-level",
         currExpPercentInputId: "start-calc-dailies-char-exp-percent",
         currExpRawInputId: "start-calc-dailies-char-exp-raw",
@@ -69,14 +85,12 @@ function dailiesCalcNewExpBtnListener() {
     calcExpBtn.addEventListener("click", () => {
         let currLevel = parseInt(document.getElementById("start-calc-dailies-char-level").value);
         let currExp = parseInt(document.getElementById("start-calc-dailies-char-exp-raw").value);
-        /*let allAddedPotions = document.querySelectorAll(".single-potion-add");
 
-        allAddedPotions.forEach(potion => {
-            let potionType = potion.dataset.potionType;
-            let numPotionsUsed = potion.dataset.qty;
+        let startDate = Date.parse(new Date(document.getElementById("dailies-start-date").value));
+        let endDate = Date.parse(new Date(document.getElementById("dailies-end-date").value));
+        let perDayExp = compilePerDayExp();
 
-            [currLevel, currExp] = calcDailiesNewExp(currLevel, currExp, potionType, numPotionsUsed);
-        })*/
+        [currLevel, currExp] = calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp);
 
         document.getElementById("end-calc-dailies-char-level").value = currLevel;
         document.getElementById("end-calc-dailies-char-exp-percent").value = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)} %`;
@@ -84,23 +98,90 @@ function dailiesCalcNewExpBtnListener() {
     })
 }
 
-function calcDailiesNewExp() {
-    let charLevel = getCharLevel();
-    let expTNL = getExpTNL(charLevel);
+function compilePerDayExp() {
+    let minigameSelectElem = document.getElementById("exp-minigame-select");
 
-    let eventExpTableCell = document.getElementById(`${charLevel}-event-exp`);
-    let eventExpPerRun = -1;
+    let perDayExp = {
+        dailyQuest: 0,
+        erdaSpectrum: getNumRuns("num-erda-spectrum") * document.getElementById("erda-spectrum-select").value,
+        hungryMuto: getNumRuns("num-muto") * document.getElementById("muto-select").value,
+        monsterPark: document.getElementById("monster-park-select").value, // due to EXP variations from Sunday monster park, numRuns will be factored further down instead
+        eventMinigameId: minigameSelectElem.value,
+        eventMinigameMult: parseFloat(minigameSelectElem.options[minigameSelectElem.selectedIndex].dataset.multiplier),
+    };
 
-    if(eventExpTableCell) {
-        eventExpPerRun = parseInt(eventExpTableCell.dataset.rawExp);
-    }     
+    // Daily Quests
+    let allSelectedDailyQuests = document.querySelectorAll(".calc-daily-quest.active");
 
-    if(eventExpPerRun !== -1) {
-        let eventTotalPercentExp = (eventExpPerRun * 2 / expTNL * 100).toFixed(3);
-        document.getElementById("event-per-day-raw-exp").textContent = (eventExpPerRun * 2).toLocaleString('en-SG') + " EXP";
-        document.getElementById("event-per-day-percent-exp").textContent = eventTotalPercentExp + "%";
-    } else {
-        document.getElementById("event-per-day-raw-exp").textContent = "-";
-        document.getElementById("event-per-day-percent-exp").textContent = "-";
+    allSelectedDailyQuests.forEach(daily => {
+        perDayExp.dailyQuest += parseInt(daily.dataset.rawExp);
+    })
+
+    return perDayExp;
+}
+
+function getNumRuns(elemId) {
+    let inputElem = document.getElementById(elemId);
+    let inputValue = parseInt(inputElem.value);
+
+    if(isNaN(inputValue) || inputValue < 0) {
+        inputElem.value = 0;
+        inputValue = 0;
     }
+
+    return inputValue;
+}
+
+function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp) {
+    let newLevel = currLevel;
+    let newExp = currExp;
+    let normalExp = perDayExp.dailyQuest + perDayExp.erdaSpectrum + perDayExp.hungryMuto + getNumRuns("num-monster-park") * perDayExp.monsterPark;
+    let sundayExp = perDayExp.dailyQuest + perDayExp.erdaSpectrum + perDayExp.hungryMuto + getNumRuns("num-monster-park") * Math.round(perDayExp.monsterPark * 1.5);
+    let expMinigameId = perDayExp.eventMinigameId;
+    let numExpMinigamePerDay = getNumRuns("num-exp-minigame");
+
+    for(let i = startDate; i <= endDate; i += 1000*60*60*24) {
+        let expTNL = getExpTNL(newLevel);
+        let expFromDaily;
+
+        // If day is a Sunday (represented as 0 on getDay() function), use sunday's EXP value
+        if((new Date(i)).getDay() === 0) {
+            expFromDaily = sundayExp;
+        } else {
+            expFromDaily = normalExp;
+        }
+
+        // After regular dailies, does level increase? If so, adjust value accordingly
+        if(newExp + expFromDaily >= expTNL) {
+            newLevel++;
+            newExp = newExp + expFromDaily - expTNL;
+        } else {
+            newExp += expFromDaily;
+        }
+
+        // Now add EXP obtained from event minigames
+        if(expMinigameId !== "" && numExpMinigamePerDay > 0) {
+            let expFromMinigames;
+
+            if(expMinigameId === "live") {
+                expFromMinigames = EVENT_EXP_TABLE[newLevel-200];
+            } else {
+                expFromMinigames = DESTINY_EVENT_EXP_TABLE[newLevel-200] || DESTINY_EVENT_EXP_TABLE[DESTINY_EVENT_EXP_TABLE.length-1];
+                expFromMinigames = Math.floor(expFromMinigames * perDayExp.eventMinigameMult / 100000) * 100000;
+            }
+
+            expFromMinigames = expFromMinigames * numExpMinigamePerDay;
+
+            // As event EXP is added last (to factor for best EXP rates possible), a second calculation is needed to check for potential level up
+            // After event minigames, does level increase? If so, adjust value accordingly
+            if(newExp + expFromMinigames >= expTNL) {
+                newLevel++;
+                newExp = newExp + expFromMinigames - expTNL;
+            } else {
+                newExp += expFromMinigames;
+            }
+        }
+    }
+
+    return [newLevel, newExp];
 }

@@ -67,6 +67,37 @@ function loadCurrentEXPTable() {
  * Validation functions
  * 
  * *********************/
+function validateDateInput(elemIds) {
+    let startDateInput = document.getElementById(elemIds.startDateId);
+    let endDateInput = document.getElementById(elemIds.endDateId);
+
+    [startDateInput, endDateInput].forEach(input => {
+        input.addEventListener("change", () => {
+            let startDate = Date.parse(new Date(startDateInput.value));
+            let endDate = Date.parse(new Date(endDateInput.value))
+
+            if(startDate > endDate) {
+                document.getElementById(elemIds.dateErrorMsgId).classList.remove("d-none");
+                document.getElementById(elemIds.dateErrorMsgId).classList.add("active");
+                document.getElementById(elemIds.dateErrorMsgId).textContent = "Start date cannot be later than end date.";
+            } else {
+                let totalDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
+
+                if(totalDays > 365) {
+                    document.getElementById(elemIds.dateErrorMsgId).classList.remove("d-none");
+                    document.getElementById(elemIds.dateErrorMsgId).classList.add("active");
+                    document.getElementById(elemIds.dateErrorMsgId).textContent = "You can only calculate up to 365 days of dailies. Please adjust the date range.";
+                } else {
+                    document.getElementById(elemIds.dateErrorMsgId).classList.add("d-none");
+                    document.getElementById(elemIds.dateErrorMsgId).classList.remove("active");
+                }
+            }
+
+            checkAnyActiveErrors(elemIds.parentContainerId, elemIds.calcBtnId);
+        })
+    })
+}
+
 function validateCurrLevelInput(elemIds) {
     let levelInput = document.getElementById(elemIds.charLevelInputId);
 
@@ -85,6 +116,8 @@ function validateCurrLevelInput(elemIds) {
         if(levelInputValue > 299) {
             levelInput.value = 299;
         }
+
+        checkAnyActiveErrors(elemIds.parentContainerId, elemIds.calcBtnId);
     })
 }
 
@@ -102,21 +135,24 @@ function validateCurrExpPercentInput(elemIds){
         }
 
         if(expPercentInputValue > 100) {
-            document.getElementById(elemIds.calcBtnId).classList.add("d-none");
             document.getElementById(elemIds.currExpPercentErrorMsgId).classList.remove("d-none");
+            document.getElementById(elemIds.currExpPercentErrorMsgId).classList.add("active");
         } else if(expPercentInputValue > 0) {
             document.getElementById(elemIds.currExpPercentErrorMsgId).classList.add("d-none");
+            document.getElementById(elemIds.currExpPercentErrorMsgId).classList.remove("active");
             expRawInput.value = parseInt(document.getElementById(`${levelInputValue}-exp-tnl`).dataset.rawExpTnl * expPercentInputValue / 100.00);
         }
+
+        checkAnyActiveErrors(elemIds.parentContainerId, elemIds.calcBtnId);
     })
 }
 
 function validateCurrExpRawInput(elemIds) {
-    let expRawInput = document.getElementById("start-potion-char-exp-raw");
+    let expRawInput = document.getElementById(elemIds.currExpRawInputId);
 
     expRawInput.addEventListener("change", () => {
-        let expPercentInput = document.getElementById("start-potion-char-exp-percent");
-        let levelInputValue = parseInt(document.getElementById("start-potion-char-level").value);
+        let expPercentInput = document.getElementById(elemIds.currExpPercentInputId);
+        let levelInputValue = parseInt(document.getElementById(elemIds.charLevelInputId).value);
         let expRawInputValue = parseInt(expRawInput.value);
 
         if(isNaN(expRawInputValue) || expRawInputValue < 0) {
@@ -125,11 +161,25 @@ function validateCurrExpRawInput(elemIds) {
         }
 
         if(expRawInputValue > document.getElementById(`${levelInputValue}-exp-tnl`).dataset.rawExpTnl) {
-            document.getElementById("btn-calc-pot-result").classList.add("d-none");
-            document.getElementById("exp-raw-input-error").classList.remove("d-none");
+            document.getElementById(elemIds.currExpRawErrorMsgId).classList.remove("d-none");
+            document.getElementById(elemIds.currExpRawErrorMsgId).classList.add("active");
         } else if(expRawInputValue > 0) {            
-            document.getElementById("exp-raw-input-error").classList.add("d-none");
+            document.getElementById(elemIds.currExpRawErrorMsgId).classList.add("d-none");
+            document.getElementById(elemIds.currExpRawErrorMsgId).classList.remove("active");
             expPercentInput.value = (expRawInputValue / getExpTNL(levelInputValue) * 100).toFixed(3);
         }
+
+        checkAnyActiveErrors(elemIds.parentContainerId, elemIds.calcBtnId);
     })
+}
+
+function checkAnyActiveErrors(parentContainerId, btnId) {
+    let parentContainer = document.getElementById(parentContainerId);
+    let activeErrors = parentContainer.querySelectorAll(".text-danger.active");
+
+    if(activeErrors.length > 0) {
+        document.getElementById(btnId).classList.add("d-none");
+    } else {
+        document.getElementById(btnId).classList.remove("d-none");
+    }
 }

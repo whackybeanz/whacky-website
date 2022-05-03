@@ -121,15 +121,18 @@ function potionCalcRemoveAllListener() {
  * **************/
 function potionCalcCurrLevelInputListener() {
     let elemIds = {
+        parentContainerId: "potion-exp-calc",
         charLevelInputId: "start-potion-char-level",
         currExpPercentInputId: "start-potion-char-exp-percent",
         currExpRawInputId: "start-potion-char-exp-raw",
+        calcBtnId: "btn-calc-pot-result",
     };
     validateCurrLevelInput(elemIds);
 }
 
 function potionCalcCurrExpPercentInputListener() {
     let elemIds = {
+        parentContainerId: "potion-exp-calc",
         charLevelInputId: "start-potion-char-level",
         currExpPercentInputId: "start-potion-char-exp-percent",
         currExpRawInputId: "start-potion-char-exp-raw",
@@ -141,6 +144,7 @@ function potionCalcCurrExpPercentInputListener() {
 
 function potionCalcCurrExpRawInputListener() {
     let elemIds = {
+        parentContainerId: "potion-exp-calc",
         charLevelInputId: "start-potion-char-level",
         currExpPercentInputId: "start-potion-char-exp-percent",
         currExpRawInputId: "start-potion-char-exp-raw",
