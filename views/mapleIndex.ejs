@@ -93,52 +93,9 @@
                                 </div>
 
                                 <h3 class="font-index-subsubheader mb-2">Info Sheets</h3>
-                                <div class="d-flex flex-wrap">
+                                <div class="d-flex flex-wrap mb-3">
                                     <% sections.extras.forEach(function(page) { %>
                                         <% if(page.isInfoSheet) { %>
-                                        <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-3">
-                                            <a href="<%= page.pageUrl %>" class="stretched-link text-decoration-none">
-                                                <div class="w-100 h-100 d-flex align-items-center">
-                                                    <div class="page-select-img-div d-flex justify-content-center px-3 py-1">
-                                                        <% if(icons[page.iconId]) { %><img src="<%= icons[page.iconId].imgUrl %>"><% } %>
-                                                    </div>
-                                                    <p class="mb-0 px-0 px-xl-2"><%= page.name %></p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <% } %>
-                                    <% }) %>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mb-4 px-0">
-                        <div class="index-section-subheader">
-                            <h2 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#side-more-maple">
-                                <i class="fas fa-caret-down"></i> More Maple Stuff
-                            </h2>
-                        </div>
-                        <div class="index-section px-0 collapse show" id="side-more-maple">
-                            <div class="d-flex flex-column px-3 pt-3">
-                                <!--<div class="col-12 col-sm-6 col-md-4 px-3 mb-3">
-                                    <h3 class="font-index-subsubheader mb-0">The story so far...</h3>
-                                    <ul class="mb-3 pl-3">
-                                        <li class="list-style-type-none d-none mb-2">&#8614; The Black Mage</li>
-                                        <li class="list-style-type-none d-none">&#8614; Gerand Darmoor</li>
-                                    </ul>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-4 px-3 mb-3">
-                                    <h3 class="font-index-subsubheader mb-0">Dailies</h3>
-                                    <ul class="mb-3 pl-3">
-                                        <li class="list-style-type-none d-none mb-2">&#8614; Kritias</li>
-                                        <li class="list-style-type-none d-none">&#8614; Mechanical Grave</li>
-                                        <li class="list-style-type-none d-none">&#8614; Fallen World Tree</li>
-                                    </ul>
-                                </div>-->
-                                <h3 class="font-index-subsubheader mb-2">Events</h3>
-                                <div class="d-flex flex-wrap mb-3">
-                                    <% sections.moreMaple.forEach(function(page) { %>
-                                        <% if(page.isEvent) { %>
                                         <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-3">
                                             <a href="<%= page.pageUrl %>" class="stretched-link text-decoration-none">
                                                 <div class="w-100 h-100 d-flex align-items-center">
@@ -155,7 +112,7 @@
 
                                 <h3 class="font-index-subsubheader mb-2">Fun Corner</h3>
                                 <div class="d-flex flex-wrap">
-                                    <% sections.moreMaple.forEach(function(page) { %>
+                                    <% sections.extras.forEach(function(page) { %>
                                         <% if(page.isFunCorner) { %>
                                         <div class="page-select col-12 col-sm-6 col-md-4 rounded-lg pl-0 mb-3">
                                             <a href="<%= page.pageUrl %>" class="stretched-link text-decoration-none">
@@ -173,6 +130,33 @@
                             </div>
                         </div>
                     </div>
+                    <!--<div class="col-12 mb-4 px-0">
+                        <div class="index-section-subheader">
+                            <h2 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#side-more-maple">
+                                <i class="fas fa-caret-down"></i> More Maple Stuff
+                            </h2>
+                        </div>
+                        <div class="index-section px-0 collapse show" id="side-more-maple">
+                            <div class="d-flex flex-column px-3 pt-3">
+                                <div class="col-12 col-sm-6 col-md-4 px-3 mb-3">
+                                    <h3 class="font-index-subsubheader mb-0">The story so far...</h3>
+                                    <ul class="mb-3 pl-3">
+                                        <li class="list-style-type-none d-none mb-2">&#8614; The Black Mage</li>
+                                        <li class="list-style-type-none d-none">&#8614; Gerand Darmoor</li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-4 px-3 mb-3">
+                                    <h3 class="font-index-subsubheader mb-0">Dailies</h3>
+                                    <ul class="mb-3 pl-3">
+                                        <li class="list-style-type-none d-none mb-2">&#8614; Kritias</li>
+                                        <li class="list-style-type-none d-none">&#8614; Mechanical Grave</li>
+                                        <li class="list-style-type-none d-none">&#8614; Fallen World Tree</li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>-->
                     <div class="col-12 mb-4 px-0">
                         <div class="index-section-subheader">
                             <h2 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#side-others">

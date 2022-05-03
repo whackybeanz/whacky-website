@@ -11,7 +11,6 @@ var LocalStrategy           = require("passport-local");
 var passportLocalMongoose   = require("passport-local-mongoose");
 
 var indexRoutes     = require("./routes/index");
-var mapleRoutes     = require("./routes/maple/mapleIndex");
 var adminRoutes     = require("./routes/admin/adminIndex");
 
 var User = require("./models/users");
@@ -64,12 +63,11 @@ if(process.env.NODE_ENV === 'production') {
 
 // ROUTES
 app.use("/", indexRoutes)
-    .use("/maple", mapleRoutes)
     .use("/admin", adminRoutes);
 
 app.get("*", function(req, res) {
     //req.flash("error", "Invalid route accessed.")
-    res.redirect("back");
+    res.redirect("/");
 })
 
 app.listen(port, function() {

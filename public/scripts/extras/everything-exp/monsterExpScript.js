@@ -25,7 +25,7 @@ function retrieveMonsterData() {
     if(!isNaN(charLevel) && charLevel >= 61 && charLevel <= 300) {
         container.innerHTML = "";
 
-        fetch(`/maple/extras/everything-exp/monster-list/${charLevel}`, {
+        fetch(`/calc/everything-exp/monster-list/${charLevel}`, {
             method: 'GET'
         })
         .then(response => response.json())

@@ -267,7 +267,7 @@ function checkAnswerOnSubmit() {
             allAnswers.push(answer);
         }
 
-        $.post("/maple/fun/crossword/answers", {allAnswers: allAnswers}, function(data) {
+        $.post("/fun/crossword/answers", {allAnswers: allAnswers}, function(data) {
             if(data.isAnswerCorrect) {
                 $(".submit-ans-btn").hide();
                 $(".answer-prompt").text("Nice! All answers are correct! Now, unscramble each colored group of highlighted squares to form a silly message and you're done!")

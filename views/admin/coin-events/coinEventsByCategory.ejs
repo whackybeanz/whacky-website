@@ -9,7 +9,7 @@
                 <% eventsByCategory[category].forEach(event => { %>
                     
                     <div class="col-12 col-sm-6 col-xl-4 mb-4 d-flex flex-column align-items-center text-center position-relative">
-                        <a class="w-100" href="<% if(currentUser && currentUser.isAdmin) { %>/admin<% } else { %>/maple/events<% } %>/coin-event/<%= event.eventId %>">
+                        <a class="w-100" href="<% if(currentUser && currentUser.isAdmin) { %>/admin<% } else { %>/calc<% } %>/coin-event/<%= event.eventId %>">
                             <img class="w-100 coin-event-banner img-fluid" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= event.eventId %>/<%= event.eventDetails.bannerImg %>">
                         </a>
                         <p class="font-subsubheader font-weight-bold mt-1 mb-0"><%= event.eventDetails.name %></p>

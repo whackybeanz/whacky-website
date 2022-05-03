@@ -8,11 +8,7 @@ router.get("/", function(req, res) {
     res.render("beginner/index");
 })
 
-router.get("/equip-guide", function(req, res) {
-    res.redirect("/equip-guide/flames");
-})
-
-router.get("/equip-guide/spell-trace", function(req, res) {
+router.get("/spell-trace", function(req, res) {
     Icon.find({usedInSections: "spell-trace"}, function(err, allIcons) {
         if(err) {
             console.log(err);
@@ -27,7 +23,7 @@ router.get("/equip-guide/spell-trace", function(req, res) {
     })
 })
 
-router.get("/equip-guide/star-force", function(req, res) {
+router.get("/star-force", function(req, res) {
     Icon.find({usedInSections: "star-force"}, function(err, allIcons) {
         if(err) {
             console.log(err);
@@ -42,7 +38,7 @@ router.get("/equip-guide/star-force", function(req, res) {
     })
 })
 
-router.get("/equip-guide/potentials", function(req, res) {
+router.get("/potentials", function(req, res) {
     Icon.find({usedInSections: "potentials"}, function(err, allIcons) {
         if(err) {
             console.log(err);
@@ -57,7 +53,7 @@ router.get("/equip-guide/potentials", function(req, res) {
     })
 })
 
-router.get("/equip-guide/flames", function(req, res) {
+router.get("/flames", function(req, res) {
     Icon.find({usedInSections: "flames"}, function(err, allIcons) {
         if(err) {
             console.log(err);
@@ -72,7 +68,7 @@ router.get("/equip-guide/flames", function(req, res) {
     })
 })
 
-router.get("/equip-guide/soul-weapons", function(req, res) {
+router.get("/soul-weapons", function(req, res) {
     Icon.find({usedInSections: "soul-weapons"}, function(err, allIcons) {
         if(err) {
             console.log(err);
@@ -87,7 +83,7 @@ router.get("/equip-guide/soul-weapons", function(req, res) {
     })
 })
 
-router.get("/equip-guide/set-effects", function(req, res) {
+router.get("/set-effects", function(req, res) {
     Icon.find({usedInSections: "set-effects"}, function(err, allIcons) {
         if(err) {
             console.log(err);
@@ -102,7 +98,7 @@ router.get("/equip-guide/set-effects", function(req, res) {
     })
 })
 
-router.get("/equip-guide/todd-hammer", function(req, res) {
+router.get("/todd-hammer", function(req, res) {
     Icon.find({usedInSections: "todd"}, function(err, allIcons) {
         if(err) {
             console.log(err);
