@@ -1,192 +1,230 @@
 <nav class="sidebar sidebar-left font-sidebar col-12 col-lg-3 col-xl-2 p-0">
     <div class="col-12 d-lg-block collapse px-0" id="sidebar-nav">
         <div class="mb-0 px-4 px-lg-3 pt-4 mb-4">
-            <h1 class="font-weight-bold">Maple Info Corner</h1>
-            <ul class="mb-2 pl-3">
+            <h1 class="font-weight-bold">Quicklinks</h1>
+            <ul class="mb-2 pl-3 pl-lg-2">
                 <div class="mb-4">
-                    <h2 class="list-style-type-none sidebar-collapse mb-1 <% if(section !== "newbies") { %>collapsed<% } %>" data-toggle="collapse" href="#side-begin-guide">
-                        <i class="fas fa-caret-down"></i> Beginner's Guide
+                    <h2 class="list-style-type-none sidebar-collapse mb-1 <% if(section !== "guides") { %>collapsed<% } %>" data-toggle="collapse" href="#side-begin-guide">
+                        <div class="custom-caret d-inline-block">&#9207;</div> Guides
                     </h2>
-                    <ul class="pl-3 collapse <% if(section === "newbies") { %>show<% } %>" id="side-begin-guide">
-                        <h3 class="list-style-type-none mb-0">&#8627; Equipment Guide</h3>
-                        <ul class="mb-0 pl-3">
-                            <li class="list-style-type-none <% if(branch === "equip-guide-summary") { %>active<% } %> mb-0 d-none">
-                                &#8614; Summary
-                            </li>
-                            <li class="list-style-type-none <% if(branch === "spell-trace") { %>active<% } %> mb-0">
-                                <a href="/guides/spell-trace" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Spell Trace / Scrolls
+                    <ul class="pl-3 pl-lg-2 collapse <% if(section === "guides") { %>show<% } %>" id="side-begin-guide">
+                        <div class="d-flex flex-wrap">
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/guides/spell-trace" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "spell-trace") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Spell Trace / Scrolls</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "star-force") { %>active<% } %> mb-0">
-                                <a href="/guides/star-force" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Star Force
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/guides/star-force" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "star-force") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Star Force</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "potentials") { %>active<% } %> mb-0">
-                                <a href="/guides/potentials" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Potentials / Cubes
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/guides/potentials" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "potentials") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Potentials / Cubes</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "flames") { %>active<% } %> mb-0">
-                                <a href="/guides/flames" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Bonus Stats / Flames
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/guides/flames" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "flames") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Bonus Stats / Flames</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "soul-weapons") { %>active<% } %> mb-0">
-                                <a href="/guides/soul-weapons" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Soul Weapons
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/guides/soul-weapons" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "soul-weapons") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Soul Weapons</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "set-effects") { %>active<% } %> mb-0">
-                                <a href="/guides/set-effects" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Set Effects / Lucky Items
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/guides/set-effects" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "set-effects") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Set Effects / Lucky Items</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "todd-hammer") { %>active<% } %> mb-0">
-                                <a href="/guides/todd-hammer" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Todd's Hammer
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/guides/todd-hammer" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "todd-hammer") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Todd's Hammer</div>
                                 </a>
                             </li>
-                        </ul>
-                        <h3 class="list-style-type-none mb-0 d-none">
-                            &#8627; Mesos plz
-                        </h3>
+                        </div>
                     </ul>
                 </div>
 
                 <div class="mb-4">
-                    <h2 class="list-style-type-none sidebar-collapse mb-1 <% if(section !== "extras") { %>collapsed<% } %>" data-toggle="collapse" href="#side-extras">
-                        <i class="fas fa-caret-down"></i> Extra Resources
+                    <h2 class="list-style-type-none sidebar-collapse mb-1 <% if(section !== "calc") { %>collapsed<% } %>" data-toggle="collapse" href="#side-calc">
+                        <div class="custom-caret d-inline-block">&#9207;</div> Calculators
                     </h2>
-                    <ul class="pl-3 collapse <% if(section === "extras") { %>show<% } %>" id="side-extras">
-                        <h3 class="list-style-type-none mb-0">&#8627; Calculators</h3>
-                        <ul class="mb-3 pl-3">
-                            <li class="list-style-type-none <% if(branch === "coin-events") { %>active<% } %>">
-                                <a href="/calc/coin-events" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Coin Events
+                    <ul class="pl-3 pl-lg-2 collapse <% if(section === "calc") { %>show<% } %>" id="side-calc">
+                        <div class="d-flex flex-wrap">
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/calc/coin-events" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "coin-events") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Coin Events</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "calc-exp-stacking") { %>active<% } %> mb-0">
-                                <a href="/calc/everything-exp" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Everything EXP
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/calc/everything-exp" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "calc-exp-stacking") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Everything EXP</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "calc-symbol-calc") { %>active<% } %> mb-0">
-                                <a href="/calc/symbol-calc" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Everything Symbols
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/calc/symbol-calc" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "calc-symbol-calc") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Everything Symbols</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "calc-flames") { %>active<% } %> mb-0">
-                                <a href="/calc/flames" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Flame Stats
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/calc/flames" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "calc-flames") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Flame Stats</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "calc-set-effects") { %>active<% } %> mb-0">
-                                <a href="/calc/set-effects" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Set Effects
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/calc/set-effects" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "calc-set-effects") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Set Effects</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "tactical-relay") { %>active<% } %>">
-                                <a href="/calc/tactical-relay" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Tactical Relay Planner
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/calc/tactical-relay" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "tactical-relay") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Tactical Relay Planner</div>
                                 </a>
                             </li>
-                        </ul>
+                        </div>
+                    </ul>
+                </div>
 
-                        <h3 class="list-style-type-none mb-0">&#8627; Info Sheets</h3>
-                        <ul class="mb-3 pl-3">
-                            <li class="list-style-type-none <% if(branch === "boss-crystal") { %>active<% } %> mb-0">
-                                <a href="/info/boss-crystal" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Boss Crystal Prices
+                <div class="mb-4">
+                    <h2 class="list-style-type-none sidebar-collapse mb-1 <% if(section !== "info") { %>collapsed<% } %>" data-toggle="collapse" href="#side-info">
+                        <div class="custom-caret d-inline-block">&#9207;</div> Info Sheets
+                    </h2>
+                    <ul class="pl-3 pl-lg-2 collapse <% if(section === "info") { %>show<% } %>" id="side-info">
+                        <div class="d-flex flex-wrap">
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/info/boss-crystal" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "boss-crystal") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Boss Crystal Prices</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "damage-skins") { %>active<% } %> mb-0">
-                                <a href="/info/damage-skins" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Damage Skins
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/info/damage-skins" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "damage-skins") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Damage Skins</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "potential-list") { %>active<% } %> mb-0">
-                                <a href="/info/potential-list" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; List of Potentials
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/info/potential-list" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "potential-list") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; List of Potentials</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "soul-tier-list") { %>active<% } %> mb-0">
-                                <a href="/info/soul-tier-list" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Soul Tier List
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/info/soul-tier-list" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "soul-tier-list") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Soul Tier List</div>
                                 </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "todd-sequence") { %>active<% } %> mb-0">
-                                <a href="/info/todd-sequence" class="sidebar-btn d-block py-1 text-decoration-none">
-                                    &#8614; Todding Sequence
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/info/todd-sequence" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "todd-sequence") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Todding Sequence</div>
                                 </a>
                             </li>
-                        </ul>
+                        </div>
+                    </ul>
+                </div>
 
-                        <h3 class="list-style-type-none mb-0">&#8627; Fun Corner</h3>
-                        <ul class="mb-0 pl-3">
-                            <li class="list-style-type-none <% if(branch === "crossword") { %>active<% } %>">
-                                <a href="/fun/crossword" class="sidebar-btn d-block py-1 text-decoration-none">&#8614; Crossword</a>
+                <div class="mb-4">
+                    <h2 class="list-style-type-none sidebar-collapse mb-1 <% if(section !== "fun") { %>collapsed<% } %>" data-toggle="collapse" href="#side-fun">
+                        <div class="custom-caret d-inline-block">&#9207;</div> Fun Corner
+                    </h2>
+                    <ul class="pl-3 pl-lg-2 collapse <% if(section === "fun") { %>show<% } %>" id="side-fun">
+                        <div class="d-flex flex-wrap">
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/fun/crossword" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "crossword") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Crossword</div>
+                                </a>
                             </li>
-                            <li class="list-style-type-none <% if(branch === "word-search") { %>active<% } %>">
-                                <a href="/fun/word-search" class="sidebar-btn d-block py-1 text-decoration-none">&#8614; Word Search</a>
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="/fun/word-search" class="sidebar-btn d-block py-1 text-decoration-none <% if(branch === "word-search") { %>active<% } %>">
+                                    <div class="px-2 px-lg-1">&#8614; Word Search</div>
+                                </a>
                             </li>
-                        </ul>
+                        </div>
                     </ul>
                 </div>
 
                 <div class="mb-4">
                     <h2 class="list-style-type-none sidebar-collapse mb-1 collapsed" data-toggle="collapse" href="#side-others">
-                        <i class="fas fa-caret-down"></i> Other References
+                        <div class="custom-caret d-inline-block">&#9207;</div> Other References
                     </h2>
-                    <ul class="pl-3 collapse" id="side-others">
-                        <li class="list-style-type-none mb-0">
-                            <a href="https://strategywiki.org/wiki/MapleStory" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; StrategyWiki</a>
-                        </li>
-                        <li class="list-style-type-none mb-0">
-                            <a href="https://maplestory.fandom.com/wiki/MapleStory" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; MapleWiki</a>
-                        </li>
-                        <li class="list-style-type-none mb-0">
-                            <a href="https://dexless.com/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; Dexless.com</a>
-                        </li>
-                        <li class="list-style-type-none mb-0">
-                            <a href="https://www.reddit.com/r/Maplestory/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; Maplestory Reddit</a>
-                        </li>
-                        <li class="list-style-type-none mb-0">
-                            <a href="http://m.inven.co.kr//maple/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; Maplestory Inven</a>
-                        </li>
-                        <li class="list-style-type-none mb-0">
-                            <a href="https://namu.wiki/w/%EB%B6%84%EB%A5%98:%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; Namu Wiki</a>
-                        </li>
+                    <ul class="pl-3 pl-lg-2 collapse" id="side-others">
+                        <div class="d-flex flex-wrap">
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-0">
+                                <a href="https://strategywiki.org/wiki/MapleStory" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; StrategyWiki</div>
+                                </a>
+                            </li>
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-0">
+                                <a href="https://maplestory.fandom.com/wiki/MapleStory" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; MapleWiki</div>
+                                </a>
+                            </li>
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-0">
+                                <a href="https://dexless.com/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; Dexless.com</div>
+                                </a>
+                            </li>
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-0">
+                                <a href="https://www.reddit.com/r/Maplestory/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; Maplestory Reddit</div>
+                                </a>
+                            </li>
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-0">
+                                <a href="http://m.inven.co.kr//maple/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; Maplestory Inven</div>
+                                </a>
+                            </li>
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-0">
+                                <a href="https://namu.wiki/w/%EB%B6%84%EB%A5%98:%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; Namu Wiki</div>
+                                </a>
+                            </li>
+                        </div>
                     </ul>
                 </div>
 
                 <div class="mb-0">
-                    <h2 class="list-style-type-none sidebar-collapse mb-1 collapsed" data-toggle="collapse" href="#side-quicklinks">
-                        <i class="fas fa-caret-down"></i> Quicklinks
+                    <h2 class="list-style-type-none sidebar-collapse mb-1 collapsed" data-toggle="collapse" href="#side-services">
+                        <div class="custom-caret d-inline-block">&#9207;</div> Maplestory Services
                     </h2>
-                    <ul class="pl-3 collapse" id="side-quicklinks">
-                        <li class="list-style-type-none mb-0">
-                            <a href="https://maplestory.nexon.com/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; KMS</a>
-                        </li>
-                        <li class="list-style-type-none mb-0">
-                            <a href="https://maplestory.nexon.com/Testworld/Main" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; KMST</a>
-                        </li>
-                        <li class="list-style-type-none mb-0">
-                            <a href="https://maplestory.nexon.co.jp/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; JMS</a>
-                        </li>
-                        <li class="list-style-type-none mb-0">
-                            <a href="https://tw.beanfun.com/maplestory/main.aspx" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; TMS</a>
-                        </li>
-                        <li class="list-style-type-none mb-0">
-                            <a href="http://mxd.sdo.com/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; CMS</a>
-                        </li>
-                        <li class="list-style-type-none mb-0">
-                            <a href="http://maplestory.nexon.net/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; GMS</a>
-                        </li>
-                        <li class="list-style-type-none mb-0">
-                            <a href="http://www.maplesea.com/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">&#8627; MSEA</a>
-                        </li>
+                    <ul class="pl-3 pl-lg-2 collapse" id="side-services">
+                        <div class="d-flex flex-wrap">
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="https://maplestory.nexon.com/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; KMS</div>
+                                </a>
+                            </li>
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="https://maplestory.nexon.com/Testworld/Main" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; KMST</div>
+                                </a>
+                            </li>
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="https://maplestory.nexon.co.jp/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; JMS</div>
+                                </a>
+                            </li>
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="https://tw.beanfun.com/maplestory/main.aspx" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; TMS</div>
+                                </a>
+                            </li>
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="http://mxd.sdo.com/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; CMS</div>
+                                </a>
+                            </li>
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="http://maplestory.nexon.net/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; GMS</div>
+                                </a>
+                            </li>
+                            <li class="col-6 col-sm-4 col-md-4 col-lg-12 pl-0 px-lg-0 list-style-type-none mb-1">
+                                <a href="http://www.maplesea.com/" class="sidebar-btn d-block py-1 text-decoration-none" target="_blank">
+                                    <div class="px-2 px-lg-1">&#8614; MSEA</div>
+                                </a>
+                            </li>
+                        </div>
                     </ul>
                 </div>
             </ul>

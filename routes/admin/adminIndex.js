@@ -8,7 +8,7 @@ var coinEventRoutes = require("./adminCoinEvents");
 
 router
     .get("/", middleware.isAdmin, function(req, res) {
-        res.locals.title = "Admin Panel (Home)"
+        res.locals.title = "Admin Panel (Home)";
         res.render("admin/index");
     })
     .use("/", iconRoutes)

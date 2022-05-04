@@ -56,7 +56,7 @@ router.get("/about", function(req, res) {
 })
 
 router.get("/login", function(req, res) {
-    res.locals.section = "";
+    res.locals.section = "maple-index";
     res.locals.title = "Login";
     res.render("login");
 })

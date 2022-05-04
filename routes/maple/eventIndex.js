@@ -20,7 +20,7 @@ router.get("/tactical-relay", function(req, res) {
     var classSelect = ["pirate", "warrior", "mage", "archer", "thief"];
 
     res.locals.extraStylesheet = "more-maple/relayStyles";
-    res.locals.section = "extras";
+    res.locals.section = "calc";
     res.locals.branch = "tactical-relay";
     res.locals.title = "Tactical Relay";
     res.render("more-maple/tactical-relay", {missionList: missionList, classSelect: classSelect});
@@ -31,7 +31,7 @@ router.get("/coin-events", function(req, res) {
         .then(allEvents => {
             let eventsByCategory = CoinEventHelper.sortByCategory(allEvents);
 
-            res.locals.section = "extras";
+            res.locals.section = "calc";
             res.locals.branch = "coin-events";
             res.locals.extraStylesheet = "more-maple/coinEventStyles";
             res.locals.title = "Coin Events / Shops";
@@ -64,7 +64,7 @@ router.get("/coin-event/:eventId", function(req, res) {
             }
 
             res.locals.extraStylesheet = "more-maple/coinEventStyles";
-            res.locals.section = "extras";
+            res.locals.section = "calc";
             res.locals.branch = "coin-events";
             res.locals.title = `Coin Event Details (${coinEventData.eventDetails.name})`
             res.render("more-maple/coin-events/coinEventDetails", responseObj);

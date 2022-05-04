@@ -97,13 +97,13 @@
   max-width: 900px;
 }
 
-.index-collapse svg,
-.sidebar-collapse svg {
+.index-collapse .custom-caret,
+.sidebar-collapse .custom-caret {
   transition: all linear 0.25s;
 }
 
-.index-collapse.collapsed svg,
-.sidebar-collapse.collapsed svg {
+.index-collapse.collapsed .custom-caret,
+.sidebar-collapse.collapsed .custom-caret {
   transform: rotate(-90deg);
 }
 
@@ -167,8 +167,11 @@ input[type=radio], input[type=checkbox] {
   visibility: hidden;
 }
 
-.main-content-div {
+.container-fluid.content {
   padding-top: 3rem !important;
+}
+
+.main-content-div {
   max-width: 1200px;
 }
 

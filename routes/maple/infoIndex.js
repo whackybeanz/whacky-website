@@ -24,7 +24,7 @@ router.get("/flames", function(req, res) {
         } else {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.extraStylesheet = "extras/extrasStyles";
-            res.locals.section = "extras";
+            res.locals.section = "info";
             res.locals.branch = "calc-flames";
             res.locals.title = "Flame Stats Calculator";
             res.render("extras/flameCalc", {icons: compiledIcons});
@@ -41,7 +41,7 @@ router.get("/soul-tier-list", function(req, res) {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             const soulsByTier = Helper.compileSoulsByTier(allSouls);
             res.locals.extraStylesheet = "extras/soulListStyles";
-            res.locals.section = "extras";
+            res.locals.section = "info";
             res.locals.branch = "soul-tier-list";
             res.locals.title = "Soul Tier List";
             res.render("extras/soulTierList", {soulList: soulsByTier, icons: compiledIcons});
@@ -92,7 +92,7 @@ router.get("/boss-crystal", function(req, res) {
         } else {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.extraStylesheet = "extras/extrasStyles";
-            res.locals.section = "extras";
+            res.locals.section = "info";
             res.locals.branch = "boss-crystal";
             const pricePerCrystalList = Helper.sortByPrice(bossList);
             res.locals.title = "Boss Crystal Prices";
@@ -109,7 +109,7 @@ router.get("/todd-sequence", function(req, res) {
         } else {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.extraStylesheet = "extras/extrasStyles";
-            res.locals.section = "extras";
+            res.locals.section = "info";
             res.locals.branch = "todd-sequence";
             res.locals.title = "Todding Sequence";
             res.render("extras/toddSequence", {icons: compiledIcons});
@@ -186,7 +186,7 @@ function getMatchingDamageSkins(query, page, pagesArr, res) {
             }
 
             res.locals.extraStylesheet = "extras/extrasStyles";
-            res.locals.section = "extras";
+            res.locals.section = "info";
             res.locals.branch = "damage-skins";
             res.locals.title = "Damage Skins";
             res.render("extras/damage-skins/damageSkins", {sortedSkins: sortedSkins, page: page, pagesArr: pagesArr, dateUpdated: latestUpdate.lastUpdatedDate.damageSkins});
@@ -220,7 +220,7 @@ router.post("/damage-skin-details", function(req, res) {
 
         getDamageSkins.then(allSkins => {
             res.locals.extraStylesheet = "extras/extrasStyles";
-            res.locals.section = "extras";
+            res.locals.section = "info";
             res.locals.branch = "damage-skins";
             res.locals.title = "Damage Skins Details (Bulk)";
             res.render("extras/damage-skins/damageSkinDetails", {allSkins: allSkins, prevUrl: prevUrl});
@@ -245,7 +245,7 @@ router.get("/damage-skin-details/:skinNum", function(req, res) {
             res.redirect("back");
         } else {
             res.locals.extraStylesheet = "extras/extrasStyles";
-            res.locals.section = "extras";
+            res.locals.section = "info";
             res.locals.branch = "damage-skins";
             res.locals.title = "Damage Skin Details (Single)";
             res.render("extras/damage-skins/damageSkinDetails", {allSkins: allSkins, prevUrl: prevUrl});
@@ -286,7 +286,7 @@ router.get("/potential-list", function(req, res) {
                 const compiledIcons = IconHelper.compileIcons(foundIcons);
                 const potentialsByRank = Helper.groupByRank(allPotentials);
                 res.locals.extraStylesheet = "extras/potentialListStyles";
-                res.locals.section = "extras";
+                res.locals.section = "info";
                 res.locals.branch = "potential-list";
                 res.locals.title = `List of Potentials (${validItemParts[selectedPartType]})`;
 
@@ -298,7 +298,7 @@ router.get("/potential-list", function(req, res) {
             })
     } else {
         res.locals.extraStylesheet = "extras/potentialListStyles";
-        res.locals.section = "extras";
+        res.locals.section = "info";
         res.locals.branch = "potential-list";
         res.locals.title = "List of Potentials";
 

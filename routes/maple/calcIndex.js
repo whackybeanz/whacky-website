@@ -16,7 +16,7 @@ router.get("/", function(req, res) {
 
 router.get("/everything-exp", function(req, res) {
     res.locals.extraStylesheet = "extras/extrasStyles";
-    res.locals.section = "extras";
+    res.locals.section = "calc";
     res.locals.branch = "calc-exp-stacking";
     res.locals.title = "Everything EXP";
 
@@ -85,7 +85,7 @@ router.get("/everything-exp/monster-list/:charLevel", function(req, res) {
 
 router.get("/symbol-calc", function(req, res) {
     res.locals.extraStylesheet = "extras/extrasStyles";
-    res.locals.section = "extras";
+    res.locals.section = "calc";
     res.locals.branch = "calc-symbol-calc";
     res.locals.title = "Everything Symbols";
 
@@ -122,7 +122,7 @@ router.get("/flames", function(req, res) {
         } else {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.extraStylesheet = "extras/extrasStyles";
-            res.locals.section = "extras";
+            res.locals.section = "calc";
             res.locals.branch = "calc-flames";
             res.locals.title = "Flame Stats Calculator";
             res.render("extras/flameCalc", {icons: compiledIcons});
@@ -132,7 +132,7 @@ router.get("/flames", function(req, res) {
 
 router.get("/set-effects", function(req, res) {
     res.locals.extraStylesheet = "extras/setItemStyles";
-    res.locals.section = "extras";
+    res.locals.section = "calc";
     res.locals.branch = "calc-set-effects";
     res.locals.title = "Set Effects Calculator";
     res.render("extras/setEffectCalc");
@@ -163,7 +163,7 @@ router.get("/set-effects/:jobType", function(req, res) {
                             { key: "critDmgPercent", name: "Critical Damage %", symbol: "%" }, { key: "speed", name: "Speed" }, { key: "jump", name: "Jump" }];
 
             res.locals.extraStylesheet = "extras/setItemStyles";
-            res.locals.section = "extras";
+            res.locals.section = "calc";
             res.locals.branch = `calc-set-effects`;
             res.locals.title = `Set Effects Calculator (${jobType.charAt(0).toUpperCase() + jobType.slice(1)})`;
             res.render("extras/setEffectCalcActive", {allEquipTypes: allEquipTypes, setItemsByItemPart: setItemsByItemPart, setItemsBySetName: setItemsBySetName, allSetEffects: setEffects, jobType: jobType, statTypes: possibleStatTypes, icons: compiledIcons });

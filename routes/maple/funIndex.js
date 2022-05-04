@@ -7,7 +7,7 @@ router.get("/", function(req, res) {
 
 router.get("/crossword", function(req, res) {
     res.locals.extraStylesheet = "more-maple/xwordStyles";
-    res.locals.section = "extras";
+    res.locals.section = "fun";
     res.locals.branch = "crossword";
     res.locals.title = "Crossword Puzzle";
     res.render("more-maple/crossword");
@@ -33,7 +33,7 @@ router.post("/crossword/answers", function(req, res) {
 
 router.get("/word-search", function(req, res) {
     res.locals.extraStylesheet = "more-maple/wordSearchStyles";
-    res.locals.section = "extras";
+    res.locals.section = "fun";
     res.locals.branch = "word-search";
     res.locals.title = "Word Search";
 
