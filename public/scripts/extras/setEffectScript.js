@@ -346,6 +346,8 @@ function updateSetEffects(changeEffectAmount, affectedSetName) {
         for(var i = 1; i <= numItemsEquipped; i++) {
             $(`.${setName}-set .num-wearing-div .wearing-${i}`).addClass("active");
         }
+
+        document.getElementById(`${setName}-set-num-equipped`).textContent = numItemsEquipped;
     })
 }
 
