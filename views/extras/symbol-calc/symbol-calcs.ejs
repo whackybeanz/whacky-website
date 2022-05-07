@@ -36,7 +36,7 @@
                 <form class="w-100 d-flex flex-wrap justify-content-center align-items-center px-3">
                     <% Object.keys(symbolData).forEach(symbolGroup => { %>
                         <% symbolData[symbolGroup].list.forEach(symbol => { %>
-                            <div class="single-symbol-div col-12 col-md-10 col-lg-12 col-xl-9 px-1 <% if(symbol.id !== 'rte') { %>d-none<% } else { %>active<% } %>" id="symbol-<%= symbol.id %>-upgrade" data-symbol-group="<%= symbolGroup%>" data-symbol-id="<%= symbol.id %>">
+                            <div class="single-symbol-div col-12 col-md-10 col-lg-12 col-xl-9 px-1 <% if(symbol.id !== 'rte') { %>d-none<% } else { %>active<% } %>" id="symbol-<%= symbol.id %>-upgrade" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>">
                                 <div class="rounded-lg py-2">
                                     <div class="d-flex justify-content-center align-items-center">
                                         <img src="<%= icons[`symbol-${symbol.id}`].imgUrl %>" alt="<%= icons[`symbol-${symbol.id}`].name %>" class="mr-1" width="38" height="38" alt="<%= icons[`symbol-${symbol.id}`].name %>">
@@ -45,7 +45,12 @@
                                     <div class="font-form d-flex flex-wrap">
                                         <div class="col-12 col-sm-6 d-flex flex-wrap align-items-center py-3">
                                             <div class="form-group col-12 d-flex flex-column align-items-center text-center mb-2">
-                                            <label for="<%= symbol.id %>-end-level" class="col-form-label">Symbol gain per day</label>
+                                            <label for="<%= symbol.id %>-end-level" class="col-form-label">
+                                                Symbol gain per day 
+                                                <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= symbol.notes %>">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </div>
+                                            </label>
                                             <input type="number" class="form-control col-6 text-center" id="<%= symbol.id %>-gain-per-day" value="<%= symbol.baseSymbolGain %>">
                                             </div>
                                             <div class="form-group col-6 text-center mb-2">

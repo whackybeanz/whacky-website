@@ -83,7 +83,7 @@ router.get("/everything-exp/monster-list/:charLevel", function(req, res) {
     }
 })
 
-router.get("/symbol-calc", function(req, res) {
+router.get("/symbols", function(req, res) {
     res.locals.extraStylesheet = "extras/extrasStyles";
     res.locals.section = "calc";
     res.locals.branch = "calc-symbol-calc";
@@ -95,14 +95,18 @@ router.get("/symbol-calc", function(req, res) {
                 arc: {
                     name: "Arcane Force",
                     maxLevel: 20,
-                    list: [{ id: 'rte', name: "Road to Extinction", baseSymbolGain: 22 }, { id: 'cci', name: "Chew Chew Island", baseSymbolGain: 23 }, 
-                           { id: 'lacheln', name: "Lacheln", baseSymbolGain: 19 }, { id: 'arcana', name: "Arcana", baseSymbolGain: 18 },
-                           { id: 'moras', name: "Moras", baseSymbolGain: 14 }, { id: 'esfera', name: "Esfera", baseSymbolGain: 14}],
+                    list: [{ id: 'rte', name: "Road to Extinction", baseSymbolGain: 22, notes: "16 (Daily quest; Reverse City questline complete) + 6 (Erda Spectrum)" }, 
+                           { id: 'cci', name: "Chew Chew Island", baseSymbolGain: 23, notes: "8 (Daily quest; Yum Yum Island questline complete) + 15 (Chew Chew PQ hard mode)" }, 
+                           { id: 'lacheln', name: "Lacheln", baseSymbolGain: 19, notes: "8 (Daily quest) + 10 (Dreambreaker 100F) + 1 (NPC statues)" }, 
+                           { id: 'arcana', name: "Arcana", baseSymbolGain: 18, notes: "8 (Daily quest) + 10 (Spirit Savior, 10,000 points per run)" },
+                           { id: 'moras', name: "Moras", baseSymbolGain: 14, notes: "8 (Daily quest) + 6 (Enheim Defense)" }, 
+                           { id: 'esfera', name: "Esfera", baseSymbolGain: 14, notes: "8 (Daily quest) + 6 (Protect Esfera)" }],
                 },
                 aut: {
                     name: "Authentic Force",
                     maxLevel: 11,
-                    list: [{ id: 'cernium', name: "Cernium", baseSymbolGain: 10}, { id: 'hotel-arcs', name: "Hotel Arcs", baseSymbolGain: 5 }],
+                    list: [{ id: 'cernium', name: "Cernium", baseSymbolGain: 10, notes: "10 (Daily quest; Burning Cernium unlocked)" }, 
+                           { id: 'hotel-arcs', name: "Hotel Arcs", baseSymbolGain: 5, notes: "5 (Daily quest)" }],
                 }
             }
             const compiledIcons = IconHelper.compileIcons(foundIcons);
