@@ -22,9 +22,9 @@
                 </div>
 
                 <div class="col-12 d-flex flex-wrap mb-md-3">
-                    <div class="col-12 col-md-6 pl-0 d-flex flex-column justify-content-center align-items-center py-2" id="dailies-container">
-                        <p class="w-100 text-center mb-1 px-0">Select dailies:</p>
-                        <div class="d-flex flex-wrap justify-content-center mb-2">
+                    <div class="col-12 col-md-6 px-0 d-flex flex-column justify-content-center align-items-center py-2" id="dailies-container">
+                        <p class="w-100 text-center mb-0 px-0">Select dailies</p>
+                        <div class="d-flex flex-wrap justify-content-center mb-3">
                             <% expContents.dailies.forEach((daily, index) => { %>
                                 <% if(index === 6) { %>
                                     <div class="w-100"></div>
@@ -35,11 +35,27 @@
                                 </div>
                             <% }) %>
                         </div>
+
+                        <p class="w-100 text-center mb-0 px-0">Grinding EXP</p>
+                        <p class="font-small text-center mb-1 px-3">Use EXP buffs you can consistently maintain for more accurate calculations</p>
+                        <form class="w-100 d-flex flex-column align-items-center mb-2">
+                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
+                                <input type="number" id="qty-monster-1" class="form-control col-3 px-2 mx-1 text-center" placeholder="Qty" value="">
+                                <input type="number" id="per-monster-exp-1" class="form-control col-5 px-2 mx-1 text-center" placeholder="Per monster EXP" value="">
+                            </div>
+                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
+                                <input type="number" id="qty-monster-2" class="form-control col-3 px-2 mx-1 text-center" placeholder="Qty" value="">
+                                <input type="number" id="per-monster-exp-2" class="form-control col-5 px-2 mx-1 text-center" placeholder="Per monster EXP" value="">
+                            </div>
+                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-0">
+                                <input type="number" id="qty-monster-3" class="form-control col-3 px-2 mx-1 text-center" placeholder="Qty" value="">
+                                <input type="number" id="per-monster-exp-3" class="form-control col-5 px-2 mx-1 text-center" placeholder="Per monster EXP" value="">
+                            </div>
+                        </form>
                     </div>
 
-                    <div class="col-12 d-block d-md-none text-center mb-2">---</div>
-
                     <div class="col-12 col-md-6 px-0 d-flex flex-column justify-content-center py-2">
+                        <p class="w-100 text-center mb-1 px-0">Other Contents</p>
                         <form class="w-100 d-flex flex-column align-items-center mb-2">
                             <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
                                 <input type="number" id="num-erda-spectrum" class="form-control col-2 col-sm-1 px-2 text-center" placeholder="Qty" value="0">
@@ -88,7 +104,7 @@
                                         <option value="destiny" data-multiplier="1">DESTINY</option>
                                         <option value="destiny" data-multiplier="1.4">Momentree - Wardrobe 2F</option>
                                         <option value="destiny" data-multiplier="2">Momentree - Wardrobe 3F</option>
-                                        <option value="destiny" data-multiplier="2.5">Momentree - Wardrobe 4F</option>
+                                        <option value="destiny" data-multiplier="2.6">Momentree - Wardrobe 4F</option>
                                     </select>
                                 </div>
                             </div>

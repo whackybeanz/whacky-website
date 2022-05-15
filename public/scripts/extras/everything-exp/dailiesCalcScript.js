@@ -103,6 +103,7 @@ function compilePerDayExp() {
 
     let perDayExp = {
         dailyQuest: 0,
+        monsterHunting: 0,
         erdaSpectrum: getNumRuns("num-erda-spectrum") * document.getElementById("erda-spectrum-select").value,
         hungryMuto: getNumRuns("num-muto") * document.getElementById("muto-select").value,
         monsterPark: document.getElementById("monster-park-select").value, // due to EXP variations from Sunday monster park, numRuns will be factored further down instead
@@ -116,6 +117,14 @@ function compilePerDayExp() {
     allSelectedDailyQuests.forEach(daily => {
         perDayExp.dailyQuest += parseInt(daily.dataset.rawExp);
     })
+
+    // Monster Hunting
+    for(let i = 1; i <= 3; i++) {
+        let qtyMonsters = parseInt(document.getElementById(`qty-monster-${i}`).value) || 0;
+        let perMonsterExp = parseInt(document.getElementById(`per-monster-exp-${i}`).value) || 0;
+
+        perDayExp.monsterHunting += qtyMonsters * perMonsterExp;
+    }
 
     return perDayExp;
 }
@@ -137,6 +146,7 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp) {
     let newExp = currExp;
     let normalExp = perDayExp.dailyQuest + perDayExp.erdaSpectrum + perDayExp.hungryMuto + getNumRuns("num-monster-park") * perDayExp.monsterPark;
     let sundayExp = perDayExp.dailyQuest + perDayExp.erdaSpectrum + perDayExp.hungryMuto + getNumRuns("num-monster-park") * Math.round(perDayExp.monsterPark * 1.5);
+    let expFromGrinding = perDayExp.monsterHunting;
     let expMinigameId = perDayExp.eventMinigameId;
     let numExpMinigamePerDay = getNumRuns("num-exp-minigame");
 
@@ -152,12 +162,9 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp) {
         }
 
         // After regular dailies, does level increase? If so, adjust value accordingly
-        if(newExp + expFromDaily >= expTNL) {
-            newLevel++;
-            newExp = newExp + expFromDaily - expTNL;
-        } else {
-            newExp += expFromDaily;
-        }
+        // Then, after grinding, does level increase? If so, adjust value accordingly
+        [newLevel, newExp] = adjustLevelAndExp(newLevel, newExp, expFromDaily, expTNL);
+        [newLevel, newExp] = adjustLevelAndExp(newLevel, newExp, expFromGrinding, expTNL);
 
         // Now add EXP obtained from event minigames
         if(expMinigameId !== "" && numExpMinigamePerDay > 0) {
@@ -174,14 +181,20 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp) {
 
             // As event EXP is added last (to factor for best EXP rates possible), a second calculation is needed to check for potential level up
             // After event minigames, does level increase? If so, adjust value accordingly
-            if(newExp + expFromMinigames >= expTNL) {
-                newLevel++;
-                newExp = newExp + expFromMinigames - expTNL;
-            } else {
-                newExp += expFromMinigames;
-            }
+            [newLevel, newExp] = adjustLevelAndExp(newLevel, newExp, expFromMinigames, expTNL);
         }
     }
 
     return [newLevel, newExp];
+}
+
+function adjustLevelAndExp(newLevel, newExp, expValue, expTNL) {
+    if(newExp + expValue >= expTNL) {
+        newLevel++;
+        newExp = newExp + expValue - expTNL;
+    } else {
+        newExp += expValue;
+    }
+
+    return [newLevel, newExp]
 }
