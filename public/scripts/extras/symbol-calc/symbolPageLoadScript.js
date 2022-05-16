@@ -68,6 +68,8 @@ function loadSymbolCostTables() {
 }
 
 /***************
+ * --- Temporarily unused as MapleSEA has caught up in patch changes. ---
+ * 
  * Populates each row (level) of symbol upgrade cost.
  * 
  * For Arcane Symbols, there are symbol cost adjustments to be noted due to
@@ -75,7 +77,7 @@ function loadSymbolCostTables() {
  * 
  * Display both pre- and post-DESTINY cost details where applicable and percentage change.
  * *************/
-function populateCostTable(symbol) {
+/*function populateCostTable(symbol) {
     let totalCost = 0;
     let totalPostDestinyCost = 0;
 
@@ -105,6 +107,30 @@ function populateCostTable(symbol) {
                     ${displayedCost}
                 </td>
                 <td scope="row" class="text-center" data-raw-total-cost="${totalCost}" data-raw-new-total-cost="${totalPostDestinyCost}" id="symbol-${symbol.id}-level-${i}-total-cost">
+                    ${displayedTotalCost}
+                </td>
+            </tr>`);
+    }
+}*/
+
+function populateCostTable(symbol) {
+    let totalCost = 0;
+
+    for(let i = 1; i < MAX_SYMBOL_LEVEL[symbol.symbolGroup]; i++) {
+        let symbolCost = symbol.values[i-1];
+        totalCost += symbolCost;
+
+        let displayedCost = `${symbolCost.toLocaleString('en-SG')}`;;
+        let displayedTotalCost = `${totalCost.toLocaleString('en-SG')}`
+
+        document
+            .getElementById(`symbol-${symbol.id}-table-details`)
+            .insertAdjacentHTML('beforeend', `<tr>
+                <th scope="row" class="text-center align-middle">${i} > ${i+1}</th>
+                <td scope="row" class="text-center data-raw-cost-tnl="${symbolCost}" id="symbol-${symbol.id}-level-${i}-cost">
+                    ${displayedCost}
+                </td>
+                <td scope="row" class="text-center" data-raw-total-cost="${totalCost}" id="symbol-${symbol.id}-level-${i}-total-cost">
                     ${displayedTotalCost}
                 </td>
             </tr>`);
