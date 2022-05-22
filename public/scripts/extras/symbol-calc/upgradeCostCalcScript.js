@@ -303,9 +303,9 @@ function attachListeners(symbolData) {
                 symbolData.totalDaysReqElem.textContent = "??";
                 document.getElementById(`${symbolData.symbolId}-date-complete`).textContent = "??";
 
-                if(symbolData.symbolGroup === "arc") {
+                /*if(symbolData.symbolGroup === "arc") {
                     document.getElementById(`${symbolData.symbolId}-total-new-meso-req`).textContent = "??";                    
-                }
+                }*/
             }
         })
     })
