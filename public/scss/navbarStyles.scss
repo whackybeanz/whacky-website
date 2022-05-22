@@ -7,6 +7,32 @@
         &.active {
             font-weight: bold;
         }
+
+        .single-logo-div {
+            height: 30px;
+
+            .about-logo {
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+
+                &.single-logo {
+                    max-height: 50px;
+                }
+
+                &.single-logo-med {
+                    max-height: 40px;
+                }
+
+                &.single-logo-small {
+                    max-height: 30px;
+                }
+
+                &.ko-fi-logo {
+                    background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/ko-fi.png")
+                }
+            }
+        }
     }
 }
 

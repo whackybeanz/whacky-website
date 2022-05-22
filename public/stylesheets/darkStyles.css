@@ -26,7 +26,7 @@ body.dark-mode .navbar .nav-item .dropdown-menu {
 body.dark-mode .navbar .nav-item .dropdown-menu .dropdown-item {
   color: rgba(255, 255, 255, 0.8);
 }
-body.dark-mode .navbar .nav-item .dropdown-menu .dropdown-item:hover, body.dark-mode .navbar .nav-item .dropdown-menu .dropdown-item.active {
+body.dark-mode .navbar .nav-item .dropdown-menu .dropdown-item.single-dropdown, body.dark-mode .navbar .nav-item .dropdown-menu .dropdown-item:hover, body.dark-mode .navbar .nav-item .dropdown-menu .dropdown-item.active {
   color: white;
   background-color: #454d55;
 }
@@ -399,7 +399,7 @@ body.dark-mode .about-logo.gmail-logo {
 body.dark-mode .about-logo.youtube-logo {
   background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/youtube-logo-dark.png");
 }
-body.dark-mode .about-logo.ko-fi-logo {
+body.dark-mode .about-logo.ko-fi-logo, body.dark-mode .about-logo.paypal-logo {
   background-color: #454d55;
 }
 body.dark-mode .horz-partition {

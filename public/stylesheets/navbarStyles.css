@@ -4,6 +4,26 @@
 .navbar .nav-item.active {
   font-weight: bold;
 }
+.navbar .nav-item .single-logo-div {
+  height: 30px;
+}
+.navbar .nav-item .single-logo-div .about-logo {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.navbar .nav-item .single-logo-div .about-logo.single-logo {
+  max-height: 50px;
+}
+.navbar .nav-item .single-logo-div .about-logo.single-logo-med {
+  max-height: 40px;
+}
+.navbar .nav-item .single-logo-div .about-logo.single-logo-small {
+  max-height: 30px;
+}
+.navbar .nav-item .single-logo-div .about-logo.ko-fi-logo {
+  background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/ko-fi.png");
+}
 
 .fa-moon {
   transform: scaleX(-1);

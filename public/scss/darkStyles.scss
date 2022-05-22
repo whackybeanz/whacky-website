@@ -36,7 +36,7 @@ body.dark-mode {
                 .dropdown-item {
                     color: globals.$dark-mode-white;
 
-                    &:hover, &.active {
+                    &.single-dropdown, &:hover, &.active {
                         color: globals.$dark-mode-white-opaque;
                         background-color: globals.$dark-mode-grey;
                     }
@@ -567,7 +567,7 @@ body.dark-mode {
             background-image: url("https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/logos/youtube-logo-dark.png");
         }
 
-        &.ko-fi-logo {
+        &.ko-fi-logo, &.paypal-logo {
             background-color: globals.$dark-mode-grey;
         }
     }

@@ -4,15 +4,33 @@
             <img src="/public-images/logo.png" alt="Homepage Icon">
         </a>
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown mx-1 mx-md-2 <% if(locals.section !== "about") { %>active<% } %>">
-                <a class="nav-link" href="/">
-                    Maple Info <span class="d-none d-sm-inline">Corner</span>
+            <li class="nav-item d-flex align-items-center mx-1 mx-md-2 <% if(locals.section !== "about") { %>active<% } %>">
+                <a class="nav-link d-flex align-items-center" href="/">
+                    <span class="d-none d-sm-inline">Maple Info Corner</span>
+                    <span class="d-inline d-sm-none">Info</span>
                 </a>
             </li>
-            <li class="nav-item mx-1 mx-md-2 <% if(locals.section === "about") { %>active<% } %>">
-                <a class="nav-link" href="/about">
-                    About <span class="d-none d-sm-inline">Me / Support</span>
+            <li class="nav-item d-flex align-items-center mx-1 mx-md-2 <% if(locals.section === "about") { %>active<% } %>">
+                <a class="nav-link d-flex align-items-center" href="/about">
+                    About
                 </a>
+            </li>
+            <li class="nav-item d-flex align-items-center dropdown mx-1 mx-md-2">
+                <a class="nav-link d-flex align-items-center dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Support
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item single-dropdown mb-2" href="https://ko-fi.com/whackybeanz">
+                        <div class="w-100 single-logo-div d-flex justify-content-center align-items-center">
+                            <div class="about-logo single-logo-small w-100 h-100 ko-fi-logo"></div>
+                        </div>
+                    </a>
+                    <a class="dropdown-item single-dropdown " href="https://paypal.me/whackybeanz">
+                        <div class="w-100 single-logo-div d-flex justify-content-center align-items-center">
+                            <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png" alt="PayPal logo" class="about-logo single-logo-small paypal-logo" />
+                        </div>
+                    </a>
+                </div>
             </li>
         </ul>
         <ul class="navbar-nav">
@@ -27,7 +45,7 @@
                 </div>
             </li>
         </ul>
-        <button class="btn <% if(locals.section !== "maple-index") { %>d-block<% } else { %>d-none<% } %> d-lg-none ml-3" id="sidebar-collapse-btn" data-toggle="collapse" data-target="#sidebar-nav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle sidebar navigation">
+        <button class="btn <% if(locals.section !== "maple-index" && locals.section !== "about") { %>d-block<% } else { %>d-none<% } %> d-lg-none ml-3" id="sidebar-collapse-btn" data-toggle="collapse" data-target="#sidebar-nav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle sidebar navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
