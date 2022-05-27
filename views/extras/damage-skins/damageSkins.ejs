@@ -29,24 +29,24 @@
                             <div class="w-100 d-flex justify-content-center">
                                 <div class="skin-select-div col-4 text-center px-1 mb-1">
                                     <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "new") { %>active<% } %>">
-                                        <a href="/maple/extras/damage-skins/new" class="stretched-link text-decoration-none">Newly Released</a>
+                                        <a href="/info/damage-skins/new" class="stretched-link text-decoration-none">Newly Released</a>
                                     </div>
                                 </div>
                                 <div class="skin-select-div col-4 text-center px-1 mb-1">
                                     <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "unit") { %>active<% } %>">
-                                        <a href="/maple/extras/damage-skins/unit" class="stretched-link text-decoration-none">Unit Skins</a>
+                                        <a href="/info/damage-skins/unit" class="stretched-link text-decoration-none">Unit Skins</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="w-100 d-flex justify-content-center">
                                 <div class="skin-select-div col-4 text-center px-1">
                                     <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "box") { %>active<% } %>">
-                                        <a href="/maple/extras/damage-skins/box" class="stretched-link text-decoration-none">Random Skin Box</a>
+                                        <a href="/info/damage-skins/box" class="stretched-link text-decoration-none">Random Skin Box</a>
                                     </div>
                                 </div>
                                 <div class="skin-select-div col-4 text-center px-1">
                                     <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "job") { %>active<% } %>">
-                                        <a href="/maple/extras/damage-skins/job" class="stretched-link text-decoration-none">Job Damage Skins</a>
+                                        <a href="/info/damage-skins/job" class="stretched-link text-decoration-none">Job Damage Skins</a>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                             <% pagesArr.forEach(function(pageName, index) { %>
                             <div class="skin-select-div col-4 text-center px-1 mb-1">
                                 <div class="single-option-select rounded-sm position-relative py-1 <% if(parseInt(page) === index) { %>active<% } %>">
-                                    <a href="/maple/extras/damage-skins/<%= index %>" class="stretched-link text-decoration-none"><%= pageName %></a>
+                                    <a href="/info/damage-skins/<%= index %>" class="stretched-link text-decoration-none"><%= pageName %></a>
                                 </div>
                             </div>
                             <% }) %>
@@ -100,7 +100,7 @@
                 <div class="w-100 d-flex justify-content-between">
                     <button type="button" class="btn btn-sm btn-outline-danger font-weight-bold" id="btn-remove-all-selected">Remove all</button>
 
-                    <form action="/maple/extras/damage-skin-details" method="POST">
+                    <form action="/maple/info/damage-skin-details" method="POST">
                         <input type="hidden" name="selectedSkinNums" id="skin-num-input">
                         <button type="submit" class="btn btn-sm btn-outline-custom font-weight-bold">View all selected skin details</button>
                     </form>

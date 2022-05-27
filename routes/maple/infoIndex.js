@@ -202,7 +202,7 @@ router.get("/damage-skin-details", function(req, res) {
 })
 
 router.post("/damage-skin-details", function(req, res) {
-    const prevUrl = req.header("Referer") || "./maple/extras/damage-skins";
+    const prevUrl = req.header("Referer") || "/info/damage-skins";
     const selectedSkinNums = JSON.parse(req.body.selectedSkinNums);
     const MAX_NUM_SKINS = 20;
     let query = [];
