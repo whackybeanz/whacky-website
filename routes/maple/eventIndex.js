@@ -43,7 +43,7 @@ router.get("/coin-events", function(req, res) {
         })
 })
 
-router.get("/coin-event/:eventId", function(req, res) {
+router.get("/coin-events/:eventId", function(req, res) {
     let findIconsInEvent = Icon.find({ usedInEvents: req.params.eventId });
     let findCoinEvent = CoinEvent.findOne({ isPublic: true, eventId: req.params.eventId });
 
