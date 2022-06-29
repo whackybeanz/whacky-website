@@ -353,7 +353,7 @@ router.post("/coin-event/:id/shop/:shopId/addItem", middleware.isAdmin, function
         })
         .then(([compiledData, updatedIcon]) => {
             req.flash("success", "Coin shop added.");
-            res.redirect(`/coin-event/${compiledData.coinEventId}/shop/${compiledData.shopNum}`);
+            res.redirect(`/admin/coin-event/${compiledData.coinEventId}/shop/${compiledData.shopNum}`);
         })
         .catch(err => {
             req.flash("error", `Error: ${err}`);
@@ -397,7 +397,7 @@ router.post("/coin-event/:id/shop/:shopId/bulkAdd", middleware.isAdmin, function
         })
         .then(([compiledData, updatedIcon]) => {
             req.flash("success", "Coin shop added.");
-            res.redirect(`/coin-event/${compiledData.coinEventId}/shop/${compiledData.shopNum}`);
+            res.redirect(`/admin/coin-event/${compiledData.coinEventId}/shop/${compiledData.shopNum}`);
         })
         .catch(err => {
             req.flash("error", `Error: ${err}`);
