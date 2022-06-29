@@ -8,6 +8,16 @@
         <div class="w-100 d-flex justify-content-center flex-wrap px-3 pb-3 pt-3">
             <p class="mb-3">The table below contains items that commonly appear in coin shop events. Click on + to add the selected item to the submission form below (next section).</p>
 
+            <form method="POST" class="size-720 w-100 d-flex justify-content-center flex-wrap mb-4">
+                <input type="hidden" name="defaultCurrency" <% if(locals.coinShopData && coinShopData.defaultCurrency) { %>value="<%= coinShopData.defaultCurrency %>"<% } %>>
+
+                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="enhancement"><i class="fas fa-plus mr-1"></i> Enhancement items</button>
+                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="growth"><i class="fas fa-plus mr-1"></i> Growth items</button>
+                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="regReboot"><i class="fas fa-plus mr-1"></i> Reboot-only regular shop items</button>
+                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="bossing"><i class="fas fa-plus mr-1"></i> Boss coin shop items</button>
+                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="meso"><i class="fas fa-plus mr-1"></i> Meso shop items</button>
+            </form>
+
             <form class="size-720 w-100 mb-4" id="search-form">
                 <input type="text" class="form-control text-center" id="search-field" placeholder="Search icon ID or name..." autocomplete="off">
                 <small class="form-text text-center text-muted">Minimum 3 characters to begin search</small>

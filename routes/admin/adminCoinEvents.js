@@ -382,6 +382,21 @@ router.post("/coin-event/:id/shop/:shopId/bulkAdd", middleware.isAdmin, function
         })
     })
 
+    addToCoinShop(req, res, itemList);
+})
+
+router.post("/coin-event/:id/shop/:shopId/bulkAddList", middleware.isAdmin, function(req, res) {
+    let itemList = CoinEventHelper.retrieveItemList(req.body.listType, req.body.defaultCurrency);
+
+    if(itemList.length !== 0) {
+        addToCoinShop(req, res, itemList);
+    } else {
+        req.flash("error", "No items to add.");
+        res.redirect("back");
+    }
+})
+
+function addToCoinShop(req, res, itemList) {
     CoinEvent.findOneAndUpdate({ _id: req.params.id, "shops._id": req.params.shopId }, { $push: { "shops.$.items": { $each: itemList } } }, { new: true })
         .then(updatedCoinEvent => {
             const compiledData = Promise.resolve({
@@ -403,7 +418,7 @@ router.post("/coin-event/:id/shop/:shopId/bulkAdd", middleware.isAdmin, function
             req.flash("error", `Error: ${err}`);
             res.redirect("back");
         })    
-})
+}
 
 router.post("/coin-event/:id/shop/:shopId/reorder", middleware.isAdmin, middleware.isValidOrdering, function(req, res) {
     CoinEvent.findOne({ _id: req.params.id })
