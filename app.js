@@ -15,8 +15,8 @@ var adminRoutes     = require("./routes/admin/adminIndex");
 
 var User = require("./models/users");
 
-var port = process.env.PORT || 3005;
-var databaseUrl = process.env.DATABASEURL || "mongodb://localhost/maple-info-db";
+var port = process.env.PORT;
+var databaseUrl = process.env.DATABASEURL;
 mongoose.connect(databaseUrl);
 
 app.use(compression());
@@ -30,7 +30,7 @@ app.use(flash());
 
 // PASSPORT CONFIG
 app.use(session({
-    secret: "whacky's website for maple stuff",
+    secret: process.env.PASSPORT_SECRET,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongoUrl: databaseUrl })
