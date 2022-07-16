@@ -12,6 +12,7 @@ var passportLocalMongoose   = require("passport-local-mongoose");
 
 var indexRoutes     = require("./routes/index");
 var adminRoutes     = require("./routes/admin/adminIndex");
+//var cron            = require("./cron");
 
 var User = require("./models/users");
 
@@ -27,6 +28,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(flash());
+//cron.runCron();
 
 // PASSPORT CONFIG
 app.use(session({
