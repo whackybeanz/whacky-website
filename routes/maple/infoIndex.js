@@ -310,4 +310,21 @@ router.get("/potential-list", function(req, res) {
     }
 })
 
+router.get("/monster-life", function(req, res) {
+    Icon.find({ usedInSections: "monster-life" })
+        .then(foundIcons => {
+            const compiledIcons = IconHelper.compileIcons(foundIcons);
+            
+            res.locals.extraStylesheet = "extras/extrasStyles";
+            res.locals.section = "info";
+            res.locals.branch = "monster-life";
+            res.locals.title = "Monster Life";
+
+            res.render("info/monster-life/mlife-landing", { icons: compiledIcons });
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })})
+
 module.exports = router;

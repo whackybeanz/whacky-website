@@ -1,0 +1,50 @@
+<%- include("../../partials/header") %>
+<%- include("../../partials/navbar") %>
+
+<div class="container-fluid content d-flex flex-column flex-md-row p-0">
+    <%- include("../../partials/sidebar") %>
+    <div class="main-content-div col p-0 position-relative">
+        <div class="w-100 align-items-center flex-column px-4 pt-4" id="calculator">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Monster Life</h1>
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                </div>
+                <div class="col-12 text-muted text-center font-small mb-3">(Updated on 16 July 2022 - Initial page creation)</div>
+
+                <ul class="nav nav-pills d-flex justify-content-center mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active" id="pills-search-tab" data-toggle="pill" href="#pills-search" role="tab" aria-controls="pills-search" aria-selected="true">Search</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" id="pills-useful-farms-tab" data-toggle="pill" href="#pills-useful-farms" role="tab" aria-controls="pills-useful-farms" aria-selected="false">Useful Farms</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" id="pills-useful-monsters-tab" data-toggle="pill" href="#pills-useful-monsters" role="tab" aria-controls="pills-useful-monsters" aria-selected="false">Useful Monsters</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" id="pills-credits-tab" data-toggle="pill" href="#pills-credits" role="tab" aria-controls="pills-credits" aria-selected="false">Credits</a>
+                    </li>
+                </ul>
+                <div class="w-100 tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade border-0 rounded-sm show active" id="pills-search" role="tabpanel" aria-labelledby="pills-search">
+                        <%- include("./mlife-search") %>
+                    </div>
+                    <div class="tab-pane fade border-0 rounded-sm" id="pills-useful-farms" role="tabpanel" aria-labelledby="pills-useful-farms">
+                        <%- include("./mlife-useful-farms") %>
+                    </div>
+                    <div class="tab-pane fade border-0 rounded-sm" id="pills-useful-monsters" role="tabpanel" aria-labelledby="pills-useful-monsters">
+                        <%- include("./mlife-useful-monsters") %>
+                    </div>
+                    <div class="tab-pane fade border-0" id="pills-credits" role="tabpanel" aria-labelledby="pills-credits-tab">
+                        <%- include("./mlife-credits") %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/scripts/commonScript.js"></script>
+<%- include("../../partials/footer") %>
