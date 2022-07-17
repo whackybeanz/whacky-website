@@ -545,6 +545,25 @@ body.dark-mode {
         background-color: globals.$dark-mode-black-opaque;
     }
 
+    // Monster life
+    .single-farm {
+        border: 1px solid globals.$dark-mode-navy-grey;
+
+        &:hover, &.copied {
+            background: linear-gradient(to right, globals.$highlight-orange 0%, globals.$dark-mode-black 3%, globals.$dark-mode-black 100%) no-repeat;
+        }
+
+        &.copied {
+            border-color: globals.$highlight-orange;
+        }
+
+        &.copied {
+            .farm-name {
+                color: globals.$highlight-orange;
+            }
+        }
+    }
+
     // About
     .single-social {
         a {

@@ -385,6 +385,18 @@ body.dark-mode #active-profile {
   border: 2px solid rgba(52, 58, 64, 0.8);
   background-color: black;
 }
+body.dark-mode .single-farm {
+  border: 1px solid rgba(52, 58, 64, 0.8);
+}
+body.dark-mode .single-farm:hover, body.dark-mode .single-farm.copied {
+  background: linear-gradient(to right, #ffc107 0%, rgba(0, 0, 0, 0.8) 3%, rgba(0, 0, 0, 0.8) 100%) no-repeat;
+}
+body.dark-mode .single-farm.copied {
+  border-color: #ffc107;
+}
+body.dark-mode .single-farm.copied .farm-name {
+  color: #ffc107;
+}
 body.dark-mode .single-social a {
   color: rgba(255, 255, 255, 0.8);
 }

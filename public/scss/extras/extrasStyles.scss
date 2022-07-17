@@ -280,15 +280,53 @@
 }
 
 // Monster Life
-.single-search-list {
-    max-height: 400px;
+.bookmark-list {
+    max-height: 300px;
     overflow: auto;
+}
 
-    &:first-of-type {
-        margin-bottom: 3rem;
+.single-farm-container {
+    &.fade-out {
+        opacity: 0;
+        transition: opacity 0.5s;
+        pointer-events: none;
+    }
+
+    .single-farm {
+        transition: border-color 0.2s;
+
+        .farm-name {
+            transition: color 0.2s;
+        }
+
+        .inactive-text {
+            opacity: 0.3;
+        }
+    }
+
+    .bookmark-selected {
+        top: -4px;
+        left: 1rem;
+
+        @include globals.for-size(lg) { top: -5px; }
     }
 }
 
-.inactive-text {
-    opacity: 0.3;
+#search-monster {
+    &::-webkit-calendar-picker-indicator {
+        display: none !important;
+    }
+}
+
+#search-results {
+    .single-search-list {
+        &:first-of-type {
+            margin-bottom: 3rem;
+        }
+
+        .farm-list {
+            max-height: 400px;
+            overflow: auto;
+        }
+    }
 }

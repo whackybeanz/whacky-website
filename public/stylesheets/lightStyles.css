@@ -330,6 +330,18 @@ body #active-profile {
   border: 2px solid rgba(206, 212, 218, 0.8);
   background-color: white;
 }
+body .single-farm {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+}
+body .single-farm:hover, body .single-farm.copied {
+  background: linear-gradient(to right, #17a2b8 0%, rgba(255, 255, 255, 0.7) 3%, rgba(255, 255, 255, 0.7) 100%) no-repeat;
+}
+body .single-farm.copied {
+  border-color: #17a2b8;
+}
+body .single-farm.copied .farm-name {
+  color: #17a2b8;
+}
 body .single-social a {
   color: #212529;
 }
