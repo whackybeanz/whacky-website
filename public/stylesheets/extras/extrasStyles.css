@@ -237,4 +237,16 @@
   }
 }
 
+.single-search-list {
+  max-height: 400px;
+  overflow: auto;
+}
+.single-search-list:first-of-type {
+  margin-bottom: 3rem;
+}
+
+.inactive-text {
+  opacity: 0.3;
+}
+
 /*# sourceMappingURL=extrasStyles.css.map */

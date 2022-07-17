@@ -278,3 +278,17 @@
         border-left: 1px solid;
     }
 }
+
+// Monster Life
+.single-search-list {
+    max-height: 400px;
+    overflow: auto;
+
+    &:first-of-type {
+        margin-bottom: 3rem;
+    }
+}
+
+.inactive-text {
+    opacity: 0.3;
+}

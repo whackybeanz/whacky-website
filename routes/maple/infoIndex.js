@@ -314,13 +314,27 @@ router.get("/monster-life", function(req, res) {
     Icon.find({ usedInSections: "monster-life" })
         .then(foundIcons => {
             const compiledIcons = IconHelper.compileIcons(foundIcons);
+            const monsterList = Helper.getMonsterLifeList().sort((monsterA, monsterB) => {
+                const nameA = monsterA.name.toUpperCase();
+                const nameB = monsterB.name.toUpperCase();
+
+                if(nameA < nameB) {
+                    return -1;
+                }
+
+                if(nameA > nameB) {
+                    return 1;
+                }
+
+                return 0;
+            });
             
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "info";
             res.locals.branch = "monster-life";
             res.locals.title = "Monster Life";
 
-            res.render("info/monster-life/mlife-landing", { icons: compiledIcons });
+            res.render("info/monster-life/mlife-landing", { icons: compiledIcons, monsterList: monsterList });
         })
         .catch(err => {
             console.log(err);

@@ -1,13 +1,42 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
     <div class="w-100 d-flex flex-column justify-content-center px-3 py-3">
         <div class="pill-section rounded-sm mb-5">
-            <div class="pill-section-subheader text-center">
+            <div class="pill-section-subheader text-center pb-2">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                    <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['default-icon'].name %>"> Search
+                    <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['default-icon'].name %>"> Bookmarks
                 </h2>
+                <p class="mb-0">
+                    Monsters you have bookmarked appear here for quicker searching.
+                </p>
             </div>
             <div class="pill-section-content font-form d-flex flex-wrap justify-content-center pt-3">
                 
+            </div>
+        </div>
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center pb-2">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['default-icon'].name %>"> Search
+                </h2>
+                <p class="mb-0">
+                    Only monsters involved in Special fusions appear below.
+                </p>
+            </div>
+            <div class="pill-section-content font-form d-flex flex-column align-items-center py-3">
+                <form class="size-350 w-100 mb-0" id="search-mlife-form">
+                    <input type="text" list="monster-list" class="form-control text-center" id="search-monster" placeholder="Enter monster name..." autocomplete="off">
+                    <datalist id="monster-list">
+                        <% monsterList.forEach(monster => { %>
+                            <option value="<%= monster.name %>">
+                        <% }) %>
+                    </datalist>
+                </form>
+
+                <hr class="w-25">
+
+                <div class="d-flex flex-column align-items-center px-3" id="search-results">
+                    - Search results appear here -
+                </div>
             </div>
         </div>
     </div>

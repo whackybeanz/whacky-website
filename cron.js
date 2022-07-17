@@ -55,27 +55,11 @@ function uploadToAWS(monsterList) {
     })
 
     Object.keys(monsterList).forEach((monster, index) => {
-        // monsterList[monster] contains an array of all farms that have the specific monster
-        const csvHeaders = Object.keys(monsterList[monster][0]);
-        const replacer = function(key, value) { return value === null ? '' : value };
-
-        // First create the header row (first element in array)
-        // For all farms containing the monster, populate the values (farm name, expiry, last-updated-on)
-        // Add \r\n between each array element for CSV file creation purpose
-        const csv = [
-            csvHeaders.join(","),
-            ...monsterList[monster].map(row => 
-                csvHeaders.map(headerName => 
-                    JSON.stringify(row[headerName], replacer).replace(/\\"/g, '""')
-                ).join(',')
-            )
-        ].join('\r\n')
-
         // Upload to AWS
         const params = {
             Bucket: process.env.AWS_BUCKET,
-            Key: `monster-life/${monster}.csv`,
-            Body: csv
+            Key: `monster-life/${monster}.json`,
+            Body: JSON.stringify(monsterList[monster])
         }
 
         s3.upload(params, function(err, data) {
