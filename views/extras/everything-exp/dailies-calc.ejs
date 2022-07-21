@@ -82,13 +82,13 @@
                                         <option value="0" selected disabled hidden>- Select Monster Park -</option>
                                         <% expContents.monsterPark.forEach((dungeon, index) => { %>
                                             <% if(index === 0) { %>
-                                                <option value="0" class="font-weight-bold" disabled>[Level 105~115]</option>
+                                                <option value="0" class="font-weight-bold" disabled>[Level 105~139]</option>
                                             <% } %>
-                                            <% if(index === 8) { %>
-                                                <option value="0" class="font-weight-bold" disabled>[Level 116~160]</option>
+                                            <% if(index === 5) { %>
+                                                <option value="0" class="font-weight-bold" disabled>[Level 140~179]</option>
                                             <% } %>
-                                            <% if(index === 15) { %>
-                                                <option value="0" class="font-weight-bold" disabled>[Level 161+]</option>
+                                            <% if(index === 11) { %>
+                                                <option value="0" class="font-weight-bold" disabled>[Level 180+]</option>
                                             <% } %>
                                             <option value="<%= dungeon.rawEXP %>"><%= dungeon.name %></option>
                                         <% }) %>
