@@ -11,6 +11,7 @@ var DamageSkin  = require("../../models/damageSkinData");
 var MapLocations = require("../../models/mapData");
 var Potentials = require("../../models/potentialsData");
 var LatestUpdate = require("../../models/latestUpdateData");
+var MonsterLife = require("../../models/monsterLifeData");
 
 router.get("/", function(req, res) {
     res.redirect("/flames");
@@ -314,31 +315,35 @@ router.get("/monster-life", function(req, res) {
     Icon.find({ usedInSections: "monster-life" })
         .then(foundIcons => {
             const compiledIcons = IconHelper.compileIcons(foundIcons);
-            const monsterList = Helper.getMonsterLifeList().sort((monsterA, monsterB) => {
-                const nameA = monsterA.name.toUpperCase();
-                const nameB = monsterB.name.toUpperCase();
-
-                if(nameA < nameB) {
-                    return -1;
-                }
-
-                if(nameA > nameB) {
-                    return 1;
-                }
-
-                return 0;
-            });
             
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "info";
             res.locals.branch = "monster-life";
             res.locals.title = "Monster Life";
 
-            res.render("info/monster-life/mlife-landing", { icons: compiledIcons, monsterList: monsterList });
+            res.render("info/monster-life/mlife-landing", { icons: compiledIcons });
         })
         .catch(err => {
             console.log(err);
             res.redirect("back");
         })})
+
+router.get("/monster-life/search/:monster", function(req, res) {
+    const monsterId = req.params.monster;
+
+    MonsterLife.findOne({ id: monsterId })
+        .then(monsterData => {
+            res.send({
+                isErr: false,
+                farms: monsterData.farms
+            })
+        })
+        .catch(err => {
+            res.send({ 
+                isErr: true,
+                error: err,
+            })
+        })
+})
 
 module.exports = router;

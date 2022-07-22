@@ -1,6 +1,7 @@
 const cron              = require("cron");
 const { BigQuery }      = require("@google-cloud/bigquery");
-const aws               = require("aws-sdk");
+const MonsterLife       = require("./models/monsterLifeData");
+//const aws               = require("aws-sdk");
 
 function runCron() {
     const CronJob = cron.CronJob;
@@ -21,7 +22,22 @@ async function queryMonsterLifeDb() {
     const [queriedData] = await bigqueryClient.query({ query: query });
 
     let monsterList = compileMonsterList(queriedData);
-    uploadToAWS(monsterList)
+
+    await MonsterLife.bulkWrite(Object.keys(monsterList).map(monsterName => ({
+        updateOne: {
+            filter: { name: monsterName },
+            update: { $set: { farms: monsterList[monsterName] } }
+        }
+    })))
+    .then(res => {
+        console.log("Updated monster life farm list");
+    })
+    .catch(err => {
+        console.log("Unable to update monster life farm list");
+        console.log(err);
+    })
+
+    //uploadToAWS(monsterList)
 }
 
 // Compiles monsters that have been tracked
@@ -48,7 +64,7 @@ function compileMonsterList(data) {
     return monsterList;
 }
 
-function uploadToAWS(monsterList) {
+/*function uploadToAWS(monsterList) {
     const s3 = new aws.S3({
         accessKeyId: process.env.AWS_ACCESS_KEY,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -70,6 +86,6 @@ function uploadToAWS(monsterList) {
             }
         })
     })
-}
+}*/
 
 module.exports = { runCron };
