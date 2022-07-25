@@ -1,0 +1,68 @@
+<div class="single-monster-row w-100 d-flex align-items-start align-items-md-center rounded-sm py-md-1">
+    <div class="tool-display h-100 col-1 d-flex flex-column align-items-end justify-content-start justify-content-md-center px-0 px-md-3">
+        <button class="single-action-btn btn btn-sm btn-outline-custom d-flex justify-content-center align-items-center mb-1 mb-md-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+        </button>
+        <button class="single-action-btn btn btn-sm btn-outline-custom d-flex justify-content-center align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M 7.5 2 h 2 v 5 h 5 v 2 h -5 v 5 h -2 v -5 h -5 v -2 h 5 v -5 Z"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="w-100 d-flex flex-column flex-md-row align-items-center justify-content-start justify-content-md-center pb-3 pb-md-0">
+        <div class="<% if(singleMonster.type === "Special") { %>col px-0 px-md-3<% } else { %>col px-0 px-md-3<% } %>">
+            <div class="mlife-container px-0 px-md-1 my-md-1 position-relative">
+                <div class="single-monster mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2">
+                    <div class="w-100 d-flex align-items-start">
+                        <div class="d-flex flex-column flex-grow-1 pl-3 mr-2">
+                            <p class="monster-name mlife-container-header text-left font-weight-bold mb-0 mr-3"><%= singleMonster.name %></p>
+                            <p class="mb-0"><%= singleMonster.effect %></p>
+                        </div>
+                        <div class="d-flex flex-column justify-self-center pr-2">
+                            <p class="mb-0 text-muted text-right pr-2">(<%= singleMonster.type %> / <%= ["C", "B", "B+", "A", "A+", "S", "SS"][singleMonster.rank] %>)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bookmark-selected d-none text-custom position-absolute">${bookmarkFillSvg}</div>
+            </div>
+        </div>
+
+        <% if(singleMonster.type === "Special") { %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right d-none d-md-inline" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-down d-inline d-md-none" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            </svg>
+
+            <div class="col-12 col-md-5 px-2 px-md-3 d-flex align-items-center">
+                <% if(singleMonster.isFusion) { %>
+                    <div class="col d-flex flex-column align-items-center text-center">
+                        <p class="mb-0"><%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).name %></p>
+                        <p class="text-muted mb-0">(<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).type %> / <%= ["C", "B", "B+", "A", "A+", "S", "SS"][allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).rank] %>)</p>
+                    </div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M 7 2 h 2 v 5 h 5 v 2 h -5 v 5 h -2 v -5 h -5 v -2 h 5 v -5 Z"/>
+                    </svg>
+
+                    <div class="col d-flex flex-column align-items-center text-center">
+                        <p class="mb-0"><%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).name %></p>
+                        <p class="text-muted mb-0">(<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).type %> / <%= ["C", "B", "B+", "A", "A+", "S", "SS"][allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).rank] %>)</p>
+                    </div>
+                <% } else { %>
+                    <div class="col d-flex justify-content-center align-items-center text-custom text-center">
+                        - Obtained from Monster Box -
+                    </div>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<hr class="my-4 my-md-1">

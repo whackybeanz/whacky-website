@@ -330,17 +330,23 @@ body #active-profile {
   border: 2px solid rgba(206, 212, 218, 0.8);
   background-color: white;
 }
-body .single-farm {
+body .mlife-container .mlife-container-div {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
-body .single-farm:hover, body .single-farm.copied {
+body .mlife-container .mlife-container-div:hover, body .mlife-container .mlife-container-div.copied {
   background: linear-gradient(to right, #17a2b8 0%, rgba(255, 255, 255, 0.7) 3%, rgba(255, 255, 255, 0.7) 100%) no-repeat;
 }
-body .single-farm.copied {
+body .mlife-container .mlife-container-div.copied {
   border-color: #17a2b8;
 }
-body .single-farm.copied .farm-name {
+body .mlife-container .mlife-container-div.copied .mlife-container-header {
   color: #17a2b8;
+}
+body .single-monster-row:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+body .single-monster-row .tool-display {
+  border-right: 1px solid #17a2b8;
 }
 body .single-social a {
   color: #212529;

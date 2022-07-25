@@ -1,39 +1,19 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    loadMonsterData();
     loadSavedData();
     searchListener();
     toggleFarmViewListener();
     farmListener();
 })
 
-function loadMonsterData() {
-    const specialMonsters = MONSTER_LIFE_LIST.filter(monster => monster.type === "Special");
-    const otherMonsters = MONSTER_LIFE_LIST.filter(monster => monster.type !== "Special");
-    const searchableMonsters = sortByName(MONSTER_LIFE_LIST.filter(monster => monster.isSearchable === true));
-
-    const monsterDatalistElem = document.getElementById("monster-list");
-
-    for(let monster of searchableMonsters) {
-        monsterDatalistElem.insertAdjacentHTML("beforeend", `<option value="${monster.name}" data-id="${monster.id}">`)
-    }
-}
-
-function sortByName(list) {
-    return list.sort((a, b) => {
-        const nameA = a.name.toUpperCase();
-        const nameB = b.name.toUpperCase();
-
-        if(nameA < nameB) { 
-            return -1; 
-        }
-
-        if(nameA > nameB) { 
-            return 1; 
-        }
-
-        return 0;
-    })
-}
+const activeSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01L8 2.748ZM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Zm8.252-6.686a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162l-1.874-4.686Z"/>
+</svg>`;
+const expiredSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass" viewBox="0 0 16 16">
+  <path d="M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5zm2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702c0 .7-.478 1.235-1.011 1.491A3.5 3.5 0 0 0 4.5 13v1h7v-1a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351v-.702c0-.7.478-1.235 1.011-1.491A3.5 3.5 0 0 0 11.5 3V2h-7z"/>
+</svg>`;
+const bookmarkFillSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+  <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+</svg>`;
 
 // Loads saved data from localStorage
 // If category has at least one monster/farm, populate the respective list
@@ -150,11 +130,11 @@ function populateFarms(farms) {
             let expireDate = new Intl.DateTimeFormat('en-SG', { year: '2-digit', month: 'short', day: '2-digit', hour: "2-digit", minute: "2-digit" }).format(Date.parse(farm.earliestExpiry) - 8 * 60 * 60 * 1000);
             let lastUpdatedDate = new Intl.DateTimeFormat('en-SG', { year: '2-digit', month: 'short', day: '2-digit', hour: "2-digit", minute: "2-digit" }).format(Date.parse(farm.earliestUpdatedOn) - 8 * 60 * 60 * 1000);
 
-            html += `<div class="single-farm-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" id="search-farm-${farm.farmName}" data-farm-name="${farm.farmName}">`;
-                html += `<div class="single-farm h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2" data-farm-name="${farm.farmName}">`
+            html += `<div class="single-farm-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" id="search-farm-${farm.farmName}" data-farm-name="${farm.farmName}">`;
+                html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2" data-farm-name="${farm.farmName}">`
                     html += `<div class="w-100 d-flex align-items-center">`
                         html += `<div class="d-flex flex-column flex-grow-1 pl-3">`
-                            html += `<div class="farm-name text-left font-weight-bold mb-0">${farm.farmName}</div>`;
+                            html += `<div class="farm-name mlife-container-header text-left font-weight-bold mb-0">${farm.farmName}</div>`;
                             html += `<small class="farm-details expiry-date font-small text-muted d-none">Expires: ${expireDate}</small>`;
                             html += `<small class="farm-details last-updated-date font-small text-muted d-none">Updated: ${lastUpdatedDate}</small>`;
                         html += `</div>`;

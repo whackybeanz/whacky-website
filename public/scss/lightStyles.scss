@@ -496,21 +496,33 @@ body {
     }
 
     // Monster Life {
-    .single-farm {
-        border: 1px solid globals.$light-mode-grey;
+    .mlife-container {
+        .mlife-container-div {
+            border: 1px solid globals.$light-mode-grey;
 
-        &:hover, &.copied {
-            background: linear-gradient(to right, globals.$highlight-blue 0%, globals.$light-mode-white 3%, globals.$light-mode-white 100%) no-repeat;
-        }
-
-        &.copied {
-            border-color: globals.$highlight-blue;
-        }
-
-        &.copied {
-            .farm-name {
-                color: globals.$highlight-blue;
+            &:hover, &.copied {
+                background: linear-gradient(to right, globals.$highlight-blue 0%, globals.$light-mode-white 3%, globals.$light-mode-white 100%) no-repeat;
             }
+
+            &.copied {
+                border-color: globals.$highlight-blue;
+            }
+
+            &.copied {
+                .mlife-container-header {
+                    color: globals.$highlight-blue;
+                }
+            }
+        }
+    }
+
+    .single-monster-row {
+        &:hover {
+            background-color: globals.$light-mode-light-grey;
+        }
+
+        .tool-display {
+            border-right: 1px solid globals.$highlight-blue;
         }
     }
 

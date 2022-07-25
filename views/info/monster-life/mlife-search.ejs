@@ -6,7 +6,7 @@
                     <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['default-icon'].name %>"> Bookmarks
                 </h2>
                 <p class="mb-0">
-                    All your bookmarks appear here for convenience.
+                    All your bookmarks appear here for convenience
                 </p>
             </div>
             <div class="pill-section-content font-form d-flex flex-column align-items-center px-3 py-3">
@@ -29,13 +29,17 @@
                     <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['default-icon'].name %>"> Search
                 </h2>
                 <p class="mb-0">
-                    Only monsters involved in Special fusions appear below.
+                    Only monsters involved in Special fusions appear below
                 </p>
             </div>
             <div class="pill-section-content font-form d-flex flex-column align-items-center py-3">
                 <form class="size-350 w-100 mb-0" id="search-mlife-form">
                     <input type="text" list="monster-list" class="form-control text-center" id="search-monster" placeholder="Enter monster name..." autocomplete="off">
-                    <datalist id="monster-list"></datalist>
+                    <datalist id="monster-list">
+                        <% for(let monster of searchableList) { %>
+                            <option value="<%= monster.name %>" data-id="<%= monster.id %>">
+                        <% } %>
+                    </datalist>
                 </form>
 
                 <hr class="w-25">

@@ -177,4 +177,21 @@ function getCubeRates() {
     return cubeRates;
 }
 
-module.exports = { compileSoulsByTier, compileSetItemsBySetName, compileSetItemsByItemPart, sortByPrice, groupByRank, getCubeRates };
+function sortMonsterLifeList(list) {
+    return list.sort((a, b) => {
+        const effectA = a.effectRaw.toUpperCase();
+        const effectB = b.effectRaw.toUpperCase();
+
+        if(effectA < effectB) { 
+            return -1; 
+        }
+
+        if(effectA > effectB) { 
+            return 1; 
+        }
+
+        return a.priorityValue - b.priorityValue || a.rank - b.rank;
+    })
+}
+
+module.exports = { compileSoulsByTier, compileSetItemsBySetName, compileSetItemsByItemPart, sortByPrice, groupByRank, getCubeRates, sortMonsterLifeList };

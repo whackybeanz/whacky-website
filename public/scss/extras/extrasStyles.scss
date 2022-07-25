@@ -285,17 +285,17 @@
     overflow: auto;
 }
 
-.single-farm-container {
+.mlife-container {
     &.fade-out {
         opacity: 0;
         transition: opacity 0.5s;
         pointer-events: none;
     }
 
-    .single-farm {
+    .mlife-container-div {
         transition: border-color 0.2s;
 
-        .farm-name {
+        .mlife-container-header {
             transition: color 0.2s;
         }
 
@@ -309,6 +309,15 @@
         left: 1rem;
 
         @include globals.for-size(lg) { top: -5px; }
+    }
+}
+
+.single-monster-row {
+    transition: background-color 0.2s;
+
+    .single-action-btn {
+        width: 30px;
+        height: 30px;
     }
 }
 

@@ -1,3 +1,4 @@
+var CommonHelper = require("../helpers/commonHelpers");
 var IconHelper = require("../helpers/iconHelpers");
 var Helper = require("../helpers/extrasHelpers");
 var middleware  = require("../middleware");
@@ -312,20 +313,25 @@ router.get("/potential-list", function(req, res) {
 })
 
 router.get("/monster-life", function(req, res) {
-    Icon.find({ usedInSections: "monster-life" })
-        .then(foundIcons => {
+    const getIcons = Icon.find({ usedInSections: "monster-life" }); 
+    const getMonsterLifeList = MonsterLife.find({ }, { _id: 0, farms: 0 })
+
+    Promise.all([getIcons, getMonsterLifeList])
+        .then(([foundIcons, monsterLifeList]) => {
             const compiledIcons = IconHelper.compileIcons(foundIcons);
+            const searchableList = CommonHelper.sortListByStringValue(monsterLifeList.filter(monster => monster.isSearchable === true), "name");
+            const sortedListByEffect = Helper.sortMonsterLifeList(monsterLifeList);
             
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "info";
             res.locals.branch = "monster-life";
             res.locals.title = "Monster Life";
 
-            res.render("info/monster-life/mlife-landing", { icons: compiledIcons });
+            res.render("info/monster-life/mlife-landing", { icons: compiledIcons, allMonsters: monsterLifeList, searchableList: searchableList, sortedListByEffect: sortedListByEffect });
         })
         .catch(err => {
             console.log(err);
-            res.redirect("back");
+            res.redirect("/");
         })})
 
 router.get("/monster-life/search/:monster", function(req, res) {

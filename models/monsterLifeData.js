@@ -12,6 +12,8 @@ var monsterLifeSchema = new mongoose.Schema({
     type: String,
     rank: Number,
     effect: String,
+    effectRaw: String,
+    priorityValue: Number,
     isFusion: Boolean,
     fuseMaterials: [String],
     isSearchable: Boolean,

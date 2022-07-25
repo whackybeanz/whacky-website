@@ -12,4 +12,21 @@ function sortByName(a, b) {
     return 0;
 }
 
-module.exports = { sortByName };
+function sortListByStringValue(list, keyName) {
+    return list.sort((a, b) => {
+        const valueA = a[keyName].toUpperCase();
+        const valueB = b[keyName].toUpperCase();
+
+        if(valueA < valueB) { 
+            return -1; 
+        }
+
+        if(valueA > valueB) { 
+            return 1; 
+        }
+
+        return 0;
+    });
+}
+
+module.exports = { sortByName, sortListByStringValue };
