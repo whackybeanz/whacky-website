@@ -3,23 +3,21 @@
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center pb-2">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                    <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['default-icon'].name %>"> Bookmarks
+                    <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['default-icon'].name %>"> Bookmarked Monsters
                 </h2>
                 <p class="mb-0">
-                    All your bookmarks appear here for convenience
+                    Click on any bookmarked monsters to automatically search below
                 </p>
             </div>
             <div class="pill-section-content font-form d-flex flex-column align-items-center px-3 py-3">
-                <h3 class="font-subsubheader mb-0">Monsters</h3>
-                <p>Click on any monster name to automatically search below</p>
-                <div class="bookmark-list w-100 d-flex justify-content-center mb-4" id="bookmarked-monsters">
-                    <p class="text-custom mb-0">- None bookmarked currently -</p>
+                <div class="bookmark-list w-100 d-flex justify-content-start flex-wrap mb-4" id="bookmarked-monsters">
+                    <p class="w-100 text-custom text-center mb-0">- None bookmarked currently. Why not go to [Useful Monsters] to manage your monster bookmarks? -</p>
                 </div>
 
                 <h3 class="font-subsubheader mb-0">Farms</h3>
                 <p>Click on any farms to copy to your clipboard</p>
-                <div class="bookmark-list w-100 d-flex justify-content-center" id="bookmarked-farms">
-                    <p class="text-custom mb-0">- None bookmarked currently -</p>
+                <div class="bookmark-list w-100 d-flex justify-content-start flex-wrap" id="bookmarked-farms">
+                    <p class="w-100 text-custom text-center mb-0">- None bookmarked currently -</p>
                 </div>
             </div>
         </div>

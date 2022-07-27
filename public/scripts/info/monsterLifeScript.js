@@ -37,8 +37,16 @@ function populateBookmarks(category, savedData) {
     if(category === "monsters") {
         savedData.monsters.sort();
 
-        savedData.monsters.forEach(monster => {
+        savedData.monsters.forEach(({ name, id }) => {
+            let html = "";
 
+            html += `<div class="single-monster-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" data-mlife-name="${name}" data-mlife-id="${id}" id="bookmarked-monsters-${id}">`;
+                html += `<div class="single-monster mlife-container-div h-100 cursor-pointer d-flex justify-content-center rounded-sm py-2" data-mlife-name="${name}">`
+                    html += `<div class="monster-name mlife-container-header text-left font-weight-bold mb-0">${name}</div>`;
+                html += `</div>`;
+            html += `</div>`;
+
+            bookmarkElem.insertAdjacentHTML("beforeend", html);
         })
     }
 
@@ -46,9 +54,9 @@ function populateBookmarks(category, savedData) {
         savedData.farms.forEach(farmName => {
             let html = "";
 
-            html += `<div class="single-farm-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" data-farm-name="${farmName}" id="bookmarked-farms-${farmName}">`;
-                html += `<div class="single-farm h-100 cursor-pointer d-flex justify-content-center rounded-sm py-2" data-farm-name="${farmName}">`
-                    html += `<div class="farm-name text-left font-weight-bold mb-0">${farmName}</div>`;
+            html += `<div class="single-farm-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" data-mlife-name="${farmName}" data-mlife-type="farms" id="bookmarked-farms-${farmName}">`;
+                html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex justify-content-center rounded-sm py-2" data-mlife-name="${farmName}">`
+                    html += `<div class="farm-name mlife-container-header text-left font-weight-bold mb-0">${farmName}</div>`;
                 html += `</div>`;
                 html += `<div class="bookmark-selected text-custom position-absolute">${bookmarkFillSvg}</div>`;
             html += `</div>`;
@@ -248,6 +256,7 @@ function toggleFarmViewListener() {
 function bookmarkListener() {
     let allSearchResults = document.getElementById("search-results");
     let bookmarkedFarms = document.getElementById("bookmarked-farms");
+    let bookmarkedMonsters = document.getElementById("bookmarked-monsters");
     let usefulMonsters = document.getElementById("useful-monsters");
     let timer = 0;
 
@@ -277,8 +286,10 @@ function bookmarkListener() {
                 if(closestContainer !== null) {
                     // mlifeName is either be farm name or monster name
                     // mlifeType is either "farm" or "monster" 
+                    // mlifeId applies to only monsters
                     let mlifeName = closestContainer.dataset.mlifeName;
                     let mlifeType = closestContainer.dataset.mlifeType;
+                    let mlifeId = closestContainer.dataset.mlifeId;
                     let closestBookmark = closestContainer.querySelector(".bookmark-selected")
 
                     if(closestBookmark.classList.contains("d-none")) {
@@ -286,14 +297,12 @@ function bookmarkListener() {
                         closestBookmark.classList.remove("d-none");
 
                         if(mlifeType === "monsters") {
-                            let mlifeId = closestContainer.dataset.mlifeId;
-
                             document.querySelectorAll(`.monster-${mlifeId}`).forEach(elem => {
                                 elem.querySelector(".bookmark-selected").classList.remove("d-none");
                             })
                         }
-
-                        updateMonsterLifeBookmarks("add", mlifeType, mlifeName);
+                        
+                        updateMonsterLifeBookmarks("add", mlifeType, mlifeName, mlifeId);
                     } else {
                         // Remove bookmark
                         // For farms, removal may be done in one of two locations - from bookmarks, or from search results
@@ -304,17 +313,20 @@ function bookmarkListener() {
                         // Also remove the bookmark icon from bookmarks section
                         // Update localStorage data based on latest removal
                         if(mlifeType === "farms") {
+                            document.getElementById(`bookmarked-${mlifeType}-${mlifeName}`).querySelector(".bookmark-selected").classList.add("d-none");
+
                             let matchingElem = document.getElementById(`search-farms-${mlifeName}`);
 
                             if(matchingElem !== null) {
                                 matchingElem.querySelector(".bookmark-selected").classList.add("d-none");
-                            }    
+                            }
                         } else {
-
+                            document.querySelectorAll(`.monster-${mlifeId}`).forEach(elem => {
+                                elem.querySelector(".bookmark-selected").classList.add("d-none");
+                            })
                         }
-                        
-                        document.getElementById(`bookmarked-${mlifeType}-${mlifeName}`).querySelector(".bookmark-selected").classList.add("d-none");
-                        updateMonsterLifeBookmarks("remove", mlifeType, mlifeName);
+
+                        updateMonsterLifeBookmarks("remove", mlifeType, mlifeName, mlifeId);
                     }
                 }
             }
@@ -326,31 +338,46 @@ function bookmarkListener() {
 // First retrieve any savedData (or assign an empty object) from localStorage
 // If adding, check for existence of key -- push to array if exists; otherwise create new array, then repopulate the affected category
 // If removing, check if array can continue to be removed -- filter out element to remove
-function updateMonsterLifeBookmarks(statusType, category, name) {
+function updateMonsterLifeBookmarks(statusType, category, name, id) {
     let savedData = JSON.parse(localStorage.getItem("monsterLife")) || { };
 
     if(statusType === "add") {
         if(savedData[category] !== undefined && savedData[category].length >= 0 ) {
-            savedData[category].push(name);
+            if(category === "farms") {
+                savedData[category].push({ name: name });
+            } else {
+                savedData[category].push({ name: name, id: id });
+            }
         } else {
-            savedData[category] = [name];
+            if(category === "farms") {
+                savedData[category] = [{ name: name }];    
+            } else {
+                savedData[category] = [{ name: name, id: id }]
+            }
         }
 
         populateBookmarks(category, savedData);
     }
 
     if(statusType === "remove") {
+        let suffix;
+
+        if(category === "farms") {
+            suffix = `${name}`;
+        } else {
+            suffix = `${id}`;
+        }
+
         if(savedData[category].length >= 0) {
-            savedData[category] = savedData[category].filter(dataName => dataName !== name);
+            savedData[category] = savedData[category].filter(dataName => dataName.name !== name);
 
             let bookmarkedElem = document.getElementById(`bookmarked-${category}`);
-
-            bookmarkedElem.querySelector(`#bookmarked-${category}-${name}`).classList.add("fade-out");
+            bookmarkedElem.querySelector(`#bookmarked-${category}-${suffix}`).classList.add("fade-out");
 
             setTimeout(function() {
-                bookmarkedElem.querySelector(`#bookmarked-${category}-${name}`).remove();
+                bookmarkedElem.querySelector(`#bookmarked-${category}-${suffix}`).remove();
                 if(bookmarkedElem.innerHTML === "") {
-                    bookmarkedElem.innerHTML = `<p class="text-custom mb-0">- None bookmarked currently -</p>`;
+                    bookmarkedElem.innerHTML = `<p class="w-100 text-center text-custom mb-0">- None bookmarked currently -</p>`;
                 }
             }, 500)
         }
