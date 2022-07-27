@@ -320,14 +320,15 @@ router.get("/monster-life", function(req, res) {
         .then(([foundIcons, monsterLifeList]) => {
             const compiledIcons = IconHelper.compileIcons(foundIcons);
             const searchableList = CommonHelper.sortListByStringValue(monsterLifeList.filter(monster => monster.isSearchable === true), "name");
-            const sortedListByEffect = Helper.sortMonsterLifeList(monsterLifeList);
+            const sortedListByEffect = Helper.sortMonsterLifeList(monsterLifeList.slice());
+            const sortedListByName = CommonHelper.sortListByStringValue(monsterLifeList.slice(), "name");
             
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "info";
             res.locals.branch = "monster-life";
             res.locals.title = "Monster Life";
 
-            res.render("info/monster-life/mlife-landing", { icons: compiledIcons, allMonsters: monsterLifeList, searchableList: searchableList, sortedListByEffect: sortedListByEffect });
+            res.render("info/monster-life/mlife-landing", { icons: compiledIcons, allMonsters: monsterLifeList, searchableList: searchableList, sortedListByEffect: sortedListByEffect, sortedListByName: sortedListByName });
         })
         .catch(err => {
             console.log(err);
@@ -341,7 +342,8 @@ router.get("/monster-life/search/:monster", function(req, res) {
         .then(monsterData => {
             res.send({
                 isErr: false,
-                farms: monsterData.farms
+                farms: monsterData.farms,
+                farmCount: monsterData.farms.length,
             })
         })
         .catch(err => {

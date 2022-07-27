@@ -501,7 +501,7 @@ body {
             border: 1px solid globals.$light-mode-grey;
 
             &:hover, &.copied {
-                background: linear-gradient(to right, globals.$highlight-blue 0%, globals.$light-mode-white 3%, globals.$light-mode-white 100%) no-repeat;
+                background: linear-gradient(to right, globals.$highlight-blue 0%, globals.$light-mode-white 8px, globals.$light-mode-white 100%) no-repeat;
             }
 
             &.copied {
@@ -521,8 +521,9 @@ body {
             background-color: globals.$light-mode-light-grey;
         }
 
-        .tool-display {
-            border-right: 1px solid globals.$highlight-blue;
+        .monster-display {
+            min-height: 63px;
+            border-left: 1px solid globals.$highlight-blue;
         }
     }
 

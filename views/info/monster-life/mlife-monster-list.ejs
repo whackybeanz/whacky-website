@@ -1,4 +1,5 @@
-<div class="single-monster-row w-100 d-flex align-items-start align-items-md-center rounded-sm py-md-1">
+<div class="single-search-row single-monster-row w-100 d-flex align-items-start align-items-md-center rounded-sm py-md-1 mb-4" data-search-term="<%= singleMonster.name.toLowerCase() %>"
+    data-related='["<%= singleMonster.name.toLowerCase() %>"<% if(singleMonster.isFusion) { %>, "<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).name.toLowerCase() %>", "<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).name.toLowerCase() %>"<% } %>]'>
     <div class="tool-display h-100 col-1 d-flex flex-column align-items-end justify-content-start justify-content-md-center px-0 px-md-3">
         <button class="single-action-btn btn btn-sm btn-outline-custom d-flex justify-content-center align-items-center mb-1 mb-md-0">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -12,9 +13,9 @@
         </button>
     </div>
 
-    <div class="w-100 d-flex flex-column flex-md-row align-items-center justify-content-start justify-content-md-center pb-3 pb-md-0">
-        <div class="<% if(singleMonster.type === "Special") { %>col px-0 px-md-3<% } else { %>col px-0 px-md-3<% } %>">
-            <div class="mlife-container px-0 px-md-1 my-md-1 position-relative">
+    <div class="monster-display w-100 font-table d-flex flex-column flex-md-row align-items-center justify-content-start mb-3 mb-md-0">
+        <div class="<% if(singleMonster.type === "Special") { %>col px-0 px-md-3<% } else { %>col-12 col-md-8 px-0 px-md-3<% } %>">
+            <div class="single-monster-container mlife-container monster-<%= singleMonster.id %> px-0 px-md-1 my-md-1 position-relative" data-mlife-name="<%= singleMonster.name %>" data-mlife-id="<%= singleMonster.id %>" data-mlife-type="monsters">
                 <div class="single-monster mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2">
                     <div class="w-100 d-flex align-items-start">
                         <div class="d-flex flex-column flex-grow-1 pl-3 mr-2">
@@ -26,7 +27,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="bookmark-selected d-none text-custom position-absolute">${bookmarkFillSvg}</div>
+                <div class="bookmark-selected d-none text-custom position-absolute">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                    </svg>
+                </div>
             </div>
         </div>
 
@@ -40,23 +45,43 @@
                 <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
             </svg>
 
-            <div class="col-12 col-md-5 px-2 px-md-3 d-flex align-items-center">
+            <div class="col-12 col-md-6 px-0 px-md-3 d-flex align-items-center">
                 <% if(singleMonster.isFusion) { %>
-                    <div class="col d-flex flex-column align-items-center text-center">
-                        <p class="mb-0"><%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).name %></p>
-                        <p class="text-muted mb-0">(<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).type %> / <%= ["C", "B", "B+", "A", "A+", "S", "SS"][allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).rank] %>)</p>
+                    <div class="col single-monster-container mlife-container monster-<%= singleMonster.fuseMaterials[0] %> px-0 px-md-1 my-md-1 position-relative mr-2" 
+                        data-mlife-name="<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).name %>" data-mlife-id="<%= singleMonster.fuseMaterials[0] %>" data-mlife-type="monsters">
+                        <div class="single-monster mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2">
+                            <div class="w-100 d-flex flex-column align-items-center px-3">
+                                <p class="monster-name mlife-container-header text-center font-weight-bold mb-0"><%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).name %></p>
+                                <p class="text-center text-muted mb-0">(<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).type %> / <%= ["C", "B", "B+", "A", "A+", "S", "SS"][allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).rank] %>)</p>
+                            </div>
+                        </div>
+                        <div class="bookmark-selected d-none text-custom position-absolute">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                                <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                            </svg>
+                        </div>
                     </div>
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M 7 2 h 2 v 5 h 5 v 2 h -5 v 5 h -2 v -5 h -5 v -2 h 5 v -5 Z"/>
                     </svg>
 
-                    <div class="col d-flex flex-column align-items-center text-center">
-                        <p class="mb-0"><%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).name %></p>
-                        <p class="text-muted mb-0">(<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).type %> / <%= ["C", "B", "B+", "A", "A+", "S", "SS"][allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).rank] %>)</p>
+                    <div class="col single-monster-container mlife-container monster-<%= singleMonster.fuseMaterials[1] %> px-0 px-md-1 my-md-1 position-relative ml-2" 
+                        data-mlife-name="<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).name %>" data-mlife-id="<%= singleMonster.fuseMaterials[0] %>" data-mlife-type="monsters">
+                        <div class="single-monster mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2">
+                            <div class="w-100 d-flex flex-column align-items-center px-3">
+                                <p class="monster-name mlife-container-header text-center font-weight-bold mb-0"><%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).name %></p>
+                                <p class="text-center text-muted mb-0">(<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).type %> / <%= ["C", "B", "B+", "A", "A+", "S", "SS"][allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).rank] %>)</p>
+                            </div>
+                        </div>
+                        <div class="bookmark-selected d-none text-custom position-absolute">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                                <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                            </svg>
+                        </div>
                     </div>
                 <% } else { %>
-                    <div class="col d-flex justify-content-center align-items-center text-custom text-center">
+                    <div class="col d-flex justify-content-center align-items-center text-custom text-center my-1">
                         - Obtained from Monster Box -
                     </div>
                 <% } %>
@@ -64,5 +89,3 @@
         <% } %>
     </div>
 </div>
-
-<hr class="my-4 my-md-1">

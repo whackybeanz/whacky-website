@@ -47,14 +47,21 @@ function compileMonsterList(data) {
     let monsterList = {};
 
     data.forEach((singleMonsterData,index) => {
+        let monsterName = singleMonsterData.mob_name;
+
+        if(monsterName === "Papulatus' Watch") { monsterName = "Papulatus's Watch"; }
+        if(monsterName === "Petite Arka") { monsterName = "Petit Arkarium"; }
+        if(monsterName === "Mushroom Couple") { monsterName = "Couple Mushrooms"; }
+        if(monsterName === "Yeti & Pepe") { monsterName = "Yeti and Pepe"; }
+
         // Sort farms by monster names
-        if(!monsterList[singleMonsterData.mob_name]) {
-            monsterList[singleMonsterData.mob_name] = [];
+        if(!monsterList[monsterName]) {
+            monsterList[monsterName] = [];
         }
 
         // Timestamp recorded is already in GMT+8
         // When executing Date.parse(), millisecond values provided will have factored GMT+8 but is considered as GMT
-        monsterList[singleMonsterData.mob_name].push({
+        monsterList[monsterName].push({
             farmName: singleMonsterData.farm_name,
             expires: singleMonsterData.expire_time.value,
             updatedOn: singleMonsterData.update_time.value,

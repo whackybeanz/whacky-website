@@ -389,7 +389,7 @@ body.dark-mode .mlife-container .mlife-container-div {
   border: 1px solid rgba(52, 58, 64, 0.8);
 }
 body.dark-mode .mlife-container .mlife-container-div:hover, body.dark-mode .mlife-container .mlife-container-div.copied {
-  background: linear-gradient(to right, #ffc107 0%, rgba(0, 0, 0, 0.8) 3%, rgba(0, 0, 0, 0.8) 100%) no-repeat;
+  background: linear-gradient(to right, #ffc107 0%, rgba(0, 0, 0, 0.8) 8px, rgba(0, 0, 0, 0.8) 100%) no-repeat;
 }
 body.dark-mode .mlife-container .mlife-container-div.copied {
   border-color: #ffc107;
@@ -400,8 +400,9 @@ body.dark-mode .mlife-container .mlife-container-div.copied .mlife-container-hea
 body.dark-mode .single-monster-row:hover {
   background-color: #454d55;
 }
-body.dark-mode .single-monster-row .tool-display {
-  border-right: 1px solid #ffc107;
+body.dark-mode .single-monster-row .monster-display {
+  min-height: 63px;
+  border-left: 1px solid #ffc107;
 }
 body.dark-mode .single-social a {
   color: rgba(255, 255, 255, 0.8);

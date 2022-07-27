@@ -551,7 +551,7 @@ body.dark-mode {
             border: 1px solid globals.$dark-mode-navy-grey;
 
             &:hover, &.copied {
-                background: linear-gradient(to right, globals.$highlight-orange 0%, globals.$dark-mode-black 3%, globals.$dark-mode-black 100%) no-repeat;
+                background: linear-gradient(to right, globals.$highlight-orange 0%, globals.$dark-mode-black 8px, globals.$dark-mode-black 100%) no-repeat;
             }
 
             &.copied {
@@ -571,8 +571,9 @@ body.dark-mode {
             background-color: globals.$dark-mode-grey;
         }
 
-        .tool-display {
-            border-right: 1px solid globals.$highlight-orange;
+        .monster-display {
+            min-height: 63px;
+            border-left: 1px solid globals.$highlight-orange;
         }
     }
 

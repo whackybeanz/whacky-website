@@ -10,7 +10,16 @@
                 </p>
             </div>
             <div class="pill-section-content font-form d-flex flex-wrap justify-content-center pt-3 px-3">
-                <div class="w-100 d-flex justify-content-center align-items-center flex-column position-relative">
+                <form class="size-350 w-100 mb-4" id="search-useful-monsters-form">
+                    <input type="text" list="useful-monster-list" class="form-control text-center" id="search-useful-monster" placeholder="Enter monster name..." autocomplete="off">
+                    <datalist id="useful-monster-list">
+                        <% for(let monster of sortedListByName) { %>
+                            <option value="<%= monster.name %>" data-id="<%= monster.id %>">
+                        <% } %>
+                    </datalist>
+                </form>
+
+                <div class="w-100 position-relative" id="useful-monsters">
                     <% for(let singleMonster of sortedListByEffect.filter(monster => monster.type === "Special")) { %>
                         <%- include("./mlife-monster-list", { singleMonster: singleMonster }) %>
                     <% } %>

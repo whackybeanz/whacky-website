@@ -266,14 +266,6 @@
   }
 }
 
-.single-monster-row {
-  transition: background-color 0.2s;
-}
-.single-monster-row .single-action-btn {
-  width: 30px;
-  height: 30px;
-}
-
 #search-monster::-webkit-calendar-picker-indicator {
   display: none !important;
 }
@@ -284,6 +276,14 @@
 #search-results .single-search-list .farm-list {
   max-height: 400px;
   overflow: auto;
+}
+
+.single-monster-row {
+  transition: background-color 0.2s;
+}
+.single-monster-row .single-action-btn {
+  width: 30px;
+  height: 30px;
 }
 
 /*# sourceMappingURL=extrasStyles.css.map */

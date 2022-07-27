@@ -34,7 +34,7 @@
             </div>
             <div class="pill-section-content font-form d-flex flex-column align-items-center py-3">
                 <form class="size-350 w-100 mb-0" id="search-mlife-form">
-                    <input type="text" list="monster-list" class="form-control text-center" id="search-monster" placeholder="Enter monster name..." autocomplete="off">
+                    <input type="text" list="monster-list" class="form-control text-center" id="search-matching-farms" placeholder="Enter monster name..." autocomplete="off">
                     <datalist id="monster-list">
                         <% for(let monster of searchableList) { %>
                             <option value="<%= monster.name %>" data-id="<%= monster.id %>">

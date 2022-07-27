@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     loadSavedData();
-    searchListener();
+    searchFarmsListener();
     toggleFarmViewListener();
-    farmListener();
+    bookmarkListener();
+    searchMonstersListener();
 })
 
 const activeSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16">
@@ -37,7 +38,7 @@ function populateBookmarks(category, savedData) {
         savedData.monsters.sort();
 
         savedData.monsters.forEach(monster => {
-
+            
         })
     }
 
@@ -58,15 +59,15 @@ function populateBookmarks(category, savedData) {
 }
 
 /************************
- * Adds two event listeners to the search box (searches for monsters)
+ * Adds two event listeners to the search box (searches for farms)
  * 1) On click, highlight all text inside search box
  * 2) On input, check if input was done through selection from datalist element (inputType differs based on browser)
  * - Fetch data through GET
  * - Populate farm list for view
  * - Display icon for all previously bookmarked farms
  * **********************/
-function searchListener() {
-    let searchBox = document.getElementById("search-monster");
+function searchFarmsListener() {
+    let searchBox = document.getElementById("search-matching-farms");
 
     searchBox.addEventListener("click", () => {
         searchBox.select();
@@ -83,7 +84,7 @@ function searchListener() {
             })
             .then(response => response.json())
             .then(data => {
-                if(!data.isErr) {
+                if(!data.isErr && data.farmCount !== 0) {
                     populateFarms(data.farms);
                     showBookmarksOnFarmSearch();
 
@@ -94,7 +95,7 @@ function searchListener() {
                 }
             })
             .catch(err => {
-                document.getElementById("search-results").textContent = err;
+                document.getElementById("search-results").innerHTML = `<span class="text-danger">- ${err} -</span>`;
             })
         }
     })
@@ -130,7 +131,7 @@ function populateFarms(farms) {
             let expireDate = new Intl.DateTimeFormat('en-SG', { year: '2-digit', month: 'short', day: '2-digit', hour: "2-digit", minute: "2-digit" }).format(Date.parse(farm.earliestExpiry) - 8 * 60 * 60 * 1000);
             let lastUpdatedDate = new Intl.DateTimeFormat('en-SG', { year: '2-digit', month: 'short', day: '2-digit', hour: "2-digit", minute: "2-digit" }).format(Date.parse(farm.earliestUpdatedOn) - 8 * 60 * 60 * 1000);
 
-            html += `<div class="single-farm-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" id="search-farm-${farm.farmName}" data-farm-name="${farm.farmName}">`;
+            html += `<div class="single-farm-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" id="search-farms-${farm.farmName}" data-mlife-name="${farm.farmName}" data-mlife-type="farms">`;
                 html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2" data-farm-name="${farm.farmName}">`
                     html += `<div class="w-100 d-flex align-items-center">`
                         html += `<div class="d-flex flex-column flex-grow-1 pl-3">`
@@ -214,7 +215,7 @@ function showBookmarksOnFarmSearch() {
 
     if(savedData["farms"] !== undefined && savedData["farms"].length >= 0 ) {
         savedData["farms"].forEach(farm => {
-            let matchingSearchFarm = document.getElementById(`search-farm-${farm}`);
+            let matchingSearchFarm = document.getElementById(`search-farms-${farm}`);
 
             if(matchingSearchFarm !== null) {
                 matchingSearchFarm.querySelector(".bookmark-selected").classList.remove("d-none");
@@ -244,13 +245,14 @@ function toggleFarmViewListener() {
 // For all created farm elements within both search results and bookmarks section, add two event listeners
 // 1) Click listener = copy farm name into clipboard
 // 2) Double click listener = add/remove bookmark and update saved data
-function farmListener() {
+function bookmarkListener() {
     let allSearchResults = document.getElementById("search-results");
     let bookmarkedFarms = document.getElementById("bookmarked-farms");
+    let usefulMonsters = document.getElementById("useful-monsters");
     let timer = 0;
 
     // Single-click listener
-    [allSearchResults, bookmarkedFarms].forEach(elem => {
+    [allSearchResults, bookmarkedFarms, usefulMonsters].forEach(elem => {
         elem.addEventListener("click", function(event) {
             let closestParent = event.target.closest(".single-farm");
 
@@ -265,34 +267,46 @@ function farmListener() {
     });
 
     // Double-click listener
-    // Retrieve the farm name of the double-clicked element
+    // Retrieve the name of the double-clicked element
     // Based on absence/presence of bookmark, add/remove bookmark icon and also update saved data
-    [allSearchResults, bookmarkedFarms].forEach(elem => {
+    [allSearchResults, bookmarkedFarms, usefulMonsters].forEach(elem => {
         elem.addEventListener("dblclick", function(event) {
-            let closestContainer = event.target.closest(".single-farm-container");
+            if(!event.target.classList.contains("mlife-container")) {
+                let closestContainer = event.target.closest(".mlife-container");
 
-            if(closestContainer !== null) {
-                let farmName = closestContainer.dataset.farmName;
-                let closestBookmark = closestContainer.querySelector(".bookmark-selected")
+                if(closestContainer !== null) {
+                    // mlifeName is either be farm name or monster name
+                    // mlifeType is either "farm" or "monster" 
+                    let mlifeName = closestContainer.dataset.mlifeName;
+                    let mlifeType = closestContainer.dataset.mlifeType;
+                    let closestBookmark = closestContainer.querySelector(".bookmark-selected")
 
-                if(closestBookmark.classList.contains("d-none")) {
-                    // Add bookmark
-                    closestBookmark.classList.remove("d-none");
-                    updateMonsterLifeBookmarks("add", "farms", farmName);
-                } else {
-                    // Remove bookmark
-                    // Removal may be done in one of two locations - from bookmarks, or from search results
-                    // If search results matching the removed farm exists (regardless of how it was triggered), remove the bookmark icon
-                    // Also remove the bookmark icon from bookmarks section
-                    // Update localStorage data based on latest removal
-                    let matchingSearchFarm = document.getElementById(`search-farm-${farmName}`);
+                    if(closestBookmark.classList.contains("d-none")) {
+                        // Add bookmark
+                        closestBookmark.classList.remove("d-none");
+                        updateMonsterLifeBookmarks("add", mlifeType, mlifeName);
+                    } else {
+                        // Remove bookmark
+                        // For farms, removal may be done in one of two locations - from bookmarks, or from search results
+                        // If search results matching the removed farm exists (regardless of how it was triggered), remove the bookmark icon
+                        //
+                        // For monsters, removal may be done from bookmarks or from Useful Monsters tab
+                        //
+                        // Also remove the bookmark icon from bookmarks section
+                        // Update localStorage data based on latest removal
+                        if(mlifeType === "farms") {
+                            let matchingElem = document.getElementById(`search-farms-${mlifeName}`);
 
-                    if(matchingSearchFarm !== null) {
-                        matchingSearchFarm.querySelector(".bookmark-selected").classList.add("d-none");
+                            if(matchingElem !== null) {
+                                matchingElem.querySelector(".bookmark-selected").classList.add("d-none");
+                            }    
+                        } else {
+
+                        }
+                        
+                        document.getElementById(`bookmarked-${mlifeType}-${mlifeName}`).querySelector(".bookmark-selected").classList.add("d-none");
+                        updateMonsterLifeBookmarks("remove", mlifeType, mlifeName);
                     }
-
-                    document.getElementById(`bookmarked-farms-${farmName}`).querySelector(".bookmark-selected").classList.add("d-none");
-                    updateMonsterLifeBookmarks("remove", "farms", farmName);
                 }
             }
         })
@@ -334,4 +348,37 @@ function updateMonsterLifeBookmarks(statusType, category, name) {
     }
 
     localStorage.setItem("monsterLife", JSON.stringify(savedData));
+}
+
+function searchMonstersListener() {
+    let searchBox = document.getElementById("search-useful-monster");
+
+    searchBox.addEventListener("click", () => {
+        searchBox.select();
+    })
+
+    searchBox.addEventListener("keyup", (event) => {
+        const searchTerm = searchBox.value.toLowerCase();
+
+        if(searchTerm.length >= 1) {
+            const allSearchRows = document.querySelectorAll(".single-search-row");
+
+            allSearchRows.forEach(function(row) {
+                if(row.dataset.searchTerm.includes(searchTerm)) {
+                    row.classList.remove("d-none");
+                    row.classList.add("d-flex");
+                } else {
+                    row.classList.add("d-none");
+                    row.classList.remove("d-flex");
+                }
+            })
+        } else {
+            const allSearchRows = document.querySelectorAll(".single-search-row");
+
+            allSearchRows.forEach(function(row) {
+                row.classList.remove("d-none");
+                row.classList.add("d-flex");
+            })
+        }
+    })
 }
