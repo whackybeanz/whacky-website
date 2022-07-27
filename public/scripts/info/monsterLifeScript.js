@@ -38,7 +38,7 @@ function populateBookmarks(category, savedData) {
         savedData.monsters.sort();
 
         savedData.monsters.forEach(monster => {
-            
+
         })
     }
 
@@ -284,6 +284,15 @@ function bookmarkListener() {
                     if(closestBookmark.classList.contains("d-none")) {
                         // Add bookmark
                         closestBookmark.classList.remove("d-none");
+
+                        if(mlifeType === "monsters") {
+                            let mlifeId = closestContainer.dataset.mlifeId;
+
+                            document.querySelectorAll(`.monster-${mlifeId}`).forEach(elem => {
+                                elem.querySelector(".bookmark-selected").classList.remove("d-none");
+                            })
+                        }
+
                         updateMonsterLifeBookmarks("add", mlifeType, mlifeName);
                     } else {
                         // Remove bookmark
