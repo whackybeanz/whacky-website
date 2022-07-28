@@ -15,6 +15,9 @@ const expiredSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="1
 const bookmarkFillSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
   <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
 </svg>`;
+const searchingSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg>`;
 
 // Loads saved data from localStorage
 // If category has at least one monster/farm, populate the respective list
@@ -35,28 +38,46 @@ function populateBookmarks(category, savedData) {
     bookmarkElem.innerHTML = "";
 
     if(category === "monsters") {
-        savedData.monsters.sort();
+        savedData.monsters.sort((a, b) => {
+            let nameA = a.name.toUpperCase();
+            let nameB = b.name.toUpperCase();
+            if (nameA < nameB) {
+                return -1;
+            }
+
+            if (nameA > nameB) {
+                return 1;
+            }
+
+            return 0;
+        });
 
         savedData.monsters.forEach(({ name, id }) => {
             let html = "";
 
-            html += `<div class="single-monster-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" data-mlife-name="${name}" data-mlife-id="${id}" id="bookmarked-monsters-${id}">`;
-                html += `<div class="single-monster mlife-container-div h-100 cursor-pointer d-flex justify-content-center rounded-sm py-2" data-mlife-name="${name}">`
-                    html += `<div class="monster-name mlife-container-header text-left font-weight-bold mb-0">${name}</div>`;
+            html += `<div class="single-monster-container mlife-container col-12 col-sm-6 col-md-4 col-lg-3 px-1 my-1 position-relative" data-mlife-name="${name}" data-mlife-id="${id}" id="bookmarked-monsters-${id}">`;
+                html += `<div class="single-monster mlife-container-div h-100 cursor-pointer d-flex justify-content-between align-items-center rounded-sm px-3 py-2">`
+                    html += `<div class="searching-icon text-custom">${searchingSvg}</div>`;
+                    html += `<div class="w-100 monster-name mlife-container-header text-center mb-0">${name}</div>`;
+                    html += `<div class="searching-icon text-custom">${searchingSvg}</div>`;
                 html += `</div>`;
             html += `</div>`;
 
             bookmarkElem.insertAdjacentHTML("beforeend", html);
+
+            document.querySelectorAll(`.monster-${id}`).forEach(elem => {
+                elem.querySelector(".bookmark-selected").classList.remove("d-none");
+            })
         })
     }
 
     if(category === "farms") {
-        savedData.farms.forEach(farmName => {
+        savedData.farms.forEach(({ name }) => {
             let html = "";
 
-            html += `<div class="single-farm-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" data-mlife-name="${farmName}" data-mlife-type="farms" id="bookmarked-farms-${farmName}">`;
-                html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex justify-content-center rounded-sm py-2" data-mlife-name="${farmName}">`
-                    html += `<div class="farm-name mlife-container-header text-left font-weight-bold mb-0">${farmName}</div>`;
+            html += `<div class="single-farm-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" data-mlife-name="${name}" data-mlife-type="farms" id="bookmarked-farms-${name}">`;
+                html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex justify-content-center rounded-sm py-2">`
+                    html += `<div class="farm-name mlife-container-header text-left font-weight-bold mb-0">${name}</div>`;
                 html += `</div>`;
                 html += `<div class="bookmark-selected text-custom position-absolute">${bookmarkFillSvg}</div>`;
             html += `</div>`;
@@ -70,6 +91,7 @@ function populateBookmarks(category, savedData) {
  * Adds two event listeners to the search box (searches for farms)
  * 1) On click, highlight all text inside search box
  * 2) On input, check if input was done through selection from datalist element (inputType differs based on browser)
+ * (event.detail.inputType is a CustomEvent fired from selecting a bookmarked monster)
  * - Fetch data through GET
  * - Populate farm list for view
  * - Display icon for all previously bookmarked farms
@@ -82,7 +104,8 @@ function searchFarmsListener() {
     })
 
     searchBox.addEventListener("input", (event) => {
-        if(event.inputType === "insertReplacementText" || event.inputType === undefined) {
+        if(event.inputType === "insertReplacementText" || event.inputType === undefined || 
+            (event.detail && event.detail.inputType === "insertReplacementText")) {
             const searchValue = searchBox.value;
             const monsterDatalist = document.getElementById("monster-list");
             const monsterId = monsterDatalist.querySelector(`option[value="${searchValue}"]`).dataset.id;
@@ -140,7 +163,7 @@ function populateFarms(farms) {
             let lastUpdatedDate = new Intl.DateTimeFormat('en-SG', { year: '2-digit', month: 'short', day: '2-digit', hour: "2-digit", minute: "2-digit" }).format(Date.parse(farm.earliestUpdatedOn) - 8 * 60 * 60 * 1000);
 
             html += `<div class="single-farm-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" id="search-farms-${farm.farmName}" data-mlife-name="${farm.farmName}" data-mlife-type="farms">`;
-                html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2" data-farm-name="${farm.farmName}">`
+                html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2">`
                     html += `<div class="w-100 d-flex align-items-center">`
                         html += `<div class="d-flex flex-column flex-grow-1 pl-3">`
                             html += `<div class="farm-name mlife-container-header text-left font-weight-bold mb-0">${farm.farmName}</div>`;
@@ -261,18 +284,36 @@ function bookmarkListener() {
     let timer = 0;
 
     // Single-click listener
-    [allSearchResults, bookmarkedFarms, usefulMonsters].forEach(elem => {
+    [allSearchResults, bookmarkedFarms].forEach(elem => {
         elem.addEventListener("click", function(event) {
-            let closestParent = event.target.closest(".single-farm");
+            let closestParent = event.target.closest(".mlife-container-div");
 
             if(closestParent !== null) {
-                navigator.clipboard.writeText(closestParent.dataset.farmName).then(function() {
+                navigator.clipboard.writeText(closestParent.parentElement.dataset.mlifeName).then(function() {
                     closestParent.classList.add("copied")
                 }, function() {
                     
                 });
             }
         })
+    });
+
+    bookmarkedMonsters.addEventListener("click", function(event) {
+        let closestContainer = event.target.closest(".mlife-container");
+
+        if(closestContainer !== null) {
+            let mlifeName = closestContainer.dataset.mlifeName;
+            let searchInput = document.getElementById("search-matching-farms");
+
+            searchInput.value = mlifeName;
+            searchInput.dispatchEvent(new CustomEvent('input', { detail: { inputType: "insertReplacementText" } }));
+
+            let currSelected = document.getElementById("bookmarked-monsters").querySelector(".searching");
+            if(currSelected !== null) {
+                currSelected.classList.remove("searching");
+            }
+            closestContainer.querySelector(".mlife-container-div").classList.add("searching");
+        }
     });
 
     // Double-click listener

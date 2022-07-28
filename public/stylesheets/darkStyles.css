@@ -391,10 +391,10 @@ body.dark-mode .mlife-container .mlife-container-div {
 body.dark-mode .mlife-container .mlife-container-div:hover, body.dark-mode .mlife-container .mlife-container-div.copied {
   background: linear-gradient(to right, #ffc107 0%, rgba(0, 0, 0, 0.8) 8px, rgba(0, 0, 0, 0.8) 100%) no-repeat;
 }
-body.dark-mode .mlife-container .mlife-container-div.copied {
+body.dark-mode .mlife-container .mlife-container-div.copied, body.dark-mode .mlife-container .mlife-container-div.searching {
   border-color: #ffc107;
 }
-body.dark-mode .mlife-container .mlife-container-div.copied .mlife-container-header {
+body.dark-mode .mlife-container .mlife-container-div.copied .mlife-container-header, body.dark-mode .mlife-container .mlife-container-div.searching .mlife-container-header {
   color: #ffc107;
 }
 body.dark-mode .single-monster-row:hover {

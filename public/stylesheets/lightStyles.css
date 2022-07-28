@@ -336,10 +336,10 @@ body .mlife-container .mlife-container-div {
 body .mlife-container .mlife-container-div:hover, body .mlife-container .mlife-container-div.copied {
   background: linear-gradient(to right, #17a2b8 0%, rgba(255, 255, 255, 0.7) 8px, rgba(255, 255, 255, 0.7) 100%) no-repeat;
 }
-body .mlife-container .mlife-container-div.copied {
+body .mlife-container .mlife-container-div.copied, body .mlife-container .mlife-container-div.searching {
   border-color: #17a2b8;
 }
-body .mlife-container .mlife-container-div.copied .mlife-container-header {
+body .mlife-container .mlife-container-div.copied .mlife-container-header, body .mlife-container .mlife-container-div.searching .mlife-container-header {
   color: #17a2b8;
 }
 body .single-monster-row:hover {

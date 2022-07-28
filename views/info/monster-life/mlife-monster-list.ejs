@@ -16,7 +16,7 @@
     <div class="monster-display w-100 font-table d-flex flex-column flex-md-row align-items-center justify-content-start mb-3 mb-md-0">
         <div class="<% if(singleMonster.type === "Special") { %>col px-0 px-md-3<% } else { %>col-12 col-md-8 px-0 px-md-3<% } %>">
             <div class="single-monster-container mlife-container monster-<%= singleMonster.id %> px-0 px-md-1 my-md-1 position-relative" data-mlife-name="<%= singleMonster.name %>" data-mlife-id="<%= singleMonster.id %>" data-mlife-type="monsters">
-                <div class="single-monster mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2">
+                <div class="single-monster mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-3">
                     <div class="w-100 d-flex align-items-start">
                         <div class="d-flex flex-column flex-grow-1 pl-3 mr-2">
                             <p class="monster-name mlife-container-header text-left font-weight-bold mb-0 mr-3"><%= singleMonster.name %></p>
@@ -49,7 +49,7 @@
                 <% if(singleMonster.isFusion) { %>
                     <div class="col single-monster-container mlife-container monster-<%= singleMonster.fuseMaterials[0] %> px-0 px-md-1 my-md-1 position-relative mr-2" 
                         data-mlife-name="<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).name %>" data-mlife-id="<%= singleMonster.fuseMaterials[0] %>" data-mlife-type="monsters">
-                        <div class="single-monster mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2">
+                        <div class="single-monster mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-3">
                             <div class="w-100 d-flex flex-column align-items-center px-3">
                                 <p class="monster-name mlife-container-header text-center font-weight-bold mb-0"><%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).name %></p>
                                 <p class="text-center text-muted mb-0">(<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).type %> / <%= ["C", "B", "B+", "A", "A+", "S", "SS"][allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).rank] %>)</p>
@@ -67,8 +67,8 @@
                     </svg>
 
                     <div class="col single-monster-container mlife-container monster-<%= singleMonster.fuseMaterials[1] %> px-0 px-md-1 my-md-1 position-relative ml-2" 
-                        data-mlife-name="<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).name %>" data-mlife-id="<%= singleMonster.fuseMaterials[0] %>" data-mlife-type="monsters">
-                        <div class="single-monster mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2">
+                        data-mlife-name="<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).name %>" data-mlife-id="<%= singleMonster.fuseMaterials[1] %>" data-mlife-type="monsters">
+                        <div class="single-monster mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-3">
                             <div class="w-100 d-flex flex-column align-items-center px-3">
                                 <p class="monster-name mlife-container-header text-center font-weight-bold mb-0"><%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).name %></p>
                                 <p class="text-center text-muted mb-0">(<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).type %> / <%= ["C", "B", "B+", "A", "A+", "S", "SS"][allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).rank] %>)</p>

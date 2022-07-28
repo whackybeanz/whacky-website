@@ -554,11 +554,11 @@ body.dark-mode {
                 background: linear-gradient(to right, globals.$highlight-orange 0%, globals.$dark-mode-black 8px, globals.$dark-mode-black 100%) no-repeat;
             }
 
-            &.copied {
+            &.copied, &.searching {
                 border-color: globals.$highlight-orange;
             }
 
-            &.copied {
+            &.copied, &.searching {
                 .mlife-container-header {
                     color: globals.$highlight-orange;
                 }

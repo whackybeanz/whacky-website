@@ -238,7 +238,7 @@
 }
 
 .bookmark-list {
-  max-height: 300px;
+  max-height: 200px;
   overflow: auto;
 }
 
@@ -255,6 +255,12 @@
 }
 .mlife-container .mlife-container-div .inactive-text {
   opacity: 0.3;
+}
+.mlife-container .mlife-container-div .searching-icon {
+  display: none;
+}
+.mlife-container .mlife-container-div.searching .searching-icon {
+  display: inline;
 }
 .mlife-container .bookmark-selected {
   top: -4px;

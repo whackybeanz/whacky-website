@@ -281,7 +281,7 @@
 
 // Monster Life
 .bookmark-list {
-    max-height: 300px;
+    max-height: 200px;
     overflow: auto;
 }
 
@@ -301,6 +301,16 @@
 
         .inactive-text {
             opacity: 0.3;
+        }
+
+        .searching-icon {
+            display: none;
+        }
+
+        &.searching {
+            .searching-icon {
+                display: inline;
+            }
         }
     }
 

@@ -504,11 +504,11 @@ body {
                 background: linear-gradient(to right, globals.$highlight-blue 0%, globals.$light-mode-white 8px, globals.$light-mode-white 100%) no-repeat;
             }
 
-            &.copied {
+            &.copied, &.searching {
                 border-color: globals.$highlight-blue;
             }
 
-            &.copied {
+            &.copied, &.searching {
                 .mlife-container-header {
                     color: globals.$highlight-blue;
                 }
