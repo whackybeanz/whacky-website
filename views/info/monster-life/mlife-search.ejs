@@ -37,6 +37,11 @@
                 <hr class="w-25">
 
                 <div class="w-100 d-flex flex-column">
+                    <div class="d-none flex-column justify-content-center align-items-center text-center mb-4" id="search-image-div">
+                        <p class="font-subsubheader">Searching for... <span class="text-custom font-weight-bold" id="search-monster-name"></span></p>
+                        <img src="" class="img-fluid" id="search-image">
+                    </div>
+
                     <button type="button" class="btn btn-sm btn-outline-custom d-none align-self-center align-self-md-end align-items-center mb-2 mr-2" id="btn-toggle-farm-view">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill d-none mr-2" viewBox="0 0 16 16">
                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -49,7 +54,7 @@
                         Toggle Farm Details
                     </button>
 
-                    <div class="d-flex flex-column align-items-center px-2 " id="search-results">
+                    <div class="d-flex flex-column align-items-center px-2" id="search-results">
                         <span class="text-custom">- Search results appear here -</span>
                     </div>
                 </div>

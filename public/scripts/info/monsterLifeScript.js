@@ -143,7 +143,7 @@ function searchFarmsListener() {
             .then(response => response.json())
             .then(data => {
                 if(!data.isErr && data.farmCount !== 0) {
-                    populateFarms(data.farms);
+                    populateFarms(data.farms, searchValue);
                     showBookmarksOnFarmSearch();
 
                     document.getElementById("btn-toggle-farm-view").classList.remove("d-none");
@@ -167,9 +167,14 @@ function searchFarmsListener() {
  * - Display button to toggle on/off farm details
  * - Based on saved data, show any bookmarked farms that have appeared in the searched results 
  * **********************/
-function populateFarms(farms) {
+function populateFarms(farms, monsterName) {
     let searchResultsDiv = document.getElementById("search-results");
     let sortedFarms = sortFarms(farms);
+
+    document.getElementById("search-image-div").classList.remove("d-none");
+    document.getElementById("search-image-div").classList.add("d-flex");
+    document.getElementById("search-monster-name").textContent = monsterName;
+    document.getElementById("search-image").setAttribute("src", `https://whacky-website.s3.ap-southeast-1.amazonaws.com/images/monster-life/${monsterName}.png`);
 
     searchResultsDiv.innerHTML = "";
 
