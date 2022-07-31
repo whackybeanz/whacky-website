@@ -11,7 +11,7 @@ body {
         color: globals.$highlight-blue;
         border-color: globals.$highlight-blue;
 
-        &:hover {
+        &:hover, &.active {
             color: globals.$light-mode-white-opaque;
             background-color: globals.$highlight-blue;
             border-color: globals.$highlight-blue;
@@ -517,7 +517,7 @@ body {
     }
 
     .single-monster-row {
-        &:hover {
+        &.active {
             background-color: globals.$light-mode-light-grey;
         }
 

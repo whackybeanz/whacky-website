@@ -1,4 +1,4 @@
-<div class="single-search-row single-monster-row w-100 d-flex align-items-start align-items-md-center rounded-sm py-md-1 mb-4" id="row-<%= singleMonster.id %>"
+<div class="single-search-row single-monster-row w-100 d-flex align-items-start align-items-md-center rounded-sm py-md-1 mb-4" id="row-<%= singleMonster.id %>" data-monster-id="<%= singleMonster.id %>"
     data-search-terms='["<%= singleMonster.name.toLowerCase() %>"<% if(singleMonster.isFusion) { %>, "<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[0]).name.toLowerCase() %>", "<%= allMonsters.find(monster => monster.id === singleMonster.fuseMaterials[1]).name.toLowerCase() %>"<% } %>]'
     data-related='["<%= singleMonster.id %>"<% if(singleMonster.isFusion) { %>, "<%= singleMonster.fuseMaterials[0] %>", "<%= singleMonster.fuseMaterials[1] %>"<% } %>]'>
     <div class="tool-display h-100 col-1 d-flex flex-column align-items-end justify-content-start justify-content-md-center px-0 px-md-3">
@@ -9,9 +9,14 @@
                 <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
             </svg>
         </button>
-        <button class="single-action-btn btn btn-sm btn-outline-custom d-flex justify-content-center align-items-center">
+        <button class="single-action-btn btn-farm-add btn btn-sm btn-outline-custom d-flex justify-content-center align-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M 7.5 2 h 2 v 5 h 5 v 2 h -5 v 5 h -2 v -5 h -5 v -2 h 5 v -5 Z"/>
+            </svg>
+        </button>
+        <button class="single-action-btn btn-farm-remove btn btn-sm btn-outline-danger d-none justify-content-center align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M 2 8 v -1 h 11 v 2 h -11 Z"/>
             </svg>
         </button>
     </div>

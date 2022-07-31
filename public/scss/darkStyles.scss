@@ -11,7 +11,7 @@ body.dark-mode {
         color: globals.$highlight-orange;
         border-color: globals.$highlight-orange;
 
-        &:hover {
+        &:hover, &.active {
             color: globals.$dark-mode-black-opaque;
             background-color: globals.$highlight-orange;
             border-color: globals.$highlight-orange;
@@ -567,8 +567,8 @@ body.dark-mode {
     }
 
     .single-monster-row {
-        &:hover {
-            background-color: globals.$dark-mode-grey;
+        &.active {
+            background-color: globals.$dark-mode-navy-grey;
         }
 
         .monster-display {

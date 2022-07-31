@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     bookmarkListener();
     searchMonstersListener();
     relatedSearchListener();
+    addRemoveFarmMonsters();
+    viewUsefulMonsters();
+    removeUsefulMonsters();
 })
 
 const activeSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16">
@@ -28,7 +31,11 @@ function loadSavedData() {
     if(savedData !== null) {
         Object.keys(savedData).forEach(category => {
             if(savedData[category] !== undefined && savedData[category].length > 0) {
-                populateBookmarks(category, savedData);    
+                if(category === "monsters" || category === "farms") {
+                    populateBookmarks(category, savedData);    
+                } else {
+                    highlightUsefulMonsters(savedData);
+                }
             }
         })
     }
@@ -70,6 +77,8 @@ function populateBookmarks(category, savedData) {
                 elem.querySelector(".bookmark-selected").classList.remove("d-none");
             })
         })
+
+        document.getElementById("num-bookmarked-monsters").textContent = savedData.monsters.length;
     }
 
     if(category === "farms") {
@@ -86,6 +95,21 @@ function populateBookmarks(category, savedData) {
             bookmarkElem.insertAdjacentHTML("beforeend", html);
         })
     }
+}
+
+function highlightUsefulMonsters(savedData) {
+    const addedToFarm = savedData.farmMonsters;
+
+    for(let monsterId of addedToFarm) {
+        const row = document.getElementById(`row-${monsterId}`);
+        row.classList.add("active");
+        row.querySelector(".btn-farm-add").classList.add("d-none");
+        row.querySelector(".btn-farm-add").classList.remove("d-flex");
+        row.querySelector(".btn-farm-remove").classList.add("d-flex");
+        row.querySelector(".btn-farm-remove").classList.remove("d-none");
+    }
+
+    document.getElementById("num-added-to-farm").textContent = savedData.farmMonsters.length;
 }
 
 /************************
@@ -422,6 +446,8 @@ function updateMonsterLifeBookmarks(statusType, category, name, id) {
                     bookmarkedElem.innerHTML = `<p class="w-100 text-center text-custom mb-0">- None bookmarked currently -</p>`;
                 }
             }, 500)
+
+            document.getElementById("num-bookmarked-monsters").textContent = savedData.monsters.length;
         }
     }
 
@@ -494,4 +520,166 @@ function displayRelated(allRelated, relatedSearchKey) {
             }
         }
     }
+}
+
+function addRemoveFarmMonsters() {
+    const savedData = JSON.parse(localStorage.getItem("monsterLife")) || { };
+    const allAddBtns = document.querySelectorAll(".btn-farm-add");
+    const allRemoveBtns = document.querySelectorAll(".btn-farm-remove");
+
+    [...allAddBtns, ...allRemoveBtns].forEach(btn => {
+        btn.addEventListener("click", (event) => {
+            const nearestContainer = event.target.closest(".single-monster-row");
+            const monsterId = nearestContainer.dataset.monsterId;
+
+            nearestContainer.classList.toggle("active");
+            btn.classList.toggle("d-flex");
+            btn.classList.toggle("d-none");
+
+            if(btn.classList.contains("btn-farm-add")) {
+                btn.nextElementSibling.classList.toggle("d-none");
+                btn.nextElementSibling.classList.toggle("d-flex");
+
+                if(savedData.farmMonsters === undefined) {
+                    savedData.farmMonsters = [monsterId];
+                } else {
+                    savedData.farmMonsters.push(monsterId);
+                }
+            } else {
+                btn.previousElementSibling.classList.toggle("d-none");
+                btn.previousElementSibling.classList.toggle("d-flex");
+
+                savedData.farmMonsters = savedData.farmMonsters.filter(ids => ids !== monsterId);
+            }
+
+            document.getElementById("num-added-to-farm").textContent = savedData.farmMonsters.length;
+            localStorage.setItem("monsterLife", JSON.stringify(savedData));
+        })
+    })
+}
+
+/***********
+ * 
+ * Useful Monsters toolbar functions
+ * - View filters (all, added to farm, bookmarked)
+ * - Remove functions (added to farm, bookmarked)
+ * 
+ * *********/
+function viewUsefulMonsters() {
+    const allViewBtns = document.querySelectorAll(".btn-single-view-monsters");
+
+    allViewBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const viewType = btn.dataset.viewType;
+
+            removeAllViewBtnActiveStatus();
+            
+            if(viewType === "all") {
+                viewAllMonsters();
+            } else if (viewType === "added") {
+                viewAllAddedFarmMonsters();
+            } else {
+                viewAllBookmarkedMonsters();
+            }
+
+            btn.classList.add("active");
+        })
+    })
+}
+
+function removeAllViewBtnActiveStatus() {
+    for(let btn of document.querySelectorAll(".btn-single-view-monsters")) {
+        btn.classList.remove("active");
+    }
+}
+
+function viewAllMonsters() {
+    for(let row of document.querySelectorAll(".single-monster-row")) {
+        row.classList.add("d-flex");
+        row.classList.remove("d-none");
+    }
+}
+
+function hideAllMonsters() {
+    for(let row of document.querySelectorAll(".single-monster-row")) {
+        row.classList.remove("d-flex");
+        row.classList.add("d-none");
+    }
+}
+
+function viewAllAddedFarmMonsters() {
+    hideAllMonsters();
+
+    for(let row of document.querySelectorAll(".single-monster-row.active")) {
+        row.classList.add("d-flex");
+        row.classList.remove("d-none");
+    }
+}
+
+function viewAllBookmarkedMonsters() {
+    hideAllMonsters();
+
+    const allBookmarkedElems = document.querySelectorAll(".bookmark-selected:not(.d-none)");
+    
+    for(let elem of allBookmarkedElems) {
+        const closestContainer = elem.closest(".single-monster-row");
+
+        closestContainer.classList.remove("d-none");
+        closestContainer.classList.add("d-flex");
+    }
+}
+
+function removeUsefulMonsters() {
+    const allRemoveBtns = document.querySelectorAll(".btn-single-remove-monsters");
+
+    allRemoveBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const viewType = btn.dataset.viewType;
+            
+            if(viewType === "added") {
+                removeAllAddedFarmMonsters();
+            } else {
+                removeAllBookmarkedMonsters();
+            }
+        })
+    })
+}
+
+function removeAllAddedFarmMonsters() {
+    const savedData = JSON.parse(localStorage.getItem("monsterLife")) || { };
+    const allAdded = document.querySelectorAll(".single-monster-row.active");
+
+    allAdded.forEach(elem => {
+        elem.classList.remove("active");
+        elem.querySelector(".btn-farm-add").classList.toggle("d-flex");
+        elem.querySelector(".btn-farm-add").classList.toggle("d-none");
+        elem.querySelector(".btn-farm-remove").classList.toggle("d-flex");
+        elem.querySelector(".btn-farm-remove").classList.toggle("d-none");
+    })
+
+    if(savedData.farmMonsters !== undefined) {
+        savedData.farmMonsters = [];
+    }
+
+    document.getElementById("num-added-to-farm").textContent = "0";
+
+    localStorage.setItem("monsterLife", JSON.stringify(savedData));
+}
+
+function removeAllBookmarkedMonsters() {
+    const savedData = JSON.parse(localStorage.getItem("monsterLife")) || { };
+    const allBookmarkedElems = document.querySelectorAll(".bookmark-selected:not(.d-none)");
+
+    for(let elem of allBookmarkedElems) {
+        elem.classList.add("d-none");
+    }
+
+    if(savedData.monsters !== undefined) {
+        savedData.monsters = [];
+    }
+
+    document.getElementById("num-bookmarked-monsters").textContent = "0";
+    document.getElementById("bookmarked-monsters").innerHTML = `<p class="w-100 text-custom text-center mb-0">- None bookmarked currently. Why not go to [Useful Monsters] to manage your monster bookmarks? -</p>`;
+
+    localStorage.setItem("monsterLife", JSON.stringify(savedData));
 }

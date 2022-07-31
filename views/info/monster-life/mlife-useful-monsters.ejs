@@ -29,6 +29,46 @@
                         "Add" to farm; highlights "added" monsters for easier tracking of the stats you want. Note: there's no limit here, but remember that the max you can have on your actual farm (not inside storage) is 28 monsters at any point of time!
                     </li>
                 </ul>
+
+                <div class="w-100 d-flex flex-wrap justify-content-center align-items-center mb-2">
+                    <span class="font-weight-bold mr-2">View:</span>
+                    <button class="btn-single-view-monsters btn btn-sm btn-outline-custom d-flex align-items-center text-custom mx-1 active" data-view-type="all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill mr-1" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                        </svg>
+                        All
+                    </button>
+                    <button class="btn-single-view-monsters btn btn-sm btn-outline-custom d-flex align-items-center text-custom mx-1" data-view-type="added">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg mr-1" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M 7.5 2 h 2 v 5 h 5 v 2 h -5 v 5 h -2 v -5 h -5 v -2 h 5 v -5 Z"/>
+                        </svg> 
+                        Added to Farm (<span id="num-added-to-farm">0</span>)
+                    </button>
+                    <button class="btn-single-view-monsters btn btn-sm btn-outline-custom d-flex align-items-center text-custom mx-1" data-view-type="bookmarked">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill mr-1" viewBox="0 0 16 16">
+                            <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                        </svg>
+                        Bookmarked (<span id="num-bookmarked-monsters">0</span>)
+                    </button>
+                </div>
+
+                <div class="w-100 d-flex flex-wrap justify-content-center align-items-center mb-3">
+                    <span class="font-weight-bold mr-2">Remove:</span>
+                    <button class="btn-single-remove-monsters btn btn-sm btn-outline-danger d-flex align-items-center mx-1" data-remove-type="added">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg mr-1" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M 2 8 v -1 h 11 v 2 h -11 Z"/>
+                        </svg>
+                        All Added
+                    </button>
+                    <button class="btn-single-remove-monsters btn btn-sm btn-outline-danger d-flex align-items-center mx-1" data-remove-type="bookmarked">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-x-fill mr-1" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM6.854 5.146a.5.5 0 1 0-.708.708L7.293 7 6.146 8.146a.5.5 0 1 0 .708.708L8 7.707l1.146 1.147a.5.5 0 1 0 .708-.708L8.707 7l1.147-1.146a.5.5 0 0 0-.708-.708L8 6.293 6.854 5.146z"/>
+                        </svg>
+                        All Bookmarked
+                    </button>
+                </div>
+
                 <form class="size-350 w-100 mb-4" id="search-useful-monsters-form">
                     <input type="text" list="useful-monster-list" class="form-control text-center" id="search-useful-monster" placeholder="Search monster name..." autocomplete="off">
                     <datalist id="useful-monster-list">
