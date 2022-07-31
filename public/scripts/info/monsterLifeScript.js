@@ -82,12 +82,13 @@ function populateBookmarks(category, savedData) {
     }
 
     if(category === "farms") {
-        savedData.farms.forEach(({ name }) => {
+        savedData.farms.forEach(({ name, category }) => {
             let html = "";
 
             html += `<div class="single-farm-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" data-mlife-name="${name}" data-mlife-type="farms" id="bookmarked-farms-${name}">`;
-                html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex justify-content-center rounded-sm py-2">`
-                    html += `<div class="farm-name mlife-container-header text-left font-weight-bold mb-0">${name}</div>`;
+                html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center justify-content-center rounded-sm px-3 py-2">`
+                    html += `<div class="farm-name mlife-container-header text-left flex-grow-1 font-weight-bold mb-0">${name}</div>`;
+                    html += `<div class="font-form text-muted">- ${category} -</div>`;
                 html += `</div>`;
                 html += `<div class="bookmark-selected text-custom position-absolute">${bookmarkFillSvg}</div>`;
             html += `</div>`;
@@ -351,11 +352,11 @@ function bookmarkListener() {
 
                 if(closestContainer !== null) {
                     // mlifeName is either be farm name or monster name
-                    // mlifeType is either "farm" or "monster" 
-                    // mlifeId applies to only monsters
+                    // mlifeType is either "farm" or "monster"
+                    // mlifeId is either monsterId, or monster name (as obtained from farm searches)
                     let mlifeName = closestContainer.dataset.mlifeName;
                     let mlifeType = closestContainer.dataset.mlifeType;
-                    let mlifeId = closestContainer.dataset.mlifeId;
+                    let mlifeId = closestContainer.dataset.mlifeId || document.getElementById("search-matching-farms").value;
                     let closestBookmark = closestContainer.querySelector(".bookmark-selected")
 
                     if(closestBookmark.classList.contains("d-none")) {
@@ -410,13 +411,13 @@ function updateMonsterLifeBookmarks(statusType, category, name, id) {
     if(statusType === "add") {
         if(savedData[category] !== undefined && savedData[category].length >= 0 ) {
             if(category === "farms") {
-                savedData[category].push({ name: name });
+                savedData[category].push({ name: name, category: id });
             } else {
                 savedData[category].push({ name: name, id: id });
             }
         } else {
             if(category === "farms") {
-                savedData[category] = [{ name: name }];    
+                savedData[category] = [{ name: name, category: id }];    
             } else {
                 savedData[category] = [{ name: name, id: id }]
             }
@@ -445,7 +446,7 @@ function updateMonsterLifeBookmarks(statusType, category, name, id) {
                 if(bookmarkedElem.innerHTML === "") {
                     bookmarkedElem.innerHTML = `<p class="w-100 text-center text-custom mb-0">- None bookmarked currently -</p>`;
                 }
-            }, 500)
+            }, 300)
 
             document.getElementById("num-bookmarked-monsters").textContent = savedData.monsters.length;
         }
@@ -683,7 +684,7 @@ function removeAllBookmarkedMonsters() {
     }
 
     document.getElementById("num-bookmarked-monsters").textContent = "0";
-    document.getElementById("bookmarked-monsters").innerHTML = `<p class="w-100 text-custom text-center mb-0">- None bookmarked currently. Why not go to [Useful Monsters] to manage your monster bookmarks? -</p>`;
+    document.getElementById("bookmarked-monsters").innerHTML = `<p class="w-100 text-custom text-center mb-0">- No monsters bookmarked currently -</p>`;
 
     localStorage.setItem("monsterLife", JSON.stringify(savedData));
 }
