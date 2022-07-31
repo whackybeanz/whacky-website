@@ -634,12 +634,16 @@ function removeUsefulMonsters() {
 
     allRemoveBtns.forEach(btn => {
         btn.addEventListener("click", () => {
-            const viewType = btn.dataset.viewType;
+            const viewType = btn.dataset.removeType;
             
             if(viewType === "added") {
-                removeAllAddedFarmMonsters();
+                if(confirm("You selected to remove all [added farm monsters]. Press OK to proceed.")) {
+                    removeAllAddedFarmMonsters();    
+                }
             } else {
-                removeAllBookmarkedMonsters();
+                if(confirm("You selected to remove all [bookmarked monsters]. Press OK to proceed.")) {
+                    removeAllBookmarkedMonsters();
+                }
             }
         })
     })
