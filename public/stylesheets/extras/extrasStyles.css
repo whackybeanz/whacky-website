@@ -237,8 +237,13 @@
   }
 }
 
-.bookmark-list {
+#bookmarked-monsters {
   max-height: 200px;
+  overflow: auto;
+}
+
+.single-useful-farms-category {
+  max-height: 250px;
   overflow: auto;
 }
 

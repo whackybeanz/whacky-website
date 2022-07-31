@@ -322,13 +322,15 @@ router.get("/monster-life", function(req, res) {
             const searchableList = CommonHelper.sortListByStringValue(monsterLifeList.filter(monster => monster.isSearchable === true), "name");
             const sortedListByEffect = Helper.sortMonsterLifeList(monsterLifeList.slice());
             const sortedListByName = CommonHelper.sortListByStringValue(monsterLifeList.slice(), "name");
+            const usefulFarmList = Helper.getUsefulFarmsList();
             
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "info";
             res.locals.branch = "monster-life";
             res.locals.title = "Monster Life";
 
-            res.render("info/monster-life/mlife-landing", { icons: compiledIcons, allMonsters: monsterLifeList, searchableList: searchableList, sortedListByEffect: sortedListByEffect, sortedListByName: sortedListByName });
+            res.render("info/monster-life/mlife-landing", { icons: compiledIcons, allMonsters: monsterLifeList, searchableList: searchableList, usefulFarms: usefulFarmList, 
+                                                            sortedListByEffect: sortedListByEffect, sortedListByName: sortedListByName });
         })
         .catch(err => {
             console.log(err);

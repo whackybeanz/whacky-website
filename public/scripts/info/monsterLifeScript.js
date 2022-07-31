@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     searchFarmsListener();
     toggleFarmViewListener();
     bookmarkListener();
+    selectListener();
     searchMonstersListener();
     relatedSearchListener();
     addRemoveFarmMonsters();
@@ -306,11 +307,12 @@ function bookmarkListener() {
     let allSearchResults = document.getElementById("search-results");
     let bookmarkedFarms = document.getElementById("bookmarked-farms");
     let bookmarkedMonsters = document.getElementById("bookmarked-monsters");
+    let usefulFarms = document.getElementById("useful-farms")
     let usefulMonsters = document.getElementById("useful-monsters");
     let timer = 0;
 
     // Single-click listener
-    [allSearchResults, bookmarkedFarms].forEach(elem => {
+    [allSearchResults, bookmarkedFarms, usefulFarms].forEach(elem => {
         elem.addEventListener("click", function(event) {
             let closestParent = event.target.closest(".mlife-container-div");
 
@@ -453,6 +455,40 @@ function updateMonsterLifeBookmarks(statusType, category, name, id) {
     }
 
     localStorage.setItem("monsterLife", JSON.stringify(savedData));
+}
+
+function selectListener() {
+    const allSelect = document.querySelectorAll(".useful-farms-select");
+
+    allSelect.forEach(select => {
+        select.addEventListener("change", () => {
+            const type = document.getElementById("useful-farms-select-type").value;
+            const rank = document.getElementById("useful-farms-select-rank").value;
+
+            showUsefulFarms(type, rank);
+        })
+    })
+}
+
+function showUsefulFarms(type = "all", rank = "any") {
+    let attributeStr = "";
+    const allUsefulFarms = document.querySelectorAll(".single-useful-farm-container");
+
+    for(let farm of allUsefulFarms) {
+        farm.classList.add("d-none");
+    }
+
+    if(type !== "all") {
+        attributeStr += `[data-has-types*="${type}"]`;
+    }
+
+    if(rank !== "any") {
+        attributeStr += `[data-has-ranks*="${rank}"]`;
+    }
+
+    for(let farm of document.querySelectorAll(`.single-useful-farm-container${attributeStr}`)) {
+        farm.classList.remove("d-none");
+    }
 }
 
 function searchMonstersListener() {

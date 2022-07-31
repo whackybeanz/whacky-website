@@ -1,13 +1,81 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
     <div class="w-100 d-flex flex-column justify-content-center px-3 py-3">
         <div class="pill-section rounded-sm mb-5">
-            <div class="pill-section-subheader text-center">
+            <div class="pill-section-subheader text-center pb-2">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
                     <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['default-icon'].name %>"> Useful Farms
                 </h2>
+                <p class="mb-0">
+                    For your questing needs<br>Click on any farms to automatically copy to your clipboard
+                </p>
             </div>
-            <div class="pill-section-content font-form d-flex flex-wrap justify-content-center pt-3">
-                
+            <div class="pill-section-content font-form d-flex flex-wrap justify-content-center px-3 pt-3">
+                <div class="d-flex flex-column align-items-center justify-content-center text-center mb-4">
+                    <p class="mb-1">I'm looking for</p>
+                    <form class="d-flex align-items-center justify-content-center flex-wrap">
+                        <select class="useful-farms-select w-auto form-control py-1" id="useful-farms-select-type">
+                            <option>all</option>
+                            <option>A.I.</option>
+                            <option>Bird</option>
+                            <option>Cat</option>
+                            <option>Cow</option>
+                            <option>Demihuman</option>
+                            <option>Demon</option>
+                            <option>Dog</option>
+                            <option>Dragon</option>
+                            <option>Erdas</option>
+                            <option>Fairy</option>
+                            <option>Ghost</option>
+                            <option>Golem</option>
+                            <option>Monkey & Bear</option>
+                            <option>Mushroom</option>
+                            <option>Pig</option>
+                            <option>Plant</option>
+                            <option>Reptile</option>
+                            <option>Slime & Snail</option>
+                            <option>Soldier</option>
+                            <option>Spirit</option>
+                            <option>Toy</option>
+                            <option>Undead</option>
+                            <option>Yeti & Pepe</option>
+                        </select>
+                        <span class="mx-2">monsters at</span>
+                        <select class="useful-farms-select w-auto form-control py-1" id="useful-farms-select-rank">
+                            <option>any</option>
+                            <option value="C reg">C</option>
+                            <option value="B reg">B</option>
+                            <option value="B plus">B+</option>
+                            <option value="A reg">A</option>
+                            <option value="A plus">A+</option>
+                            <option value="S reg">S</option>
+                        </select>
+                        <span class="mx-2">rank</span>
+                    </form>
+                </div>
+
+                <div id="useful-farms">
+                    <% for(let [category, farms] of Object.entries(usefulFarms)) { %>
+                        <div class="w-100 d-flex flex-column mb-4">
+                            <h3 class="font-subsubheader text-underline"><%= category.charAt(0).toUpperCase() + category.slice(1) %></h3>
+                            <div class="single-useful-farms-category d-flex flex-wrap px-2">
+                                <% for(let farm of farms) { %>
+                                    <div class="single-useful-farm-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" data-has-types='<%= farm.types || "Variety" %>' data-has-ranks='<%= farm.rankStrs %>' data-mlife-name="<%= farm.name %>">
+                                        <div class="single-useful-farm mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center justify-content-center rounded-sm px-3 py-2">
+                                            <div class="farm-name mlife-container-header text-center font-weight-bold mb-0"><%= farm.name %></div>
+                                            <div class="font-form text-center text-muted"><% if(farm.types) { %><%= farm.types.join(", ") %><% } else { %>Variety<% } %></div>
+                                            <div class="font-form text-center text-muted">(Rank <%= farm.ranks.join(" / ") %>)</div>
+                                        </div>
+                                        <div class="bookmark-selected text-custom position-absolute">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill d-none" viewBox="0 0 16 16">
+                                                <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
             </div>
         </div>
     </div>
