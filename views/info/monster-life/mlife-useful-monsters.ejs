@@ -10,8 +10,27 @@
                 </p>
             </div>
             <div class="pill-section-content font-form d-flex flex-column align-items-center pt-3 px-3">
+                <p class="w-100 font-weight-bold mb-0">Notes:</p>
+                <ul class="pl-4">
+                    <li class="mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                            <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                        </svg>
+                        =
+                        View direct "ancestors" and all "descendants"; all monsters involved in combination related to this monster (and below) will be displayed
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M 7.5 2 h 2 v 5 h 5 v 2 h -5 v 5 h -2 v -5 h -5 v -2 h 5 v -5 Z"/>
+                        </svg>
+                        =
+                        "Add" to farm; highlights "added" monsters for easier tracking of the stats you want. Note: there's no limit here, but remember that the max you can have on your actual farm (not inside storage) is 28 monsters at any point of time!
+                    </li>
+                </ul>
                 <form class="size-350 w-100 mb-4" id="search-useful-monsters-form">
-                    <input type="text" list="useful-monster-list" class="form-control text-center" id="search-useful-monster" placeholder="Enter monster name..." autocomplete="off">
+                    <input type="text" list="useful-monster-list" class="form-control text-center" id="search-useful-monster" placeholder="Search monster name..." autocomplete="off">
                     <datalist id="useful-monster-list">
                         <% for(let monster of sortedListByName) { %>
                             <option value="<%= monster.name %>" data-id="<%= monster.id %>">

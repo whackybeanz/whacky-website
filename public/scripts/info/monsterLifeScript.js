@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     toggleFarmViewListener();
     bookmarkListener();
     searchMonstersListener();
+    relatedSearchListener();
 })
 
 const activeSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16">
@@ -441,7 +442,7 @@ function searchMonstersListener() {
             const allSearchRows = document.querySelectorAll(".single-search-row");
 
             allSearchRows.forEach(function(row) {
-                if(row.dataset.searchTerm.includes(searchTerm)) {
+                if(row.dataset.searchTerms.includes(searchTerm)) {
                     row.classList.remove("d-none");
                     row.classList.add("d-flex");
                 } else {
@@ -458,4 +459,39 @@ function searchMonstersListener() {
             })
         }
     })
+}
+
+function relatedSearchListener() {
+    let allRelatedBtns = document.querySelectorAll(".related-btn");
+
+    allRelatedBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+            document.querySelectorAll(".single-monster-row").forEach(row => {
+                row.classList.remove("d-flex");
+                row.classList.add("d-none");
+            })
+
+            let relatedSearchKey = this.dataset.relatedSearch;
+            let allRelated = [];
+
+            displayRelated(allRelated, relatedSearchKey);
+        })
+    })
+}
+
+function displayRelated(allRelated, relatedSearchKey) {
+    if(!allRelated.includes(relatedSearchKey)) {
+        let foundRow = document.getElementById(`row-${relatedSearchKey}`);
+        let otherRelated = JSON.parse(foundRow.dataset.related);
+        foundRow.classList.remove("d-none");
+        foundRow.classList.add("d-flex");
+
+        allRelated.push(relatedSearchKey);
+        
+        for(let related of otherRelated) {
+            if(related !== relatedSearchKey) {
+                displayRelated(allRelated, related)
+            }
+        }
+    }
 }
