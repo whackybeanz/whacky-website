@@ -353,7 +353,7 @@ function bookmarkListener() {
             window.setTimeout(() => {
                 searchBlocker.classList.remove("d-flex");
                 searchBlocker.classList.add("d-none");
-            }, 3000);
+            }, 5000);
         }
     });
 
