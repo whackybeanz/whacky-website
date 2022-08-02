@@ -546,6 +546,11 @@ body.dark-mode {
     }
 
     // Monster life
+    #search-monster-blocker {
+        background-color: globals.$dark-mode-black-opaque;
+        opacity: 0.95;
+    }
+
     .mlife-container {
         .mlife-container-div {
             border: 1px solid globals.$dark-mode-navy-grey;

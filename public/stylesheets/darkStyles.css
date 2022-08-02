@@ -385,6 +385,10 @@ body.dark-mode #active-profile {
   border: 2px solid rgba(52, 58, 64, 0.8);
   background-color: black;
 }
+body.dark-mode #search-monster-blocker {
+  background-color: black;
+  opacity: 0.95;
+}
 body.dark-mode .mlife-container .mlife-container-div {
   border: 1px solid rgba(52, 58, 64, 0.8);
 }

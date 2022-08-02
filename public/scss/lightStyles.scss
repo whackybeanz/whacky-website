@@ -496,6 +496,11 @@ body {
     }
 
     // Monster Life {
+    #search-monster-blocker {
+        background-color: globals.$light-mode-white-opaque;
+        opacity: 0.95;
+    }
+
     .mlife-container {
         .mlife-container-div {
             border: 1px solid globals.$light-mode-grey;

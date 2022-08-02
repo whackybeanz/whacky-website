@@ -346,6 +346,14 @@ function bookmarkListener() {
                 currSelected.classList.remove("searching");
             }
             closestContainer.querySelector(".mlife-container-div").classList.add("searching");
+
+            const searchBlocker = document.getElementById("search-monster-blocker");
+
+            searchBlocker.classList.toggle("d-flex", "d-none");
+            window.setTimeout(() => {
+                searchBlocker.classList.remove("d-flex");
+                searchBlocker.classList.add("d-none");
+            }, 3000);
         }
     });
 

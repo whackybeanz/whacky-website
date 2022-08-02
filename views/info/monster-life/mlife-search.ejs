@@ -9,9 +9,12 @@
                     Click on any bookmarked monsters to automatically search below<br>Manage monster bookmarks in [Useful Monsters] tab
                 </p>
             </div>
-            <div class="pill-section-content font-form d-flex flex-column align-items-center px-2 py-3">
-                <div class="bookmark-list w-100 d-flex justify-content-start flex-wrap" id="bookmarked-monsters">
+            <div class="pill-section-content font-form d-flex flex-column align-items-center px-2 position-relative">
+                <div class="bookmark-list w-100 d-flex justify-content-start flex-wrap my-3" id="bookmarked-monsters">
                     <p class="w-100 text-custom text-center mb-0">- No monsters bookmarked currently -</p>
+                </div>
+                <div class="w-100 h-100 d-none align-items-center justify-content-center text-center font-subsubheader font-weight-bold text-custom position-absolute" id="search-monster-blocker">
+                    Search cooldown... (3 seconds)<br>Your search results can be found below!
                 </div>
             </div>
         </div>
@@ -55,7 +58,9 @@
                     </button>
 
                     <div class="d-flex flex-column align-items-center px-2" id="search-results">
-                        <span class="text-custom">- Search results appear here -</span>
+                        <p class="text-custom mb-0">
+                            Search results appear here<br>- Updated every 6 hours -
+                        </p>
                     </div>
                 </div>
             </div>

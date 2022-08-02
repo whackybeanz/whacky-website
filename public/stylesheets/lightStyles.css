@@ -330,6 +330,10 @@ body #active-profile {
   border: 2px solid rgba(206, 212, 218, 0.8);
   background-color: white;
 }
+body #search-monster-blocker {
+  background-color: white;
+  opacity: 0.95;
+}
 body .mlife-container .mlife-container-div {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
