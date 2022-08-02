@@ -91,7 +91,7 @@ function populateBookmarks(category, savedData) {
                     html += `<div class="farm-name mlife-container-header text-left flex-grow-1 font-weight-bold mb-0">${name}</div>`;
                     html += `<div class="font-form text-muted">- ${category} -</div>`;
                 html += `</div>`;
-                html += `<div class="bookmark-selected text-custom position-absolute">${bookmarkFillSvg}</div>`;
+                html += `<div class="farm-bookmark-icon bookmark-selected text-custom position-absolute">${bookmarkFillSvg}</div>`;
             html += `</div>`;
 
             bookmarkElem.insertAdjacentHTML("beforeend", html);
@@ -208,7 +208,7 @@ function populateFarms(farms, monsterName) {
                         html += `</div>`;
                     html += `</div>`;
                 html += `</div>`;
-                html += `<div class="bookmark-selected d-none text-custom position-absolute">${bookmarkFillSvg}</div>`;
+                html += `<div class="farm-bookmark-icon bookmark-selected d-none text-custom position-absolute">${bookmarkFillSvg}</div>`;
             html += `</div>`
         })
 
@@ -661,7 +661,7 @@ function viewAllAddedFarmMonsters() {
 function viewAllBookmarkedMonsters() {
     hideAllMonsters();
 
-    const allBookmarkedElems = document.querySelectorAll(".bookmark-selected:not(.d-none)");
+    const allBookmarkedElems = document.querySelectorAll(".monster-bookmark-icon.bookmark-selected:not(.d-none)");
     
     for(let elem of allBookmarkedElems) {
         const closestContainer = elem.closest(".single-monster-row");

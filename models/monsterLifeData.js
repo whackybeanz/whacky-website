@@ -18,6 +18,7 @@ var monsterLifeSchema = new mongoose.Schema({
     fuseMaterials: [String],
     isSearchable: Boolean,
     farms: [farmSubSchema],
+    source: [String],
 });
 
 module.exports = mongoose.model("Monster Life", monsterLifeSchema);
