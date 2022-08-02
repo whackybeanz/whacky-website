@@ -278,3 +278,79 @@
         border-left: 1px solid;
     }
 }
+
+// Monster Life
+#bookmarked-monsters {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.single-useful-farms-category {
+    max-height: 250px;
+    overflow: auto;
+}
+
+.mlife-container {
+    &.fade-out {
+        opacity: 0;
+        transition: opacity 0.5s;
+        pointer-events: none;
+    }
+
+    .mlife-container-div {
+        transition: border-color 0.2s;
+
+        .mlife-container-header {
+            transition: color 0.2s;
+        }
+
+        .inactive-text {
+            opacity: 0.3;
+        }
+
+        .searching-icon {
+            display: none;
+        }
+
+        &.searching {
+            .searching-icon {
+                display: inline;
+            }
+        }
+    }
+
+    .bookmark-selected {
+        top: -4px;
+        left: 1rem;
+
+        @include globals.for-size(lg) { top: -5px; }
+    }
+}
+
+#search-monster {
+    &::-webkit-calendar-picker-indicator {
+        display: none !important;
+    }
+}
+
+#search-results {
+    .single-search-list {
+        &:first-of-type {
+            margin-bottom: 3rem;
+        }
+
+        .farm-list {
+            max-height: 400px;
+            overflow: auto;
+        }
+    }
+}
+
+.single-monster-row {
+    transition: background-color 0.2s;
+
+    .single-action-btn {
+        width: 30px;
+        height: 30px;
+    }
+}

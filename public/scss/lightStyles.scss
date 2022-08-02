@@ -11,7 +11,7 @@ body {
         color: globals.$highlight-blue;
         border-color: globals.$highlight-blue;
 
-        &:hover {
+        &:hover, &.active {
             color: globals.$light-mode-white-opaque;
             background-color: globals.$highlight-blue;
             border-color: globals.$highlight-blue;
@@ -493,6 +493,38 @@ body {
     #active-profile {
         border: 2px solid globals.$light-mode-grey;
         background-color: globals.$light-mode-white-opaque;
+    }
+
+    // Monster Life {
+    .mlife-container {
+        .mlife-container-div {
+            border: 1px solid globals.$light-mode-grey;
+
+            &:hover, &.copied {
+                background: linear-gradient(to right, globals.$highlight-blue 0%, globals.$light-mode-white 8px, globals.$light-mode-white 100%) no-repeat;
+            }
+
+            &.copied, &.searching {
+                border-color: globals.$highlight-blue;
+            }
+
+            &.copied, &.searching {
+                .mlife-container-header {
+                    color: globals.$highlight-blue;
+                }
+            }
+        }
+    }
+
+    .single-monster-row {
+        &.active {
+            background-color: globals.$light-mode-light-grey;
+        }
+
+        .monster-display {
+            min-height: 63px;
+            border-left: 1px solid globals.$highlight-blue;
+        }
     }
 
     // About

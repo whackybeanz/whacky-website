@@ -12,11 +12,12 @@ var passportLocalMongoose   = require("passport-local-mongoose");
 
 var indexRoutes     = require("./routes/index");
 var adminRoutes     = require("./routes/admin/adminIndex");
+//var cron            = require("./cron");
 
 var User = require("./models/users");
 
-var port = process.env.PORT || 3005;
-var databaseUrl = process.env.DATABASEURL || "mongodb://localhost/maple-info-db";
+var port = process.env.PORT;
+var databaseUrl = process.env.DATABASEURL;
 mongoose.connect(databaseUrl);
 
 app.use(compression());
@@ -27,10 +28,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(flash());
+//cron.runCron();
 
 // PASSPORT CONFIG
 app.use(session({
-    secret: "whacky's website for maple stuff",
+    secret: process.env.PASSPORT_SECRET,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongoUrl: databaseUrl })

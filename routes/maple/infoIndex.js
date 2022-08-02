@@ -1,3 +1,4 @@
+var CommonHelper = require("../helpers/commonHelpers");
 var IconHelper = require("../helpers/iconHelpers");
 var Helper = require("../helpers/extrasHelpers");
 var middleware  = require("../middleware");
@@ -11,6 +12,7 @@ var DamageSkin  = require("../../models/damageSkinData");
 var MapLocations = require("../../models/mapData");
 var Potentials = require("../../models/potentialsData");
 var LatestUpdate = require("../../models/latestUpdateData");
+var MonsterLife = require("../../models/monsterLifeData");
 
 router.get("/", function(req, res) {
     res.redirect("/flames");
@@ -308,6 +310,50 @@ router.get("/potential-list", function(req, res) {
 
         res.render("extras/potentialList", { generalData: generalData });
     }
+})
+
+router.get("/monster-life", function(req, res) {
+    const getIcons = Icon.find({ usedInSections: "monster-life" }); 
+    const getMonsterLifeList = MonsterLife.find({ }, { _id: 0, farms: 0 })
+
+    Promise.all([getIcons, getMonsterLifeList])
+        .then(([foundIcons, monsterLifeList]) => {
+            const compiledIcons = IconHelper.compileIcons(foundIcons);
+            const searchableList = CommonHelper.sortListByStringValue(monsterLifeList.filter(monster => monster.isSearchable === true), "name");
+            const sortedListByEffect = Helper.sortMonsterLifeList(monsterLifeList.slice());
+            const sortedListByName = CommonHelper.sortListByStringValue(monsterLifeList.slice(), "name");
+            const usefulFarmList = Helper.getUsefulFarmsList();
+            
+            res.locals.extraStylesheet = "extras/extrasStyles";
+            res.locals.section = "info";
+            res.locals.branch = "monster-life";
+            res.locals.title = "Monster Life";
+
+            res.render("info/monster-life/mlife-landing", { icons: compiledIcons, allMonsters: monsterLifeList, searchableList: searchableList, usefulFarms: usefulFarmList, 
+                                                            sortedListByEffect: sortedListByEffect, sortedListByName: sortedListByName });
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("/");
+        })})
+
+router.get("/monster-life/search/:monster", function(req, res) {
+    const monsterId = req.params.monster;
+
+    MonsterLife.findOne({ id: monsterId })
+        .then(monsterData => {
+            res.send({
+                isErr: false,
+                farms: monsterData.farms,
+                farmCount: monsterData.farms.length,
+            })
+        })
+        .catch(err => {
+            res.send({ 
+                isErr: true,
+                error: err,
+            })
+        })
 })
 
 module.exports = router;

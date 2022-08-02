@@ -1,8 +1,9 @@
-# Ignore images folder
+# Custom files/folders
 public/images/
 seeds/
 views/template.ejs
 dev.js
+mlife.json
 
 # Logs
 logs

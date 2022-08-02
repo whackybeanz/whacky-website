@@ -1,0 +1,64 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="w-100 d-flex flex-column justify-content-center px-3 py-3">
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center pb-2">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['default-icon'].name %>"> Bookmarked Monsters
+                </h2>
+                <p class="mb-0">
+                    Click on any bookmarked monsters to automatically search below<br>Manage monster bookmarks in [Useful Monsters] tab
+                </p>
+            </div>
+            <div class="pill-section-content font-form d-flex flex-column align-items-center px-2 py-3">
+                <div class="bookmark-list w-100 d-flex justify-content-start flex-wrap" id="bookmarked-monsters">
+                    <p class="w-100 text-custom text-center mb-0">- No monsters bookmarked currently -</p>
+                </div>
+            </div>
+        </div>
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center pb-2">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="<%= icons['default-icon'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['default-icon'].name %>"> Search
+                </h2>
+                <p class="mb-0">
+                    Only monsters involved in Special fusions appear below<br>To view the original Google Sheets document, <a class="text-info" href="https://tinyurl.com/aoifarm" target="_blank">click here</a>
+                </p>
+            </div>
+            <div class="pill-section-content font-form d-flex flex-column align-items-center py-3">
+                <form class="size-350 w-100 mb-0" id="search-mlife-form">
+                    <input type="text" list="monster-list" class="form-control text-center" id="search-matching-farms" placeholder="Enter monster name..." autocomplete="off">
+                    <datalist id="monster-list">
+                        <% for(let monster of searchableList) { %>
+                            <option value="<%= monster.name %>" data-id="<%= monster.id %>">
+                        <% } %>
+                    </datalist>
+                </form>
+
+                <hr class="w-25">
+
+                <div class="w-100 d-flex flex-column">
+                    <div class="d-none flex-column justify-content-center align-items-center text-center mb-4" id="search-image-div">
+                        <p class="font-subsubheader">Searching for... <span class="text-custom font-weight-bold" id="search-monster-name"></span></p>
+                        <img src="" class="img-fluid" id="search-image">
+                    </div>
+
+                    <button type="button" class="btn btn-sm btn-outline-custom d-none align-self-center align-self-md-end align-items-center mb-2 mr-2" id="btn-toggle-farm-view">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill d-none mr-2" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill mr-2" viewBox="0 0 16 16">
+                            <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
+                            <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
+                        </svg>
+                        Toggle Farm Details
+                    </button>
+
+                    <div class="d-flex flex-column align-items-center px-2" id="search-results">
+                        <span class="text-custom">- Search results appear here -</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

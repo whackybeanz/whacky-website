@@ -237,4 +237,64 @@
   }
 }
 
+#bookmarked-monsters {
+  max-height: 200px;
+  overflow: auto;
+}
+
+.single-useful-farms-category {
+  max-height: 250px;
+  overflow: auto;
+}
+
+.mlife-container.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+.mlife-container .mlife-container-div {
+  transition: border-color 0.2s;
+}
+.mlife-container .mlife-container-div .mlife-container-header {
+  transition: color 0.2s;
+}
+.mlife-container .mlife-container-div .inactive-text {
+  opacity: 0.3;
+}
+.mlife-container .mlife-container-div .searching-icon {
+  display: none;
+}
+.mlife-container .mlife-container-div.searching .searching-icon {
+  display: inline;
+}
+.mlife-container .bookmark-selected {
+  top: -4px;
+  left: 1rem;
+}
+@media (min-width: 992px) {
+  .mlife-container .bookmark-selected {
+    top: -5px;
+  }
+}
+
+#search-monster::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
+#search-results .single-search-list:first-of-type {
+  margin-bottom: 3rem;
+}
+#search-results .single-search-list .farm-list {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.single-monster-row {
+  transition: background-color 0.2s;
+}
+.single-monster-row .single-action-btn {
+  width: 30px;
+  height: 30px;
+}
+
 /*# sourceMappingURL=extrasStyles.css.map */

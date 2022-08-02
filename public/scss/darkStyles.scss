@@ -11,7 +11,7 @@ body.dark-mode {
         color: globals.$highlight-orange;
         border-color: globals.$highlight-orange;
 
-        &:hover {
+        &:hover, &.active {
             color: globals.$dark-mode-black-opaque;
             background-color: globals.$highlight-orange;
             border-color: globals.$highlight-orange;
@@ -543,6 +543,38 @@ body.dark-mode {
     #active-profile {
         border: 2px solid globals.$dark-mode-navy-grey;
         background-color: globals.$dark-mode-black-opaque;
+    }
+
+    // Monster life
+    .mlife-container {
+        .mlife-container-div {
+            border: 1px solid globals.$dark-mode-navy-grey;
+
+            &:hover, &.copied {
+                background: linear-gradient(to right, globals.$highlight-orange 0%, globals.$dark-mode-black 8px, globals.$dark-mode-black 100%) no-repeat;
+            }
+
+            &.copied, &.searching {
+                border-color: globals.$highlight-orange;
+            }
+
+            &.copied, &.searching {
+                .mlife-container-header {
+                    color: globals.$highlight-orange;
+                }
+            }
+        }
+    }
+
+    .single-monster-row {
+        &.active {
+            background-color: globals.$dark-mode-navy-grey;
+        }
+
+        .monster-display {
+            min-height: 63px;
+            border-left: 1px solid globals.$highlight-orange;
+        }
     }
 
     // About
