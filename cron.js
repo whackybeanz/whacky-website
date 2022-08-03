@@ -47,12 +47,7 @@ function compileMonsterList(data) {
     let monsterList = {};
 
     data.forEach((singleMonsterData,index) => {
-        let monsterName = singleMonsterData.mob_name;
-
-        if(monsterName === "Papulatus' Watch") { monsterName = "Papulatus's Watch"; }
-        if(monsterName === "Petite Arka") { monsterName = "Petit Arkarium"; }
-        if(monsterName === "Mushroom Couple") { monsterName = "Couple Mushrooms"; }
-        if(monsterName === "Yeti & Pepe") { monsterName = "Yeti and Pepe"; }
+        let monsterName = adjustMonsterName(singleMonsterData.mob_name);
 
         // Sort farms by monster names
         if(!monsterList[monsterName]) {
@@ -69,6 +64,21 @@ function compileMonsterList(data) {
     })
 
     return monsterList;
+}
+
+function adjustMonsterName(name) {
+    switch(name) {
+        case "Capt Bloodfang":
+            return "Captain Bloodfang";
+        case "Mushroom Couple":
+            return "Couple Mushrooms";
+        case "Petite Arka":
+            return "Petit Arkarium";
+        case "Yeti & Pepe":
+            return "Yeti and Pepe";
+        default:
+            return name;
+    }
 }
 
 /*function uploadToAWS(monsterList) {

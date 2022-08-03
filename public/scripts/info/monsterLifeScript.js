@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     loadSavedData();
+    searchFormListener();
     searchFarmsListener();
     toggleFarmViewListener();
     bookmarkListener();
@@ -114,6 +115,16 @@ function highlightUsefulMonsters(savedData) {
     document.getElementById("num-added-to-farm").textContent = savedData.farmMonsters.length;
 }
 
+function searchFormListener() {
+    let forms = document.querySelectorAll(".search-form");
+
+    for(let form of forms) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+        })
+    }
+}
+
 /************************
  * Adds two event listeners to the search box (searches for farms)
  * 1) On click, highlight all text inside search box
@@ -126,8 +137,12 @@ function highlightUsefulMonsters(savedData) {
 function searchFarmsListener() {
     let searchBox = document.getElementById("search-matching-farms");
 
-    searchBox.addEventListener("click", () => {
-        searchBox.select();
+    searchBox.addEventListener("focus", () => {
+        searchBox.value = "";
+    })
+
+    searchBox.addEventListener("change", () => {
+        searchBox.blur();
     })
 
     searchBox.addEventListener("input", (event) => {
@@ -142,8 +157,13 @@ function searchFarmsListener() {
             })
             .then(response => response.json())
             .then(data => {
+                document.getElementById("search-image-div").classList.remove("d-none");
+                document.getElementById("search-image-div").classList.add("d-flex");
+                document.getElementById("search-monster-name").textContent = searchValue;
+                document.getElementById("search-image").setAttribute("src", `https://whacky-website.s3.ap-southeast-1.amazonaws.com/images/monster-life/${searchValue}.png`);
+
                 if(!data.isErr && data.farmCount !== 0) {
-                    populateFarms(data.farms, searchValue);
+                    populateFarms(data.farms);
                     showBookmarksOnFarmSearch();
 
                     document.getElementById("btn-toggle-farm-view").classList.remove("d-none");
@@ -167,14 +187,9 @@ function searchFarmsListener() {
  * - Display button to toggle on/off farm details
  * - Based on saved data, show any bookmarked farms that have appeared in the searched results 
  * **********************/
-function populateFarms(farms, monsterName) {
+function populateFarms(farms) {
     let searchResultsDiv = document.getElementById("search-results");
     let sortedFarms = sortFarms(farms);
-
-    document.getElementById("search-image-div").classList.remove("d-none");
-    document.getElementById("search-image-div").classList.add("d-flex");
-    document.getElementById("search-monster-name").textContent = monsterName;
-    document.getElementById("search-image").setAttribute("src", `https://whacky-website.s3.ap-southeast-1.amazonaws.com/images/monster-life/${monsterName}.png`);
 
     searchResultsDiv.innerHTML = "";
 
