@@ -135,9 +135,9 @@ function retrieveItemList(listType, currency) {
             { iconId: "select-1-auth-symbol-coupon", price: 150, quantity: 100, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
         ],
         regReboot: [
-            { iconId: "reboot-meso-pouch", price: 100, quantity: 10, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "", sectionHeader: "Reboot-only Items" },
-            { iconId: "arcane-river-water-drop-stone", price: 150, quantity: 20, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
-            { iconId: "sea-of-beginnings-water-drop-stone", price: 150, quantity: 20, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
+            { iconId: "reboot-meso-pouch", price: 100, quantity: 8, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "", sectionHeader: "Reboot-only Items" },
+            { iconId: "arcane-river-water-drop-stone", price: 150, quantity: 10, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
+            { iconId: "sea-of-beginnings-water-drop-stone", price: 150, quantity: 10, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
         ],
         bossing: [
             { iconId: "apc-voucher", price: 40, quantity: 15, coinType: currency, purchaseLimit: "world", timeframeLimit: "none", tradability: "inter-acct", itemNotes: "" },
