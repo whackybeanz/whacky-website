@@ -267,6 +267,14 @@
 .mlife-container .mlife-container-div.searching .searching-icon {
   display: inline;
 }
+.mlife-container .mlife-container-div .farm-copied-blocker {
+  top: 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.mlife-container .mlife-container-div .farm-copied-blocker.visible {
+  opacity: 1;
+}
 .mlife-container .bookmark-selected {
   top: -4px;
   left: 1rem;

@@ -346,6 +346,9 @@ body .mlife-container .mlife-container-div.copied, body .mlife-container .mlife-
 body .mlife-container .mlife-container-div.copied .mlife-container-header, body .mlife-container .mlife-container-div.searching .mlife-container-header {
   color: #17a2b8;
 }
+body .mlife-container .mlife-container-div .farm-copied-blocker {
+  background-color: rgba(255, 255, 255, 0.7);
+}
 body .single-monster-row.active {
   background-color: rgba(0, 0, 0, 0.075);
 }

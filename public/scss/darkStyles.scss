@@ -568,6 +568,10 @@ body.dark-mode {
                     color: globals.$highlight-orange;
                 }
             }
+
+            .farm-copied-blocker {
+                background-color: globals.$dark-mode-black;
+            }
         }
     }
 

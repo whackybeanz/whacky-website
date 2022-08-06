@@ -317,6 +317,16 @@
                 display: inline;
             }
         }
+
+        .farm-copied-blocker {
+            top: 0;
+            opacity: 0;
+            transition: opacity 0.2s;
+
+            &.visible {
+                opacity: 1;
+            }
+        }
     }
 
     .bookmark-selected {

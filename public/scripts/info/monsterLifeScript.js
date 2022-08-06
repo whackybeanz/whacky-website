@@ -88,9 +88,10 @@ function populateBookmarks(category, savedData) {
             let html = "";
 
             html += `<div class="single-farm-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" data-mlife-name="${name}" data-mlife-type="farms" id="bookmarked-farms-${name}">`;
-                html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center justify-content-center rounded-sm px-3 py-2">`
+                html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center justify-content-center rounded-sm position-relative px-3 py-2">`
                     html += `<div class="farm-name mlife-container-header text-left flex-grow-1 font-weight-bold mb-0">${name}</div>`;
                     html += `<div class="font-form text-muted">- ${category} -</div>`;
+                    html += `<div class="farm-copied-blocker font-subsubheader w-100 h-100 d-flex justify-content-center align-items-center text-custom font-weight-bold rounded-sm position-absolute">- Copied! -</div>`;
                 html += `</div>`;
                 html += `<div class="farm-bookmark-icon bookmark-selected text-custom position-absolute">${bookmarkFillSvg}</div>`;
             html += `</div>`;
@@ -210,7 +211,7 @@ function populateFarms(farms) {
             let lastUpdatedDate = new Intl.DateTimeFormat('en-SG', { year: '2-digit', month: 'short', day: '2-digit', hour: "2-digit", minute: "2-digit" }).format(Date.parse(farm.earliestUpdatedOn) - 8 * 60 * 60 * 1000);
 
             html += `<div class="single-farm-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" id="search-farms-${farm.farmName}" data-mlife-name="${farm.farmName}" data-mlife-type="farms">`;
-                html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm py-2">`
+                html += `<div class="single-farm mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center rounded-sm position-relative py-2">`
                     html += `<div class="w-100 d-flex align-items-center">`
                         html += `<div class="d-flex flex-column flex-grow-1 pl-3">`
                             html += `<div class="farm-name mlife-container-header text-left font-weight-bold mb-0">${farm.farmName}</div>`;
@@ -222,6 +223,7 @@ function populateFarms(farms) {
                             html += `<div class="${inactiveColor} font-weight-bold mx-1 mb-0">${farm.numInactive} ${expiredSvg}</div>`;
                         html += `</div>`;
                     html += `</div>`;
+                    html += `<div class="farm-copied-blocker font-subsubheader w-100 h-100 d-flex justify-content-center align-items-center text-custom font-weight-bold rounded-sm position-absolute">- Copied! -</div>`;
                 html += `</div>`;
                 html += `<div class="farm-bookmark-icon bookmark-selected d-none text-custom position-absolute">${bookmarkFillSvg}</div>`;
             html += `</div>`
@@ -339,6 +341,11 @@ function bookmarkListener() {
             if(closestParent !== null) {
                 navigator.clipboard.writeText(closestParent.parentElement.dataset.mlifeName).then(function() {
                     closestParent.classList.add("copied")
+                    closestParent.querySelector(".farm-copied-blocker").classList.add("visible");
+
+                    window.setTimeout(() => {
+                        closestParent.querySelector(".farm-copied-blocker").classList.remove("visible");
+                    }, 1500);
                 }, function() {
                     
                 });

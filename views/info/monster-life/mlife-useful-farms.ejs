@@ -60,10 +60,13 @@
                             <div class="single-useful-farms-category d-flex flex-wrap px-2">
                                 <% for(let farm of farms) { %>
                                     <div class="single-useful-farm-container mlife-container col-12 col-sm-6 col-md-4 col-xl-3 px-1 my-1 position-relative" data-has-types='<%= farm.types || "Variety" %>' data-has-ranks='<%= farm.rankStrs %>' data-mlife-name="<%= farm.name %>">
-                                        <div class="single-useful-farm mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center justify-content-center rounded-sm px-3 py-2">
+                                        <div class="single-useful-farm mlife-container-div h-100 cursor-pointer d-flex flex-column align-items-center justify-content-center rounded-sm position-relative px-3 py-2">
                                             <div class="farm-name mlife-container-header text-center font-weight-bold mb-0"><%= farm.name %></div>
                                             <div class="font-form text-center text-muted"><% if(farm.types) { %><%= farm.types.join(", ") %><% } else { %>Variety<% } %></div>
                                             <div class="font-form text-center text-muted">(Rank <%= farm.ranks.join(" / ") %>)</div>
+                                            <div class="farm-copied-blocker font-subsubheader w-100 h-100 d-flex justify-content-center align-items-center text-custom font-weight-bold rounded-sm position-absolute">
+                                                - Copied! -
+                                            </div>
                                         </div>
                                         <div class="farm-bookmark-icon bookmark-selected text-custom position-absolute">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-fill d-none" viewBox="0 0 16 16">
