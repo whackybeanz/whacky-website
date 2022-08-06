@@ -247,6 +247,9 @@
   overflow: auto;
 }
 
+.mlife-container {
+  user-select: none;
+}
 .mlife-container.fade-out {
   opacity: 0;
   transition: opacity 0.5s;
@@ -257,6 +260,7 @@
 }
 .mlife-container .mlife-container-div .mlife-container-header {
   transition: color 0.2s;
+  user-select: text;
 }
 .mlife-container .mlife-container-div .inactive-text {
   opacity: 0.3;
@@ -271,6 +275,7 @@
   top: 0;
   opacity: 0;
   transition: opacity 0.2s;
+  pointer-events: none;
 }
 .mlife-container .mlife-container-div .farm-copied-blocker.visible {
   opacity: 1;

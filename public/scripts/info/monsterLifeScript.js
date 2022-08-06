@@ -485,7 +485,9 @@ function updateMonsterLifeBookmarks(statusType, category, name, id) {
                 }
             }, 300)
 
-            document.getElementById("num-bookmarked-monsters").textContent = savedData.monsters.length;
+            if(category === "monsters") {
+                document.getElementById("num-bookmarked-monsters").textContent = savedData.monsters.length;
+            }
         }
     }
 
@@ -595,12 +597,12 @@ function displayRelated(allRelated, relatedSearchKey) {
 }
 
 function addRemoveFarmMonsters() {
-    const savedData = JSON.parse(localStorage.getItem("monsterLife")) || { };
     const allAddBtns = document.querySelectorAll(".btn-farm-add");
     const allRemoveBtns = document.querySelectorAll(".btn-farm-remove");
 
     [...allAddBtns, ...allRemoveBtns].forEach(btn => {
         btn.addEventListener("click", (event) => {
+            const savedData = JSON.parse(localStorage.getItem("monsterLife")) || { };
             const nearestContainer = event.target.closest(".single-monster-row");
             const monsterId = nearestContainer.dataset.monsterId;
 

@@ -291,6 +291,8 @@
 }
 
 .mlife-container {
+    user-select: none;
+
     &.fade-out {
         opacity: 0;
         transition: opacity 0.5s;
@@ -302,6 +304,7 @@
 
         .mlife-container-header {
             transition: color 0.2s;
+            user-select: text;
         }
 
         .inactive-text {
@@ -322,6 +325,7 @@
             top: 0;
             opacity: 0;
             transition: opacity 0.2s;
+            pointer-events: none;
 
             &.visible {
                 opacity: 1;
