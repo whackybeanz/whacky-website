@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     addMonsterParkListeners();
     addResetMonsterParkListener();
     changeLevelListener();
+    loadMonsterParkExtremeEXPTable();
 
     // Growth Potions
     loadGrowthPotionsEXPTable();

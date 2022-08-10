@@ -182,6 +182,24 @@ function calcMonsterParkPercent() {
     }
 }
 
+function loadMonsterParkExtremeEXPTable() {
+    let startingLevel = 260;
+    let expTNL = 0;
+    let tableElem = document.getElementById("monster-park-extreme-exp-table");
+
+    MONSTER_PARK_EXTREME_TABLE.forEach((multiplier, index) => {
+        let expTNL = getExpTNL(startingLevel + index);
+        let totalEXP = (startingLevel + index) * multiplier * 100000000;
+
+        tableElem.insertAdjacentHTML('beforeend', `<tr>
+                    <th scope="row" class="text-center align-middle">${startingLevel + index} > ${startingLevel + index + 1}</th>
+                    <td class="text-center align-middle">${totalEXP.toLocaleString('en-SG')} EXP / <span class="text-custom font-weight-bold">${(totalEXP / expTNL * 100).toFixed(3)}%</span></td>
+                    <td class="text-center align-middle">${(totalEXP * 1.5).toLocaleString('en-SG')} EXP / <span class="text-custom font-weight-bold">${(totalEXP * 1.5 / expTNL * 100).toFixed(3)}%</td>
+                    <td class="text-center align-middle">${(totalEXP * 2).toLocaleString('en-SG')} EXP / <span class="text-custom font-weight-bold">${(totalEXP * 2/ expTNL * 100).toFixed(3)}%</td>
+                </tr>`);
+    })
+}
+
 function saveEXPContentData() {
     let savedData = JSON.parse(localStorage.getItem("everythingEXP"));
 

@@ -16,8 +16,8 @@
                         <li>For fields requiring a number, input the number of runs you do <span class="text-custom font-weight-bold">per day</span>.</li>
                         <li>For Erda Spectrum and Hungry Muto (assumes S-rank clear), input the number of runs you do <span class="text-custom font-weight-bold">manually</span>. Auto-complete runs do not give EXP.</li>
                         <li>For Start/End Date, both dates written are <span class="text-custom font-weight-bold">inclusive</span> (e.g. if I select 01 May till 04 May, EXP from both 01 May and 04 May inclusive will be calculated).</li>
-                        <li>The calculator will factor in bonus EXP from Monster Park on Sundays. It will not factor any Sunday Maple events.</li>
-                        <li>To maximize total EXP gain, EXP minigame values will be <span class="text-custom font-weight-bold">factored last</span> in case you leveled in the process of doing other dailies.</li>
+                        <li>The calculator will factor in bonus EXP from Monster Park (Extreme included) on Sundays. It will not factor any Sunday Maple events.</li>
+                        <li>To maximize total EXP gain, EXP Minigames (or Monster Park Extreme if level 260+) values will be <span class="text-custom font-weight-bold">factored last</span> in case you leveled in the process of doing other dailies.</li>
                     </ul>
                 </div>
 
@@ -92,6 +92,14 @@
                                             <% } %>
                                             <option value="<%= dungeon.rawEXP %>"><%= dungeon.name %></option>
                                         <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
+                                <input type="number" id="num-monster-park-extreme" class="form-control col-2 col-sm-1 px-2 text-center" placeholder="Qty" value="0">
+                                <div class="col-8 col-md-9 px-2">
+                                    <select class="form-control" id="monster-park-extreme-select">
+                                        <option selected>Monster Park Extreme</option>
                                     </select>
                                 </div>
                             </div>

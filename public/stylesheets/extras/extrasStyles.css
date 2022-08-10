@@ -181,7 +181,7 @@
   overflow: auto;
 }
 
-#dojo-exp-table-details {
+#mp-ex-exp-details, #dojo-exp-table-details {
   height: 500px;
   overflow: auto;
 }

@@ -149,6 +149,7 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp) {
     let expFromGrinding = perDayExp.monsterHunting;
     let expMinigameId = perDayExp.eventMinigameId;
     let numExpMinigamePerDay = getNumRuns("num-exp-minigame");
+    let numMpExPerDay = getNumRuns("num-monster-park-extreme");
 
     for(let i = startDate; i <= endDate; i += 1000*60*60*24) {
         let expTNL = getExpTNL(newLevel);
@@ -182,6 +183,19 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp) {
             // As event EXP is added last (to factor for best EXP rates possible), a second calculation is needed to check for potential level up
             // After event minigames, does level increase? If so, adjust value accordingly
             [newLevel, newExp] = adjustLevelAndExp(newLevel, newExp, expFromMinigames, expTNL);
+        }
+
+        // If character is level 260+, now add EXP obtained from Monster Park Extreme
+        if(newLevel >= 260 && numMpExPerDay > 0) {
+            let expFromMpEx; 
+
+            if((new Date(i)).getDay() === 0) {
+                expFromMpEx = newLevel * MONSTER_PARK_EXTREME_TABLE[newLevel - 260] * 100000000 * 1.5;
+            } else {
+                expFromMpEx = newLevel * MONSTER_PARK_EXTREME_TABLE[newLevel - 260] * 100000000;
+            }
+
+            [newLevel, newExp] = adjustLevelAndExp(newLevel, newExp, expFromMpEx, expTNL);
         }
     }
 
