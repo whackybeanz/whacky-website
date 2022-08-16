@@ -181,7 +181,7 @@
   overflow: auto;
 }
 
-#mp-ex-exp-details, #dojo-exp-table-details {
+#mp-ex-exp-details, #dojo-exp-table-details, #exp-pouch-table-details {
   height: 500px;
   overflow: auto;
 }
