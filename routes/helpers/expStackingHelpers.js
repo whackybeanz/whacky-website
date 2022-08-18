@@ -41,9 +41,10 @@ function getEXPContentsValues() {
             { iconId: "map-moonbridge", name: "Moonbridge", recMinLevel: 245, isEnforceMinLevel: true, rawEXP: 5598365850 },
             { iconId: "map-labyrinth", name: "Labyrinth of Suffering", recMinLevel: 250, isEnforceMinLevel: true, rawEXP: 6038460000 },
             { iconId: "map-limen", name: "Limen", recMinLevel: 255, isEnforceMinLevel: true, rawEXP: 6391088550 },
-            { iconId: "map-cernium", name: "Cernium", recMinLevel: 260, isEnforceMinLevel: true, rawEXP: 13713068400 },
-            { iconId: "map-cernium-2", name: "Burning Cernium", recMinLevel: 265, isEnforceMinLevel: true, rawEXP: 14350209192 },
-            { iconId: "map-hotel-arcs", name: "Hotel Arcs", recMinLevel: 270, isEnforceMinLevel: true, rawEXP: 19371792600 },
+            { iconId: "symbol-cernium", name: "Cernium", recMinLevel: 260, isEnforceMinLevel: true, rawEXP: 13713068400 },
+            { iconId: "symbol-cernium", name: "Burning Cernium", recMinLevel: 265, isEnforceMinLevel: true, rawEXP: 14350209192 },
+            { iconId: "symbol-hotel-arcs", name: "Hotel Arcs", recMinLevel: 270, isEnforceMinLevel: true, rawEXP: 19371792600 },
+            { iconId: "symbol-odium", name: "Odium", recMinLevel: 275, isEnforceMinLevel: true, rawEXP: 32127015480 },
         ],
         others: [
             { iconId: "symbol-rte", name: "Erda Spectrum", recMinLevel: 200, isEnforceMinLevel: true, rawEXP: 87026100 },

@@ -36,7 +36,7 @@ router.get("/everything-exp", function(req, res) {
 })
 
 router.get("/everything-exp/monster-list/:charLevel", function(req, res) {
-    let CURR_MAX_MONSTER_LEVEL = 275;
+    let CURR_MAX_MONSTER_LEVEL = 280;
     let charLevel = parseInt(req.params.charLevel);
     let response = {};
 
@@ -106,7 +106,8 @@ router.get("/symbols", function(req, res) {
                     name: "Authentic Force",
                     maxLevel: 11,
                     list: [{ id: 'cernium', name: "Cernium", baseSymbolGain: 10, notes: "10 (Daily quest; Burning Cernium unlocked)" }, 
-                           { id: 'hotel-arcs', name: "Hotel Arcs", baseSymbolGain: 5, notes: "5 (Daily quest)" }],
+                           { id: 'hotel-arcs', name: "Hotel Arcs", baseSymbolGain: 5, notes: "5 (Daily quest)" },
+                           { id: 'odium', name: "Odium", baseSymbolGain: 5, notes: "5 (Daily quest)" }],
                 }
             }
             const compiledIcons = IconHelper.compileIcons(foundIcons);

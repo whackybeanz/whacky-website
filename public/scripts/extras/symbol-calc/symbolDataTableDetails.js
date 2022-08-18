@@ -147,4 +147,13 @@ const SYMBOL_COST_TABLE = [
             690300000, 787700000, 884900000, 982100000, 1079500000,
         ],
     },
+    {
+        name: "Odium",
+        symbolGroup: "aut",
+        id: "odium",
+        values: [
+            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0,
+        ],
+    }
 ]
