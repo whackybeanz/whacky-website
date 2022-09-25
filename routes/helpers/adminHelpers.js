@@ -71,6 +71,7 @@ function compileDamageSkinData(body) {
         name: body.name,
         shortName: body.name.replace(/(Damage Skin \- | Damage Skin)/, ""),
 
+        isAnimated: body.isAnimated === "yes",
         isInCurrentBox: body.isInCurrentBox === "yes",
         isJobSkin: body.isJobSkin === "yes",
 

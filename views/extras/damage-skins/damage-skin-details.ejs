@@ -9,20 +9,20 @@
                     <p class="mb-2">- No screenshots available yet. Wanna contribute? <a href="https://docs.google.com/spreadsheets/d/1A1bGj9uCLAMAJBXsNPwtF3ydt15C7zQc6Tdbt1tOlMI/edit?usp=sharing" target="_blank">Click me!</a> -</p>
                 <% } else { %>
                     <% if(skin.screenshotTypes.includes("reg")) { %>
-                        <img class="mx-2 mb-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>-ss-1.png">
-                        <img class="mx-2 mb-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>-ss-2.png">
+                        <img class="mx-2 mb-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>-ss-1.<%= skin.isAnimated ? 'gif' : 'png' %>">
+                        <img class="mx-2 mb-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>-ss-2.<%= skin.isAnimated ? 'gif' : 'png' %>">
                         <br/>
                     <% } %>
 
                     <% if(skin.screenshotTypes.includes("unit-kr")) { %>
-                        <img class="mx-2 mb-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-ss-1.png">
-                        <img class="mx-2 mb-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-ss-2.png">
+                        <img class="mx-2 mb-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-ss-1.<%= skin.isAnimated ? 'gif' : 'png' %>">
+                        <img class="mx-2 mb-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-ss-2.<%= skin.isAnimated ? 'gif' : 'png' %>">
                         <br/>
                     <% } %>
 
                     <% if(skin.screenshotTypes.includes("unit-en")) { %>
-                        <img class="mx-2 mb-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en-ss-1.png">
-                        <img class="mx-2 mb-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en-ss-2.png">
+                        <img class="mx-2 mb-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en-ss-1.<%= skin.isAnimated ? 'gif' : 'png' %>">
+                        <img class="mx-2 mb-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en-ss-2.<%= skin.isAnimated ? 'gif' : 'png' %>">
                     <% } %>
 
                     <% if(skin.screenshotCredits) { %>
@@ -54,11 +54,12 @@
                     </div>
                 <% } %>
 
-                <% if(skin.notes) { %>
+                <% if(skin.notes || skin.isAnimated) { %>
                     <div class="d-flex border-bottom border-dark">
                         <div class="table-cols-100 d-flex align-items-center justify-content-center font-weight-bold px-3 py-3">Notes</div>
                         <div class="w-100 d-flex justify-content-center align-items-center flex-wrap border-left border-dark py-3 px-3">
                             <%= skin.notes %>
+                            <%= skin.isAnimated ? "Best viewed in Light mode" : "" %>
                         </div>
                     </div>
                 <% } %>
@@ -68,20 +69,20 @@
                     <div class="w-100 d-flex justify-content-center align-items-center flex-wrap border-left border-dark py-3 px-3">
                         <% if(skin.folderNum !== -1) { %>
                             <% if(skin.digits.critical.hasEffect) { %>
-                                <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoCri1.effect3.png">
+                                <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoCri1.effect3.<%= skin.isAnimated ? 'gif' : 'png' %>">
                             <% } %>
 
                             <% if(skin.digits.critical.cri1Assets.length > 0) { %>
                                 <% if(skin.digits.critical.cri1Assets.some(elem => elem === "-")) { %>
                                     <% skin.digits.critical.cri1Assets.forEach((digit, i) => { %>
                                         <% if(digit === "-") { %>
-                                            <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoCri1.<%= i %>.png">
+                                            <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoCri1.<%= i %>.<%= skin.isAnimated ? 'gif' : 'png' %>">
                                         <% } %>
                                     <% }) %>
                                 <% } %>
                             <% } else { %>
                                 <% for(let i = 0; i < 10; i++) { %>
-                                    <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoCri1.<%= i %>.png">
+                                    <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoCri1.<%= i %>.<%= skin.isAnimated ? 'gif' : 'png' %>">
                                 <% } %>
                             <% } %>
 
@@ -89,12 +90,12 @@
                                 <% if(skin.digits.critical.cri0Assets.length > 0) { %>
                                     <% skin.digits.critical.cri0Assets.forEach((digit, i) => { %>
                                         <% if(digit === "-") { %>
-                                            <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoCri0.<%= i %>.png">
+                                            <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoCri0.<%= i %>.<%= skin.isAnimated ? 'gif' : 'png' %>">
                                         <% } %>
                                     <% }) %>
                                 <% } else { %>
                                     <% for(let i = 0; i < 10; i++) { %>
-                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoCri0.<%= i %>.png">
+                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoCri0.<%= i %>.<%= skin.isAnimated ? 'gif' : 'png' %>">
                                     <% } %>
                                 <% } %>
                             <% } %>
@@ -112,13 +113,13 @@
                                 <% if(skin.digits.regular.red1Assets.some(elem => elem === "-")) { %>
                                     <% skin.digits.regular.red1Assets.forEach((digit, i) => { %>
                                         <% if(digit === "-") { %>
-                                            <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed1.<%= i %>.png">
+                                            <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed1.<%= i %>.<%= skin.isAnimated ? 'gif' : 'png' %>">
                                         <% } %>
                                     <% }) %>
                                 <% } %>
                             <% } else { %>
                                 <% for(let i = 0; i < 10; i++) { %>
-                                    <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed1.<%= i %>.png">
+                                    <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed1.<%= i %>.<%= skin.isAnimated ? 'gif' : 'png' %>">
                                 <% } %>
                             <% } %>
 
@@ -126,12 +127,12 @@
                                 <% if(skin.digits.regular.red0Assets.length > 0) { %>
                                     <% skin.digits.regular.red0Assets.forEach((digit, i) => { %>
                                         <% if(digit === "-") { %>
-                                            <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed0.<%= i %>.png">
+                                            <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed0.<%= i %>.<%= skin.isAnimated ? 'gif' : 'png' %>">
                                         <% } %>
                                     <% }) %>
                                 <% } else { %>
                                     <% for(let i = 0; i < 10; i++) { %>
-                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed0.<%= i %>.png">
+                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.folderNum %>.NoRed0.<%= i %>.<%= skin.isAnimated ? 'gif' : 'png' %>">
                                     <% } %>
                                 <% } %>
                             <% } %>
@@ -151,8 +152,8 @@
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center flex-wrap mb-2 pr-sm-3">
                                     <% if(skin.digits.unitTypes.includes("kr")) { %>
-                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>.NoCustom.NoCri0.3.png">
-                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>.NoCustom.NoCri0.4.png">
+                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>.NoCustom.NoCri0.3.<%= skin.isAnimated ? 'gif' : 'png' %>">
+                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>.NoCustom.NoCri0.4.<%= skin.isAnimated ? 'gif' : 'png' %>">
                                     <% } else { %>
                                         N/A
                                     <% } %>
@@ -168,10 +169,10 @@
                                 </div>
                                 <div class="flex-grow-1 d-flex justify-content-center align-items-center flex-wrap mb-2 pl-sm-3">
                                     <% if(skin.digits.unitTypes.includes("en")) { %>
-                                        <!--<img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en.NoCustom.NoCri0.0.png">-->
-                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en.NoCustom.NoCri0.3.png">
-                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en.NoCustom.NoCri0.2.png">
-                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en.NoCustom.NoCri0.1.png">
+                                        <!--<img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en.NoCustom.NoCri0.0.<%= skin.isAnimated ? 'gif' : 'png' %>">-->
+                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en.NoCustom.NoCri0.3.<%= skin.isAnimated ? 'gif' : 'png' %>">
+                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en.NoCustom.NoCri0.2.<%= skin.isAnimated ? 'gif' : 'png' %>">
+                                        <img class="mx-2" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/damage-skins/<%= skin.folderNum %>/<%= skin.unitFolderNum %>-en.NoCustom.NoCri0.1.<%= skin.isAnimated ? 'gif' : 'png' %>">
                                     <% } else { %>
                                         <div>N/A</div>
                                     <% } %>

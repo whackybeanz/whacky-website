@@ -7,6 +7,7 @@ var damageSkinSchema = new mongoose.Schema({
     hasRegularSkin: { type: Boolean, default: true },
     hasUnitSkin: Boolean,
     isCustomSkin: Boolean,
+    isAnimated: Boolean,
     name: String,
     shortName: { type: String, index: true },
     letterCategory: String,
