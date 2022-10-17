@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
-    updateTableDates(true);
-    generateSavedInputs();
+    //updateTableDates(true);
+    //generateSavedInputs();
 
-    sectionViewToggle();
-    settingsListeners();
-    tableListener();
+    //sectionViewToggle();
+    //settingsListeners();
+    //tableListener();
 })
 
 function updateTableDates(isNewDateCreation) {
