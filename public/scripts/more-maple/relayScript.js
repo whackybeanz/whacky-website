@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
     dateChangeListener();
     settingsListeners();
+    loadSavedData();
 
     //generateSavedInputs();
 })
@@ -100,6 +101,23 @@ function getGeneralData() {
     return [version, savedData];
 }
 
+function loadSavedData() {
+    const [version, savedData] = getGeneralData();
+
+    if(savedData !== null) {
+        if(savedData[version] !== undefined) {
+            const eventStartDate = savedData[version].startDate;
+
+            document.getElementById("select-date").value = eventStartDate;
+            updateTableDateDisplay(eventStartDate);
+
+            if(savedData[version].charList !== undefined) {
+                populateInputs(savedData[version].charList);
+            }
+        }
+    }
+}
+
 // Update dates displayed in the table
 // Toggle between week 1 or 2 depending on the status of the event
 // Also highlight the column corresponding to today's date if event is currently ongoing
@@ -128,59 +146,26 @@ function updateTableDateDisplay(eventStartDate) {
     }
 }
 
-function generateSavedInputs() {
-    var classTypes = ["warrior", "mage", "archer", "thief", "pirate"];
-    var savedCharList = JSON.parse(localStorage.getItem("savedCharList"));
+function populateInputs(charList) {
+    const numCharsByType = {
+        warrior: 0, mage: 0, archer: 0,
+        thief: 0, pirate: 0, xenon: 0,
+    }
 
-    if(savedCharList !== null) {
-        var storageIsPerfectScore = localStorage.getItem("isPerfectScore");
-        var storageIsAll200 = localStorage.getItem("isAll200");
-        var perfectScoreSettings;
+    charList.forEach((char, index) => {
+        const parentElem = document.querySelector(`.${char.classType}-list`);
 
-        // Check/uncheck is perfect score box
-        if(storageIsPerfectScore === null || storageIsPerfectScore === "true") {
-            $("#is-perfect-score").prop("checked", true);
-            perfectScoreSettings = "d-none";
-            $(".level-200-form-checkbox").addClass("d-none");
-        } else {
-            $("#is-perfect-score").prop("checked", false);
-            perfectScoreSettings = "";
-            $(".level-200-form-checkbox").removeClass("d-none");
-        }       
+        numCharsByType[char.classType]++;
 
-        // Check/uncheck all level 200 box
-        if(storageIsAll200 === null || storageIsAll200 === "true") {
-            $("#all-level-200").prop("checked", true);
-        } else {
-            $("#all-level-200").prop("checked", false);
+        // Increase number of input fields if more than the default 2 of any class type was added
+        if(numCharsByType[char.classType] > 2) {
+            parentElem.querySelector(".add-character-btn").click();
         }
 
-        Object.keys(savedCharList).forEach(function(classType) {
-            //var numExtraClassInputs = localStorage.getItem(`${classType}NumExtraInputs`);
-
-            savedCharList[classType].forEach(function(charData) {
-                if(charData.characterNum <= 2) {
-                    $(`#input-${classType}-${charData.characterNum}`).val(charData.ign);
-                    $(`#input-${classType}-${charData.characterNum}`).next().prop("checked", charData.isOver200);
-
-                    if(perfectScoreSettings === "") {
-                        $(`#input-${classType}-${charData.characterNum}`).next().removeClass("d-none");
-                    } else {
-                        $(`#input-${classType}-${charData.characterNum}`).next().addClass("d-none");
-                    }
-                } else {
-                    var charIsOver200 = charData.isOver200 ? "checked" : ""
-
-                    $(`.input-${classType}-list`).append(`<div class="position-relative">
-                        <input type="text" placeholder="${classType} ${charData.characterNum}" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" data-class="${classType}" data-num="${charData.characterNum}" value="${charData.ign}">
-                        <input type="checkbox" class="form-check-input over-200-checkbox ${perfectScoreSettings} position-absolute" data-class="${classType}" data-num="${charData.characterNum}" ${charIsOver200}>
-                    </div>`)
-                }
-            })
-        })
-
-        createPlanner();
-    }
+        // Populate input field
+        parentElem.querySelector(`#${char.classType}-class-input-${numCharsByType[char.classType]}`).value = char.name;
+        parentElem.querySelector(`#${char.classType}-level-input-${numCharsByType[char.classType]}`).value = char.level;
+    })
 }
 
 function createPlanner() {
