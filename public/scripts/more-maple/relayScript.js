@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     dateChangeListener();
     settingsListeners();
     loadSavedData();
-
-    //generateSavedInputs();
 })
 
 function dateChangeListener() {
@@ -71,6 +69,8 @@ function settingsListeners() {
 
     document.getElementById("generate-planner-btn").addEventListener("click", (event) => {
         event.preventDefault();
+        let charList = generateCharList();
+        generatePlanner(charList);
     })
 
     // Erase all inputs and also delete data related to the currently-viewed relay version
@@ -166,4 +166,149 @@ function populateInputs(charList) {
         parentElem.querySelector(`#${char.classType}-class-input-${numCharsByType[char.classType]}`).value = char.name;
         parentElem.querySelector(`#${char.classType}-level-input-${numCharsByType[char.classType]}`).value = char.level;
     })
+}
+
+function generateCharList() {
+    const classTypeList = ["warrior", "mage", "archer", "thief", "pirate", "xenon"];
+    const allChars = [];
+
+    for(let classType of classTypeList) {
+        let allInputs = document.getElementsByName(`${classType}Inputs`);
+        let allLevels = document.getElementsByName(`${classType}Levels`);
+
+        // Only retrieve non-empty inputs for character name
+        allInputs = Array.from(allInputs).filter(input => input.value !== "");
+        allLevels = Array.from(allLevels);
+
+        // If user forgot to input character level, assign character as level 0
+        if(allInputs.length > 0) {
+            allInputs.forEach((input, index) => {
+                allChars.push({ classType: classType, name: input.value, level: parseInt(allLevels[index].value) || 0 });
+            })
+        }
+    }
+
+    // Sort in descending order of levels
+    allChars.sort((a, b) => b.level - a.level);
+
+    return allChars;
+}
+
+function generatePlanner(charList) {
+    const numMissionsDaily = document.querySelectorAll(".planned-characters.day-1").length;
+    let [version, savedData] = getGeneralData();
+
+    // Plan who does what for each day of the event
+    for(let i = 1; i <= 14; i++) {
+        let tempList = charList.slice();
+
+        if(charList.length >= numMissionsDaily) {
+            // If there are sufficient characters to fulfill all missions daily, fill the most difficult mission (the final one) first
+            // Assign characters in a backwards order to prioritize using strong characters to complete the more time-consuming missions
+            const elem = document.querySelector(`.day-${i}.mission-${numMissionsDaily}`);
+            tempList = assignMatchingChar(version, tempList, elem, true);
+
+            for(let missionCount = numMissionsDaily-1; missionCount > 0; missionCount--) { 
+                if(tempList.length > 0) {
+                    const elem = document.querySelector(`.day-${i}.mission-${missionCount}`);
+                    tempList = assignMatchingChar(version, tempList, elem);
+                }
+            }
+        } else {
+            // If there are insufficient characters to fulfill all missions, assign characters beginning with mission 1
+            for(let missionCount = 1; missionCount < numMissionsDaily; missionCount++) { 
+                if(tempList.length > 0) {
+                    const elem = document.querySelector(`.day-${i}.mission-${missionCount}`);
+                    tempList = assignMatchingChar(version, tempList, elem);
+                }
+            }
+        }
+    }
+}
+
+// Assign a matching character based on the required class for the day
+// The priority for retrieving a matching character is as follows:
+// [Level and class match] >> [Level match] >> [Class match] >> [First element in array]
+// Since array has been sorted by highest level first, it is already optimized to retrieve the maximum bonus for level of character used
+function assignMatchingChar(version, tempList, elem, isFinalMission = false) {
+    let requiredClass = elem.dataset.class;
+
+    // As Xenon can cover both thief and pirate classes, add the class as "required" for easier searching
+    if(requiredClass === "thief" || requiredClass === "pirate") {
+        requiredClass += ", xenon";
+    }
+
+    // Regardless of mission, first attempt to match job and level
+    // If this is not possible, prioritize level
+    let matchingCharIndex = tempList.findIndex(char => requiredClass.includes(char.classType) && char.level >= 200);
+
+    if(matchingCharIndex === -1) {
+        matchingCharIndex = tempList.findIndex(char => char.level >= 200);
+    }
+    
+    // At this point, if matchingCharIndex still returns -1, then all input levels were below level 200
+    if(isFinalMission) {
+        // If it's a final mission, assignment can be skipped if matchingCharIndex is -1 (it is impossible to finish the last mission)
+        // If there is a matching character, proceed to assign character to the mission
+        // Extract the affected character from the tempList array using splice (so tempList will automatically get changed)
+        if(matchingCharIndex !== -1) {
+            const matchingChar = tempList.splice(matchingCharIndex, 1);
+            displayCharacter(version, elem, matchingChar[0]);
+        }    
+    } else {
+        // If it's a non-final mission, first try to match based on class type
+        // If class type cannot be matched, all options are exhausted - take the first element left in the array for assignment
+        matchingCharIndex = tempList.findIndex(char => requiredClass.includes(char.classType));
+
+        if(matchingCharIndex === -1) {
+            matchingCharIndex = 0;
+        }
+
+        // Extract the affected character from the tempList array using splice (so tempList will automatically get changed)
+        const matchingChar = tempList.splice(matchingCharIndex, 1);
+        displayCharacter(version, elem, matchingChar[0]);
+    }
+
+    return tempList;
+}
+
+// Assigns character name to the respective table cell
+// Also activates display of job matching and level matching bonuses (if applicable)
+function displayCharacter(version, elem, matchingChar) {
+    elem.querySelector(".recommended-char").textContent = matchingChar.name;
+
+    // Highlight icon if class matches
+    // Also run a check for xenon due to specialized icon
+    if(matchingChar.classType === elem.dataset.class) {
+        elem.querySelector(`.icon-${matchingChar.classType}`).classList.add("active");
+    }
+
+    if(matchingChar.classType === "xenon") {
+        if(elem.dataset.class === "thief" || elem.dataset.class === "pirate") {
+            elem.querySelector(`.icon-${elem.dataset.class}`).classList.add("active");
+        }
+    }
+
+    // Level bonus differs based on version
+    // For version 2 and 3, level bonus is given on level 200+ characters
+    // For version 4, level bonus is tiered with varying bonus at level 200+, 220+ and 250+
+    if(version === "v1" || version === "v2" || version === "v3") {
+        if(matchingChar.level >= 200) {
+            elem.querySelector(".icon-level-bonus").classList.add("active");
+            elem.querySelector(".icon-level-bonus").classList.remove("d-none");
+        }
+    }
+
+    if(version === "v4") {
+        if(matchingChar.level >= 250) {
+            elem.querySelector(".icon-over-250").classList.add("active");
+            elem.querySelector(".icon-over-250").classList.remove("d-none");
+        } else if(matchingChar.level >= 220) {
+            elem.querySelector(".icon-over-220").classList.add("active");
+            elem.querySelector(".icon-over-220").classList.remove("d-none");
+        } else if(matchingChar.level >= 200) {
+            elem.querySelector(".icon-over-200").classList.add("active");
+            elem.querySelector(".icon-over-200").classList.remove("d-none");
+        }
+    }
 }
