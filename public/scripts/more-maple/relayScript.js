@@ -1,10 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
     dateChangeListener();
-    //generateSavedInputs();
+    settingsListeners();
 
-    //sectionViewToggle();
-    //settingsListeners();
-    //tableListener();
+    //generateSavedInputs();
 })
 
 function dateChangeListener() {
@@ -27,6 +25,71 @@ function dateChangeListener() {
 
         updateTableDateDisplay(this.value);
         localStorage.setItem("tacticalRelay", JSON.stringify(savedData))
+    })
+}
+
+function settingsListeners() {
+    document.querySelector(".next-week").addEventListener("click", () => {
+        document.querySelectorAll(".week-1").forEach(cell => cell.classList.add("d-none"));
+        document.querySelectorAll(".week-2").forEach(cell => cell.classList.remove("d-none"));
+    })
+
+    document.querySelector(".prev-week").addEventListener("click", () => {
+        document.querySelectorAll(".week-1").forEach(cell => cell.classList.remove("d-none"));
+        document.querySelectorAll(".week-2").forEach(cell => cell.classList.add("d-none"));
+    })
+
+    document.querySelectorAll(".input-list").forEach(elem => {
+        elem.addEventListener("keypress", (event) => {
+            if(event.charCode === 13) {
+                event.preventDefault();
+            }
+        })
+    })
+
+    document.querySelectorAll(".add-character-btn").forEach(btn => {
+        btn.addEventListener("click", function(event) {
+            event.preventDefault();
+
+            const classType = this.dataset.classType;
+            const affectedList = document.getElementById(`input-${classType}-list`);
+
+            const html = `<div class="col-12 d-flex position-relative px-0">
+                            <input type="text" placeholder="${classType.charAt(0).toUpperCase() + classType.slice(1)} ${affectedList.childElementCount+1}" class="col-9 class-input font-table form-control text-center p-0 mb-1" name="${classType}Inputs" id="${classType}-class-input-${affectedList.childElementCount+1}" autocomplete="off">
+                            <input type="number" placeholder="Level" class="col-3 level-input font-table form-control text-center" name="${classType}Levels" id="${classType}-level-input-${affectedList.childElementCount+1}" autocomplete="off">
+                        </div>`;
+            
+            affectedList.insertAdjacentHTML("beforeend", html);
+
+            if(affectedList.childElementCount >= 9) {
+                this.classList.remove("d-flex");
+                this.classList.add("d-none");
+            }
+        })
+    })
+
+    document.getElementById("generate-planner-btn").addEventListener("click", (event) => {
+        event.preventDefault();
+    })
+
+    // Erase all inputs and also delete data related to the currently-viewed relay version
+    // If no further relay-related data exists, erase item from storage
+    document.getElementById("restart-planner-btn").addEventListener("click", (event) => {
+        event.preventDefault();
+
+        if(window.confirm("Restarting will erase 1) all inputs made on this page and 2) all saved data related to the current tactical relay version. Do you wish to continue?")) {
+            let [version, savedData] = getGeneralData();
+
+            delete savedData[version];
+
+            if(Object.keys(savedData).length === 0) {
+                localStorage.removeItem("tacticalRelay");
+            } else {
+                localStorage.setItem("tacticalRelay", JSON.stringify(savedData));
+            }
+            
+            location.reload();
+        }
     })
 }
 
@@ -118,93 +181,6 @@ function generateSavedInputs() {
 
         createPlanner();
     }
-}
-
-function settingsListeners() {
-    $("#is-perfect-score").on("change", function() {
-        if($(this).prop("checked")) {
-            localStorage.setItem("isPerfectScore", true);
-
-            $(".class-input").map(function(index, elem) {
-                var classType = $(elem).data("class");
-                var characterNum = $(elem).data("num");
-                var extraPlaceholderText = "";
-
-                if(characterNum === 1) {
-                    extraPlaceholderText = " (Level 200+)";
-                } else if(characterNum === 2) {
-                    extraPlaceholderText = " (Arcane River)";
-                }
-                
-                $(elem).attr("placeholder", `${classType} ${characterNum}${extraPlaceholderText}`)
-            })
-            $(".level-200-form-checkbox").addClass("d-none");
-        } else {
-            localStorage.setItem("isPerfectScore", false);
-
-            $(".class-input").map(function(index, elem) {
-                var classType = $(elem).data("class");
-                var characterNum = $(elem).data("num");
-                $(elem).attr("placeholder", `${classType} ${characterNum}`);
-            })
-            $(".level-200-form-checkbox").removeClass("d-none");
-        }
-
-        $(".over-200-checkbox").toggleClass("d-none");
-    })
-
-    $("#all-level-200").change(function() {
-        localStorage.setItem("isAll200", this.checked);
-        $(".over-200-checkbox").prop("checked", this.checked);
-    })
-
-    $(".input-list").on("change", ".over-200-checkbox", function() {
-        if($(this).prop("checked")) {
-            var numChecked = $(".over-200-checkbox:checked").length;
-            var numCheckboxes = $(".over-200-checkbox").length;
-
-            if(numChecked === numCheckboxes) {
-                $("#all-level-200").prop("checked", true);
-                localStorage.setItem("isAll200", true);
-            }
-        } else {
-            $("#all-level-200").prop("checked", false);
-            localStorage.setItem("isAll200", false);
-        }
-    })
-
-    $(".add-character-btn").on("click", function(event) {
-        event.preventDefault();
-
-        var addClassType = $(this).data("class");
-        var numCharacters = $(`.input-${addClassType}-list .class-input`).length;
-        var isPerfectScore = $("#is-perfect-score").prop("checked") ? "d-none" : ""
-        var isAll200 = $("#all-level-200").prop("checked") ? "checked" : "";
-        
-        $(`.input-${addClassType}-list`).append(`<div class="position-relative">
-            <input type="text" placeholder="${addClassType} ${numCharacters+1}" class="class-input font-table form-control w-100 rounded-sm text-center p-0 mb-1" data-class="${addClassType}" data-num="${numCharacters+1}">
-            <input type="checkbox" class="form-check-input over-200-checkbox ${isPerfectScore} position-absolute" data-class="${addClassType}" data-num="${numCharacters+1}" ${isAll200}>
-        </div>`)
-
-        localStorage.setItem(`${addClassType}NumExtraInputs`, numCharacters+1-2);
-    })
-
-    $(".generate-score-btn").on("click", function(event) {
-        event.preventDefault();
-        createPlanner();
-        saveData();
-    })
-
-    $(".restart-btn").on("click", function() {
-        var confirmRestart = window.confirm("Restarting will erase ALL saved data. Do you wish to continue?");
-
-        if(confirmRestart) {
-            var displayType = localStorage.getItem("pageDisplayType");
-            localStorage.clear();
-            localStorage.setItem("pageDisplayType", displayType);
-            location.reload();
-        }
-    })
 }
 
 function createPlanner() {
@@ -428,26 +404,4 @@ function saveData() {
     })
 
     localStorage.setItem("savedCharList", JSON.stringify(savedCharList));
-}
-
-function tableListener() {
-    // Generated table
-    $("#is-focus-current-day").change(function() {
-        localStorage.setItem("isFocusCurrentDay", this.checked);
-
-        if($(this).prop("checked")) {
-            $(".single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score").addClass("inactive");
-            $(".curr-day").removeClass("inactive");
-        } else {
-            $(".single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score").removeClass("inactive");
-        }
-    })
-
-    $(".next-week").on("click", function() {
-        $(".prev-week, .week-1, .week-2").toggleClass("d-none");
-    })
-
-    $(".prev-week").on("click", function() {
-        $(".next-week, .week-1, .week-2").toggleClass("d-none");
-    })
 }
