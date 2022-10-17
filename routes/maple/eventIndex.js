@@ -1,5 +1,6 @@
 var CoinEventHelper = require("../helpers/coinEventHelpers");
 var IconHelper = require("../helpers/iconHelpers");
+var RelayHelper = require("../helpers/relayHelpers");
 
 var express = require("express");
 var router  = express.Router();
@@ -9,21 +10,32 @@ var CoinEvent = require("../../models/coinEventData");
 var Fun     = require("../../models/funData");
 
 router.get("/", function(req, res) {
-    res.redirect("/events/tactical-relay");
+    res.redirect("/calc/tactical-relay/v4");
 })
 
 router.get("/tactical-relay", function(req, res) {
-    var missionList = ["300 level-range mobs", "100 combo kills", "Defeat 1 daily boss",
-                        "300 star force mobs", "Monster Park once", "Activate 1 Rune",
-                        "3 Elite Monsters", "100 Multi-kills", "300 Arcane River mobs"];
+    res.redirect("/calc/tactical-relay/v4");
+})
 
-    var classSelect = ["pirate", "warrior", "mage", "archer", "thief"];
+router.get("/tactical-relay/:version", function(req, res) {
+    const version = req.params.version;
+    const event = RelayHelper.getRelayMissions(version);
 
-    res.locals.extraStylesheet = "more-maple/relayStyles";
-    res.locals.section = "calc";
-    res.locals.branch = "tactical-relay";
-    res.locals.title = "Tactical Relay";
-    res.render("more-maple/tactical-relay", {missionList: missionList, classSelect: classSelect});
+    if(event === undefined) {
+        res.flash("error", "Invalid version.");
+        res.redirect("/events/tactical-relay");
+    } else {
+        var rotation = ["pirate", "warrior", "mage", "archer", "thief"];
+        var classTypeList = [{ id: "warrior", name: "Warriors" }, { id: "mage", name: "Mages" }, 
+                            { id: "archer", name: "Archers" }, { id: "thief", name: "Thieves" }, 
+                            { id: "pirate", name: "Pirates" }, { id: "xenon", name: "Xenons" }];
+
+        res.locals.extraStylesheet = "more-maple/relayStyles";
+        res.locals.section = "calc";
+        res.locals.branch = "tactical-relay";
+        res.locals.title = "Tactical Relay";
+        res.render("more-maple/tactical-relay", {event: event, classTypeList: classTypeList, rotation: rotation, version: version});
+    }
 })
 
 router.get("/coin-events", function(req, res) {

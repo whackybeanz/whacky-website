@@ -69,12 +69,12 @@
   opacity: 1;
 }
 
-.icon-over-200 {
-  top: 0;
+.icon-level-bonus, .icon-over-200, .icon-over-220, .icon-over-250 {
+  top: 2px;
   right: 14px;
   opacity: 0.2;
 }
-.icon-over-200.active {
+.icon-level-bonus.active, .icon-over-200.active, .icon-over-220.active, .icon-over-250.active {
   opacity: 1;
 }
 
