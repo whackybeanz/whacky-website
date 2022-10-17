@@ -28,8 +28,8 @@
                     <form class="w-100">
                         <div class="relay-form-initial-inputs mb-4">
                             <div class="form-group row">
-                                <label for="select-date" class="col-4 col-form-label text-left font-weight-bold">Event Start Date</label>
-                                <div class="col-4 col-md-5 col-lg-6">
+                                <label for="select-date" class="col-5 col-sm-4 col-md-3 col-xl-2 col-form-label text-left font-weight-bold">Event Start Date</label>
+                                <div class="col-6 col-md-5 col-lg-3">
                                     <input type="hidden" id="version" value="<%= version %>">
                                     <input type="date" class="form-control text-center" id="select-date" value="<%= event.startDate %>">
                                 </div>
@@ -38,7 +38,7 @@
 
                         <div class="w-100 row d-flex justify-content-center text-center p-0 m-0">
                             <% classTypeList.forEach(classType => { %>
-                                <div class="col-4 <%= classType.id %>-list d-flex flex-column text-center mb-3 px-2">
+                                <div class="col-12 col-sm-6 col-md-4 <%= classType.id %>-list d-flex flex-column text-center mb-3 px-2">
                                     <p class="class-type w-100 d-flex justify-content-center align-items-center font-weight-bold mb-0 py-2"><img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/tactical-relay/icon-<%= classType.id %>.png" class="mr-2"> <%= classType.name %></p>
                                     <div class="input-list" id="input-<%= classType.id %>-list">
                                         <div class="col-12 d-flex position-relative px-0">
@@ -68,19 +68,10 @@
 
                 <hr class="mt-0">
 
-                <div class="w-100 mb-4">
+                <div class="w-100 mb-4 table-responsive-md">
                     <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Tactical Relay Planning</h2>
 
-                    <form class="w-100 d-none" id="planner-options">
-                        <div class="relay-form-initial-inputs">
-                            <div class="form-group form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="is-focus-current-day" checked>
-                                <label class="form-check-label" for="is-focus-current-day">Focus on current day</label>
-                            </div>
-                        </div>
-                    </form>
-
-                    <table class="table table-bordered table-responsive-md border-0 font-table">
+                    <table class="table table-bordered font-table">
                         <thead>
                             <tr>
                                 <th scope="col" class="mission-desc align-middle" rowspan="2">Mission</th>
@@ -100,7 +91,7 @@
                         <tbody>
                             <% event.missionList.forEach(function(mission, missionIndex) { %>
                             <tr>
-                                <th scope="row" class="mission-desc"><%= mission %></th>
+                                <th scope="row" class="mission-desc align-middle"><%= mission %></th>
                                 <% for(var i = missionIndex; i < 14 + missionIndex; i++) { %>
                                     <td class="class-type planned-characters text-center align-middle position-relative p-1 day-<%= i+1 - missionIndex %> mission-<%= missionIndex+1 %>
                                         <% if(i < missionIndex+7) { %>week-1<% } else { %>week-2 d-none<% } %> 
@@ -120,7 +111,7 @@
                                             <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/tactical-relay/icon-above-220.png" class="icon-over-220 position-absolute d-none">
                                             <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/tactical-relay/icon-above-250.png" class="icon-over-250 position-absolute d-none">
                                         <% } %>
-                                        <div class="recommended-char"></div>
+                                        <div class="recommended-char px-2 px-md-1 pt-3 py-sm-2"></div>
                                     </td>
                                 <% } %>
                             </tr>
@@ -174,10 +165,10 @@
                 </div>
 
                 <div class="w-100 mb-4 d-flex justify-content-center flex-wrap">
-                    <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/tactical-relay/relay-<%= version %>.png">
+                    <img class="img-fluid" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/tactical-relay/relay-<%= version %>.png">
 
                     <% if(version === "v3" || version === "v4") { %>
-                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/tactical-relay/relay-<%= version %>-perf.png">
+                        <img class="img-fluid" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/tactical-relay/relay-<%= version %>-perf.png">
                     <% } %>
                 </div>
             </div>
