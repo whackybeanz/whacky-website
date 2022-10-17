@@ -71,6 +71,8 @@ function settingsListeners() {
         event.preventDefault();
         let charList = generateCharList();
         generatePlanner(charList);
+        saveData(charList);
+        calculateIntermediateScore();
     })
 
     // Erase all inputs and also delete data related to the currently-viewed relay version
@@ -113,6 +115,8 @@ function loadSavedData() {
 
             if(savedData[version].charList !== undefined) {
                 populateInputs(savedData[version].charList);
+                generatePlanner(savedData[version].charList);
+                calculateIntermediateScore();
             }
         }
     }
@@ -310,5 +314,57 @@ function displayCharacter(version, elem, matchingChar) {
             elem.querySelector(".icon-over-200").classList.add("active");
             elem.querySelector(".icon-over-200").classList.remove("d-none");
         }
+    }
+}
+
+function saveData(charList) {
+    let [version, savedData] = getGeneralData();
+
+    if(savedData === null) {
+        savedData = { };
+    }
+
+    savedData[version] = {
+        startDate: document.getElementById("select-date").value,
+        charList: charList,
+    }
+
+    localStorage.setItem("tacticalRelay", JSON.stringify(savedData));
+}
+
+function calculateIntermediateScore() {
+    let grandTotal = 0;
+
+    for(let i = 1; i <= 14; i++) {
+        let missionScore = 0;
+        let jobScore = 0;
+        let levelScore = 0;
+
+        Array.from(document.querySelectorAll(`.planned-characters.day-${i}`)).map(elem => {
+            if(elem.querySelector(".recommended-char").textContent !== "") {
+                missionScore += 50;
+            }
+
+            if(elem.querySelector(".icon-class.active") !== null) {
+                jobScore += 10;
+            }
+
+            if(elem.querySelector(".icon-level-bonus.active") !== null || elem.querySelector(".icon-over-200.active") !== null) {
+                levelScore += 20;
+            }
+
+            if(elem.querySelector(".icon-over-220.active") !== null) {
+                levelScore += 30;
+            }
+
+            if(elem.querySelector(".icon-over-250.active") !== null) {
+                levelScore += 50;
+            }
+        })
+
+        document.querySelector(`.day-${i}.mission-score`).textContent = missionScore || "-";
+        document.querySelector(`.day-${i}.job-score`).textContent = jobScore || "-";
+        document.querySelector(`.day-${i}.level-score`).textContent = levelScore || "-";
+        document.querySelector(`.day-${i}.intermediate-score`).textContent = missionScore + jobScore + levelScore || "-";
     }
 }
