@@ -48,6 +48,18 @@
     PLANNER
 
 *******************/
+body {
+    .partition {
+        background-color: globals.$light-mode-light-grey;
+    }
+
+    &.dark-mode {
+        .partition {
+            background-color: globals.$dark-mode-black;
+        }
+    }
+}
+
 .single-date, .class-type {
     width: 100px;
     line-height: 1;
@@ -97,4 +109,9 @@
     &.curr-day {
         opacity: 1.0;
     }
+}
+
+.score-breakdown {
+    top: 2px;
+    right: 2px;
 }

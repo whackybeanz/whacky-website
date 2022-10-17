@@ -43,6 +43,13 @@
     PLANNER
 
 *******************/
+body .partition {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+body.dark-mode .partition {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .single-date, .class-type {
   width: 100px;
   line-height: 1;
@@ -86,6 +93,11 @@
 }
 .mission-score.curr-day, .job-score.curr-day, .level-score.curr-day, .total-score.curr-day {
   opacity: 1;
+}
+
+.score-breakdown {
+  top: 2px;
+  right: 2px;
 }
 
 /*# sourceMappingURL=relayStyles.css.map */

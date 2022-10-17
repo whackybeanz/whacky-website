@@ -68,11 +68,16 @@ function settingsListeners() {
     })
 
     document.getElementById("generate-planner-btn").addEventListener("click", (event) => {
+        let [version, savedData] = getGeneralData();
         event.preventDefault();
+
         let charList = generateCharList();
         generatePlanner(charList);
-        saveData(charList);
         calculateIntermediateScore();
+
+        let boosters = suggestBoosters(version);
+        displayFinalScore();
+        saveData(charList, boosters);
     })
 
     // Erase all inputs and also delete data related to the currently-viewed relay version
@@ -117,6 +122,8 @@ function loadSavedData() {
                 populateInputs(savedData[version].charList);
                 generatePlanner(savedData[version].charList);
                 calculateIntermediateScore();
+                suggestBoosters(version, savedData[version].boosters);
+                displayFinalScore();
             }
         }
     }
@@ -137,7 +144,11 @@ function updateTableDateDisplay(eventStartDate) {
         const currEventDayNum = Math.ceil(timeSinceEventStarted / (24*60*60*1000));
 
         if(currEventDayNum >= 1 && currEventDayNum <= 14) {
-            document.querySelectorAll(`.day-${currEventDayNum}`).forEach(cell => cell.classList.add("active"));
+            document.querySelectorAll(`.class-type`).forEach(cell => cell.classList.add("inactive"));
+            document.querySelectorAll(`.day-${currEventDayNum}`).forEach(cell => cell.classList.add("curr-day"));
+            document.querySelectorAll(`.day-${currEventDayNum}`).forEach(cell => cell.classList.remove("inactive"));
+        } else {
+            document.querySelectorAll(`.class-type`).forEach(cell => cell.classList.remove("inactive"));
         }
 
         if(currEventDayNum > 7 && currEventDayNum <= 14) {
@@ -147,6 +158,10 @@ function updateTableDateDisplay(eventStartDate) {
             document.querySelectorAll(".week-1").forEach(cell => cell.classList.remove("d-none"));
             document.querySelectorAll(".week-2").forEach(cell => cell.classList.add("d-none"));
         }
+    } else {
+        document.querySelectorAll(`.class-type`).forEach(cell => cell.classList.remove("inactive"));
+        document.querySelectorAll(".week-1").forEach(cell => cell.classList.remove("d-none"));
+        document.querySelectorAll(".week-2").forEach(cell => cell.classList.add("d-none"));
     }
 }
 
@@ -317,7 +332,7 @@ function displayCharacter(version, elem, matchingChar) {
     }
 }
 
-function saveData(charList) {
+function saveData(charList, boosters) {
     let [version, savedData] = getGeneralData();
 
     if(savedData === null) {
@@ -327,14 +342,13 @@ function saveData(charList) {
     savedData[version] = {
         startDate: document.getElementById("select-date").value,
         charList: charList,
+        boosters: boosters || [],
     }
 
     localStorage.setItem("tacticalRelay", JSON.stringify(savedData));
 }
 
 function calculateIntermediateScore() {
-    let grandTotal = 0;
-
     for(let i = 1; i <= 14; i++) {
         let missionScore = 0;
         let jobScore = 0;
@@ -367,4 +381,56 @@ function calculateIntermediateScore() {
         document.querySelector(`.day-${i}.level-score`).textContent = levelScore || "-";
         document.querySelector(`.day-${i}.intermediate-score`).textContent = missionScore + jobScore + levelScore || "-";
     }
+}
+
+// Only applicable to v3 and above
+// If there is saved booster data, display the days to be boosted
+// If there is no saved data on boosters, find the first three highest daily scores and assign booster logos, then save the data
+function suggestBoosters(version, savedBoosterData = null) {
+    if(version === "v3" || version === "v4") {
+        for(let elem of document.querySelectorAll(".booster")) {
+            elem.querySelector(".relay-booster").classList.add("d-none");
+            elem.querySelector(".relay-booster").classList.remove("active");
+        }
+
+        if(savedBoosterData) {
+            for(let dayNum of savedBoosterData) {
+                document.querySelector(`.booster.day-${dayNum}`).querySelector(".relay-booster").classList.remove("d-none");
+                document.querySelector(`.booster.day-${dayNum}`).querySelector(".relay-booster").classList.add("active");
+            }
+
+            return null;
+        } else {
+            const allScores = [];
+            Array.from(document.querySelectorAll(".intermediate-score")).forEach((elem, index) => {
+                allScores.push({ score: parseInt(elem.textContent), dayNum: index+1 });
+            })
+            allScores.sort((a, b) => b.score - a.score);
+            
+            for(let i = 0; i <= 2; i++) {
+                document.querySelector(`.booster.day-${allScores[i].dayNum}`).querySelector(".relay-booster").classList.remove("d-none");
+                document.querySelector(`.booster.day-${allScores[i].dayNum}`).querySelector(".relay-booster").classList.add("active");
+            }
+
+            return [allScores[0].dayNum, allScores[1].dayNum, allScores[2].dayNum];
+        }
+    }
+}
+
+function displayFinalScore() {
+    let grandTotal = 0;
+
+    for(let i = 1; i <= 14; i++) {
+        let totalScore = parseInt(document.querySelector(`.intermediate-score.day-${i}`).textContent) || 0;
+        let boosterElem = document.querySelector(`.booster.day-${i}`);
+
+        if(boosterElem !== null && boosterElem.querySelector(".relay-booster.active") !== null) {
+            totalScore *= 2;
+        }
+
+        grandTotal += totalScore;
+        document.querySelector(`.total-score.day-${i}`).textContent = totalScore.toLocaleString("en-SG");
+    }
+
+    document.querySelector(".grand-total-score").textContent = grandTotal.toLocaleString("en-SG");
 }

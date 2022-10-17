@@ -40,7 +40,11 @@
                                             <input type="number" placeholder="Level" class="col-3 level-input font-table form-control text-center" name="<%= classType.id %>Levels" id="<%= classType.id %>-level-input-2" autocomplete="off">
                                         </div>
                                     </div>
-                                    <button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class-type="<%= classType.id %>"><i class="fas fa-plus"></i></button>
+                                    <button class="font-table add-character-btn btn btn-small btn-outline-secondary w-100 d-flex justify-content-center align-items-center font-weight-bold py-1" data-class-type="<%= classType.id %>">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M 7.5 2 h 2 v 5 h 5 v 2 h -5 v 5 h -2 v -5 h -5 v -2 h 5 v -5 Z"/>
+                                        </svg>
+                                    </button>
                                 </div>
                             <% }) %>
                         </div>
@@ -54,7 +58,7 @@
 
                 <hr class="mt-0">
 
-                <div class="w-100 mb-3">
+                <div class="w-100 mb-4">
                     <h2 class="font-subheader w-100 font-weight-bold text-underline mb-2">Tactical Relay Planning</h2>
 
                     <form class="w-100 d-none" id="planner-options">
@@ -66,7 +70,7 @@
                         </div>
                     </form>
 
-                    <table class="table table-bordered font-table">
+                    <table class="table table-bordered table-responsive-md border-0 font-table">
                         <thead>
                             <tr>
                                 <th scope="col" class="mission-desc align-middle" rowspan="2">Mission</th>
@@ -111,49 +115,52 @@
                                 <% } %>
                             </tr>
                             <% }) %>
-                            <tr class="d-none">
-                                <th scope="row" class="text-custom">Mission Score</th>
+                            <tr class="partition">
+                                <td class="py-2" colspan="8"></td>
+                            </tr>
+                            <tr class="">
+                                <th scope="row">Mission Score</th>
                                 <% for(var i = 0; i < 14; i++) { %>
-                                    <td class="class-type text-center text-custom align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %> mission-score"></td>
+                                    <td class="class-type mission-score text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
                                 <% } %>
                             </tr>
-                            <tr class="d-none">
-                                <th scope="row" class="text-custom">Job Bonus</th>
+                            <tr class="">
+                                <th scope="row">Job Bonus</th>
                                 <% for(var i = 0; i < 14; i++) { %>
-                                    <td class="class-type text-center text-custom align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %> job-score"></td>
+                                    <td class="class-type job-score text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
                                 <% } %>
                             </tr>
-                            <tr class="d-none">
-                                <th scope="row" class="text-custom">Level Bonus</th>
+                            <tr class="">
+                                <th scope="row">Level Bonus</th>
                                 <% for(var i = 0; i < 14; i++) { %>
-                                    <td class="class-type text-center text-custom align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %> level-score"></td>
+                                    <td class="class-type level-score text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
                                 <% } %>
                             </tr>
-                            <tr class="d-none">
-                                <th scope="row" class="text-custom">Intermediate Score</th>
+                            <tr class="<% if(version === "v1" || version === "v2") { %>d-none<% } %>">
+                                <th scope="row">Intermediate Score</th>
                                 <% for(var i = 0; i < 14; i++) { %>
-                                    <td class="class-type text-center text-custom align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %> intermediate-score"></td>
+                                    <td class="class-type intermediate-score text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
                                 <% } %>
                             </tr>
                             <% if(version === "v3" || version === "v4") { %>
                             <tr>
-                                <th scope="row" class="text-custom">Booster?</th>
+                                <th scope="row">Booster?</th>
                                 <% for(var i = 0; i < 14; i++) { %>
-                                    <td class="class-type text-center text-custom align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %> booster">
+                                    <td class="class-type booster text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>">
                                         <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/tactical-relay/booster-on.png" class="relay-booster d-none">
                                     </td>
                                 <% } %>
                             </tr>
                             <% } %>
                             <tr>
-                                <th scope="row" class="text-custom">Total Score</th>
+                                <th scope="row">Total Score</th>
                                 <% for(var i = 0; i < 14; i++) { %>
-                                    <td class="class-type text-center text-custom align-middle p-1 font-weight-bold <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %> total-score"></td>
+                                    <td class="class-type total-score text-center align-middle position-relative p-1 font-weight-bold <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
                                 <% } %>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="font-header text-center">Grand Total: <span class="grand-total-score">0</span></div>
+                    <div class="font-header text-center text-custom">Grand Total: <span class="grand-total-score">0</span></div>
                 </div>
             </div>
         </div>
