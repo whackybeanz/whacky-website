@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
-    //updateTableDates(true);
+    dateChangeListener();
     //generateSavedInputs();
 
     //sectionViewToggle();
@@ -7,56 +7,60 @@ document.addEventListener("DOMContentLoaded", function(event) {
     //tableListener();
 })
 
-function updateTableDates(isNewDateCreation) {
-    var anySavedDate = localStorage.getItem("relayStartDate");
-    var localTimezoneOffset = 0;
+function dateChangeListener() {
+    // Using function() instead of arrow function to retrieve 'this'
+    document.getElementById("select-date").addEventListener("change", function() {
+        let [version, savedData] = getGeneralData();
 
-    if(anySavedDate !== null) {
-        var date = new Date(anySavedDate);
-        localTimezoneOffset = new Date(anySavedDate).getTimezoneOffset();
-        $("#select-date").val(anySavedDate);
-    } else {
-        var date = new Date($("#select-date").val());
-        localTimezoneOffset = new Date(anySavedDate).getTimezoneOffset();
-        localStorage.setItem("relayStartDate", $("#select-date").val());
-    }
-    
-    var dateMilliseconds = Date.parse(date);
-    var todayDateMillisceonds = Date.now();
-    var todayDayNum = Math.ceil((todayDateMillisceonds - dateMilliseconds - (localTimezoneOffset * 60 * 1000)) / (1000 * 60 * 60 * 24));
-
-    for(var i = 0; i < 14; i++) {
-        var newDate = dateMilliseconds + i * 24 * 60 * 60 * 1000;
-
-        if(isNewDateCreation) {
-            if(i < 7) {
-                $(".date-range").append(`<th class="single-date week-1 day-${i+1} text-center p-1">${new Date(newDate).toLocaleDateString('en-US', {month: "short", day: "numeric", timeZone: "Asia/Singapore"})}</th>`)    
-            } else {
-                $(".date-range").append(`<th class="single-date week-2 day-${i+1} text-center p-1 d-none">${new Date(newDate).toLocaleDateString('en-US', {month: "short", day: "numeric", timeZone: "Asia/Singapore"})}</th>`) 
+        if(savedData === null) {
+            // If there is no saved data at all, create an empty save object
+            // Also create an empty object for that relay version
+            savedData = { };
+            savedData[version] = { };
+        } else {
+            // If there is no saved data specific to the current relay version, create an empty object for that version
+            if(savedData[version] === undefined) {
+                savedData[version] = { };
             }
-        } else {
-            $(`.single-date.day-${i+1}`).text(new Date(newDate).toLocaleDateString('en-US', {month: "short", day: "numeric", timeZone: "Asia/Singapore"}));
         }
+        savedData[version].startDate = this.value;          
+
+        updateTableDateDisplay(this.value);
+        localStorage.setItem("tacticalRelay", JSON.stringify(savedData))
+    })
+}
+
+function getGeneralData() {
+    const version = document.getElementById("version").value;
+    const savedData = JSON.parse(localStorage.getItem("tacticalRelay"));
+
+    return [version, savedData];
+}
+
+// Update dates displayed in the table
+// Toggle between week 1 or 2 depending on the status of the event
+// Also highlight the column corresponding to today's date if event is currently ongoing
+function updateTableDateDisplay(eventStartDate) {
+    for(let i = 1; i <= 14; i++) {
+        document.querySelector(`.single-date.day-${i}`).textContent = new Date(Date.parse(eventStartDate) + (i-1)*24*60*60*1000).toLocaleDateString('en-US', {month: "short", day: "numeric", timeZone: "Asia/Singapore"});
     }
 
-    if(todayDayNum >= 1 && todayDayNum <= 14) {
-        $(`.single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score`).addClass("inactive");
-        $(`.day-${todayDayNum}`).removeClass("inactive").addClass("curr-day");
+    const currDate = Date.now();
+    const timeSinceEventStarted = currDate - Date.parse(eventStartDate);
 
-        if(todayDayNum >= 8) {
-            $(".week-2").removeClass("d-none");
-            $(".week-1").addClass("d-none");
+    if(timeSinceEventStarted > 0) {
+        const currEventDayNum = Math.ceil(timeSinceEventStarted / (24*60*60*1000));
+
+        if(currEventDayNum >= 1 && currEventDayNum <= 14) {
+            document.querySelectorAll(`.day-${currEventDayNum}`).forEach(cell => cell.classList.add("active"));
         }
 
-        var storageIsFocusCurrentDay = localStorage.getItem("isFocusCurrentDay");
-        $("#planner-options").removeClass("d-none");
-
-        // Check/uncheck focus on current day
-        if(storageIsFocusCurrentDay === null || storageIsFocusCurrentDay === "true") {
-            $("#is-focus-current-day").prop("checked", true);
+        if(currEventDayNum > 7 && currEventDayNum <= 14) {
+            document.querySelectorAll(".week-1").forEach(cell => cell.classList.add("d-none"));
+            document.querySelectorAll(".week-2").forEach(cell => cell.classList.remove("d-none"));
         } else {
-            $("#is-focus-current-day").prop("checked", false);
-            $(".single-date, .planned-characters, .mission-score, .job-score, .level-score, .total-score").removeClass("inactive");
+            document.querySelectorAll(".week-1").forEach(cell => cell.classList.remove("d-none"));
+            document.querySelectorAll(".week-2").forEach(cell => cell.classList.add("d-none"));
         }
     }
 }
@@ -116,21 +120,7 @@ function generateSavedInputs() {
     }
 }
 
-function sectionViewToggle() {
-    $(".section-show-hide").on("click", function() {
-        var sectionType = $(this).data("section");
-        $(this).find(".far").toggleClass("d-none");
-        $(`.relay-${sectionType}`).toggleClass("d-none");
-    })
-}
-
 function settingsListeners() {
-    // Settings
-    $("#select-date").on("blur", function() {
-        localStorage.setItem("relayStartDate", $(this).val());
-        updateTableDates(false);
-    })
-
     $("#is-perfect-score").on("change", function() {
         if($(this).prop("checked")) {
             localStorage.setItem("isPerfectScore", true);
