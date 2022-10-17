@@ -1,4 +1,4 @@
-function getRelayMissions(version) {
+function getRelayMissions(version = null) {
     const relayMissions = {
         v1: {
             startDate: "2018-11-29",
@@ -27,7 +27,11 @@ function getRelayMissions(version) {
         }
     }
 
-    return relayMissions[version];
+    if(version === null) {
+        return Object.keys(relayMissions);
+    } else {
+        return relayMissions[version];
+    }
 }
 
 module.exports = { getRelayMissions };

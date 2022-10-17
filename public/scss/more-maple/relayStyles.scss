@@ -1,10 +1,47 @@
 @use '../_global-styles' as globals;
 
-/*******************
+body {
+    .partition {
+        background-color: globals.$light-mode-light-grey;
+    }
 
-    INTRODUCTION
+    .chair-preview-div {
+        border: 1px solid globals.$light-mode-grey;
+        transition: all 0.2s;
+        color: globals.$light-mode-black;
 
-*******************/
+        &:hover {
+            background-color: globals.$light-mode-grey;
+        }
+    }
+
+    &.dark-mode {
+        .partition {
+            background-color: globals.$dark-mode-black;
+        }
+
+        .chair-preview-div {
+            border: 1px solid globals.$dark-mode-navy-grey;
+            transition: all 0.2s;
+            color: globals.$dark-mode-white;
+
+            &:hover {
+                background-color: globals.$dark-mode-navy-grey;
+            }
+        }
+    }
+}
+
+.chair-preview-div {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.chair-preview {
+    height: 300px;
+}
+
 .section-show-hide {
     cursor: pointer;
 }
@@ -48,18 +85,6 @@
     PLANNER
 
 *******************/
-body {
-    .partition {
-        background-color: globals.$light-mode-light-grey;
-    }
-
-    &.dark-mode {
-        .partition {
-            background-color: globals.$dark-mode-black;
-        }
-    }
-}
-
 .single-date, .class-type {
     width: 100px;
     line-height: 1;

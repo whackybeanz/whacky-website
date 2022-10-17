@@ -1,8 +1,34 @@
-/*******************
+body .partition {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+body .chair-preview-div {
+  border: 1px solid rgba(206, 212, 218, 0.8);
+  transition: all 0.2s;
+  color: #212529;
+}
+body .chair-preview-div:hover {
+  background-color: rgba(206, 212, 218, 0.8);
+}
+body.dark-mode .partition {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+body.dark-mode .chair-preview-div {
+  border: 1px solid rgba(52, 58, 64, 0.8);
+  transition: all 0.2s;
+  color: rgba(255, 255, 255, 0.8);
+}
+body.dark-mode .chair-preview-div:hover {
+  background-color: rgba(52, 58, 64, 0.8);
+}
 
-    INTRODUCTION
+.chair-preview-div:hover {
+  text-decoration: none;
+}
 
-*******************/
+.chair-preview {
+  height: 300px;
+}
+
 .section-show-hide {
   cursor: pointer;
 }
@@ -43,13 +69,6 @@
     PLANNER
 
 *******************/
-body .partition {
-  background-color: rgba(0, 0, 0, 0.075);
-}
-body.dark-mode .partition {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
 .single-date, .class-type {
   width: 100px;
   line-height: 1;

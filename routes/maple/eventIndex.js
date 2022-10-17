@@ -14,7 +14,13 @@ router.get("/", function(req, res) {
 })
 
 router.get("/tactical-relay", function(req, res) {
-    res.redirect("/calc/tactical-relay/v4");
+    const versions = RelayHelper.getRelayMissions();
+
+    res.locals.extraStylesheet = "more-maple/relayStyles";
+    res.locals.section = "calc";
+    res.locals.branch = "tactical-relay";
+    res.locals.title = "Tactical Relay";
+    res.render("calc/tactical-relay-index", { versions: versions });
 })
 
 router.get("/tactical-relay/:version", function(req, res) {
@@ -34,7 +40,7 @@ router.get("/tactical-relay/:version", function(req, res) {
         res.locals.section = "calc";
         res.locals.branch = "tactical-relay";
         res.locals.title = "Tactical Relay";
-        res.render("more-maple/tactical-relay", {event: event, classTypeList: classTypeList, rotation: rotation, version: version});
+        res.render("calc/tactical-relay", {event: event, classTypeList: classTypeList, rotation: rotation, version: version});
     }
 })
 

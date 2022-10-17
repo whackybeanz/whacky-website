@@ -1,0 +1,32 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="container-fluid content d-flex flex-column flex-md-row p-0">
+    <%- include("../partials/sidebar") %>
+    <div class="main-content-div col px-0 position-relative">
+        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
+                <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                    <h1 class="font-header w-100 text-center m-0 px-0">Tactical Relay</h1>
+                    <div class="w-100 flex-grow-1 border-top border-dark"></div>
+                </div>
+
+                <div class="w-100 d-flex flex-column align-items-center mb-3">
+                    <p>Select which relay version you would like to view:</p>
+
+                    <div class="d-flex justify-content-center align-items-start flex-wrap" id="relay-select">
+                        <% versions.forEach(version => { %>
+                            <a href="/calc/tactical-relay/<%= version %>" class="col-4 chair-preview-div d-flex flex-column justify-content-start align-items-center cursor-pointer rounded-sm mb-2 py-3 mr-2">
+                                <h2 class="font-subheader font-weight-bold">Version <%= version.split("v")[1] %></h2>
+                                <img class="d-flex align-self-center chair-preview" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/tactical-relay/relay-<%= version %>.png">
+                            </a>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>
