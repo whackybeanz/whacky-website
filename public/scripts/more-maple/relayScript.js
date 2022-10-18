@@ -144,7 +144,7 @@ function updateTableDateDisplay(eventStartDate) {
         const currEventDayNum = Math.ceil(timeSinceEventStarted / (24*60*60*1000));
 
         if(currEventDayNum >= 1 && currEventDayNum <= 14) {
-            document.querySelectorAll(`.class-type`).forEach(cell => cell.classList.add("inactive"));
+            document.querySelectorAll(`.planner-cell`).forEach(cell => cell.classList.add("inactive"));
             document.querySelectorAll(`.day-${currEventDayNum}`).forEach(cell => cell.classList.add("curr-day"));
             document.querySelectorAll(`.day-${currEventDayNum}`).forEach(cell => cell.classList.remove("inactive"));
         } else {

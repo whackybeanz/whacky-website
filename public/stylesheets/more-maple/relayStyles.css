@@ -30,15 +30,15 @@ body.dark-mode .chair-preview-div:hover {
   height: 300px;
 }
 
-.single-date, .class-type {
+.single-date, .planner-cell {
   min-width: 75px;
   line-height: 1;
   opacity: 1;
 }
-.single-date.inactive, .class-type.inactive {
+.single-date.inactive, .planner-cell.inactive {
   opacity: 0.25;
 }
-.single-date.curr-day, .class-type.curr-day {
+.single-date.curr-day, .planner-cell.curr-day {
   opacity: 1;
 }
 

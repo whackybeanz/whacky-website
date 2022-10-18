@@ -82,7 +82,7 @@
                             </tr>
                             <tr class="date-range">
                                 <% for(let i = 1; i <= 14; i++) { %>
-                                    <th class="single-date week-<% if(i <= 7) { %>1<% } else { %>2 d-none<% } %> day-<%= i %> text-center p-1">
+                                    <th class="planner-cell single-date week-<% if(i <= 7) { %>1<% } else { %>2 d-none<% } %> day-<%= i %> text-center p-1">
                                         <%= new Date(Date.parse(event.startDate) + (i-1)*24*60*60*1000).toLocaleDateString('en-US', {month: "short", day: "numeric", timeZone: "Asia/Singapore"}) %>
                                     </th>
                                 <% } %>
@@ -93,7 +93,7 @@
                             <tr>
                                 <th scope="row" class="mission-desc align-middle"><%= mission %></th>
                                 <% for(var i = missionIndex; i < 14 + missionIndex; i++) { %>
-                                    <td class="class-type planned-characters text-center align-middle position-relative p-1 day-<%= i+1 - missionIndex %> mission-<%= missionIndex+1 %>
+                                    <td class="planner-cell planned-characters text-center align-middle position-relative p-1 day-<%= i+1 - missionIndex %> mission-<%= missionIndex+1 %>
                                         <% if(i < missionIndex+7) { %>week-1<% } else { %>week-2 d-none<% } %> 
                                         <%= rotation[i % rotation.length] %>-<% if(missionIndex >= 5) { %>2<% } else { %>1<% } %>" 
                                         data-class="<%= rotation[i % rotation.length] %>">
@@ -122,32 +122,32 @@
                             <tr class="">
                                 <th scope="row">Mission Score</th>
                                 <% for(var i = 0; i < 14; i++) { %>
-                                    <td class="class-type mission-score text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
+                                    <td class="planner-cell mission-score text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
                                 <% } %>
                             </tr>
                             <tr class="">
                                 <th scope="row">Job Bonus</th>
                                 <% for(var i = 0; i < 14; i++) { %>
-                                    <td class="class-type job-score text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
+                                    <td class="planner-cell job-score text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
                                 <% } %>
                             </tr>
                             <tr class="">
                                 <th scope="row">Level Bonus</th>
                                 <% for(var i = 0; i < 14; i++) { %>
-                                    <td class="class-type level-score text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
+                                    <td class="planner-cell level-score text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
                                 <% } %>
                             </tr>
                             <tr class="<% if(version === "v1" || version === "v2") { %>d-none<% } %>">
                                 <th scope="row">Intermediate Score</th>
                                 <% for(var i = 0; i < 14; i++) { %>
-                                    <td class="class-type intermediate-score text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
+                                    <td class="planner-cell intermediate-score text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
                                 <% } %>
                             </tr>
                             <% if(version === "v3" || version === "v4") { %>
                             <tr>
                                 <th scope="row">Booster?</th>
                                 <% for(var i = 0; i < 14; i++) { %>
-                                    <td class="class-type booster text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>">
+                                    <td class="planner-cell booster text-center align-middle p-1 <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>">
                                         <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/tactical-relay/booster-on.png" class="relay-booster d-none">
                                     </td>
                                 <% } %>
@@ -156,7 +156,7 @@
                             <tr>
                                 <th scope="row">Total Score</th>
                                 <% for(var i = 0; i < 14; i++) { %>
-                                    <td class="class-type total-score text-center align-middle position-relative p-1 font-weight-bold <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
+                                    <td class="planner-cell total-score text-center align-middle position-relative p-1 font-weight-bold <% if(i < 7) { %>week-1<% } else { %>week-2 d-none<% } %> day-<%= i+1 %>"></td>
                                 <% } %>
                             </tr>
                         </tbody>
