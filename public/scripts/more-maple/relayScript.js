@@ -138,7 +138,7 @@ function updateTableDateDisplay(eventStartDate) {
     }
 
     const currDate = Date.now();
-    const timeSinceEventStarted = currDate - Date.parse(eventStartDate);
+    const timeSinceEventStarted = currDate - Date.parse(eventStartDate) + 8*60*60*1000;
 
     if(timeSinceEventStarted > 0) {
         const currEventDayNum = Math.ceil(timeSinceEventStarted / (24*60*60*1000));
