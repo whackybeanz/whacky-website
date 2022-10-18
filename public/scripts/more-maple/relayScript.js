@@ -203,7 +203,7 @@ function generateCharList() {
         if(allInputs.length > 0) {
             allInputs.forEach((input, index) => {
                 let levelInput = allLevels[index].value;
-                
+
                 if(levelInput !== "" && parseInt(levelInput) >= 101) {
                     allChars.push({ classType: classType, name: input.value, level: parseInt(levelInput)});
                 }
@@ -232,17 +232,22 @@ function generatePlanner(charList) {
     // Plan who does what for each day of the event
     for(let i = 1; i <= 14; i++) {
         let tempList = charList.slice();
+        let skipped = [];
 
         if(charList.length >= numMissionsDaily) {
             // If there are sufficient characters to fulfill all missions daily, fill the most difficult mission (the final one) first
             // Assign characters in a backwards order to prioritize using strong characters to complete the more time-consuming missions
             const elem = document.querySelector(`.day-${i}.mission-${numMissionsDaily}`);
-            tempList = assignMatchingChar(version, tempList, elem, true);
+            [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, true);
 
             for(let missionCount = numMissionsDaily-1; missionCount > 0; missionCount--) { 
                 if(tempList.length > 0) {
                     const elem = document.querySelector(`.day-${i}.mission-${missionCount}`);
-                    tempList = assignMatchingChar(version, tempList, elem);
+                    [tempList, isSkipped] = assignMatchingChar(version, tempList, elem);
+
+                    if(isSkipped) {
+                        skipped.push(missionCount);
+                    }
                 }
             }
         } else {
@@ -250,10 +255,21 @@ function generatePlanner(charList) {
             for(let missionCount = 1; missionCount < numMissionsDaily; missionCount++) { 
                 if(tempList.length > 0) {
                     const elem = document.querySelector(`.day-${i}.mission-${missionCount}`);
-                    tempList = assignMatchingChar(version, tempList, elem);
+                    [tempList, isSkipped] = assignMatchingChar(version, tempList, elem);
+
+                    if(isSkipped) {
+                        skipped.push(missionCount);
+                    }
                 }
             }
         }
+
+        skipped.forEach(missionNum => {
+            if(tempList.length > 0) {
+                const elem = document.querySelector(`.day-${i}.mission-${missionNum}`);
+                [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, false, false);    
+            }
+        })
     }
 }
 
@@ -261,8 +277,9 @@ function generatePlanner(charList) {
 // The priority for retrieving a matching character is as follows:
 // [Level and class match] >> [Level match] >> [Class match] >> [First element in array]
 // Since array has been sorted by highest level first, it is already optimized to retrieve the maximum bonus for level of character used
-function assignMatchingChar(version, tempList, elem, isFinalMission = false) {
+function assignMatchingChar(version, tempList, elem, isFinalMission = false, isAllowMissionSkip = true) {
     let requiredClass = elem.dataset.class;
+    let isSkipped = false;
 
     // As Xenon can cover both thief and pirate classes, add the class as "required" for easier searching
     if(requiredClass === "thief" || requiredClass === "pirate") {
@@ -270,37 +287,45 @@ function assignMatchingChar(version, tempList, elem, isFinalMission = false) {
     }
 
     // Regardless of mission, first attempt to match job and level
-    // If this is not possible, prioritize level
     let matchingCharIndex = tempList.findIndex(char => requiredClass.includes(char.classType) && char.level >= 200);
 
-    if(matchingCharIndex === -1) {
-        matchingCharIndex = tempList.findIndex(char => char.level >= 200);
-    }
+    // If a match is found, proceed to allocate character
+    // If a match is not found, first check if mission skipping is allowed (initial assignment iteration)
+    // If mission skipping is allowed, return flag indicating that skip happened
+    // If mission skipping is also not allowed, proceed with allocation
+    if(matchingCharIndex !== -1 || !isAllowMissionSkip) {
+        // First prioritize level
+        if(matchingCharIndex === -1) {
+            matchingCharIndex = tempList.findIndex(char => char.level >= 200);
+        }
     
-    // At this point, if matchingCharIndex still returns -1, then all input levels were below level 200
-    if(isFinalMission) {
-        // If it's a final mission, assignment can be skipped if matchingCharIndex is -1 (it is impossible to finish the last mission)
-        // If there is a matching character, proceed to assign character to the mission
-        // Extract the affected character from the tempList array using splice (so tempList will automatically get changed)
-        if(matchingCharIndex !== -1) {
+        // At this point, if matchingCharIndex still returns -1, then all input levels were below level 200
+        if(isFinalMission) {
+            // If it's a final mission, assignment can be skipped if matchingCharIndex is -1 (it is impossible to finish the last mission)
+            // If there is a matching character, proceed to assign character to the mission
+            // Extract the affected character from the tempList array using splice (so tempList will automatically get changed)
+            if(matchingCharIndex !== -1) {
+                const matchingChar = tempList.splice(matchingCharIndex, 1);
+                displayCharacter(version, elem, matchingChar[0]);
+            }    
+        } else {
+            // If it's a non-final mission, first try to match based on class type
+            // If class type cannot be matched, all options are exhausted - take the first element left in the array for assignment
+            matchingCharIndex = tempList.findIndex(char => requiredClass.includes(char.classType));
+
+            if(matchingCharIndex === -1) {
+                matchingCharIndex = 0;
+            }
+
+            // Extract the affected character from the tempList array using splice (so tempList will automatically get changed)
             const matchingChar = tempList.splice(matchingCharIndex, 1);
             displayCharacter(version, elem, matchingChar[0]);
-        }    
-    } else {
-        // If it's a non-final mission, first try to match based on class type
-        // If class type cannot be matched, all options are exhausted - take the first element left in the array for assignment
-        matchingCharIndex = tempList.findIndex(char => requiredClass.includes(char.classType));
-
-        if(matchingCharIndex === -1) {
-            matchingCharIndex = 0;
         }
-
-        // Extract the affected character from the tempList array using splice (so tempList will automatically get changed)
-        const matchingChar = tempList.splice(matchingCharIndex, 1);
-        displayCharacter(version, elem, matchingChar[0]);
+    } else {
+        isSkipped = true;
     }
-
-    return tempList;
+    
+    return [tempList, isSkipped];
 }
 
 // Assigns character name to the respective table cell
