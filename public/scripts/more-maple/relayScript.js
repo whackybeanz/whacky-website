@@ -202,7 +202,11 @@ function generateCharList() {
         // If user forgot to input character level, assign character as level 0
         if(allInputs.length > 0) {
             allInputs.forEach((input, index) => {
-                allChars.push({ classType: classType, name: input.value, level: parseInt(allLevels[index].value) || 0 });
+                let levelInput = allLevels[index].value;
+                
+                if(levelInput !== "" && parseInt(levelInput) >= 101) {
+                    allChars.push({ classType: classType, name: input.value, level: parseInt(levelInput)});
+                }
             })
         }
     }
@@ -216,6 +220,14 @@ function generateCharList() {
 function generatePlanner(charList) {
     const numMissionsDaily = document.querySelectorAll(".planned-characters.day-1").length;
     let [version, savedData] = getGeneralData();
+
+    // Erase all displayed data (if any)
+    document.querySelectorAll(".recommended-char").forEach(elem => elem.textContent = "");
+    document.querySelectorAll(".icon-class").forEach(elem => elem.classList.remove("active"));
+    document.querySelectorAll(".icon-level-bonus, .icon-over-200, .icon-over-220, .icon-over-250").forEach(elem => {
+        elem.classList.remove("active");
+        elem.classList.add("d-none");
+    })
 
     // Plan who does what for each day of the event
     for(let i = 1; i <= 14; i++) {
