@@ -239,20 +239,16 @@ function generatePlanner(charList) {
         // First assign by [level 200 and job match], otherwise try assigning by [level 200]
         // If still unable to assign, skip this assignment (no eligible characters)
         if(charList.length >= numMissionsDaily) {
-            numMissionsCompletable = numMissionsDaily;
-
             const elem = document.querySelector(`.day-${i}.mission-${numMissionsDaily}`);
             [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "levelJob", true);
 
             if(isSkipped) {
                 [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "level", true);
-
-                if(!isSkipped) {
-                    numMissionsCompletable -= 1;
-                }
-            } else {
-                numMissionsCompletable -= 1;
             }
+
+            // Regardless of whether or not assignment was successful, reduce total count by 1
+            // for the next step
+            numMissionsCompletable = numMissionsDaily-1;
         }
 
         // Now begin assignment of remaining missions
