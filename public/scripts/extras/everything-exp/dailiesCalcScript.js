@@ -150,6 +150,7 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp) {
     let expMinigameId = perDayExp.eventMinigameId;
     let numExpMinigamePerDay = getNumRuns("num-exp-minigame");
     let numMpExPerDay = getNumRuns("num-monster-park-extreme");
+    let burningType = document.getElementById("burning-select").value;
 
     for(let i = startDate; i <= endDate; i += 1000*60*60*24) {
         let expTNL = getExpTNL(newLevel);
@@ -164,25 +165,29 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp) {
 
         // After regular dailies, does level increase? If so, adjust value accordingly
         // Then, after grinding, does level increase? If so, adjust value accordingly
-        [newLevel, newExp] = adjustLevelAndExp(newLevel, newExp, expFromDaily, expTNL);
-        [newLevel, newExp] = adjustLevelAndExp(newLevel, newExp, expFromGrinding, expTNL);
+        [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromDaily, expTNL, burningType);
+        [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromGrinding, expTNL, burningType);
 
         // Now add EXP obtained from event minigames
         if(expMinigameId !== "" && numExpMinigamePerDay > 0) {
             let expFromMinigames;
 
-            if(expMinigameId === "live") {
-                expFromMinigames = EVENT_EXP_TABLE[newLevel-200];
-            } else {
-                expFromMinigames = DESTINY_EVENT_EXP_TABLE[newLevel-200] || DESTINY_EVENT_EXP_TABLE[DESTINY_EVENT_EXP_TABLE.length-1];
-                expFromMinigames = Math.floor(expFromMinigames * perDayExp.eventMinigameMult / 100000) * 100000;
-            }
+            for(let j = 0; j < numExpMinigamePerDay; j++) {
+                if(expMinigameId === "live") {
+                    expFromMinigames = EVENT_EXP_TABLE[newLevel-200];
+                } else {
+                    expFromMinigames = DESTINY_EVENT_EXP_TABLE[newLevel-200] || DESTINY_EVENT_EXP_TABLE[DESTINY_EVENT_EXP_TABLE.length-1];
+                    expFromMinigames = Math.floor(expFromMinigames * perDayExp.eventMinigameMult / 100000) * 100000;
+                }
 
-            expFromMinigames = expFromMinigames * numExpMinigamePerDay;
+                // As event EXP is added last (to factor for best EXP rates possible), a second calculation is needed to check for potential level up
+                // After event minigames, does level increase? If so, adjust value accordingly
+                [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromMinigames, expTNL, burningType);
 
-            // As event EXP is added last (to factor for best EXP rates possible), a second calculation is needed to check for potential level up
-            // After event minigames, does level increase? If so, adjust value accordingly
-            [newLevel, newExp] = adjustLevelAndExp(newLevel, newExp, expFromMinigames, expTNL);
+                if(isLevelUp) {
+                    expTNL = getExpTNL(newLevel);
+                }
+            }            
         }
 
         // If character is level 260+, now add EXP obtained from Monster Park Extreme
@@ -195,20 +200,33 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp) {
                 expFromMpEx = newLevel * MONSTER_PARK_EXTREME_TABLE[newLevel - 260] * 100000000;
             }
 
-            [newLevel, newExp] = adjustLevelAndExp(newLevel, newExp, expFromMpEx, expTNL);
+            [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromMpEx, expTNL, burningType);
         }
     }
 
     return [newLevel, newExp];
 }
 
-function adjustLevelAndExp(newLevel, newExp, expValue, expTNL) {
+function adjustLevelAndExp(newLevel, newExp, expValue, expTNL, burningType) {
     if(newExp + expValue >= expTNL) {
-        newLevel++;
+        if(burningType === "") {
+            newLevel++;    
+        }
+
+        if(burningType === "hyper") {
+            if(newLevel+3 <= 250) {
+                newLevel += 3;
+            } else {
+                newLevel = 250;
+            }
+        }
+        
         newExp = newExp + expValue - expTNL;
+        isLevelUp = true;
     } else {
         newExp += expValue;
+        isLevelUp = false;
     }
 
-    return [newLevel, newExp]
+    return [newLevel, newExp, isLevelUp]
 }
