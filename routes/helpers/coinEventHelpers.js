@@ -106,7 +106,7 @@ function retrieveItemList(listType, currency) {
         growth: [
             { iconId: "2x-exp-coupon", price: 30, quantity: 2, coinType: currency, purchaseLimit: "character", timeframeLimit: "day", tradability: "untradable", itemNotes: "", sectionHeader: "Growth" },
             { iconId: "mysterious-momon", price: 200, quantity: 3, coinType: currency, purchaseLimit: "world", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
-            { iconId: "monster-life-7-gem", price: 20, quantity: 10, coinType: currency, purchaseLimit: "world", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
+            { iconId: "monster-life-7-gem", price: 20, quantity: 10, coinType: currency, purchaseLimit: "world", timeframeLimit: "week", tradability: "untradable", itemNotes: "" },
             { iconId: "power-elixir-100", price: 5, quantity: -1, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
             { iconId: "world-map-teleport-1-day", price: 15, quantity: 1, coinType: currency, purchaseLimit: "character", timeframeLimit: "day", tradability: "untradable", itemNotes: "" },
             { iconId: "pendant-slot-coupon-7", price: 60, quantity: 1, coinType: currency, purchaseLimit: "character", timeframeLimit: "week", tradability: "untradable", itemNotes: "" },
