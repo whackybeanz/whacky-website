@@ -20,7 +20,7 @@ function getRelayMissions(version = null) {
             "3 Elite Monsters", "150 Multi-kills", "1000 Arcane River mobs"],
         },
         v4: {
-            startDate: "2022-09-29",
+            startDate: "2023-04-05", // 2022-09-29
             missionList: ["500 level-range mobs", "150 combo kills", "1000 level-range mobs",
             "Activate 1 Rune", "Monster Park once", "1000 level-range mobs",
             "Defeat 1 daily boss", "3 Elite Monsters", "1000 Arcane / Authentic Force mobs"],
