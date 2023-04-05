@@ -219,6 +219,7 @@ function generateCharList() {
 
 function generatePlanner(charList) {
     const numMissionsDaily = document.querySelectorAll(".planned-characters.day-1").length;
+    const oneLessClassCycle = ["thief", "pirate", "warrior", "mage", "archer"];
     let [version, savedData] = getGeneralData();
 
     // Erase all displayed data (if any)
@@ -234,59 +235,91 @@ function generatePlanner(charList) {
         let tempList = charList.slice();
         let numMissionsCompletable = charList.length;
         let skipped = [];
+        let finalSkipped = [];
+        let isSkipped = false;
 
         // If there are sufficient characters to fulfill all missions daily, fill the most difficult mission (the final one) first
-        // First assign by [level 200 and job match], otherwise try assigning by [level 200]
-        // If still unable to assign, skip this assignment (no eligible characters)
+        // First assign by [level 200 and job match]
+        // Check if there is at least one eligible level 200 character
         if(charList.length >= numMissionsDaily) {
-            const elem = document.querySelector(`.day-${i}.mission-${numMissionsDaily}`);
-            [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "levelJob", true);
+            const numLevel200s = tempList.filter(data => data.level >= 200).length;
 
-            if(isSkipped) {
-                [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "level", true);
+            if(numLevel200s >= 1) {
+                const elem = document.querySelector(`.day-${i}.mission-${numMissionsDaily}`);
+                [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "levelJob");
+
+                // If assignment was skipped, it means there was no job match for mission 9
+                // If there is only one available option, forcefully assign it to level 9
+                // Otherwise, there is leeway for further optimization, so ignore assignment for now and add to skipped missions
+                if(isSkipped) {
+                    if(numLevel200s === 1) {
+                        [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "level");
+                    } else {
+                        // There is a chance that a player has *some* level 200s, but not enough to cover all slots
+                        // It is more important to fulfill a mission first (50 points), so try to first fill mission 9
+                        // Each day, one class will be "spare"; first check if it is possible to use this "spare" to put in mission 9
+                        // If not possible, randomly take any other of the "non-spares" to fill mission 9
+                        const spareClass = oneLessClassCycle[(i-1) % oneLessClassCycle.length];
+                        [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "spare", spareClass);
+
+                        if(isSkipped) {
+                            [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "level");
+                        }
+                    }
+                }
             }
 
-            // Regardless of whether or not assignment was successful, reduce total count by 1
+            // Regardless of whether or not assignment occurred, reduce total count by 1
             // for the next step
             numMissionsCompletable = numMissionsDaily-1;
         }
 
         // Now begin assignment of remaining missions
         // Assign characters in a backwards order to prioritize using strong characters to complete the more time-consuming missions
+        // First do optimal assignment based on [level 200+ and job match]
+        // If condition is not matched, add to skipped missions
         for(let missionCount = numMissionsCompletable; missionCount > 0; missionCount--) { 
             if(tempList.length > 0) {
                 const elem = document.querySelector(`.day-${i}.mission-${missionCount}`);
                 [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "levelJob");
 
                 if(isSkipped) {
-                    [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "level");
-
-                    if(isSkipped) {
-                        [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "job");
-
-                        if(isSkipped) {
-                            skipped.push(missionCount);
-                        }
-                    }
+                    skipped.push(missionCount);
                 }
             }
         }
 
+        // For all skipped missions, assign optimally based on [level 200+] first, then by [job match]
+        skipped.forEach(missionNum => {
+            if(tempList.length > 0) {
+                const elem = document.querySelector(`.day-${i}.mission-${missionNum}`);
+                [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "level");
+
+                if(isSkipped) {
+                    [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "job");
+
+                    if(isSkipped) {
+                        finalSkipped.push(missionNum);
+                    }
+                }
+            }
+        })
+
         // In the above attempts, assignment has already exhausted any possible bonuses
         // For the skipped missions, now assign all remaining characters in a random order
-        skipped.forEach(missionNum => {
+        finalSkipped.forEach(missionNum) {
             if(tempList.length > 0) {
                 const elem = document.querySelector(`.day-${i}.mission-${missionNum}`);
                 [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "any");
             }
-        })
+        }
     }
 }
 
 // Assign a matching character or skip assignment if matching is not possible
-function assignMatchingChar(version, tempList, elem, assignmentType) {
+function assignMatchingChar(version, tempList, elem, assignmentType, spareClass = undefined) {
     let isSkipped = false;
-    let matchingCharIndex = parseInt(getMatchingCharIndex(tempList, elem, assignmentType));
+    let matchingCharIndex = parseInt(getMatchingCharIndex(tempList, elem, assignmentType, spareClass));
 
     if(matchingCharIndex >= 0) {
         const matchingChar = tempList.splice(matchingCharIndex, 1);
@@ -294,7 +327,7 @@ function assignMatchingChar(version, tempList, elem, assignmentType) {
     } else {
         isSkipped = true;
     }
-    
+
     return [tempList, isSkipped];
 }
 
@@ -302,12 +335,16 @@ function assignMatchingChar(version, tempList, elem, assignmentType) {
 // The priority for retrieving a matching character is as follows:
 // [Level and class match] >> [Level match] >> [Class match] >> [First element in array]
 // Since array has been sorted by highest level first, it is already optimized to retrieve the maximum bonus for level of character used (applicable for v4)
-function getMatchingCharIndex(tempList, elem, assignmentType) {
+function getMatchingCharIndex(tempList, elem, assignmentType, spareClass) {
     let requiredClass = elem.dataset.class;
 
     // As Xenon can cover both thief and pirate classes, add the class as "required" for easier searching
     if(requiredClass === "thief" || requiredClass === "pirate") {
         requiredClass += ", xenon";
+    }
+
+    if(spareClass && (spareClass === "thief" || spareClass === "pirate")) {
+        spareClass += ", xenon";
     }
 
     let matchingCharIndex = tempList.findIndex(char => {
@@ -324,6 +361,9 @@ function getMatchingCharIndex(tempList, elem, assignmentType) {
             // Assign by any
             case "any":
                 return "0";
+            // Assign by spare class
+            case "spare":
+                return spareClass.includes(char.classType) && char.level >= 200;
             default:
                 return 0;
         }
