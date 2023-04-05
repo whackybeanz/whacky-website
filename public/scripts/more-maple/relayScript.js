@@ -307,12 +307,12 @@ function generatePlanner(charList) {
 
         // In the above attempts, assignment has already exhausted any possible bonuses
         // For the skipped missions, now assign all remaining characters in a random order
-        finalSkipped.forEach(missionNum) {
+        finalSkipped.forEach(missionNum => {
             if(tempList.length > 0) {
                 const elem = document.querySelector(`.day-${i}.mission-${missionNum}`);
                 [tempList, isSkipped] = assignMatchingChar(version, tempList, elem, "any");
             }
-        }
+        })
     }
 }
 
