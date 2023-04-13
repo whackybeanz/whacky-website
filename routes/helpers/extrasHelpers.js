@@ -66,7 +66,7 @@ function compileSetItemsBySetName(equips) {
 
 function sortByPrice(bossList) {
     var bossPriceArr = [];
-    var difficulties = ["easy", "normal", "hard", "chaos"];
+    var difficulties = ["easy", "normal", "hard", "chaos", "extreme"];
 
     bossList.forEach(function(boss) {
         difficulties.forEach(function(mode) {
