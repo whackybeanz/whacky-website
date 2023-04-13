@@ -133,6 +133,8 @@ function retrieveItemList(listType, currency) {
             { iconId: "symbol-moras", price: 60, quantity: 100, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
             { iconId: "symbol-esfera", price: 60, quantity: 100, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
             { iconId: "select-1-auth-symbol-coupon", price: 150, quantity: 100, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
+            { iconId: "symbol-cernium", price: 80, quantity: 75, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
+            { iconId: "symbol-hotel-arcs", price: 100, quantity: 50, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "" },
         ],
         regReboot: [
             { iconId: "reboot-meso-pouch", price: 100, quantity: 8, coinType: currency, purchaseLimit: "character", timeframeLimit: "none", tradability: "untradable", itemNotes: "", sectionHeader: "Reboot-only Items" },
