@@ -119,10 +119,10 @@
   line-height: 0;
 }
 
-#dailies-container {
+#symbol-dailies {
   border: none;
 }
-#dailies-container .selected-daily {
+#symbol-dailies .selected-daily {
   top: -5px;
   right: -5px;
 }
@@ -164,16 +164,19 @@
   right: 1rem;
 }
 
-.single-daily-quest, .single-mp-dungeon {
+.single-content, .single-mp-dungeon {
   opacity: 0.25;
   transition: all 0.2s;
 }
-.single-daily-quest.active, .single-mp-dungeon.active {
-  cursor: pointer;
+.single-content.active, .single-mp-dungeon.active {
   opacity: 1;
 }
-.single-daily-quest.active:hover, .single-mp-dungeon.active:hover {
+.single-content.active:hover, .single-mp-dungeon.active:hover {
   transition: all 0.2s;
+}
+
+.single-mp-dungeon.active {
+  cursor: pointer;
 }
 
 #monster-park-list, #selected-mp-dungeon, #event-exp-table-details {

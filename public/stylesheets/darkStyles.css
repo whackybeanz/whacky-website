@@ -5,6 +5,7 @@ body.dark-mode .text-custom {
   color: #ffc107;
 }
 body.dark-mode .btn-outline-custom {
+  background-color: black;
   color: #ffc107;
   border-color: #ffc107;
 }
@@ -375,11 +376,19 @@ body.dark-mode .tab-pane .single-map-select.active {
   background-color: #4aa02c;
   transition: all 0.2s;
 }
-body.dark-mode .single-daily-quest.active:hover, body.dark-mode .single-mp-dungeon.active:hover {
+body.dark-mode .single-mp-dungeon.active:hover {
   background-color: #454d55;
 }
 body.dark-mode #selected-mp-dungeon {
   background-color: black;
+}
+body.dark-mode #summary-modal #summary-div {
+  background: radial-gradient(black, black 95%, #454d55);
+  border: 2px solid rgba(52, 58, 64, 0.8);
+}
+body.dark-mode #summary-modal #summary-div .summary-subheader {
+  background: linear-gradient(90deg, black 0%, rgba(52, 58, 64, 0.8) 25%, rgba(52, 58, 64, 0.8) 75%, black 100%);
+  font-weight: normal;
 }
 body.dark-mode #active-profile {
   border: 2px solid rgba(52, 58, 64, 0.8);

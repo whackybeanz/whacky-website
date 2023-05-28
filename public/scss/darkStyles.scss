@@ -8,6 +8,7 @@ body.dark-mode {
     }
 
     .btn-outline-custom {
+        background-color: globals.$dark-mode-black-opaque;
         color: globals.$highlight-orange;
         border-color: globals.$highlight-orange;
 
@@ -527,7 +528,7 @@ body.dark-mode {
         }
     }
 
-    .single-daily-quest, .single-mp-dungeon {
+    .single-mp-dungeon {
         &.active {
             &:hover {
                 background-color: globals.$dark-mode-grey;
@@ -537,6 +538,18 @@ body.dark-mode {
 
     #selected-mp-dungeon {
         background-color: globals.$dark-mode-black-opaque;
+    }
+
+    #summary-modal {
+        #summary-div {
+            background: radial-gradient(globals.$dark-mode-black-opaque, globals.$dark-mode-black-opaque 95%, globals.$dark-mode-grey);
+            border: 2px solid globals.$dark-mode-navy-grey;
+
+            .summary-subheader {
+                background: linear-gradient(90deg, globals.$dark-mode-black-opaque 0%, globals.$dark-mode-navy-grey 25%, globals.$dark-mode-navy-grey 75%, globals.$dark-mode-black-opaque 100%);
+                font-weight: normal;
+            }
+        }
     }
 
     // Coin Events

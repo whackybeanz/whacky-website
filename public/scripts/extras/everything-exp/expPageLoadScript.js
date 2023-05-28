@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     loadDailiesCalcListeners();
 
     // Dailies
-    addDailyQuestListeners();
     addMonsterParkListeners();
     addResetMonsterParkListener();
     changeLevelListener();
@@ -63,7 +62,6 @@ function loadSavedData() {
     updatePerPotionEXPPercent();
     updateAvailableDailyQuests();
     updateAvailableMonsterParkDungeons();
-    //calcEventEXPPercent();
 }
 
 function loadEXPContentsData(savedData, charLevel) {
@@ -135,7 +133,6 @@ function changeLevelListener() {
             updatePerPotionEXPPercent();
             updateAvailableDailyQuests();
             updateAvailableMonsterParkDungeons();
-            calcTotalDailiesEXP();
             calcMonsterParkPercent();
             saveEXPContentData();
         }

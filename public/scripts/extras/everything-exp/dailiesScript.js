@@ -3,29 +3,6 @@
  * Div, Button, Input Listeners
  * 
  * *********************/
-// For all daily quests, add or remove selected state (a check mark) based on user interaction
-// Then, calculate sum of total dailies EXP based on all selected dailies
-function addDailyQuestListeners() {
-    let allDailiesElems = document.querySelectorAll(".single-daily-quest");
-
-    allDailiesElems.forEach(elem => {
-        elem.addEventListener("click", () => {
-            if(elem.classList.contains("active")) {
-                if(elem.classList.contains("selected")) {
-                    elem.classList.remove("selected");
-                    elem.querySelector(".selected-mark").classList.add("d-none");
-                } else {
-                    elem.classList.add("selected");
-                    elem.querySelector(".selected-mark").classList.remove("d-none");
-                }
-            }
-
-            calcTotalDailiesEXP();
-            saveEXPContentData();
-        })
-    })
-}
-
 // For all monster park dungeons, first check if selected dungeon is actually available (active)
 // - If active, update selected state based on latest-clicked dungeon
 // - Then, proceed to calculate % EXP gains from monster park
@@ -74,23 +51,33 @@ function addResetMonsterParkListener() {
 function updateAvailableDailyQuests() {
     let charLevel = getCharLevel();
     let expTNL = getExpTNL(charLevel);
-    let allDailiesElems = document.querySelectorAll(".single-daily-quest");
+    let allDailiesElems = document.querySelectorAll(".single-content");
 
     allDailiesElems.forEach(dailyElem => {
-        let dailyQuestDetails = dailyElem.querySelector(".daily-quest-details");
+        let dailyQuestDetails = dailyElem.querySelector(".content-details");
         let dailyQuestRawEXP = parseInt(dailyQuestDetails.dataset.rawExp);
+        let weeklyQuestRawEXP = parseInt(dailyQuestDetails.dataset.weeklyRawExp);
 
         if(charLevel < parseInt(dailyQuestDetails.dataset.minLevel)) {
             dailyElem.classList.remove("active");
             dailyElem.classList.remove("selected");
             dailyElem.querySelector(".selected-mark").classList.add("d-none");
             dailyQuestDetails.querySelector(".percent-exp").textContent = "-";
+
+            if(dailyQuestDetails.querySelector(".weekly-percent-exp")) {
+                dailyQuestDetails.querySelector(".weekly-percent-exp").textContent = "-";
+            }
         } else {
             dailyElem.classList.add("active");
 
             if(dailyQuestRawEXP !== 0) {
                 let dailyQuestPercentEXP = (dailyQuestRawEXP / expTNL * 100).toFixed(3);
                 dailyQuestDetails.querySelector(".percent-exp").textContent = dailyQuestPercentEXP + "%";
+
+                if(dailyQuestDetails.querySelector(".weekly-percent-exp")) {
+                    let weeklyQuestPercentEXP = (weeklyQuestRawEXP / expTNL * 100).toFixed(3);
+                    dailyQuestDetails.querySelector(".weekly-percent-exp").textContent = weeklyQuestPercentEXP + "%";
+                }
             }
         }
     })
@@ -118,22 +105,6 @@ function updateAvailableMonsterParkDungeons() {
             monsterParkElem.classList.add("active");
         }
     })
-}
-
-// Calculate EXP from selected daily quests (must be both active and selected)
-// Displays both raw value and % value
-function calcTotalDailiesEXP() {
-    let allActiveDailies = document.querySelectorAll(".single-daily-quest.active.selected");
-    let charLevel = getCharLevel();
-    let expTNL = getExpTNL(charLevel);
-    let totalEXP = 0;
-
-    allActiveDailies.forEach(elem => {
-        totalEXP += parseInt(elem.querySelector(".daily-quest-details").dataset.rawExp);
-    })
-    
-    document.getElementById("selected-dailies-total-raw-exp").textContent = (totalEXP).toLocaleString("en-SG") + " EXP";
-    document.getElementById("selected-dailies-total-percent-exp").textContent = (totalEXP / expTNL * 100).toFixed(3) + "%";
 }
 
 // Check if any monster park dungeon is still currently selected

@@ -157,7 +157,7 @@
     line-height: 0;
 }
 
-#dailies-container {
+#symbol-dailies {
     border: none;
 
     .selected-daily {
@@ -199,18 +199,23 @@
     right: 1rem;
 }
 
-.single-daily-quest, .single-mp-dungeon {
+.single-content, .single-mp-dungeon {
     opacity: 0.25;
     transition: all 0.2s;
 
     &.active {
-        cursor: pointer;
         opacity: 1.0;
 
         &:hover {
             transition: all 0.2s;
         }
     }   
+}
+
+.single-mp-dungeon {
+    &.active {
+        cursor: pointer;
+    }
 }
 
 #monster-park-list, #selected-mp-dungeon, #event-exp-table-details {

@@ -1,5 +1,52 @@
+<div class="modal fade" id="summary-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content border-0">
+            <div class="modal-body position-relative d-flex align-items-center justify-content-center p-0">
+                <div class="col-12 size-720 d-flex flex-column flex-md-row align-items-center justify-content-center rounded-lg pt-4 pb-2" id="summary-div">
+                    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-3 mb-md-0">
+                        <div class="d-flex flex-column align-items-center">
+                            <p class="font-small mb-2" id="calc-start-date"></p>
+                            <p class="font-weight-bold mb-0">Level</p>
+                            <p class="font-mega font-weight-bold mb-0" id="calc-start-level"></p>
+                            <p class="mb-md-3" id="calc-start-percent"></p>
+                        </div>
+                        <div class="text-center mx-4">
+                            <p class="font-mega mb-0">&raquo;</p>
+                            <p class="font-small d-none mb-0" id="hyper-text">Hyper Burn</p>
+                        </div>
+                        <div class="d-flex flex-column align-items-center text-custom">
+                            <p class="font-small mb-2" id="calc-end-date"></p>
+                            <p class="font-weight-bold mb-0">Level</p>
+                            <p class="font-mega font-weight-bold mb-0" id="calc-end-level"></p>
+                            <p class="mb-md-3" id="calc-end-percent"></p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex flex-column align-items-center px-0" id="activity-summary">
+                        <div class="col-12 d-none mb-3 px-0" id="dailies-summary-div">
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Dailies -</p>
+                            <div class="d-flex justify-content-center flex-wrap px-3 mb-2" id="dailies-summary"></div>
+                        </div>
+                        <div class="col-12 d-none mb-3 px-0" id="weeklies-summary-div">
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Weeklies (<span id="which-day"></span>) - </p>
+                            <div class="d-flex justify-content-center flex-wrap px-3" id="weeklies-summary"></div>
+                        </div>
+                        <div class="col-12 d-none mb-3 px-0" id="monster-park-summary-div">
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Monster Park - </p>
+                            <div class="px-3" id="monster-park-summary"></div>
+                        </div>
+                        <div class="col-12 d-none mb-3 px-0" id="others-summary-div">
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Others -</p>
+                            <div class="px-3" id="others-summary"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
-    <div class="w-100 d-flex flex-column justify-content-center px-3 py-3">
+    <div class="w-100 d-flex flex-column justify-content-center py-3">
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center pb-2">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
@@ -10,74 +57,94 @@
                 </p>
             </div>
             <div class="pill-section-content table-responsive font-form d-flex flex-column align-items-center py-3" id="calc-exp-contents">
-                <div class="w-100 px-3">
-                    <p class="w-100 mb-1">Instructions/Notes:</p>
-                    <ul class="w-100 mb-4">
-                        <li>For fields requiring a number, input the number of runs you do <span class="text-custom font-weight-bold">per day</span>.</li>
-                        <li>For Erda Spectrum and Hungry Muto (assumes S-rank clear), input the number of runs you do <span class="text-custom font-weight-bold">manually</span>. Auto-complete runs do not give EXP.</li>
-                        <li>For Start/End Date, both dates written are <span class="text-custom font-weight-bold">inclusive</span> (e.g. if I select 01 May till 04 May, EXP from both 01 May and 04 May inclusive will be calculated).</li>
-                        <li>The calculator will factor in bonus EXP from Monster Park (Extreme included) on Sundays. It will not factor any Sunday Maple events.</li>
-                        <li>To maximize total EXP gain, EXP Minigames (or Monster Park Extreme if level 260+) values will be <span class="text-custom font-weight-bold">factored last</span> in case you leveled in the process of doing other dailies.</li>
-                    </ul>
-                </div>
-
-                <div class="col-12 d-flex flex-wrap mb-md-3">
-                    <div class="col-12 col-md-6 px-0 d-flex flex-column justify-content-center align-items-center py-2" id="dailies-container">
-                        <p class="w-100 text-center mb-0 px-0">Select dailies</p>
-                        <div class="d-flex flex-wrap justify-content-center mb-3">
-                            <% expContents.dailies.forEach((daily, index) => { %>
-                                <% if(index === 6) { %>
-                                    <div class="w-100"></div>
-                                <% } %>
-                                <div class="single-exp-content calc-daily-quest rounded-sm cursor-pointer mx-1 my-1 position-relative" id="calc-daily-<%= daily.iconId %>" data-raw-exp="<%= daily.rawEXP %>">
-                                    <img class="item-square" src="<%= icons[daily.iconId].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="<%= daily.name %>">
-                                    <i class="fas fa-check fa-lg selected-daily text-custom position-absolute d-none"></i>
+                <div class="col-12 d-flex flex-wrap">
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-4 mb-md-5 px-0" id="burning-type">
+                        <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">1) Burning Character?</p>
+                        <form class="w-100 d-flex flex-column align-items-center">
+                            <div class="form-group w-100 d-flex justify-content-center mb-2">
+                                <div class="col-12 col-md-8 px-0 pr-2">
+                                    <select class="form-control text-center px-0" id="burning-select">
+                                        <option value="">N/A</option>
+                                        <option value="hyper">Hyper Burning</option>
+                                    </select>
                                 </div>
-                            <% }) %>
-                        </div>
-
-                        <p class="w-100 text-center mb-0 px-0">Grinding EXP</p>
-                        <p class="font-small text-center mb-1 px-3">Use EXP buffs you can consistently maintain for more accurate calculations</p>
-                        <form class="w-100 d-flex flex-column align-items-center mb-2">
-                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
-                                <input type="number" id="qty-monster-1" class="form-control col-3 px-2 mx-1 text-center" placeholder="Qty" value="">
-                                <input type="number" id="per-monster-exp-1" class="form-control col-5 px-2 mx-1 text-center" placeholder="Per monster EXP" value="">
-                            </div>
-                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
-                                <input type="number" id="qty-monster-2" class="form-control col-3 px-2 mx-1 text-center" placeholder="Qty" value="">
-                                <input type="number" id="per-monster-exp-2" class="form-control col-5 px-2 mx-1 text-center" placeholder="Per monster EXP" value="">
-                            </div>
-                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-0">
-                                <input type="number" id="qty-monster-3" class="form-control col-3 px-2 mx-1 text-center" placeholder="Qty" value="">
-                                <input type="number" id="per-monster-exp-3" class="form-control col-5 px-2 mx-1 text-center" placeholder="Per monster EXP" value="">
                             </div>
                         </form>
                     </div>
 
-                    <div class="col-12 col-md-6 px-0 d-flex flex-column justify-content-center py-2">
-                        <p class="w-100 text-center mb-1 px-0">Other Contents</p>
-                        <form class="w-100 d-flex flex-column align-items-center mb-4">
-                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
-                                <input type="number" id="num-erda-spectrum" class="form-control col-2 col-sm-1 px-2 text-center" placeholder="Qty" value="0">
-                                <div class="col-8 col-md-9 px-2">
-                                    <select class="form-control" id="erda-spectrum-select">
-                                        <option value="<%= expContents.others[0].rawEXP %>" selected>Erda Spectrum</option>
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-4 mb-md-5 px-0" id="symbol-dailies">
+                        <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">2) Symbol dailies</p>
+                        <div class="d-flex justify-content-center flex-wrap px-4">
+                            <% expContents.symbolContent.forEach((content, index) => { %>
+                                <% if(index === 6) { %>
+                                    <div class="w-100"></div>
+                                <% } %>
+                                <div class="single-exp-content calc-daily-quest rounded-sm cursor-pointer mx-1 my-1 position-relative" id="calc-daily-<%= content.iconId %>" data-raw-exp="<%= content.dailyRawEXP %>">
+                                    <img class="item-square" src="<%= icons[content.iconId].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="<%= content.name %>">
+                                    <i class="fas fa-check fa-lg selected-daily text-custom position-absolute d-none"></i>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-4 mb-md-5 px-0" id="symbol-weeklies">
+                        <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">3) Symbol weeklies</p>
+                        <form class="w-100 d-flex flex-column align-items-center">
+                            <div class="col-12 col-md-5 mb-3 px-0">
+                                <select class="form-control text-center py-1 px-0" id="weeklies-when-select">
+                                    <option value="" selected disabled hidden>When do you do weeklies?</option>
+                                    <option value="1">Monday</option>
+                                    <option value="2">Tuesday</option>
+                                    <option value="3">Wednesday</option>
+                                    <option value="4">Thursday</option>
+                                    <option value="5">Friday</option>
+                                    <option value="6">Saturday</option>
+                                    <option value="0">Sunday</option>
+                                </select>
+                            </div>
+
+                            <div class="d-flex flex-wrap justify-content-center">
+                                <% expContents.symbolContent.forEach((content, index) => { %>
+                                    <% if(content.hasWeekly) { %>
+                                        <div class="form-group row col-12 col-sm-6 col-xl-4 d-flex justify-content-center align-items-center flex-wrap mb-2">
+                                            <div class="w-100 d-flex justify-content-center">
+                                                <div class="col-3 col-sm-4 px-2">
+                                                    <select class="calc-weekly-quest form-control text-center px-0" id="calc-weekly-<%= content.iconId %>" data-region="<%= content.iconId %>" data-weekly-name="<%= content.weeklyName %>" data-weekly-raw-exp="<%= content.weeklyRawEXP %>">
+                                                        <option value="0" selected>0</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                    </select>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <input type="text" class="form-control-plaintext px-2" value="<%= content.weeklyName %>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                        </form>
+                        <p class="font-small text-center text-custom mb-0 px-3">Auto-completed runs for weeklies do not give EXP, so do take note</p>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-4 mb-md-5 px-0" id="monster-park">
+                        <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">4) Monster Park</p>
+                        <form class="w-100 d-flex flex-column align-items-center mb-2">
+                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2 mx-0">
+                                <div class="col-3 col-sm-2 pl-0 pr-1 text-center">
+                                    <select class="form-control text-center px-0" id="num-monster-park-select">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2" selected>2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
-                                <input type="number" id="num-muto" class="form-control col-2 col-sm-1 px-2 text-center" placeholder="Qty" value="0">
-                                <div class="col-8 col-md-9 px-2">
-                                    <select class="form-control" id="muto-select">
-                                        <option value="<%= expContents.others[1].rawEXP %>">Hungry Muto (Easy)</option>
-                                        <option value="<%= expContents.others[2].rawEXP %>">Hungry Muto (Normal)</option>
-                                        <option value="<%= expContents.others[3].rawEXP %>">Hungry Muto (Hard)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
-                                <input type="number" id="num-monster-park" class="form-control col-2 col-sm-1 px-2 text-center" placeholder="Qty" value="2">
-                                <div class="col-8 col-md-9 px-2">
+                                <div class="col-9 col-sm-10 col-md-8 pl-1 pr-0 px-md-2">
                                     <select class="form-control" id="monster-park-select">
                                         <option value="0" selected disabled hidden>- Select Monster Park -</option>
                                         <% expContents.monsterPark.forEach((dungeon, index) => { %>
@@ -95,99 +162,130 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
-                                <input type="number" id="num-monster-park-extreme" class="form-control col-2 col-sm-1 px-2 text-center" placeholder="Qty" value="0">
-                                <div class="col-8 col-md-9 px-2">
+                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2 mx-0">
+                                <div class="col-3 col-sm-2 pl-0 pr-1 text-center">
+                                    <select class="form-control text-center px-0" id="num-monster-park-extreme-select">
+                                        <option value="0" selected>0</option>
+                                        <option value="1">1</option>
+                                    </select>
+                                </div>
+                                <div class="col-9 col-sm-10 col-md-8 pl-1 pr-0 px-md-2">
                                     <select class="form-control" id="monster-park-extreme-select">
                                         <option selected>Monster Park Extreme</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-0">
-                                <input type="number" id="num-exp-minigame" class="form-control col-2 col-sm-1 px-2 text-center" placeholder="Qty" value="0">
-                                <div class="col-8 col-md-9 px-2">
-                                    <select class="form-control" id="exp-minigame-select">
-                                        <option value="" selected disabled hidden>- Select EXP Minigame -</option>
-                                        <option value="live">Maple LIVE</option>
-                                        <option value="destiny" data-multiplier="1">DESTINY</option>
-                                        <option value="destiny" data-multiplier="1.4">Momentree - Wardrobe 2F</option>
-                                        <option value="destiny" data-multiplier="2">Momentree - Wardrobe 3F</option>
-                                        <option value="destiny" data-multiplier="2.6">Momentree - Wardrobe 4F</option>
-                                        <option value="destiny" data-multiplier="1">IGNITION</option>
+                        </form>
+                        <p class="font-small text-center text-custom mb-0 px-3">Bonus EXP on Sundays is automatically factored in. Sunday Maple benefits are not included.</p>
+                        <p class="font-small text-center text-custom mb-0 px-3">To maximize EXP gain, Monster Park Extreme (for level 260+) is added last in case a level up happens in the process of other dailies.</p>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-4 mb-md-5 px-0" id="exp-minigames">
+                        <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">5) EXP Minigames</p>
+                        <form class="w-100 d-flex flex-column align-items-center mb-2">
+                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-3 mx-0">
+                                <div class="col-12 col-md-9 px-0">
+                                    <select class="form-control text-center py-1 px-0" id="exp-minigame-select">
+                                        <option value="" selected disabled hidden>- Select EXP Minigame type -</option>
+                                        <option value="destiny" data-num-tix="33000">Mapril Island</option>
+                                        <option value="destiny" data-num-tix="3000">Magic Stone Slab</option>
+                                        <option value="destiny" data-num-tix="18400">SAVIOR (minigame week not included)</option>
+                                        <option value="destiny" data-num-tix="6300">Raise the Rock Spirit</option>
+                                        <option value="destiny" data-num-minigames="2">IGNITION</option>
+                                        <option value="destiny" data-num-minigames="1" data-multiplier="2.6">Momentree - Wardrobe 4F</option>
+                                        <option value="destiny" data-num-minigames="1" data-multiplier="2">Momentree - Wardrobe 3F</option>
+                                        <option value="destiny" data-num-minigames="1" data-multiplier="1.4">Momentree - Wardrobe 2F</option>
+                                        <option value="destiny" data-num-minigames="2">DESTINY</option>
+                                        <option value="live" data-num-minigames="2">Maple LIVE</option>
                                     </select>
                                 </div>
                             </div>
-                        </form>
 
-                        <p class="w-100 text-center mb-1 px-0">Burning Character?</p>
-                        <form class="w-100 d-flex flex-column align-items-center mb-4">
+                            <div class="w-100 d-flex justify-content-center align-items-center">
+                                <div class="d-flex flex-column align-items-center">
+                                    <input type="number" id="num-exp-minigame" class="form-control col-6 px-2 text-center" placeholder="Qty">
+                                    <p class="mb-0">Minigame(s) per day</p>
+                                </div>
+                                <p class="d-inline font-weight-bold mb-0">OR</p>
+                                <div class="d-flex flex-column align-items-center">
+                                    <input type="number" id="num-exp-tickets" class="form-control col-6 px-2 text-center" placeholder="Qty">
+                                    <p class="mb-0">EXP Tickets / Points</p>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="font-small text-center text-custom mb-0 px-3">The first non-zero input field is used for calculations</p>
+                        <p class="font-small text-center text-custom mb-0 px-3">EXP Ticket / Points calculations are applied last (i.e. all Tickets / Points used only on the last day)</p>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-4 mb-md-5 px-0" id="hunting-exp">
+                        <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">6) Daily grinding EXP</p>
+                        <form class="w-100 d-flex flex-column align-items-center mb-2">
                             <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
-                                <div class="col-9 col-md-10 px-0 pr-2">
-                                    <select class="form-control" id="burning-select">
-                                        <option value="">N/A</option>
-                                        <option value="hyper">Hyper Burning</option>
-                                    </select>
+                                <input type="number" id="qty-monster-1" class="form-control col-2 px-2 text-center" placeholder="Qty" value="">
+                                <div class="col-10 col-sm-8 pl-2 pr-0 px-md-2">
+                                    <input type="number" id="per-monster-exp-1" class="form-control px-2 text-center" placeholder="Per monster EXP" value="">
+                                </div>
+                            </div>
+                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
+                                <input type="number" id="qty-monster-2" class="form-control col-2 px-2 text-center" placeholder="Qty" value="">
+                                <div class="col-10 col-sm-8 pl-2 pr-0 px-md-2">
+                                    <input type="number" id="per-monster-exp-2" class="form-control px-2 text-center" placeholder="Per monster EXP" value="">
+                                </div>
+                            </div>
+                            <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-0">
+                                <input type="number" id="qty-monster-3" class="form-control col-2 px-2 text-center" placeholder="Qty" value="">
+                                <div class="col-10 col-sm-8 pl-2 pr-0 px-md-2">
+                                    <input type="number" id="per-monster-exp-3" class="form-control px-2 text-center" placeholder="Per monster EXP" value="">
+                                </div>
+                            </div>
+                        </form>
+                        <p class="font-small text-center text-custom mb-0 px-3">Use EXP buffs you can consistently maintain for more accurate calculations</p>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-4 mb-md-5 px-0" id="start-level">
+                        <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">7) Enter starting level statistics</p>
+                        <form class="w-100 d-flex justify-content-center align-items-center flex-wrap">
+                            <div class="form-group row col-6 col-sm-4 col-md-6 col-lg-4 d-flex flex-column align-items-center mb-2 pr-1 pl-0 px-sm-0 mx-0">
+                                <label class="font-weight-bold col-form-label">Start Level</label>
+                                <input type="number" id="start-calc-dailies-char-level" class="form-control col-12 col-sm-10 px-2 py-2 text-center mx-0" value="200">
+                            </div>
+                            <div class="form-group row col-6 col-sm-4 col-md-6 col-lg-4 d-flex flex-column align-items-center mb-2 pl-1 pr-0 px-sm-0 mx-0">
+                                <label class="font-weight-bold col-form-label">EXP (%)</label>
+                                <div class="w-100 d-flex flex-column align-items-center">
+                                    <input type="number" id="start-calc-dailies-char-exp-percent" class="form-control col-12 col-sm-10 text-center px-2 py-2 mx-0" value="0.000">
+                                    <small class="text-danger d-none mr-3" id="calc-dailies-exp-percent-input-error">Input should be below 100.000%</small>
+                                </div>
+                            </div>
+                            <div class="form-group row col-12 col-sm-4 col-md-12 col-lg-4 d-flex flex-column align-items-center mb-2 px-0 mx-0">
+                                <label class="font-weight-bold col-form-label">EXP (Value)</label>
+                                <div class="w-100 d-flex flex-column align-items-center">
+                                    <input type="number" id="start-calc-dailies-char-exp-raw" class="form-control col-12 col-sm-10 text-center px-2 py-2 mx-0" value="0">
+                                    <small class="text-danger d-none" id="calc-dailies-exp-raw-input-error">Input exceeds level's EXP to level</small>
                                 </div>
                             </div>
                         </form>
                     </div>
+
+                    <div class="col-12 mb-4 mb-md-5 px-0" id="date-range">
+                        <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">8) Start/End Date</p>
+                        <form class="w-100 d-flex flex-column justify-content-center align-items-center px-0">
+                            <div class="col-12 col-md-9 d-flex flex-wrap justify-content-center align-items-center px-0">
+                                <div class="form-group row col-6 col-sm-6 col-md-6 d-flex flex-column align-items-center mb-2 pr-1 pl-0 px-sm-0 px-sm-3 mx-0">
+                                    <label class="font-weight-bold col-form-label">Start Date</label>
+                                    <input type="date" id="dailies-start-date" class="form-control col-12 col-md-9 text-center px-2" value="<%= dateNow.getFullYear() %>-<%= ("0" + (dateNow.getUTCMonth() + 1)).slice(-2) %>-<%= ("0" + dateNow.getUTCDate()).slice(-2) %>">
+                                </div>
+                                <div class="form-group row col-6 col-sm-6 col-md-6 d-flex flex-column align-items-center mb-2 pl-1 pr-0 px-sm-0 px-sm-3 mx-0">
+                                    <label class="font-weight-bold col-form-label">End Date</label>
+                                    <input type="date" id="dailies-end-date" class="form-control col-12 col-md-9 text-center px-2" value="<%= dateNow.getFullYear() %>-<%= ("0" + (dateNow.getUTCMonth() + 1)).slice(-2) %>-<%= ("0" + dateNow.getUTCDate()).slice(-2) %>">
+                                </div>
+                            </div>
+                            <p class="w-100 font-small text-danger text-center d-none mt-2 mb-0" id="calc-dailies-date-input-error"></p>
+                        </form>
+                        <p class="font-small text-center text-custom mb-0 px-3">Both dates are inclusive (i.e. 01 May to 04 May will include both of these dates in the calculation)</p>
+                    </div>
                 </div>
 
-                <div class="col-12 d-block d-md-none text-center mb-3">---</div>
-
-                <form class="w-100 size-720">
-                    <div class="form-group row w-100 d-flex justify-content-center mb-2">
-                        <label class="font-weight-bold col-3 col-md-2 col-form-label text-right">Start Date</label>
-                        <input type="date" id="dailies-start-date" class="form-control col-4 col-md-3 px-2" value="<%= dateNow.getFullYear() %>-<%= ("0" + (dateNow.getUTCMonth() + 1)).slice(-2) %>-<%= ("0" + dateNow.getUTCDate()).slice(-2) %>">
-                    </div>
-                    <div class="form-group row w-100 d-flex justify-content-center mb-0">
-                        <label class="font-weight-bold col-3 col-md-2 col-form-label text-right">End Date</label>
-                        <input type="date" id="dailies-end-date" class="form-control col-4 col-md-3 px-2" value="<%= dateNow.getFullYear() %>-<%= ("0" + (dateNow.getUTCMonth() + 1)).slice(-2) %>-<%= ("0" + dateNow.getUTCDate()).slice(-2) %>">
-                    </div>
-                    <p class="w-100 font-small text-danger text-center d-none mt-2 mb-0" id="calc-dailies-date-input-error"></p>
-                </form>
-
-                <div class="col-12 text-center mt-3 mb-3">---</div>
-
-                <div class="w-100 d-flex flex-column flex-sm-row align-items-start mb-3">
-                    <form class="col-12 col-sm-6 w-100 px-0">
-                        <div class="form-group row w-100 d-flex justify-content-center justify-content-md-start mb-2">
-                            <label class="col-3 col-sm-6 font-weight-bold col-form-label text-right">Start Level</label>
-                            <input type="number" id="start-calc-dailies-char-level" class="form-control col-4 col-sm-6 col-md-3 px-2" value="200">
-                        </div>
-                        <div class="form-group row w-100 d-flex justify-content-center justify-content-md-start mb-2">
-                            <label class="col-3 col-sm-6 font-weight-bold col-form-label text-right">EXP (%)</label>
-                            <div class="col-4 col-sm-6 col-md-3 px-0">
-                                <input type="number" id="start-calc-dailies-char-exp-percent" class="form-control px-2" value="0.000">
-                                <small class="text-danger d-none mr-3" id="calc-dailies-exp-percent-input-error">Input should be below 100.000%</small>
-                            </div>
-                        </div>
-                        <div class="form-group row w-100 d-flex justify-content-center justify-content-md-start mb-2">
-                            <label class="col-3 col-sm-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
-                            <div class="col-4 col-sm-6 px-0">
-                                <input type="number" id="start-calc-dailies-char-exp-raw" class=" form-control px-2" value="0">
-                                <small class="text-danger d-none" id="calc-dailies-exp-raw-input-error">Input exceeds level's EXP to level</small>
-                            </div>
-                        </div>
-                    </form>
-
-                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start text-custom px-0">
-                        <div class="form-group row w-100 d-flex justify-content-center justify-content-md-start mb-2">
-                            <label class="col-3 col-sm-6 font-weight-bold col-form-label text-right">End Level</label>
-                            <input type="number" id="end-calc-dailies-char-level" class="form-control-plaintext col-4 col-sm-6 col-md-3 text-custom px-2" value="200" readonly>
-                        </div>
-                        <div class="form-group row w-100 d-flex justify-content-center justify-content-md-start mb-2">
-                            <label class="col-3 col-sm-6 font-weight-bold col-form-label text-right">EXP (%)</label>
-                            <input type="text" id="end-calc-dailies-char-exp-percent" class="form-control-plaintext col-4 col-sm-6 col-md-3 text-custom px-2" value="0.000" readonly>
-                        </div>
-                        <div class="form-group row w-100 d-flex justify-content-center justify-content-md-start mb-2">
-                            <label class="col-3 col-sm-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
-                            <input type="text" id="end-calc-dailies-char-exp-raw" class="col-4 col-sm-6 form-control-plaintext text-custom px-2" value="0" readonly>
-                        </div>
-                    </form>
-                </div>
-
-                <button type="button" class="table-cols-125 btn btn-sm btn-outline-custom" id="btn-calc-dailies-exp-result"><i class="fas fa-check"></i> (Re)Calculate</button>
+                <button type="button" class="table-cols-125 btn btn-outline-custom" id="btn-calc-dailies-exp-result"><i class="fas fa-check"></i> (Re)Calculate</button>
             </div>
         </div>
     </div>

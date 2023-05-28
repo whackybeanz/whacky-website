@@ -5,6 +5,11 @@
     Font sizes 
 
 *****************/
+.font-mega {
+    font-size: 3.5rem;
+    line-height: 3rem;
+}
+
 .font-header {
     font-size: 1.5rem;
     font-weight: bold;
@@ -106,6 +111,7 @@
 html, body {
     font-size: 12px;
     scroll-padding-top: 3rem;
+    font-family: 'Roboto', 'sans-serif';
 
     @include globals.for-size(sm) { font-size: 13px; }
     @include globals.for-size(md) { font-size: 14px; }

@@ -5,6 +5,7 @@ body .text-custom {
   color: #17a2b8;
 }
 body .btn-outline-custom {
+  background-color: white;
   color: #17a2b8;
   border-color: #17a2b8;
 }
@@ -320,11 +321,18 @@ body .tab-pane .single-map-select.active {
   background-color: #6cbb3c;
   transition: all 0.2s;
 }
-body .single-daily-quest.active:hover, body .single-mp-dungeon.active:hover {
+body .single-mp-dungeon.active:hover {
   background-color: rgba(206, 212, 218, 0.8);
 }
 body #selected-mp-dungeon {
   background-color: white;
+}
+body #summary-modal #summary-div {
+  background: radial-gradient(white, white 95%, rgba(206, 212, 218, 0.8));
+  border: 2px solid rgba(206, 212, 218, 0.8);
+}
+body #summary-modal #summary-div .summary-subheader {
+  background: linear-gradient(90deg, white 0%, rgba(206, 212, 218, 0.8) 25%, rgba(206, 212, 218, 0.8) 75%, white 100%);
 }
 body #active-profile {
   border: 2px solid rgba(206, 212, 218, 0.8);
