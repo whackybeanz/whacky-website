@@ -5,19 +5,8 @@
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
                      <img src="<%= icons['symbol-default'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['symbol-default'].name %>"> Symbol Progress Tracker
                 </h2>
-                <button type="button" class="btn btn-outline-custom btn-sm font-weight-bold" id="btn-progress-all"><i class="fas fa-flag-checkered"></i> Progress All Symbols</button>
-                <p class="mb-0 d-none" id="refresh-cd">Progressing all symbols... (Cool down <span id="refresh-cd-num-secs">3</span> seconds)</p>
             </div>
             <div class="pill-section-content font-form d-flex flex-wrap justify-content-center py-3 px-3">
-                <p class="w-100 mb-1">Notes:</p>
-                <ul class="w-100 mb-3">
-                    <li>Click on <span class="text-custom font-weight-bold">Progress All Symbols</span> button above to quickly progress all non-completed symbols (value added is based on what is displayed in each individual symbol).</li>
-                    <li>Alternatively, click on <span class="text-custom font-weight-bold">Progress</span> within each respective symbol for separate additions instead.</li>
-                    <li>Symbols are <span class="text-underline">not</span> automatically upgraded. Symbols that can be upgraded will display a <i class="fas fa-angle-double-up text-success"></i> icon.</li>
-                    <li>Click on <span class="text-custom font-weight-bold">Upgrade</span> within each respective symbol to progress it to the next level.</li>
-                    <li>The completion date will change daily even after you have maxed the symbol. This is intended behavior.</li>
-                </ul>
-
                 <div class="text-center mb-3">
                     <p class="font-weight-bold mb-1">Select Symbol:</p>
                     <% Object.keys(symbolData).forEach(symbolGroup => { %>
@@ -26,7 +15,6 @@
                                 <button class="single-symbol-btn btn d-flex justify-content-center align-items-start position-relative mx-1 <% if(symbol.id === 'rte') { %>active<% } %>" id="symbol-btn-<%= symbol.id %>" type="button" data-view-symbol="<%= symbol.id %>">
                                     <img src="<%= icons[`symbol-${symbol.id}`].imgUrl %>" width="38" height="38" alt="<%= icons[`symbol-${symbol.id}`].name %>" class="single-symbol-img position-absolute">
                                     <small class="single-symbol-level position-absolute text-custom font-weight-bold mb-0" id="<%= symbol.id %>-curr-level-display">Lv. 1</small>
-                                    <i class="fas fa-angle-double-up single-symbol-upgrade-available text-success position-absolute d-none"></i>
                                 </button>
                             <% }) %>
                         </div>
@@ -43,16 +31,29 @@
                                         <p class="font-weight-bold mb-0"><%= icons[`symbol-${symbol.id}`].name.split(": ")[1] %></p>
                                     </div>
                                     <div class="font-form d-flex flex-wrap">
-                                        <div class="col-12 col-sm-6 d-flex flex-wrap align-items-center py-3">
-                                            <div class="form-group col-12 d-flex flex-column align-items-center text-center mb-2">
-                                            <label for="<%= symbol.id %>-end-level" class="col-form-label">
-                                                Symbol gain per day 
-                                                <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= symbol.notes %>">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </div>
-                                            </label>
-                                            <input type="number" class="form-control col-6 text-center" id="<%= symbol.id %>-gain-per-day" value="<%= symbol.baseSymbolGain %>">
+                                        <div class="col-12 col-sm-6 d-flex flex-wrap align-items-center py-3 px-0">
+                                            <div class="form-group <% if(symbol.gainPerWeek) { %>col-6<% } else { %>col-12<% } %> d-flex flex-column align-items-center text-center mb-2">
+                                                <label for="<%= symbol.id %>-end-level" class="col-form-label">
+                                                    Gain per day 
+                                                    <% if(symbol.notes) { %>
+                                                        <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= symbol.notes %>">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </div>
+                                                    <% } %>
+                                                </label>
+                                                <input type="number" class="form-control <% if(!symbol.gainPerWeek) { %>col-6<% } %> text-center" id="<%= symbol.id %>-gain-per-day" value="<%= symbol.gainPerDay %>">
                                             </div>
+                                            <% if(symbol.gainPerWeek) { %>
+                                                <div class="form-group col-6 d-flex flex-column align-items-center text-center mb-2">
+                                                    <label for="<%= symbol.id %>-end-level" class="col-form-label">
+                                                        Gain per week 
+                                                        <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="45 per week, assumed to be obtained on Mondays">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </div>
+                                                    </label>
+                                                    <input type="number" class="form-control text-center" id="<%= symbol.id %>-gain-per-week" value="<%= symbol.gainPerWeek %>">
+                                                </div>
+                                            <% } %>
                                             <div class="form-group col-6 text-center mb-2">
                                                 <label for="<%= symbol.id %>-curr-level" class="col-form-label">Current Level</label>
                                                 <input type="number" class="form-control text-center" id="<%= symbol.id %>-curr-level" value="1">
@@ -84,9 +85,8 @@
                                                 <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-days-req">0</span> days needed<br/>
                                                 ( Complete on <span class="text-custom font-weight-bold" id="<%= symbol.id %>-date-complete"></span> )
                                             </p>
-                                            <div class="d-flex justify-content-center align-items-center flex-row flex-sm-column flex-md-row mt-3">
-                                                <button type="button" class="single-progress-btn btn btn-outline-custom mx-2 mb-sm-2 mb-md-0" id="<%= symbol.id %>-progress-btn" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>"><i class="fas fa-flag-checkered"></i> Progress</button>
-                                                <button type="button" class="single-upgrade-btn btn btn-outline-success d-none mx-2" id="<%= symbol.id %>-upgrade-btn" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>"><i class="fas fa-angle-double-up"></i> Upgrade</button>
+                                            <div class="mb-3 mb-sm-0 mt-3">
+                                                <button type="button" class="reset-fields-btn btn btn-outline-custom mx-2" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>"><i class="fas fa-redo"></i> Reset Fields</button>
                                             </div>
                                         </div>
                                     </div>
