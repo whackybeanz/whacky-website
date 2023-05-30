@@ -67,14 +67,6 @@ function loadSavedData() {
 function loadEXPContentsData(savedData, charLevel) {
     document.getElementById("char-level").value = charLevel;
 
-    if(savedData.dailies.length !== 0) {
-        savedData.dailies.forEach(daily => {
-            document.getElementById(daily).classList.add("selected");
-            document.getElementById(daily).querySelector(".selected-mark").classList.remove("d-none");
-        })
-        calcTotalDailiesEXP();
-    }
-
     if(savedData.monsterPark !== "") {
         document.getElementById(savedData.monsterPark).classList.add("selected");
         calcMonsterParkPercent();
