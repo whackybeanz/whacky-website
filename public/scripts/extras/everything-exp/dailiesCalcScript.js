@@ -135,8 +135,8 @@ function compilePerDayExp() {
     let mpSelectElem = document.getElementById("monster-park-select");
 
     let perDayExp = {
-        dailyQuest: 0,
-        allSelectedDailyQuests: document.querySelectorAll(".calc-daily-quest.active"),
+        allSelectedDailyQuests: Array.from(document.querySelectorAll(".calc-daily-quest.active"))
+                                    .map(daily => { return { minLevel: parseInt(daily.dataset.minLevel), rawExp: parseInt(daily.dataset.rawExp), imgSrc: daily.querySelector(".item-square").src }}),
         monsterHunting: 0,
         numMonsterPark: getNumRuns("num-monster-park-select"),
         numMonsterParkExtreme: getNumRuns("num-monster-park-extreme-select"),
@@ -146,13 +146,6 @@ function compilePerDayExp() {
         expMinigameId: minigameSelectElem.value,
         expMinigameMult: parseFloat(minigameSelectElem.options[minigameSelectElem.selectedIndex].dataset.multiplier) || 1.0, // defaults to x1 multiplier if NaN
     };
-
-    // Daily Quests
-    let allSelectedDailyQuests = document.querySelectorAll(".calc-daily-quest.active");
-
-    perDayExp.allSelectedDailyQuests.forEach(daily => {
-        perDayExp.dailyQuest += parseInt(daily.dataset.rawExp);
-    })
 
     // Monster Hunting
     for(let i = 1; i <= 3; i++) {
@@ -178,10 +171,15 @@ function compilePerWeekExp() {
         const weeklies = {
             weekliesWhen: weekliesWhen,
             activeWeeklies: activeWeeklies,
-            region: activeWeeklies.map(weekly => weekly.dataset.region),
-            numRuns: activeWeeklies.map(weekly => parseInt(weekly.value)),
-            expPerRun: activeWeeklies.map(weekly => parseInt(weekly.dataset.weeklyRawExp)),
-            expPerRegion: activeWeeklies.map(weekly => parseInt(weekly.value) * parseInt(weekly.dataset.weeklyRawExp)),
+            list: activeWeeklies.map(weekly => { 
+                return { 
+                    region: weekly.dataset.region,
+                    minLevel: parseInt(weekly.dataset.minLevel),
+                    numRuns: parseInt(weekly.value), 
+                    expPerRun: parseInt(weekly.dataset.weeklyRawExp),
+                    expPerRegion: parseInt(weekly.value) * parseInt(weekly.dataset.weeklyRawExp),
+                } 
+            })
         }
 
         return weeklies;
@@ -204,8 +202,8 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp, pe
     let burningType = document.getElementById("burning-select").value;
     let newLevel = currLevel;
     let newExp = currExp;
-    let normalExp = perDayExp.dailyQuest + perDayExp.numMonsterPark * perDayExp.monsterParkExpValue;
-    let sundayExp = perDayExp.dailyQuest + perDayExp.numMonsterPark * Math.round(perDayExp.monsterParkExpValue * 1.5);
+    let normalMpExp = perDayExp.numMonsterPark * perDayExp.monsterParkExpValue;
+    let sundayMpExp = perDayExp.numMonsterPark * Math.round(perDayExp.monsterParkExpValue * 1.5);
     let expFromGrinding = perDayExp.monsterHunting;
     let hasWeeklies = Object.keys(perWeekExp).length > 0;
     let weekliesWhen = (perWeekExp.weekliesWhen >= 0) && (perWeekExp.weekliesWhen <= 6) ? perWeekExp.weekliesWhen : -1;
@@ -213,24 +211,40 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp, pe
 
     for(let i = startDate; i <= endDate; i += 1000*60*60*24) {
         let expTNL = getExpTNL(newLevel);
-        let expFromDaily, expFromWeekly;
+        let [expFromDaily, expFromWeekly] = [0, 0];
 
-        // If day is a Sunday (represented as 0 on getDay() function), use sunday's EXP value
+        // Calculate dailies EXP by factoring in level growth
+        if(perDayExp.allSelectedDailyQuests.length > 0) {
+            expFromDaily += perDayExp.allSelectedDailyQuests
+                                .filter(daily => newLevel >= daily.minLevel)
+                                .reduce((sum, daily) => sum + daily.rawExp, 0)    
+        }
+
+        // If day is a Sunday (represented as 0 on getDay() function), use sunday's Monster Park EXP value
         if((new Date(i)).getDay() === 0) {
-            expFromDaily = sundayExp;
+            expFromDaily += sundayMpExp;
         } else {
-            expFromDaily = normalExp;
+            expFromDaily += normalMpExp;
         }
 
         // After regular dailies, does level increase? If so, adjust value accordingly
-        // Then, after grinding, does level increase? If so, adjust value accordingly
         [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromDaily, expTNL, burningType);
-        [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromGrinding, expTNL, burningType);
+
+        if(isLevelUp) {
+            expTNL = getExpTNL(newLevel);
+        }
 
         // Add EXP from weeklies if applicable and adjust level/value accordingly
         if(hasWeeklies && (new Date(i)).getDay() === weekliesWhen) {
-            expFromWeekly = perWeekExp.expPerRegion.reduce((sum, exp) => sum + exp, 0);
+            expFromWeekly = perWeekExp.list
+                                        .filter(weekly => newLevel >= weekly.minLevel)
+                                        .reduce((sum, weekly) => sum + weekly.expPerRegion, 0);
+
             [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromWeekly, expTNL, burningType);
+
+            if(isLevelUp) {
+                expTNL = getExpTNL(newLevel);
+            }
         }
 
         // Now add EXP obtained from event minigames
@@ -249,10 +263,19 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp, pe
                 // After event minigames, does level increase? If so, adjust value accordingly
                 [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromMinigames, expTNL, burningType);
 
+                console.log(`Now at level ${newLevel} ${newExp}`);
+
                 if(isLevelUp) {
                     expTNL = getExpTNL(newLevel);
                 }
             }            
+        }
+
+        // Then, after grinding, does level increase? If so, adjust value accordingly
+        [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromGrinding, expTNL, burningType);
+
+        if(isLevelUp) {
+            expTNL = getExpTNL(newLevel);
         }
 
         // If character is level 260+, now add EXP obtained from Monster Park Extreme
@@ -350,7 +373,7 @@ function displaySummary(perDayExp, perWeekExp) {
     }
 
     perDayExp.allSelectedDailyQuests.forEach(daily => {
-        dailiesSummary.insertAdjacentHTML('beforeend', `<img class="item-square" src='${daily.querySelector(".item-square").src}'>`);
+        dailiesSummary.insertAdjacentHTML('beforeend', `<img class="item-square" src='${daily.imgSrc}'>`);
     })
 
     // Weeklies Summary

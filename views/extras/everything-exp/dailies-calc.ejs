@@ -79,12 +79,13 @@
                                 <% if(index === 6) { %>
                                     <div class="w-100"></div>
                                 <% } %>
-                                <div class="single-exp-content calc-daily-quest rounded-sm cursor-pointer mx-1 my-1 position-relative" id="calc-daily-<%= content.iconId %>" data-raw-exp="<%= content.dailyRawEXP %>">
+                                <div class="single-exp-content calc-daily-quest rounded-sm cursor-pointer mx-1 my-1 position-relative" id="calc-daily-<%= content.iconId %>" data-raw-exp="<%= content.dailyRawEXP %>" data-min-level="<%= content.recMinLevel %>">
                                     <img class="item-square" src="<%= icons[content.iconId].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="<%= content.name %>">
                                     <i class="fas fa-check fa-lg selected-daily text-custom position-absolute d-none"></i>
                                 </div>
                             <% }) %>
                         </div>
+                        <p class="font-small text-center text-custom mb-0 px-3">Pick the full range of dailies you intend to do as you level up (level restrictions automatically factored in calculations)</p>
                     </div>
 
                     <div class="col-12 mb-4 mb-md-5 px-0" id="symbol-weeklies">
@@ -109,7 +110,7 @@
                                         <div class="form-group row col-12 col-sm-6 col-xl-4 d-flex justify-content-center align-items-center flex-wrap mb-2">
                                             <div class="w-100 d-flex justify-content-center">
                                                 <div class="col-3 col-sm-4 px-2">
-                                                    <select class="calc-weekly-quest form-control text-center px-0" id="calc-weekly-<%= content.iconId %>" data-region="<%= content.iconId %>" data-weekly-name="<%= content.weeklyName %>" data-weekly-raw-exp="<%= content.weeklyRawEXP %>">
+                                                    <select class="calc-weekly-quest form-control text-center px-0" id="calc-weekly-<%= content.iconId %>" data-region="<%= content.iconId %>" data-weekly-name="<%= content.weeklyName %>" data-weekly-raw-exp="<%= content.weeklyRawEXP %>" data-min-level="<%= content.recMinLevel %>">
                                                         <option value="0" selected>0</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
@@ -125,6 +126,7 @@
                                 <% }) %>
                             </div>
                         </form>
+                        <p class="font-small text-center text-custom mb-0 px-3">Pick the full range of weeklies you intend to do as you level up (level restrictions automatically factored in calculations)</p>
                         <p class="font-small text-center text-custom mb-0 px-3">Auto-completed runs for weeklies do not give EXP, so do take note</p>
                     </div>
 
