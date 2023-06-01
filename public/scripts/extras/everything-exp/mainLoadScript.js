@@ -83,10 +83,10 @@ function validateDateInput(elemIds) {
             } else {
                 let totalDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
 
-                if(totalDays > 365) {
+                if(totalDays > 1825) {
                     document.getElementById(elemIds.dateErrorMsgId).classList.remove("d-none");
                     document.getElementById(elemIds.dateErrorMsgId).classList.add("active");
-                    document.getElementById(elemIds.dateErrorMsgId).textContent = "You can only calculate up to 365 days of dailies. Please adjust the date range.";
+                    document.getElementById(elemIds.dateErrorMsgId).textContent = "You can only calculate up to 1,825 days (5 years) of dailies. Please adjust the date range.";
                 } else {
                     document.getElementById(elemIds.dateErrorMsgId).classList.add("d-none");
                     document.getElementById(elemIds.dateErrorMsgId).classList.remove("active");
