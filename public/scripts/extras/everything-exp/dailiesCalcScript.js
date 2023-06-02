@@ -140,8 +140,6 @@ function compilePerDayExp() {
         monsterHunting: 0,
         numMonsterPark: getNumRuns("num-monster-park-select"),
         numMonsterParkExtreme: getNumRuns("num-monster-park-extreme-select"),
-        monsterParkType: mpSelectElem.options[mpSelectElem.selectedIndex].text,
-        monsterParkExpValue: parseInt(mpSelectElem.value), // due to EXP variations from Sunday monster park, numRuns will be factored further down instead
         numExpMinigame: getNumRuns("num-exp-minigame"),
         expMinigameId: minigameSelectElem.value,
         expMinigameMult: parseFloat(minigameSelectElem.options[minigameSelectElem.selectedIndex].dataset.multiplier) || 1.0, // defaults to x1 multiplier if NaN
@@ -199,161 +197,184 @@ function getNumRuns(elemId) {
 }
 
 function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp, perWeekExp) {
-    let burningType = document.getElementById("burning-select").value;
-    let newLevel = currLevel;
-    let newExp = currExp;
-    let normalMpExp = perDayExp.numMonsterPark * perDayExp.monsterParkExpValue;
-    let sundayMpExp = perDayExp.numMonsterPark * Math.round(perDayExp.monsterParkExpValue * 1.5);
-    let expFromGrinding = perDayExp.monsterHunting;
+    // Object created here to prevent repeated creation of variables that will be accessed for updating
+    let charData = {
+        burningType: document.getElementById("burning-select").value,
+        currLevel: currLevel,
+        currExp: currExp,
+        expTNL: getExpTNL(currLevel),
+    }
     let hasWeeklies = Object.keys(perWeekExp).length > 0;
     let weekliesWhen = (perWeekExp.weekliesWhen >= 0) && (perWeekExp.weekliesWhen <= 6) ? perWeekExp.weekliesWhen : -1;
+    let mpDungeonList = Array.from(document.querySelectorAll(".mp-details")).filter(dungeons => dungeons.dataset.minLevel >= 200);
+    let expFromGrinding = perDayExp.monsterHunting;
     let isUsingExpTickets = perDayExp.numExpMinigame === 0 ? getNumRuns("num-exp-tickets") > 0 : false;
 
     for(let i = startDate; i <= endDate; i += 1000*60*60*24) {
-        let expTNL = getExpTNL(newLevel);
-        let [expFromDaily, expFromWeekly] = [0, 0];
-
-        // Calculate dailies EXP by factoring in level growth
         if(perDayExp.allSelectedDailyQuests.length > 0) {
-            expFromDaily += perDayExp.allSelectedDailyQuests
-                                .filter(daily => newLevel >= daily.minLevel)
-                                .reduce((sum, daily) => sum + daily.rawExp, 0)    
+            charData = addDailiesExp(charData, perDayExp.allSelectedDailyQuests);    
         }
-
-        // If day is a Sunday (represented as 0 on getDay() function), use sunday's Monster Park EXP value
-        if((new Date(i)).getDay() === 0) {
-            expFromDaily += sundayMpExp;
-        } else {
-            expFromDaily += normalMpExp;
-        }
-
-        // After regular dailies, does level increase? If so, adjust value accordingly
-        [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromDaily, expTNL, burningType);
-
-        if(isLevelUp) {
-            expTNL = getExpTNL(newLevel);
-        }
-
-        // Add EXP from weeklies if applicable and adjust level/value accordingly
+        
         if(hasWeeklies && (new Date(i)).getDay() === weekliesWhen) {
-            expFromWeekly = perWeekExp.list
-                                        .filter(weekly => newLevel >= weekly.minLevel)
-                                        .reduce((sum, weekly) => sum + weekly.expPerRegion, 0);
+            charData = addWeekliesExp(charData, perWeekExp);
+        }
 
-            [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromWeekly, expTNL, burningType);
-
-            if(isLevelUp) {
-                expTNL = getExpTNL(newLevel);
-            }
+        if(perDayExp.numMonsterPark > 0) {
+            charData = addMonsterParkRegularExp(charData, perDayExp, mpDungeonList, i);
         }
 
         // Now add EXP obtained from event minigames
         if(perDayExp.expMinigameId !== "" && perDayExp.numExpMinigame > 0) {
-            let expFromMinigames;
-
-            for(let j = 0; j < perDayExp.numExpMinigame; j++) {
-                if(perDayExp.expMinigameId === "live") {
-                    expFromMinigames = EVENT_EXP_TABLE[newLevel-200];
-                } else {
-                    expFromMinigames = DESTINY_EVENT_EXP_TABLE[newLevel-200] || DESTINY_EVENT_EXP_TABLE[DESTINY_EVENT_EXP_TABLE.length-1];
-                    expFromMinigames = Math.floor(expFromMinigames * perDayExp.expMinigameMult / 100000) * 100000;
-                }
-
-                // As event EXP is added last (to factor for best EXP rates possible), a second calculation is needed to check for potential level up
-                // After event minigames, does level increase? If so, adjust value accordingly
-                [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromMinigames, expTNL, burningType);
-
-                console.log(`Now at level ${newLevel} ${newExp}`);
-
-                if(isLevelUp) {
-                    expTNL = getExpTNL(newLevel);
-                }
-            }            
+            charData = addDailyMinigameExp(charData, perDayExp);
         }
 
-        // Then, after grinding, does level increase? If so, adjust value accordingly
-        [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromGrinding, expTNL, burningType);
-
-        if(isLevelUp) {
-            expTNL = getExpTNL(newLevel);
+        // Factor in grinding EXP
+        if(expFromGrinding > 0) {
+            charData = adjustLevelAndExp(charData, expFromGrinding);
         }
 
         // If character is level 260+, now add EXP obtained from Monster Park Extreme
         if(newLevel >= 260 && perDayExp.numMonsterParkExtreme > 0) {
-            let expFromMpEx; 
-
-            if((new Date(i)).getDay() === 0) {
-                expFromMpEx = newLevel * MONSTER_PARK_EXTREME_TABLE[newLevel - 260] * 100000000 * 1.5;
-            } else {
-                expFromMpEx = newLevel * MONSTER_PARK_EXTREME_TABLE[newLevel - 260] * 100000000;
-            }
-
-            [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, expFromMpEx, expTNL, burningType);
+            charData = addMonsterParkExtremeExp(charData, i);
         }
     }
 
     if(perDayExp.expMinigameId !== "" && isUsingExpTickets) {
-        let totalNumExpTickets = getNumRuns("num-exp-tickets");
-        let expPerTicket;
-
-        // Determine the amount of EXP to next level
-        // Check how many EXP tickets is required to reach next level
-        // If there's enough tickets, deduct the number of tickets, and add that amount of EXP worth of tickets
-        // Proceed to next level and repeat process
-        // Otherwise, add the amount of EXP worth of tickets and end loop
-        while(totalNumExpTickets > 0) {
-            expTNL = getExpTNL(newLevel);
-            expPerTicket = (DESTINY_EVENT_EXP_TABLE[newLevel-200] || DESTINY_EVENT_EXP_TABLE[DESTINY_EVENT_EXP_TABLE.length-1]) / 100;
-
-            let expShortfall = expTNL - newExp;
-            let numTicketsTNL = Math.ceil(expShortfall / expPerTicket);
-            let totalExpFromTickets, ticketsUsed;
-
-            if(numTicketsTNL >= totalNumExpTickets) {
-                totalExpFromTickets = expPerTicket * totalNumExpTickets;
-                newExp += totalExpFromTickets;
-                ticketsUsed = totalNumExpTickets;
-            } else {
-                totalExpFromTickets = expPerTicket * numTicketsTNL;
-                [newLevel, newExp, isLevelUp] = adjustLevelAndExp(newLevel, newExp, totalExpFromTickets, expTNL, burningType);
-                ticketsUsed = numTicketsTNL;
-            }
-
-            totalNumExpTickets -= ticketsUsed;
-        }
+        charData = addMinigameExpTicketExp(charData);
     }
 
-    return [newLevel, newExp];
+    return [charData.currLevel, charData.currExp];
 }
 
-function adjustLevelAndExp(newLevel, newExp, expValue, expTNL, burningType) {
-    if(newExp + expValue >= expTNL) {
-        if(burningType === "") {
-            newLevel++;    
+// For all selected symbol dailies, calculate and add EXP obtained to data
+// Filter according to current character level to determine what can be done within the list
+function addDailiesExp(charData, dailies) {
+    let expFromDaily = dailies
+                        .filter(daily => charData.currLevel >= daily.minLevel)
+                        .reduce((sum, daily) => sum + daily.rawExp, 0);
+
+    return adjustLevelAndExp(charData, expFromDaily);
+}
+
+// For all weeklies that have at least one run done, calculate and add EXP obtained to data
+// Filter according to current character level to determine what can be done within the list
+function addWeekliesExp(charData, perWeekExp) {
+    let expFromWeekly = perWeekExp.list
+                                .filter(weekly => charData.currLevel >= weekly.minLevel)
+                                .reduce((sum, weekly) => sum + weekly.expPerRegion, 0);
+
+    return adjustLevelAndExp(charData, expFromWeekly);
+}
+
+// Calculate Monster Park (Regular) EXP
+// Obtain the highest possible monster park dungeon's EXP value based on character level
+// If day is a Sunday (represented as 0 on getDay() function), use sunday's Monster Park EXP value (x1.5 multiplier)
+function addMonsterParkRegularExp(charData, perDayExp, mpDungeonList, i) {
+    let perMpExp = parseInt(mpDungeonList.filter(dungeons => dungeons.dataset.minLevel <= charData.currLevel).pop().dataset.rawExp);
+    let totalMpExp;
+
+    if((new Date(i)).getDay() === 0) {
+        totalMpExp = perDayExp.numMonsterPark * Math.round(perMpExp * 1.5);
+    } else {
+        totalMpExp = perDayExp.numMonsterPark * perMpExp;
+    }
+
+    return adjustLevelAndExp(charData, totalMpExp);
+}
+
+// Add minigame EXP that is done on a daily basis (i.e. not ticket based)
+function addDailyMinigameExp(charData, perDayExp) {
+    let expFromMinigames;
+
+    for(let j = 0; j < perDayExp.numExpMinigame; j++) {
+        if(perDayExp.expMinigameId === "live") {
+            expFromMinigames = EVENT_EXP_TABLE[charData.currLevel-200];
+        } else {
+            expFromMinigames = DESTINY_EVENT_EXP_TABLE[charData.currLevel-200] || DESTINY_EVENT_EXP_TABLE[DESTINY_EVENT_EXP_TABLE.length-1];
+            expFromMinigames = Math.floor(expFromMinigames * perDayExp.expMinigameMult / 100000) * 100000;
         }
 
-        if(burningType === "hyper") {
-            if(newLevel < 250) {
-                if(newLevel+3 <= 250) {
-                    newLevel += 3;
+        // It is possible to level up midway through minigames
+        // Determine newest level, exp and expTNL if necessary before proceeding with calculations
+        charData = adjustLevelAndExp(charData, expFromMinigames);
+    }
+
+    return charData;
+}
+
+function addMonsterParkExtremeExp(charData, i) {
+    let expFromMpEx; 
+
+    if((new Date(i)).getDay() === 0) {
+        expFromMpEx = charData.currLevel * MONSTER_PARK_EXTREME_TABLE[charData.currLevel - 260] * 100000000 * 1.5;
+    } else {
+        expFromMpEx = charData.currLevel * MONSTER_PARK_EXTREME_TABLE[charData.currLevel - 260] * 100000000;
+    }
+
+    return adjustLevelAndExp(charData, expFromMpEx);
+}
+
+function addMinigameExpTicketExp(charData) {
+    let totalNumExpTickets = getNumRuns("num-exp-tickets");
+    let expPerTicket;
+
+    // Determine the amount of EXP to next level
+    // Check how many EXP tickets is required to reach next level
+    // If there's enough tickets, deduct the number of tickets, and add that amount of EXP worth of tickets
+    // Proceed to next level and repeat process
+    // Otherwise, add the amount of EXP worth of tickets and end loop
+    while(totalNumExpTickets > 0) {
+        expPerTicket = (DESTINY_EVENT_EXP_TABLE[charData.currLevel-200] || DESTINY_EVENT_EXP_TABLE[DESTINY_EVENT_EXP_TABLE.length-1]) / 100;
+
+        let expShortfall = charData.expTNL - charData.currExp;
+        let numTicketsTNL = Math.ceil(expShortfall / expPerTicket);
+        let totalExpFromTickets, ticketsUsed;
+
+        if(numTicketsTNL >= totalNumExpTickets) {
+            totalExpFromTickets = expPerTicket * totalNumExpTickets;
+            charData.currExp += totalExpFromTickets;
+            ticketsUsed = totalNumExpTickets;
+        } else {
+            totalExpFromTickets = expPerTicket * numTicketsTNL;
+            charData = adjustLevelAndExp(charData, totalExpFromTickets);
+            ticketsUsed = numTicketsTNL;
+        }
+
+        totalNumExpTickets -= ticketsUsed;
+    }
+
+    return charData;
+}
+
+// Based on character's burning status, update new character level, EXP value and EXP TNL
+function adjustLevelAndExp(charData, expGainValue) {
+    if(charData.currExp + expGainValue >= charData.expTNL) {
+        if(charData.burningType === "") {
+            charData.currLevel++;    
+        }
+
+        if(charData.burningType === "hyper") {
+            if(charData.currLevel < 250) {
+                if(charData.currLevel+3 <= 250) {
+                    charData.currLevel += 3;
                 } else {
-                    newLevel = 250;
+                    charData.currLevel = 250;
                 }    
             } else {
-                newLevel++;
+                charData.currLevel++;
             }
         }
-        
-        newExp = newExp + expValue - expTNL;
-        isLevelUp = true;
+        charData.currExp = charData.currExp + expGainValue - charData.expTNL;
+        charData.expTNL = getExpTNL(charData.currLevel);
     } else {
-        newExp += expValue;
-        isLevelUp = false;
+        charData.currExp += expGainValue;
     }
 
-    return [newLevel, newExp, isLevelUp]
+    return charData;
 }
 
+// Create a summary window (appears as a modal) that displays overall progress within a provided timeframe
+// At the end, use Bootstrap's in-built function to trigger modal appearance
 function displaySummary(perDayExp, perWeekExp) {
     // Burning text display
     if(document.getElementById("burning-select").value === "hyper") {
@@ -404,7 +425,7 @@ function displaySummary(perDayExp, perWeekExp) {
         mpSummary.textContent = "";
         
         if(perDayExp.numMonsterPark > 0) {
-            mpSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">${perDayExp.numMonsterPark} x ${perDayExp.monsterParkType}</p>`);
+            mpSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">${perDayExp.numMonsterPark} x Monster Park (Regular)</p>`);
         }
         
         if(perDayExp.numMonsterParkExtreme > 0) {

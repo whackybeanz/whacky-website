@@ -134,7 +134,7 @@
                         <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">4) Monster Park</p>
                         <form class="w-100 d-flex flex-column align-items-center mb-2">
                             <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2 mx-0">
-                                <div class="col-3 col-sm-2 pl-0 pr-1 text-center">
+                                <div class="col-3 pl-0 pr-1 text-center">
                                     <select class="form-control text-center px-0" id="num-monster-park-select">
                                         <option value="0">0</option>
                                         <option value="1">1</option>
@@ -146,38 +146,23 @@
                                         <option value="7">7</option>
                                     </select>
                                 </div>
-                                <div class="col-9 col-sm-10 col-md-8 pl-1 pr-0 px-md-2">
-                                    <select class="form-control" id="monster-park-select">
-                                        <option value="0" selected disabled hidden>- Select Monster Park -</option>
-                                        <% expContents.monsterPark.forEach((dungeon, index) => { %>
-                                            <% if(index === 0) { %>
-                                                <option value="0" class="font-weight-bold" disabled>[Level 105~139]</option>
-                                            <% } %>
-                                            <% if(index === 5) { %>
-                                                <option value="0" class="font-weight-bold" disabled>[Level 140~179]</option>
-                                            <% } %>
-                                            <% if(index === 11) { %>
-                                                <option value="0" class="font-weight-bold" disabled>[Level 180+]</option>
-                                            <% } %>
-                                            <option value="<%= dungeon.rawEXP %>"><%= dungeon.name %></option>
-                                        <% }) %>
-                                    </select>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control-plaintext px-2" value="Monster Park (Regular)">
                                 </div>
                             </div>
                             <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2 mx-0">
-                                <div class="col-3 col-sm-2 pl-0 pr-1 text-center">
+                                <div class="col-3 pl-0 pr-1 text-center">
                                     <select class="form-control text-center px-0" id="num-monster-park-extreme-select">
                                         <option value="0" selected>0</option>
                                         <option value="1">1</option>
                                     </select>
                                 </div>
-                                <div class="col-9 col-sm-10 col-md-8 pl-1 pr-0 px-md-2">
-                                    <select class="form-control" id="monster-park-extreme-select">
-                                        <option selected>Monster Park Extreme</option>
-                                    </select>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control-plaintext px-2" value="Monster Park Extreme">
                                 </div>
                             </div>
                         </form>
+                        <p class="font-small text-center text-custom mb-0 px-3">The calculator automatically selects the highest possible Monster Park (Regular) dungeon you can do as you level up.</p>
                         <p class="font-small text-center text-custom mb-0 px-3">Bonus EXP on Sundays is automatically factored in. Sunday Maple benefits are not included.</p>
                         <p class="font-small text-center text-custom mb-0 px-3">To maximize EXP gain, Monster Park Extreme (for level 260+) is added last in case a level up happens in the process of other dailies.</p>
                     </div>
