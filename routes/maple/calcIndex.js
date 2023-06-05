@@ -46,8 +46,10 @@ router.get("/everything-exp/monster-list/:charLevel", function(req, res) {
             let minMonsterLevel, maxMonsterLevel;
 
             // Determine monster level range to query for
-            // If charLevel is above (presently) 265, check if charLevel is above 275. If above, then limit range to 265~275.
-            // Otherwise, set minMonsterLevel to -10 of charLevel, but fix max at 275.
+            // If charLevel is higher than max monster level - 10:
+                // If charLevel is beyond the max monster level, limit range up to -10 from that level
+                // Else (char level is -10 to 0 levels from max monster level), limit range up to -10 from char level
+            // Otherwise, set monsterLevel to +-10 of charLevel (but if below 71 then cap at 71 for minimum)
             if(charLevel > CURR_MAX_MONSTER_LEVEL - 10) {
                 minMonsterLevel = charLevel > CURR_MAX_MONSTER_LEVEL ? CURR_MAX_MONSTER_LEVEL - 10 : charLevel - 10;
                 maxMonsterLevel = CURR_MAX_MONSTER_LEVEL;

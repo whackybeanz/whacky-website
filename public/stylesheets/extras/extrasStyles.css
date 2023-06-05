@@ -202,17 +202,19 @@
   top: 0px;
 }
 
-.monster-list-table-img-div {
+.single-monster-container .monster-list-img {
   top: 0;
   left: 0;
-  background-position: center right 8px;
+  background-position: center center;
   background-repeat: no-repeat;
   opacity: 0.25;
 }
-
-.monster-list-table-details {
+.single-monster-container .monster-list-details {
   top: 0;
   left: 0;
+}
+.single-monster-container .single-num-kills-input {
+  width: 4rem;
 }
 
 .single-symbol-btn {

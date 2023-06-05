@@ -557,6 +557,20 @@ body.dark-mode {
         }
     }
 
+    #monster-list-container {
+        .single-region {
+            .region-subheader {
+                background: linear-gradient(90deg, globals.$dark-mode-black-opaque 0%, globals.$dark-mode-navy-grey 15%, globals.$dark-mode-navy-grey 85%, globals.$dark-mode-black-opaque 100%);
+            }
+        }
+
+        .single-monster-container {
+            background: radial-gradient(globals.$dark-mode-black-opaque, globals.$dark-mode-black-opaque 90%, globals.$dark-mode-grey);
+            border-top: 1px solid globals.$dark-mode-navy-grey;
+            border-bottom: 1px solid globals.$dark-mode-navy-grey;
+        }
+    }
+
     // Coin Events
     #active-profile {
         border: 2px solid globals.$dark-mode-navy-grey;

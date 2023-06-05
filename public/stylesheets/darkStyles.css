@@ -392,6 +392,14 @@ body.dark-mode #summary-modal #summary-div .summary-subheader {
 body.dark-mode .mult-container .category-subheader {
   background: linear-gradient(90deg, black 0%, rgba(52, 58, 64, 0.8) 15%, rgba(52, 58, 64, 0.8) 85%, black 100%);
 }
+body.dark-mode #monster-list-container .single-region .region-subheader {
+  background: linear-gradient(90deg, black 0%, rgba(52, 58, 64, 0.8) 15%, rgba(52, 58, 64, 0.8) 85%, black 100%);
+}
+body.dark-mode #monster-list-container .single-monster-container {
+  background: radial-gradient(black, black 90%, #454d55);
+  border-top: 1px solid rgba(52, 58, 64, 0.8);
+  border-bottom: 1px solid rgba(52, 58, 64, 0.8);
+}
 body.dark-mode #active-profile {
   border: 2px solid rgba(52, 58, 64, 0.8);
   background-color: black;
