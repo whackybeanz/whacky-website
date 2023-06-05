@@ -501,6 +501,12 @@ body {
         }
     }
 
+    .mult-container {
+        .category-subheader {
+            background: linear-gradient(90deg, globals.$light-mode-white-opaque 0%, globals.$light-mode-grey 15%, globals.$light-mode-grey 85%, globals.$light-mode-white-opaque 100%);
+        }
+    }
+
     // Coin Events
     #active-profile {
         border: 2px solid globals.$light-mode-grey;

@@ -78,6 +78,11 @@
     General Utilities
 
 ***********************/
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    scroll-behavior: smooth;
+  }
+}
 .text-underline {
   text-decoration: underline;
 }

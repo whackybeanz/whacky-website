@@ -388,7 +388,9 @@ body.dark-mode #summary-modal #summary-div {
 }
 body.dark-mode #summary-modal #summary-div .summary-subheader {
   background: linear-gradient(90deg, black 0%, rgba(52, 58, 64, 0.8) 25%, rgba(52, 58, 64, 0.8) 75%, black 100%);
-  font-weight: normal;
+}
+body.dark-mode .mult-container .category-subheader {
+  background: linear-gradient(90deg, black 0%, rgba(52, 58, 64, 0.8) 15%, rgba(52, 58, 64, 0.8) 85%, black 100%);
 }
 body.dark-mode #active-profile {
   border: 2px solid rgba(52, 58, 64, 0.8);

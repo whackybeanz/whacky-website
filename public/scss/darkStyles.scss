@@ -547,8 +547,13 @@ body.dark-mode {
 
             .summary-subheader {
                 background: linear-gradient(90deg, globals.$dark-mode-black-opaque 0%, globals.$dark-mode-navy-grey 25%, globals.$dark-mode-navy-grey 75%, globals.$dark-mode-black-opaque 100%);
-                font-weight: normal;
             }
+        }
+    }
+
+    .mult-container {
+        .category-subheader {
+            background: linear-gradient(90deg, globals.$dark-mode-black-opaque 0%, globals.$dark-mode-navy-grey 15%, globals.$dark-mode-navy-grey 85%, globals.$dark-mode-black-opaque 100%);
         }
     }
 

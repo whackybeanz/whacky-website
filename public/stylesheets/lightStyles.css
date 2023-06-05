@@ -334,6 +334,9 @@ body #summary-modal #summary-div {
 body #summary-modal #summary-div .summary-subheader {
   background: linear-gradient(90deg, white 0%, rgba(206, 212, 218, 0.8) 25%, rgba(206, 212, 218, 0.8) 75%, white 100%);
 }
+body .mult-container .category-subheader {
+  background: linear-gradient(90deg, white 0%, rgba(206, 212, 218, 0.8) 15%, rgba(206, 212, 218, 0.8) 85%, white 100%);
+}
 body #active-profile {
   border: 2px solid rgba(206, 212, 218, 0.8);
   background-color: white;
