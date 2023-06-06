@@ -26,9 +26,10 @@ router.get("/everything-exp", function(req, res) {
         .then(([foundIcons]) => {
             const compiledIcons = IconHelper.compileIcons(foundIcons);
             const expContents = EXPStackingHelper.getEXPContentsValues();
+            const potionList = EXPStackingHelper.getPotionList();
             const dateNow = new Date(Date.now() + 8*60*60*1000);
 
-            res.render("extras/everything-exp/everything-exp-landing", { icons: compiledIcons, expContents: expContents, dateNow: dateNow });
+            res.render("extras/everything-exp/everything-exp-landing", { icons: compiledIcons, expContents: expContents, potionList: potionList, dateNow: dateNow });
         })
         .catch(err => {
             console.log(err);

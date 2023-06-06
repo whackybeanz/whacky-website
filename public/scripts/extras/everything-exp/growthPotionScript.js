@@ -14,8 +14,6 @@ function loadGrowthPotionsEXPTable() {
 
 function loadPotionListeners() {
     potionCalcInputListener();
-    potionCalcAddListener();
-    potionCalcRemoveAllListener();
     potionCalcCurrLevelInputListener();
     potionCalcCurrExpPercentInputListener();
     potionCalcCurrExpRawInputListener();
@@ -29,88 +27,20 @@ function loadPotionListeners() {
  * 
  * **************/
 function potionCalcInputListener() {
-    let numPotionsInput = document.getElementById("potion-calc-qty-input");
+    let allNumPotionsInput = document.querySelectorAll(".single-potion-add-input");
 
-    numPotionsInput.addEventListener("change", () => {
-        let numPotions = parseInt(numPotionsInput.value);
+    allNumPotionsInput.forEach(input => {
+        input.addEventListener("change", () => {
+            let numPotions = parseInt(input.value);
 
-        if(isNaN(numPotions) || numPotions < 1) {
-            numPotionsInput.value = 1;
-        }
+            if(isNaN(numPotions) || numPotions < 0) {
+                input.value = 0;
+            }
 
-        if(numPotions > 100) {
-            numPotionsInput.value = 100;
-        }
-    })
-}
-
-function potionCalcAddListener() {
-    let addPotionToCalcBtn = document.getElementById("btn-add-potion-calc");
-
-    addPotionToCalcBtn.addEventListener("click", () => {
-        let potionId = document.getElementById("potion-exp-calc-select").value;
-        let quantity = parseInt(document.getElementById("potion-calc-qty-input").value);
-
-        if(isValidAddQuantity(potionId, quantity)) {
-            document.getElementById("no-potion-added-msg").classList.add("d-none");
-            document.getElementById("btn-calc-pot-result").classList.remove("d-none");
-            document.getElementById("btn-remove-all-potions").classList.remove("d-none");
-            addPotionToCalc(potionId, quantity);
-        }
-    })
-}
-
-function isValidAddQuantity(potionId, quantity) {
-    const MAX_ALLOWED_POTION_QTY = 100;
-    let currAddedPotions = document.getElementById("potion-exp-calc-table").querySelectorAll(`.add-potion-${potionId}`);
-    let currAddedPotionsQty = 0;
-    let statusMessage = document.getElementById('add-potion-calc-status');
-
-    if(currAddedPotions !== null) {
-        currAddedPotions.forEach(potion => {
-            currAddedPotionsQty += parseInt(potion.dataset.qty);
+            if(numPotions > 1000) {
+                input.value = 1000;
+            }
         })
-    }
-
-    if(currAddedPotionsQty + quantity > MAX_ALLOWED_POTION_QTY) {
-        statusMessage.classList.remove("d-none");
-        statusMessage.innerHTML = `Failed to add - will exceed max of 100<br/>(Current added total: ${currAddedPotionsQty} / Attempted to add: ${quantity} / Available quantity: ${MAX_ALLOWED_POTION_QTY - currAddedPotionsQty})`;
-
-        window.setTimeout(() => {
-            statusMessage.classList.add("d-none");
-        }, 5000)
-        return false;
-    } else {
-        statusMessage.classList.add("d-none");
-        return true;
-    }
-}
-
-function addPotionToCalc(potionId, quantity) {
-    let potionName = POTION_EXP_TABLE[potionId].name;
-    let tableDisplay = document.getElementById("potion-exp-calc-table");
-
-    let html = "";
-
-    if(tableDisplay.querySelector(".single-potion-add")) {
-        html += `<div class="font-subsubheader mx-2">&#187</div>`;
-    }
-
-    html += `<div class="single-potion-add add-potion-${potionId} font-small text-center my-1" data-potion-type="${potionId}" data-qty="${quantity}">
-            <span class="font-weight-bold">${potionName}</span><br/>x${quantity}
-        </div>`
-
-    tableDisplay.insertAdjacentHTML('beforeend', html);
-}
-
-function potionCalcRemoveAllListener() {
-    let removeAllPotionBtn = document.getElementById("btn-remove-all-potions");
-
-    removeAllPotionBtn.addEventListener("click", () => {
-        document.getElementById("potion-exp-calc-table").innerHTML = "";
-        document.getElementById("no-potion-added-msg").classList.remove("d-none");
-        document.getElementById("btn-calc-pot-result").classList.add("d-none");
-        removeAllPotionBtn.classList.add("d-none");
     })
 }
 
@@ -165,18 +95,30 @@ function calcNewExpBtnListener() {
     calcExpBtn.addEventListener("click", () => {
         let currLevel = parseInt(document.getElementById("start-potion-char-level").value);
         let currExp = parseInt(document.getElementById("start-potion-char-exp-raw").value);
-        let allAddedPotions = document.querySelectorAll(".single-potion-add");
+        let allPotionInputs = Array.from(document.querySelectorAll(".single-potion-add-input")).filter(input => input.value > 0);
+        let potionSummary = document.getElementById("potion-summary");
+        potionSummary.textContent = "";
 
-        allAddedPotions.forEach(potion => {
-            let potionType = potion.dataset.potionType;
-            let numPotionsUsed = potion.dataset.qty;
+        if(allPotionInputs.length > 0) {
+            document.getElementById("calc-start-potion-level").textContent = currLevel;
+            document.getElementById("calc-start-potion-percent").textContent = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)} %`;
 
-            [currLevel, currExp] = calcPotionsNewExp(currLevel, currExp, potionType, numPotionsUsed);
-        })
+            allPotionInputs.forEach(input => {
+                let potionType = input.dataset.potionType;
+                let numPotionsUsed = parseInt(input.value);
 
-        document.getElementById("end-potion-char-level").value = currLevel;
-        document.getElementById("end-potion-char-exp-percent").value = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)} %`;
-        document.getElementById("end-potion-char-exp-raw").value = `${currExp.toLocaleString("en-SG")} EXP`;
+                [currLevel, currExp] = calcPotionsNewExp(currLevel, currExp, potionType, numPotionsUsed);
+
+                potionSummary.insertAdjacentHTML('beforeend', `<div class="d-flex align-items-center"><img class="item-square mr-2" src='${input.dataset.imgSrc}'> ${numPotionsUsed} x ${input.dataset.potionName}</div>`);
+            })
+
+            document.getElementById("end-potion-char-level").textContent = currLevel;
+            document.getElementById("end-potion-char-exp-percent").textContent = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)} %`;
+            //document.getElementById("end-potion-char-exp-raw").value = `${currExp.toLocaleString("en-SG")} EXP`;
+
+            // Display div
+            $("#potion-summary-modal").modal();
+        }
     })
 }
 
@@ -205,7 +147,7 @@ function calcPotionsNewExp(currLevel, currExp, potionType, numPotionsUsed) {
  * For each potion, split into two tables -- Level 200 to 250 / Level 250 to 300
  * For each table, first populate table headers
  * For each table row, display the % gain (if not 100%) to 3 d.p. when the potion is used, and also calculate the raw EXP gain
- * If gain is 100%, highlight row in blue text
+ * If gain is 100%, highlight row in custom color
  * 
  * **************/
 function addExpTable(potionType, minLevel, maxLevel) {
@@ -281,14 +223,12 @@ function potionTableSelectListener() {
 // Erase current table and rebuild table rows
 function updatePerPotionEXPPercent() {
     let charLevel = getCharLevel();
-    let tableToPopulate = document.getElementById("per-potion-exp-table");
+    let allPotElems = Array.from(document.querySelectorAll(".per-potion-exp-div"));
+    let allPotKeys = Array.from(allPotElems).map(elem => elem.dataset.potType);
 
-    tableToPopulate.innerHTML = "";
-
-    Object.keys(POTION_EXP_TABLE).forEach(potion => {
-        let currPotion = POTION_EXP_TABLE[potion];
-
-        let potionTableCell = document.getElementById(`potion-${potion}-level-${charLevel}-exp`);
+    for(let elem of allPotElems) {
+        let potType = elem.dataset.potType;
+        let potionTableCell = document.getElementById(`potion-${potType}-level-${charLevel}-exp`);
         let potionValue = 0;
         let expTNL = 0;
         let [displayedValue, displayedPercent] = ["-", "-"];
@@ -300,18 +240,12 @@ function updatePerPotionEXPPercent() {
             displayedPercent = (potionValue / expTNL * 100).toFixed(3) + "%";
         }
 
-        if(potion === "extreme" && charLevel >= 141 && charLevel < 200) {
-            tableToPopulate
-                .insertAdjacentHTML('beforeend', `<tr>
-                    <th scope="col" class="align-middle">${currPotion.name} (Level ${currPotion.minLevel}~${currPotion.maxLevel})</th>
-                    <td class="text-center">Amount varies - see EXP Tables section below</td>
-                </tr>`);
+        if(potType === "extreme" && charLevel >= 141 && charLevel < 200) {
+            elem.querySelector(".pot-raw-exp").textContent = "Amount varies";
+            elem.querySelector(".pot-percent-exp").textContent = "See EXP Tables section below";
         } else {
-            tableToPopulate
-                .insertAdjacentHTML('beforeend', `<tr>
-                    <th scope="col" class="align-middle">${currPotion.name} (Level ${currPotion.minLevel}~${currPotion.maxLevel})</th>
-                    <td class="text-center">${displayedValue} / <span class="text-custom font-weight-bold">${displayedPercent}</span></td>
-                </tr>`);
+            elem.querySelector(".pot-raw-exp").textContent = displayedValue;
+            elem.querySelector(".pot-percent-exp").textContent = displayedPercent;
         }
-    })
+    }
 }

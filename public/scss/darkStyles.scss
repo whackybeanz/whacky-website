@@ -540,8 +540,8 @@ body.dark-mode {
         background-color: globals.$dark-mode-black-opaque;
     }
 
-    #summary-modal {
-        #summary-div {
+    .summary-modal {
+        .summary-div {
             background: radial-gradient(globals.$dark-mode-black-opaque, globals.$dark-mode-black-opaque 95%, globals.$dark-mode-grey);
             border: 2px solid globals.$dark-mode-navy-grey;
 

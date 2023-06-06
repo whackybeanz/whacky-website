@@ -327,11 +327,11 @@ body .single-mp-dungeon.active:hover {
 body #selected-mp-dungeon {
   background-color: white;
 }
-body #summary-modal #summary-div {
+body .summary-modal .summary-div {
   background: radial-gradient(white, white 95%, rgba(206, 212, 218, 0.8));
   border: 2px solid rgba(206, 212, 218, 0.8);
 }
-body #summary-modal #summary-div .summary-subheader {
+body .summary-modal .summary-div .summary-subheader {
   background: linear-gradient(90deg, white 0%, rgba(206, 212, 218, 0.8) 25%, rgba(206, 212, 218, 0.8) 75%, white 100%);
 }
 body .mult-container .category-subheader {

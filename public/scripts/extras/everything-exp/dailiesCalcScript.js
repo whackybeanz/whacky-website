@@ -234,7 +234,7 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp, pe
         }
 
         // If character is level 260+, now add EXP obtained from Monster Park Extreme
-        if(newLevel >= 260 && perDayExp.numMonsterParkExtreme > 0) {
+        if(charData.currLevel >= 260 && perDayExp.numMonsterParkExtreme > 0) {
             charData = addMonsterParkExtremeExp(charData, i);
         }
     }
@@ -455,5 +455,5 @@ function displaySummary(perDayExp, perWeekExp) {
     }
 
     // Display div
-    $("#summary-modal").modal();
+    $("#dailies-summary-modal").modal();
 }

@@ -1,3 +1,35 @@
+<div class="summary-modal modal fade" id="potion-summary-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content border-0">
+            <div class="modal-body position-relative d-flex align-items-center justify-content-center p-0">
+                <div class="summary-div col-12 size-720 d-flex flex-column flex-md-row align-items-center justify-content-center rounded-lg pt-4 pb-2">
+                    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-3 mb-md-0">
+                        <div class="d-flex flex-column align-items-center">
+                            <p class="font-weight-bold mb-0">Level</p>
+                            <p class="font-mega font-weight-bold mb-0" id="calc-start-potion-level"></p>
+                            <p class="mb-md-3" id="calc-start-potion-percent"></p>
+                        </div>
+                        <div class="text-center mx-4">
+                            <p class="font-mega mb-0">&raquo;</p>
+                        </div>
+                        <div class="d-flex flex-column align-items-center text-custom">
+                            <p class="font-weight-bold mb-0">Level</p>
+                            <p class="font-mega font-weight-bold mb-0" id="end-potion-char-level"></p>
+                            <p class="mb-md-3" id="end-potion-char-exp-percent"></p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex flex-column align-items-center px-0">
+                        <div class="col-12 mb-3 px-0">
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Potions Used -</p>
+                            <div class="d-flex flex-column justify-content-center align-items-center px-3 mb-2" id="potion-summary"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
     <div class="w-100 d-flex flex-column justify-content-center py-3">
         <div class="pill-section rounded-sm mb-5">
@@ -6,17 +38,24 @@
                     <img src="<%= icons['growth-potion'].imgUrl %>" class="mr-2"> Summary
                 </h2>
             </div>
-            <div class="pill-section-content font-form d-flex flex-wrap justify-content-center pt-3 px-3">
-                <table class="font-table size-720 w-100 table table-sm table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="align-middle">Potion Type</th>
-                            <th scope="col" class="text-center">EXP From Potion</th>
-                        </tr>
-                    </thead>
-                    <tbody id='per-potion-exp-table'>
-                    </tbody>
-                </table>
+            <div class="pill-section-content font-form d-flex flex-wrap justify-content-center pt-4 px-3">
+                <% Object.keys(potionList).forEach(potion => { %>
+                    <div class="per-potion-exp-div col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 d-flex align-items-center justify-content-center mb-4 px-0 px-sm-3" id="<%= potionList[potion].id %>" data-pot-type="<%= potion %>">
+                        <img class="item-square" src="<%= icons[potionList[potion].id].imgUrl %>">
+                        <div class="col-10 px-2">
+                            <p class="mb-0 font-weight-bold">
+                                <%= potionList[potion].name %>
+                                <% if(potion === "potion1" || potion === "potion2" || potion === "potion3") { %>
+                                    (<%= potionList[potion].minLevel %> - <%= potionList[potion].maxLevel %>)
+                                <% } %>
+                            </p>
+                            <p class="mb-0">
+                                <span class="pot-raw-exp"></span> / 
+                                <span class="pot-percent-exp text-custom font-weight-bold"></span>
+                            </p>
+                        </div>
+                    </div>
+                <% }) %>
             </div>
         </div>
 
@@ -29,82 +68,55 @@
                     Potion EXP calculator for level 200+ characters
                 </p>
             </div>
-            <div class="pill-section-content font-form d-flex flex-column align-items-center justify-content-center pt-2 py-3 px-3" id="potion-exp-calc">
+            <div class="pill-section-content d-flex flex-column align-items-center justify-content-center py-4 px-3" id="potion-exp-calc">
                 <p class="w-100 mb-1">Notes:</p>
-                <ul class="w-100 mb-0">
-                    <li>You can mix-and-match potions of different types (e.g. use 3 TGP first, then 1 MGP, then 2 TGP again).</li>
-                    <li><span class="font-weight-bold text-custom">Potion order matters.</span> Ensure you added it in the desired order you intend to use the potions in.</li>
-                    <li>You can add up to a maximum of 100 of <span class="text-underline">each potion type</span> (not per addition, but in total).</li>
-                    <li>The information below <span class="text-underline">is not saved</span>. Do record/screenshot down the values if you need to.</li>
+                <ul class="w-100 mb-4">
+                    <li>The calculator will add potions sequentially from the weakest to the strongest (i.e. Extreme first, Maximum last)</li>
+                    <li>You can add up to 1000 of <span class="text-underline">each potion type</span></li>
+                    <li>At level 210, it is more efficient to use 8 x Potion 1 than 4 x Potion 2.</li>
+                    <li>At level 220 to 223 (inclusive), it is more efficient to use 4 x Potion 2 than 2 x Potion 3.</li>
+                    <li>At level 230 to 234 (inclusive), it is more efficient to use 2 x Potion 3 than 1 x Typhoon Growth Potion.</li>
                 </ul>
-
-                <div class="my-3">---</div>
-
-                <form class="w-100 d-flex flex-column align-items-center mb-2">
-                    <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
-                        <input type="number" id="potion-calc-qty-input" class="form-control col-2 col-md-1 px-2 text-center" placeholder="Qty" value="3">
-                        <div class="col-6 col-sm-6 col-md-4">
-                            <select class="form-control" id="potion-exp-calc-select">
-                                <option value="extreme">Extreme Growth Potion</option>
-                                <option value="potion1">Growth Potion 1</option>
-                                <option value="potion2">Growth Potion 2</option>
-                                <option value="potion3">Growth Potion 3</option>
-                                <option value="typhoon">Typhoon Growth Potion</option>
-                                <option value="maximum">Maximum Growth Potion</option>
-                            </select>
+                <form class="w-100 d-flex flex-column align-items-center mb-3">
+                    <div class="size-720 w-100 d-flex justify-content-center align-items-center flex-wrap mb-4">
+                        <div class="form-group row col-6 col-sm-4 d-flex flex-column align-items-center mb-2 pr-1 pl-0 px-sm-0 mx-0">
+                            <label class="font-weight-bold col-form-label py-1">Start Level</label>
+                            <input type="number" id="start-potion-char-level" class="form-control col-12 col-sm-10 px-2 py-2 text-center mx-0" value="200">
                         </div>
-                        <button type="button" class="btn btn-sm btn-outline-custom" id="btn-add-potion-calc"><i class="fas fa-plus"></i> Add</button>
+                        <div class="form-group row col-6 col-sm-4 d-flex flex-column align-items-center mb-2 pl-1 pr-0 px-sm-0 mx-0">
+                            <label class="font-weight-bold col-form-label py-1">EXP (%)</label>
+                            <div class="w-100 d-flex flex-column align-items-center">
+                                <input type="number" id="start-potion-char-exp-percent" class="form-control col-12 col-sm-10 text-center px-2 py-2 mx-0" value="0.000">
+                                <small class="text-danger d-none mr-3" id="exp-percent-input-error">Input should be below 100.000%</small>
+                            </div>
+                        </div>
+                        <div class="form-group row col-12 col-sm-4 d-flex flex-column align-items-center mb-2 px-0 mx-0">
+                            <label class="font-weight-bold col-form-label py-1">EXP (Value)</label>
+                            <div class="w-100 d-flex flex-column align-items-center">
+                                <input type="number" id="start-potion-char-exp-raw" class="form-control col-12 col-sm-10 text-center px-2 py-2 mx-0" value="0">
+                                <small class="text-danger d-none" id="exp-raw-input-error">Input exceeds level's EXP to level</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-center">
+                        <% Object.keys(potionList).forEach(potion => { %>
+                            <div class="per-potion-add-div col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 d-flex align-items-center justify-content-center mb-4 px-0 px-sm-3" id="<%= potionList[potion].id %>" data-pot-type="<%= potion %>">
+                                <img class="item-square" src="<%= icons[potionList[potion].id].imgUrl %>">
+                                <div class="col-10 px-2">
+                                    <p class="mb-1 font-weight-bold">
+                                        <%= potionList[potion].name %>
+                                        <% if(potion === "potion1" || potion === "potion2" || potion === "potion3") { %>
+                                            (<%= potionList[potion].minLevel %> - <%= potionList[potion].maxLevel %>)
+                                        <% } %>
+                                    </p>
+                                    <div class="d-flex align-items-center">
+                                        <input type="number" class="single-potion-add-input font-table col-4 text-center form-control mr-2 px-0" value="" data-potion-type="<%= potion %>" data-potion-name="<%= potionList[potion].name %>" data-img-src="<%= icons[potionList[potion].id].imgUrl %>" placeholder="Qty">
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
                     </div>
                 </form>
-                <p class="font-table text-danger text-center d-none" id="add-potion-calc-status"></p>
-
-                <table class="font-table size-720 w-100 table table-sm table-bordered table-hover mb-0">
-                    <tbody>
-                        <td class="position-relative">
-                            <div class="px-3">
-                                <p class="text-center text-custom font-weight-bold py-2 mb-0" id="no-potion-added-msg">- Added potions for calculation appear here. Add some above! -</p>
-                                <div class="w-100 d-flex flex-wrap justify-content-center align-items-center" id='potion-exp-calc-table'></div>
-                            </div>
-                            <button type="button" class="btn btn-sm btn-outline-danger position-absolute d-none" id="btn-remove-all-potions"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tbody>
-                </table>
-
-                <div class="my-3">---</div>
-
-                <div class="w-100 d-flex flex-column flex-sm-row mb-2">
-                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start px-0">
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label class="col-6 font-weight-bold col-form-label text-right">Start Level</label>
-                            <input type="number" id="start-potion-char-level" class="form-control col-4 px-2" value="200">
-                        </div>
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label class="col-6 font-weight-bold col-form-label text-right">EXP (%)</label>
-                            <input type="number" id="start-potion-char-exp-percent" class="form-control col-4 px-2" value="0.000">
-                            <small class="offset-6 text-danger d-none" id="exp-percent-input-error">Input should be below 100.000%</small>
-                        </div>
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
-                            <input type="number" id="start-potion-char-exp-raw" class="col-6 form-control px-2" value="0">
-                            <small class="offset-6 text-danger d-none" id="exp-raw-input-error">Input exceeds level's EXP to level</small>
-                        </div>
-                    </form>
-
-                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start text-custom px-0">
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label class="col-6 font-weight-bold col-form-label text-right">End Level</label>
-                            <input type="number" id="end-potion-char-level" class="form-control-plaintext col-4 text-custom px-2" value="200" readonly>
-                        </div>
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label class="col-6 font-weight-bold col-form-label text-right">EXP (%)</label>
-                            <input type="text" id="end-potion-char-exp-percent" class="form-control-plaintext col-4 text-custom px-2" value="0.000" readonly>
-                        </div>
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
-                            <input type="text" id="end-potion-char-exp-raw" class="col-6 form-control-plaintext text-custom px-2" value="0" readonly>
-                        </div>
-                    </form>
-                </div>
 
                 <button type="button" class="table-cols-125 btn btn-sm btn-outline-custom" id="btn-calc-pot-result"><i class="fas fa-check"></i> (Re)Calculate</button>
             </div>

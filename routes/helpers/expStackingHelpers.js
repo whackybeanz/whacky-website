@@ -51,6 +51,19 @@ function getEXPContentsValues() {
     return expContents;
 }
 
+function getPotionList() {
+    let potionList = {
+        extreme: { id: "extreme-growth-potion", name: "Extreme Growth Potion", minLevel: 141, maxLevel: 199 },
+        potion1: { id: "growth-potion-1", name: "Growth Potion 1", minLevel: 200, maxLevel: 209 },
+        potion2: { id: "growth-potion-2", name: "Growth Potion 2", minLevel: 200, maxLevel: 219 },
+        potion3: { id: "growth-potion-3", name: "Growth Potion 3", minLevel: 200, maxLevel: 229 },
+        typhoon: { id: "typhoon-growth-potion", name: "Typhoon Growth Potion", minLevel: 200, maxLevel: 239 },
+        maximum: { id: "maximum-growth-potion", name: "Maximum Growth Potion", minLevel: 200, maxLevel: 249 },
+    }
+
+    return potionList;
+}
+
 function groupMonstersByMap(icons, monsterList) {
     const allMaps = [...new Set(monsterList.map(monster => monster.mapId))];
     let monstersByMap = {};
@@ -72,4 +85,4 @@ function groupMonstersByMap(icons, monsterList) {
     return monstersByMap;
 }
 
-module.exports = { getEXPContentsValues, groupMonstersByMap };
+module.exports = { getEXPContentsValues, getPotionList, groupMonstersByMap };

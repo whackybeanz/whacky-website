@@ -490,8 +490,8 @@ body {
         background-color: globals.$light-mode-white-opaque;
     }
 
-    #summary-modal {
-        #summary-div {
+    .summary-modal {
+        .summary-div {
             background: radial-gradient(globals.$light-mode-white-opaque, globals.$light-mode-white-opaque 95%, globals.$light-mode-grey);
             border: 2px solid globals.$light-mode-grey;    
 
