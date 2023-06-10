@@ -102,6 +102,7 @@ function calcNewExpBtnListener() {
         if(allPotionInputs.length > 0) {
             document.getElementById("calc-start-potion-level").textContent = currLevel;
             document.getElementById("calc-start-potion-percent").textContent = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)} %`;
+            document.getElementById("calc-start-potion-raw").textContent = `${currExp.toLocaleString("en-SG")} EXP`;
 
             allPotionInputs.forEach(input => {
                 let potionType = input.dataset.potionType;
@@ -114,7 +115,7 @@ function calcNewExpBtnListener() {
 
             document.getElementById("end-potion-char-level").textContent = currLevel;
             document.getElementById("end-potion-char-exp-percent").textContent = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)} %`;
-            //document.getElementById("end-potion-char-exp-raw").value = `${currExp.toLocaleString("en-SG")} EXP`;
+            document.getElementById("end-potion-char-exp-raw").textContent = `${currExp.toLocaleString("en-SG")} EXP`;
 
             // Display div
             $("#potion-summary-modal").modal();

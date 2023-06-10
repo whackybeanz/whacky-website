@@ -107,6 +107,7 @@ function dailiesCalcNewExpBtnListener() {
         let currExp = parseInt(document.getElementById("start-calc-dailies-char-exp-raw").value);
         document.getElementById("calc-start-level").textContent = currLevel;
         document.getElementById("calc-start-percent").textContent = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)}%`;
+        document.getElementById("calc-start-raw").textContent = `${currExp.toLocaleString("en-SG")} EXP`;
 
         let startDate = new Date(document.getElementById("dailies-start-date").value);
         let endDate = new Date(document.getElementById("dailies-end-date").value)
@@ -122,7 +123,7 @@ function dailiesCalcNewExpBtnListener() {
 
         document.getElementById("calc-end-level").textContent = finalLevel;
         document.getElementById("calc-end-percent").textContent = `${(finalExp / getExpTNL(finalLevel) * 100).toFixed(3)}%`;
-        //document.getElementById("end-calc-dailies-char-exp-raw").value = `${currExp.toLocaleString("en-SG")} EXP`;
+        document.getElementById("calc-end-raw").textContent = `${finalExp.toLocaleString("en-SG")} EXP`;
 
         if(finalLevel !== currLevel || finalExp !== currExp) {
             displaySummary(perDayExp, perWeekExp);
