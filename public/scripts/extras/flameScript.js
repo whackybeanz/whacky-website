@@ -24,11 +24,7 @@ function addEquipTypeBtnListeners() {
 
     equipTypeBtns.forEach(function(btn) {
         btn.addEventListener("click", function() {
-            if(this.dataset.equipType !== document.querySelector(".equip-type-input.active").dataset.equipType) {
-                document.querySelector(".equip-type-input.active").classList.remove("active");
-                this.classList.add("active");
-                updateTable();
-            }
+            updateTable();
         })
     })
 }
@@ -36,40 +32,36 @@ function addEquipTypeBtnListeners() {
 function updateTable() {
     var itemLevel = Number(document.getElementById("gear-level").value);
     var inputWAMA = Number(document.getElementById("base-wa-ma").value);
+    let pureStatsFactor, hpMpFactor;
 
-    var pureStatsFactor = Math.floor(itemLevel/20) + 1; // Pure stats, def stats
-    var mixedStatsFactor = Math.floor(itemLevel/40) + 1; // Mixed stats
-
-    var hpMpFactor;
-    if(itemLevel/10 <= 1) {
-        hpMpFactor = 1;
+    if(itemLevel >= 250) {
+        pureStatsFactor = 12; // Pure stats, def stats
+        hpMpFactor = 233.333333;
     } else {
-        hpMpFactor = Math.floor(itemLevel/10);
+        pureStatsFactor = Math.floor(itemLevel/20) + 1; // Pure stats, def stats
+        hpMpFactor = (itemLevel / 10) * 10;
     }
+    
+    var mixedStatsFactor = Math.floor(itemLevel/40) + 1; // Mixed stats
 
     displayOutput(inputWAMA, pureStatsFactor, mixedStatsFactor, hpMpFactor);
 }
 
 function displayOutput(inputWAMA, pureStatsFactor, mixedStatsFactor, hpMpFactor) {
     var equipType = document.querySelector(".equip-type-input.active").dataset.equipType;
+    var itemLevel = Number(document.getElementById("gear-level").value);
 
-    var normalWAMA = [1, 2.2, 3.625, 5.325, 7.3, 8.8, 10.25];
-    var bossWAMA = [0, 0, 3, 4.4, 6.05, 8, 10.25];
-
-    var typeOfWAMA;
     var minFlameTier = 0;
     var maxFlameTier = 0;
 
     if(equipType === "normal" || equipType === "eb") {
         minFlameTier = 1;
         maxFlameTier = 5;
-        typeOfWAMA = normalWAMA;
         document.getElementById("crf-item-type-tiers").textContent = "1~4";
         document.getElementById("rrf-item-type-tiers").textContent = "2~5";
     } else if(equipType === "boss") {
         minFlameTier = 3;
         maxFlameTier = 7;
-        typeOfWAMA = bossWAMA;
         document.getElementById("crf-item-type-tiers").textContent = "3~6";
         document.getElementById("rrf-item-type-tiers").textContent = "4~7";
     }
@@ -92,7 +84,7 @@ function displayOutput(inputWAMA, pureStatsFactor, mixedStatsFactor, hpMpFactor)
                 document.querySelector(`.weapon-wa-ma-output.flame-tier-${i}`).textContent = "-";
                 document.querySelector(`.boss-dmg-output.flame-tier-${i}`).textContent = "-";
             } else {
-                var calculatedWAMA = Math.ceil(inputWAMA * (typeOfWAMA[i-1] * mixedStatsFactor / 100));
+                var calculatedWAMA = Math.ceil((inputWAMA/100) * (itemLevel/40 + 1) * (8-(8-i)) * Math.pow(1.1, 5-(8-i)));
 
                 if(calculatedWAMA === 0) {
                     document.querySelector(`.weapon-wa-ma-output.flame-tier-${i}`).textContent = "-";
@@ -105,7 +97,7 @@ function displayOutput(inputWAMA, pureStatsFactor, mixedStatsFactor, hpMpFactor)
             
             document.querySelector(`.pure-stats-output.flame-tier-${i}`).textContent = pureStatsFactor * i;
             document.querySelector(`.mixed-stats-output.flame-tier-${i}`).textContent = mixedStatsFactor * i;
-            document.querySelector(`.hp-mp-output.flame-tier-${i}`).textContent = hpMpFactor * i * 30;
+            document.querySelector(`.hp-mp-output.flame-tier-${i}`).textContent = Math.round(hpMpFactor * 3 * i);
             document.querySelector(`.all-stats-output.flame-tier-${i}`).textContent = `${i}%`;
             document.querySelector(`.damage-output.flame-tier-${i}`).textContent = `${i}%`;
             document.querySelector(`.armor-wa-ma-output.flame-tier-${i}`).textContent = i;
