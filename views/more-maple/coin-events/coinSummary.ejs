@@ -44,7 +44,11 @@
                                 <% } %>
                             </ul>
 
-                            <p class="text-custom mb-0">Note:<br/>Main Source coins are generally per-character.<br/>Extra Source coins are generally per-world.</p>
+                            <% if(coinEventData.eventId === "identisk") { %>
+                                <p class="text-custom mb-0">Note:<br/>For Identisk Island, Sunshine Coin redemptions are per-ID. There are no per-character or per-world coin source methods.</p>
+                            <% } else { %>
+                                <p class="text-custom mb-0">Note:<br/>Main Source coins are generally per-character.<br/>Extra Source coins are generally per-world.</p>
+                            <% } %>
                         <% } %>
                     </div>
                 </td>
