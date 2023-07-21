@@ -56,6 +56,7 @@ function potionCalcCurrLevelInputListener() {
         currExpPercentInputId: "start-potion-char-exp-percent",
         currExpRawInputId: "start-potion-char-exp-raw",
         calcBtnId: "btn-calc-pot-result",
+        currExpRawErrorMsgId: "exp-raw-input-error",
     };
     validateCurrLevelInput(elemIds);
 }
@@ -67,7 +68,7 @@ function potionCalcCurrExpPercentInputListener() {
         currExpPercentInputId: "start-potion-char-exp-percent",
         currExpRawInputId: "start-potion-char-exp-raw",
         calcBtnId: "btn-calc-pot-result",
-        currExpPercentErrorMsgId: "exp-percent-input-error",
+        currExpRawErrorMsgId: "exp-raw-input-error",
     };
     validateCurrExpPercentInput(elemIds);
 }
@@ -80,6 +81,7 @@ function potionCalcCurrExpRawInputListener() {
         currExpRawInputId: "start-potion-char-exp-raw",
         calcBtnId: "btn-calc-pot-result",
         currExpRawErrorMsgId: "exp-raw-input-error",
+        errorMaxExpTnlId: "potion-calc-err-max-exp-tnl",
     };
     validateCurrExpRawInput(elemIds);
 }
@@ -94,7 +96,7 @@ function calcNewExpBtnListener() {
 
     calcExpBtn.addEventListener("click", () => {
         let currLevel = parseInt(document.getElementById("start-potion-char-level").value);
-        let currExp = parseInt(document.getElementById("start-potion-char-exp-raw").value);
+        let currExp = parseInt(document.getElementById("start-potion-char-exp-raw").value.match(/\d/g).join(""));
         let allPotionInputs = Array.from(document.querySelectorAll(".single-potion-add-input")).filter(input => input.value > 0);
         let potionSummary = document.getElementById("potion-summary");
         potionSummary.textContent = "";

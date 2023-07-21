@@ -5,6 +5,7 @@ function loadDailiesCalcListeners() {
     dailiesCalcCurrExpPercentInputListener();
     dailiesCalcCurrExpRawInputListener();
     expMinigameSelectListener();
+    monsterExpValidate();
     dailiesCalcNewExpBtnListener();
 }
 
@@ -47,6 +48,7 @@ function dailiesCalcCurrLevelInputListener() {
         currExpPercentInputId: "start-calc-dailies-char-exp-percent",
         currExpRawInputId: "start-calc-dailies-char-exp-raw",
         calcBtnId: "btn-calc-dailies-exp-result",
+        currExpRawErrorMsgId: "calc-dailies-exp-raw-input-error",
     };
     validateCurrLevelInput(elemIds);
 }
@@ -58,7 +60,7 @@ function dailiesCalcCurrExpPercentInputListener() {
         currExpPercentInputId: "start-calc-dailies-char-exp-percent",
         currExpRawInputId: "start-calc-dailies-char-exp-raw",
         calcBtnId: "btn-calc-dailies-exp-result",
-        currExpPercentErrorMsgId: "calc-dailies-exp-percent-input-error",
+        currExpRawErrorMsgId: "calc-dailies-exp-raw-input-error",
     };
     validateCurrExpPercentInput(elemIds);
 }
@@ -71,6 +73,7 @@ function dailiesCalcCurrExpRawInputListener() {
         currExpRawInputId: "start-calc-dailies-char-exp-raw",
         calcBtnId: "btn-calc-dailies-exp-result",
         currExpRawErrorMsgId: "calc-dailies-exp-raw-input-error",
+        errorMaxExpTnlId: "calc-dailies-err-max-exp-tnl",
     };
     validateCurrExpRawInput(elemIds);
 }
@@ -94,6 +97,22 @@ function expMinigameSelectListener() {
     })
 }
 
+function monsterExpValidate() {
+    let monsterExpInputs = document.querySelectorAll(".per-monster-exp");
+
+    monsterExpInputs.forEach(input => {
+        input.addEventListener("change", () => {
+            let numStr = input.value.match(/\d/g);
+
+            if(numStr) {
+                input.value = parseInt(numStr.join("")).toLocaleString("en-SG");
+            } else {
+                input.value = "";
+            }
+        })
+    })
+}
+
 /****************
  * 
  * Dailies Calculator execute calculation
@@ -104,7 +123,7 @@ function dailiesCalcNewExpBtnListener() {
 
     calcExpBtn.addEventListener("click", () => {
         let currLevel = parseInt(document.getElementById("start-calc-dailies-char-level").value);
-        let currExp = parseInt(document.getElementById("start-calc-dailies-char-exp-raw").value);
+        let currExp = parseInt(document.getElementById("start-calc-dailies-char-exp-raw").value.match(/\d/g).join(""));
         document.getElementById("calc-start-level").textContent = currLevel;
         document.getElementById("calc-start-percent").textContent = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)}%`;
         document.getElementById("calc-start-raw").textContent = `${currExp.toLocaleString("en-SG")} EXP`;
@@ -149,7 +168,7 @@ function compilePerDayExp() {
     // Monster Hunting
     for(let i = 1; i <= 3; i++) {
         let qtyMonsters = parseInt(document.getElementById(`qty-monster-${i}`).value) || 0;
-        let perMonsterExp = parseInt(document.getElementById(`per-monster-exp-${i}`).value) || 0;
+        let perMonsterExp = parseInt(document.getElementById(`per-monster-exp-${i}`).value.replace(/\D/g, "")) || 0;
 
         perDayExp.monsterHunting += qtyMonsters * perMonsterExp;
     }

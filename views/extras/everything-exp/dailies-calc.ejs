@@ -212,19 +212,19 @@
                             <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
                                 <input type="number" id="qty-monster-1" class="form-control col-2 px-2 text-center" placeholder="Qty" value="">
                                 <div class="col-10 col-sm-8 pl-2 pr-0 px-md-2">
-                                    <input type="number" id="per-monster-exp-1" class="form-control px-2 text-center" placeholder="Per monster EXP" value="">
+                                    <input type="text" id="per-monster-exp-1" class="per-monster-exp form-control px-2 text-center" placeholder="Per monster EXP" value="" autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
                                 <input type="number" id="qty-monster-2" class="form-control col-2 px-2 text-center" placeholder="Qty" value="">
                                 <div class="col-10 col-sm-8 pl-2 pr-0 px-md-2">
-                                    <input type="number" id="per-monster-exp-2" class="form-control px-2 text-center" placeholder="Per monster EXP" value="">
+                                    <input type="text" id="per-monster-exp-2" class="per-monster-exp form-control px-2 text-center" placeholder="Per monster EXP" value="" autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-0">
                                 <input type="number" id="qty-monster-3" class="form-control col-2 px-2 text-center" placeholder="Qty" value="">
                                 <div class="col-10 col-sm-8 pl-2 pr-0 px-md-2">
-                                    <input type="number" id="per-monster-exp-3" class="form-control px-2 text-center" placeholder="Per monster EXP" value="">
+                                    <input type="text" id="per-monster-exp-3" class="per-monster-exp form-control px-2 text-center" placeholder="Per monster EXP" value="" autocomplete="off">
                                 </div>
                             </div>
                         </form>
@@ -248,8 +248,8 @@
                             <div class="form-group row col-12 col-sm-4 col-md-12 col-lg-4 d-flex flex-column align-items-center mb-2 px-0 mx-0">
                                 <label class="font-weight-bold col-form-label">EXP (Value)</label>
                                 <div class="w-100 d-flex flex-column align-items-center">
-                                    <input type="number" id="start-calc-dailies-char-exp-raw" class="form-control col-12 col-sm-10 text-center px-2 py-2 mx-0" value="0">
-                                    <small class="text-danger d-none" id="calc-dailies-exp-raw-input-error">Input exceeds level's EXP to level</small>
+                                    <input type="text" id="start-calc-dailies-char-exp-raw" class="form-control col-12 col-sm-10 text-center px-2 py-2 mx-0" value="0">
+                                    <small class="text-danger text-center d-none" id="calc-dailies-exp-raw-input-error">Input exceeds level's EXP to level up (<span id="calc-dailies-err-max-exp-tnl"></span> EXP)</small>
                                 </div>
                             </div>
                         </form>

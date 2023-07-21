@@ -108,6 +108,8 @@ function validateCurrLevelInput(elemIds) {
 
         currExpPercentInput.value = 0.000;
         currExpRawInput.value = 0;
+        document.getElementById(elemIds.currExpRawErrorMsgId).classList.add("d-none");
+        document.getElementById(elemIds.currExpRawErrorMsgId).classList.remove("active");
 
         if(isNaN(levelInputValue) || levelInputValue < 200) {
             levelInput.value = 200;
@@ -135,13 +137,14 @@ function validateCurrExpPercentInput(elemIds){
         }
 
         if(expPercentInputValue > 100) {
-            document.getElementById(elemIds.currExpPercentErrorMsgId).classList.remove("d-none");
-            document.getElementById(elemIds.currExpPercentErrorMsgId).classList.add("active");
+            expPercentInput.value = 100.000;
+            expRawInput.value = parseInt(document.getElementById(`${levelInputValue}-exp-tnl`).dataset.rawExpTnl).toLocaleString("en-SG");
         } else if(expPercentInputValue > 0) {
-            document.getElementById(elemIds.currExpPercentErrorMsgId).classList.add("d-none");
-            document.getElementById(elemIds.currExpPercentErrorMsgId).classList.remove("active");
-            expRawInput.value = parseInt(document.getElementById(`${levelInputValue}-exp-tnl`).dataset.rawExpTnl * expPercentInputValue / 100.00);
+            expRawInput.value = parseInt(document.getElementById(`${levelInputValue}-exp-tnl`).dataset.rawExpTnl * expPercentInputValue / 100.00).toLocaleString("en-SG");
         }
+
+        document.getElementById(elemIds.currExpRawErrorMsgId).classList.add("d-none");
+        document.getElementById(elemIds.currExpRawErrorMsgId).classList.remove("active");
 
         checkAnyActiveErrors(elemIds.parentContainerId, elemIds.calcBtnId);
     })
@@ -153,20 +156,33 @@ function validateCurrExpRawInput(elemIds) {
     expRawInput.addEventListener("change", () => {
         let expPercentInput = document.getElementById(elemIds.currExpPercentInputId);
         let levelInputValue = parseInt(document.getElementById(elemIds.charLevelInputId).value);
-        let expRawInputValue = parseInt(expRawInput.value);
+        let expRawInputStr = expRawInput.value.match(/\d/g);
+        let expRawInputValue;
 
-        if(isNaN(expRawInputValue) || expRawInputValue < 0) {
+        if(!expRawInputStr) {
+            expRawInputValue = 0;
             expRawInput.value = 0;
             expPercentInput.value = 0.000;
+        } else {
+            expRawInputValue = parseInt(expRawInputStr.join(""));
+
+            if(expRawInputValue === 0) {
+                expRawInput.value = 0;
+                expPercentInput.value = 0.000;
+            }
         }
 
-        if(expRawInputValue > document.getElementById(`${levelInputValue}-exp-tnl`).dataset.rawExpTnl) {
+        let expTnl = document.getElementById(`${levelInputValue}-exp-tnl`).dataset.rawExpTnl;
+
+        if(expRawInputValue > expTnl) {
             document.getElementById(elemIds.currExpRawErrorMsgId).classList.remove("d-none");
             document.getElementById(elemIds.currExpRawErrorMsgId).classList.add("active");
-        } else if(expRawInputValue > 0) {            
+            document.getElementById(elemIds.errorMaxExpTnlId).textContent = parseInt(expTnl).toLocaleString("en-SG");
+        } else if(expRawInputValue >= 0) {            
             document.getElementById(elemIds.currExpRawErrorMsgId).classList.add("d-none");
             document.getElementById(elemIds.currExpRawErrorMsgId).classList.remove("active");
             expPercentInput.value = (expRawInputValue / getExpTNL(levelInputValue) * 100).toFixed(3);
+            expRawInput.value = expRawInputValue.toLocaleString("en-SG");
         }
 
         checkAnyActiveErrors(elemIds.parentContainerId, elemIds.calcBtnId);
