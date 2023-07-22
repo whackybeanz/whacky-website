@@ -116,14 +116,14 @@
                                     <p class="font-form text-custom text-center"><span class="font-weight-bold" id="<%= singleSet.setType %>-set-num-equipped">0</span> item(s) equipped</p>
 
                                     <div class="set-items">
-                                        <% if(singleSet.setType !== "aethernal") { %>
+                                        <% if(singleSet.setType !== "eternal") { %>
                                             <div class="set-effect lucky-item text-success d-none"></div>
                                         <% } %>
                                         <% setItemsBySetName[singleSet.setType].forEach(function(item) { %>
                                             <div class="set-effect wearing-<%= item.equipType %> <% if(item.equipType === "weapon") { %>d-none<% } %>" id="item-<%= item.id %>"><% if(item.name) { %><%= item.name %><% } else { %><%= icons[`${item.id}`].name %><% } %></div> 
                                         <% }) %>
                                         <% if(setItemsBySetName[singleSet.setType].some(item => item.equipType === "weapon")) { %>
-                                            <div class="set-effect wearing-weapon choose-weapon-text">Choose 1 <% if(singleSet.setType === "aethernal") { %>Genesis<% } %> weapon</div>
+                                            <div class="set-effect wearing-weapon choose-weapon-text">Choose 1 <% if(singleSet.setType === "eternal") { %>Genesis<% } %> weapon</div>
                                         <% } %>
                                     </div>
                                     <hr>
