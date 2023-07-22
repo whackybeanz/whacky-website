@@ -1,5 +1,6 @@
 function compileSoulsByTier(allSouls) {
     const allSoulTiers = [...new Set(allSouls.map(soul => soul.tier))];
+    allSoulTiers.sort((a, b) => a - b);
     let soulsByTier = {};
 
     // Create keys for each tier
