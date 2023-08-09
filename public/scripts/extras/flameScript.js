@@ -84,7 +84,7 @@ function displayOutput(inputWAMA, pureStatsFactor, mixedStatsFactor, hpMpFactor)
                 document.querySelector(`.weapon-wa-ma-output.flame-tier-${i}`).textContent = "-";
                 document.querySelector(`.boss-dmg-output.flame-tier-${i}`).textContent = "-";
             } else {
-                var calculatedWAMA = Math.ceil((inputWAMA/100) * (itemLevel/40 + 1) * (8-(8-i)) * Math.pow(1.1, 5-(8-i)));
+                var calculatedWAMA = Math.ceil((inputWAMA/100) * Math.floor(itemLevel/40 + 1) * i * Math.pow(1.1, i-3));
 
                 if(calculatedWAMA === 0) {
                     document.querySelector(`.weapon-wa-ma-output.flame-tier-${i}`).textContent = "-";
