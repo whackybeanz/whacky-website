@@ -52,14 +52,19 @@ middlewareObj.isAdmin = function(req, res, next) {
     if(res.locals.currentUser) {
         const username = res.locals.currentUser.username;
 
-        User.findOne({ username: username }, function(err, user) {
-            if(user.isAdmin) {
-                return next();
-            } else {
-                req.flash("error", "You are not authorized to access this page.");
+        User.findOne({ username: username })
+            .then(user => {
+                if(user.isAdmin) {
+                    return next();
+                } else {
+                    req.flash("error", "You are not authorized to access this page.");
+                    res.redirect("back");
+                }
+            })
+            .catch(err => {
+                req.flash("error", "Error retrieving user information.");
                 res.redirect("back");
-            }
-        })    
+            })
     } else {
         req.flash("error", "You are not authorized to access this page.");
         res.redirect("back");

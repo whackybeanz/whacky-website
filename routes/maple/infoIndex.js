@@ -19,19 +19,19 @@ router.get("/", function(req, res) {
 })
 
 router.get("/flames", function(req, res) {
-    Icon.find({usedInSections: "flames"}, function(err, allIcons) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    Icon.find({usedInSections: "flames"})
+        .then(allIcons => {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "info";
             res.locals.branch = "calc-flames";
             res.locals.title = "Flame Stats Calculator";
             res.render("extras/flameCalc", {icons: compiledIcons});
-        }
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 router.get("/soul-tier-list", function(req, res) {
@@ -88,11 +88,8 @@ router.get("/boss-crystal", function(req, res) {
         { id: "zakum", easy: 200000, normal: 612500, hard: 0, chaos: 16200000, extreme: 0 },
     ];
 
-    Icon.find({usedInSections: "boss-crystal"}, function(err, allIcons) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    Icon.find({usedInSections: "boss-crystal"})
+        .then(allIcons => {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "info";
@@ -100,24 +97,27 @@ router.get("/boss-crystal", function(req, res) {
             const pricePerCrystalList = Helper.sortByPrice(bossList);
             res.locals.title = "Boss Crystal Prices";
             res.render("extras/bossCrystal", {bossList: bossList, crystalList: pricePerCrystalList, icons: compiledIcons});
-        }
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 router.get("/todd-sequence", function(req, res) {
-    Icon.find({usedInSections: "todd-sequence"}, function(err, allIcons) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    Icon.find({usedInSections: "todd-sequence"})
+        .then(allIcons => {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "info";
             res.locals.branch = "todd-sequence";
             res.locals.title = "Todding Sequence";
             res.render("extras/toddSequence", {icons: compiledIcons});
-        }
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 router.get("/damage-skins", function(req, res) {
@@ -242,18 +242,18 @@ router.get("/damage-skin-details/:skinNum", function(req, res) {
     const skinNum = req.params.skinNum;
     const prevUrl = req.header("Referer") || "./maple/extras/damage-skins";
 
-    DamageSkin.find({folderNum: skinNum}, function(err, allSkins) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    DamageSkin.find({folderNum: skinNum})
+        .then(allSkins => {
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "info";
             res.locals.branch = "damage-skins";
             res.locals.title = "Damage Skin Details (Single)";
             res.render("extras/damage-skins/damageSkinDetails", {allSkins: allSkins, prevUrl: prevUrl});
-        }
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 router.get("/potential-list", function(req, res) {

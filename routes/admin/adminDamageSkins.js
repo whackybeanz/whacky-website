@@ -64,44 +64,44 @@ router.post("/damage-skins", middleware.isAdmin, function(req, res) {
 router.get("/damage-skin/:id", middleware.isAdmin, function(req, res) {
     const skinProperties = AdminHelper.getDamageSkinProperties();
 
-    DamageSkin.findOne({ _id: req.params.id }, function(err, damageSkin) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    DamageSkin.findOne({ _id: req.params.id })
+        .then(damageSkin => {
             const prevUrl = `/admin/damage-skins/${damageSkin.isKMSskin ? "kms" : "non-kms"}`;
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "damage-skins";
             res.locals.title = "Admin (Damage Skins)";
             res.render("admin/damage-skins/damageSkinData", { prevUrl: prevUrl, damageSkinData: damageSkin, skinProperties: skinProperties });
-        }
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 router.post("/damage-skin/:id", middleware.isAdmin, function(req, res) {
     const newDamageSkinData = AdminHelper.compileDamageSkinData(req.body);
 
-    DamageSkin.findOneAndUpdate({ _id: req.params.id }, { $set: newDamageSkinData }, { new: true }, function(err, updatedSkin) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    DamageSkin.findOneAndUpdate({ _id: req.params.id }, { $set: newDamageSkinData }, { new: true })
+        .then(updatedSkin => {
             console.log("Damage skin updated");
             res.redirect(`/admin/damage-skin/${req.params.id}`);
-        }
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 router.post("/damage-skin/:id/delete", middleware.isAdmin, function(req, res) {
-    DamageSkin.findOneAndDelete({ _id: req.params.id }, function(err) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    DamageSkin.findOneAndDelete({ _id: req.params.id })
+        .then(() => {
             console.log("Damage skin deleted");
             res.redirect("back");
-        }
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 module.exports = router;

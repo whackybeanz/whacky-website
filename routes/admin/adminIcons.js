@@ -39,11 +39,8 @@ router.post("/icons", middleware.isAdmin, function(req, res) {
 router.get("/icons/:category", middleware.isAdmin, function(req, res) {
     const selectedCategory = req.params.category;
 
-    Icon.find({ itemType: selectedCategory }, function(err, foundIcons) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    Icon.find({ itemType: selectedCategory })
+        .then(foundIcons => {
             const iconCategories = AdminHelper.getIconCategories();
             const pageSections = AdminHelper.getPageSections();
 
@@ -51,17 +48,17 @@ router.get("/icons/:category", middleware.isAdmin, function(req, res) {
             res.locals.branch = "icons";
             res.locals.title = "Admin (Icons)";
             res.render("admin/icons/icons", {selectedCategory: selectedCategory, iconCategories: iconCategories, pageSections: pageSections, icons: foundIcons})
-        }
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 // Retrieves specific icon based on database ID
 router.get("/icon/:id", middleware.isAdmin, function(req, res) {
-    Icon.findOne({ _id: req.params.id }, function(err, icon) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    Icon.findOne({ _id: req.params.id })
+        .then(icon => {
             const prevUrl = `/admin/icons/${icon.itemType}`;
             const iconCategories = AdminHelper.getIconCategories();
             const pageSections = AdminHelper.getPageSections();
@@ -93,8 +90,11 @@ router.get("/icon/:id", middleware.isAdmin, function(req, res) {
             res.locals.branch = "icons";
             res.locals.title = "Admin (Icons)";
             res.render("admin/icons/iconData", {iconCategories: iconCategories, pageSections: pageSections, prevUrl: prevUrl, iconData: icon, iconImgUrl: iconImgUrlSplit });
-        }
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 router.post("/icon/:id", middleware.isAdmin, function(req, res) {
@@ -107,16 +107,16 @@ router.post("/icon/:id", middleware.isAdmin, function(req, res) {
         updatedDocument = { $set: newIconData, $pull: { usedInEvents: "common" } };
     }
 
-    Icon.findOneAndUpdate({ _id: req.params.id }, updatedDocument, { new: true }, function(err, updatedIcon) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    Icon.findOneAndUpdate({ _id: req.params.id }, updatedDocument, { new: true })
+        .then(updatedIcon => {
             const path = updatedIcon.itemType;
             console.log("Icon updated");
             res.redirect(`/admin/icon/${req.params.id}`);
-        }
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 router.post("/icon/:id/delete", middleware.isAdmin, function(req, res) {

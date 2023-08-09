@@ -124,19 +124,19 @@ router.get("/symbols", function(req, res) {
 })
 
 router.get("/flames", function(req, res) {
-    Icon.find({usedInSections: "flames"}, function(err, allIcons) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    Icon.find({usedInSections: "flames"})
+        .then(allIcons => {
             const compiledIcons = IconHelper.compileIcons(allIcons);
             res.locals.extraStylesheet = "extras/extrasStyles";
             res.locals.section = "calc";
             res.locals.branch = "calc-flames";
             res.locals.title = "Flame Stats Calculator";
             res.render("extras/flameCalc", {icons: compiledIcons});
-        }
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 router.get("/set-effects", function(req, res) {

@@ -13,19 +13,19 @@ var Boss        = require("../../models/bossData");
 
 // Coin Event List
 router.get("/coin-events", middleware.isAdmin, function(req, res) {
-    CoinEvent.find({}, function(err, allEvents) {
-        if(err) {
-            req.flash("error", `Error: ${err}`);
-            res.redirect("back");
-        } else {
+    CoinEvent.find({})
+        .then(allEvents => {
             let eventsByCategory = CoinEventHelper.sortByCategory(allEvents);
             
             res.locals.extraStylesheet = "adminStyles";
             res.locals.branch = "coin-events";
             res.locals.title = "Admin (Coin Events)";
             res.render("admin/coin-events/coinEvents", { eventsByCategory: eventsByCategory });
-        }
-    })
+        })
+        .catch(err => {
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
 })
 
 router.post("/coin-events", middleware.isAdmin, function(req, res) {
@@ -124,15 +124,15 @@ router.post("/coin-event/:id", middleware.isAdmin, function(req, res) {
 })
 
 router.post("/coin-event/:id/delete", middleware.isAdmin, function(req, res) {
-    CoinEvent.findOneAndDelete({ _id: req.params.id }, function(err) {
-        if(err) {
-            req.flash("error", `Error: ${err}`);
-            res.redirect("back");
-        } else {
+    CoinEvent.findOneAndDelete({ _id: req.params.id })
+        .then(() => {
             req.flash("success", 'Coin event deletion successful.');
             res.redirect("/admin/coin-events");
-        }
-    })
+        })
+        .catch(err => {
+            req.flash("error", `Error: ${err}`);
+            res.redirect("back");
+        })
 })
 
 router.post("/coin-event/:id/addShop", middleware.isAdmin, function(req, res) {
