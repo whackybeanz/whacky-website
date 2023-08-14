@@ -288,21 +288,28 @@ function calcSymbolUpgradeCosts(symbolData) {
     let endDate = Date.parse(new Date());
     let currSymbolsObtained = 0;
 
-    while(currSymbolsObtained < totalSymbolsReq) {
-        // First add 1 day (calculation starts from next day)
-        endDate += 1000*60*60*24;
-        totalDaysReq++;
+    if(symbolsPerDay === 0 && symbolsPerWeek === 0) {
+        document.getElementById(`${symbolId}-total-meso-req`).textContent = totalMesosReq.toLocaleString('en-SG');
+        document.getElementById(`${symbolId}-total-symbols-req`).textContent = totalSymbolsReq.toLocaleString('en-SG');
+        document.getElementById(`${symbolId}-total-days-req`).textContent = "??";    
+        document.getElementById(`${symbolId}-date-complete`).textContent = "??";
+    } else {
+        while(currSymbolsObtained < totalSymbolsReq) {
+            // First add 1 day (calculation starts from next day)
+            endDate += 1000*60*60*24;
+            totalDaysReq++;
 
-        // Add the daily/weekly symbols to current total
-        currSymbolsObtained += symbolsPerDay;
+            // Add the daily/weekly symbols to current total
+            currSymbolsObtained += symbolsPerDay;
 
-        if((new Date(endDate)).getDay() === 1 && symbolsPerWeek !== 0) {
-            currSymbolsObtained += symbolsPerWeek;
+            if((new Date(endDate)).getDay() === 1 && symbolsPerWeek !== 0) {
+                currSymbolsObtained += symbolsPerWeek;
+            }
         }
-    }
 
-    document.getElementById(`${symbolId}-total-meso-req`).textContent = totalMesosReq.toLocaleString('en-SG');
-    document.getElementById(`${symbolId}-total-symbols-req`).textContent = totalSymbolsReq.toLocaleString('en-SG');
-    document.getElementById(`${symbolId}-total-days-req`).textContent = totalDaysReq.toLocaleString('en-SG');    
-    document.getElementById(`${symbolId}-date-complete`).textContent = new Date(endDate).toLocaleDateString('en-SG', { day: "numeric", month: "short", year: "numeric" });
+        document.getElementById(`${symbolId}-total-meso-req`).textContent = totalMesosReq.toLocaleString('en-SG');
+        document.getElementById(`${symbolId}-total-symbols-req`).textContent = totalSymbolsReq.toLocaleString('en-SG');
+        document.getElementById(`${symbolId}-total-days-req`).textContent = totalDaysReq.toLocaleString('en-SG');    
+        document.getElementById(`${symbolId}-date-complete`).textContent = new Date(endDate).toLocaleDateString('en-SG', { day: "numeric", month: "short", year: "numeric" });
+    }
 }
