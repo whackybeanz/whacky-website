@@ -83,7 +83,9 @@
                                 <% } %>
                                 <div class="single-exp-content calc-daily-quest rounded-sm cursor-pointer mx-1 my-1 position-relative" id="calc-daily-<%= content.iconId %>" data-raw-exp="<%= content.dailyRawEXP %>" data-min-level="<%= content.recMinLevel %>">
                                     <img class="item-square" src="<%= icons[content.iconId].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="<%= content.name %>">
-                                    <i class="fas fa-check fa-lg selected-daily text-custom position-absolute d-none"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-check-lg selected-daily text-custom position-absolute d-none" viewBox="0 0 16 16">
+                                      <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                    </svg>
                                 </div>
                             <% }) %>
                         </div>
@@ -279,7 +281,11 @@
                     </div>
                 </div>
 
-                <button type="button" class="table-cols-125 btn btn-outline-custom" id="btn-calc-dailies-exp-result"><i class="fas fa-check"></i> (Re)Calculate</button>
+                <button type="button" class="table-cols-125 btn btn-outline-custom d-flex align-items-center text-center justify-content-center" id="btn-calc-dailies-exp-result">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                    </svg>&nbsp;(Re)Calculate
+                </button>
             </div>
         </div>
     </div>

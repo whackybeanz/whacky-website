@@ -15,7 +15,11 @@
                 <img class="coin-event-banner small mb-3" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= coinEventData.eventId %>/<%= coinEventData.eventDetails.bannerImg %>">
 
                 <div class="w-100 d-flex justify-content-start mb-3">
-                    <a href="/admin/coin-event/<%= coinEventData.eventId %>" class="btn btn-sm btn-outline-custom px-3"><i class="fas fa-angle-double-left"></i> Back to Coin Event Details</a>
+                    <a href="/admin/coin-event/<%= coinEventData.eventId %>" class="btn btn-sm btn-outline-custom px-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                        </svg>&nbsp;Back to Coin Event Details
+                    </a>
                 </div>
 
                 <div class="d-flex w-100 flex-column align-items-center justify-content-center mb-3 py-3">
@@ -28,7 +32,9 @@
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <div class="collapsible-section-subheader w-100">
                             <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#add-coin-shop-item">
-                                <i class="fas fa-caret-down mr-2"></i> Add Coin Shop Item
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                </svg>&nbsp;Add Coin Shop Item
                             </h3>
                         </div>
                         <div class="collapsible-section w-100 px-0 collapse" id="add-coin-shop-item">

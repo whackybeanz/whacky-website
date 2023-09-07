@@ -37,7 +37,9 @@
                                                     Gain per day 
                                                     <% if(symbol.notes) { %>
                                                         <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= symbol.notes %>">
-                                                            <i class="fas fa-info-circle"></i>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                                            </svg>
                                                         </div>
                                                     <% } %>
                                                 </label>
@@ -48,7 +50,9 @@
                                                     <label for="<%= symbol.id %>-end-level" class="col-form-label">
                                                         Gain per week 
                                                         <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="45 per week, assumed to be obtained on Mondays">
-                                                            <i class="fas fa-info-circle"></i>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                                            </svg>
                                                         </div>
                                                     </label>
                                                     <input type="number" class="form-control text-center" id="<%= symbol.id %>-gain-per-week" value="<%= symbol.gainPerWeek %>">
@@ -86,7 +90,12 @@
                                                 ( Complete on <span class="text-custom font-weight-bold" id="<%= symbol.id %>-date-complete"></span> )
                                             </p>
                                             <div class="mb-3 mb-sm-0 mt-3">
-                                                <button type="button" class="reset-fields-btn btn btn-outline-custom mx-2" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>"><i class="fas fa-redo"></i> Reset Fields</button>
+                                                <button type="button" class="reset-fields-btn btn btn-outline-custom mx-2" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                                      <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                                                      <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                                                    </svg>&nbsp;Reset Fields
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

@@ -20,7 +20,9 @@
                                     Rank Up Purchase <%= icons[`${coin.iconId}`].name %>
                                     <% if(coin.coinNotes !== "") { %>
                                         <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= coin.coinNotes %>">
-                                            <i class="fas fa-info-circle"></i>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                            </svg>
                                         </div>
                                     <% } %>   
                                 </td>
@@ -37,11 +39,15 @@
                                     <div class="d-flex flex-column align-items-center justify-content-center">
                                         <div class="d-flex align-items-center justify-content-center">
                                             <div class="qty-minus-one d-flex align-items-center justify-content-center cursor-pointer" data-input-id="shop-rank-up-item-<%= coinIndex %>">
-                                                <i class="fas fa-minus text-danger"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                                                  <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
+                                                </svg>
                                             </div>
                                             <input type="number" class="buy-item-input form-control text-center px-2" name="itemBuyQty" data-shop-id="rank-up" data-item-id="<%= coinIndex %>" id="shop-rank-up-item-<%= coinIndex %>" value="">
                                             <div class="qty-plus-one d-flex align-items-center justify-content-center cursor-pointer" data-input-id="shop-rank-up-item-<%= coinIndex %>">
-                                                <i class="fas fa-plus text-success"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="lawngreen" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                                </svg>
                                             </div>
                                         </div>
                                         <small>

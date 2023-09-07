@@ -15,7 +15,9 @@
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <div class="collapsible-section-subheader w-100">
                             <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#add-damage-skin">
-                                <i class="fas fa-caret-down mr-2"></i> Add New Damage Skins
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                </svg>&nbsp;Add New Damage Skins
                             </h3>
                         </div>
                         <div class="collapsible-section w-100 px-0 collapse" id="add-damage-skin">
@@ -28,7 +30,9 @@
                     <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                         <div class="collapsible-section-subheader w-100">
                             <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#damage-skin-db">
-                                <i class="fas fa-caret-down mr-2"></i> Damage Skin Database
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                </svg>&nbsp;Damage Skin Database
                             </h3>
                         </div>
                         <div class="collapsible-section w-100 px-0 collapse show" id="damage-skin-db">
@@ -95,9 +99,17 @@
                                                                 <% } %>
                                                             </td>
                                                             <td class="table-cols-75 text-center align-middle">
-                                                                <a href="/admin/damage-skin/<%= damageSkin._id %>" class="btn btn-outline-custom btn-sm"><i class="fas fa-pen"></i></a>
+                                                                <a href="/admin/damage-skin/<%= damageSkin._id %>" class="btn btn-outline-custom btn-sm">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                                                                      <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                                                                    </svg>
+                                                                </a>
                                                                 <form action="/admin/damage-skin/<%= damageSkin._id %>/delete" method="POST" class="d-inline">
-                                                                    <button type="submit" class="remove-item-btn btn btn-outline-danger btn-sm" data-name="<%= damageSkin.name %>"><i class="fas fa-trash"></i></button>
+                                                                    <button type="submit" class="remove-item-btn btn btn-outline-danger btn-sm" data-name="<%= damageSkin.name %>">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                                          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                                                        </svg>
+                                                                    </button>
                                                                 </form>
                                                             </td>
                                                         </tr>

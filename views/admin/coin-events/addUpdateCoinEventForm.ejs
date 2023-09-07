@@ -1,7 +1,9 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
     <div class="collapsible-section-subheader w-100">
         <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#add-update-coin-event">
-            <i class="fas fa-caret-down mr-2"></i> <% if(locals.coinEventData) { %>Update<% } else { %>Add<% } %> Coin Event
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>&nbsp;<% if(locals.coinEventData) { %>Update<% } else { %>Add<% } %> Coin Event
         </h3>
     </div>
     <div class="collapsible-section w-100 px-0 collapse" id="add-update-coin-event">
@@ -104,7 +106,11 @@
                         <div class="form-group row">
                             <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Coin Icon IDs</label>
                             <div class="col-sm-9" id="coin-icons-list">
-                                <button type="button" class="col-12 btn btn-sm btn-outline-custom" id="btn-add-coin-icon"><i class="fas fa-plus"></i> Add Coin Icon</button>
+                                <button type="button" class="col-12 btn btn-sm btn-outline-custom" id="btn-add-coin-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                    </svg>&nbsp;Add Coin Icon
+                                </button>
                             </div>
                         </div>
                     </div>

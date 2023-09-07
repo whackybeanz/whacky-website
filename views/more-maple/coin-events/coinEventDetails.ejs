@@ -24,22 +24,45 @@
                 </small>
 
                 <div class="w-100 d-flex justify-content-start mb-5">
-                    <a href="/calc/coin-events" class="btn btn-sm btn-outline-custom px-3"><i class="fas fa-angle-double-left"></i> Back to Coin Events List</a>
+                    <a href="/calc/coin-events" class="btn btn-sm btn-outline-custom d-flex align-items-center px-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                        </svg>
+                        Back to Coin Events List
+                    </a>
                 </div>
 
                 <div class="w-100 d-flex justify-content-center align-items-center flex-column mb-4">
                     <div class="collapsible-section-subheader w-100">
                         <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2 collapsed" data-toggle="collapse" href="#instructions">
-                            <i class="fas fa-caret-down mr-2"></i> Guide / Instructions
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                            </svg>&nbsp;Guide / Instructions
                         </h3>
                     </div>
                     <div class="font-table collapsible-section w-100 px-3 collapse" id="instructions">
                         <div class="py-2">
                             <p class="w-100 font-weight-bold mb-1">Icon guide</p>
                             <ul>
-                                <li><i class="fas fa-info-circle"></i> Mouse over for more info</li>
-                                <li><i class="fas fa-exchange-alt"></i> Inter-account Tradable</li>
-                                <li><i class="fas fa-ban text-danger"></i> Untradable</li>
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                    </svg>
+                                    Mouse over for more info
+                                    </li>
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                                    </svg>
+                                    Inter-account Tradable
+                                </li>
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-slash-circle" viewBox="0 0 16 16">
+                                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                      <path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708z"/>
+                                    </svg>
+                                    Untradable
+                                </li>
                             </ul>
                             <p class="w-100 font-weight-bold mb-1">Expense Summary</p>
                             <ul>
@@ -123,14 +146,24 @@
                                 <div class="size-350 w-100 mb-3">
                                     <button class="btn-save w-100 btn btn-sm btn-outline-custom" type="button" id="btn-save-bottom">
                                         <p class="save-default-msg mb-0">Save expenses to current profile</p>
-                                        <p class="save-success-msg d-none mb-0"><i class="fas fa-lg fa-check"></i> Saved!</p>
+                                        <p class="save-success-msg d-none mb-0 align-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                              <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                            </svg>
+                                            Saved!
+                                        </p>
                                     </button>
                                 </div>
 
                                 <div class="size-350 w-100 mb-3 mb-md-0">
                                     <button class="w-100 btn btn-sm btn-outline-danger" type="button" id="btn-erase-inputs">
                                         <span class="erase-default-msg">Erase all Item List inputs</span>
-                                        <span class="erase-success-msg d-none"><i class="fas fa-lg fa-check"></i> Erased</span>
+                                        <span class="erase-success-msg d-none align-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                              <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                            </svg>
+                                            Erased
+                                        </span>
                                     </button>
                                 </div>
                             </form>
@@ -160,8 +193,12 @@
         </div>
 
         <div class="btn-save modal-btn-trigger position-fixed cursor-pointer d-flex justify-content-center align-items-center" id="btn-save-round">
-            <i class="save-icon far fa-lg fa-save"></i>
-            <i class="save-success-icon fas fa-lg fa-check d-none"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="save-icon bi bi-save" viewBox="0 0 16 16">
+              <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="save-success-icon bi bi-check2 d-none" viewBox="0 0 16 16">
+              <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+            </svg>
         </div>
     </div>
 </div>

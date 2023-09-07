@@ -7,7 +7,12 @@
 
             <% if(shop.previewURL && shop.previewURL !== "") { %>
                 <div class="d-flex justify-content-center mb-3">
-                    <a href="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= coinEventData.eventId %>/<%= shop.previewURL %>" target="_blank" class="btn btn-sm btn-outline-custom"><i class="fas fa-eye"></i> Preview Cosmetics <sup><i class="fas fa-external-link-alt"></i></sup></a>
+                    <a href="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= coinEventData.eventId %>/<%= shop.previewURL %>" target="_blank" class="btn btn-sm btn-outline-custom d-flex align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                          <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                          <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                        </svg>&nbsp;Preview Cosmetics
+                    </a>
                 </div>
             <% } %>
 
@@ -45,7 +50,9 @@
 
                                             <% if(item.itemNotes !== "") { %>
                                                 <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= item.itemNotes %>">
-                                                    <i class="fas fa-info-circle"></i>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                                      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                                    </svg>
                                                 </div>
                                             <% } %>
                                         </div>
@@ -54,17 +61,24 @@
                                         <% if(item.tradability === "untradable") { %>
                                             <input type="hidden" name="itemTradability" id="shop-<%= index %>-item-<%= itemIndex %>-tradability" value="x">
                                             <div class="d-inline ml-1 text-danger" data-toggle="tooltip" data-placement="bottom" title="Untradable">
-                                                <i class="fas fa-ban"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-slash-circle" viewBox="0 0 16 16">
+                                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                  <path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708z"/>
+                                                </svg>
                                             </div>
                                         <% } else if(item.tradability === "inter-acct") { %>
                                             <input type="hidden" name="itemTradability" id="shop-<%= index %>-item-<%= itemIndex %>-tradability" value="i">
                                             <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Inter-Account Transactions only">
-                                                <i class="fas fa-exchange-alt"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                                  <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                                                </svg>
                                             </div>
                                         <% } else { %>
                                             <input type="hidden" name="itemTradability" id="shop-<%= index %>-item-<%= itemIndex %>-tradability" value="o">
                                             <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Tradable">
-                                                <i class="fas fa-exchange-alt"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                                  <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                                                </svg>
                                             </div>
                                         <% } %>
                                     </div>
@@ -121,11 +135,15 @@
                                     <div class="d-flex flex-column align-items-center justify-content-center">
                                         <div class="d-flex align-items-center justify-content-center">
                                             <div class="qty-minus-one d-flex align-items-center justify-content-center cursor-pointer" data-input-id="shop-<%= index %>-item-<%= itemIndex %>">
-                                                <i class="fas fa-minus text-danger"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                                                  <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
+                                                </svg>
                                             </div>
                                             <input type="number" class="buy-item-input form-control text-center px-2" name="itemBuyQty" data-shop-id="<%= index %>" data-item-id="<%= itemIndex %>" id="shop-<%= index %>-item-<%= itemIndex %>" value="">
                                             <div class="qty-plus-one d-flex align-items-center justify-content-center cursor-pointer" data-input-id="shop-<%= index %>-item-<%= itemIndex %>">
-                                                <i class="fas fa-plus text-success"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="lawngreen" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                                </svg>
                                             </div>
                                         </div>
                                         <small>

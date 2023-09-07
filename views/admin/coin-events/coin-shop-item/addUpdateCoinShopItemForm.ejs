@@ -80,7 +80,6 @@
                     <label class="form-check-label radio-select item-limit-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
                         <% if((!locals.coinShopItemData && coinShopData.defaultPurchaseLimit === "character") || (locals.coinShopItemData && coinShopItemData.purchaseLimit === "character") || (locals.coinShopItemData && !coinShopItemData.purchaseLimit)) { %>active<% } %>" 
                         for="purchase-limit-char">
-                        <i class="fas fa-lg fa-user mr-0 mr-sm-1"></i>
                         <p class="font-small d-none d-sm-inline mb-0">Per character</p>
                     </label>
                 </div>
@@ -90,7 +89,6 @@
                     <label class="form-check-label radio-select item-limit-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
                         <% if(locals.coinShopItemData && coinShopItemData.purchaseLimit === "world") { %>active<% } %>" 
                         for="purchase-limit-world">
-                        <i class="fas fa-lg fa-globe-americas mr-0 mr-sm-1"></i>
                         <p class="font-small d-none d-sm-inline mb-0">Per world</p>
                     </label>
                 </div>
@@ -114,7 +112,6 @@
                     <label class="form-check-label radio-select timeframe-limit-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1
                         <% if(locals.coinShopItemData && coinShopItemData.timeframeLimit === "day") { %>active<% } %>" 
                         for="timeframe-limit-day">
-                        <i class="fas fa-lg fa-calendar-day mr-0 mr-sm-1"></i>
                         <p class="font-small d-none d-sm-inline mb-0">Per day</p>
                     </label>
                 </div>
@@ -124,7 +121,6 @@
                     <label class="form-check-label radio-select timeframe-limit-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1
                         <% if(locals.coinShopItemData && coinShopItemData.timeframeLimit === "week") { %>active<% } %>" 
                         for="timeframe-limit-week">
-                        <i class="fas fa-lg fa-calendar-week mr-0 mr-sm-1"></i>
                         <p class="font-small d-none d-sm-inline mb-0">Per week</p>
                     </label>
                 </div>
@@ -147,7 +143,10 @@
                         <% if((!locals.coinShopItemData && coinShopData.defaultTradability === "untradable") || (locals.coinShopItemData && coinShopItemData.tradability === "untradable") || (locals.coinShopItemData && !coinShopItemData.tradability)) { %>checked<% } %>>
                     <label class="form-check-label radio-select item-tradability-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
                         <% if((!locals.coinShopItemData && coinShopData.defaultTradability === "untradable") || (locals.coinShopItemData && coinShopItemData.tradability === "untradable") || (locals.coinShopItemData && !coinShopItemData.tradability)) { %>active<% } %>" for="trade-no">
-                        <i class="fas fa-lg fa-ban mr-0 mr-sm-1"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-slash-circle" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                          <path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708z"/>
+                        </svg>
                         <p class="font-small d-none d-sm-inline mb-0">Untradable</p>
                     </label>
                 </div>
@@ -156,7 +155,9 @@
                         <% if((!locals.coinShopItemData && coinShopData.defaultTradability === "inter-acct") || (locals.coinShopItemData && coinShopItemData.tradability === "inter-acct")) { %>checked<% } %>>
                     <label class="form-check-label radio-select item-tradability-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
                         <% if((!locals.coinShopItemData && coinShopData.defaultTradability === "inter-acct") || (locals.coinShopItemData && coinShopItemData.tradability === "inter-acct")) { %>active<% } %>" for="trade-inter">
-                        <i class="fas fa-lg fa-exchange-alt mr-0 mr-sm-1"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                        </svg>
                         <p class="font-small d-none d-sm-inline mb-0">Inter-account</p>
                     </label>
                 </div>
@@ -165,7 +166,6 @@
                         <% if((!locals.coinShopItemData && coinShopData.defaultTradability === "tradable") || (locals.coinShopItemData && coinShopItemData.tradability === "tradable")) { %>checked<% } %>>
                     <label class="form-check-label radio-select item-tradability-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 py-1 
                         <% if((!locals.coinShopItemData && coinShopData.defaultTradability === "tradable") || (locals.coinShopItemData && coinShopItemData.tradability === "tradable")) { %>active<% } %>" for="trade-yes">
-                        <i class="fas fa-lg fa-check mr-0 mr-sm-1"></i>
                         <p class="font-small d-none d-sm-inline mb-0">Tradable</p>
                     </label>
                 </div>
@@ -179,7 +179,9 @@
         </div>
         <div class="col-12 px-0">
             <button class="h-100 w-100 btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center" id="btn-add-coin-shop-item">
-                <i class="fas fa-plus mr-1"></i> <% if(!locals.coinShopItemData) { %>Add New<% } else { %>Update<% } %> Item
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                </svg>&nbsp;<% if(!locals.coinShopItemData) { %>Add New<% } else { %>Update<% } %> Item
             </button>
         </div>
     </div>

@@ -27,8 +27,6 @@ function init() {
         const headerIndex = Array.from(th.parentNode.children).indexOf(th);
 
         th.addEventListener('click', () => {
-            activateCaret(th.id, isAscending[headerIndex]);
-
             const table = th.closest("table");
 
             Array.from(table.querySelectorAll(".table-rows"))
@@ -93,19 +91,4 @@ function fadeIn(elem) {
         requestAnimationFrame(increase)
     }
     increase();
-}
-
-function activateCaret(elemId, isAscending) {
-    const affectedTable = document.getElementById(elemId).closest("table").parentNode.id;
-
-    Array.from(document.querySelectorAll(`#${affectedTable} .table-sort-icon`))
-         .forEach((icon) => {
-            icon.classList.remove("active");
-         })
-
-    if(isAscending) {
-        document.getElementById(`${elemId}-descending`).classList.add("active");
-    } else {
-        document.getElementById(`${elemId}-ascending`).classList.add("active");
-    }
 }

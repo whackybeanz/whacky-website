@@ -1,7 +1,9 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
     <div class="collapsible-section-subheader w-100">
         <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#bulk-add">
-            <i class="fas fa-caret-down mr-2"></i> Bulk Add - Submission Form
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>&nbsp;Bulk Add - Submission Form
         </h3>
     </div>
     <div class="collapsible-section w-100 px-0 collapse show" id="bulk-add">
@@ -19,7 +21,9 @@
 
                 <div class="d-flex justify-content-center mb-3">
                     <button type="button" class="col-sm-4 flex-grow btn btn-outline-custom rounded-sm" id="btn-add-more-items">
-                        <i class="fas fa-plus mr-1"></i> Add More Items
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                        </svg>&nbsp;Add More Items
                     </button>
                 </div>
 
@@ -30,7 +34,9 @@
                                 <input type="text" class="paste-input form-control text-center" placeholder="Item ID" name="itemId" pattern="^[a-zA-Z0-9-]+$" autocomplete="off" required>
                                 <div class="input-group-append">
                                     <button type="button" class="btn-paste-from-clipboard btn btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="bottom" title="Paste from clipboard">
-                                        <i class="fas fa-clipboard pointer-events-none"></i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-fill pointer-events-none" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M10 1.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1Zm-5 0A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5v1A1.5 1.5 0 0 1 9.5 4h-3A1.5 1.5 0 0 1 5 2.5v-1Zm-2 0h1v1A2.5 2.5 0 0 0 6.5 5h3A2.5 2.5 0 0 0 12 2.5v-1h1a2 2 0 0 1 2 2V14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3.5a2 2 0 0 1 2-2Z"/>
+                                        </svg>
                                     </button>
                                 </div>
                             </div>
@@ -49,7 +55,9 @@
 
                 <div class="col-12 px-0">
                     <button class="h-100 w-100 btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center" id="btn-confirm-bulk-add">
-                        <i class="fas fa-check mr-1"></i> Confirm Bulk Add
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                          <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg>&nbsp;Confirm Bulk Add
                     </button>
                 </div>
             </form>

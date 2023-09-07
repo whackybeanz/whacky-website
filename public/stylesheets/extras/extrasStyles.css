@@ -123,8 +123,8 @@
   border: none;
 }
 #symbol-dailies .selected-daily {
-  top: -5px;
-  right: -5px;
+  top: -15px;
+  right: -13px;
 }
 
 .item-square {

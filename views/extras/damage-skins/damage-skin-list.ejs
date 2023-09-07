@@ -2,7 +2,9 @@
 <div class="col-12 mb-4 px-0">
     <div class="dmg-skin-section-subheader">
         <h3 class="font-subheader index-collapse cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#skin-<% if(letter.includes('???')) { %>unknown<% } else { %><%= letter %><% } %>">
-            <i class="fas fa-caret-down"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
 
             <% if(page === "new") { %>
                 New Skins (Updated <% if(dateUpdated) { %><%= dateUpdated %><% } else { %>N/A<% } %>)
@@ -55,13 +57,20 @@
                             <% } %>
                             <div class="dmg-skin-tools position-absolute">
                                 <a href="/info/damage-skin-details/<%= skin.folderNum %>" class="btn btn-sm view-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="View damage skin">
-                                    <i class="fas fa-eye"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                    </svg>
                                 </a>
                                 <div class="btn btn-sm add-dmg-skin-btn d-flex justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="Add to cart">
-                                    <i class="fas fa-plus"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="lawngreen" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                    </svg>
                                 </div>
                                 <div class="btn btn-sm btn-outline-danger remove-dmg-skin-btn justify-content-center align-items-center rounded-sm" data-toggle="tooltip" data-placement="bottom" title="Remove from cart">
-                                    <i class="fas fa-minus"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
+                                    </svg>
                                 </div>
                             </div>
                         </div>

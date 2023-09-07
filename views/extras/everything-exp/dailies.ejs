@@ -14,7 +14,7 @@
                         </div>
                         <div class="content-details" data-name="<%= content.name %>" data-min-level="<%= content.recMinLevel %>" data-raw-exp="<%= content.dailyRawEXP %>" <% if(content.hasWeekly) { %>data-weekly-raw-exp="<%= content.weeklyRawEXP %>"<% } %>>
                             <p class="mb-0">
-                                <span class="selected-mark text-custom d-none">[<i class="fas fa-check"></i>]</span> <span class="font-weight-bold"><%= content.name %></span>
+                                <span class="font-weight-bold"><%= content.name %></span>
                             </p>
                             <p class="mb-0">
                                 <%= content.dailyRawEXP.toLocaleString('en-SG') %> EXP / <span class="text-custom percent-exp font-weight-bold">0.000%</span>
@@ -76,7 +76,11 @@
                         </tbody>
                     </table>
 
-                    <button type="button" class="btn btn-sm btn-outline-custom font-weight-bold" id="btn-reset-monster-park"><i class="fas fa-pen"></i> Change dungeon</button>
+                    <button type="button" class="btn btn-sm btn-outline-custom font-weight-bold" id="btn-reset-monster-park">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                          <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                        </svg>&nbsp;Change dungeon
+                    </button>
                 </div>
             </div>
         </div>

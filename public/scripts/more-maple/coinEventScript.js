@@ -180,9 +180,14 @@ function populateExpensesInCart(profileExpenses, profileNum) {
             html +=        `<div class="tradability-display position-absolute">`
 
         if(tradability === "x") {
-            html +=            `<div class="d-inline ml-1 text-danger" data-toggle="tooltip" data-placement="bottom" title="Untradable"><i class="fas fa-ban"></i></div>`;
+            html +=            `<div class="d-inline ml-1 text-danger" data-toggle="tooltip" data-placement="bottom" title="Untradable"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-slash-circle" viewBox="0 0 16 16">
+                                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                      <path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708z"/>
+                                    </svg></div>`;
         } else if(tradability === "i") {
-            html +=            `<div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Inter-Account Transactions only"><i class="fas fa-exchange-alt"></i></div>`;
+            html +=            `<div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Inter-Account Transactions only"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                                    </svg></div>`;
         }
             html +=        `</div>`;
             html +=    `</td>`;
@@ -431,15 +436,15 @@ function saveExpensesListener() {
             if(isSaved) {
                 displayExpenses(false, activeProfileNum);
 
-                document.querySelector(".save-icon.fa-save").classList.toggle("d-none");
-                document.querySelector(".save-success-icon.fa-check").classList.toggle("d-none");
+                document.querySelector(".save-icon.bi-save").classList.toggle("d-none");
+                document.querySelector(".save-success-icon.bi-check2").classList.toggle("d-none");
                 document.getElementById("btn-save-round").classList.toggle("bg-success");
                 document.querySelector(".save-default-msg").classList.toggle("d-none");
                 document.querySelector(".save-success-msg").classList.toggle("d-none");
 
                 window.setTimeout(() => {
-                    document.querySelector(".save-icon.fa-save").classList.toggle("d-none");
-                    document.querySelector(".save-success-icon.fa-check").classList.toggle("d-none");
+                    document.querySelector(".save-icon.bi-save").classList.toggle("d-none");
+                    document.querySelector(".save-success-icon.bi-check2").classList.toggle("d-none");
                     document.getElementById("btn-save-round").classList.toggle("bg-success");
                     document.querySelector(".save-default-msg").classList.toggle("d-none");
                     document.querySelector(".save-success-msg").classList.toggle("d-none");

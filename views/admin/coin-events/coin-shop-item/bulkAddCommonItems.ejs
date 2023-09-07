@@ -1,7 +1,9 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column mb-4">
     <div class="collapsible-section-subheader w-100">
         <h3 class="font-subheader index-collapse d-flex align-items-center cursor-pointer mb-0 px-3 py-2" data-toggle="collapse" href="#bulk-add-common">
-            <i class="fas fa-caret-down mr-2"></i> Bulk Add Common Items
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>&nbsp;Bulk Add Common Items
         </h3>
     </div>
     <div class="collapsible-section w-100 px-0 collapse show" id="bulk-add-common">
@@ -11,11 +13,11 @@
             <form method="POST" class="size-720 w-100 d-flex justify-content-center flex-wrap mb-4">
                 <input type="hidden" name="defaultCurrency" <% if(locals.coinShopData && coinShopData.defaultCurrency) { %>value="<%= coinShopData.defaultCurrency %>"<% } %>>
 
-                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="enhancement"><i class="fas fa-plus mr-1"></i> Enhancement items</button>
-                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="growth"><i class="fas fa-plus mr-1"></i> Growth items</button>
-                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="regReboot"><i class="fas fa-plus mr-1"></i> Reboot-only regular shop items</button>
-                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="bossing"><i class="fas fa-plus mr-1"></i> Boss coin shop items</button>
-                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="meso"><i class="fas fa-plus mr-1"></i> Meso shop items</button>
+                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="enhancement">Enhancement items</button>
+                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="growth">Growth items</button>
+                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="regReboot">Reboot-only regular shop items</button>
+                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="bossing">Boss coin shop items</button>
+                <button type="submit" class="btn btn-sm btn-outline-custom rounded-sm d-flex justify-content-center align-items-center mb-2 mx-1" formaction="/admin/coin-event/<%= coinEventData._id %>/shop/<%= coinShopData._id %>/bulkAddList" name="listType" value="meso">Meso shop items</button>
             </form>
 
             <form class="size-720 w-100 mb-4" id="search-form">
@@ -43,7 +45,9 @@
                                     <td class="table-cols-75 text-center align-middle">
                                         <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center">
                                             <button type="button" class="btn-add-to-bulk btn btn-outline-custom btn-sm" data-icon-id="<%= icon.iconId %>">
-                                                <i class="fas fa-plus"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                                </svg>&nbsp;
                                             </button>
                                             <div class="add-icon-feedback text-custom mt-2 mt-sm-0 ml-sm-2 d-none">Added!</div>
                                         </div>

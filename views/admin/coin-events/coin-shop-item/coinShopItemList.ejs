@@ -28,8 +28,16 @@
                             <div class="form-group row mb-0">
                                 <div class="col-12 d-flex justify-content-around">
                                     <input type="hidden" name="order" value="<%= index %>">
-                                    <div class="move-item-up-btn cursor-pointer p-1"><i class="fas fa-lg fa-angle-up"></i></div>
-                                    <div class="move-item-down-btn cursor-pointer p-1"><i class="fas fa-lg fa-angle-down"></i></div>
+                                    <div class="move-item-up-btn cursor-pointer p-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                                          <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="move-item-down-btn cursor-pointer p-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -44,18 +52,25 @@
                                     <div class="d-inline d-sm-none">
                                         <% if(item.tradability === "untradable") { %>
                                             <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Untradable">
-                                                <i class="fas fa-ban"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-slash-circle" viewBox="0 0 16 16">
+                                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                  <path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708z"/>
+                                                </svg>
                                             </div>
                                         <% } else if(item.tradability === "inter-acct") { %>
                                             <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Inter-Account Transactions only">
-                                                <i class="fas fa-exchange-alt"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                                  <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                                                </svg>
                                             </div>
                                         <% } %>
                                     </div>
 
                                     <% if(item.itemNotes !== "") { %>
                                         <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= item.itemNotes %>">
-                                            <i class="fas fa-info-circle"></i>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                            </svg>
                                         </div>
                                     <% } %>
                                 </div>
@@ -63,11 +78,16 @@
                             <div class="tradability-display d-none d-sm-block position-absolute">
                                 <% if(item.tradability === "untradable") { %>
                                     <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Untradable">
-                                        <i class="fas fa-ban"></i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-slash-circle" viewBox="0 0 16 16">
+                                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                          <path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708z"/>
+                                        </svg>
                                     </div>
                                 <% } else if(item.tradability === "inter-acct") { %>
                                     <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="Inter-Account Transactions only">
-                                        <i class="fas fa-exchange-alt"></i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                                        </svg>
                                     </div>
                                 <% } %>
                             </div>
@@ -117,10 +137,16 @@
                             <% } %>
                         </td>
                         <td class="text-center align-middle py-2">
-                            <a href="/admin/coin-event/<%= coinEventData.eventId %>/shop/<%= shopNum %>/item/<%= item._id %>" target="_blank" class="btn btn-outline-custom btn-sm"><i class="fas fa-pen"></i></a>
+                            <a href="/admin/coin-event/<%= coinEventData.eventId %>/shop/<%= shopNum %>/item/<%= item._id %>" target="_blank" class="btn btn-outline-custom btn-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                                  <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                                </svg>
+                            </a>
                             <button type="button" class="remove-coin-shop-item-btn btn btn-outline-danger btn-sm" data-coin-event-id="<%= coinEventData._id %>" data-coin-shop-id="<%= coinShopData._id %>" data-coin-shop-item-id="<%= item._id %>"
                                 data-name="<% if(icons[`${item.iconId}`]) { %><%= icons[`${item.iconId}`].name %><% } else { %>undefined<% } %>">
-                                <i class="fas fa-trash"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                </svg>
                             </button>
                         </td>
                     </tr>
@@ -132,5 +158,9 @@
             <% } %>
         </tbody>
     </table>
-    <button type="submit" class="btn btn-outline-custom btn-sm mb-5"><i class="fas fa-save"></i> Save current item order</button>
+    <button type="submit" class="btn btn-outline-custom btn-sm mb-5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+          <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+        </svg>&nbsp;Save current item order
+    </button>
 </form>

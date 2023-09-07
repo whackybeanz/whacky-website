@@ -19,7 +19,11 @@
                     <% } %>
                 </div>
                 <div class="w-100 d-flex justify-content-start mb-5">
-                    <a href="/calc/tactical-relay" class="btn btn-sm btn-outline-custom px-3"><i class="fas fa-angle-double-left"></i> Back to Tactical Relay Index</a>
+                    <a href="/calc/tactical-relay" class="btn btn-sm btn-outline-custom px-3 d-flex align-items-center text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                        </svg>&nbsp;Back to Tactical Relay Index
+                    </a>
                 </div>
 
                 <div class="w-100 mb-3">
@@ -76,8 +80,16 @@
                             <tr>
                                 <th scope="col" class="mission-desc align-middle" rowspan="2">Mission</th>
                                 <th scope="col" class="text-center position-relative py-1" colspan="7">
-                                    <div class="next-week week-1 cursor-pointer">Week 1 <i class="fas fa-angle-double-right"></i></div>
-                                    <div class="prev-week week-2 cursor-pointer d-none"><i class="fas fa-angle-double-left"></i> Week 2</div>
+                                    <div class="next-week week-1 cursor-pointer">
+                                        Week 1&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                          <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="prev-week week-2 cursor-pointer d-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                                          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                                        </svg>&nbsp;Week 2
+                                    </div>
                                 </th>
                             </tr>
                             <tr class="date-range">
