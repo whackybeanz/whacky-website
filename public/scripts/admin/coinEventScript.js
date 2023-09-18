@@ -20,7 +20,7 @@ function addNewCoinIcon() {
         addIconBtn.addEventListener("click", function() {
             const html = `<div class="d-flex align-items-center mb-2">
                             <input type="text" class="col-11 form-control mr-2" name="coinIconIds" pattern="^[a-zA-Z0-9-]+$" placeholder="Coin Icon ID" required autocomplete="off">
-                            <button type="button" class="remove-coin-icon-input btn text-danger d-flex align-items-center"><i class="fas fa-times"></i></button>
+                            <button type="button" class="remove-coin-icon-input btn text-danger d-flex align-items-center">x</button>
                         </div>`;
             addIconBtn.insertAdjacentHTML('beforebegin', html);
         })
@@ -171,7 +171,10 @@ function addIconInputHTML(iconId = "") {
                         <input type="text" class="paste-input form-control text-center" placeholder="Item ID" name="itemId" pattern="^[a-zA-Z0-9-]+$" autocomplete="off" value="${iconId}" required>
                         <div class="input-group-append">
                             <button type="button" class="btn-paste-from-clipboard btn btn-outline-custom btn-sm" data-toggle="tooltip" data-placement="bottom" title="Paste from clipboard">
-                                <i class="fas fa-clipboard pointer-events-none"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-fill pointer-events-none" viewBox="0 0 16 16">
+                                  <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z"/>
+                                  <path d="M3.5 1h.585A1.498 1.498 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5c0-.175-.03-.344-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1Z"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
