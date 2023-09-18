@@ -23,15 +23,15 @@ router.post("/icons", middleware.isAdmin, function(req, res) {
         iconData.usedInEvents = ["common"];
     }
 
-    Icon.create(iconData, function(err, newIcon) {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        } else {
+    Icon.create(iconData)
+        .then(newIcon => {
             console.log(`Created new icon: ${newIcon.name}`);
             res.redirect("/admin/icons");
-        }
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
 })
 
 // Retrieves group of icons based on sorted category.
