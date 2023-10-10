@@ -24,6 +24,10 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6 d-flex flex-column align-items-center px-0" id="activity-summary">
+                        <div class="col-12 d-none mb-3 px-0" id="special-notes-div">
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- New Age Notes -</p>
+                            <div class="d-flex justify-content-center flex-wrap px-3 mb-2" id="special-notes-summary"></div>
+                        </div>
                         <div class="col-12 d-none mb-3 px-0" id="dailies-summary-div">
                             <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Dailies -</p>
                             <div class="d-flex justify-content-center flex-wrap px-3 mb-2" id="dailies-summary"></div>
@@ -172,21 +176,22 @@
                     </div>
 
                     <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-4 mb-md-5 px-0" id="exp-minigames">
-                        <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">5) EXP Minigames</p>
+                        <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">5) EXP Tickets / Minigames</p>
                         <form class="w-100 d-flex flex-column align-items-center mb-2">
                             <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-3 mx-0">
                                 <div class="col-12 col-md-9 px-0">
                                     <select class="form-control text-center py-1 px-0" id="exp-minigame-select">
-                                        <option value="" selected disabled hidden>- Select EXP Minigame type -</option>
-                                        <option class="font-weight-bold" value="" disabled>Ongoing</option>
-                                        <option value="destiny" data-num-tix="18400">SAVIOR (minigame week not included)</option>
+                                        <option value="" selected disabled hidden>- Select event type -</option>
+                                        <option class="font-weight-bold" value="" disabled>Default</option>
+                                        <option value="destiny" data-num-tix="0">Other events/sources</option>
+                                        <option class="font-weight-bold" value="" disabled>Ongoing/Upcoming</option>
                                         <option value="destiny" data-num-minigames="1" data-multiplier="2">6th Star</option>
-                                        <option class="font-weight-bold" value="" disabled>Upcoming</option>
-                                        <option value="destiny" data-num-tix="33000">NEW AGE (Edentisk Island)</option>
-                                        <option value="destiny" data-num-tix="33000">Mapril Island</option>
                                         <option value="destiny" data-num-tix="3000">Magic Stone Slab</option>
                                         <option value="destiny" data-num-tix="6300">Raise the Rock Spirit</option>
+                                        <option value="destiny" data-num-tix="33000">NEW AGE (Edentisk Island)</option>
+                                        <option value="destiny" data-num-tix="33000">Mapril Island</option>
                                         <option class="font-weight-bold" value="" disabled>Ended</option>
+                                        <option value="destiny" data-num-tix="18400">SAVIOR (minigame week not included)</option>
                                         <option value="destiny" data-num-minigames="2">IGNITION</option>
                                         <option value="destiny" data-num-minigames="1" data-multiplier="2.6">Momentree - Wardrobe 4F</option>
                                         <option value="destiny" data-num-minigames="1" data-multiplier="2">Momentree - Wardrobe 3F</option>

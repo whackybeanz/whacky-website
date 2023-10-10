@@ -145,7 +145,7 @@ function dailiesCalcNewExpBtnListener() {
         document.getElementById("calc-end-raw").textContent = `${finalExp.toLocaleString("en-SG")} EXP`;
 
         if(finalLevel !== currLevel || finalExp !== currExp) {
-            displaySummary(perDayExp, perWeekExp);
+            displaySummary(perDayExp, perWeekExp, endDateVal, currLevel, finalLevel, finalExp);
         }
     })
 }
@@ -395,7 +395,7 @@ function adjustLevelAndExp(charData, expGainValue) {
 
 // Create a summary window (appears as a modal) that displays overall progress within a provided timeframe
 // At the end, use Bootstrap's in-built function to trigger modal appearance
-function displaySummary(perDayExp, perWeekExp) {
+function displaySummary(perDayExp, perWeekExp, endDateVal, currLevel, finalLevel, finalExp) {
     // Burning text display
     if(document.getElementById("burning-select").value === "hyper") {
         document.getElementById("hyper-text").classList.remove("d-none");
@@ -472,6 +472,39 @@ function displaySummary(perDayExp, perWeekExp) {
         if(perDayExp.numExpMinigame <= 0 && getNumRuns("num-exp-tickets") > 0) {
             othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0"><i class="fas fa-puzzle-piece mr-2"></i> ${getNumRuns("num-exp-tickets").toLocaleString("en-SG")} EXP Points / Tickets used</p>`);
         }
+    }
+
+    // Special notes for New Age
+    // If end date is 14 Nov or earlier, display a message indicating adjusted EXP post-New Age patch
+    if(endDateVal <= 1699920000000 && finalLevel >= 210) {
+        let specialNotesSummary = document.getElementById("special-notes-summary");
+        document.getElementById("special-notes-div").classList.remove("d-none");
+        specialNotesSummary.textContent = "";
+
+        let currExpTnl = getExpTNL(finalLevel);
+        let newExpTnl = NEW_AGE_TABLE[finalLevel-210];
+        let levelUpNewExpTnl = NEW_AGE_TABLE[finalLevel-210+1] || NEW_AGE_TABLE[NEW_AGE_TABLE.length-1];
+        let doNotLevelPercent = (currExpTnl - 1 - newExpTnl) / levelUpNewExpTnl * 100;
+        let message = ``;
+
+        if(finalExp > newExpTnl) {
+            console.log(levelUpNewExpTnl);
+            let newExpPercent = (finalExp - newExpTnl) / levelUpNewExpTnl * 100;            
+
+            message += `<p class="col-12 font-table text-center mb-0 px-0">You will be <span class="font-weight-bold text-custom">Level ${finalLevel+1}, ${(newExpPercent).toFixed(3)}%</span> after the New Age patch (15 Nov).`;
+        } else {
+            message += `<p class="col-12 font-table text-center mb-0 px-0">You will be <span class="font-weight-bold text-custom">Level ${finalLevel}, ${(finalExp / newExpTnl * 100).toFixed(3)}%</span> after the New Age patch (15 Nov).`
+        }
+
+        if(currLevel !== finalLevel) {
+            message += ` If you bring/keep your EXP at 99.99999% (1 EXP to level) and wait for New Age to arrive, you would be <span class="font-weight-bold text-custom">Level ${finalLevel+1}, ${(doNotLevelPercent).toFixed(3)}%</span>.`
+        }
+
+        message += `<br/>The new EXP tables can be found in the <a href="https://bit.ly/ms-exp-tables" target="_blank">EXP Table sheet (EXP to level up tab)</a>; opens in new tab.</p>`;
+
+        specialNotesSummary.insertAdjacentHTML('beforeend', message);
+    } else {
+        document.getElementById("special-notes-div").classList.add("d-none");
     }
 
     // Display div
