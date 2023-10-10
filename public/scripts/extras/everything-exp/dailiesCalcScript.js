@@ -499,7 +499,7 @@ function displaySummary(perDayExp, perWeekExp, endDateVal, currLevel, finalLevel
             }
         }
 
-        message += `<br/>The new EXP tables can be found in the <a href="https://bit.ly/ms-exp-tables" target="_blank">EXP Table sheet (EXP to level up tab)</a>; opens in new tab.</p>`;
+        message += `<br/>The new EXP tables can be found in the <a href="https://bit.ly/ms-exp-table" target="_blank">EXP Table sheet (EXP to level up tab)</a>; opens in new tab.</p>`;
 
         specialNotesSummary.insertAdjacentHTML('beforeend', message);
     } else {
