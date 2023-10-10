@@ -488,16 +488,15 @@ function displaySummary(perDayExp, perWeekExp, endDateVal, currLevel, finalLevel
         let message = ``;
 
         if(finalExp > newExpTnl) {
-            console.log(levelUpNewExpTnl);
             let newExpPercent = (finalExp - newExpTnl) / levelUpNewExpTnl * 100;            
 
             message += `<p class="col-12 font-table text-center mb-0 px-0">You will be <span class="font-weight-bold text-custom">Level ${finalLevel+1}, ${(newExpPercent).toFixed(3)}%</span> after the New Age patch (15 Nov).`;
         } else {
-            message += `<p class="col-12 font-table text-center mb-0 px-0">You will be <span class="font-weight-bold text-custom">Level ${finalLevel}, ${(finalExp / newExpTnl * 100).toFixed(3)}%</span> after the New Age patch (15 Nov).`
-        }
+            message += `<p class="col-12 font-table text-center mb-0 px-0">You will be <span class="font-weight-bold text-custom">Level ${finalLevel}, ${(finalExp / newExpTnl * 100).toFixed(3)}%</span> after the New Age patch (15 Nov).`;
 
-        if(currLevel !== finalLevel) {
-            message += ` If you bring/keep your EXP at 99.99999% (1 EXP to level) and wait for New Age to arrive, you would be <span class="font-weight-bold text-custom">Level ${finalLevel+1}, ${(doNotLevelPercent).toFixed(3)}%</span>.`
+            if(currLevel !== finalLevel && finalLevel - currLevel === 1) {
+                message += ` If you keep your EXP at 99.99999% (1 EXP to level) and wait for New Age to arrive, you would be <span class="font-weight-bold text-custom">Level ${finalLevel}, ${(doNotLevelPercent).toFixed(3)}%</span>.`
+            }
         }
 
         message += `<br/>The new EXP tables can be found in the <a href="https://bit.ly/ms-exp-tables" target="_blank">EXP Table sheet (EXP to level up tab)</a>; opens in new tab.</p>`;
