@@ -7,8 +7,12 @@ function getCharLevel() {
     return parseInt(document.getElementById("char-level").value);
 }
 
-function getExpTNL(charLevel) {
-    return parseInt(document.getElementById(`${charLevel}-exp-tnl`).dataset.rawExpTnl);
+function getExpTNL(charLevel, patchType) {
+    if(patchType === "newage") {
+        return NEW_AGE_TABLE[charLevel-210];
+    } else {
+        return parseInt(document.getElementById(`${charLevel}-exp-tnl`).dataset.rawExpTnl);
+    }
 }
 
 /***********************

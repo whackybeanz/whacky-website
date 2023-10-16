@@ -101,6 +101,20 @@ function calcNewExpBtnListener() {
         let potionSummary = document.getElementById("potion-summary");
         potionSummary.textContent = "";
 
+        let [finalLevel, finalExp] = [currLevel, currExp];
+        let newAgeFinalLevel, newAgeFinalExp;
+
+        // **New Age special**
+        // Check if player may level up due to EXP adjustments first on currExp
+        if(currExp >= getExpTNL(currLevel, "newage")) {
+            newAgeFinalLevel = currLevel + 1;
+            newAgeFinalExp = currExp - getExpTNL(currLevel, "newage");
+        } else {
+            [newAgeFinalLevel, newAgeFinalExp] = [currLevel, currExp];
+        }
+
+        document.getElementById("new-age-potion-start-stats").textContent = `Level ${newAgeFinalLevel}, ${(newAgeFinalExp / getExpTNL(newAgeFinalLevel, "newage") * 100).toFixed(3)}%`;
+
         if(allPotionInputs.length > 0) {
             document.getElementById("calc-start-potion-level").textContent = currLevel;
             document.getElementById("calc-start-potion-percent").textContent = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)} %`;
@@ -110,14 +124,18 @@ function calcNewExpBtnListener() {
                 let potionType = input.dataset.potionType;
                 let numPotionsUsed = parseInt(input.value);
 
-                [currLevel, currExp] = calcPotionsNewExp(currLevel, currExp, potionType, numPotionsUsed);
+                [finalLevel, finalExp] = calcPotionsNewExp(finalLevel, finalExp, potionType, numPotionsUsed);
+                [newAgeFinalLevel, newAgeFinalExp] = calcPotionsNewExp(newAgeFinalLevel, newAgeFinalExp, potionType, numPotionsUsed, "newage");
 
                 potionSummary.insertAdjacentHTML('beforeend', `<div class="d-flex align-items-center"><img class="item-square mr-2" src='${input.dataset.imgSrc}'> ${numPotionsUsed} x ${input.dataset.potionName}</div>`);
             })
 
-            document.getElementById("end-potion-char-level").textContent = currLevel;
-            document.getElementById("end-potion-char-exp-percent").textContent = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)} %`;
-            document.getElementById("end-potion-char-exp-raw").textContent = `${currExp.toLocaleString("en-SG")} EXP`;
+            document.getElementById("end-potion-char-level").textContent = finalLevel;
+            document.getElementById("end-potion-char-exp-percent").textContent = `${(finalExp / getExpTNL(finalLevel) * 100).toFixed(3)} %`;
+            document.getElementById("end-potion-char-exp-raw").textContent = `${finalExp.toLocaleString("en-SG")} EXP`;
+
+            displayNewAgeStats(finalLevel, finalExp, "use-now-potion-stats");
+            displayNewAgeStats(newAgeFinalLevel, newAgeFinalExp, "new-age-potion-end-stats");
 
             // Display div
             $("#potion-summary-modal").modal();
@@ -125,13 +143,19 @@ function calcNewExpBtnListener() {
     })
 }
 
-function calcPotionsNewExp(currLevel, currExp, potionType, numPotionsUsed) {
+function calcPotionsNewExp(currLevel, currExp, potionType, numPotionsUsed, patchType) {
     let newLevel = currLevel;
     let newExp = currExp;
 
     for(let i = 0; i < numPotionsUsed; i++) {
-        let expTNL = getExpTNL(newLevel);
-        let expFromPotion = parseInt(document.getElementById(`potion-${potionType}-level-${newLevel}-exp`).dataset.potionRawExp);
+        let expTNL = getExpTNL(newLevel, patchType);
+        let expFromPotion;
+
+        if(patchType) {
+            expFromPotion = parseInt(document.getElementById(`potion-${potionType}-level-${newLevel}-exp`).dataset.potionNewAgeRawExp);
+        } else {
+            expFromPotion = parseInt(document.getElementById(`potion-${potionType}-level-${newLevel}-exp`).dataset.potionRawExp);
+        }
 
         if(newExp + expFromPotion >= expTNL) {
             newLevel++;
@@ -176,24 +200,28 @@ function addExpTable(potionType, minLevel, maxLevel) {
         document.getElementById(`potion-${potionType}-div`).insertAdjacentHTML('beforeend', html);
 
         let maxLevelExpTNL = getExpTNL(maxLevel);
+        let newAgeMaxLevelExpTNL = getExpTNL(maxLevel, "newage");
 
         for(let i = levelRange.startLevel; i < levelRange.endLevel; i++) {
             let percentGain = 100.000;
             let rawExpGain;
             let expTNL = getExpTNL(i);
+            let newAgeExpTNL = getExpTNL(i, "newage");
 
             if(i > maxLevel) {
                 percentGain = maxLevelExpTNL / expTNL*100;
                 rawExpGain = maxLevelExpTNL;
+                newAgeRawExpGain = newAgeMaxLevelExpTNL ? newAgeMaxLevelExpTNL : maxLevelExpTNL;
             } else {
                 rawExpGain = expTNL;
+                newAgeRawExpGain = newAgeExpTNL ? newAgeExpTNL : expTNL;
             }
 
             document
                 .getElementById(`potion-${potionType}-table-${index}-details`)
                 .insertAdjacentHTML('beforeend', `<tr>
                     <th scope="row" class="text-center">${i} > ${i+1}</th>
-                    <td scope="row" class="text-center ${percentGain === 100.000 ? "text-custom font-weight-bold" : "" }" data-potion-raw-exp="${rawExpGain}" id="potion-${potionType}-level-${i}-exp">${percentGain.toFixed(3) + "%"}</td>
+                    <td scope="row" class="text-center ${percentGain === 100.000 ? "text-custom font-weight-bold" : "" }" data-potion-raw-exp="${rawExpGain}" data-potion-new-age-raw-exp="${newAgeRawExpGain}" id="potion-${potionType}-level-${i}-exp">${percentGain.toFixed(3) + "%"}</td>
                 </tr>`);
         }
     })
@@ -251,4 +279,28 @@ function updatePerPotionEXPPercent() {
             elem.querySelector(".pot-percent-exp").textContent = displayedPercent;
         }
     }
+}
+
+// Display for pre-or-post New Age potion usage (pre-New Age accepts finalLevel, finalExp; post-New Age accepts newAgeFinalLevel, newAgeFinalExp)
+function displayNewAgeStats(finalLevel, finalExp, id) {
+    
+    let newAgeExpTNL = getExpTNL(finalLevel, "newage");
+    let newExpPercent;
+
+    if(finalExp > newAgeExpTNL) {
+        finalLevel += 1;
+        finalExp = finalExp - newAgeExpTNL;
+        newAgeExpTNL = getExpTNL(finalLevel, "newage");
+        newExpPercent = finalExp / newAgeExpTNL * 100;
+
+        if(finalExp > newAgeExpTNL) {
+            finalLevel += 1;
+            finalExp = finalExp - newAgeExpTNL;
+            newAgeExpTNL = getExpTNL(finalLevel, "newage");
+            newExpPercent = finalExp / newAgeExpTNL * 100;
+        }
+    } else {
+        newExpPercent = finalExp / newAgeExpTNL * 100;
+    }
+    document.getElementById(id).textContent = `Level ${finalLevel}, ${newExpPercent.toFixed(3)}%`;
 }

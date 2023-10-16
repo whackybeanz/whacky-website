@@ -484,18 +484,39 @@ function displaySummary(perDayExp, perWeekExp, endDateVal, currLevel, finalLevel
         let currExpTnl = getExpTNL(finalLevel);
         let newExpTnl = NEW_AGE_TABLE[finalLevel-210];
         let levelUpNewExpTnl = NEW_AGE_TABLE[finalLevel-210+1] || NEW_AGE_TABLE[NEW_AGE_TABLE.length-1];
-        let doNotLevelPercent = (currExpTnl - 1 - newExpTnl) / levelUpNewExpTnl * 100;
+        
         let message = ``;
+        let newExpPercent;
 
         if(finalExp > newExpTnl) {
-            let newExpPercent = (finalExp - newExpTnl) / levelUpNewExpTnl * 100;            
+            finalLevel += 1;
+            finalExp = finalExp - newExpTnl;
+            newExpPercent = finalExp / levelUpNewExpTnl * 100;
 
-            message += `<p class="col-12 font-table text-center mb-0 px-0">You will be <span class="font-weight-bold text-custom">Level ${finalLevel+1}, ${(newExpPercent).toFixed(3)}%</span> after the New Age patch (15 Nov).`;
+            if(finalExp > levelUpNewExpTnl) {
+                finalLevel += 1;
+                finalExp = finalExp - levelUpNewExpTnl;
+                levelUpNewExpTnl = NEW_AGE_TABLE[finalLevel-210] || NEW_AGE_TABLE[NEW_AGE_TABLE.length-1];
+                newExpPercent = finalExp / levelUpNewExpTnl * 100;
+            }
+
+            message += `<p class="col-12 font-table text-center mb-0 px-0">You will be <span class="font-weight-bold text-custom">Level ${finalLevel}, ${(newExpPercent).toFixed(3)}%</span> after the New Age patch (15 Nov).`;
         } else {
             message += `<p class="col-12 font-table text-center mb-0 px-0">You will be <span class="font-weight-bold text-custom">Level ${finalLevel}, ${(finalExp / newExpTnl * 100).toFixed(3)}%</span> after the New Age patch (15 Nov).`;
 
             if(currLevel !== finalLevel && finalLevel - currLevel === 1) {
-                message += ` If you keep your EXP at 99.99999% (1 EXP to level) and wait for New Age to arrive, you would be <span class="font-weight-bold text-custom">Level ${finalLevel}, ${(doNotLevelPercent).toFixed(3)}%</span>.`
+                let doNotLevelPercent;
+
+                if(currExpTnl - 1 - newExpTnl > levelUpNewExpTnl) {
+                    finalLevel += 1;
+                    finalExp = currExpTnl - 1 - newExpTnl - levelUpNewExpTnl;
+                    levelUpNewExpTnl = NEW_AGE_TABLE[finalLevel-210+1] || NEW_AGE_TABLE[NEW_AGE_TABLE.length-1];
+                    doNotLevelPercent = finalExp / levelUpNewExpTnl * 100;
+                } else {
+                    doNotLevelPercent = (currExpTnl - 1 - newExpTnl) / levelUpNewExpTnl * 100;
+                }
+
+                message += ` If you keep your EXP at Level ${currLevel}, 99.99999% (1 EXP to level) and wait for New Age to arrive, you would be <span class="font-weight-bold text-custom">Level ${finalLevel}, ${(doNotLevelPercent).toFixed(3)}%</span>.`
             }
         }
 
