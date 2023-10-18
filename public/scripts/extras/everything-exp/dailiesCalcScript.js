@@ -510,16 +510,11 @@ function displaySummary(perDayExp, perWeekExp, endDateVal, currLevel, finalLevel
                 let currLevelNewAgeExpTnl = getExpTNL(currLevel, "newage");
                 let nextLevelNewAgeExpTnl = getExpTNL(currLevel+1, "newage");
 
-                console.log(`curr = ${currLevelExpTnl}, newage TNL = ${currLevelNewAgeExpTnl}, newage next level TNL = ${nextLevelNewAgeExpTnl}`);
-                console.log(`curr finalLevel = ${finalLevel}`);
-
                 if(currLevelExpTnl - 1 - currLevelNewAgeExpTnl > nextLevelNewAgeExpTnl) {
                     finalLevel = currLevel + 2;
                     finalExp = currLevelExpTnl - 1 - currLevelNewAgeExpTnl - nextLevelNewAgeExpTnl;
                     nextLevelNewAgeExpTnl = NEW_AGE_TABLE[finalLevel-210] || NEW_AGE_TABLE[NEW_AGE_TABLE.length-1];
                     doNotLevelPercent = finalExp / nextLevelNewAgeExpTnl * 100;
-
-                    console.log(`now finalLevel = ${finalLevel}, finalExp = ${finalExp}, nextLevelNewAgeExpTnl = ${nextLevelNewAgeExpTnl}, doNotLevelPercent = ${doNotLevelPercent}`)
                 } else {
                     doNotLevelPercent = (currLevelExpTnl - 1 - currLevelNewAgeExpTnl) / nextLevelNewAgeExpTnl * 100;
                 }
