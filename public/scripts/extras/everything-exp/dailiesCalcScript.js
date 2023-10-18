@@ -506,14 +506,22 @@ function displaySummary(perDayExp, perWeekExp, endDateVal, currLevel, finalLevel
 
             if(currLevel !== finalLevel && finalLevel - currLevel === 1) {
                 let doNotLevelPercent;
+                let currLevelExpTnl = getExpTNL(currLevel);
+                let currLevelNewAgeExpTnl = getExpTNL(currLevel, "newage");
+                let nextLevelNewAgeExpTnl = getExpTNL(currLevel+1, "newage");
 
-                if(currExpTnl - 1 - newExpTnl > levelUpNewExpTnl) {
-                    finalLevel += 1;
-                    finalExp = currExpTnl - 1 - newExpTnl - levelUpNewExpTnl;
-                    levelUpNewExpTnl = NEW_AGE_TABLE[finalLevel-210+1] || NEW_AGE_TABLE[NEW_AGE_TABLE.length-1];
-                    doNotLevelPercent = finalExp / levelUpNewExpTnl * 100;
+                console.log(`curr = ${currLevelExpTnl}, newage TNL = ${currLevelNewAgeExpTnl}, newage next level TNL = ${nextLevelNewAgeExpTnl}`);
+                console.log(`curr finalLevel = ${finalLevel}`);
+
+                if(currLevelExpTnl - 1 - currLevelNewAgeExpTnl > nextLevelNewAgeExpTnl) {
+                    finalLevel = currLevel + 2;
+                    finalExp = currLevelExpTnl - 1 - currLevelNewAgeExpTnl - nextLevelNewAgeExpTnl;
+                    nextLevelNewAgeExpTnl = NEW_AGE_TABLE[finalLevel-210] || NEW_AGE_TABLE[NEW_AGE_TABLE.length-1];
+                    doNotLevelPercent = finalExp / nextLevelNewAgeExpTnl * 100;
+
+                    console.log(`now finalLevel = ${finalLevel}, finalExp = ${finalExp}, nextLevelNewAgeExpTnl = ${nextLevelNewAgeExpTnl}, doNotLevelPercent = ${doNotLevelPercent}`)
                 } else {
-                    doNotLevelPercent = (currExpTnl - 1 - newExpTnl) / levelUpNewExpTnl * 100;
+                    doNotLevelPercent = (currLevelExpTnl - 1 - currLevelNewAgeExpTnl) / nextLevelNewAgeExpTnl * 100;
                 }
 
                 message += ` If you keep your EXP at Level ${currLevel}, 99.99999% (1 EXP to level) and wait for New Age to arrive, you would be <span class="font-weight-bold text-custom">Level ${finalLevel}, ${(doNotLevelPercent).toFixed(3)}%</span>.`
