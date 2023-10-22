@@ -134,9 +134,6 @@ function calcNewExpBtnListener() {
             document.getElementById("end-potion-char-exp-percent").textContent = `${(finalExp / getExpTNL(finalLevel) * 100).toFixed(3)} %`;
             document.getElementById("end-potion-char-exp-raw").textContent = `${finalExp.toLocaleString("en-SG")} EXP`;
 
-            displayNewAgeStats(finalLevel, finalExp, "use-now-potion-stats");
-            displayNewAgeStats(newAgeFinalLevel, newAgeFinalExp, "new-age-potion-end-stats");
-
             // Display div
             $("#potion-summary-modal").modal();
         }
@@ -282,7 +279,7 @@ function updatePerPotionEXPPercent() {
 }
 
 // Display for pre-or-post New Age potion usage (pre-New Age accepts finalLevel, finalExp; post-New Age accepts newAgeFinalLevel, newAgeFinalExp)
-function displayNewAgeStats(finalLevel, finalExp, id) {
+/*function displayNewAgeStats(finalLevel, finalExp, id) {
     
     let newAgeExpTNL = getExpTNL(finalLevel, "newage");
     let newExpPercent;
@@ -303,4 +300,4 @@ function displayNewAgeStats(finalLevel, finalExp, id) {
         newExpPercent = finalExp / newAgeExpTNL * 100;
     }
     document.getElementById(id).textContent = `Level ${finalLevel}, ${newExpPercent.toFixed(3)}%`;
-}
+}*/

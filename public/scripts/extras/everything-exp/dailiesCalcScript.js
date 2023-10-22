@@ -145,7 +145,7 @@ function dailiesCalcNewExpBtnListener() {
         document.getElementById("calc-end-raw").textContent = `${finalExp.toLocaleString("en-SG")} EXP`;
 
         if(finalLevel !== currLevel || finalExp !== currExp) {
-            displaySummary(perDayExp, perWeekExp, endDateVal, currLevel, finalLevel, finalExp);
+            displaySummary(perDayExp, perWeekExp);
         }
     })
 }
@@ -218,8 +218,10 @@ function getNumRuns(elemId) {
 
 function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp, perWeekExp) {
     // Object created here to prevent repeated creation of variables that will be accessed for updating
+    let burningSelectElem = document.getElementById("burning-select");
     let charData = {
-        burningType: document.getElementById("burning-select").value,
+        burningType: burningSelectElem.value,
+        burningMaxLevel: parseInt(burningSelectElem.options[burningSelectElem.selectedIndex].dataset.maxLevel),
         currLevel: currLevel,
         currExp: currExp,
         expTNL: getExpTNL(currLevel),
@@ -395,7 +397,7 @@ function adjustLevelAndExp(charData, expGainValue) {
 
 // Create a summary window (appears as a modal) that displays overall progress within a provided timeframe
 // At the end, use Bootstrap's in-built function to trigger modal appearance
-function displaySummary(perDayExp, perWeekExp, endDateVal, currLevel, finalLevel, finalExp) {
+function displaySummary(perDayExp, perWeekExp) {
     // Burning text display
     if(document.getElementById("burning-select").value === "hyper") {
         document.getElementById("hyper-text").classList.remove("d-none");
@@ -474,6 +476,11 @@ function displaySummary(perDayExp, perWeekExp, endDateVal, currLevel, finalLevel
         }
     }
 
+    // Display div
+    $("#dailies-summary-modal").modal();
+}
+
+/*function displayNewAgeStats(endDateVal, currLevel, finalLevel, finalExp) {
     // Special notes for New Age
     // If end date is 14 Nov or earlier, display a message indicating adjusted EXP post-New Age patch
     if(endDateVal <= 1699920000000 && finalLevel >= 210) {
@@ -481,7 +488,6 @@ function displaySummary(perDayExp, perWeekExp, endDateVal, currLevel, finalLevel
         document.getElementById("special-notes-div").classList.remove("d-none");
         specialNotesSummary.textContent = "";
 
-        let currExpTnl = getExpTNL(finalLevel);
         let newExpTnl = NEW_AGE_TABLE[finalLevel-210];
         let levelUpNewExpTnl = NEW_AGE_TABLE[finalLevel-210+1] || NEW_AGE_TABLE[NEW_AGE_TABLE.length-1];
         
@@ -529,7 +535,4 @@ function displaySummary(perDayExp, perWeekExp, endDateVal, currLevel, finalLevel
     } else {
         document.getElementById("special-notes-div").classList.add("d-none");
     }
-
-    // Display div
-    $("#dailies-summary-modal").modal();
-}
+}*/

@@ -24,10 +24,10 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6 d-flex flex-column align-items-center px-0" id="activity-summary">
-                        <div class="col-12 d-none mb-3 px-0" id="special-notes-div">
-                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- New Age Notes -</p>
+                        <!--<div class="col-12 d-none mb-3 px-0" id="special-notes-div">
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Special Notes -</p>
                             <div class="d-flex justify-content-center flex-wrap px-3 mb-2" id="special-notes-summary"></div>
-                        </div>
+                        </div>-->
                         <div class="col-12 d-none mb-3 px-0" id="dailies-summary-div">
                             <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Dailies -</p>
                             <div class="d-flex justify-content-center flex-wrap px-3 mb-2" id="dailies-summary"></div>
@@ -71,7 +71,8 @@
                                 <div class="col-12 col-md-8 px-0 pr-2">
                                     <select class="form-control text-center px-0" id="burning-select">
                                         <option value="">N/A</option>
-                                        <option value="hyper">Hyper Burning</option>
+                                        <option value="hyper" data-max-level="260">Hyper Burning (to 260)</option>
+                                        <option value="hyper" data-max-level="250">Hyper Burning (to 250)</option>
                                     </select>
                                 </div>
                             </div>
@@ -79,10 +80,10 @@
                     </div>
 
                     <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-4 mb-md-5 px-0" id="symbol-dailies">
-                        <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">2) Symbol dailies</p>
+                        <p class="font-subsubheader text-md-center font-weight-bold mb-2 px-0">2) Dailies</p>
                         <div class="d-flex justify-content-center flex-wrap px-4">
                             <% expContents.symbolContent.forEach((content, index) => { %>
-                                <% if(index === 6) { %>
+                                <% if(index === 6 || index === 9) { %>
                                     <div class="w-100"></div>
                                 <% } %>
                                 <div class="single-exp-content calc-daily-quest rounded-sm cursor-pointer mx-1 my-1 position-relative" id="calc-daily-<%= content.iconId %>" data-raw-exp="<%= content.dailyRawEXP %>" data-min-level="<%= content.recMinLevel %>">
@@ -185,12 +186,14 @@
                                         <option class="font-weight-bold" value="" disabled>Default</option>
                                         <option value="destiny" data-num-tix="0">Other events/sources</option>
                                         <option class="font-weight-bold" value="" disabled>Ongoing/Upcoming</option>
+                                        <option value="destiny" data-num-tix="33000">NEW AGE (Edentisk Island)</option>
+                                        <option value="destiny" data-num-tix="33000">Mapril Island (Dungeon + Frozen Blast)</option>
+                                        <option value="destiny" data-num-tix="15000">Minar Autumn Picnic (Forest Blast)</option>
+                                        <option value="destiny" data-num-tix="11600">Maple Fashion Week</option>
+                                        <option class="font-weight-bold" value="" disabled>Ended</option>
                                         <option value="destiny" data-num-minigames="1" data-multiplier="2">6th Star</option>
                                         <option value="destiny" data-num-tix="3000">Magic Stone Slab</option>
                                         <option value="destiny" data-num-tix="6300">Raise the Rock Spirit</option>
-                                        <option value="destiny" data-num-tix="33000">NEW AGE (Edentisk Island)</option>
-                                        <option value="destiny" data-num-tix="33000">Mapril Island</option>
-                                        <option class="font-weight-bold" value="" disabled>Ended</option>
                                         <option value="destiny" data-num-tix="18400">SAVIOR (minigame week not included)</option>
                                         <option value="destiny" data-num-minigames="2">IGNITION</option>
                                         <option value="destiny" data-num-minigames="1" data-multiplier="2.6">Momentree - Wardrobe 4F</option>
