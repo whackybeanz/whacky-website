@@ -38,7 +38,7 @@ router.get("/everything-exp", function(req, res) {
 })
 
 router.get("/everything-exp/monster-list/:charLevel", function(req, res) {
-    let CURR_MAX_MONSTER_LEVEL = 280;
+    let CURR_MAX_MONSTER_LEVEL = 290;
     let charLevel = parseInt(req.params.charLevel);
     let response = {};
 

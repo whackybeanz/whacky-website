@@ -83,17 +83,17 @@ function expMinigameSelectListener() {
 
     expMinigameSelect.addEventListener("change", () => {
         let numTix = expMinigameSelect.options[expMinigameSelect.selectedIndex].dataset.numTix;
-        let numGames = expMinigameSelect.options[expMinigameSelect.selectedIndex].dataset.numMinigames;
+        //let numGames = expMinigameSelect.options[expMinigameSelect.selectedIndex].dataset.numMinigames;
 
         if(numTix) {
-            document.getElementById("num-exp-minigame").value = "";
+            //document.getElementById("num-exp-minigame").value = "";
             document.getElementById("num-exp-tickets").value = parseInt(numTix);
         }
 
-        if(numGames) {
+        /*if(numGames) {
             document.getElementById("num-exp-minigame").value = parseInt(numGames);
             document.getElementById("num-exp-tickets").value = "";
-        }
+        }*/
     })
 }
 
@@ -160,7 +160,7 @@ function compilePerDayExp() {
         monsterHunting: 0,
         numMonsterPark: getNumRuns("num-monster-park-select"),
         numMonsterParkExtreme: getNumRuns("num-monster-park-extreme-select"),
-        numExpMinigame: getNumRuns("num-exp-minigame"),
+        //numExpMinigame: getNumRuns("num-exp-minigame"),
         expMinigameId: minigameSelectElem.value,
         expMinigameMult: parseFloat(minigameSelectElem.options[minigameSelectElem.selectedIndex].dataset.multiplier) || 1.0, // defaults to x1 multiplier if NaN
     };
@@ -178,10 +178,11 @@ function compilePerDayExp() {
 
 function compilePerWeekExp() {
     let weekliesWhen = parseInt(document.getElementById("weeklies-when-select").value);
+    let expPunchKingPoints = parseInt(document.getElementById("exp-pk-points").value) || -1;
 
     // Day ranges from 0 (Sunday) till 6 (Saturday); do a validity check
     if(isNaN(weekliesWhen) || weekliesWhen < 0 || weekliesWhen > 6) {
-        return {};
+        return { expPunchKingPoints: expPunchKingPoints };
     } else {
         let allWeeklyQuests = Array.from(document.querySelectorAll(".calc-weekly-quest"));
         let activeWeeklies = allWeeklyQuests.filter(weekly => parseInt(weekly.value) > 0);
@@ -197,7 +198,8 @@ function compilePerWeekExp() {
                     expPerRun: parseInt(weekly.dataset.weeklyRawExp),
                     expPerRegion: parseInt(weekly.value) * parseInt(weekly.dataset.weeklyRawExp),
                 } 
-            })
+            }),
+            expPunchKingPoints: expPunchKingPoints,
         }
 
         return weeklies;
@@ -226,18 +228,18 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp, pe
         currExp: currExp,
         expTNL: getExpTNL(currLevel),
     }
-    let hasWeeklies = Object.keys(perWeekExp).length > 0;
+    //let hasWeeklies = Object.keys(perWeekExp).length > 0;
     let weekliesWhen = (perWeekExp.weekliesWhen >= 0) && (perWeekExp.weekliesWhen <= 6) ? perWeekExp.weekliesWhen : -1;
     let mpDungeonList = Array.from(document.querySelectorAll(".mp-details")).filter(dungeons => dungeons.dataset.minLevel >= 200);
     let expFromGrinding = perDayExp.monsterHunting;
-    let isUsingExpTickets = perDayExp.numExpMinigame === 0 ? getNumRuns("num-exp-tickets") > 0 : false;
+    let isUsingExpTickets = getNumRuns("num-exp-tickets") > 0;
 
     for(let i = startDate; i <= endDate; i += 1000*60*60*24) {
         if(perDayExp.allSelectedDailyQuests.length > 0) {
             charData = addDailiesExp(charData, perDayExp.allSelectedDailyQuests);    
         }
         
-        if(hasWeeklies && (new Date(i)).getDay() === weekliesWhen) {
+        if((new Date(i)).getDay() === weekliesWhen) {
             charData = addWeekliesExp(charData, perWeekExp);
         }
 
@@ -246,9 +248,9 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp, pe
         }
 
         // Now add EXP obtained from event minigames
-        if(perDayExp.expMinigameId !== "" && perDayExp.numExpMinigame > 0) {
+        /*if(perDayExp.expMinigameId !== "") {
             charData = addDailyMinigameExp(charData, perDayExp);
-        }
+        }*/
 
         // Factor in grinding EXP
         if(expFromGrinding > 0) {
@@ -258,6 +260,10 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp, pe
         // If character is level 260+, now add EXP obtained from Monster Park Extreme
         if(charData.currLevel >= 260 && perDayExp.numMonsterParkExtreme > 0) {
             charData = addMonsterParkExtremeExp(charData, i);
+        }
+
+        if(perWeekExp.expPunchKingPoints > 0 && (new Date(i)).getDay() === 2) {
+            charData = addPunchKingEXP(charData, perWeekExp.expPunchKingPoints);
         }
     }
 
@@ -305,7 +311,7 @@ function addMonsterParkRegularExp(charData, perDayExp, mpDungeonList, i) {
 }
 
 // Add minigame EXP that is done on a daily basis (i.e. not ticket based)
-function addDailyMinigameExp(charData, perDayExp) {
+/*function addDailyMinigameExp(charData, perDayExp) {
     let expFromMinigames;
 
     for(let j = 0; j < perDayExp.numExpMinigame; j++) {
@@ -322,7 +328,7 @@ function addDailyMinigameExp(charData, perDayExp) {
     }
 
     return charData;
-}
+}*/
 
 function addMonsterParkExtremeExp(charData, i) {
     let expFromMpEx; 
@@ -334,6 +340,12 @@ function addMonsterParkExtremeExp(charData, i) {
     }
 
     return adjustLevelAndExp(charData, expFromMpEx);
+}
+
+function addPunchKingEXP(charData, expPunchKingPoints) {
+    let expFromPK = PUNCH_KING_EXP_TABLE[charData.currLevel - 200] * expPunchKingPoints * 3 * 100;
+
+    return adjustLevelAndExp(charData, expFromPK);
 }
 
 function addMinigameExpTicketExp(charData) {
@@ -429,7 +441,7 @@ function displaySummary(perDayExp, perWeekExp) {
     } else {
         document.getElementById("which-day").textContent = days[perWeekExp.weekliesWhen];
 
-        if(perWeekExp.activeWeeklies.length > 0) {
+        if(perWeekExp.activeWeeklies && perWeekExp.activeWeeklies.length > 0) {
             weekliesSummaryDiv.classList.remove("d-none");
             weekliesSummary.textContent = "";
             perWeekExp.activeWeeklies.map(weekly => weekliesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 col-sm-6 text-center mb-2 px-0">${weekly.value} x ${weekly.dataset.weeklyName}</p>`));
@@ -456,7 +468,7 @@ function displaySummary(perDayExp, perWeekExp) {
     }
 
     // Others (hunting + EXP minigames)
-    if(perDayExp.monsterHunting <= 0 && (perDayExp.expMinigameId === "" || (perDayExp.numExpMinigame <= 0 && getNumRuns("num-exp-tickets") <= 0))) {
+    if(perDayExp.monsterHunting <= 0 && (perDayExp.expMinigameId === "" || getNumRuns("num-exp-tickets") <= 0) && perWeekExp.expPunchKingPoints <= 0) {
         document.getElementById("others-summary-div").classList.add("d-none");
     } else {
         let othersSummary = document.getElementById("others-summary");
@@ -464,15 +476,30 @@ function displaySummary(perDayExp, perWeekExp) {
         othersSummary.textContent = "";
 
         if(perDayExp.monsterHunting > 0) {
-            othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0"><i class="fas fa-skull mr-2"></i> ${perDayExp.monsterHunting.toLocaleString("en-SG")} EXP from grinding / day</p>`);
+            othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">
+                ${perDayExp.monsterHunting.toLocaleString("en-SG")} EXP from grinding / day
+            </p>`);
         }
 
+        /*
         if(perDayExp.numExpMinigame > 0) {
             othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0"><i class="fas fa-puzzle-piece mr-2"></i> ${perDayExp.numExpMinigame} minigames / day</p>`);
+        }*/
+
+        if(getNumRuns("num-exp-tickets") > 0) {
+            othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-puzzle-fill" viewBox="0 0 16 16">
+                  <path d="M3.112 3.645A1.5 1.5 0 0 1 4.605 2H7a.5.5 0 0 1 .5.5v.382c0 .696-.497 1.182-.872 1.469a.459.459 0 0 0-.115.118.113.113 0 0 0-.012.025L6.5 4.5v.003l.003.01c.004.01.014.028.036.053a.86.86 0 0 0 .27.194C7.09 4.9 7.51 5 8 5c.492 0 .912-.1 1.19-.24a.86.86 0 0 0 .271-.194.213.213 0 0 0 .036-.054l.003-.01v-.008a.112.112 0 0 0-.012-.025.459.459 0 0 0-.115-.118c-.375-.287-.872-.773-.872-1.469V2.5A.5.5 0 0 1 9 2h2.395a1.5 1.5 0 0 1 1.493 1.645L12.645 6.5h.237c.195 0 .42-.147.675-.48.21-.274.528-.52.943-.52.568 0 .947.447 1.154.862C15.877 6.807 16 7.387 16 8s-.123 1.193-.346 1.638c-.207.415-.586.862-1.154.862-.415 0-.733-.246-.943-.52-.255-.333-.48-.48-.675-.48h-.237l.243 2.855A1.5 1.5 0 0 1 11.395 14H9a.5.5 0 0 1-.5-.5v-.382c0-.696.497-1.182.872-1.469a.459.459 0 0 0 .115-.118.113.113 0 0 0 .012-.025L9.5 11.5v-.003l-.003-.01a.214.214 0 0 0-.036-.053.859.859 0 0 0-.27-.194C8.91 11.1 8.49 11 8 11c-.491 0-.912.1-1.19.24a.859.859 0 0 0-.271.194.214.214 0 0 0-.036.054l-.003.01v.002l.001.006a.113.113 0 0 0 .012.025c.016.027.05.068.115.118.375.287.872.773.872 1.469v.382a.5.5 0 0 1-.5.5H4.605a1.5 1.5 0 0 1-1.493-1.645L3.356 9.5h-.238c-.195 0-.42.147-.675.48-.21.274-.528.52-.943.52-.568 0-.947-.447-1.154-.862C.123 9.193 0 8.613 0 8s.123-1.193.346-1.638C.553 5.947.932 5.5 1.5 5.5c.415 0 .733.246.943.52.255.333.48.48.675.48h.238l-.244-2.855z"/>
+                </svg> ${getNumRuns("num-exp-tickets").toLocaleString("en-SG")} EXP Points / Tickets used
+            </p>`);
         }
 
-        if(perDayExp.numExpMinigame <= 0 && getNumRuns("num-exp-tickets") > 0) {
-            othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0"><i class="fas fa-puzzle-piece mr-2"></i> ${getNumRuns("num-exp-tickets").toLocaleString("en-SG")} EXP Points / Tickets used</p>`);
+        if(perWeekExp.expPunchKingPoints > 0) {
+            othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-crosshair2" viewBox="0 0 16 16">
+                  <path d="M8 0a.5.5 0 0 1 .5.5v.518A7.001 7.001 0 0 1 14.982 7.5h.518a.5.5 0 0 1 0 1h-.518A7.001 7.001 0 0 1 8.5 14.982v.518a.5.5 0 0 1-1 0v-.518A7.001 7.001 0 0 1 1.018 8.5H.5a.5.5 0 0 1 0-1h.518A7.001 7.001 0 0 1 7.5 1.018V.5A.5.5 0 0 1 8 0Zm-.5 2.02A6.001 6.001 0 0 0 2.02 7.5h1.005A5.002 5.002 0 0 1 7.5 3.025V2.02Zm1 1.005A5.002 5.002 0 0 1 12.975 7.5h1.005A6.001 6.001 0 0 0 8.5 2.02v1.005ZM12.975 8.5A5.002 5.002 0 0 1 8.5 12.975v1.005a6.002 6.002 0 0 0 5.48-5.48h-1.005ZM7.5 12.975A5.002 5.002 0 0 1 3.025 8.5H2.02a6.001 6.001 0 0 0 5.48 5.48v-1.005ZM10 8a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"/>
+                </svg> ${perWeekExp.expPunchKingPoints.toLocaleString("en-SG")} EXP Punch King Points
+            </p>`);
         }
     }
 

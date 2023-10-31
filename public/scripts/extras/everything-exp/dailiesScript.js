@@ -61,7 +61,7 @@ function updateAvailableDailyQuests() {
         if(charLevel < parseInt(dailyQuestDetails.dataset.minLevel)) {
             dailyElem.classList.remove("active");
             dailyElem.classList.remove("selected");
-            dailyElem.querySelector(".selected-mark").classList.add("d-none");
+            //dailyElem.querySelector(".selected-mark").classList.add("d-none");
             dailyQuestDetails.querySelector(".percent-exp").textContent = "-";
 
             if(dailyQuestDetails.querySelector(".weekly-percent-exp")) {

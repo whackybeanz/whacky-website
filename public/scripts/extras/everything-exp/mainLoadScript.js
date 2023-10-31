@@ -8,11 +8,7 @@ function getCharLevel() {
 }
 
 function getExpTNL(charLevel, patchType) {
-    if(patchType === "newage") {
-        return NEW_AGE_TABLE[charLevel-210];
-    } else {
-        return parseInt(document.getElementById(`${charLevel}-exp-tnl`).dataset.rawExpTnl);
-    }
+    return parseInt(document.getElementById(`${charLevel}-exp-tnl`).dataset.rawExpTnl);
 }
 
 /***********************
@@ -199,7 +195,9 @@ function checkAnyActiveErrors(parentContainerId, btnId) {
 
     if(activeErrors.length > 0) {
         document.getElementById(btnId).classList.add("d-none");
+        document.getElementById(btnId).classList.remove("d-flex");
     } else {
+        document.getElementById(btnId).classList.add("d-flex");
         document.getElementById(btnId).classList.remove("d-none");
     }
 }
