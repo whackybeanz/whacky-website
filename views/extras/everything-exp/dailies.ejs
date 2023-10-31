@@ -8,9 +8,9 @@
             </div>
             <div class="pill-section-content font-form d-flex flex-wrap justify-content-start px-3 pt-3">
                 <% expContents.symbolContent.forEach(content => { %>
-                    <div class="single-content col-12 col-sm-6 d-flex align-items-center rounded-sm py-2 mb-3 active" id="content-<%= content.iconId%>">
+                    <div class="single-content col-12 col-sm-6 col-xl-4 d-flex align-items-center rounded-sm py-2 px-sm-2 mb-3 active" id="content-<%= content.iconId%>">
                         <div>
-                            <img src="<%= icons[content.iconId].imgUrl %>" class="mr-3">
+                            <img src="<%= icons[content.iconId].imgUrl %>" class="mr-3 mr-sm-2">
                         </div>
                         <div class="content-details" data-name="<%= content.name %>" data-min-level="<%= content.recMinLevel %>" data-raw-exp="<%= content.dailyRawEXP %>" <% if(content.hasWeekly) { %>data-weekly-raw-exp="<%= content.weeklyRawEXP %>"<% } %>>
                             <p class="mb-0">
@@ -46,7 +46,7 @@
             </div>
             <div class="pill-section-content font-form position-relative">
                 <div class="d-flex flex-wrap px-3 pt-3" id="monster-park-list">
-                    <% expContents.monsterPark.forEach(dungeon => { %>
+                    <% expContents.monsterPark.reverse().forEach(dungeon => { %>
                         <div class="single-mp-dungeon col-12 col-sm-6 col-xl-4 d-flex align-items-center rounded-sm py-2 mb-3 active" id="mp-<%= dungeon.iconId %>">
                             <div>
                                 <img src="<%= icons[dungeon.iconId].imgUrl %>" class="mp-dungeon-img mr-3">
