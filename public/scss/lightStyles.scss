@@ -601,9 +601,9 @@ body {
     }
 
     .single-symbol-div {
-        & > div {
+        /*& > div {
             border: 1px solid globals.$light-mode-grey;
-        }
+        }*/
 
         .single-cost-breakdown {
             border-color: globals.$light-mode-grey;

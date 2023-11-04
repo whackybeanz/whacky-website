@@ -393,8 +393,10 @@ body .horz-partition {
 body .single-symbol-btn:hover, body .single-symbol-btn.active {
   background-color: rgba(206, 212, 218, 0.8);
 }
-body .single-symbol-div > div {
-  border: 1px solid rgba(206, 212, 218, 0.8);
+body .single-symbol-div {
+  /*& > div {
+      border: 1px solid globals.$light-mode-grey;
+  }*/
 }
 body .single-symbol-div .single-cost-breakdown {
   border-color: rgba(206, 212, 218, 0.8);
