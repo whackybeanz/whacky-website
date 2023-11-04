@@ -10,8 +10,8 @@ function loadCalcTabData() {
     expOverflowInputListeners();
 
     // Catalyst
-    catalystStartLevelInputListener();
-    catalystStartExpInputListener();
+    catalystSelectListener();
+    catalystDataInputListener();
 }
 
 function loadSavedData() {

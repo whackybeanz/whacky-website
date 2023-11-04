@@ -128,6 +128,66 @@
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center py-1">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                     <img src="<%= icons['arcane-catalyst'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['arcane-catalyst'].name %>"> 
+                     <img src="<%= icons['authentic-catalyst'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['authentic-catalyst'].name %>">
+                     Symbol Catalyst Calculator
+                </h2>
+            </div>
+            <div class="pill-section-content font-form d-flex flex-wrap justify-content-center py-3">
+                <div class="w-100 d-flex flex-wrap mb-0">
+                    <form class="w-100 text-center">
+                        <div class="d-flex flex-column justify-content-center align-items-center mb-4">
+                            <select class="col-6 col-sm-5 col-md-4 col-xl-3 form-control text-center py-1 px-1 mr-2" id="catalyst-type-select">
+                                <option value="arc" selected>Arcane Catalyst</option>
+                                <option value="aut">Authentic Catalyst</option>
+                            </select>
+                            <p class="text-custom mb-0">You lose <span id="catalyst-percent-loss">20</span>% of your total's symbol EXP during transfer</p>
+                        </div>
+                        <% Object.keys(symbolData).forEach(symbolGroup => { %>
+                            <div class="catalyst-type <% if(symbolGroup === "arc") { %>d-flex<% } else { %>d-none<% } %> justify-content-center align-items-center" id="<%= symbolGroup %>-catalyst">
+                                <div class="col-5 col-sm-4 col-md-3 col-lg-4 col-xl-3 text-center">
+                                    <p class="font-subsubheader font-weight-bold mb-1">Start</p>
+                                    <div class="d-flex justify-content-center px-3">
+                                        <div class="col-6 col-sm-4 col-md-4 col-xl-3 px-0 mx-1">
+                                            <span>Level</span>
+                                            <select class="catalyst-start-level-select form-control text-center py-1 px-1" id="<%= symbolGroup %>-catalyst-start-symbol-level" data-symbol-group="<%= symbolGroup %>">
+                                                <% for(let i = 2; i <= symbolData[symbolGroup].maxLevel; i++) { %>
+                                                    <option value="<%= i %>" <% if(i === symbolData[symbolGroup].maxLevel) { %>selected<% } %>><%= i %></option>
+                                                <% } %>
+                                            </select>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-xl-3 px-0 mx-1">
+                                            <span>EXP</span>
+                                            <input type="number" id="<%= symbolGroup %>-catalyst-start-symbol-exp-raw" class="catalyst-start-exp form-control text-center px-2" value="0">
+                                        </div>
+                                    </div>
+                                    <small class="text-custom">(<span id="<%= symbolGroup %>-max-possible-symbols-before">0</span> symbols to max)</small>
+                                </div>
+                                <p class="font-mega mb-0">&raquo;</p>
+                                <div class="col-5 col-sm-4 col-md-3 col-lg-4 col-xl-3 text-center text-custom">
+                                    <p class="font-subsubheader font-weight-bold mb-1">End</p>
+                                    <div class="d-flex justify-content-center px-3">
+                                        <div class="col-6 col-sm-4 col-md-4 col-xl-3 px-0 mx-1">
+                                            <span>Level</span>
+                                            <input type="number" id="<%= symbolGroup %>-catalyst-end-symbol-level" class="catalyst-end-level form-control-plaintext text-custom text-center px-2" value="<% if(symbolGroup === "arc") { %>18<% } else { %>9<% } %>" readonly>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-xl-3 px-0 mx-1">
+                                            <span>EXP</span>
+                                            <input type="number" id="<%= symbolGroup %>-catalyst-end-symbol-exp-raw" class="catalyst-end-level-exp form-control-plaintext text-custom text-center px-2" value="<% if(symbolGroup === "arc") { %>172<% } else { %>183<% } %>" readonly>
+                                        </div>
+                                    </div>
+                                    <small class="text-custom">(<span id="<%= symbolGroup %>-max-possible-symbols-after"><% if(symbolGroup === "arc") { %>535<% } else { %>1,826<% } %></span> symbols to max)</small>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center py-1">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
                      <img src="<%= icons['symbol-default'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['symbol-default'].name %>"> EXP Overflow
                 </h2>
                 <p class="mb-0 pb-2">
@@ -170,44 +230,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-
-        <div class="pill-section rounded-sm mb-5">
-            <div class="pill-section-subheader text-center py-1">
-                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                     <img src="<%= icons['arcane-catalyst'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['arcane-catalyst'].name %>"> Arcane Symbol Catalyst
-                </h2>
-                <p class="mb-0 pb-2">
-                    Transfer your symbol to another character (lose 20% of total symbol EXP)
-                </p>
-            </div>
-            <div class="pill-section-content font-form d-flex flex-wrap justify-content-center py-3">
-                <div class="w-100 d-flex flex-wrap mb-0">
-                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start px-0 mb-4 mb-sm-0">
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label for="catalyst-start-symbol-level" class="col-6 font-weight-bold col-form-label text-right">Start Level</label>
-                            <input type="number" id="catalyst-start-symbol-level" class="form-control col-4 px-2" value="20">
-                        </div>
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label for="catalyst-start-symbol-exp-raw" class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
-                            <input type="number" id="catalyst-start-symbol-exp-raw" class="col-4 form-control px-2" value="0">
-                            <p class="font-small offset-6 text-custom mb-0">(<span id="max-possible-symbols-before">0</span> more symbols to max)</p>
-                        </div>
-                    </form>
-
-                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start text-custom px-0">
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label for="catalyst-end-symbol-level" class="col-6 font-weight-bold col-form-label text-right">End Level</label>
-                            <input type="number" id="catalyst-end-symbol-level" class="form-control-plaintext col-4 text-custom px-2" value="18" readonly>
-                        </div>
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label for="catalyst-end-symbol-exp-raw" class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
-                            <input type="text" id="catalyst-end-symbol-exp-raw" class="col-6 form-control-plaintext text-custom px-2" value="172 / 335" readonly>
-                            <p class="font-small offset-6 text-custom mb-0">(<span id="max-possible-symbols-after">535</span> more symbols to max)</p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        </div>        
     </div>
 </div>
