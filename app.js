@@ -16,7 +16,7 @@ var cron            = require("./cron");
 
 var User = require("./models/users");
 
-var port = process.env.PORT;
+var port = process.env.PORT || 8080;
 var databaseUrl = process.env.DATABASEURL;
 mongoose.connect(databaseUrl);
 

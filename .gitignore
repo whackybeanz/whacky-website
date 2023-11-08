@@ -4,6 +4,8 @@ seeds/
 views/template.ejs
 dev.js
 mlife.json
+.gcloudignore
+app.yaml
 
 # Logs
 logs
