@@ -28,9 +28,7 @@ const SYMBOL_EXP_TABLE = [
 
 const SYMBOL_COST_TABLE = [
     {
-        name: "Road to Extinction",
-        symbolGroup: "arc",
-        id: "rte",
+        name: "Road to Extinction", symbolGroup: "arc", id: "rte",
         values: [
             970000, 1230000, 1660000, 2260000, 3060000, 
             4040000, 5220000, 6600000, 8180000, 9990000, 
@@ -39,9 +37,7 @@ const SYMBOL_COST_TABLE = [
         ],
     },
     {
-        name: "Chew Chew Island",
-        symbolGroup: "arc",
-        id: "cci",
+        name: "Chew Chew Island", symbolGroup: "arc", id: "cci",
         values: [
             1210000, 1530000, 2060000, 2800000, 3780000, 
             4980000, 6420000, 8100000, 10020000, 12210000, 
@@ -50,9 +46,7 @@ const SYMBOL_COST_TABLE = [
         ],
     },
     {
-        name: "Lacheln",
-        symbolGroup: "arc",
-        id: "lacheln",
+        name: "Lacheln", symbolGroup: "arc", id: "lacheln",
         values: [
             1450000, 1830000, 2460000, 3340000, 4500000, 
             5920000, 7620000, 9600000, 11860000, 14430000, 
@@ -61,9 +55,7 @@ const SYMBOL_COST_TABLE = [
         ],
     },
     {
-        name: "Arcana",
-        symbolGroup: "arc",
-        id: "arcana",
+        name: "Arcana", symbolGroup: "arc", id: "arcana",
         values: [
             1690000, 2130000, 2860000, 3880000, 5220000, 
             6860000, 8820000, 11100000, 13700000, 16650000, 
@@ -72,9 +64,7 @@ const SYMBOL_COST_TABLE = [
         ],
     },
     {
-        name: "Moras",
-        symbolGroup: "arc",
-        id: "moras",
+        name: "Moras", symbolGroup: "arc", id: "moras",
         values: [
             1930000, 2430000, 3260000, 4420000, 5940000, 
             7800000, 10020000, 12600000, 15540000, 18870000, 
@@ -83,9 +73,7 @@ const SYMBOL_COST_TABLE = [
         ],
     },
     {
-        name: "Esfera",
-        symbolGroup: "arc",
-        id: "esfera",
+        name: "Esfera", symbolGroup: "arc", id: "esfera",
         values: [
             2170000, 2730000, 3660000, 4960000, 6660000, 
             8740000, 11220000, 14100000, 17380000, 21090000, 
@@ -94,30 +82,45 @@ const SYMBOL_COST_TABLE = [
         ],
     },
     {
-        name: "Cernium",
-        symbolGroup: "aut",
-        id: "cernium",
+        name: "Cernium", symbolGroup: "aut", id: "cernium",
         values: [
             36500000, 91200000, 160700000, 241900000, 331500000, 
             426200000, 522900000, 618200000, 709000000, 792000000
         ],
     },
     {
-        name: "Hotel Arcs",
-        symbolGroup: "aut",
-        id: "hotel-arcs",
+        name: "Hotel Arcs", symbolGroup: "aut", id: "hotel-arcs",
         values: [
             41700000, 104800000, 186100000, 282200000, 390000000, 
             506100000, 627400000, 750700000, 872600000, 990000000
         ],
     },
     {
-        name: "Odium",
-        symbolGroup: "aut",
-        id: "odium",
+        name: "Odium", symbolGroup: "aut", id: "odium",
         values: [
             46900000, 118500000, 211500000, 322500000, 448500000, 
             586000000, 732000000, 883200000, 1036200000, 1188000000
+        ],
+    },
+    {
+        name: "Shangri-La", symbolGroup: "aut", id: "dwk",
+        values: [
+            52200000, 132200000, 236800000, 362800000, 507000000, 
+            666000000, 836600000, 1015600000, 1199800000, 1386000000
+        ],
+    },
+    {
+        name: "Arteria", symbolGroup: "aut", id: "arteria",
+        values: [
+            57400000, 145900000, 262200000, 403200000, 565500000, 
+            745900000, 941200000, 1148100000, 1363500000, 1584000000
+        ],
+    },
+    {
+        name: "Carcion", symbolGroup: "aut", id: "carcion",
+        values: [
+            62600000, 159600000, 287600000, 443500000, 624000000, 
+            825800000, 1045800000, 1280600000, 1527100000, 1782000000
         ],
     }
 ]

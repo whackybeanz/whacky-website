@@ -38,7 +38,7 @@ router.get("/everything-exp", function(req, res) {
 })
 
 router.get("/everything-exp/monster-list/:charLevel", function(req, res) {
-    let CURR_MAX_MONSTER_LEVEL = 280;
+    let CURR_MAX_MONSTER_LEVEL = 290;
     let charLevel = parseInt(req.params.charLevel);
     let response = {};
 
@@ -99,19 +99,22 @@ router.get("/symbols", function(req, res) {
                 arc: {
                     name: "Arcane Force",
                     maxLevel: 20,
-                    list: [{ id: 'rte', name: "Road to Extinction", gainPerDay: 18, gainPerWeek: 45, notes: "(1 * 5 quests + 4 from daily completion) * 2 (Reverse City questline complete)" }, 
-                           { id: 'cci', name: "Chew Chew Island", gainPerDay: 16, gainPerWeek: 45, notes: "(1 * 3 quests + 5 from daily completion) * 2 (Yum Yum Island questline complete)" }, 
-                           { id: 'lacheln', name: "Lacheln", gainPerDay: 11, gainPerWeek: 45, notes: "2 * 3 quests + 5 from daily completion" }, 
-                           { id: 'arcana', name: "Arcana", gainPerDay: 9, gainPerWeek: 45, notes: "2 * 3 quests + 3 from daily completion" },
-                           { id: 'moras', name: "Moras", gainPerDay: 8, gainPerWeek: 45, notes: "2 * 3 quests + 2 from daily completion" }, 
-                           { id: 'esfera', name: "Esfera", gainPerDay: 8, gainPerWeek: 45, notes: "2 * 3 quests + 2 from daily completion" }],
+                    list: [{ id: 'rte', name: "Road to Extinction", gainPerDay: 20, gainPerWeek: 45 }, 
+                           { id: 'cci', name: "Chew Chew Island", gainPerDay: 20, gainPerWeek: 45 }, 
+                           { id: 'lacheln', name: "Lacheln", gainPerDay: 20, gainPerWeek: 45 }, 
+                           { id: 'arcana', name: "Arcana", gainPerDay: 20, gainPerWeek: 45 },
+                           { id: 'moras', name: "Moras", gainPerDay: 20, gainPerWeek: 45 }, 
+                           { id: 'esfera', name: "Esfera", gainPerDay: 20, gainPerWeek: 45 }],
                 },
                 aut: {
                     name: "Authentic Force",
                     maxLevel: 11,
-                    list: [{ id: 'cernium', name: "Cernium", gainPerDay: 15, notes: "Assumes Burning Cernium questline complete" }, 
+                    list: [{ id: 'cernium', name: "Cernium", gainPerDay: 20 }, 
                            { id: 'hotel-arcs', name: "Hotel Arcs", gainPerDay: 10 },
-                           { id: 'odium', name: "Odium", gainPerDay: 5 }],
+                           { id: 'odium', name: "Odium", gainPerDay: 10 },
+                           { id: 'dwk', name: "Shangri-La", gainPerDay: 10 },
+                           { id: 'arteria', name: "Arteria", gainPerDay: 10 },
+                           { id: 'carcion', name: "Carcion", gainPerDay: 10 }],
                 }
             }
             const compiledIcons = IconHelper.compileIcons(foundIcons);

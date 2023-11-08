@@ -657,9 +657,9 @@ body.dark-mode {
     }
 
     .single-symbol-div {
-        & > div {
+        /*& > div {
             border: 1px solid globals.$dark-mode-grey;
-        }
+        }*/
 
         .single-cost-breakdown {
             border-color: globals.$dark-mode-grey;

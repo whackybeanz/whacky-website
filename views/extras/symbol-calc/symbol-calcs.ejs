@@ -1,101 +1,119 @@
 <div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
-    <div class="w-100 d-flex flex-column justify-content-center px-3 py-3">
+    <div class="w-100 d-flex flex-column justify-content-center py-3">
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center pt-1 pb-2">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
                      <img src="<%= icons['symbol-default'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['symbol-default'].name %>"> Symbol Progress Tracker
                 </h2>
             </div>
-            <div class="pill-section-content font-form d-flex flex-wrap justify-content-center py-3 px-3">
+            <div class="pill-section-content font-form d-flex flex-wrap justify-content-center py-3">
                 <div class="text-center mb-3">
                     <p class="font-weight-bold mb-1">Select Symbol:</p>
-                    <% Object.keys(symbolData).forEach(symbolGroup => { %>
-                        <div class="d-flex flex-wrap justify-content-center">
-                            <% symbolData[symbolGroup].list.forEach(symbol => { %>
-                                <button class="single-symbol-btn btn d-flex justify-content-center align-items-start position-relative mx-1 <% if(symbol.id === 'rte') { %>active<% } %>" id="symbol-btn-<%= symbol.id %>" type="button" data-view-symbol="<%= symbol.id %>">
-                                    <img src="<%= icons[`symbol-${symbol.id}`].imgUrl %>" width="38" height="38" alt="<%= icons[`symbol-${symbol.id}`].name %>" class="single-symbol-img position-absolute">
-                                    <small class="single-symbol-level position-absolute text-custom font-weight-bold mb-0" id="<%= symbol.id %>-curr-level-display">Lv. 1</small>
-                                </button>
-                            <% }) %>
-                        </div>
-                    <% }) %>
+                    <div class="mb-3">
+                        <% Object.keys(symbolData).forEach(symbolGroup => { %>
+                            <div class="d-flex flex-wrap justify-content-center">
+                                <% symbolData[symbolGroup].list.forEach(symbol => { %>
+                                    <button class="single-symbol-btn btn d-flex justify-content-center align-items-start position-relative mx-0 mx-sm-1 <% if(symbol.id === 'rte') { %>active<% } %>" id="symbol-btn-<%= symbol.id %>" type="button" data-view-symbol="<%= symbol.id %>">
+                                        <img src="<%= icons[`symbol-${symbol.id}`].imgUrl %>" width="38" height="38" alt="<%= icons[`symbol-${symbol.id}`].name %>" class="single-symbol-img position-absolute">
+                                        <small class="single-symbol-level position-absolute text-custom font-weight-bold mb-0" id="<%= symbol.id %>-curr-level-display">Lv. 1</small>
+                                    </button>
+                                <% }) %>
+                            </div>
+                        <% }) %>
+                    </div>
                 </div>
 
-                <form class="w-100 d-flex flex-wrap justify-content-center align-items-center px-3">
+                <form class="w-100 d-flex flex-wrap justify-content-center align-items-center">
                     <% Object.keys(symbolData).forEach(symbolGroup => { %>
                         <% symbolData[symbolGroup].list.forEach(symbol => { %>
                             <div class="single-symbol-div col-12 col-md-10 col-lg-12 col-xl-9 px-1 <% if(symbol.id !== 'rte') { %>d-none<% } else { %>active<% } %>" id="symbol-<%= symbol.id %>-upgrade" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>">
                                 <div class="rounded-lg py-2">
-                                    <div class="d-flex justify-content-center align-items-center">
+                                    <div class="d-flex justify-content-center align-items-center mb-2">
                                         <img src="<%= icons[`symbol-${symbol.id}`].imgUrl %>" alt="<%= icons[`symbol-${symbol.id}`].name %>" class="mr-1" width="38" height="38" alt="<%= icons[`symbol-${symbol.id}`].name %>">
                                         <p class="font-weight-bold mb-0"><%= icons[`symbol-${symbol.id}`].name.split(": ")[1] %></p>
                                     </div>
-                                    <div class="font-form d-flex flex-wrap">
-                                        <div class="col-12 col-sm-6 d-flex flex-wrap align-items-center py-3 px-0">
-                                            <div class="form-group <% if(symbol.gainPerWeek) { %>col-6<% } else { %>col-12<% } %> d-flex flex-column align-items-center text-center mb-2">
-                                                <label for="<%= symbol.id %>-end-level" class="col-form-label">
-                                                    Gain per day 
-                                                    <% if(symbol.notes) { %>
-                                                        <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="<%= symbol.notes %>">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-                                                            </svg>
-                                                        </div>
-                                                    <% } %>
-                                                </label>
-                                                <input type="number" class="form-control <% if(!symbol.gainPerWeek) { %>col-6<% } %> text-center" id="<%= symbol.id %>-gain-per-day" value="<%= symbol.gainPerDay %>">
+                                    <div class="d-sm-flex">
+                                        <div class="col-12 col-sm-7 col-md-6 px-0">
+                                            <div class="col-12 d-flex justify-content-center align-items-center mb-2 px-0">
+                                                <div class="col-3 text-right font-weight-bold px-1">Daily</div>
+                                                <div class="col-9 d-flex align-items-center">
+                                                    <select class="col-3 form-control text-center py-1 px-1 mr-2" id="<%= symbol.id %>-gain-per-day">
+                                                        <option value="0">0</option>
+                                                        <option value="<%= symbol.gainPerDay %>" selected><%= symbol.gainPerDay %></option>
+                                                    </select>
+                                                    <span>symbols</span>
+                                                </div>
                                             </div>
                                             <% if(symbol.gainPerWeek) { %>
-                                                <div class="form-group col-6 d-flex flex-column align-items-center text-center mb-2">
-                                                    <label for="<%= symbol.id %>-end-level" class="col-form-label">
-                                                        Gain per week 
-                                                        <div class="d-inline ml-1" data-toggle="tooltip" data-placement="bottom" title="45 per week, assumed to be obtained on Mondays">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-                                                            </svg>
-                                                        </div>
-                                                    </label>
-                                                    <input type="number" class="form-control text-center" id="<%= symbol.id %>-gain-per-week" value="<%= symbol.gainPerWeek %>">
+                                                <div class="col-12 d-flex justify-content-center align-items-center mb-2 px-0">
+                                                    <div class="col-3 text-right font-weight-bold px-1">
+                                                        Weekly
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="bottom" title="Weekly symbols are assumed to be obtained on Mondays">
+                                                          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                                        </svg>
+                                                    </div>
+
+                                                    <div class="col-9 d-flex align-items-center">
+                                                        <select class="col-3 form-control text-center py-1 px-1 mr-2" id="<%= symbol.id %>-gain-per-week">
+                                                            <option value="0">0</option>
+                                                            <option value="15">15</option>
+                                                            <option value="30">30</option>
+                                                            <option value="45" selected>45</option>
+                                                        </select>
+                                                        <span>symbols</span>
+                                                    </div>
                                                 </div>
                                             <% } %>
-                                            <div class="form-group col-6 text-center mb-2">
-                                                <label for="<%= symbol.id %>-curr-level" class="col-form-label">Current Level</label>
-                                                <input type="number" class="form-control text-center" id="<%= symbol.id %>-curr-level" value="1">
+                                            <div class="w-100 d-flex justify-content-center align-items-center mb-2">
+                                                <div class="col-3 text-right font-weight-bold px-1">Current</div>
+                                                <div class="col-9 d-flex align-items-center">
+                                                    <label for="<%= symbol.id %>-curr-level" class="text-center mb-0 mr-2">Level</label>
+                                                    <select class="col-3 form-control text-center py-1 px-1" id="<%= symbol.id %>-curr-level">
+                                                        <% for(let i = 1; i < symbolData[symbolGroup].maxLevel; i++) { %>
+                                                            <option value="<%= i %>" <% if(i === 1) { %>selected<% } %>><%= i %></option>
+                                                        <% } %>
+                                                    </select>
+                                                    <span class="mx-2">/</span>
+                                                    <input type="number" class="col-3 form-control text-center px-1" id="<%= symbol.id %>-curr-symbol-count" value="0">
+                                                    <label for="<%= symbol.id %>-curr-symbol-count" class="col-form-label ml-2">EXP</label>
+                                                </div>
                                             </div>
-                                            <div class="form-group col-6 text-center mb-2">
-                                                <label for="<%= symbol.id %>-curr-symbol-count" class="col-form-label">Symbol Count</label>
-                                                <input type="number" class="form-control text-center" id="<%= symbol.id %>-curr-symbol-count" value="0">
+                                            <div class="w-100 d-flex justify-content-center align-items-center mb-4 mb-sm-2">
+                                                <div class="col-3 text-right font-weight-bold px-1">Target</div>
+                                                <div class="col-9 d-flex align-items-center">
+                                                    <label for="<%= symbol.id %>-end-level" class="text-center mb-0 mr-2">Level</label>
+                                                    <select class="col-3 form-control text-center py-1 px-1" id="<%= symbol.id %>-end-level">
+                                                        <% for(let i = 1; i <= symbolData[symbolGroup].maxLevel; i++) { %>
+                                                            <option value="<%= i %>" <% if(i === symbolData[symbolGroup].maxLevel) { %>selected<% } %>><%= i %></option>
+                                                        <% } %>
+                                                    </select>
+                                                    <span class="mx-2">/</span>
+                                                    <input type="number" class="col-3 form-control text-center px-1" id="<%= symbol.id %>-end-symbol-count" value="0">
+                                                    <label for="<%= symbol.id %>-end-symbol-count" class="col-form-label ml-2">EXP</label>
+                                                </div>
                                             </div>
-                                            <div class="form-group col-6 text-center mb-2">
-                                                <label for="<%= symbol.id %>-end-level" class="col-form-label">Target Level</label>
-                                                <input type="number" class="form-control text-center" id="<%= symbol.id %>-end-level" value="<%= symbolData[symbolGroup].maxLevel %>">
-                                            </div>
-                                            <div class="form-group col-6 text-center mb-2">
-                                                <label for="<%= symbol.id %>-end-symbol-count" class="col-form-label">Symbol Count</label>
-                                                <input type="number" class="form-control text-center" id="<%= symbol.id %>-end-symbol-count" value="0">
-                                            </div>
-                                        </div>
-                                        <div class="single-cost-breakdown col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center text-center px-2 mt-3">
-                                            <p>
-                                                <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-symbols-req">0</span> symbols to go
-                                            </p>
-                                            <p>
-                                                <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-meso-req">0</span> mesos<br/>
-                                                <!--<% if(symbolGroup === "arc") { %>
-                                                    ( <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-new-meso-req">0</span> mesos after DESTINY )<br/>
-                                                <% } %>-->
-                                            </p>
-                                            <p>
-                                                <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-days-req">0</span> days needed<br/>
-                                                ( Complete on <span class="text-custom font-weight-bold" id="<%= symbol.id %>-date-complete"></span> )
-                                            </p>
-                                            <div class="mb-3 mb-sm-0 mt-3">
-                                                <button type="button" class="reset-fields-btn btn btn-outline-custom mx-2" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>">
+                                            <!--<div class="col-12 d-flex justify-content-center justify-content-sm-start mb-4 mb-sm-0">
+                                                <button type="button" class="reset-fields-btn btn btn-outline-custom" data-symbol-group="<%= symbolGroup %>" data-symbol-id="<%= symbol.id %>">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                                                       <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
                                                       <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
                                                     </svg>&nbsp;Reset Fields
                                                 </button>
+                                            </div>-->
+                                        </div>
+
+                                        <div class="single-cost-breakdown col-12 col-sm-5 col-md-6 d-flex align-items-center font-form">
+                                            <div class="col-12 d-flex flex-column align-items-center px-2">
+                                                <p class="col-12 text-center text-sm-left">
+                                                    <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-symbols-req">0</span> symbols to go
+                                                </p>
+                                                <p class="col-12 text-center text-sm-left">
+                                                    <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-meso-req">0</span> mesos needed
+                                                </p>
+                                                <p class="col-12 text-center text-sm-left">
+                                                    <span class="text-custom font-weight-bold" id="<%= symbol.id %>-total-days-req">0</span> days needed<br/>
+                                                    (Complete on <span class="text-custom font-weight-bold" id="<%= symbol.id %>-date-complete"></span>)
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -104,6 +122,66 @@
                         <% }) %>
                     <% }) %>
                 </form>
+            </div>
+        </div>
+
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center py-1">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                     <img src="<%= icons['arcane-catalyst'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['arcane-catalyst'].name %>"> 
+                     <img src="<%= icons['authentic-catalyst'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['authentic-catalyst'].name %>">
+                     Symbol Catalyst Calculator
+                </h2>
+            </div>
+            <div class="pill-section-content font-form d-flex flex-wrap justify-content-center py-3">
+                <div class="w-100 d-flex flex-wrap mb-0">
+                    <form class="w-100 text-center">
+                        <div class="d-flex flex-column justify-content-center align-items-center mb-4">
+                            <select class="col-6 col-sm-5 col-md-4 col-xl-3 form-control text-center py-1 px-1 mr-2" id="catalyst-type-select">
+                                <option value="arc" selected>Arcane Catalyst</option>
+                                <option value="aut">Authentic Catalyst</option>
+                            </select>
+                            <p class="text-custom mb-0">You lose <span id="catalyst-percent-loss">20</span>% of your total's symbol EXP during transfer</p>
+                        </div>
+                        <% Object.keys(symbolData).forEach(symbolGroup => { %>
+                            <div class="catalyst-type <% if(symbolGroup === "arc") { %>d-flex<% } else { %>d-none<% } %> justify-content-center align-items-center" id="<%= symbolGroup %>-catalyst">
+                                <div class="col-5 col-sm-4 col-md-3 col-lg-4 col-xl-3 text-center">
+                                    <p class="font-subsubheader font-weight-bold mb-1">Start</p>
+                                    <div class="d-flex justify-content-center px-3">
+                                        <div class="col-6 col-sm-4 col-md-4 col-xl-3 px-0 mx-1">
+                                            <span>Level</span>
+                                            <select class="catalyst-start-level-select form-control text-center py-1 px-1" id="<%= symbolGroup %>-catalyst-start-symbol-level" data-symbol-group="<%= symbolGroup %>">
+                                                <% for(let i = 2; i <= symbolData[symbolGroup].maxLevel; i++) { %>
+                                                    <option value="<%= i %>" <% if(i === symbolData[symbolGroup].maxLevel) { %>selected<% } %>><%= i %></option>
+                                                <% } %>
+                                            </select>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-xl-3 px-0 mx-1">
+                                            <span>EXP</span>
+                                            <input type="number" id="<%= symbolGroup %>-catalyst-start-symbol-exp-raw" class="catalyst-start-exp form-control text-center px-2" value="0">
+                                        </div>
+                                    </div>
+                                    <small class="text-custom">(<span id="<%= symbolGroup %>-max-possible-symbols-before">0</span> symbols to max)</small>
+                                </div>
+                                <p class="font-mega mb-0">&raquo;</p>
+                                <div class="col-5 col-sm-4 col-md-3 col-lg-4 col-xl-3 text-center text-custom">
+                                    <p class="font-subsubheader font-weight-bold mb-1">End</p>
+                                    <div class="d-flex justify-content-center px-3">
+                                        <div class="col-6 col-sm-4 col-md-4 col-xl-3 px-0 mx-1">
+                                            <span>Level</span>
+                                            <input type="number" id="<%= symbolGroup %>-catalyst-end-symbol-level" class="catalyst-end-level form-control-plaintext text-custom text-center px-2" value="<% if(symbolGroup === "arc") { %>18<% } else { %>9<% } %>" readonly>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-4 col-xl-3 px-0 mx-1">
+                                            <span>EXP</span>
+                                            <input type="number" id="<%= symbolGroup %>-catalyst-end-symbol-exp-raw" class="catalyst-end-level-exp form-control-plaintext text-custom text-center px-2" value="<% if(symbolGroup === "arc") { %>172<% } else { %>183<% } %>" readonly>
+                                        </div>
+                                    </div>
+                                    <small class="text-custom">(<span id="<%= symbolGroup %>-max-possible-symbols-after"><% if(symbolGroup === "arc") { %>535<% } else { %>1,826<% } %></span> symbols to max)</small>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -152,44 +230,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-
-        <div class="pill-section rounded-sm mb-5">
-            <div class="pill-section-subheader text-center py-1">
-                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                     <img src="<%= icons['arcane-catalyst'].imgUrl %>" class="mr-2" width="35" height="35" alt="<%= icons['arcane-catalyst'].name %>"> Arcane Symbol Catalyst
-                </h2>
-                <p class="mb-0 pb-2">
-                    Transfer your symbol to another character (lose 20% of total symbol EXP)
-                </p>
-            </div>
-            <div class="pill-section-content font-form d-flex flex-wrap justify-content-center py-3">
-                <div class="w-100 d-flex flex-wrap mb-0">
-                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start px-0 mb-4 mb-sm-0">
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label for="catalyst-start-symbol-level" class="col-6 font-weight-bold col-form-label text-right">Start Level</label>
-                            <input type="number" id="catalyst-start-symbol-level" class="form-control col-4 px-2" value="20">
-                        </div>
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label for="catalyst-start-symbol-exp-raw" class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
-                            <input type="number" id="catalyst-start-symbol-exp-raw" class="col-4 form-control px-2" value="0">
-                            <p class="font-small offset-6 text-custom mb-0">(<span id="max-possible-symbols-before">0</span> more symbols to max)</p>
-                        </div>
-                    </form>
-
-                    <form class="col-12 col-sm-6 w-100 d-flex flex-column justify-content-center align-items-start text-custom px-0">
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label for="catalyst-end-symbol-level" class="col-6 font-weight-bold col-form-label text-right">End Level</label>
-                            <input type="number" id="catalyst-end-symbol-level" class="form-control-plaintext col-4 text-custom px-2" value="18" readonly>
-                        </div>
-                        <div class="form-group row w-100 d-flex mb-2">
-                            <label for="catalyst-end-symbol-exp-raw" class="col-6 font-weight-bold col-form-label text-right">EXP (Value)</label>
-                            <input type="text" id="catalyst-end-symbol-exp-raw" class="col-6 form-control-plaintext text-custom px-2" value="172 / 335" readonly>
-                            <p class="font-small offset-6 text-custom mb-0">(<span id="max-possible-symbols-after">535</span> more symbols to max)</p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        </div>        
     </div>
 </div>
