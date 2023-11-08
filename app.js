@@ -50,6 +50,7 @@ app.use(function(req, res, next) {
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     res.locals.url = req.originalUrl;
+    res.locals.host = req.get('host');
     next();
 })
 
