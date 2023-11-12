@@ -3,12 +3,171 @@
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center py-1">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                    <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment" class="mr-2"> Progress Calculator
+                    <img src="/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment" class="mr-2"> Progress Calculator
                 </h2>
             </div>
             <div class="pill-section-content table-responsive font-form d-flex flex-column align-items-center py-3">
-                <div class="col-12 px-2">
+                <div class="col-12 d-flex flex-wrap justify-content-xl-center px-2">
+                    <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="holding">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">1) Current Holding Quantity</p>
+                            <p class="font-small text-custom mb-2 px-3">Enter how many of each material you have currently.</p>
+                        </div>
+                        <form class="col-12 col-sm-8 col-xl-7 px-1">
+                            <div class="col-12">
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <input type="number" id="num-held-sol-erda" class="form-control col-3 px-2 text-center mr-2" placeholder="Qty">
+                                    <p class="col-6 col-sm-6 mb-0 d-inline px-0">
+                                        <img src="/images/items/use/sol-erda.png" alt="Sol Erda"> Sol Erda
+                                    </p>
+                                </div>
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <input type="number" id="num-held-energy" class="form-control col-3 px-2 text-center mr-2" placeholder="Qty">
+                                    <p class="col-6 col-sm-6 mb-0 d-inline px-0">
+                                        <img src="/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Sol Erda Energy
+                                    </p>
+                                </div>
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <input type="number" id="num-held-frags" class="form-control col-3 px-2 text-center mr-2" placeholder="Qty">
+                                    <p class="col-6 col-sm-6 mb-0 d-inline px-0">
+                                        <img src="/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment"> Fragments
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="current">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">2) Current Skill Levels</p>
+                            <p class="font-small text-custom mb-2 px-3">Select your current HEXA skill levels (defaults to 0 / not unlocked yet).</p>
+                        </div>
+                        <form class="col-12 col-sm-8 col-xl-7 px-3">
+                            <div class="px-1" id="hexa-matrix-form">
+                                <div></div>
+                                <div class="text-center font-weight-bold">Origin</div>
+                                <div class="text-center font-weight-bold">Enhance</div>
+                                <div class="text-center font-weight-bold">Mastery</div>
+
+                                <% for(let i = 1; i <= 4; i++) { %>
+                                    <div class="font-weight-bold">Slot <%= i %></div>
+                                    
+                                    <% if(i === 1) { %>
+                                        <% for(let j = 0; j < 3; j++) { %>
+                                            <select class="form-control text-center px-2">
+                                                <option value="-1">N/A</option>
+                                                <% for(let k = 0; k <= 29; k++) { %>
+                                                    <option value="<%= k %>" <% if(k === 0) { %>selected<% } %>><%= k %></option>
+                                                <% } %>
+                                            </select>
+                                        <% } %>
+                                    <% } else if(i <= 4) { %>
+                                        <div></div>
+                                        <select class="form-control text-center px-2">
+                                            <option value="-1">N/A</option>
+                                            <% for(let k = 0; k <= 29; k++) { %>
+                                                <option value="<%= k %>" <% if(k === 0) { %>selected<% } %>><%= k %></option>
+                                            <% } %>
+                                        </select>
+                                        <div></div>
+                                    <% } else { %>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="target">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">3) Target Skill Levels</p>
+                            <p class="font-small text-custom mb-2 px-3">Select your target skill levels (defaults to 30).</p>
+                        </div>
+                        <form class="col-12 col-sm-8 col-xl-7 px-3">
+                            <div class="px-1" id="hexa-matrix-form">
+                                <div></div>
+                                <div class="text-center font-weight-bold">Origin</div>
+                                <div class="text-center font-weight-bold">Enhance</div>
+                                <div class="text-center font-weight-bold">Mastery</div>
+
+                                <% for(let i = 1; i <= 4; i++) { %>
+                                    <div class="font-weight-bold">Slot <%= i %></div>
+                                    
+                                    <% if(i === 1) { %>
+                                        <% for(let j = 0; j < 3; j++) { %>
+                                            <select class="form-control text-center px-2">
+                                                <% for(let k = 1; k <= 30; k++) { %>
+                                                    <option value="<%= k %>" <% if(k === 30) { %>selected<% } %>><%= k %></option>
+                                                <% } %>
+                                            </select>
+                                        <% } %>
+                                    <% } else if(i <= 4) { %>
+                                        <div></div>
+                                        <select class="form-control text-center px-2">
+                                            <% for(let k = 1; k <= 30; k++) { %>
+                                                <option value="<%= k %>" <% if(k === 30) { %>selected<% } %>><%= k %></option>
+                                            <% } %>
+                                        </select>
+                                        <div></div>
+                                    <% } else { %>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="dailies">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">4) Dailies</p>
+                            <p class="font-small text-custom mb-2 px-3">Enter your daily gain. 1 Sol Erda = 1,000 Sol Erda Energy.</p>
+                        </div>
+                        <form class="col-12 col-sm-8 col-xl-7 px-1">
+                            <div class="col-12">
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <input type="number" id="num-daily-energy" class="form-control col-3 px-2 text-center mr-2" placeholder="Qty" value="600">
+                                    <p class="col-6 col-sm-6 mb-0 d-inline px-0">
+                                        <img src="/images/items/use/sol-erda-energy-10.png" alt="Sol Erda"> Sol Erda Energy
+                                    </p>
+                                </div>
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <input type="number" id="num-daily-frags" class="form-control col-3 px-2 text-center mr-2" placeholder="Qty" value="12">
+                                    <p class="col-6 col-sm-6 mb-0 d-inline px-0">
+                                        <img src="/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment"> Fragments
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="bossing">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">5) Bosses</p>
+                            <p class="font-small text-custom mb-2 px-3">Select any bosses you do. Assumed to be done on Thursdays (for weekly bosses) / first day of the month (for Black Mage).</p>
+                        </div>
+                        <div class="col-12 col-sm-8 col-xl-7 d-flex justify-content-center justify-content-sm-start align-items-start flex-wrap">
+                            <div class="d-flex flex-wrap justify-content-center justify-content-sm-start">
+                                <% bosses.forEach(boss => { %>
+                                    <div class="p-1">
+                                        <div class="single-boss-btn position-relative cursor-pointer rounded-lg">
+                                            <img src="<%= boss.imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="<%= boss.bossName %> (<%= `${boss.difficulty.charAt(0).toUpperCase()}${boss.difficulty.slice(1)}` %>)"> 
+                                            <div class="boss-difficulty position-absolute text-center"><%= `${boss.difficulty.charAt(0).toUpperCase()}${boss.difficulty.slice(1)}` %></div>
+                                        </div>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <button type="button" class="table-cols-125 btn btn-outline-custom d-flex align-items-center text-center justify-content-center" id="btn-calc-result">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                    </svg>&nbsp;(Re)Calculate
+                </button>
             </div>
         </div>
     </div>

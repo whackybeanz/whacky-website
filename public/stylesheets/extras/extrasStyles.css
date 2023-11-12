@@ -242,6 +242,38 @@
   }
 }
 
+#hexa-matrix-form {
+  display: grid;
+  grid-template-columns: 40px repeat(3, 1fr);
+  column-gap: 0.5rem;
+  grid-template-rows: 2rem repeat(4, 40px);
+  align-items: center;
+}
+@media (min-width: 576px) {
+  #hexa-matrix-form {
+    grid-template-columns: 50px repeat(3, 75px);
+    grid-template-rows: 1rem repeat(4, 40px);
+  }
+}
+
+.single-boss-btn {
+  filter: grayscale(1);
+  opacity: 0.3;
+  transition: 0.2s;
+}
+.single-boss-btn:hover, .single-boss-btn.active {
+  filter: grayscale(0);
+  opacity: 1;
+  transition: 0.2s;
+}
+.single-boss-btn.active {
+  font-weight: bold;
+}
+.single-boss-btn .boss-difficulty {
+  width: 66px;
+  bottom: 5px;
+}
+
 #bookmarked-monsters {
   max-height: 200px;
   overflow: auto;

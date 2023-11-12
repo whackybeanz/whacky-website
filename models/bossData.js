@@ -8,6 +8,7 @@ var bossSchema = new mongoose.Schema({
     subRank: Number, // Number of stars
     difficulty: String,
     crystalValue: Number,
+    solErdaEnergy: Number,
 })
 
 module.exports = mongoose.model("Boss", bossSchema);

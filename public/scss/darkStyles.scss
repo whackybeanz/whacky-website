@@ -665,4 +665,17 @@ body.dark-mode {
             border-color: globals.$dark-mode-grey;
         }
     }
+
+    // 6th Job
+    .single-boss-btn {
+        .boss-difficulty {
+            background: linear-gradient(90deg, globals.$dark-mode-black-opaque 0%, globals.$dark-mode-navy-grey 25%, globals.$dark-mode-navy-grey 75%, globals.$dark-mode-black-opaque 100%);
+        }
+    }
+
+    #hexa-skill-level-table {
+        .text-custom {
+            color: globals.$highlight-orange !important;
+        }
+    }
 }
