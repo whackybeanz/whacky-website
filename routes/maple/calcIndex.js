@@ -97,7 +97,7 @@ router.get("/6th-job", function(req, res) {
 
     const tables = HexaHelper.getTables();
     
-    Boss.find({ solErdaEnergy: { $exists: true } }).sort({ mainRank: 1, subRank: 1, crystalValue: 1, solErdaEnergy: 1, bossName: 1 })
+    Boss.find({ solErdaEnergy: { $exists: true } }).sort({ mainRank: 1, subRank: 1, solErdaEnergy: 1, crystalValue: 1, bossName: 1 })
         .then(bosses => {
             res.render("extras/6th-job/6th-job-landing", { tables: tables, bosses: bosses });
         })

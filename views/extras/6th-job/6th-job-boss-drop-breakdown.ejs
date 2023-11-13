@@ -1,0 +1,33 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="w-100 d-flex flex-column justify-content-center py-3">
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center py-1">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="/images/items/use/sol-erda-energy-200.png" alt="Sol Erda Energy" class="mr-2"> Bossing Sol Erda Rewards
+                </h2>
+            </div>
+            <div class="pill-section-content table-responsive font-form d-flex flex-column align-items-center py-3">
+                <div class="col-12 px-2">
+                    <div class="table-responsive d-flex justify-content-center">
+                        <table class='font-table size-350 table table-sm table-bordered table-hover' id="hexa-skill-level-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Boss</th>
+                                    <th scope="col" class="text-center">Sol Erda Energy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% bosses.forEach(boss => { %>
+                                    <tr>
+                                        <td><%= boss.bossName %> (<%= `${boss.difficulty.charAt(0).toUpperCase()}${boss.difficulty.slice(1)}` %>)</td>
+                                        <td class="text-center"><%= boss.solErdaEnergy %></td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
