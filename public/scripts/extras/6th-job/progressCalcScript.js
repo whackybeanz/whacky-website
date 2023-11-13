@@ -18,23 +18,24 @@ function calcBtnListener() {
     const calcBtn = document.getElementById("btn-calc-result");
 
     calcBtn.addEventListener("click", function() {
-        let [currHolding, currProgress, targetGoal, gainFromDailies, gainFromBosses] = compileData();
+        let [currHolding, currProgress, targetGoal, gainFromDailies, gainFromBosses, gainFromCashShop] = compileData();
         let materialsRequired = getMaterialsRequired(currProgress, targetGoal);
         let milestones = { origin: [], enhance: [], mastery: [], overall: {} };
 
         ["origin", "enhance", "mastery"].forEach(skillType => {
             materialsRequired[skillType].nextLevel.forEach(skillMaterialsRequired => {
-                milestones[skillType].push(getMilestone(currHolding, gainFromDailies, gainFromBosses, skillMaterialsRequired));
+                milestones[skillType].push(getMilestone(currHolding, gainFromDailies, gainFromBosses, gainFromCashShop, skillMaterialsRequired));
             })
         })
 
-        milestones.overall = getMilestone(currHolding, gainFromDailies, gainFromBosses, materialsRequired.grandTotal)
+        milestones.overall = getMilestone(currHolding, gainFromDailies, gainFromBosses, gainFromCashShop, materialsRequired.grandTotal)
 
-        displaySummary(gainFromDailies, gainFromBosses, milestones, materialsRequired);
+        displaySummary(gainFromDailies, gainFromBosses, gainFromCashShop, milestones, materialsRequired);
     })
 }
 
 // Compiles all input fields
+// All Sol Erda is converted to Sol Erda Energy equivalent (i.e. *1000 of indicated quantity)
 function compileData() {
     let currHolding = { 
         numSolErdaEnergy: (parseInt(document.getElementById("num-held-sol-erda").value) || 0) * 1000 + (parseInt(document.getElementById("num-held-energy").value) || 0), 
@@ -54,6 +55,8 @@ function compileData() {
         gainFromBosses[`${boss.dataset.clearType}Total`] += (parseInt(boss.dataset.energyValue) || 0);
     })
 
+    let gainFromCashShop = (parseInt(document.getElementById("monthly-cash-shop-sol-erda").value) || 0) * 1000;
+
     let currMatrix = { origin: [], enhance: [], mastery: [] };
     let currLevelSelects = document.querySelectorAll(".curr-level-select");
 
@@ -68,7 +71,7 @@ function compileData() {
         targetMatrix[select.dataset.skillType].push(parseInt(select.value) || -1);
     })
 
-    return [currHolding, currMatrix, targetMatrix, gainFromDailies, gainFromBosses];
+    return [currHolding, currMatrix, targetMatrix, gainFromDailies, gainFromBosses, gainFromCashShop];
 }
 
 // Returns the quantity of sol erda energy + fragments required based on current level and target level for each skill
@@ -116,7 +119,7 @@ function getMaterialsRequired(currProgress, targetGoal) {
 
 // Calculates the number of days required to achieve all targets
 // Returns an object containing two milestones that contain 1) material that reached required quantity first/second, 2) number of days required, 3) date (string) that milestone was achieved
-function getMilestone(currHolding, gainFromDailies, gainFromBosses, materialsRequired) {
+function getMilestone(currHolding, gainFromDailies, gainFromBosses, gainFromCashShop, materialsRequired) {
     let currDateMs = Date.now();
     let finalDateMs = Date.now();
     let [currSolErdaEnergy, currFrags] = [currHolding.numSolErdaEnergy, currHolding.numFrags];
@@ -158,6 +161,10 @@ function getMilestone(currHolding, gainFromDailies, gainFromBosses, materialsReq
         // Add monthly/weekly boss Sol Erda Energy quantity if that is the case
         if(currDate.getDate() === 1) {
             currSolErdaEnergy += gainFromBosses.monthlyTotal;
+
+            if(gainFromCashShop !== 0) {
+                currSolErdaEnergy += gainFromCashShop;
+            }
         }
 
         if(currDate.getDay() === 4) {
@@ -188,10 +195,16 @@ function getMilestone(currHolding, gainFromDailies, gainFromBosses, materialsReq
     return milestones;
 }
 
-function displaySummary(gainFromDailies, gainFromBosses, milestones, materialsRequired) {
+function displaySummary(gainFromDailies, gainFromBosses, gainFromCashShop, milestones, materialsRequired) {
     // Erase and rebuild output for overview summary
     let overviewSummary = document.getElementById("overview-summary");
     overviewSummary.textContent = "";
+
+    // If calculation reached a maximum cycle (3000 days), display error message
+    if(milestones.overall.first.numDays >= 3000) {
+        overviewSummary.insertAdjacentHTML('beforeend', `<p class="text-custom mb-2">Calculator reached max-allowed threshold; invalid results expected</p>`)
+    }
+
     overviewSummary.insertAdjacentHTML('beforeend', `<ul class="pl-3 mb-0">
         <li>You require a grand total of <span class="text-custom font-weight-bold">${(materialsRequired.grandTotal.solErdaEnergy / 1000).toLocaleString("en-SG")}</span> Sol Erda and <span class="text-custom font-weight-bold">${materialsRequired.grandTotal.frags.toLocaleString("en-SG")}</span> Fragments to achieve all targets.</li>
         <li>You need <span class="text-custom font-weight-bold">${milestones.overall.first.numDays.toLocaleString("en-SG")}</span> days to get enough ${milestones.overall.first.material === "solErdaEnergy" ? "Sol Erda" : "Fragments"}.</li>
@@ -204,17 +217,10 @@ function displaySummary(gainFromDailies, gainFromBosses, milestones, materialsRe
     ["origin", "enhance", "mastery"].forEach(skillType => {
         milestones[skillType].forEach((skill, index) => {
             let elem = document.getElementById(`summary-${skillType}-slot-${index+1}`);
-            console.log(skillType, index)
-
-            console.log(materialsRequired[skillType].nextLevel[index]);
             elem.textContent = `${milestones[skillType][index].second.reachedOn.slice(0, -4)}`;
-
-            //if(milestones[skillType][index])
-            //elem.textContent = ;
         })
     })
     
-
     // Update daily gains
     document.getElementById("summary-daily-energy").textContent = gainFromDailies.numSolErdaEnergy.toLocaleString("en-SG");
     document.getElementById("summary-daily-frags").textContent = gainFromDailies.numFrags.toLocaleString("en-SG");
@@ -224,15 +230,25 @@ function displaySummary(gainFromDailies, gainFromBosses, milestones, materialsRe
     bossesSummary.textContent = "";
 
     if(gainFromBosses.weeklyTotal === 0 && gainFromBosses.monthlyTotal === 0) {
-        bossesSummary.insertAdjacentHTML('beforeend', `<p class="mb-0">No bosses selected</p>`);
+        bossesSummary.insertAdjacentHTML('beforeend', `<p class="text-center mb-0">No bosses selected</p>`);
     } else {
         if(gainFromBosses.weeklyTotal !== 0) {
-            bossesSummary.insertAdjacentHTML('beforeend', `<p class="mb-1"><span class="text-custom font-weight-bold">${gainFromBosses.weeklyTotal.toLocaleString("en-SG")}</span> <img src="/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Sol Erda Energy (Weekly)</p>`);
+            bossesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-1 px-0"><span class="text-custom font-weight-bold">${gainFromBosses.weeklyTotal.toLocaleString("en-SG")}</span> <img src="/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Energy (Weekly)</p>`);
         }
 
         if(gainFromBosses.monthlyTotal !== 0) {
-            bossesSummary.insertAdjacentHTML('beforeend', `<p class="mb-0"><span class="text-custom font-weight-bold">${gainFromBosses.monthlyTotal.toLocaleString("en-SG")}</span> <img src="/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Sol Erda Energy (Monthly)</p>`);
+            bossesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-0 px-0"><span class="text-custom font-weight-bold">${gainFromBosses.monthlyTotal.toLocaleString("en-SG")}</span> <img src="/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Energy (Monthly)</p>`);
         }
+    }
+
+    // Update Cash Shop gains
+    let cashShopSummary = document.getElementById("cash-shop-summary");
+    cashShopSummary.textContent = "";
+
+    if(gainFromCashShop > 0) {
+        cashShopSummary.insertAdjacentHTML('beforeend', `<p class="text-center mb-0"><span class="text-custom font-weight-bold">${gainFromCashShop / 1000}</span> <img src="/images/items/use/sol-erda.png" alt="Sol Erda"> Sol Erda (monthly)</p>`);
+    } else {
+        cashShopSummary.insertAdjacentHTML('beforeend', `<p class="text-center mb-0">No purchases</p>`);
     }
 
     // Display div
