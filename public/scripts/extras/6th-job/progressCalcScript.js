@@ -20,6 +20,7 @@ function calcBtnListener() {
     calcBtn.addEventListener("click", function() {
         let [currHolding, currProgress, targetGoal, gainFromDailies, gainFromBosses] = compileData();
         let materialsRequired = getMaterialsRequired(currProgress, targetGoal);
+        let timeRequired = getTimeRequired(currHolding, gainFromDailies, gainFromBosses, materialsRequired);
     })
 }
 
@@ -82,10 +83,12 @@ function getMaterialsRequired(currProgress, targetGoal) {
             let solErdaEnergyReq = 0;
             let fragReq = 0;
 
-            for(let i = currSkillLevel; i < targetSkillLevel; i++) {
-                solErdaEnergyReq += parseInt(allTableElems[skillType].solErdaEnergyElems[i].dataset.qty);
-                fragReq += parseInt(allTableElems[skillType].fragElems[i].dataset.qty);
-            }
+            if(currSkillLevel < targetSkillLevel) {
+                for(let i = currSkillLevel; i < targetSkillLevel; i++) {
+                    solErdaEnergyReq += parseInt(allTableElems[skillType].solErdaEnergyElems[i].dataset.qty) * 1000;
+                    fragReq += parseInt(allTableElems[skillType].fragElems[i].dataset.qty);
+                }    
+            }            
 
             materialsRequired.solErdaEnergy[skillType].push(solErdaEnergyReq);
             materialsRequired.solErdaEnergy.grandTotal += solErdaEnergyReq;
@@ -95,4 +98,70 @@ function getMaterialsRequired(currProgress, targetGoal) {
     })
 
     return materialsRequired;
+}
+
+// Calculates the number of days required to achieve targets
+// Returns 1) number of days, 2) expected date of achievement and 3) any additional notes (e.g. which material is the bottleneck)
+function getTimeRequired(currHolding, gainFromDailies, gainFromBosses, materialsRequired) {
+    let currDateMs = Date.now();
+    let finalDateMs = Date.now();
+    let numDays = 0;
+    const milestones = {
+        first: { material: "", numDays: 0, reachedOn: "" },
+        second: { material: "", numDays: 0, reachedOn: "" },
+    };
+    let firstMilestoneReached = false;
+    let counter = 0;
+
+    while(currHolding.numSolErdaEnergy < materialsRequired.solErdaEnergy.grandTotal || 
+        currHolding.numFrags < materialsRequired.frags.grandTotal) {
+        // When the first milestone is reached, indicate the current date and number of days to achieve it
+        if(!firstMilestoneReached && currHolding.numSolErdaEnergy > materialsRequired.solErdaEnergy.grandTotal) {
+            milestones.first.material = "solErdaEnergy";
+            milestones.first.numDays = numDays;
+            milestones.first.reachedOn = new Date(finalDateMs).toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" });
+            firstMilestoneReached = true;
+        }
+
+        if(!firstMilestoneReached && currHolding.numSolErdaEnergy > materialsRequired.solErdaEnergy.grandTotal) {
+            milestones.first.material = "frags";
+            milestones.first.numDays = numDays;
+            milestones.first.reachedOn = new Date(finalDateMs).toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" });
+            firstMilestoneReached = true;
+        }
+
+        let currDate = new Date(finalDateMs);
+
+        // Add daily gain
+        currHolding.numSolErdaEnergy += gainFromDailies.numSolErdaEnergy;
+        currHolding.numFrags += gainFromDailies.numFrags;
+
+        // Check if day is 1st of the month, or a Thursday
+        // Add monthly/weekly boss Sol Erda Energy quantity if that is the case
+        if(currDate.getDate() === 1) {
+            currHolding.numSolErdaEnergy += gainFromBosses.monthlyTotal;
+        }
+
+        if(currDate.getDay() === 4) {
+            currHolding.numSolErdaEnergy += gainFromBosses.weeklyTotal;
+        }
+
+        // Advance date by 1 day
+        finalDateMs += 24 * 60 * 60 * 1000;
+        numDays++;
+
+        // Crash prevention
+        counter++;
+
+        if(counter > 3000) {
+            break;
+        }
+    }
+
+    milestones.first.material === "solErdaEnergy" ? milestones.second.material = "frags" : milestones.second.material = "solErdaEnergy";
+    milestones.second.numDays = numDays;
+    milestones.second.reachedOn = new Date(finalDateMs).toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" });
+    milestones.second.dailyQtyRequired = (materialsRequired[milestones.second.material].grandTotal / milestones.first.numDays) || 0;
+
+    return milestones;
 }
