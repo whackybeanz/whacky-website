@@ -53,20 +53,20 @@
                                     <div class="font-weight-bold">Slot <%= i %></div>
                                     
                                     <% if(i === 1) { %>
-                                        <% for(let j = 0; j < 3; j++) { %>
-                                            <select class="form-control text-center px-2">
+                                        <% ["origin", "enhance", "mastery"].forEach(type => { %>
+                                            <select class="curr-level-select form-control text-center px-2" id="<%= type %>-slot-<%= i %>" data-skill-type="<%= type %>">
                                                 <option value="-1">N/A</option>
-                                                <% for(let k = 0; k <= 29; k++) { %>
-                                                    <option value="<%= k %>" <% if(k === 0) { %>selected<% } %>><%= k %></option>
+                                                <% for(let j = 0; j <= 29; j++) { %>
+                                                    <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
                                                 <% } %>
                                             </select>
-                                        <% } %>
+                                        <% }) %>
                                     <% } else if(i <= 4) { %>
                                         <div></div>
-                                        <select class="form-control text-center px-2">
+                                        <select class="curr-level-select form-control text-center px-2" id="enhance-slot-<%= i %>" data-skill-type="enhance">
                                             <option value="-1">N/A</option>
-                                            <% for(let k = 0; k <= 29; k++) { %>
-                                                <option value="<%= k %>" <% if(k === 0) { %>selected<% } %>><%= k %></option>
+                                            <% for(let j = 0; j <= 29; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
                                             <% } %>
                                         </select>
                                         <div></div>
@@ -96,18 +96,18 @@
                                     <div class="font-weight-bold">Slot <%= i %></div>
                                     
                                     <% if(i === 1) { %>
-                                        <% for(let j = 0; j < 3; j++) { %>
-                                            <select class="form-control text-center px-2">
-                                                <% for(let k = 1; k <= 30; k++) { %>
-                                                    <option value="<%= k %>" <% if(k === 30) { %>selected<% } %>><%= k %></option>
+                                        <% ["origin", "enhance", "mastery"].forEach(type => { %>
+                                            <select class="target-level-select form-control text-center px-2" id="<%= type %>-slot-<%= i %>-target" data-skill-type="<%= type %>">
+                                                <% for(let j = 1; j <= 30; j++) { %>
+                                                    <option value="<%= j %>" <% if(j === 30) { %>selected<% } %>><%= j %></option>
                                                 <% } %>
                                             </select>
-                                        <% } %>
+                                        <% }) %>
                                     <% } else if(i <= 4) { %>
                                         <div></div>
-                                        <select class="form-control text-center px-2">
-                                            <% for(let k = 1; k <= 30; k++) { %>
-                                                <option value="<%= k %>" <% if(k === 30) { %>selected<% } %>><%= k %></option>
+                                        <select class="target-level-select form-control text-center px-2" id="enhance-slot-<%= i %>-target" data-skill-type="enhance">
+                                            <% for(let j = 1; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 30) { %>selected<% } %>><%= j %></option>
                                             <% } %>
                                         </select>
                                         <div></div>
@@ -153,7 +153,7 @@
                             <div class="d-flex flex-wrap justify-content-center justify-content-sm-start">
                                 <% bosses.forEach(boss => { %>
                                     <div class="p-1">
-                                        <div class="single-boss-btn position-relative cursor-pointer rounded-lg">
+                                        <div class="single-boss-btn position-relative cursor-pointer" data-boss="<%= boss.bossName %> (<%= `${boss.difficulty.charAt(0).toUpperCase()}${boss.difficulty.slice(1)}` %>)" data-energy-value="<%= boss.solErdaEnergy %>" data-clear-type="<% if(boss.bossName.includes("Black Mage")) { %>monthly<% } else { %>weekly<% } %>">
                                             <img src="<%= boss.imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="<%= boss.bossName %> (<%= `${boss.difficulty.charAt(0).toUpperCase()}${boss.difficulty.slice(1)}` %>)"> 
                                             <div class="boss-difficulty position-absolute text-center"><%= `${boss.difficulty.charAt(0).toUpperCase()}${boss.difficulty.slice(1)}` %></div>
                                         </div>
