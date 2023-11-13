@@ -14,7 +14,7 @@
                                 <tr>
                                     <th scope="col" class="text-center" rowspan="2">Level</th>
                                     <th scope="col" class="text-center" colspan="2">Origin</th>
-                                    <th scope="col" class="text-center" colspan="2">Enhancement</th>
+                                    <th scope="col" class="text-center" colspan="2">Enhance</th>
                                     <th scope="col" class="text-center" colspan="2">Mastery</th>
                                 </tr>
                                 <tr>
@@ -38,23 +38,23 @@
                                         <td class="text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>">
                                             <%= index === 0 ? "To Unlock" : `${index} > ${index+1}`%>
                                         </td>
-                                        <td class="origin-sol-erda text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>">
+                                        <td class="origin-sol-erda text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.origin.solErda %>">
                                             <%= row.origin.solErda %>
                                         </td>
-                                        <td class="origin-frag text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>">
-                                            <%= row.origin.frag %>
+                                        <td class="origin-frags text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.origin.frags %>">
+                                            <%= row.origin.frags %>
                                         </td>
-                                        <td class="enhancement-sol-erda text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>">
-                                            <%= row.enhancement.solErda %>
+                                        <td class="enhance-sol-erda text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.enhance.solErda %>">
+                                            <%= row.enhance.solErda %>
                                         </td>
-                                        <td class="enhancement-frag text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>">
-                                            <%= row.enhancement.frag %>
+                                        <td class="enhance-frags text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.enhance.frags %>">
+                                            <%= row.enhance.frags %>
                                         </td>
-                                        <td class="mastery-sol-erda text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>">
+                                        <td class="mastery-sol-erda text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.mastery.solErda %>">
                                             <%= row.mastery.solErda %>
                                         </td>
-                                        <td class="master-frag text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>">
-                                            <%= row.mastery.frag %>
+                                        <td class="mastery-frags text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.mastery.frags %>">
+                                            <%= row.mastery.frags %>
                                         </td>
                                     </tr>
                                 <% }) %>
@@ -62,22 +62,22 @@
                                     <td class="text-center align-middle text-custom">
                                         Total
                                     </td>
-                                    <td class="origin-sol-erda text-center align-middle text-custom">
+                                    <td class="total-origin-sol-erda text-center align-middle text-custom">
                                         145
                                     </td>
-                                    <td class="origin-frag text-center align-middle text-custom">
+                                    <td class="total-origin-frags text-center align-middle text-custom">
                                         <%= (4400).toLocaleString("en-SG") %>
                                     </td>
-                                    <td class="enhancement-sol-erda text-center align-middle text-custom">
+                                    <td class="total-enhance-sol-erda text-center align-middle text-custom">
                                         83
                                     </td>
-                                    <td class="enhancement-frag text-center align-middle text-custom">
+                                    <td class="total-enhance-frags text-center align-middle text-custom">
                                         <%= (2252).toLocaleString("en-SG") %>
                                     </td>
-                                    <td class="mastery-sol-erda text-center align-middle text-custom">
+                                    <td class="total-mastery-sol-erda text-center align-middle text-custom">
                                         123
                                     </td>
-                                    <td class="master-frag text-center align-middle text-custom">
+                                    <td class="total-mastery-frags text-center align-middle text-custom">
                                         <%= (3383).toLocaleString("en-SG") %>
                                     </td>
                                 </tr>
@@ -109,7 +109,7 @@
                                     </th>
                                     <th scope="col" class="text-center align-middle">
                                         <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <img src="/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment"> <span class="d-none d-sm-inline">Sol Erda Fragment</span>
+                                            <img src="/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment"> <span class="d-none d-sm-inline">Fragments</span>
                                         </div>
                                     </th>
                                 </tr>
@@ -120,14 +120,14 @@
                                         <td class="text-center align-middle <% if(index === 0) { %>text-custom<% } %>">
                                             <%= index === 0 ? "To Unlock" : `${index-1}`%>
                                         </td>
-                                        <td class="origin-sol-erda text-center align-middle <% if(index === 0) { %>text-custom<% } %>">
+                                        <td class="hexa-stat-success-rate text-center align-middle <% if(index === 0) { %>text-custom<% } %>">
                                             <%= row.successChance %>%
                                         </td>
-                                        <td class="origin-frag text-center align-middle <% if(index === 0) { %>text-custom<% } %>">
+                                        <td class="hexa-stat-sol-erda text-center align-middle <% if(index === 0) { %>text-custom<% } %>">
                                             <%= row.solErda === 0 ? "-" : row.solErda %>
                                         </td>
-                                        <td class="enhancement-sol-erda text-center align-middle <% if(index === 0) { %>text-custom<% } %>">
-                                            <%= row.frag %>
+                                        <td class="hexa-stat-frags text-center align-middle <% if(index === 0) { %>text-custom<% } %>">
+                                            <%= row.frags %>
                                         </td>
                                     </tr>
                                 <% }) %>

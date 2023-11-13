@@ -18,7 +18,8 @@ function calcBtnListener() {
     const calcBtn = document.getElementById("btn-calc-result");
 
     calcBtn.addEventListener("click", function() {
-        [currHolding, currProgress, targetGoal, gainFromDailies, gainFromBosses] = compileData();
+        let [currHolding, currProgress, targetGoal, gainFromDailies, gainFromBosses] = compileData();
+        let materialsRequired = getMaterialsRequired(currProgress, targetGoal);
     })
 }
 
@@ -46,7 +47,7 @@ function compileData() {
     let currLevelSelects = document.querySelectorAll(".curr-level-select");
 
     currLevelSelects.forEach(select => {
-        currMatrix[select.dataset.skillType].push(parseInt(select.value) || -1);
+        currMatrix[select.dataset.skillType].push(parseInt(select.value));
     })
 
     let targetMatrix = { origin: [], enhance: [], mastery: [] };
@@ -57,4 +58,41 @@ function compileData() {
     })
 
     return [currHolding, currMatrix, targetMatrix, gainFromDailies, gainFromBosses];
+}
+
+// Returns the quantity of sol erda energy + fragments required based on current level and target level for each skill
+function getMaterialsRequired(currProgress, targetGoal) {
+    let allTableElems = { 
+        origin: { solErdaEnergyElems: document.querySelectorAll(".origin-sol-erda"), fragElems: document.querySelectorAll(".origin-frags") }, 
+        enhance: { solErdaEnergyElems: document.querySelectorAll(".enhance-sol-erda"), fragElems: document.querySelectorAll(".enhance-frags") }, 
+        mastery: { solErdaEnergyElems: document.querySelectorAll(".mastery-sol-erda"), fragElems: document.querySelectorAll(".mastery-frags") },
+    }
+    let materialsRequired = { 
+        solErdaEnergy: { origin: [], enhance: [], mastery: [], grandTotal: 0 },
+        frags: { origin: [], enhance: [], mastery: [], grandTotal: 0 },
+    };
+
+    // For each individual HEXA skill, first get the current/target levels
+    // Add each level's upgrade material quantities to a total
+    // Put all totaled quantities into a single object and return it
+    Object.keys(currProgress).forEach(skillType => {
+        currProgress[skillType].forEach((skillLevel, index) => {
+            let currSkillLevel = skillLevel;
+            let targetSkillLevel = targetGoal[skillType][index];
+            let solErdaEnergyReq = 0;
+            let fragReq = 0;
+
+            for(let i = currSkillLevel; i < targetSkillLevel; i++) {
+                solErdaEnergyReq += parseInt(allTableElems[skillType].solErdaEnergyElems[i].dataset.qty);
+                fragReq += parseInt(allTableElems[skillType].fragElems[i].dataset.qty);
+            }
+
+            materialsRequired.solErdaEnergy[skillType].push(solErdaEnergyReq);
+            materialsRequired.solErdaEnergy.grandTotal += solErdaEnergyReq;
+            materialsRequired.frags[skillType].push(fragReq);
+            materialsRequired.frags.grandTotal += fragReq;
+        })
+    })
+
+    return materialsRequired;
 }

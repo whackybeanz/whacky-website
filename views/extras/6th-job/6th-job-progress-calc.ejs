@@ -55,7 +55,7 @@
                                     <% if(i === 1) { %>
                                         <% ["origin", "enhance", "mastery"].forEach(type => { %>
                                             <select class="curr-level-select form-control text-center px-2" id="<%= type %>-slot-<%= i %>" data-skill-type="<%= type %>">
-                                                <option value="-1">N/A</option>
+                                                <!--<option value="-1">N/A</option>-->
                                                 <% for(let j = 0; j <= 29; j++) { %>
                                                     <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
                                                 <% } %>
@@ -64,7 +64,7 @@
                                     <% } else if(i <= 4) { %>
                                         <div></div>
                                         <select class="curr-level-select form-control text-center px-2" id="enhance-slot-<%= i %>" data-skill-type="enhance">
-                                            <option value="-1">N/A</option>
+                                            <!--<option value="-1">N/A</option>-->
                                             <% for(let j = 0; j <= 29; j++) { %>
                                                 <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
                                             <% } %>
