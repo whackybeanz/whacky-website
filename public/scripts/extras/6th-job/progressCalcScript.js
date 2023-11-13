@@ -20,7 +20,17 @@ function calcBtnListener() {
     calcBtn.addEventListener("click", function() {
         let [currHolding, currProgress, targetGoal, gainFromDailies, gainFromBosses] = compileData();
         let materialsRequired = getMaterialsRequired(currProgress, targetGoal);
-        let timeRequired = getTimeRequired(currHolding, gainFromDailies, gainFromBosses, materialsRequired);
+        let milestones = { origin: [], enhance: [], mastery: [], overall: {} };
+
+        ["origin", "enhance", "mastery"].forEach(skillType => {
+            materialsRequired[skillType].nextLevel.forEach(skillMaterialsRequired => {
+                milestones[skillType].push(getMilestone(currHolding, gainFromDailies, gainFromBosses, skillMaterialsRequired));
+            })
+        })
+
+        milestones.overall = getMilestone(currHolding, gainFromDailies, gainFromBosses, materialsRequired.grandTotal)
+
+        displaySummary(gainFromDailies, gainFromBosses, milestones, materialsRequired);
     })
 }
 
@@ -68,9 +78,10 @@ function getMaterialsRequired(currProgress, targetGoal) {
         enhance: { solErdaEnergyElems: document.querySelectorAll(".enhance-sol-erda"), fragElems: document.querySelectorAll(".enhance-frags") }, 
         mastery: { solErdaEnergyElems: document.querySelectorAll(".mastery-sol-erda"), fragElems: document.querySelectorAll(".mastery-frags") },
     }
+
     let materialsRequired = { 
-        solErdaEnergy: { origin: [], enhance: [], mastery: [], grandTotal: 0 },
-        frags: { origin: [], enhance: [], mastery: [], grandTotal: 0 },
+        origin: { nextLevel: [], allLevels: [] }, enhance: { nextLevel: [], allLevels: [] }, mastery: { nextLevel: [], allLevels: [] },
+        grandTotal: { solErdaEnergy: 0, frags: 0 } 
     };
 
     // For each individual HEXA skill, first get the current/target levels
@@ -87,24 +98,28 @@ function getMaterialsRequired(currProgress, targetGoal) {
                 for(let i = currSkillLevel; i < targetSkillLevel; i++) {
                     solErdaEnergyReq += parseInt(allTableElems[skillType].solErdaEnergyElems[i].dataset.qty) * 1000;
                     fragReq += parseInt(allTableElems[skillType].fragElems[i].dataset.qty);
-                }    
-            }            
 
-            materialsRequired.solErdaEnergy[skillType].push(solErdaEnergyReq);
-            materialsRequired.solErdaEnergy.grandTotal += solErdaEnergyReq;
-            materialsRequired.frags[skillType].push(fragReq);
-            materialsRequired.frags.grandTotal += fragReq;
+                    if(i === currSkillLevel) {
+                        materialsRequired[skillType].nextLevel.push({ solErdaEnergy: solErdaEnergyReq, frags: fragReq });
+                    }
+                }    
+            }
+
+            materialsRequired[skillType].allLevels.push({ solErdaEnergy: solErdaEnergyReq, frags: fragReq });
+            materialsRequired.grandTotal.solErdaEnergy += solErdaEnergyReq;
+            materialsRequired.grandTotal.frags += fragReq;
         })
     })
 
     return materialsRequired;
 }
 
-// Calculates the number of days required to achieve targets
-// Returns 1) number of days, 2) expected date of achievement and 3) any additional notes (e.g. which material is the bottleneck)
-function getTimeRequired(currHolding, gainFromDailies, gainFromBosses, materialsRequired) {
+// Calculates the number of days required to achieve all targets
+// Returns an object containing two milestones that contain 1) material that reached required quantity first/second, 2) number of days required, 3) date (string) that milestone was achieved
+function getMilestone(currHolding, gainFromDailies, gainFromBosses, materialsRequired) {
     let currDateMs = Date.now();
     let finalDateMs = Date.now();
+    let [currSolErdaEnergy, currFrags] = [currHolding.numSolErdaEnergy, currHolding.numFrags];
     let numDays = 0;
     const milestones = {
         first: { material: "", numDays: 0, reachedOn: "" },
@@ -113,42 +128,41 @@ function getTimeRequired(currHolding, gainFromDailies, gainFromBosses, materials
     let firstMilestoneReached = false;
     let counter = 0;
 
-    while(currHolding.numSolErdaEnergy < materialsRequired.solErdaEnergy.grandTotal || 
-        currHolding.numFrags < materialsRequired.frags.grandTotal) {
+    while(currSolErdaEnergy < materialsRequired.solErdaEnergy || currFrags < materialsRequired.frags) {
         // When the first milestone is reached, indicate the current date and number of days to achieve it
-        if(!firstMilestoneReached && currHolding.numSolErdaEnergy > materialsRequired.solErdaEnergy.grandTotal) {
+        if(!firstMilestoneReached && currSolErdaEnergy >= materialsRequired.solErdaEnergy) {
             milestones.first.material = "solErdaEnergy";
             milestones.first.numDays = numDays;
             milestones.first.reachedOn = new Date(finalDateMs).toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" });
             firstMilestoneReached = true;
         }
 
-        if(!firstMilestoneReached && currHolding.numSolErdaEnergy > materialsRequired.solErdaEnergy.grandTotal) {
+        if(!firstMilestoneReached && currFrags >= materialsRequired.frags) {
             milestones.first.material = "frags";
             milestones.first.numDays = numDays;
             milestones.first.reachedOn = new Date(finalDateMs).toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" });
             firstMilestoneReached = true;
         }
 
+        // Advance date by 1 day
+        finalDateMs += 24 * 60 * 60 * 1000;
+        numDays++;
+
         let currDate = new Date(finalDateMs);
 
         // Add daily gain
-        currHolding.numSolErdaEnergy += gainFromDailies.numSolErdaEnergy;
-        currHolding.numFrags += gainFromDailies.numFrags;
+        currSolErdaEnergy += gainFromDailies.numSolErdaEnergy;
+        currFrags += gainFromDailies.numFrags;
 
         // Check if day is 1st of the month, or a Thursday
         // Add monthly/weekly boss Sol Erda Energy quantity if that is the case
         if(currDate.getDate() === 1) {
-            currHolding.numSolErdaEnergy += gainFromBosses.monthlyTotal;
+            currSolErdaEnergy += gainFromBosses.monthlyTotal;
         }
 
         if(currDate.getDay() === 4) {
-            currHolding.numSolErdaEnergy += gainFromBosses.weeklyTotal;
+            currSolErdaEnergy += gainFromBosses.weeklyTotal;
         }
-
-        // Advance date by 1 day
-        finalDateMs += 24 * 60 * 60 * 1000;
-        numDays++;
 
         // Crash prevention
         counter++;
@@ -158,10 +172,69 @@ function getTimeRequired(currHolding, gainFromDailies, gainFromBosses, materials
         }
     }
 
+    // If there is no first milestone reached, it is likely both milestones were achieved within the same day
+    // Assign Sol Erda Energy as the first milestone
+    if(!firstMilestoneReached) {
+        milestones.first.material = "solErdaEnergy";
+        milestones.first.numDays = numDays;
+        milestones.first.reachedOn = new Date(finalDateMs).toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" });
+    }
+
     milestones.first.material === "solErdaEnergy" ? milestones.second.material = "frags" : milestones.second.material = "solErdaEnergy";
     milestones.second.numDays = numDays;
     milestones.second.reachedOn = new Date(finalDateMs).toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" });
-    milestones.second.dailyQtyRequired = (materialsRequired[milestones.second.material].grandTotal / milestones.first.numDays) || 0;
+    milestones.second.dailyQtyRequired = (materialsRequired[milestones.second.material] / milestones.first.numDays) || 0;
 
     return milestones;
+}
+
+function displaySummary(gainFromDailies, gainFromBosses, milestones, materialsRequired) {
+    // Erase and rebuild output for overview summary
+    let overviewSummary = document.getElementById("overview-summary");
+    overviewSummary.textContent = "";
+    overviewSummary.insertAdjacentHTML('beforeend', `<ul class="pl-3 mb-0">
+        <li>You require a grand total of <span class="text-custom font-weight-bold">${(materialsRequired.grandTotal.solErdaEnergy / 1000).toLocaleString("en-SG")}</span> Sol Erda and <span class="text-custom font-weight-bold">${materialsRequired.grandTotal.frags.toLocaleString("en-SG")}</span> Fragments to achieve all targets.</li>
+        <li>You need <span class="text-custom font-weight-bold">${milestones.overall.first.numDays.toLocaleString("en-SG")}</span> days to get enough ${milestones.overall.first.material === "solErdaEnergy" ? "Sol Erda" : "Fragments"}.</li>
+        <li>You need <span class="text-custom font-weight-bold">${milestones.overall.second.numDays.toLocaleString("en-SG")}</span> days to get enough ${milestones.overall.second.material === "solErdaEnergy" ? "Sol Erda" : "Fragments"}.</li>
+        <li>Without additional farming, you achieve all targets on <span class="text-custom font-weight-bold">${milestones.overall.second.reachedOn}</span>.</li>
+        <li>If you get <span class="text-custom font-weight-bold">${milestones.overall.second.dailyQtyRequired.toFixed(2)} ${milestones.overall.second.material === "solErdaEnergy" ? "Sol Erda" : "Fragments"} a day</span> (farming + dailies), you will achieve all targets on <span class="text-custom font-weight-bold">${milestones.overall.first.reachedOn}</span> instead.
+    </ul>`);
+
+    // Update dates for next level summary
+    ["origin", "enhance", "mastery"].forEach(skillType => {
+        milestones[skillType].forEach((skill, index) => {
+            let elem = document.getElementById(`summary-${skillType}-slot-${index+1}`);
+            console.log(skillType, index)
+
+            console.log(materialsRequired[skillType].nextLevel[index]);
+            elem.textContent = `${milestones[skillType][index].second.reachedOn.slice(0, -4)}`;
+
+            //if(milestones[skillType][index])
+            //elem.textContent = ;
+        })
+    })
+    
+
+    // Update daily gains
+    document.getElementById("summary-daily-energy").textContent = gainFromDailies.numSolErdaEnergy.toLocaleString("en-SG");
+    document.getElementById("summary-daily-frags").textContent = gainFromDailies.numFrags.toLocaleString("en-SG");
+
+    // Erase and rebuild output for bosses summary
+    let bossesSummary = document.getElementById("boss-summary");
+    bossesSummary.textContent = "";
+
+    if(gainFromBosses.weeklyTotal === 0 && gainFromBosses.monthlyTotal === 0) {
+        bossesSummary.insertAdjacentHTML('beforeend', `<p class="mb-0">No bosses selected</p>`);
+    } else {
+        if(gainFromBosses.weeklyTotal !== 0) {
+            bossesSummary.insertAdjacentHTML('beforeend', `<p class="mb-1"><span class="text-custom font-weight-bold">${gainFromBosses.weeklyTotal.toLocaleString("en-SG")}</span> <img src="/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Sol Erda Energy (Weekly)</p>`);
+        }
+
+        if(gainFromBosses.monthlyTotal !== 0) {
+            bossesSummary.insertAdjacentHTML('beforeend', `<p class="mb-0"><span class="text-custom font-weight-bold">${gainFromBosses.monthlyTotal.toLocaleString("en-SG")}</span> <img src="/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Sol Erda Energy (Monthly)</p>`);
+        }
+    }
+
+    // Display div
+    $("#progress-summary-modal").modal();
 }

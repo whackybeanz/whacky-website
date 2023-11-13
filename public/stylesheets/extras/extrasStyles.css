@@ -242,15 +242,21 @@
   }
 }
 
-#hexa-matrix-form {
+.hexa-matrix-grid {
   display: grid;
   grid-template-columns: 40px repeat(3, 1fr);
   column-gap: 0.5rem;
-  grid-template-rows: 2rem repeat(4, 40px);
+  grid-template-rows: 2rem repeat(4, 1fr);
   align-items: center;
 }
 @media (min-width: 576px) {
-  #hexa-matrix-form {
+  .hexa-matrix-grid {
+    grid-template-columns: 50px repeat(3, 100px);
+    grid-template-rows: 1rem repeat(4, 1fr);
+  }
+}
+@media (min-width: 576px) {
+  .hexa-matrix-grid#curr-matrix, .hexa-matrix-grid#target-matrix {
     grid-template-columns: 50px repeat(3, 75px);
     grid-template-rows: 1rem repeat(4, 40px);
   }
