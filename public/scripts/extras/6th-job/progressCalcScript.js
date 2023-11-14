@@ -226,6 +226,11 @@ function displaySummary(gainFromDailies, gainFromBosses, gainFromCashShop, miles
     </ul>`);
 
     // Update dates for next level summary
+    // First erase any previous dates written then repopulate dates
+    document.querySelectorAll(".summary-slot-dates").forEach(elem => {
+        elem.textContent = "";
+    });
+
     ["origin", "enhance", "mastery"].forEach(skillType => {
         milestones[skillType].forEach((skill, index) => {
             let elem = document.getElementById(`summary-${skillType}-slot-${index+1}`);

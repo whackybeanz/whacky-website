@@ -24,11 +24,11 @@
                                         
                                         <% if(i === 1) { %>
                                             <% ["origin", "enhance", "mastery"].forEach(type => { %>
-                                                <div class="text-center px-2 mb-1" id="summary-<%= type %>-slot-<%= i %>"></div>
+                                                <div class="summary-slot-dates text-center px-2 mb-1" id="summary-<%= type %>-slot-<%= i %>"></div>
                                             <% }) %>
                                         <% } else if(i <= 4) { %>
                                             <div></div>
-                                            <div class="text-center px-2 mb-1" id="summary-enhance-slot-<%= i %>"></div>
+                                            <div class="summary-slot-dates text-center px-2 mb-1" id="summary-enhance-slot-<%= i %>"></div>
                                             <div></div>
                                         <% } else { %>
                                             <div></div>
