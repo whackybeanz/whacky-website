@@ -290,6 +290,48 @@
     }
 }
 
+// 6th Job
+.hexa-matrix-grid {
+    display: grid;
+    grid-template-columns: 40px repeat(3, 1fr);
+    column-gap: 0.5rem;
+    grid-template-rows: 2rem repeat(4, 1fr);
+    align-items: center;
+
+    @include globals.for-size(sm) {
+        grid-template-columns: 50px repeat(3, 100px);
+        grid-template-rows: 1rem repeat(4, 1fr);
+    }
+
+    &#curr-matrix, &#target-matrix {
+        @include globals.for-size(sm) {
+            grid-template-columns: 50px repeat(3, 75px);
+            grid-template-rows: 1rem repeat(4, 40px);
+        }
+    }
+}
+
+.single-boss-btn {
+    filter: grayscale(1);
+    opacity: 0.3;
+    transition: 0.2s;
+
+    &:hover, &.active {
+        filter: grayscale(0);
+        opacity: 1.0;
+        transition: 0.2s;
+    }
+
+    &.active {
+        font-weight: bold;
+    }
+
+    .boss-difficulty {
+        width: 66px;
+        bottom: 5px;
+    }
+}
+
 // Monster Life
 #bookmarked-monsters {
     max-height: 200px;

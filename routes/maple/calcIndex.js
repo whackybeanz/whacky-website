@@ -4,11 +4,13 @@ var router  = express.Router();
 var Helper = require("../helpers/extrasHelpers");
 var IconHelper = require("../helpers/iconHelpers");
 var EXPStackingHelper = require("../helpers/expStackingHelpers");
+var HexaHelper = require("../helpers/6thJobHelpers");
 
 var Equip   = require("../../models/equipData");
 var Effect  = require("../../models/setEffectData");
 var Icon    = require("../../models/iconData");
 var Monster = require("../../models/monsterData");
+var Boss    = require("../../models/bossData");
 
 router.get("/", function(req, res) {
     res.redirect("/flames");
@@ -87,11 +89,30 @@ router.get("/everything-exp/monster-list/:charLevel", function(req, res) {
     }
 })
 
+router.get("/6th-job", function(req, res) {
+    res.locals.extraStylesheet = "extras/extrasStyles";
+    res.locals.section = "calc";
+    res.locals.branch = "calc-6th-job";
+    res.locals.title = "6th Job (Hexa Matrix)";
+
+    const tables = HexaHelper.getTables();
+    
+    Boss.find({ solErdaEnergy: { $exists: true } }).sort({ mainRank: 1, subRank: 1, solErdaEnergy: 1, crystalValue: 1, bossName: 1 })
+        .then(bosses => {
+            res.render("extras/6th-job/6th-job-landing", { tables: tables, bosses: bosses });
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect("back");
+        })
+    
+})
+
 router.get("/symbols", function(req, res) {
     res.locals.extraStylesheet = "extras/extrasStyles";
     res.locals.section = "calc";
     res.locals.branch = "calc-symbol-calc";
-    res.locals.title = "Everything Symbols";
+    res.locals.title = "Symbols";
 
     Icon.find({ usedInSections: "symbol-calc" })
         .then(foundIcons => {

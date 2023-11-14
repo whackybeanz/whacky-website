@@ -1,0 +1,141 @@
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="w-100 d-flex flex-column justify-content-center py-3">
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center py-1">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/skills/origin-skill.png" alt="Origin Skill Icon" class="mr-2"> Hexa Skill
+                </h2>
+            </div>
+            <div class="pill-section-content table-responsive font-form d-flex flex-column align-items-center py-3">
+                <div class="col-12 px-2">
+                    <div class="table-responsive d-flex justify-content-center">
+                        <table class='font-table size-720 table table-sm table-bordered table-hover' id="hexa-skill-level-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center" rowspan="2">Level</th>
+                                    <th scope="col" class="text-center" colspan="2">Origin</th>
+                                    <th scope="col" class="text-center" colspan="2">Enhance</th>
+                                    <th scope="col" class="text-center" colspan="2">Mastery</th>
+                                </tr>
+                                <tr>
+                                    <% ["origin", "enhancement", "mastery"].forEach(type => { %>
+                                        <th scope="col" class="text-center">
+                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda.png" alt="Sol Erda"> <span class="d-none d-sm-inline">Sol Erda</span>
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="text-center">
+                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment"> <span class="d-none d-sm-inline">Fragments</span>
+                                            </div>
+                                        </th>
+                                    <% }) %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% tables.hexaSkill.forEach((row, index) => { %>
+                                    <tr class="<% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>font-weight-bold<% } %>" id="hexa-skill-level-<%= index %>">
+                                        <td class="text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>">
+                                            <%= index === 0 ? "To Unlock" : `${index} > ${index+1}`%>
+                                        </td>
+                                        <td class="origin-sol-erda text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.origin.solErda %>">
+                                            <%= row.origin.solErda %>
+                                        </td>
+                                        <td class="origin-frags text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.origin.frags %>">
+                                            <%= row.origin.frags %>
+                                        </td>
+                                        <td class="enhance-sol-erda text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.enhance.solErda %>">
+                                            <%= row.enhance.solErda %>
+                                        </td>
+                                        <td class="enhance-frags text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.enhance.frags %>">
+                                            <%= row.enhance.frags %>
+                                        </td>
+                                        <td class="mastery-sol-erda text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.mastery.solErda %>">
+                                            <%= row.mastery.solErda %>
+                                        </td>
+                                        <td class="mastery-frags text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.mastery.frags %>">
+                                            <%= row.mastery.frags %>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                                <tr class="font-subsubheader font-weight-bold">
+                                    <td class="text-center align-middle text-custom">
+                                        Total
+                                    </td>
+                                    <td class="total-origin-sol-erda text-center align-middle text-custom">
+                                        145
+                                    </td>
+                                    <td class="total-origin-frags text-center align-middle text-custom">
+                                        <%= (4400).toLocaleString("en-SG") %>
+                                    </td>
+                                    <td class="total-enhance-sol-erda text-center align-middle text-custom">
+                                        83
+                                    </td>
+                                    <td class="total-enhance-frags text-center align-middle text-custom">
+                                        <%= (2252).toLocaleString("en-SG") %>
+                                    </td>
+                                    <td class="total-mastery-sol-erda text-center align-middle text-custom">
+                                        123
+                                    </td>
+                                    <td class="total-mastery-frags text-center align-middle text-custom">
+                                        <%= (3383).toLocaleString("en-SG") %>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>        
+                </div>
+            </div>
+        </div>
+
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center py-1">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/skills/hexa-stat-1.png" alt="Hexa Stat Icon" class="mr-2"> Hexa Stat
+                </h2>
+            </div>
+            <div class="pill-section-content table-responsive font-form d-flex flex-column align-items-center py-3">
+                <div class="col-12 px-2">
+                    <div class="table-responsive d-flex justify-content-center">
+                        <table class='font-table size-720 table table-sm table-bordered table-hover'>
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center align-middle">Main Stat Level</th>
+                                    <th scope="col" class="text-center align-middle">Main Stat<br/>Upgrade Chance</th>
+                                    <th scope="col" class="text-center align-middle">
+                                        <div class="d-flex flex-column justify-content-center align-items-center">
+                                            <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda.png" alt="Sol Erda"> <span class="d-none d-sm-inline">Sol Erda</span>
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="text-center align-middle">
+                                        <div class="d-flex flex-column justify-content-center align-items-center">
+                                            <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment"> <span class="d-none d-sm-inline">Fragments</span>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% tables.hexaStat.forEach((row, index) => { %>
+                                    <tr class="<% if(index === 0) { %>font-weight-bold<% } %>" id="hexa-stat-level-<%= index %>">
+                                        <td class="text-center align-middle <% if(index === 0) { %>text-custom<% } %>">
+                                            <%= index === 0 ? "To Unlock" : `${index-1}`%>
+                                        </td>
+                                        <td class="hexa-stat-success-rate text-center align-middle <% if(index === 0) { %>text-custom<% } %>">
+                                            <%= row.successChance %>%
+                                        </td>
+                                        <td class="hexa-stat-sol-erda text-center align-middle <% if(index === 0) { %>text-custom<% } %>">
+                                            <%= row.solErda === 0 ? "-" : row.solErda %>
+                                        </td>
+                                        <td class="hexa-stat-frags text-center align-middle <% if(index === 0) { %>text-custom<% } %>">
+                                            <%= row.frags %>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

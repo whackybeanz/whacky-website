@@ -401,5 +401,11 @@ body .single-symbol-div {
 body .single-symbol-div .single-cost-breakdown {
   border-color: rgba(206, 212, 218, 0.8);
 }
+body .single-boss-btn .boss-difficulty {
+  background: linear-gradient(90deg, white 0%, rgba(206, 212, 218, 0.8) 25%, rgba(206, 212, 218, 0.8) 75%, white 100%);
+}
+body #hexa-skill-level-table .text-custom {
+  color: #17a2b8 !important;
+}
 
 /*# sourceMappingURL=lightStyles.css.map */

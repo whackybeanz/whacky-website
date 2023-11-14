@@ -1,0 +1,276 @@
+<div class="summary-modal modal fade" id="progress-summary-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content border-0">
+            <div class="modal-body position-relative d-flex align-items-center justify-content-center p-0">
+                <div class="summary-div col-12 size-720 d-flex flex-column flex-md-row flex-md-wrap align-items-start justify-content-center rounded-lg pt-4 pb-2">
+                    <div class="col-12 d-flex justify-content-center mb-3 px-0">
+                        <div class="col-12 mb-3">
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Overview -</p>
+                            <div class="d-flex justify-content-center flex-wrap" id="overview-summary"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center mb-3 px-0" id="new-level-stats-summary">
+                        <div class="col-12 mb-3 px-0">
+                            <p class="summary-subheader font-weight-bold text-center mb-2 py-1">- Next Level When? -</p>
+                            <div class="col-12 d-flex justify-content-center px-0">
+                                <div class="hexa-matrix-grid px-1" id="hexa-skill-matrix-summary">
+                                    <div></div>
+                                    <div class="text-center text-custom font-weight-bold mb-1">Origin</div>
+                                    <div class="text-center text-custom font-weight-bold mb-1">Enhance</div>
+                                    <div class="text-center text-custom font-weight-bold mb-1">Mastery</div>
+
+                                    <% for(let i = 1; i <= 4; i++) { %>
+                                        <div class="font-weight-bold">Slot <%= i %></div>
+                                        
+                                        <% if(i === 1) { %>
+                                            <% ["origin", "enhance", "mastery"].forEach(type => { %>
+                                                <div class="text-center px-2 mb-1" id="summary-<%= type %>-slot-<%= i %>"></div>
+                                            <% }) %>
+                                        <% } else if(i <= 4) { %>
+                                            <div></div>
+                                            <div class="text-center px-2 mb-1" id="summary-enhance-slot-<%= i %>"></div>
+                                            <div></div>
+                                        <% } else { %>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        <% } %>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 d-flex flex-column align-items-center px-0">
+                        <div class="col-12 mb-3 px-0" id="dailies-summary-div">
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Daily Gain -</p>
+                            <div class="d-flex justify-content-center flex-wrap px-3 mb-2" id="dailies-summary">
+                                <div class="text-center">
+                                    <p class="mb-1"><span class="text-custom font-weight-bold" id="summary-daily-energy"></span> <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Energy</p>
+                                    <p class="mb-1"><span class="text-custom font-weight-bold" id="summary-daily-frags"></span> <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment"> Fragments</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 d-flex flex-column align-items-center px-0">
+                        <div class="col-12 mb-3 px-0" id="boss-summary-div">
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Bosses - </p>
+                            <div class="d-flex justify-content-center flex-wrap px-3" id="boss-summary"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 d-flex flex-column align-items-center px-0">
+                        <div class="col-12 mb-3 px-0" id="cash-shop-summary-div">
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Cash Shop - </p>
+                            <div class="d-flex justify-content-center flex-wrap px-3" id="cash-shop-summary"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="font-content w-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="w-100 d-flex flex-column justify-content-center py-3">
+        <div class="pill-section rounded-sm mb-5">
+            <div class="pill-section-subheader text-center py-1">
+                <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
+                    <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment" class="mr-2"> Progress Calculator
+                </h2>
+            </div>
+            <div class="pill-section-content table-responsive font-form d-flex flex-column align-items-center py-3">
+                <div class="col-12 d-flex flex-wrap justify-content-xl-center px-2">
+                    <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="holding">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">1) Current Holding Quantity</p>
+                            <p class="font-small text-custom mb-2 px-3">Enter how many of each material you have currently. If you will receive any HEXA material rewards from events, add them in here to simplify calculations.</p>
+                        </div>
+                        <form class="col-12 col-sm-8 col-xl-7 px-1">
+                            <div class="col-12">
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <input type="number" id="num-held-sol-erda" class="form-control col-3 px-2 text-center mr-2" placeholder="Qty">
+                                    <p class="col-6 col-sm-6 mb-0 d-inline px-0">
+                                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda.png" alt="Sol Erda"> Sol Erda
+                                    </p>
+                                </div>
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <input type="number" id="num-held-energy" class="form-control col-3 px-2 text-center mr-2" placeholder="Qty">
+                                    <p class="col-6 col-sm-6 mb-0 d-inline px-0">
+                                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Sol Erda Energy
+                                    </p>
+                                </div>
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <input type="number" id="num-held-frags" class="form-control col-3 px-2 text-center mr-2" placeholder="Qty">
+                                    <p class="col-6 col-sm-6 mb-0 d-inline px-0">
+                                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment"> Fragments
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="dailies">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">2) Dailies</p>
+                            <p class="font-small text-custom mb-2 px-3">Enter your daily gain. 1 Sol Erda = 1,000 Sol Erda Energy.</p>
+                        </div>
+                        <form class="col-12 col-sm-8 col-xl-7 px-1">
+                            <div class="col-12">
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <input type="number" id="num-daily-energy" class="form-control col-3 px-2 text-center mr-2" placeholder="Qty" value="600">
+                                    <p class="col-6 col-sm-6 mb-0 d-inline px-0">
+                                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Sol Erda Energy
+                                    </p>
+                                </div>
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <input type="number" id="num-daily-frags" class="form-control col-3 px-2 text-center mr-2" placeholder="Qty" value="12">
+                                    <p class="col-6 col-sm-6 mb-0 d-inline px-0">
+                                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment"> Fragments
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="bossing">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">3) Bosses</p>
+                            <p class="font-small text-custom mb-2 px-3">Select any bosses you do. Assumed to be done on Thursdays (for weekly bosses) / first day of the month (for Black Mage).</p>
+                        </div>
+                        <div class="col-12 col-sm-8 col-xl-7 d-flex justify-content-center justify-content-sm-start align-items-start flex-wrap">
+                            <div class="d-flex flex-wrap justify-content-center justify-content-sm-start">
+                                <% bosses.forEach(boss => { %>
+                                    <div class="p-1">
+                                        <div class="single-boss-btn position-relative cursor-pointer" data-boss="<%= boss.bossName %> (<%= `${boss.difficulty.charAt(0).toUpperCase()}${boss.difficulty.slice(1)}` %>)" data-energy-value="<%= boss.solErdaEnergy %>" data-clear-type="<% if(boss.bossName.includes("Black Mage")) { %>monthly<% } else { %>weekly<% } %>">
+                                            <img src="<%= boss.imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="<%= boss.bossName %> (<%= `${boss.difficulty.charAt(0).toUpperCase()}${boss.difficulty.slice(1)}` %>)"> 
+                                            <div class="boss-difficulty position-absolute text-center"><%= `${boss.difficulty.charAt(0).toUpperCase()}${boss.difficulty.slice(1)}` %></div>
+                                        </div>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="cash-shop">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">4) Cash Shop</p>
+                            <p class="font-small text-custom mb-2 px-3">If you buy Sol Erda from the Cash Shop monthly, enter it here. Assumed to be purchased on the first of each month.</p>
+                        </div>
+                        <form class="col-12 col-sm-8 col-xl-7 px-1">
+                            <div class="col-12">
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <select class="cash-shop-sol-erda-select form-control col-3 text-center px-2 mr-2" id="monthly-cash-shop-sol-erda">
+                                        <% for(let j = 0; j <= 5; j++) { %>
+                                            <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
+                                        <% } %>
+                                    </select>
+                                    <p class="col-6 col-sm-6 mb-0 d-inline px-0">
+                                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda.png" alt="Sol Erda"> Sol Erda
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="current">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">5) Current Skill Levels</p>
+                            <p class="font-small text-custom mb-2 px-3">Select your current HEXA skill levels (defaults to 0 / not unlocked yet).</p>
+                        </div>
+                        <form class="col-12 col-sm-8 col-xl-7 px-3">
+                            <div class="hexa-matrix-grid px-1" id="curr-matrix">
+                                <div></div>
+                                <div class="text-center font-weight-bold">Origin</div>
+                                <div class="text-center font-weight-bold">Enhance</div>
+                                <div class="text-center font-weight-bold">Mastery</div>
+
+                                <% for(let i = 1; i <= 4; i++) { %>
+                                    <div class="font-weight-bold">Slot <%= i %></div>
+                                    
+                                    <% if(i === 1) { %>
+                                        <select class="curr-level-select form-control text-center px-2" id="origin-slot-<%= i %>" data-skill-type="origin">
+                                            <!--<option value="-1">N/A</option>-->
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 1) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
+                                        <select class="curr-level-select form-control text-center px-2" id="enhance-slot-<%= i %>" data-skill-type="enhance">
+                                            <!--<option value="-1">N/A</option>-->
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
+                                        <select class="curr-level-select form-control text-center px-2" id="mastery-slot-<%= i %>" data-skill-type="mastery">
+                                            <!--<option value="-1">N/A</option>-->
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
+                                    <% } else if(i <= 4) { %>
+                                        <div></div>
+                                        <select class="curr-level-select form-control text-center px-2" id="enhance-slot-<%= i %>" data-skill-type="enhance">
+                                            <!--<option value="-1">N/A</option>-->
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
+                                        <div></div>
+                                    <% } else { %>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="target">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">6) Target Skill Levels</p>
+                            <p class="font-small text-custom mb-2 px-3">Select your target skill levels (defaults to 30).</p>
+                        </div>
+                        <form class="col-12 col-sm-8 col-xl-7 px-3">
+                            <div class="hexa-matrix-grid px-1" id="target-matrix">
+                                <div></div>
+                                <div class="text-center font-weight-bold">Origin</div>
+                                <div class="text-center font-weight-bold">Enhance</div>
+                                <div class="text-center font-weight-bold">Mastery</div>
+
+                                <% for(let i = 1; i <= 4; i++) { %>
+                                    <div class="font-weight-bold">Slot <%= i %></div>
+                                    
+                                    <% if(i === 1) { %>
+                                        <% ["origin", "enhance", "mastery"].forEach(type => { %>
+                                            <select class="target-level-select form-control text-center px-2" id="<%= type %>-slot-<%= i %>-target" data-skill-type="<%= type %>">
+                                                <% for(let j = 0; j <= 30; j++) { %>
+                                                    <option value="<%= j %>" <% if(j === 30) { %>selected<% } %>><%= j %></option>
+                                                <% } %>
+                                            </select>
+                                        <% }) %>
+                                    <% } else if(i <= 4) { %>
+                                        <div></div>
+                                        <select class="target-level-select form-control text-center px-2" id="enhance-slot-<%= i %>-target" data-skill-type="enhance">
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 30) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
+                                        <div></div>
+                                    <% } else { %>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <button type="button" class="table-cols-125 btn btn-outline-custom d-flex align-items-center text-center justify-content-center" id="btn-calc-result">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                    </svg>&nbsp;(Re)Calculate
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
