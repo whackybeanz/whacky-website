@@ -74,7 +74,7 @@
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center py-1">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                    <img src="/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment" class="mr-2"> Progress Calculator
+                    <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment" class="mr-2"> Progress Calculator
                 </h2>
             </div>
             <div class="pill-section-content table-responsive font-form d-flex flex-column align-items-center py-3">
@@ -187,14 +187,24 @@
                                     <div class="font-weight-bold">Slot <%= i %></div>
                                     
                                     <% if(i === 1) { %>
-                                        <% ["origin", "enhance", "mastery"].forEach(type => { %>
-                                            <select class="curr-level-select form-control text-center px-2" id="<%= type %>-slot-<%= i %>" data-skill-type="<%= type %>">
-                                                <!--<option value="-1">N/A</option>-->
-                                                <% for(let j = 0; j <= 30; j++) { %>
-                                                    <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
-                                                <% } %>
-                                            </select>
-                                        <% }) %>
+                                        <select class="curr-level-select form-control text-center px-2" id="origin-slot-<%= i %>" data-skill-type="origin">
+                                            <!--<option value="-1">N/A</option>-->
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 1) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
+                                        <select class="curr-level-select form-control text-center px-2" id="enhance-slot-<%= i %>" data-skill-type="enhance">
+                                            <!--<option value="-1">N/A</option>-->
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
+                                        <select class="curr-level-select form-control text-center px-2" id="mastery-slot-<%= i %>" data-skill-type="mastery">
+                                            <!--<option value="-1">N/A</option>-->
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
                                     <% } else if(i <= 4) { %>
                                         <div></div>
                                         <select class="curr-level-select form-control text-center px-2" id="enhance-slot-<%= i %>" data-skill-type="enhance">
