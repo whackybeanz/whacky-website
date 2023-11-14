@@ -68,6 +68,10 @@ if(process.env.NODE_ENV === 'production') {
 app.use("/", indexRoutes)
     .use("/admin", adminRoutes);
 
+app.get("/_ah/warmup", (req, res) => {
+    res.send("Warming Up");
+})
+
 app.get("*", function(req, res) {
     //req.flash("error", "Invalid route accessed.")
     res.redirect("/");

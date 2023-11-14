@@ -55,7 +55,11 @@ function compileData() {
         gainFromBosses[`${boss.dataset.clearType}Total`] += (parseInt(boss.dataset.energyValue) || 0);
     })
 
-    let gainFromCashShop = (parseInt(document.getElementById("monthly-cash-shop-sol-erda").value) || 0) * 1000;
+    let gainFromCashShop = {
+        solErda: (parseInt(document.getElementById("monthly-cash-shop-sol-erda").value) || 0) * 1000,
+        isBoosterPurchased: document.getElementById("booster-purchased-select").value === "yes",
+        boosterWeeklyReward: document.getElementById("booster-weekly-reward-select").value
+    }
 
     let currMatrix = { origin: [], enhance: [], mastery: [] };
     let currLevelSelects = document.querySelectorAll(".curr-level-select");
@@ -129,7 +133,6 @@ function getMilestone(currHolding, gainFromDailies, gainFromBosses, gainFromCash
         second: { material: "", numDays: 0, reachedOn: "" },
     };
     let firstMilestoneReached = false;
-    let counter = 0;
 
     while(currSolErdaEnergy < materialsRequired.solErdaEnergy || currFrags < materialsRequired.frags) {
         // When the first milestone is reached, indicate the current date and number of days to achieve it
@@ -162,7 +165,7 @@ function getMilestone(currHolding, gainFromDailies, gainFromBosses, gainFromCash
         if(currDate.getDate() === 1) {
             currSolErdaEnergy += gainFromBosses.monthlyTotal;
 
-            if(gainFromCashShop !== 0) {
+            if(gainFromCashShop.solErda !== 0) {
                 currSolErdaEnergy += gainFromCashShop;
             }
         }
@@ -171,10 +174,19 @@ function getMilestone(currHolding, gainFromDailies, gainFromBosses, gainFromCash
             currSolErdaEnergy += gainFromBosses.weeklyTotal;
         }
 
-        // Crash prevention
-        counter++;
+        // If Sol Erda Booster was purchased, add the daily reward quantity
+        // Also, every 6th day, add the selected weekly reward
+        if(gainFromCashShop.isBoosterPurchased) {
+            currSolErdaEnergy += 200;
+            currFrags += 4;
 
-        if(counter > 3000) {
+            if(numDays % 6 === 0) {
+                gainFromCashShop.boosterWeeklyReward === "solErdaEnergy" ? currSolErdaEnergy += 1000 : currFrags += 20;
+            }
+        }
+
+        // Crash prevention
+        if(numDays > 3000) {
             break;
         }
     }
@@ -233,11 +245,11 @@ function displaySummary(gainFromDailies, gainFromBosses, gainFromCashShop, miles
         bossesSummary.insertAdjacentHTML('beforeend', `<p class="text-center mb-0">No bosses selected</p>`);
     } else {
         if(gainFromBosses.weeklyTotal !== 0) {
-            bossesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-1 px-0"><span class="text-custom font-weight-bold">${gainFromBosses.weeklyTotal.toLocaleString("en-SG")}</span> <img src="/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Energy (Weekly)</p>`);
+            bossesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-1 px-0"><span class="text-custom font-weight-bold">${gainFromBosses.weeklyTotal.toLocaleString("en-SG")}</span> <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Energy (Weekly)</p>`);
         }
 
         if(gainFromBosses.monthlyTotal !== 0) {
-            bossesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-0 px-0"><span class="text-custom font-weight-bold">${gainFromBosses.monthlyTotal.toLocaleString("en-SG")}</span> <img src="/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Energy (Monthly)</p>`);
+            bossesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-0 px-0"><span class="text-custom font-weight-bold">${gainFromBosses.monthlyTotal.toLocaleString("en-SG")}</span> <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda-energy-10.png" alt="Sol Erda Energy"> Energy (Monthly)</p>`);
         }
     }
 
@@ -245,10 +257,28 @@ function displaySummary(gainFromDailies, gainFromBosses, gainFromCashShop, miles
     let cashShopSummary = document.getElementById("cash-shop-summary");
     cashShopSummary.textContent = "";
 
-    if(gainFromCashShop > 0) {
-        cashShopSummary.insertAdjacentHTML('beforeend', `<p class="text-center mb-0"><span class="text-custom font-weight-bold">${gainFromCashShop / 1000}</span> <img src="/images/items/use/sol-erda.png" alt="Sol Erda"> Sol Erda (monthly)</p>`);
+    if(gainFromCashShop.solErda > 0) {
+        cashShopSummary.insertAdjacentHTML('beforeend', `<p class="text-center mb-0"><span class="text-custom font-weight-bold">${gainFromCashShop.solErda / 1000}</span> <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda.png" alt="Sol Erda"> Sol Erda (monthly)</p>`);
     } else {
-        cashShopSummary.insertAdjacentHTML('beforeend', `<p class="text-center mb-0">No purchases</p>`);
+        cashShopSummary.insertAdjacentHTML('beforeend', `<p class="text-center mb-0">No Sol Erda purchased</p>`);
+    }
+
+    if(gainFromCashShop.isBoosterPurchased) {        
+        if(gainFromCashShop.boosterWeeklyReward === "solErdaEnergy") {
+            cashShopSummary.insertAdjacentHTML('beforeend', `<p class="text-center mb-0">
+                <span class="text-custom font-weight-bold">Booster on</span>
+                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/cash/sol-erda-booster.png" alt="Sol Erda Booster"> 
+                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda-energy-500.png" alt="Sol Erda Energy"> 
+                </p>`);
+        } else {
+            cashShopSummary.insertAdjacentHTML('beforeend', `<p class="text-center mb-0">
+                <span class="text-custom font-weight-bold">Booster on</span>
+                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/cash/sol-erda-booster.png" alt="Sol Erda Booster"> 
+                <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/etc/sol-erda-fragment.png" alt="Sol Erda Fragment"> 
+                </p>`);
+        }
+    } else {
+        cashShopSummary.insertAdjacentHTML('beforeend', `<p class="text-center mb-0">No Booster purchased</p>`);
     }
 
     // Display div

@@ -152,8 +152,8 @@
 
                     <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="cash-shop">
                         <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
-                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">4) Cash Shop</p>
-                            <p class="font-small text-custom mb-2 px-3">If you buy Sol Erda from the Cash Shop monthly, enter it here. Assumed to be purchased on the first of each month.</p>
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">4a) Cash Shop - Sol Erda</p>
+                            <p class="font-small text-custom mb-2 px-3">If you buy Sol Erda monthly, enter it here. Assumed to be purchased on the first of each month.</p>
                         </div>
                         <form class="col-12 col-sm-8 col-xl-7 px-1">
                             <div class="col-12">
@@ -166,6 +166,34 @@
                                     <p class="col-6 col-sm-6 mb-0 d-inline px-0">
                                         <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda.png" alt="Sol Erda"> Sol Erda
                                     </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="cash-shop">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">4b) Cash Shop - Sol Erda Booster</p>
+                            <p class="font-small text-custom mb-2 px-3">If you buy Sol Erda Boosters monthly, enter it here. Assumed to be purchased immediately with no breaks in between. Selected weekly reward is assumed to be same throughout.</p>
+                        </div>
+                        <form class="col-12 col-sm-8 col-xl-7 px-1">
+                            <div class="col-12">
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <select class="form-control col-3 text-center px-2 mr-2" id="booster-purchased-select">
+                                        <option value="no" selected>No</option>
+                                        <option value="yes">Yes</option>
+                                    </select>
+                                    <p class="col-8 col-sm-6 mb-0 d-inline px-0">
+                                        <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/cash/sol-erda-booster.png" alt="Sol Erda Booster"> Sol Erda Booster
+                                    </p>
+                                </div>
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <select class="form-control col-11 col-sm-9 col-md-7 col-lg-8 col-xl-7 text-center text-sm-left px-3 mr-2" id="booster-weekly-reward-select">
+                                        <option value="" selected disabled hidden>Select weekly reward (if any)</option>
+                                        <option value="">N/A</option>
+                                        <option value="solErdaEnergy">2 x Intense Sol Erda Energy</option>
+                                        <option value="frags">20 x Sol Erda Fragment</option>
+                                    </select>
                                 </div>
                             </div>
                         </form>
