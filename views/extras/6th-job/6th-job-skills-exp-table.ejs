@@ -34,26 +34,26 @@
                             </thead>
                             <tbody>
                                 <% tables.hexaSkill.forEach((row, index) => { %>
-                                    <tr class="<% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>font-weight-bold<% } %>" id="hexa-skill-level-<%= index %>">
-                                        <td class="text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>">
+                                    <tr class="<% if(index === 0 || (index+1) % 10 === 0) { %>font-weight-bold<% } %>" id="hexa-skill-level-<%= index %>">
+                                        <td class="text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>">
                                             <%= index === 0 ? "To Unlock" : `${index} > ${index+1}`%>
                                         </td>
-                                        <td class="origin-sol-erda text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.origin.solErda %>">
+                                        <td class="origin-sol-erda text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.origin.solErda %>">
                                             <%= row.origin.solErda %>
                                         </td>
-                                        <td class="origin-frags text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.origin.frags %>">
+                                        <td class="origin-frags text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.origin.frags %>">
                                             <%= row.origin.frags %>
                                         </td>
-                                        <td class="enhance-sol-erda text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.enhance.solErda %>">
+                                        <td class="enhance-sol-erda text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.enhance.solErda %>">
                                             <%= row.enhance.solErda %>
                                         </td>
-                                        <td class="enhance-frags text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.enhance.frags %>">
+                                        <td class="enhance-frags text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.enhance.frags %>">
                                             <%= row.enhance.frags %>
                                         </td>
-                                        <td class="mastery-sol-erda text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.mastery.solErda %>">
+                                        <td class="mastery-sol-erda text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.mastery.solErda %>">
                                             <%= row.mastery.solErda %>
                                         </td>
-                                        <td class="mastery-frags text-center align-middle <% if(index % 10 === 0 || index === tables.hexaSkill.length-1) { %>text-custom<% } %>" data-qty="<%= row.mastery.frags %>">
+                                        <td class="mastery-frags text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.mastery.frags %>">
                                             <%= row.mastery.frags %>
                                         </td>
                                     </tr>

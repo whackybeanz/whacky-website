@@ -166,7 +166,7 @@ function getMilestone(currHolding, gainFromDailies, gainFromBosses, gainFromCash
             currSolErdaEnergy += gainFromBosses.monthlyTotal;
 
             if(gainFromCashShop.solErda !== 0) {
-                currSolErdaEnergy += gainFromCashShop;
+                currSolErdaEnergy += gainFromCashShop.solErda;
             }
         }
 
@@ -202,7 +202,12 @@ function getMilestone(currHolding, gainFromDailies, gainFromBosses, gainFromCash
     milestones.first.material === "solErdaEnergy" ? milestones.second.material = "frags" : milestones.second.material = "solErdaEnergy";
     milestones.second.numDays = numDays;
     milestones.second.reachedOn = new Date(finalDateMs).toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" });
-    milestones.second.dailyQtyRequired = (materialsRequired[milestones.second.material] / milestones.first.numDays) || 0;
+
+    if(milestones.first.numDays > 0) {
+        milestones.second.dailyQtyRequired = (materialsRequired[milestones.second.material] / milestones.first.numDays) || 0;
+    } else {
+        milestones.second.dailyQtyRequired = -1;
+    }
 
     return milestones;
 }
@@ -217,13 +222,40 @@ function displaySummary(gainFromDailies, gainFromBosses, gainFromCashShop, miles
         overviewSummary.insertAdjacentHTML('beforeend', `<p class="text-custom mb-2">Calculator reached max-allowed threshold; invalid results expected</p>`)
     }
 
-    overviewSummary.insertAdjacentHTML('beforeend', `<ul class="pl-3 mb-0">
-        <li>You require a grand total of <span class="text-custom font-weight-bold">${(materialsRequired.grandTotal.solErdaEnergy / 1000).toLocaleString("en-SG")}</span> Sol Erda and <span class="text-custom font-weight-bold">${materialsRequired.grandTotal.frags.toLocaleString("en-SG")}</span> Fragments to achieve all targets.</li>
-        <li>You need <span class="text-custom font-weight-bold">${milestones.overall.first.numDays.toLocaleString("en-SG")}</span> days to get enough ${milestones.overall.first.material === "solErdaEnergy" ? "Sol Erda" : "Fragments"}.</li>
-        <li>You need <span class="text-custom font-weight-bold">${milestones.overall.second.numDays.toLocaleString("en-SG")}</span> days to get enough ${milestones.overall.second.material === "solErdaEnergy" ? "Sol Erda" : "Fragments"}.</li>
-        <li>Without additional farming, you achieve all targets on <span class="text-custom font-weight-bold">${milestones.overall.second.reachedOn}</span>.</li>
-        <li>If you get <span class="text-custom font-weight-bold">${milestones.overall.second.dailyQtyRequired.toFixed(2)} ${milestones.overall.second.material === "solErdaEnergy" ? "Sol Erda" : "Fragments"} a day</span> (farming + dailies), you will achieve all targets on <span class="text-custom font-weight-bold">${milestones.overall.first.reachedOn}</span> instead.
-    </ul>`);
+    let list = `<ul class="pl-3 mb-0">
+        <li>You require a grand total of <span class="text-custom font-weight-bold">${(materialsRequired.grandTotal.solErdaEnergy / 1000).toLocaleString("en-SG")}</span> Sol Erda and <span class="text-custom font-weight-bold">${materialsRequired.grandTotal.frags.toLocaleString("en-SG")}</span> Fragments to achieve all targets.</li>`;
+
+    let firstMilestoneNumDays = milestones.overall.first.numDays;
+    let secondMilestoneNumDays = milestones.overall.second.numDays;
+
+    if(firstMilestoneNumDays === secondMilestoneNumDays) {
+        if(firstMilestoneNumDays > 0) {
+            list += `<li>You need <span class="text-custom font-weight-bold">${firstMilestoneNumDays.toLocaleString("en-SG")}</span> days to get enough Fragments and Sol Erda (both enough at the same time).`
+        } else {
+            list += `<li>You have enough of both Fragments and Sol Erda.</li>`
+        }
+    } else {
+        if(firstMilestoneNumDays === 0) {
+            list += `<li>You have enough ${milestones.overall.first.material === "solErdaEnergy" ? "Sol Erda" : "Fragments"}.`;
+        } else {
+            list += `<li>You need <span class="text-custom font-weight-bold">${firstMilestoneNumDays.toLocaleString("en-SG")}</span> days to get enough ${milestones.overall.first.material === "solErdaEnergy" ? "Sol Erda" : "Fragments"}.</li>`;
+        }
+
+        if(secondMilestoneNumDays === 0) {
+            list += `<li>You have enough ${milestones.overall.second.material === "solErdaEnergy" ? "Sol Erda" : "Fragments"}.`;
+        } else {
+            list += `<li>You need <span class="text-custom font-weight-bold">${secondMilestoneNumDays.toLocaleString("en-SG")}</span> days to get enough ${milestones.overall.second.material === "solErdaEnergy" ? "Sol Erda" : "Fragments"}.</li>
+                    <li>Without additional farming, you achieve all targets on <span class="text-custom font-weight-bold">${milestones.overall.second.reachedOn}</span>.</li>`;
+        }
+    }
+
+    if(milestones.overall.second.dailyQtyRequired > 0) {
+        list += `<li>If you get <span class="text-custom font-weight-bold">${milestones.overall.second.dailyQtyRequired.toFixed(2)} ${milestones.overall.second.material === "solErdaEnergy" ? "Sol Erda" : "Fragments"} a day</span> (farming + dailies), you will achieve all targets on <span class="text-custom font-weight-bold">${milestones.overall.first.reachedOn}</span> instead.`;
+    }
+
+    list += `</ul>`;
+
+    overviewSummary.insertAdjacentHTML('beforeend', list);
 
     // Update dates for next level summary
     // First erase any previous dates written then repopulate dates
