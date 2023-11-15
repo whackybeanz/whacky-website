@@ -230,7 +230,7 @@ function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp, pe
     }
     //let hasWeeklies = Object.keys(perWeekExp).length > 0;
     let weekliesWhen = (perWeekExp.weekliesWhen >= 0) && (perWeekExp.weekliesWhen <= 6) ? perWeekExp.weekliesWhen : -1;
-    let mpDungeonList = Array.from(document.querySelectorAll(".mp-details")).filter(dungeons => dungeons.dataset.minLevel >= 200);
+    let mpDungeonList = Array.from(document.querySelectorAll(".mp-details")).filter(dungeons => dungeons.dataset.minLevel >= 200).reverse();
     let expFromGrinding = perDayExp.monsterHunting;
     let isUsingExpTickets = getNumRuns("num-exp-tickets") > 0;
 
