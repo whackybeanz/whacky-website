@@ -111,7 +111,7 @@
                     <div class="col-12 align-content-xl-start d-flex flex-wrap px-0 mb-5" id="dailies">
                         <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
                             <p class="font-subsubheader font-weight-bold mb-0 px-md-3">2) Dailies</p>
-                            <p class="font-small text-custom mb-2 px-3">Enter your daily gain. 1 Sol Erda = 1,000 Sol Erda Energy. Calculation starts from today (i.e. you have not done dailies today yet).</p>
+                            <p class="font-small text-custom mb-2 px-3">Enter your daily gain. 1 Sol Erda = 1,000 Sol Erda Energy. Calculation starts from tomorrow (i.e. dailies are already done today).</p>
                         </div>
                         <form class="col-12 col-sm-8 col-xl-7 px-1">
                             <div class="col-12">
@@ -193,6 +193,18 @@
                                         <option value="">N/A</option>
                                         <option value="solErdaEnergy">2 x Intense Sol Erda Energy</option>
                                         <option value="frags">20 x Sol Erda Fragment</option>
+                                    </select>
+                                </div>
+                                <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
+                                    <select class="form-control col-11 col-sm-9 col-md-7 col-lg-8 col-xl-7 text-center text-sm-left px-3 mr-2" id="booster-curr-progress-select">
+                                        <option value="" selected disabled hidden>Select current progress (out of 6)</option>
+                                        <option value="">N/A</option>
+                                        <option value="0">0 stamps</option>
+                                        <option value="1">1 stamp</option>
+                                        <option value="2">2 stamps</option>
+                                        <option value="3">3 stamps</option>
+                                        <option value="4">4 stamps</option>
+                                        <option value="5">5 stamps</option>
                                     </select>
                                 </div>
                             </div>

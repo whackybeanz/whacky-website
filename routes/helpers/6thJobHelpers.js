@@ -8,7 +8,7 @@ function getTables() {
 
         { origin: { solErda: 2, frags: 50 }, enhance: { solErda: 2, frags: 38 }, mastery: { solErda: 1, frags: 25 }, common: { solErda: 0, frags: 0 } },
         { origin: { solErda: 2, frags: 55 }, enhance: { solErda: 2, frags: 42 }, mastery: { solErda: 1, frags: 28 }, common: { solErda: 0, frags: 0 } },
-        { origin: { solErda: 3, frags: 60 }, enhance: { solErda: 3, frags: 45 }, mastery: { solErda: 1, frags: 30 }, common: { solErda: 0, frags: 0 } },
+        { origin: { solErda: 3, frags: 60 }, enhance: { solErda: 3, frags: 45 }, mastery: { solErda: 2, frags: 30 }, common: { solErda: 0, frags: 0 } },
         { origin: { solErda: 3, frags: 65 }, enhance: { solErda: 3, frags: 49 }, mastery: { solErda: 2, frags: 33 }, common: { solErda: 0, frags: 0 } },
         { origin: { solErda: 10, frags: 200 }, enhance: { solErda: 8, frags: 150 }, mastery: { solErda: 5, frags: 100 }, common: { solErda: 0, frags: 0 } },
 
@@ -21,7 +21,7 @@ function getTables() {
         { origin: { solErda: 4, frags: 130 }, enhance: { solErda: 3, frags: 98 }, mastery: { solErda: 2, frags: 65 }, common: { solErda: 0, frags: 0 } },
         { origin: { solErda: 4, frags: 140 }, enhance: { solErda: 3, frags: 105 }, mastery: { solErda: 2, frags: 70 }, common: { solErda: 0, frags: 0 } },
         { origin: { solErda: 4, frags: 150 }, enhance: { solErda: 3, frags: 113 }, mastery: { solErda: 2, frags: 75 }, common: { solErda: 0, frags: 0 } },
-        { origin: { solErda: 5, frags: 160 }, enhance: { solErda: 4, frags: 120 }, mastery: { solErda: 2, frags: 80 }, common: { solErda: 0, frags: 0 } },
+        { origin: { solErda: 5, frags: 160 }, enhance: { solErda: 4, frags: 120 }, mastery: { solErda: 3, frags: 80 }, common: { solErda: 0, frags: 0 } },
         { origin: { solErda: 15, frags: 350 }, enhance: { solErda: 12, frags: 263 }, mastery: { solErda: 8, frags: 175 }, common: { solErda: 0, frags: 0 } },
 
         { origin: { solErda: 5, frags: 170 }, enhance: { solErda: 4, frags: 128 }, mastery: { solErda: 3, frags: 85 }, common: { solErda: 0, frags: 0 } },

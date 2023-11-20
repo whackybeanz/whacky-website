@@ -1,7 +1,53 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+    loadSavedData();
     weeklyBossBtnListener();
     calcBtnListener();
 })
+
+function loadSavedData() {
+    let savedData = JSON.parse(localStorage.getItem("hexaCalc"));
+
+    if(savedData !== null) {
+        // Populate current holding quantity
+        document.getElementById("num-held-sol-erda").value = savedData.currHolding.numSolErda || "";
+        document.getElementById("num-held-energy").value = savedData.currHolding.numSolErdaEnergy || "";
+        document.getElementById("num-held-frags").value = savedData.currHolding.numFrags || "";
+
+        // Populate daily gain
+        document.getElementById("num-daily-energy").value = savedData.gainFromDailies.numSolErdaEnergy || "";
+        document.getElementById("num-daily-frags").value = savedData.gainFromDailies.numFrags || "";
+
+        // Activate selected bosses
+        let allBossBtns = document.querySelectorAll(".single-boss-btn");
+        
+        allBossBtns.forEach(btn => {
+            if(savedData.gainFromBosses.weekly.find(elem => elem.bossName === btn.dataset.boss) || 
+                savedData.gainFromBosses.monthly.find(elem => elem.bossName === btn.dataset.boss)) {
+                btn.classList.add("active");
+            }
+        })
+
+        // Populate cash shop fields if applicable
+        document.getElementById("monthly-cash-shop-sol-erda").value = savedData.gainFromCashShop.solErda / 1000;
+        document.getElementById("booster-purchased-select").value = savedData.gainFromCashShop.isBoosterPurchased ? "yes" : "no";
+        document.getElementById("booster-weekly-reward-select").value = savedData.gainFromCashShop.boosterWeeklyReward;
+        document.getElementById("booster-curr-progress-select").value = savedData.gainFromCashShop.boosterCurrDay || "";
+        
+        // Populate current and target fields
+        Object.keys(savedData.currProgress).forEach(skillType => {
+            savedData.currProgress[skillType].forEach((skillLevel, index) => {
+                document.getElementById(`${skillType}-slot-${index+1}`).value = skillLevel;
+            })
+        })
+
+        //savedData.targetGoal
+        Object.keys(savedData.targetGoal).forEach(skillType => {
+            savedData.targetGoal[skillType].forEach((skillLevel, index) => {
+                document.getElementById(`${skillType}-slot-${index+1}-target`).value = skillLevel;
+            })
+        })
+    }
+}
 
 function weeklyBossBtnListener() {
     const allBtns = document.querySelectorAll(".single-boss-btn");
@@ -31,6 +77,7 @@ function calcBtnListener() {
         milestones.overall = getMilestone(currHolding, gainFromDailies, gainFromBosses, gainFromCashShop, materialsRequired.grandTotal)
 
         displaySummary(gainFromDailies, gainFromBosses, gainFromCashShop, milestones, materialsRequired);
+        saveData(currHolding, currProgress, targetGoal, gainFromDailies, gainFromBosses, gainFromCashShop);
     })
 }
 
@@ -38,7 +85,8 @@ function calcBtnListener() {
 // All Sol Erda is converted to Sol Erda Energy equivalent (i.e. *1000 of indicated quantity)
 function compileData() {
     let currHolding = { 
-        numSolErdaEnergy: (parseInt(document.getElementById("num-held-sol-erda").value) || 0) * 1000 + (parseInt(document.getElementById("num-held-energy").value) || 0), 
+        numSolErda: (parseInt(document.getElementById("num-held-sol-erda").value) || 0),
+        numSolErdaEnergy: (parseInt(document.getElementById("num-held-energy").value) || 0), 
         numFrags: (parseInt(document.getElementById("num-held-frags").value) || 0),
     };
 
@@ -58,7 +106,8 @@ function compileData() {
     let gainFromCashShop = {
         solErda: (parseInt(document.getElementById("monthly-cash-shop-sol-erda").value) || 0) * 1000,
         isBoosterPurchased: document.getElementById("booster-purchased-select").value === "yes",
-        boosterWeeklyReward: document.getElementById("booster-weekly-reward-select").value
+        boosterWeeklyReward: document.getElementById("booster-weekly-reward-select").value,
+        boosterCurrDay: (parseInt(document.getElementById("booster-curr-progress-select").value) || 0),
     }
 
     let currMatrix = { origin: [], enhance: [], mastery: [] };
@@ -126,7 +175,7 @@ function getMaterialsRequired(currProgress, targetGoal) {
 function getMilestone(currHolding, gainFromDailies, gainFromBosses, gainFromCashShop, materialsRequired) {
     let currDateMs = Date.now();
     let finalDateMs = Date.now();
-    let [currSolErdaEnergy, currFrags] = [currHolding.numSolErdaEnergy, currHolding.numFrags];
+    let [currSolErdaEnergy, currFrags] = [currHolding.numSolErda * 1000 + currHolding.numSolErdaEnergy, currHolding.numFrags];
     let numDays = 0;
     const milestones = {
         first: { material: "", numDays: 0, reachedOn: "" },
@@ -180,7 +229,7 @@ function getMilestone(currHolding, gainFromDailies, gainFromBosses, gainFromCash
             currSolErdaEnergy += 200;
             currFrags += 4;
 
-            if(numDays % 6 === 0) {
+            if((gainFromCashShop.boosterCurrDay + numDays) % 6 === 0) {
                 gainFromCashShop.boosterWeeklyReward === "solErdaEnergy" ? currSolErdaEnergy += 1000 : currFrags += 20;
             }
         }
@@ -320,4 +369,17 @@ function displaySummary(gainFromDailies, gainFromBosses, gainFromCashShop, miles
 
     // Display div
     $("#progress-summary-modal").modal();
+}
+
+function saveData(currHolding, currProgress, targetGoal, gainFromDailies, gainFromBosses, gainFromCashShop) {
+    let toSave = {
+        currHolding: currHolding,
+        currProgress: currProgress,
+        targetGoal: targetGoal,
+        gainFromDailies: gainFromDailies,
+        gainFromBosses: gainFromBosses,
+        gainFromCashShop: gainFromCashShop,
+    };
+
+    localStorage.setItem("hexaCalc", JSON.stringify(toSave));
 }
