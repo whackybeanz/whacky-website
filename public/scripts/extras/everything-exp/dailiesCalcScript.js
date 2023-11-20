@@ -388,11 +388,11 @@ function adjustLevelAndExp(charData, expGainValue) {
         }
 
         if(charData.burningType === "hyper") {
-            if(charData.currLevel < 250) {
-                if(charData.currLevel+3 <= 250) {
+            if(charData.currLevel < charData.burningMaxLevel) {
+                if(charData.currLevel+3 <= charData.burningMaxLevel) {
                     charData.currLevel += 3;
                 } else {
-                    charData.currLevel = 250;
+                    charData.currLevel = charData.burningMaxLevel;
                 }    
             } else {
                 charData.currLevel++;
@@ -400,6 +400,23 @@ function adjustLevelAndExp(charData, expGainValue) {
         }
         charData.currExp = charData.currExp + expGainValue - charData.expTNL;
         charData.expTNL = getExpTNL(charData.currLevel);
+
+        // For grinding, there is a chance there is overflow EXP
+        // Repeatedly calculate new level/exp until EXP no longer overflows
+        let count = 0;
+
+        while(charData.currExp >= charData.expTNL) {
+            charData.currLevel += 1;
+            charData.currExp = charData.currExp - charData.expTNL;
+            charData.expTNL = getExpTNL(charData.currLevel);
+
+            // Crash prevention
+            count++;
+
+            if(count > 500) {
+                break;
+            }
+        }        
     } else {
         charData.currExp += expGainValue;
     }
