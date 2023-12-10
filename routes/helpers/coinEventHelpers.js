@@ -176,4 +176,22 @@ function retrieveItemList(listType, currency) {
     return itemList[listType] || [];
 }
 
-module.exports = { sortByCategory, getCoinGainsAndCosts, getAllItemMaxQty, retrieveItemList };
+function sortByBossName(coinDetails, weeklyBossList) {
+    const bossByName = {};
+    const coin = coinDetails.find(coin => coin.isFromWeeklyBoss);
+
+    if(coin) {
+        coin.bossCoinDetails.forEach(coinBoss => {
+            if(!bossByName[coinBoss.bossName]) {
+                let matchingBoss = weeklyBossList.find(weeklyBoss => weeklyBoss.bossName === coinBoss.bossName);
+                bossByName[coinBoss.bossName] = { imgUrl: matchingBoss.imgUrl, difficulties: [] };
+            }
+
+            bossByName[coinBoss.bossName].difficulties.push({ mode: coinBoss.difficulty, coinAmount: coinBoss.coinAmount })
+        })
+    }
+
+    return bossByName;
+}
+
+module.exports = { sortByCategory, getCoinGainsAndCosts, getAllItemMaxQty, retrieveItemList, sortByBossName };

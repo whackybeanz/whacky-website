@@ -264,11 +264,11 @@ img {
 **********************/
 form {
     .form-control, .form-control-plaintext {
-        height: 32px;
+        min-height: 40px;
     }
 
     .form-check {
-        height: 32px;
+        min-height: 40px;
 
         &:first-of-type {
             padding-left: 0 !important;
@@ -289,7 +289,7 @@ form {
         }
 
         .radio-select {
-            height: 32px;
+            min-height: 40px;
             transition: all 0.3s;
             line-height: 1;
 
@@ -304,6 +304,7 @@ form {
         }
 
         .form-check-label {
+            height: 40px;
             left: 0;
             transition: all 0.3s;
 
@@ -394,7 +395,7 @@ form {
 
 **********************/
 .single-option-select {
-    height: 32px;
+    min-height: 40px;
     transition: all 0.3s;
 
     &:hover, &.active {

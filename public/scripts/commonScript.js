@@ -12,6 +12,7 @@ function addCheckboxListener() {
 	checkboxes.forEach(function(checkbox) {
 		checkbox.addEventListener("click", function() {
 			this.classList.toggle("active");
+            this.classList.toggle("text-custom");
 		})
 	})
 }

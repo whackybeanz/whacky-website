@@ -1,0 +1,28 @@
+<form class="d-flex flex-wrap justify-content-start align-items-start">
+    <p class="w-100 text-center text-custom mb-4">Select any boss difficulty below based on what you can clear. The total weekly boss coins you can gain will be displayed at the bottom.</p>
+
+    <% Object.keys(coinBossByName).forEach((boss, index) => { %>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 d-flex align-items-start mb-3 px-0">
+            <img src="<%= coinBossByName[boss].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="<%= coinBossByName[boss].bossName %>">
+            <div class="ml-2 mb-3">
+                <p class="font-subsubheader font-weight-bold mb-1"><%= boss %></p>
+
+                <div class="d-flex flex-wrap">
+                    <% coinBossByName[boss].difficulties.forEach((difficulty, i) => { %>
+                        <div class="form-check px-0">
+                            <input class="form-check-input boss-mode-check" type="checkbox" id="boss-coin-<%= index %>-mode-<%= i %>" value="<%= difficulty.coinAmount %>">
+                            <label class="form-check-label boss-mode-check-label single-checkbox d-flex justify-content-center align-items-center rounded-lg cursor-pointer py-1 px-3" for="boss-coin-<%= index %>-mode-<%= i %>" data-coin-amount="<%= difficulty.coinAmount %>"><%= difficulty.mode.charAt(0).toUpperCase() %><%= difficulty.mode.slice(1) %></label>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+
+    <div class="col-12 text-center">
+        <p class="font-subheader font-weight-bold text-custom mb-2">
+            Weekly Boss Coins: <span id="weekly-boss-coins">0</span> / <span id="weekly-boss-coin-cap"><%= coinEventData.coinDetails.find(coin => coin.isFromWeeklyBoss).mainSource.coinCapValues[0].toLocaleString("en-SG") %></span>
+        </p>
+        <p class="font-subheader font-weight-bold text-custom">Event Total Boss Coins (<span id="event-duration"><%= durationWeeks %></span> weeks): <span id="total-boss-coins">0</span></p>
+    </div>
+</form>

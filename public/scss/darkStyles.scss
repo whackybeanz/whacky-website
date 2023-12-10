@@ -102,9 +102,13 @@ body.dark-mode {
             .form-check-label {
                 border: 1px solid globals.$dark-mode-grey;
 
-                &:hover, &.active {
-                    background-color: globals.$dark-mode-navy-grey;
-                    color: globals.$dark-mode-white;
+                &:hover {
+                    color: globals.$highlight-orange;
+                }
+
+                &.active {
+                    background-color: globals.$highlight-orange;
+                    color: globals.$dark-mode-black;
                 }
             }
         }

@@ -73,9 +73,12 @@ body.dark-mode form .form-control-plaintext {
 body.dark-mode form .form-check .form-check-label {
   border: 1px solid #454d55;
 }
-body.dark-mode form .form-check .form-check-label:hover, body.dark-mode form .form-check .form-check-label.active {
-  background-color: rgba(52, 58, 64, 0.8);
-  color: rgba(255, 255, 255, 0.8);
+body.dark-mode form .form-check .form-check-label:hover {
+  color: #ffc107;
+}
+body.dark-mode form .form-check .form-check-label.active {
+  background-color: #ffc107;
+  color: rgba(0, 0, 0, 0.8);
 }
 body.dark-mode form option:disabled {
   background-color: #343a40;

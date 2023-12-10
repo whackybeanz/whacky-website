@@ -23,6 +23,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Shopping cart page listeners
     loadProfileBtnListener();
+
+    // Boss coin calc listeners
+    bossCoinCheckboxListener();
 });
 
 function loadSavedInputs() {
@@ -567,6 +570,32 @@ function loadProfileBtnListener() {
                 this.querySelector(".load-default-msg").classList.toggle("d-none");
                 this.querySelector(".load-success-msg").classList.toggle("d-none");
             }, 2000)
+        })
+    })
+}
+
+// When user selects any boss difficulty, update the total coin total displayed at the bottom
+function bossCoinCheckboxListener() {
+    const allBossCheckboxes = document.querySelectorAll(".boss-mode-check-label");
+
+    allBossCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener("click", () => {
+            const allActiveBosses = document.querySelectorAll(".boss-mode-check-label.active");
+            const weeklyCoinCap = parseInt(document.getElementById("weekly-boss-coin-cap").textContent);
+            const eventDuration = parseInt(document.getElementById("event-duration").textContent);
+
+            let total = 0;
+            allActiveBosses.forEach(boss => {
+                total += parseInt(boss.dataset.coinAmount);
+            })
+
+            if(total <= weeklyCoinCap) {
+                document.getElementById("weekly-boss-coins").textContent = total.toLocaleString("en-SG");
+                document.getElementById("total-boss-coins").textContent = (total * eventDuration).toLocaleString("en-SG");
+            } else {
+                document.getElementById("weekly-boss-coins").textContent = weeklyCoinCap.toLocaleString("en-SG");
+                document.getElementById("total-boss-coins").textContent = (weeklyCoinCap * eventDuration).toLocaleString("en-SG");
+            }
         })
     })
 }

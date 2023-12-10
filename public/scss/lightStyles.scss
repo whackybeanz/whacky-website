@@ -102,8 +102,12 @@ body {
             .form-check-label {
                 border: 1px solid globals.$light-mode-grey;
 
-                &:hover, &.active {
-                    background-color: globals.$light-mode-grey;
+                &:hover {
+                    color: globals.$highlight-blue;
+                }
+
+                &.active {
+                    background-color: globals.$highlight-blue;
                     color: globals.$light-mode-black;
                 }
             }

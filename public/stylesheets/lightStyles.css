@@ -73,8 +73,11 @@ body form .form-control-plaintext {
 body form .form-check .form-check-label {
   border: 1px solid rgba(206, 212, 218, 0.8);
 }
-body form .form-check .form-check-label:hover, body form .form-check .form-check-label.active {
-  background-color: rgba(206, 212, 218, 0.8);
+body form .form-check .form-check-label:hover {
+  color: #17a2b8;
+}
+body form .form-check .form-check-label.active {
+  background-color: #17a2b8;
   color: #212529;
 }
 body form option:disabled {

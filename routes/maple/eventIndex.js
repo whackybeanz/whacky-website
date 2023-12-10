@@ -8,6 +8,7 @@ var router  = express.Router();
 var Icon    = require("../../models/iconData");
 var CoinEvent = require("../../models/coinEventData");
 var Fun     = require("../../models/funData");
+var Boss     = require("../../models/bossData");
 
 router.get("/", function(req, res) {
     res.redirect("/calc/tactical-relay/v4");
@@ -64,14 +65,16 @@ router.get("/coin-events", function(req, res) {
 router.get("/coin-events/:eventId", function(req, res) {
     let findIconsInEvent = Icon.find({ usedInEvents: req.params.eventId });
     let findCoinEvent = CoinEvent.findOne({ isPublic: true, eventId: req.params.eventId });
+    let getWeeklyBossList = Boss.find({ mainRank: { $gte: 1 } }).sort({ mainRank: 1, subRank: 1, crystalValue: 1, bossName: 1 });
 
-    Promise.all([findIconsInEvent, findCoinEvent])
-        .then(([allIcons, coinEventData]) => {
+    Promise.all([findIconsInEvent, findCoinEvent, getWeeklyBossList])
+        .then(([allIcons, coinEventData, weeklyBossList]) => {
             const iconsById = IconHelper.compileIconsById(allIcons);
             // To calculate correct value, 1 extra day needs to be added to factor for end date (as event ends on selected date but 2359hrs)
             const durationWeeks = (Date.parse(coinEventData.eventDetails.endDate) - Date.parse(coinEventData.eventDetails.startDate) + 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000);
             const coinGainsAndCosts = CoinEventHelper.getCoinGainsAndCosts(coinEventData);
             const allItemMaxQty = CoinEventHelper.getAllItemMaxQty(coinEventData, durationWeeks);
+            const coinBossByName = CoinEventHelper.sortByBossName(coinEventData.coinDetails, weeklyBossList);
 
             const responseObj = {
                 icons: iconsById,
@@ -79,6 +82,7 @@ router.get("/coin-events/:eventId", function(req, res) {
                 durationWeeks: durationWeeks,
                 coinGainsAndCosts: coinGainsAndCosts,
                 allItemMaxQty: allItemMaxQty,
+                coinBossByName: coinBossByName,
             }
 
             res.locals.extraStylesheet = "more-maple/coinEventStyles";

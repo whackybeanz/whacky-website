@@ -46,8 +46,11 @@
                                 <% } %>
                             </ul>
 
-                            <% if(coinEventData.eventId === "identisk" || coinEventData.eventId === "minar-picnic") { %>
-                                <p class="text-custom mb-0">Note:<br/>Non-bossing coins are per-ID. Bossing coins are per-world.</p>
+                            <% if(coinEventData.eventId === "identisk" || coinEventData.eventId === "minar-picnic" || coinEventData.eventId === "fashion-week") { %>
+                                <p class="text-custom mb-0">Note:<br/>
+                                    Coins are per-ID. 
+                                    <% if(coinEventData.coinDetails.some(coin => coin.isFromWeeklyBoss)) { %>Bossing coins are per-world.<% } %>
+                                </p>
                             <% } else { %>
                                 <p class="text-custom mb-0">Note:<br/>Main Source coins are generally per-character.<br/>Extra Source coins are generally per-world.</p>
                             <% } %>

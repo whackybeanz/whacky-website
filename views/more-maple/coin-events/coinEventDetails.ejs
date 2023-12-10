@@ -4,7 +4,7 @@
     <%- include("../../partials/sidebar") %>
 
     <div class="main-content-div col px-0 position-relative">
-        <div class="w-100 d-flex align-items-center flex-column px-4 pt-4">
+        <div class="w-100 d-flex align-items-center flex-column px-3 pt-4">
             <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
                 <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-0">
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
@@ -100,6 +100,11 @@
                         <li class="nav-item mx-1">
                             <a class="single-section-select nav-link" href="#coin-breakdown" id="coin-breakdown-pill" data-toggle="pill" role="tab">Coin Breakdown</a>
                         </li>
+                        <% if(Object.keys(coinBossByName).length > 0) { %>
+                            <li class="nav-item mx-1">
+                                <a class="single-section-select nav-link" href="#boss-coin-calc" id="boss-coin-calc-pill" data-toggle="pill" role="tab">Boss Coin Calculator</a>
+                            </li>
+                        <% } %>
                     </ul>
 
                     <div class="w-100 tab-content d-flex justify-content-center py-3" id="coinEventTabsContent">
@@ -178,6 +183,11 @@
                             </div>
                             <%- include("../../admin/coin-events/coin/coinBreakdownDetails") %>
                         </div>
+                        <% if(Object.keys(coinBossByName).length > 0) { %>
+                            <div class="w-100 tab-pane border-0 fade" id="boss-coin-calc" role="tabpanel" aria-labelledby="boss-coin-calc-tab">
+                                <%- include("./bossCoinCalc") %>
+                            </div>
+                        <% } %>
                     </div>
                 </div>
             </div>

@@ -358,10 +358,10 @@ img.small-img {
 
 **********************/
 form .form-control, form .form-control-plaintext {
-  height: 32px;
+  min-height: 40px;
 }
 form .form-check {
-  height: 32px;
+  min-height: 40px;
 }
 form .form-check:first-of-type {
   padding-left: 0 !important;
@@ -378,7 +378,7 @@ form .form-check:last-of-type .radio-select {
   border-bottom-right-radius: 3px;
 }
 form .form-check .radio-select {
-  height: 32px;
+  min-height: 40px;
   transition: all 0.3s;
   line-height: 1;
 }
@@ -390,6 +390,7 @@ form .form-check .form-check-input {
   visibility: hidden;
 }
 form .form-check .form-check-label {
+  height: 40px;
   left: 0;
   transition: all 0.3s;
 }
@@ -463,7 +464,7 @@ form .form-check .form-check-label:hover, form .form-check .form-check-label.act
 
 **********************/
 .single-option-select {
-  height: 32px;
+  min-height: 40px;
   transition: all 0.3s;
 }
 .single-option-select:hover, .single-option-select.active {
