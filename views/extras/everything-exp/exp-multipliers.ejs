@@ -60,7 +60,7 @@
                                     <img class="item-square" src="<%= icons['union-exp'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="2x EXP Coupon / Union's EXP / 2x MVP EXP Coupon / Dojo EXP Coupon (x2 EXP)">
                                 </div>
                                 <div class="single-exp-stack category-2 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="2" data-value="3" id="normal-3x-coupon">
-                                    <img class="item-square" src="<%= icons['exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="3x EXP Coupon (x3 EXP)">
+                                    <img class="item-square" src="<%= icons['3x-exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="3x EXP Coupon (x3 EXP)">
                                 </div>
                                 <div class="single-exp-stack category-2 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="2" data-value="2" id="angry-dogs">
                                     <img class="item-square" src="<%= icons['angry-dogs'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Angry Dogs (x2 EXP)">
@@ -80,13 +80,13 @@
                             <p class="text-center mb-1">Stacks with Category 2 (only for GMS). Select <span class="text-underline">one</span> (if applicable)</p>
                             <div class="d-flex flex-wrap justify-content-center">
                                 <div class="single-exp-stack category-3 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="3" data-value="1.5" id="server-1-5x">
-                                    <img class="item-square" src="<%= icons['exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="1.5x EXP server event (x1.5 EXP)">
+                                    <img class="item-square" src="<%= icons['1.5x-exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="1.5x EXP server event (x1.5 EXP)">
                                 </div>
                                 <div class="single-exp-stack category-3 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="3" data-value="2" id="server-2x">
-                                    <img class="item-square" src="<%= icons['exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="2x EXP server event (x2 EXP)">
+                                    <img class="item-square" src="<%= icons['2x-exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="2x EXP server event (x2 EXP)">
                                 </div>
                                 <div class="single-exp-stack category-3 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="3" data-value="3" id="server-3x">
-                                    <img class="item-square" src="<%= icons['exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="3x EXP server event (x3 EXP)">
+                                    <img class="item-square" src="<%= icons['3x-exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="3x EXP server event (x3 EXP)">
                                 </div>
                             </div>
                         </div>
@@ -123,20 +123,11 @@
                             <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="50" id="mvp-weather">
                                 <img class="item-square" src="<%= icons['mvp-plus-weather'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="MVP Plus Weather Effect / MVP Additional 50% EXP Coupon / Mu Gong's Stamina Tonic (+50% EXP)">
                             </div>
-                            <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="50" id="ursun-buff">
-                                <img class="item-square" src="<%= icons['ursun-gift-buff'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ursun's Gift Buff (+50% EXP)">
-                            </div>
-                            <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="100" id="lightning-buff">
-                                <img class="item-square" src="<%= icons['lightning-gift-buff'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Lightning's Gift Buff (+100% EXP)">
-                            </div>
                             <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="50" id="mushroom-buff">
                                 <img class="item-square" src="<%= icons['mushroom-exp-buff'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="EXP Buff (+50% EXP)">
                             </div>
-                            <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="50" id="dd-buff">
-                                <img class="item-square" src="<%= icons['twosome-blitz'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Twosome Blitz (+50% EXP, Dynamic Duo Xiao Di buff)">
-                            </div>
-                            <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="10" id="pq-buff">
-                                <img class="item-square" src="<%= icons['party-exp-booster'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Party EXP Booster (+10% EXP)">
+                            <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="15" id="mvp-weather">
+                                <img class="item-square" src="<%= icons['vip-buff-exp'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="VIP Buff (EXP) (+15% EXP)">
                             </div>
                             <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="80" id="wbr">
                                 <img class="item-square" src="<%= icons['welcome-back-ring'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Welcome Back Ring (+80% EXP), does not stack with Returning Mapler Ring (higher value takes effect)">
@@ -146,6 +137,18 @@
                             </div>
                             <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="10" id="friendship-ring">
                                 <img class="item-square" src="<%= icons['psyche-special-friendship-ring'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Psyche Special Friendship Ring (+10% EXP)">
+                            </div>
+                            <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="50" id="ursun-buff">
+                                <img class="item-square" src="<%= icons['ursun-gift-buff'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Ursun's Gift Buff (+50% EXP)">
+                            </div>
+                            <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="100" id="lightning-buff">
+                                <img class="item-square" src="<%= icons['lightning-gift-buff'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Lightning's Gift Buff (+100% EXP)">
+                            </div>
+                            <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="50" id="dd-buff">
+                                <img class="item-square" src="<%= icons['twosome-blitz'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Twosome Blitz (+50% EXP, Dynamic Duo Xiao Di buff)">
+                            </div>
+                            <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="10" id="pq-buff">
+                                <img class="item-square" src="<%= icons['party-exp-booster'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Party EXP Booster (+10% EXP)">
                             </div>
                             <div class="single-exp-stack category-5 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="5" data-value="5" id="guild-know-how">
                                 <img class="item-square" src="<%= icons['guild-know-how'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Guild Know-how (+5% EXP, level 101 to 200 monsters only)">
@@ -200,41 +203,6 @@
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
-                                <img class="item-square" src="<%= icons['eluna-buff'].imgUrl %>">
-                                <div class="col-10 px-2">
-                                    <p class="mb-1">Eluna Earrings / Pendant</p>
-                                    <select class="single-exp-stack-select font-table form-control px-2" id="eluna-buff" data-category-num="5" data-select-type="elunaBuff">
-                                        <option value="0" selected>N/A</option>
-                                        <option value="2">+2% EXP</option>
-                                        <option value="4">+4% EXP</option>
-                                        <option value="6">+6% EXP</option>
-                                        <option value="8">+8% EXP</option>
-                                        <option value="10">+10% EXP</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
-                                <img class="item-square" src="<%= icons['ring-of-clan'].imgUrl %>">
-                                <div class="col-10 px-2">
-                                    <p class="mb-1">
-                                        Ring of Clan
-                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" title="Player MUST be wearing the Ring of Clan for the EXP buff to take effect at all">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
-                                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
-                                            </svg>
-                                        </span>
-                                    </p>
-                                    <select class="single-exp-stack-select font-table form-control px-2" id="ring-of-clan" data-category-num="5" data-select-type="ringOfClan">
-                                        <option value="0" selected>N/A</option>
-                                        <option value="10">+10% EXP (Player wears ring)</option>
-                                        <option value="15">+15% EXP (1 extra ring wearer in party)</option>
-                                        <option value="20">+20% EXP (2 extra ring wearers in party)</option>
-                                        <option value="25">+25% EXP (3 extra ring wearers in party)</option>
-                                        <option value="30">+30% EXP (4 extra ring wearers in party)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
                                 <img class="item-square" src="<%= icons['burning-field'].imgUrl %>">
                                 <div class="col-10 px-2">
                                     <p class="mb-1">Burning Field</p>
@@ -279,6 +247,42 @@
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
+                                <img class="item-square" src="<%= icons['caretaker-buff-exp'].imgUrl %>">
+                                <div class="col-10 px-2">
+                                    <p class="mb-1">Caretaker's Buff</p>
+                                    <select class="single-exp-stack-select font-table form-control px-2" id="caretaker-buff-exp" data-category-num="5" data-select-type="caretakerBuff">
+                                        <option value="0" selected>N/A</option>
+                                        <option value="5">+5% EXP (Level 1)</option>
+                                        <option value="6">+6% EXP (Level 2)</option>
+                                        <option value="7">+7% EXP (Level 3)</option>
+                                        <option value="8">+8% EXP (Level 4)</option>
+                                        <option value="9">+9% EXP (Level 5)</option>
+                                        <option value="10">+10% EXP (Level 6)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
+                                <img class="item-square" src="<%= icons['ring-of-clan'].imgUrl %>">
+                                <div class="col-10 px-2">
+                                    <p class="mb-1">
+                                        Ring of Clan
+                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" title="Player MUST be wearing the Ring of Clan for the EXP buff to take effect at all">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
+                                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                                            </svg>
+                                        </span>
+                                    </p>
+                                    <select class="single-exp-stack-select font-table form-control px-2" id="ring-of-clan" data-category-num="5" data-select-type="ringOfClan">
+                                        <option value="0" selected>N/A</option>
+                                        <option value="10">+10% EXP (Player wears ring)</option>
+                                        <option value="15">+15% EXP (1 extra ring wearer in party)</option>
+                                        <option value="20">+20% EXP (2 extra ring wearers in party)</option>
+                                        <option value="25">+25% EXP (3 extra ring wearers in party)</option>
+                                        <option value="30">+30% EXP (4 extra ring wearers in party)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
                                 <img class="item-square" src="<%= icons['lucky-dice'].imgUrl %>">
                                 <div class="col-10 px-2">
                                     <p class="mb-1">Lucky Dice</p>
@@ -287,6 +291,20 @@
                                         <option value="30">+30% EXP</option>
                                         <option value="40">+40% EXP</option>
                                         <option value="50">+50% EXP</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
+                                <img class="item-square" src="<%= icons['eluna-buff'].imgUrl %>">
+                                <div class="col-10 px-2">
+                                    <p class="mb-1">Eluna Earrings / Pendant</p>
+                                    <select class="single-exp-stack-select font-table form-control px-2" id="eluna-buff" data-category-num="5" data-select-type="elunaBuff">
+                                        <option value="0" selected>N/A</option>
+                                        <option value="2">+2% EXP</option>
+                                        <option value="4">+4% EXP</option>
+                                        <option value="6">+6% EXP</option>
+                                        <option value="8">+8% EXP</option>
+                                        <option value="10">+10% EXP</option>
                                     </select>
                                 </div>
                             </div>
