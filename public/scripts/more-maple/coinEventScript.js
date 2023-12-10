@@ -581,7 +581,7 @@ function bossCoinCheckboxListener() {
     allBossCheckboxes.forEach(checkbox => {
         checkbox.addEventListener("click", () => {
             const allActiveBosses = document.querySelectorAll(".boss-mode-check-label.active");
-            const weeklyCoinCap = parseInt(document.getElementById("weekly-boss-coin-cap").textContent);
+            const weeklyCoinCap = parseInt(document.getElementById("weekly-boss-coin-cap").textContent.split(",").join(""));
             const eventDuration = parseInt(document.getElementById("event-duration").textContent);
 
             let total = 0;

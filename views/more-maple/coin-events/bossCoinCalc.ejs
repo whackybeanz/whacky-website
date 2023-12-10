@@ -3,7 +3,7 @@
 
     <% Object.keys(coinBossByName).forEach((boss, index) => { %>
         <div class="col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 d-flex align-items-start mb-3 px-0">
-            <img src="<%= coinBossByName[boss].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="<%= coinBossByName[boss].bossName %>">
+            <img src="<%= coinBossByName[boss].imgUrl %>" alt="<%= boss %>">
             <div class="ml-2 mb-3">
                 <p class="font-subsubheader font-weight-bold mb-1"><%= boss %></p>
 
