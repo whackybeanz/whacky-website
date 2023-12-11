@@ -215,8 +215,8 @@ function populateFarms(farms) {
                     html += `<div class="w-100 d-flex align-items-center">`
                         html += `<div class="d-flex flex-column flex-grow-1 pl-3">`
                             html += `<div class="farm-name mlife-container-header text-left font-weight-bold mb-0">${farm.farmName}</div>`;
-                            html += `<small class="farm-details expiry-date font-small text-muted d-none">Expires: ${expireDate}</small>`;
-                            html += `<small class="farm-details last-updated-date font-small text-muted d-none">Updated: ${lastUpdatedDate}</small>`;
+                            html += `<small class="farm-details expiry-date font-small text-muted text-left d-none">Expires: ${expireDate}</small>`;
+                            html += `<small class="farm-details last-updated-date font-small text-muted text-left d-none">Updated: ${lastUpdatedDate}</small>`;
                         html += `</div>`;
                         html += `<div class="d-flex flex-column align-items-end pr-2">`;
                             html += `<div class="${activeColor} font-weight-bold mx-1 mb-0">${farm.numActive} ${activeSvg}</div>`;
@@ -274,12 +274,15 @@ function sortFarms(data) {
     // Sort list first by number of active, then number of inactive, then by farm name
     // Since farms are unique, there will not be a case where two farm names are equal (0 is omitted in sort)
     farmList.sort((farmA, farmB) => {
-        let farmAName = farmA.farmName.toUpperCase();
-        let farmBName = farmB.farmName.toUpperCase();
+        //let farmAName = farmA.farmName.toUpperCase();
+        //let farmBName = farmB.farmName.toUpperCase();
+
+        let farmAEarliestExpiry = Date.parse(farmA.earliestExpiry);
+        let farmBEarliestExpiry = Date.parse(farmB.earliestExpiry)
 
         return farmB.numActive - farmA.numActive || 
                 farmB.numInactive - farmA.numInactive || 
-                (farmAName < farmBName ? -1 : 1)
+                (farmAEarliestExpiry < farmBEarliestExpiry ? 1 : -1)
     })
 
     // Filter list into active (has at least one active monster) and inactive (no active monsters)
