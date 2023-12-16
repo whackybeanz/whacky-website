@@ -16,9 +16,10 @@
                                     <th scope="col" class="text-center" colspan="2">Origin</th>
                                     <th scope="col" class="text-center" colspan="2">Enhance</th>
                                     <th scope="col" class="text-center" colspan="2">Mastery</th>
+                                    <th scope="col" class="text-center" colspan="2">Common</th>
                                 </tr>
                                 <tr>
-                                    <% ["origin", "enhancement", "mastery"].forEach(type => { %>
+                                    <% ["origin", "enhancement", "mastery", "common"].forEach(type => { %>
                                         <th scope="col" class="text-center">
                                             <div class="d-flex flex-column justify-content-center align-items-center">
                                                 <img src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/items/use/sol-erda.png" alt="Sol Erda"> <span class="d-none d-sm-inline">Sol Erda</span>
@@ -56,6 +57,12 @@
                                         <td class="mastery-frags text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.mastery.frags %>">
                                             <%= row.mastery.frags %>
                                         </td>
+                                        <td class="common-sol-erda text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.common.solErda %>">
+                                            <%= row.common.solErda %>
+                                        </td>
+                                        <td class="common-frags text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.common.frags %>">
+                                            <%= row.common.frags %>
+                                        </td>
                                     </tr>
                                 <% }) %>
                                 <tr class="font-subsubheader font-weight-bold">
@@ -79,6 +86,12 @@
                                     </td>
                                     <td class="total-mastery-frags text-center align-middle text-custom">
                                         <%= (2252).toLocaleString("en-SG") %>
+                                    </td>
+                                    <td class="total-common-sol-erda text-center align-middle text-custom">
+                                        208
+                                    </td>
+                                    <td class="total-common-frags text-center align-middle text-custom">
+                                        <%= (6268).toLocaleString("en-SG") %>
                                     </td>
                                 </tr>
                             </tbody>

@@ -66,9 +66,9 @@ function calcBtnListener() {
     calcBtn.addEventListener("click", function() {
         let [currHolding, currProgress, targetGoal, gainFromDailies, gainFromBosses, gainFromCashShop] = compileData();
         let materialsRequired = getMaterialsRequired(currProgress, targetGoal);
-        let milestones = { origin: [], enhance: [], mastery: [], overall: {} };
+        let milestones = { origin: [], enhance: [], mastery: [], common: [], overall: {} };
 
-        ["origin", "enhance", "mastery"].forEach(skillType => {
+        ["origin", "enhance", "mastery", "common"].forEach(skillType => {
             materialsRequired[skillType].nextLevel.forEach(skillMaterialsRequired => {
                 milestones[skillType].push(getMilestone(currHolding, gainFromDailies, gainFromBosses, gainFromCashShop, skillMaterialsRequired));
             })
@@ -110,14 +110,14 @@ function compileData() {
         boosterCurrDay: (parseInt(document.getElementById("booster-curr-progress-select").value) || 0),
     }
 
-    let currMatrix = { origin: [], enhance: [], mastery: [] };
+    let currMatrix = { origin: [], enhance: [], mastery: [], common: [] };
     let currLevelSelects = document.querySelectorAll(".curr-level-select");
 
     currLevelSelects.forEach(select => {
         currMatrix[select.dataset.skillType].push(parseInt(select.value));
     })
 
-    let targetMatrix = { origin: [], enhance: [], mastery: [] };
+    let targetMatrix = { origin: [], enhance: [], mastery: [], common: [] };
     let targetLevelSelects = document.querySelectorAll(".target-level-select");
 
     targetLevelSelects.forEach(select => {
@@ -133,10 +133,12 @@ function getMaterialsRequired(currProgress, targetGoal) {
         origin: { solErdaEnergyElems: document.querySelectorAll(".origin-sol-erda"), fragElems: document.querySelectorAll(".origin-frags") }, 
         enhance: { solErdaEnergyElems: document.querySelectorAll(".enhance-sol-erda"), fragElems: document.querySelectorAll(".enhance-frags") }, 
         mastery: { solErdaEnergyElems: document.querySelectorAll(".mastery-sol-erda"), fragElems: document.querySelectorAll(".mastery-frags") },
+        common: { solErdaEnergyElems: document.querySelectorAll(".common-sol-erda"), fragElems: document.querySelectorAll(".common-frags") },
     }
 
     let materialsRequired = { 
-        origin: { nextLevel: [], allLevels: [] }, enhance: { nextLevel: [], allLevels: [] }, mastery: { nextLevel: [], allLevels: [] },
+        origin: { nextLevel: [], allLevels: [] }, enhance: { nextLevel: [], allLevels: [] }, 
+        mastery: { nextLevel: [], allLevels: [] }, common: { nextLevel: [], allLevels: [] },
         grandTotal: { solErdaEnergy: 0, frags: 0 } 
     };
 
@@ -312,7 +314,7 @@ function displaySummary(gainFromDailies, gainFromBosses, gainFromCashShop, miles
         elem.textContent = "";
     });
 
-    ["origin", "enhance", "mastery"].forEach(skillType => {
+    ["origin", "enhance", "mastery", "common"].forEach(skillType => {
         milestones[skillType].forEach((skill, index) => {
             let elem = document.getElementById(`summary-${skillType}-slot-${index+1}`);
             elem.textContent = `${milestones[skillType][index].second.reachedOn.slice(0, -4)}`;

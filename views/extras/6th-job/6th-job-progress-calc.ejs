@@ -18,19 +18,27 @@
                                     <div class="text-center text-custom font-weight-bold mb-1">Origin</div>
                                     <div class="text-center text-custom font-weight-bold mb-1">Enhance</div>
                                     <div class="text-center text-custom font-weight-bold mb-1">Mastery</div>
+                                    <div class="text-center text-custom font-weight-bold mb-1">Common</div>
 
                                     <% for(let i = 1; i <= 4; i++) { %>
                                         <div class="font-weight-bold">Slot <%= i %></div>
                                         
                                         <% if(i === 1) { %>
-                                            <% ["origin", "enhance", "mastery"].forEach(type => { %>
+                                            <% ["origin", "enhance", "mastery", "common"].forEach(type => { %>
                                                 <div class="summary-slot-dates text-center px-2 mb-1" id="summary-<%= type %>-slot-<%= i %>"></div>
                                             <% }) %>
+                                        <% } else if(i === 2) { %>
+                                            <div></div>
+                                            <div class="summary-slot-dates text-center px-2 mb-1" id="summary-enhance-slot-<%= i %>"></div>
+                                            <div class="summary-slot-dates text-center px-2 mb-1" id="summary-mastery-slot-<%= i %>"></div>
+                                            <div></div>
                                         <% } else if(i <= 4) { %>
                                             <div></div>
                                             <div class="summary-slot-dates text-center px-2 mb-1" id="summary-enhance-slot-<%= i %>"></div>
                                             <div></div>
+                                            <div></div>
                                         <% } else { %>
+                                            <div></div>
                                             <div></div>
                                             <div></div>
                                             <div></div>
@@ -222,39 +230,56 @@
                                 <div class="text-center font-weight-bold">Origin</div>
                                 <div class="text-center font-weight-bold">Enhance</div>
                                 <div class="text-center font-weight-bold">Mastery</div>
+                                <div class="text-center font-weight-bold">Common</div>
 
                                 <% for(let i = 1; i <= 4; i++) { %>
                                     <div class="font-weight-bold">Slot <%= i %></div>
                                     
                                     <% if(i === 1) { %>
                                         <select class="curr-level-select form-control text-center px-2" id="origin-slot-<%= i %>" data-skill-type="origin">
-                                            <!--<option value="-1">N/A</option>-->
                                             <% for(let j = 0; j <= 30; j++) { %>
                                                 <option value="<%= j %>" <% if(j === 1) { %>selected<% } %>><%= j %></option>
                                             <% } %>
                                         </select>
                                         <select class="curr-level-select form-control text-center px-2" id="enhance-slot-<%= i %>" data-skill-type="enhance">
-                                            <!--<option value="-1">N/A</option>-->
                                             <% for(let j = 0; j <= 30; j++) { %>
                                                 <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
                                             <% } %>
                                         </select>
                                         <select class="curr-level-select form-control text-center px-2" id="mastery-slot-<%= i %>" data-skill-type="mastery">
-                                            <!--<option value="-1">N/A</option>-->
                                             <% for(let j = 0; j <= 30; j++) { %>
                                                 <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
                                             <% } %>
                                         </select>
+                                        <select class="curr-level-select form-control text-center px-2" id="common-slot-<%= i %>" data-skill-type="common">
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
+                                    <% } else if(i === 2) { %>
+                                        <div></div>
+                                        <select class="curr-level-select form-control text-center px-2" id="enhance-slot-<%= i %>" data-skill-type="enhance">
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
+                                        <select class="curr-level-select form-control text-center px-2" id="mastery-slot-<%= i %>" data-skill-type="mastery">
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
+                                        <div></div>
                                     <% } else if(i <= 4) { %>
                                         <div></div>
                                         <select class="curr-level-select form-control text-center px-2" id="enhance-slot-<%= i %>" data-skill-type="enhance">
-                                            <!--<option value="-1">N/A</option>-->
                                             <% for(let j = 0; j <= 30; j++) { %>
                                                 <option value="<%= j %>" <% if(j === 0) { %>selected<% } %>><%= j %></option>
                                             <% } %>
                                         </select>
                                         <div></div>
+                                        <div></div>
                                     <% } else { %>
+                                        <div></div>
                                         <div></div>
                                         <div></div>
                                         <div></div>
@@ -275,18 +300,32 @@
                                 <div class="text-center font-weight-bold">Origin</div>
                                 <div class="text-center font-weight-bold">Enhance</div>
                                 <div class="text-center font-weight-bold">Mastery</div>
+                                <div class="text-center font-weight-bold">Common</div>
 
                                 <% for(let i = 1; i <= 4; i++) { %>
                                     <div class="font-weight-bold">Slot <%= i %></div>
                                     
                                     <% if(i === 1) { %>
-                                        <% ["origin", "enhance", "mastery"].forEach(type => { %>
+                                        <% ["origin", "enhance", "mastery", "common"].forEach(type => { %>
                                             <select class="target-level-select form-control text-center px-2" id="<%= type %>-slot-<%= i %>-target" data-skill-type="<%= type %>">
                                                 <% for(let j = 0; j <= 30; j++) { %>
                                                     <option value="<%= j %>" <% if(j === 30) { %>selected<% } %>><%= j %></option>
                                                 <% } %>
                                             </select>
                                         <% }) %>
+                                    <% } else if(i === 2) { %>
+                                        <div></div>
+                                        <select class="target-level-select form-control text-center px-2" id="enhance-slot-<%= i %>-target" data-skill-type="enhance">
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 30) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
+                                        <select class="target-level-select form-control text-center px-2" id="mastery-slot-<%= i %>-target" data-skill-type="mastery">
+                                            <% for(let j = 0; j <= 30; j++) { %>
+                                                <option value="<%= j %>" <% if(j === 30) { %>selected<% } %>><%= j %></option>
+                                            <% } %>
+                                        </select>
+                                        <div></div>
                                     <% } else if(i <= 4) { %>
                                         <div></div>
                                         <select class="target-level-select form-control text-center px-2" id="enhance-slot-<%= i %>-target" data-skill-type="enhance">
@@ -295,7 +334,9 @@
                                             <% } %>
                                         </select>
                                         <div></div>
+                                        <div></div>
                                     <% } else { %>
+                                        <div></div>
                                         <div></div>
                                         <div></div>
                                         <div></div>
