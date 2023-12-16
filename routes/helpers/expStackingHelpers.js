@@ -63,6 +63,7 @@ function getPotionList() {
         potion3: { id: "growth-potion-3", name: "Growth Potion 3", minLevel: 200, maxLevel: 229 },
         typhoon: { id: "typhoon-growth-potion", name: "Typhoon Growth Potion", minLevel: 200, maxLevel: 239 },
         maximum: { id: "maximum-growth-potion", name: "Maximum Growth Potion", minLevel: 200, maxLevel: 249 },
+        transcendent: { id: "transcendent-growth-potion", name: "Transcendent Growth Potion", minLevel: 200, maxLevel: 269 },
     }
 
     return potionList;

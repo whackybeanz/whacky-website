@@ -47,7 +47,7 @@
                     <img src="<%= icons['growth-potion'].imgUrl %>" class="mr-2"> Summary
                 </h2>
             </div>
-            <div class="pill-section-content font-form d-flex flex-wrap justify-content-center pt-4 px-3">
+            <div class="pill-section-content font-form d-flex flex-wrap justify-content-start pt-4 px-3">
                 <% Object.keys(potionList).forEach(potion => { %>
                     <div class="per-potion-exp-div col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 d-flex align-items-center justify-content-center mb-4 px-0 px-sm-3" id="<%= potionList[potion].id %>" data-pot-type="<%= potion %>">
                         <img class="item-square" src="<%= icons[potionList[potion].id].imgUrl %>">
@@ -107,7 +107,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex flex-wrap justify-content-center">
+                    <div class="d-flex flex-wrap justify-content-start">
                         <% Object.keys(potionList).forEach(potion => { %>
                             <div class="per-potion-add-div col-12 col-sm-6 col-md-4 col-lg-6 col-xl-4 d-flex align-items-center justify-content-center mb-4 px-0 px-sm-3" id="<%= potionList[potion].id %>" data-pot-type="<%= potion %>">
                                 <img class="item-square" src="<%= icons[potionList[potion].id].imgUrl %>">
@@ -153,6 +153,7 @@
                                 <option value="potion3">Growth Potion 3</option>
                                 <option value="typhoon">Typhoon Growth Potion</option>
                                 <option value="maximum">Maximum Growth Potion</option>
+                                <option value="transcendent">Transcendent Growth Potion</option>
                             </select>
                         </div>
                     </div>

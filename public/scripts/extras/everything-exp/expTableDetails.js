@@ -227,6 +227,7 @@ const POTION_EXP_TABLE = {
     potion3: { name: "Growth Potion 3", minLevel: 200, maxLevel: 229 },
     typhoon: { name: "Typhoon Growth Potion", minLevel: 200, maxLevel: 239 },
     maximum: { name: "Maximum Growth Potion", minLevel: 200, maxLevel: 249 },
+    transcendent: { name: "Transcendent Growth Potion", minLevel: 200, maxLevel: 269 },
 };
 
 const MONSTER_PARK_EXTREME_TABLE = [
