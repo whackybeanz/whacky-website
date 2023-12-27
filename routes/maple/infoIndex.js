@@ -141,8 +141,8 @@ router.get("/damage-skins/:page", function(req, res) {
         isValidSearch = true;
     }
 
-    if(page === "box") {
-        query.push({ isInCurrentBox: true });
+    if(page === "action") {
+        query.push({ isAnimated: true });
         isValidSearch = true;
     }
 

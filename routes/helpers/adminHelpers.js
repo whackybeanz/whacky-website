@@ -72,11 +72,9 @@ function compileDamageSkinData(body) {
         shortName: body.name.replace(/(Damage Skin \- | Damage Skin)/, ""),
 
         isAnimated: body.isAnimated === "yes",
-        isInCurrentBox: body.isInCurrentBox === "yes",
         isJobSkin: body.isJobSkin === "yes",
 
         folderNum: parseInt(body.folderNum),
-        regularItemId: body.regularItemId,
         screenshotTypes: body.screenshotTypes,
         screenshotCredits: body.screenshotCredits,
         
@@ -99,7 +97,6 @@ function compileDamageSkinData(body) {
     if(body.hasUnitSkin === "yes") {
         damageSkinData.hasUnitSkin = true;
         damageSkinData.unitFolderNum = parseInt(body.unitFolderNum);
-        damageSkinData.unitItemId = body.unitItemId;
         damageSkinData.digits.unitTypes = body.unitTypes;
     }
 

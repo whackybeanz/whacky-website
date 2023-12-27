@@ -41,24 +41,24 @@
                         <div class="size-720 w-100 d-flex flex-column justify-content-center align-items-center">
                             <div class="w-100 d-flex justify-content-center">
                                 <div class="skin-select-div col-4 text-center px-1 mb-1">
-                                    <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "new") { %>active<% } %>">
+                                    <div class="single-option-select rounded-sm d-flex align-items-center justify-content-center position-relative py-1 <% if(page === "new") { %>active<% } %>">
                                         <a href="/info/damage-skins/new" class="stretched-link text-decoration-none">Newly Released</a>
                                     </div>
                                 </div>
                                 <div class="skin-select-div col-4 text-center px-1 mb-1">
-                                    <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "unit") { %>active<% } %>">
+                                    <div class="single-option-select rounded-sm d-flex align-items-center justify-content-center position-relative py-1 <% if(page === "unit") { %>active<% } %>">
                                         <a href="/info/damage-skins/unit" class="stretched-link text-decoration-none">Unit Skins</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="w-100 d-flex justify-content-center">
                                 <div class="skin-select-div col-4 text-center px-1">
-                                    <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "box") { %>active<% } %>">
-                                        <a href="/info/damage-skins/box" class="stretched-link text-decoration-none">Random Skin Box</a>
+                                    <div class="single-option-select rounded-sm d-flex align-items-center justify-content-center position-relative py-1 <% if(page === "action") { %>active<% } %>">
+                                        <a href="/info/damage-skins/action" class="stretched-link text-decoration-none">Action (Animated) Skins</a>
                                     </div>
                                 </div>
                                 <div class="skin-select-div col-4 text-center px-1">
-                                    <div class="single-option-select rounded-sm position-relative py-1 <% if(page === "job") { %>active<% } %>">
+                                    <div class="single-option-select rounded-sm d-flex align-items-center justify-content-center position-relative py-1 <% if(page === "job") { %>active<% } %>">
                                         <a href="/info/damage-skins/job" class="stretched-link text-decoration-none">Job Damage Skins</a>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                         <div class="size-720 w-100 d-flex justify-content-center flex-wrap">
                             <% pagesArr.forEach(function(pageName, index) { %>
                             <div class="skin-select-div col-4 text-center px-1 mb-1">
-                                <div class="single-option-select rounded-sm position-relative py-1 <% if(parseInt(page) === index) { %>active<% } %>">
+                                <div class="single-option-select rounded-sm d-flex align-items-center justify-content-center position-relative py-1 <% if(parseInt(page) === index) { %>active<% } %>">
                                     <a href="/info/damage-skins/<%= index %>" class="stretched-link text-decoration-none"><%= pageName %></a>
                                 </div>
                             </div>

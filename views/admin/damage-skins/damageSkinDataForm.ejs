@@ -125,21 +125,14 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Item ID</label>
-            <div class="col-sm-9">
-                <input type="number" class="form-control" id="item-id" name="regularItemId" placeholder="Item ID" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.regularItemId %>"<% } %>>
-                <small class="form-text text-custom">Refers to 7-digit numerical ID attached to each item asset. Leave blank if there is no non-unit version.</small>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Available Combat Messages<br/>(Check all that apply)</label>
+            <div class="col-sm-3 col-form-label font-weight-bold">Available Combat Messages<br/>(Check all that apply)</div>
             <div class="col-12 col-sm-9 d-flex flex-wrap align-items-center">
                 <% skinProperties.combatMessages.forEach(function(msg) { %>
                     <div class="form-check col px-1 mb-1">
                         <input class="form-check-input" name="combatMessages" type="checkbox" id="msg-<%= msg.id %>" value="<%= msg.id %>" 
                             <% if((locals.damageSkinData && damageSkinData.digits.combatMessages.includes(msg.id)) || 
                                 (!locals.damageSkinData && (msg.id === "Miss" || msg.id === "guard" || msg.id === "resist"))) { %>checked<% } %>>
-                        <label class="form-check-label single-checkbox col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer 
+                        <label class="form-check-label single-checkbox col-12 px-2 position-absolute py-1 rounded-sm text-center d-flex justify-content-center align-items-center cursor-pointer 
                             <% if((locals.damageSkinData && damageSkinData.digits.combatMessages.includes(msg.id)) || 
                                 (!locals.damageSkinData && (msg.id === "Miss" || msg.id === "guard" || msg.id === "resist"))) { %>active<% } %>"
                             id="msg-<%= msg.id %>-label" for="msg-<%= msg.id %>">
@@ -155,27 +148,20 @@
         <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Unit Skin Info</h3>
         <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
             <div class="form-group row">
-                <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Unit Folder Number</label>
+                <label for="unit-damage-skin-id" class="col-sm-3 col-form-label font-weight-bold">Unit Folder Number</label>
                 <div class="col-sm-9">
                     <input type="number" class="form-control" id="unit-damage-skin-id" name="unitFolderNum" placeholder="Unit Folder Number" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.unitFolderNum %>"<% } %>>
                     <small class="form-text text-custom">Refers to folder number as seen in Effects.img &gt; DamageSkin</small>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Unit Item ID</label>
-                <div class="col-sm-9">
-                    <input type="number" class="form-control" id="unit-item-id" name="unitItemId" placeholder="Unit Item ID" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.unitItemId %>"<% } %>>
-                    <small class="form-text text-custom">Refers to 7-digit numerical ID attached to each item asset.</small>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Available Units<br/>(Check all that apply)</label>
+                <div class="col-sm-3 col-form-label font-weight-bold">Available Units<br/>(Check all that apply)</div>
                 <div class="col-12 col-sm-9 d-flex flex-wrap align-items-center">
                     <% skinProperties.unitTypes.forEach(function(unit) { %>
                         <div class="form-check col px-1 mb-1">
                             <input class="form-check-input" name="unitTypes" type="checkbox" id="unit-<%= unit.id %>" value="<%= unit.id %>" 
                                 <% if((locals.damageSkinData && damageSkinData.digits.unitTypes.includes(unit.id)) || (!locals.damageSkinData && unit.id === "kr")) { %>checked<% } %>>
-                            <label class="form-check-label single-checkbox col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer 
+                            <label class="form-check-label single-checkbox col-12 px-2 position-absolute py-1 rounded-sm text-center d-flex justify-content-center align-items-center cursor-pointer 
                                 <% if((locals.damageSkinData && damageSkinData.digits.unitTypes.includes(unit.id)) || (!locals.damageSkinData && unit.id === "kr")) { %>active<% } %>" for="unit-<%= unit.id %>">
                                 <%= unit.name %>
                             </label>
@@ -190,7 +176,7 @@
         <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Custom Skin Info</h3>
         <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
             <div class="form-group row">
-                <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Number of Assets</label>
+                <label for="num-assets-id" class="col-sm-3 col-form-label font-weight-bold">Number of Assets</label>
                 <div class="col-sm-9">
                     <input type="number" class="form-control" id="num-assets-id" name="numAssetsToLoad" placeholder="Number of Assets" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.numAssetsToLoad %>"<% } %>>
                 </div>
@@ -200,21 +186,6 @@
 
     <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Damage Skin Box Info</h3>
     <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
-        <div class="form-group row">
-            <div class="col-sm-3 font-weight-bold">Is in current box?</div>
-            <div class="col-sm-9 d-flex flex-wrap h-100">
-                <div class="col-8 col-lg-8 radio-select-group d-flex justify-content-center px-0" id="is-in-current-box-radio-group">
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="isInCurrentBox" id="in-current-box-yes" value="yes" <% if(locals.damageSkinData && damageSkinData.isInCurrentBox) { %>checked<% } %>>
-                        <label class="form-check-label radio-select is-in-current-box-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(locals.damageSkinData && damageSkinData.isInCurrentBox) { %>active<% } %>" for="in-current-box-yes" data-is-in-current-box="yes" id="in-current-box-label-yes">Yes</label>
-                    </div>
-                    <div class="col form-check p-0">
-                        <input class="form-check-input" type="radio" name="isInCurrentBox" id="in-current-box-no" value="" <% if(!locals.damageSkinData || (locals.damageSkinData && !damageSkinData.isInCurrentBox)) { %>checked<% } %>>
-                        <label class="form-check-label radio-select is-in-current-box-input d-flex justify-content-center align-items-center text-center cursor-pointer px-2 <% if(!locals.damageSkinData || (locals.damageSkinData && !damageSkinData.isInCurrentBox)) { %>active<% } %>" for="in-current-box-no" data-is-in-current-box="no" id="in-current-box-label-no">No</label>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="form-group row">
             <div class="col-sm-3 font-weight-bold">Is job skin?</div>
             <div class="col-sm-9 d-flex flex-wrap h-100">
@@ -235,12 +206,12 @@
     <h3 class="w-100 font-subsubheader font-weight-bold font-italic mb-3">Screenshots Info</h3>
     <div class="border border-dark rounded-sm px-3 pt-3 mb-5">
         <div class="form-group row">
-            <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Available Screenshot Types<br/>(Check all that apply)</label>
+            <div class="col-sm-3 col-form-label font-weight-bold">Available Screenshot Types<br/>(Check all that apply)</div>
             <div class="col-12 col-sm-9 d-flex flex-wrap align-items-center">
                 <div class="form-check col px-1 mb-1">
                     <input class="form-check-input" name="screenshotTypes" type="checkbox" id="screenshot-reg" value="reg" 
                         <% if(locals.damageSkinData && damageSkinData.screenshotTypes && damageSkinData.screenshotTypes.includes("reg")) { %>checked<% } %>>
-                    <label class="form-check-label single-checkbox col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer 
+                    <label class="form-check-label single-checkbox col-12 px-2 position-absolute py-1 rounded-sm text-center d-flex justify-content-center align-items-center cursor-pointer 
                         <% if(locals.damageSkinData && damageSkinData.screenshotTypes && damageSkinData.screenshotTypes.includes("reg")) { %>active<% } %>"
                         id="screenshot-reg-label" for="screenshot-reg">
                         Regular
@@ -252,7 +223,7 @@
                         <div class="form-check col px-1 mb-1">
                             <input class="form-check-input" name="screenshotTypes" type="checkbox" id="screenshot-<%= unit.id %>" value="unit-<%= unit.id %>" 
                                 <% if(locals.damageSkinData && damageSkinData.screenshotTypes && damageSkinData.screenshotTypes.includes(`unit-${unit.id}`)) { %>checked<% } %>>
-                            <label class="form-check-label single-checkbox col-12 px-2 position-absolute py-1 rounded-sm text-center cursor-pointer 
+                            <label class="form-check-label single-checkbox col-12 px-2 position-absolute py-1 rounded-sm text-center d-flex justify-content-center align-items-center cursor-pointer 
                                 <% if(locals.damageSkinData && damageSkinData.screenshotTypes && damageSkinData.screenshotTypes.includes(`unit-${unit.id}`)) { %>active<% } %>" for="screenshot-<%= unit.id %>">
                                 Unit - <%= unit.name %>
                             </label>
@@ -262,7 +233,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="item-id" class="col-sm-3 col-form-label font-weight-bold">Screenshot credits</label>
+            <label for="screenshot-credits" class="col-sm-3 col-form-label font-weight-bold">Screenshot credits</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="screenshot-credits" name="screenshotCredits" placeholder="E.g. whacky (EN unit skin)" autocomplete="off" <% if(locals.damageSkinData) { %>value="<%= damageSkinData.screenshotCredits %>"<% } %>>
             </div>

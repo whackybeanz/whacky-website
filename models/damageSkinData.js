@@ -18,9 +18,7 @@ var damageSkinSchema = new mongoose.Schema({
     isJobSkin: Boolean,
 
     folderNum: { type: Number, index: true },
-    regularItemId: String,
     unitFolderNum: Number,
-    unitItemId: String,
     screenshotTypes: [String],
     screenshotCredits: String,
 
