@@ -130,8 +130,8 @@ function dailiesCalcNewExpBtnListener() {
 
         let startDate = new Date(document.getElementById("dailies-start-date").value);
         let endDate = new Date(document.getElementById("dailies-end-date").value)
-        let startDateVal = Date.parse(startDate);
-        let endDateVal = Date.parse(endDate);
+        let startDateVal = Date.parse(startDate) - startDate.getTimezoneOffset() * 60 * 1000;
+        let endDateVal = Date.parse(endDate) - endDate.getTimezoneOffset() * 60 * 1000;
         document.getElementById("calc-start-date").textContent = startDate.toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" });
         document.getElementById("calc-end-date").textContent = endDate.toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" });
 

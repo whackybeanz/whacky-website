@@ -13,8 +13,11 @@
                             <img class="w-100 coin-event-banner img-fluid" src="https://whacky-website.s3-ap-southeast-1.amazonaws.com/images/event/coin-events/<%= event.eventId %>/<%= event.eventDetails.bannerImg %>">
                         </a>
                         <p class="font-subsubheader font-weight-bold mt-1 mb-0"><%= event.eventDetails.name %></p>
-                        <p class="font-form mb-0"><%= event.eventDetails.startDate.toLocaleDateString('en-SG', {month: 'short', day: '2-digit', year: 'numeric' }) %> to 
-                        <%= event.eventDetails.endDate.toLocaleDateString('en-SG', {month: 'short', day: '2-digit', year: 'numeric' }) %></p>
+                        <p class="font-form mb-0">
+                            <% if(category === "upcoming") { %>(KMS)<% } else { %>(MSEA)<% } %>
+                            <%= event.eventDetails.startDate.toLocaleDateString('en-SG', {month: 'short', day: '2-digit', year: 'numeric' }) %> to 
+                        <%= event.eventDetails.endDate.toLocaleDateString('en-SG', {month: 'short', day: '2-digit', year: 'numeric' }) %>
+                        </p>
                     </div>
                 <% }) %>
             </div>
