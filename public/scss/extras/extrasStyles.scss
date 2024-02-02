@@ -260,6 +260,11 @@
     }
 }
 
+#milestones-summary {
+    max-height: 7.75rem;
+    overflow: auto;
+}
+
 // Symbol Calculator
 .single-symbol-btn {
     height: 50px;

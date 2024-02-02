@@ -123,6 +123,24 @@ function validateCurrLevelInput(elemIds) {
     })
 }
 
+function validateTargetLevelInput(elemIds) {
+    let levelInput = document.getElementById(elemIds.targetLevelInputId);
+
+    levelInput.addEventListener("change", () => {
+        let levelInputValue = parseInt(levelInput.value)
+
+        if(isNaN(levelInputValue) || levelInputValue < 200) {
+            levelInput.value = 200;
+        }
+
+        if(levelInputValue > 300) {
+            levelInput.value = 300;
+        }
+
+        checkAnyActiveErrors(elemIds.parentContainerId, elemIds.calcBtnId);
+    })
+}
+
 function validateCurrExpPercentInput(elemIds){
     let expPercentInput = document.getElementById(elemIds.currExpPercentInputId);
 

@@ -2,25 +2,31 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content border-0">
             <div class="modal-body position-relative d-flex align-items-center justify-content-center p-0">
-                <div class="summary-div col-12 size-720 d-flex flex-column flex-md-row align-items-center justify-content-center rounded-lg pt-4 pb-2">
-                    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-3 mb-md-0">
-                        <div class="d-flex flex-column align-items-center">
-                            <p class="font-small mb-2" id="calc-start-date"></p>
-                            <p class="font-weight-bold mb-0">Level</p>
-                            <p class="font-mega font-weight-bold mb-0" id="calc-start-level"></p>
-                            <p class="mb-0 font-weight-bold" id="calc-start-percent"></p>
-                            <p class="mb-md-3 font-small text-center" id="calc-start-raw"></p>
+                <div class="summary-div col-12 size-720 d-flex flex-column flex-md-row align-items-center justify-content-center rounded-lg pt-4 pb-4">
+                    <div class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center mb-3 mb-md-0">
+                        <div class="col-12 px-0 d-flex justify-content-center align-items-center">
+                            <div class="d-flex flex-column align-items-center">
+                                <p class="font-small mb-2" id="calc-start-date"></p>
+                                <p class="font-weight-bold mb-0">Level</p>
+                                <p class="font-mega font-weight-bold mb-0" id="calc-start-level"></p>
+                                <p class="mb-0 font-weight-bold" id="calc-start-percent"></p>
+                                <p class="mb-md-3 font-small text-center" id="calc-start-raw"></p>
+                            </div>
+                            <div class="text-center mx-4">
+                                <p class="font-mega mb-0">&raquo;</p>
+                                <p class="font-small d-none mb-0" id="hyper-text">Hyper Burn</p>
+                            </div>
+                            <div class="d-flex flex-column align-items-center text-custom">
+                                <p class="font-small mb-2" id="calc-end-date"></p>
+                                <p class="font-weight-bold mb-0">Level</p>
+                                <p class="font-mega font-weight-bold mb-0" id="calc-end-level"></p>
+                                <p class="mb-0 font-weight-bold" id="calc-end-percent"></p>
+                                <p class="mb-md-3 font-small text-center" id="calc-end-raw"></p>
+                            </div>
                         </div>
-                        <div class="text-center mx-4">
-                            <p class="font-mega mb-0">&raquo;</p>
-                            <p class="font-small d-none mb-0" id="hyper-text">Hyper Burn</p>
-                        </div>
-                        <div class="d-flex flex-column align-items-center text-custom">
-                            <p class="font-small mb-2" id="calc-end-date"></p>
-                            <p class="font-weight-bold mb-0">Level</p>
-                            <p class="font-mega font-weight-bold mb-0" id="calc-end-level"></p>
-                            <p class="mb-0 font-weight-bold" id="calc-end-percent"></p>
-                            <p class="mb-md-3 font-small text-center" id="calc-end-raw"></p>
+                        <div class="col-12 d-none px-0" id="level-milestones-div">
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Level Milestones -</p>
+                            <div class="d-flex flex-wrap px-3" id="milestones-summary"></div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 d-flex flex-column align-items-center px-0" id="activity-summary">
@@ -242,15 +248,15 @@
                             </div>
                             <div class="col-12 text-center">
                                 <div class="form-group d-flex align-items-center mb-2">
-                                    <label class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">Start Level</label>
+                                    <label for="start-calc-dailies-char-level" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">Start Level</label>
                                     <input type="number" id="start-calc-dailies-char-level" class="form-control col-3 col-md-2 col-lg-3 col-xl-2 py-2" value="200">
                                 </div>
                                 <div class="form-group d-flex align-items-center mb-2">
-                                    <label class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">EXP (%)</label>
+                                    <label for="start-calc-dailies-char-exp-percent" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">EXP (%)</label>
                                     <input type="number" id="start-calc-dailies-char-exp-percent" class="form-control col-3 col-md-2 col-lg-3 col-xl-2 py-2" value="0.000">
                                 </div>
                                 <div class="form-group d-flex align-items-center mb-2">
-                                    <label class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">EXP (Value)</label>
+                                    <label for="start-calc-dailies-char-exp-raw" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">EXP (Value)</label>
                                     <div class="col-8 px-0">
                                         <input type="text" id="start-calc-dailies-char-exp-raw" class="form-control col-9 col-md-7 col-lg-9 col-xl-7 py-2" value="0">
                                         <small class="text-danger d-none" id="calc-dailies-exp-raw-input-error">Input exceeds level's EXP to level up (<span id="calc-dailies-err-max-exp-tnl"></span> EXP)</small>
@@ -260,19 +266,34 @@
                         </form>
                     </div>
 
-                    <div class="col-12 d-flex flex-wrap px-0 mb-5" id="date-range">
+                    <div class="col-12 d-flex flex-wrap px-0 mb-5" id="target-level">
                         <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
-                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">7) Start/End Date</p>
-                            <p class="font-small text-left text-custom mb-2 px-3">Both dates are inclusive (i.e. 01 May to 04 May will include both of these dates in the calculation)</p>
+                            <p class="font-subsubheader font-weight-bold mb-2 px-md-3">7) Target Level</p>
+                            <p class="font-small text-left text-custom mb-2 px-3">If you have a specific target level you wish to achieve, indicate it here.</p>
                         </div>
                         <form class="col-12 col-sm-8 col-xl-7 px-0">
                             <div class="col-12">
                                 <div class="form-group d-flex align-items-center mb-2">
-                                    <label class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">Start Date</label>
+                                    <label for="start-calc-dailies-target-level" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">Target Level</label>
+                                    <input type="number" id="start-calc-dailies-target-level" class="form-control col-3 col-md-2 col-lg-3 col-xl-2 py-2" value="200">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 d-flex flex-wrap px-0 mb-5" id="date-range">
+                        <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">8) Start/End Date</p>
+                            <p class="font-small text-left text-custom mb-2 px-3">If you have a specific date range in mind, indicate it here. Both dates are inclusive (i.e. 01 May to 04 May will include both of these dates in the calculation)</p>
+                        </div>
+                        <form class="col-12 col-sm-8 col-xl-7 px-0">
+                            <div class="col-12">
+                                <div class="form-group d-flex align-items-center mb-2">
+                                    <label for="dailies-start-date" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">Start Date</label>
                                     <input type="date" id="dailies-start-date" class="form-control col-6 col-md-4 col-lg-6 col-xl-4 text-center px-2" value="<%= dateNow.getFullYear() %>-<%= ("0" + (dateNow.getUTCMonth() + 1)).slice(-2) %>-<%= ("0" + dateNow.getUTCDate()).slice(-2) %>">
                                 </div>
                                 <div class="form-group d-flex align-items-center mb-2">
-                                    <label class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">End Date</label>
+                                    <label for="dailies-end-date" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">End Date</label>
                                     <input type="date" id="dailies-end-date" class="form-control col-6 col-md-4 col-lg-6 col-xl-4 text-center px-2" value="<%= dateNow.getFullYear() %>-<%= ("0" + (dateNow.getUTCMonth() + 1)).slice(-2) %>-<%= ("0" + dateNow.getUTCDate()).slice(-2) %>">
                                 </div>
                             </div>

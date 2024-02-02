@@ -1,9 +1,12 @@
+const CHAR_MAX_LEVEL = 300;
+
 function loadDailiesCalcListeners() {
     toggleDailiesBtnListener();
     dailiesDateInputListener();
     dailiesCalcCurrLevelInputListener();
     dailiesCalcCurrExpPercentInputListener();
     dailiesCalcCurrExpRawInputListener();
+    dailiesTargetLevelListener();
     expMinigameSelectListener();
     monsterExpValidate();
     dailiesCalcNewExpBtnListener();
@@ -65,6 +68,15 @@ function dailiesCalcCurrExpPercentInputListener() {
     validateCurrExpPercentInput(elemIds);
 }
 
+function dailiesTargetLevelListener() {
+    let elemIds = {
+        parentContainerId: "calc-exp-contents",
+        targetLevelInputId: "start-calc-dailies-target-level",
+        calcBtnId: "btn-calc-dailies-exp-result",
+    };
+    validateTargetLevelInput(elemIds);
+}
+
 function dailiesCalcCurrExpRawInputListener() {
     let elemIds = {
         parentContainerId: "calc-exp-contents",
@@ -123,6 +135,7 @@ function dailiesCalcNewExpBtnListener() {
 
     calcExpBtn.addEventListener("click", () => {
         let currLevel = parseInt(document.getElementById("start-calc-dailies-char-level").value);
+        let targetLevel = parseInt(document.getElementById("start-calc-dailies-target-level").value);
         let currExp = parseInt(document.getElementById("start-calc-dailies-char-exp-raw").value.match(/\d/g).join(""));
         document.getElementById("calc-start-level").textContent = currLevel;
         document.getElementById("calc-start-percent").textContent = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)}%`;
@@ -138,14 +151,14 @@ function dailiesCalcNewExpBtnListener() {
         let perDayExp = compilePerDayExp();
         let perWeekExp = compilePerWeekExp();
 
-        [finalLevel, finalExp] = calcDailiesNewExp(currLevel, currExp, startDateVal, endDateVal, perDayExp, perWeekExp);
+        [finalLevel, finalExp, milestones] = calcDailiesNewExp(currLevel, currExp, targetLevel, startDateVal, endDateVal, perDayExp, perWeekExp);
 
         document.getElementById("calc-end-level").textContent = finalLevel;
         document.getElementById("calc-end-percent").textContent = `${(finalExp / getExpTNL(finalLevel) * 100).toFixed(3)}%`;
         document.getElementById("calc-end-raw").textContent = `${finalExp.toLocaleString("en-SG")} EXP`;
 
         if(finalLevel !== currLevel || finalExp !== currExp) {
-            displaySummary(perDayExp, perWeekExp);
+            displaySummary(perDayExp, perWeekExp, milestones);
         }
     })
 }
@@ -218,96 +231,147 @@ function getNumRuns(elemId) {
     return inputValue;
 }
 
-function calcDailiesNewExp(currLevel, currExp, startDate, endDate, perDayExp, perWeekExp) {
+function calcDailiesNewExp(currLevel, currExp, targetLevel, startDate, endDate, perDayExp, perWeekExp) {
     // Object created here to prevent repeated creation of variables that will be accessed for updating
     let burningSelectElem = document.getElementById("burning-select");
     let charData = {
         burningType: burningSelectElem.value,
         burningMaxLevel: parseInt(burningSelectElem.options[burningSelectElem.selectedIndex].dataset.maxLevel),
         currLevel: currLevel,
+        targetLevel: targetLevel,
         currExp: currExp,
         expTNL: getExpTNL(currLevel),
+        milestones: [],
     }
+    
+    // Add EXP based on start/end date provided
     //let hasWeeklies = Object.keys(perWeekExp).length > 0;
     let weekliesWhen = (perWeekExp.weekliesWhen >= 0) && (perWeekExp.weekliesWhen <= 6) ? perWeekExp.weekliesWhen : -1;
     let mpDungeonList = Array.from(document.querySelectorAll(".mp-details")).filter(dungeons => dungeons.dataset.minLevel >= 200).reverse();
-    let expFromGrinding = perDayExp.monsterHunting;
-    let isUsingExpTickets = getNumRuns("num-exp-tickets") > 0;
+    let expFromGrinding = perDayExp.monsterHunting || 0;
 
     for(let i = startDate; i <= endDate; i += 1000*60*60*24) {
-        if(perDayExp.allSelectedDailyQuests.length > 0) {
-            charData = addDailiesExp(charData, perDayExp.allSelectedDailyQuests);    
-        }
-        
-        if((new Date(i)).getDay() === weekliesWhen) {
-            charData = addWeekliesExp(charData, perWeekExp);
-        }
+        charData = addExpComponents(i, charData, perDayExp, perWeekExp, weekliesWhen, mpDungeonList, expFromGrinding);
+    }
+    charData.endDateLevel = charData.currLevel;
+    charData.endDateExp = charData.currExp;
 
-        if(perDayExp.numMonsterPark > 0) {
-            charData = addMonsterParkRegularExp(charData, perDayExp, mpDungeonList, i);
-        }
+    // If target level was not reached, continue adding EXP until target is reached, or until a maximum of 5000 counts have elapsed
+    // NOTE: This is a ballpark calculation, where MP and MPE EXP is not calculated accurately to the day
+    // Instead, it takes whatever day it is currently for the EXP value, so it may either not account for any Sunday benefits, or counts everyday as a Sunday
+    // This is to reduce the load on the client during calculations, so a rougher value is used -- please take the results only as a ballpark and not as 100% accurate.
+    let count = 0;
 
-        // Now add EXP obtained from event minigames
-        /*if(perDayExp.expMinigameId !== "") {
-            charData = addDailyMinigameExp(charData, perDayExp);
-        }*/
+    let totalContentExp = getDailiesExp(charData, perDayExp.allSelectedDailyQuests) + getWeekliesExp(charData, perWeekExp) + 
+                            getMonsterParkRegularExp(endDate, charData, perDayExp.numMonsterPark, mpDungeonList) + expFromGrinding + 
+                            getMonsterParkExtremeExp(endDate, charData, perDayExp.numMonsterParkExtreme) + getPunchKingEXP(charData, perWeekExp.expPunchKingPoints);
+    let numDaysToLevel = 0;
 
-        // Factor in grinding EXP
-        if(expFromGrinding > 0) {
-            charData = adjustLevelAndExp(charData, expFromGrinding);
-        }
+    if(totalContentExp > 0) {
+        while(charData.currLevel < charData.targetLevel && count < 300) {
+            numDaysToLevel = Math.ceil((getExpTNL(charData.currLevel) - charData.currExp) / totalContentExp);
 
-        // If character is level 260+, now add EXP obtained from Monster Park Extreme
-        if(charData.currLevel >= 260 && perDayExp.numMonsterParkExtreme > 0) {
-            charData = addMonsterParkExtremeExp(charData, i);
-        }
+            if(numDaysToLevel > 5000) {
+                charData.milestones.push({ date: -1, level: -1 });
+                break;
+            }
+            endDate += numDaysToLevel*1000*60*60*24;
+            charData = adjustLevelAndExp(endDate, charData, numDaysToLevel*totalContentExp);
 
-        if(perWeekExp.expPunchKingPoints > 0 && (new Date(i)).getDay() === 2) {
-            charData = addPunchKingEXP(charData, perWeekExp.expPunchKingPoints);
+            // Update totalContentExp due to level up
+            totalContentExp = getDailiesExp(charData, perDayExp.allSelectedDailyQuests) + getWeekliesExp(charData, perWeekExp) + 
+                                getMonsterParkRegularExp(endDate, charData, perDayExp.numMonsterPark, mpDungeonList) + expFromGrinding + 
+                                getMonsterParkExtremeExp(endDate, charData, perDayExp.numMonsterParkExtreme) + getPunchKingEXP(charData, perWeekExp.expPunchKingPoints);
+            count++;
         }
     }
+
+    // Add EXP tickets last
+    let isUsingExpTickets = getNumRuns("num-exp-tickets") > 0;
 
     if(perDayExp.expMinigameId !== "" && isUsingExpTickets) {
-        charData = addMinigameExpTicketExp(charData);
+        charData = addMinigameExpTicketExp(endDate, charData);
     }
 
-    return [charData.currLevel, charData.currExp];
+    // When returning data, return
+    // 1) The level and EXP obtained based on the designated date range
+    // 2) The milestones achieved (that may go beyond the date range)
+    return [charData.endDateLevel, charData.endDateExp, charData.milestones];
+}
+
+function addExpComponents(i, charData, perDayExp, perWeekExp, weekliesWhen, mpDungeonList, expFromGrinding) {
+    let contentExp;
+
+    if(perDayExp.allSelectedDailyQuests.length > 0) {
+        contentExp = getDailiesExp(charData, perDayExp.allSelectedDailyQuests);
+        charData = adjustLevelAndExp(i, charData, contentExp); 
+    }
+    
+    if((new Date(i)).getDay() === weekliesWhen) {
+        contentExp = getWeekliesExp(charData, perWeekExp);
+        charData = adjustLevelAndExp(i, charData, contentExp);
+    }
+
+    if(perDayExp.numMonsterPark > 0) {
+        contentExp = getMonsterParkRegularExp(i, charData, perDayExp.numMonsterPark, mpDungeonList);
+        charData = adjustLevelAndExp(i, charData, contentExp);
+    }
+
+    // Now add EXP obtained from event minigames
+    /*if(perDayExp.expMinigameId !== "") {
+        charData = addDailyMinigameExp(charData, perDayExp);
+    }*/
+
+    // Factor in grinding EXP
+    if(expFromGrinding > 0) {
+        charData = adjustLevelAndExp(i, charData, expFromGrinding);
+    }
+
+    // If character is level 260+, now add EXP obtained from Monster Park Extreme
+    if(charData.currLevel >= 260) {
+        contentExp = getMonsterParkExtremeExp(i, charData, perDayExp.numMonsterParkExtreme);
+        charData = adjustLevelAndExp(i, charData, contentExp);
+    }
+
+    if(perWeekExp.expPunchKingPoints > 0 && (new Date(i)).getDay() === 2) {
+        contentExp = getPunchKingEXP(charData, perWeekExp.expPunchKingPoints);
+        charData = adjustLevelAndExp(i, charData, contentExp);
+    }
+
+    return charData;
 }
 
 // For all selected symbol dailies, calculate and add EXP obtained to data
 // Filter according to current character level to determine what can be done within the list
-function addDailiesExp(charData, dailies) {
-    let expFromDaily = dailies
-                        .filter(daily => charData.currLevel >= daily.minLevel)
-                        .reduce((sum, daily) => sum + daily.rawExp, 0);
-
-    return adjustLevelAndExp(charData, expFromDaily);
+function getDailiesExp(charData, dailies) {
+    return dailies
+            .filter(daily => charData.currLevel >= daily.minLevel)
+            .reduce((sum, daily) => sum + daily.rawExp, 0);                    
 }
 
 // For all weeklies that have at least one run done, calculate and add EXP obtained to data
 // Filter according to current character level to determine what can be done within the list
-function addWeekliesExp(charData, perWeekExp) {
-    let expFromWeekly = perWeekExp.list
-                                .filter(weekly => charData.currLevel >= weekly.minLevel)
-                                .reduce((sum, weekly) => sum + weekly.expPerRegion, 0);
-
-    return adjustLevelAndExp(charData, expFromWeekly);
+function getWeekliesExp(charData, perWeekExp) {
+    if(perWeekExp.list) {
+        return perWeekExp.list
+            .filter(weekly => charData.currLevel >= weekly.minLevel)
+            .reduce((sum, weekly) => sum + weekly.expPerRegion, 0);
+    } else {
+        return 0;
+    }
 }
 
 // Calculate Monster Park (Regular) EXP
 // Obtain the highest possible monster park dungeon's EXP value based on character level
 // If day is a Sunday (represented as 0 on getDay() function), use sunday's Monster Park EXP value (x1.5 multiplier)
-function addMonsterParkRegularExp(charData, perDayExp, mpDungeonList, i) {
+function getMonsterParkRegularExp(timestamp, charData, numRuns, mpDungeonList) {
     let perMpExp = parseInt(mpDungeonList.filter(dungeons => dungeons.dataset.minLevel <= charData.currLevel).pop().dataset.rawExp);
-    let totalMpExp;
 
-    if((new Date(i)).getDay() === 0) {
-        totalMpExp = perDayExp.numMonsterPark * Math.round(perMpExp * 1.5);
+    if((new Date(timestamp)).getDay() === 0) {
+        return numRuns * Math.round(perMpExp * 1.5);
     } else {
-        totalMpExp = perDayExp.numMonsterPark * perMpExp;
+        return numRuns * perMpExp;
     }
-
-    return adjustLevelAndExp(charData, totalMpExp);
 }
 
 // Add minigame EXP that is done on a daily basis (i.e. not ticket based)
@@ -330,25 +394,27 @@ function addMonsterParkRegularExp(charData, perDayExp, mpDungeonList, i) {
     return charData;
 }*/
 
-function addMonsterParkExtremeExp(charData, i) {
-    let expFromMpEx; 
-
-    if((new Date(i)).getDay() === 0) {
-        expFromMpEx = charData.currLevel * MONSTER_PARK_EXTREME_TABLE[charData.currLevel - 260] * 100000000 * 1.5;
+function getMonsterParkExtremeExp(timestamp, charData, numRuns) {
+    if(charData.currLevel >= 260) {
+        if((new Date(timestamp)).getDay() === 0) {
+            return numRuns * charData.currLevel * MONSTER_PARK_EXTREME_TABLE[charData.currLevel - 260] * 100000000 * 1.5;
+        } else {
+            return numRuns * charData.currLevel * MONSTER_PARK_EXTREME_TABLE[charData.currLevel - 260] * 100000000;
+        }
     } else {
-        expFromMpEx = charData.currLevel * MONSTER_PARK_EXTREME_TABLE[charData.currLevel - 260] * 100000000;
+        return 0;
     }
-
-    return adjustLevelAndExp(charData, expFromMpEx);
 }
 
-function addPunchKingEXP(charData, expPunchKingPoints) {
-    let expFromPK = PUNCH_KING_EXP_TABLE[charData.currLevel - 200] * expPunchKingPoints * 3 * 100;
-
-    return adjustLevelAndExp(charData, expFromPK);
+function getPunchKingEXP(charData, expPunchKingPoints) {
+    if(expPunchKingPoints > 0) {
+        return PUNCH_KING_EXP_TABLE[charData.currLevel - 200] * expPunchKingPoints * 3 * 100;    
+    } else {
+        return 0;
+    }
 }
 
-function addMinigameExpTicketExp(charData) {
+function addMinigameExpTicketExp(timestamp, charData) {
     let totalNumExpTickets = getNumRuns("num-exp-tickets");
     let expPerTicket;
 
@@ -370,7 +436,7 @@ function addMinigameExpTicketExp(charData) {
             ticketsUsed = totalNumExpTickets;
         } else {
             totalExpFromTickets = expPerTicket * numTicketsTNL;
-            charData = adjustLevelAndExp(charData, totalExpFromTickets);
+            charData = adjustLevelAndExp(timestamp, charData, totalExpFromTickets);
             ticketsUsed = numTicketsTNL;
         }
 
@@ -381,44 +447,54 @@ function addMinigameExpTicketExp(charData) {
 }
 
 // Based on character's burning status, update new character level, EXP value and EXP TNL
-function adjustLevelAndExp(charData, expGainValue) {
-    if(charData.currExp + expGainValue >= charData.expTNL) {
-        if(charData.burningType === "") {
-            charData.currLevel++;    
-        }
+function adjustLevelAndExp(timestamp, charData, expGainValue) {
+    if(charData.currLevel < CHAR_MAX_LEVEL) {
+        if(charData.currExp + expGainValue >= charData.expTNL) {
+            if(charData.burningType === "") {
+                charData.currLevel++;    
+            }
 
-        if(charData.burningType === "hyper") {
-            if(charData.currLevel < charData.burningMaxLevel) {
-                if(charData.currLevel+3 <= charData.burningMaxLevel) {
-                    charData.currLevel += 3;
+            if(charData.burningType === "hyper") {
+                if(charData.currLevel < charData.burningMaxLevel) {
+                    if(charData.currLevel+3 <= charData.burningMaxLevel) {
+                        charData.currLevel += 3;
+                    } else {
+                        charData.currLevel = charData.burningMaxLevel;
+                    }    
                 } else {
-                    charData.currLevel = charData.burningMaxLevel;
-                }    
+                    charData.currLevel++;
+                }
+            }
+            if(charData.currLevel < CHAR_MAX_LEVEL) {
+                charData.currExp = charData.currExp + expGainValue - charData.expTNL;
+                charData.expTNL = getExpTNL(charData.currLevel);
             } else {
-                charData.currLevel++;
+                charData.currExp = 0;
+                charData.expTNL = 0;
             }
+            
+            charData.milestones.push({ date: timestamp, level: charData.currLevel });
+
+            // For grinding, there is a chance there is overflow EXP
+            // Repeatedly calculate new level/exp until EXP no longer overflows
+            let count = 0;
+
+            while(charData.currLevel < CHAR_MAX_LEVEL && charData.currExp >= charData.expTNL) {
+                charData.currLevel += 1;
+                charData.currExp = charData.currExp - charData.expTNL;
+                charData.expTNL = getExpTNL(charData.currLevel);
+                charData.milestones.push({ date: timestamp, level: charData.currLevel });
+
+                // Crash prevention
+                count++;
+
+                if(count > 500) {
+                    break;
+                }
+            }
+        } else {
+            charData.currExp += expGainValue;
         }
-        charData.currExp = charData.currExp + expGainValue - charData.expTNL;
-        charData.expTNL = getExpTNL(charData.currLevel);
-
-        // For grinding, there is a chance there is overflow EXP
-        // Repeatedly calculate new level/exp until EXP no longer overflows
-        let count = 0;
-
-        while(charData.currExp >= charData.expTNL) {
-            charData.currLevel += 1;
-            charData.currExp = charData.currExp - charData.expTNL;
-            charData.expTNL = getExpTNL(charData.currLevel);
-
-            // Crash prevention
-            count++;
-
-            if(count > 500) {
-                break;
-            }
-        }        
-    } else {
-        charData.currExp += expGainValue;
     }
 
     return charData;
@@ -426,12 +502,29 @@ function adjustLevelAndExp(charData, expGainValue) {
 
 // Create a summary window (appears as a modal) that displays overall progress within a provided timeframe
 // At the end, use Bootstrap's in-built function to trigger modal appearance
-function displaySummary(perDayExp, perWeekExp) {
+function displaySummary(perDayExp, perWeekExp, milestones) {
     // Burning text display
     if(document.getElementById("burning-select").value === "hyper") {
         document.getElementById("hyper-text").classList.remove("d-none");
     } else {
         document.getElementById("hyper-text").classList.add("d-none");
+    }
+
+    // Level Milestones
+    let milestonesSummary = document.getElementById("milestones-summary");
+    milestonesSummary.textContent = "";
+
+    if(milestones.length > 0) {
+        milestones.forEach(data => {
+            if(data.date === -1 || data.level === -1) {
+                milestonesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 mb-1 text-center text-danger">- Over 5,000 days required for next level -</p>`);
+            } else { 
+                milestonesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 mb-1 text-center">(${new Date(data.date).toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" })}) Level ${data.level}</p>`)
+            }
+        })
+        document.getElementById("level-milestones-div").classList.remove("d-none");
+    } else {
+        document.getElementById("level-milestones-div").classList.add("d-none");
     }
 
     // Dailies Summary

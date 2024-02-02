@@ -217,6 +217,11 @@
   width: 4rem;
 }
 
+#milestones-summary {
+  max-height: 7.75rem;
+  overflow: auto;
+}
+
 .single-symbol-btn {
   height: 50px;
   width: 50px;

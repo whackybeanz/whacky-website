@@ -89,18 +89,18 @@
                 <form class="w-100 d-flex flex-column align-items-center mb-3">
                     <div class="size-720 w-100 d-flex justify-content-center align-items-center flex-wrap mb-4">
                         <div class="form-group row col-6 col-sm-4 d-flex flex-column align-items-center mb-2 pr-1 pl-0 px-sm-0 mx-0">
-                            <label class="font-weight-bold col-form-label py-1">Start Level</label>
+                            <label for="start-potion-char-level" class="font-weight-bold col-form-label py-1">Start Level</label>
                             <input type="number" id="start-potion-char-level" class="form-control col-12 col-sm-10 px-2 py-2 text-center mx-0" value="200">
                         </div>
                         <div class="form-group row col-6 col-sm-4 d-flex flex-column align-items-center mb-2 pl-1 pr-0 px-sm-0 mx-0">
-                            <label class="font-weight-bold col-form-label py-1">EXP (%)</label>
+                            <label for="start-potion-char-exp-percent" class="font-weight-bold col-form-label py-1">EXP (%)</label>
                             <div class="w-100 d-flex flex-column align-items-center">
                                 <input type="number" id="start-potion-char-exp-percent" class="form-control col-12 col-sm-10 text-center px-2 py-2 mx-0" value="0.000">
                                 <small class="text-danger d-none mr-3" id="exp-percent-input-error">Input should be below 100.000%</small>
                             </div>
                         </div>
                         <div class="form-group row col-12 col-sm-4 d-flex flex-column align-items-center mb-2 px-0 mx-0">
-                            <label class="font-weight-bold col-form-label py-1">EXP (Value)</label>
+                            <label for="start-potion-char-exp-raw" class="font-weight-bold col-form-label py-1">EXP (Value)</label>
                             <div class="w-100 d-flex flex-column align-items-center">
                                 <input type="text" id="start-potion-char-exp-raw" class="form-control col-12 col-sm-10 text-center px-2 py-2 mx-0" value="0">
                                 <small class="text-danger text-center d-none" id="exp-raw-input-error">Input exceeds level's EXP to level up (<span id="potion-calc-err-max-exp-tnl"></span> EXP)</small>
@@ -119,7 +119,7 @@
                                         <% } %>
                                     </p>
                                     <div class="d-flex align-items-center">
-                                        <input type="number" class="single-potion-add-input font-table col-4 text-center form-control mr-2 px-0" value="" data-potion-type="<%= potion %>" data-potion-name="<%= potionList[potion].name %>" data-img-src="<%= icons[potionList[potion].id].imgUrl %>" placeholder="Qty">
+                                        <input type="number" class="single-potion-add-input font-table col-4 text-center form-control mr-2 px-0" id="add-<%= potion %>-input" value="" data-potion-type="<%= potion %>" data-potion-name="<%= potionList[potion].name %>" data-img-src="<%= icons[potionList[potion].id].imgUrl %>" placeholder="Qty">
                                     </div>
                                 </div>
                             </div>
