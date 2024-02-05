@@ -264,7 +264,7 @@ function calcDailiesNewExp(currLevel, currExp, targetLevel, startDate, endDate, 
 
     let totalContentExp = getDailiesExp(charData, perDayExp.allSelectedDailyQuests) + getWeekliesExp(charData, perWeekExp) + 
                             getMonsterParkRegularExp(endDate, charData, perDayExp.numMonsterPark, mpDungeonList) + expFromGrinding + 
-                            getMonsterParkExtremeExp(endDate, charData, perDayExp.numMonsterParkExtreme) + getPunchKingEXP(charData, perWeekExp.expPunchKingPoints);
+                            getMonsterParkExtremeExp(endDate, charData, perDayExp.numMonsterParkExtreme) + getPunchKingEXP(charData, perWeekExp.expPunchKingPoints)/7;
     let numDaysToLevel = 0;
 
     if(totalContentExp > 0) {
@@ -281,7 +281,7 @@ function calcDailiesNewExp(currLevel, currExp, targetLevel, startDate, endDate, 
             // Update totalContentExp due to level up
             totalContentExp = getDailiesExp(charData, perDayExp.allSelectedDailyQuests) + getWeekliesExp(charData, perWeekExp) + 
                                 getMonsterParkRegularExp(endDate, charData, perDayExp.numMonsterPark, mpDungeonList) + expFromGrinding + 
-                                getMonsterParkExtremeExp(endDate, charData, perDayExp.numMonsterParkExtreme) + getPunchKingEXP(charData, perWeekExp.expPunchKingPoints);
+                                getMonsterParkExtremeExp(endDate, charData, perDayExp.numMonsterParkExtreme) + getPunchKingEXP(charData, perWeekExp.expPunchKingPoints)/7;
             count++;
         }
     }
