@@ -253,6 +253,14 @@ function calcDailiesNewExp(currLevel, currExp, targetLevel, startDate, endDate, 
     for(let i = startDate; i <= endDate; i += 1000*60*60*24) {
         charData = addExpComponents(i, charData, perDayExp, perWeekExp, weekliesWhen, mpDungeonList, expFromGrinding);
     }
+
+    // Add EXP tickets
+    let isUsingExpTickets = getNumRuns("num-exp-tickets") > 0;
+
+    if(perDayExp.expMinigameId !== "" && isUsingExpTickets) {
+        charData = addMinigameExpTicketExp(endDate, charData);
+    }
+
     charData.endDateLevel = charData.currLevel;
     charData.endDateExp = charData.currExp;
 
@@ -284,13 +292,6 @@ function calcDailiesNewExp(currLevel, currExp, targetLevel, startDate, endDate, 
                                 getMonsterParkExtremeExp(endDate, charData, perDayExp.numMonsterParkExtreme) + getPunchKingEXP(charData, perWeekExp.expPunchKingPoints)/7;
             count++;
         }
-    }
-
-    // Add EXP tickets last
-    let isUsingExpTickets = getNumRuns("num-exp-tickets") > 0;
-
-    if(perDayExp.expMinigameId !== "" && isUsingExpTickets) {
-        charData = addMinigameExpTicketExp(endDate, charData);
     }
 
     // When returning data, return
@@ -515,6 +516,7 @@ function displaySummary(perDayExp, perWeekExp, milestones) {
     milestonesSummary.textContent = "";
 
     if(milestones.length > 0) {
+        milestonesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 mb-1 font-small text-custom text-center">Estimated; may be off by several days</p>`)
         milestones.forEach(data => {
             if(data.date === -1 || data.level === -1) {
                 milestonesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 mb-1 text-center text-danger">- Over 5,000 days required for next level -</p>`);
