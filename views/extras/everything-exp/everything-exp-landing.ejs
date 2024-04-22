@@ -7,40 +7,79 @@
             <div class="w-100 d-flex justify-content-center align-items-center flex-column px-lg-4 pb-3">
                 <div class="w-100 d-flex justify-content-center align-items-center position-relative mb-2">
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
-                    <h1 class="font-header w-100 text-center m-0 px-0">Everything EXP</h1>
+                    <h1 class="font-header w-100 text-center m-0 px-0">
+                        <span class="lang lang-en">Everything EXP</span>
+                        <span class="lang lang-tw">有關EXP經驗的一切</span>
+                    </h1>
                     <div class="w-100 flex-grow-1 border-top border-dark"></div>
                 </div>
-                <div class="col-12 text-muted text-center font-small mb-3">(Updated on 16 Dec 2023 - Added Transcendent Growth Potion)</div>
+                <div class="col-12 text-muted text-center font-small mb-3">(Updated on 22 Apr 2023 - Added Chinese - Traditional language support)</div>
+
+                <form>
+                    <div class="form-group d-flex align-items-center">
+                        <select class="form-control" id="lang-select">
+                            <option value="lang-en" selected>English</option>
+                            <option value="lang-tw">中文 (繁體)</option>
+                        </select>
+                    </div>
+                </form>
 
                 <div class="d-flex align-items-center">
-                    <h2 class="font-subheader mb-0">Level</h2>
+                    <h2 class="font-subheader mb-0">
+                        <span class="lang lang-en">Level</span>
+                        <span class="lang lang-tw">等級</span>
+                    </h2>
                     <input type="number" id="char-level" class="font-weight-bold text-custom text-center border-0 py-0 mb-3 mx-3" value="225">
                 </div>
 
                 <ul class="nav nav-pills d-flex justify-content-center mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item mx-1">
-                        <a class="nav-link active" id="pills-dailies-calc-tab" data-toggle="pill" href="#pills-dailies-calc" role="tab" aria-controls="pills-dailies-calc" aria-selected="true">EXP Calculator</a>
+                        <a class="nav-link active" id="pills-dailies-calc-tab" data-toggle="pill" href="#pills-dailies-calc" role="tab" aria-controls="pills-dailies-calc" aria-selected="true">
+                            <span class="lang lang-en">EXP Calculator</span>
+                            <span class="lang lang-tw">經驗計算器</span>
+                        </a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" id="pills-dailies-tab" data-toggle="pill" href="#pills-dailies" role="tab" aria-controls="pills-dailies" aria-selected="true">EXP Contents Breakdown</a>
+                        <a class="nav-link" id="pills-dailies-tab" data-toggle="pill" href="#pills-dailies" role="tab" aria-controls="pills-dailies" aria-selected="true">
+                        <span class="lang lang-en">EXP Contents Breakdown</span>
+                        <span class="lang lang-tw">每日任務經驗表</span>
+                    </a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" id="pills-growth-pots-tab" data-toggle="pill" href="#pills-growth-pots" role="tab" aria-controls="pills-growth-pots" aria-selected="false">Growth Potions</a>
+                        <a class="nav-link" id="pills-growth-pots-tab" data-toggle="pill" href="#pills-growth-pots" role="tab" aria-controls="pills-growth-pots" aria-selected="false">
+                        <span class="lang lang-en">Growth Potions</span>
+                        <span class="lang lang-tw">升級藥水</span>
+                    </a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" id="pills-exp-mult-tab" data-toggle="pill" href="#pills-exp-mult" role="tab" aria-controls="pills-exp-mult" aria-selected="false">EXP Buffs & Multipliers</a>
+                        <a class="nav-link" id="pills-exp-mult-tab" data-toggle="pill" href="#pills-exp-mult" role="tab" aria-controls="pills-exp-mult" aria-selected="false">
+                        <span class="lang lang-en">EXP Buffs & Multipliers</span>
+                        <span class="lang lang-tw">經驗Buffs & 倍率</span>
+                    </a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" id="pills-monster-exp-tab" data-toggle="pill" href="#pills-monster-exp" role="tab" aria-controls="pills-monster-exp" aria-selected="false">Monster EXP</a>
+                        <a class="nav-link" id="pills-monster-exp-tab" data-toggle="pill" href="#pills-monster-exp" role="tab" aria-controls="pills-monster-exp" aria-selected="false">
+                        <span class="lang lang-en">Monster EXP</span>
+                        <span class="lang lang-tw">怪物經驗表</span>
+                    </a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" id="pills-afk-content-tab" data-toggle="pill" href="#pills-afk-content" role="tab" aria-controls="pills-afk-content" aria-selected="true">AFK Content EXP Table</a>
+                        <a class="nav-link" id="pills-afk-content-tab" data-toggle="pill" href="#pills-afk-content" role="tab" aria-controls="pills-afk-content" aria-selected="true">
+                        <span class="lang lang-en">AFK Content EXP Table</span>
+                        <span class="lang lang-tw">挂機經驗表</span>
+                    </a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" id="pills-exp-table-tab" data-toggle="pill" href="#pills-exp-table" role="tab" aria-controls="pills-exp-table" aria-selected="false">Level EXP Table</a>
+                        <a class="nav-link" id="pills-exp-table-tab" data-toggle="pill" href="#pills-exp-table" role="tab" aria-controls="pills-exp-table" aria-selected="false">
+                        <span class="lang lang-en">Level EXP Table</span>
+                        <span class="lang lang-tw">經驗等級表</span>
+                    </a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" id="pills-credits-tab" data-toggle="pill" href="#pills-credits" role="tab" aria-controls="pills-credits" aria-selected="false">Credits</a>
+                        <a class="nav-link" id="pills-credits-tab" data-toggle="pill" href="#pills-credits" role="tab" aria-controls="pills-credits" aria-selected="false">
+                        <span class="lang lang-en">Credits</span>
+                        <span class="lang lang-tw">製作人員</span>
+                    </a>
                     </li>
                 </ul>
                 <div class="w-100 tab-content" id="pills-tabContent">

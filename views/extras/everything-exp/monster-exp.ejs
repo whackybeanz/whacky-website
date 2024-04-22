@@ -3,26 +3,49 @@
         <div class="pill-section rounded-sm">
             <div class="pill-section-subheader text-center">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                    <img src="<%= icons['boss-icon'].imgUrl %>" class="mr-2"> Monster EXP
+                    <img src="<%= icons['boss-icon'].imgUrl %>" class="mr-2"> 
+                    <span class="lang lang-en">Monster EXP</span>
+                    <span class="lang lang-tw">怪物經驗值</span>
                 </h2>
                 <div class="pb-2">
                     <button class="btn btn-sm btn-outline-custom font-weight-bold" id="btn-refresh-monster-list">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                           <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
                           <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-                        </svg>&nbsp;Refresh / Retrieve Monster List
+                        </svg>&nbsp;
+                        <span class="lang lang-en">Refresh / Retrieve Monster List</span>
+                        <span class="lang lang-tw">刷新 / 檢索怪物列表</span>
                     </button>
-                    <p class="mb-0 d-none" id="refresh-cd">Refresh cooldown... (<span id="refresh-cd-num-secs">10</span> seconds)</p>
+                    <p class="mb-0 d-none" id="refresh-cd">
+                        <span class="lang lang-en">Refresh cooldown...</span>
+                        <span class="lang lang-tw">刷新冷卻中...</span>
+                        (<span id="refresh-cd-num-secs">10</span> <span class="lang lang-en">seconds</span><span class="lang lang-tw">秒</span>)
+                    </p>
                 </div>
             </div>
             <div class="pill-section-content font-form d-flex flex-wrap justify-content-center pt-3">
                 <div class="w-100 d-flex flex-column justify-content-start align-items-center px-3">
-                    <p class="w-100 mb-1">Notes:</p>
+                    <p class="w-100 mb-1">
+                        <span class="lang lang-en">Notes:</span>
+                        <span class="lang lang-tw">注:</span>
+                    </p>
                     <ul class="w-100">
-                        <li>Click on <span class="text-custom font-weight-bold">Refresh / Retrieve Monster List</span> button above to begin, or to refresh data if any changes (e.g. EXP Buff multiplier) was made.</li>
-                        <li>Only monsters above level 70 are displayed. Monster lists are generated up to &#177;10 levels of character level.</li>
-                        <li>Level difference to monsters affects Base EXP per monster kill: &#177;1 Level = 20% bonus / &#177;4 Levels = 10% bonus / &#177;9 Levels = 5% bonus.</li>
-                        <li>EXP Buff multiplier value is obtained from the EXP Multipliers tab.</li>
+                        <li>
+                            <span class="lang lang-en">Click on <span class="text-custom font-weight-bold">Refresh / Retrieve Monster List</span> button above to begin, or to refresh data if any changes (e.g. EXP Buff multiplier) was made.</span>
+                            <span class="lang lang-tw">单击上面的“刷新/檢索怪物列表”按钮即可开始，或者在进行任何更改（例如經驗Buff倍率）时刷新数据。</span>
+                        </li>
+                        <li>
+                            <span class="lang lang-en">Only monsters above level 70 are displayed. Monster lists are generated up to &#177;10 levels of character level.</span>
+                            <span class="lang lang-tw">仅显示70级以上的怪物。生成的怪物列表最多可达角色等级的 ±10 级。·怪物的等级差异会影响每次杀死怪物的基</span>
+                        </li>
+                        <li>
+                            <span class="lang lang-en">Level difference to monsters affects Base EXP per monster kill: &#177;1 Level = 20% bonus / &#177;4 Levels = 10% bonus / &#177;9 Levels = 5% bonus.</span>
+                            <span class="lang lang-tw">础经验值：±1 级 = 20% 加成 / ±4 级 = 10% 加成 / ±9 级 = 5% 加成。</span>
+                        </li>
+                        <li>
+                            <span class="lang lang-en">EXP Buff multiplier value is obtained from the EXP Multipliers tab.</span>
+                            <span class="lang lang-tw">EXP Buff 倍增值可从 經驗Buffs & 倍率选项卡获得。</span>
+                        </li>
                     </ul>
 
                     <form class="w-100">

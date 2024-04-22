@@ -3,7 +3,9 @@
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center pb-2">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                    <img src="<%= icons['map-rte'].imgUrl %>" class="mr-2"> Arcane River / Grandis
+                    <img src="<%= icons['map-rte'].imgUrl %>" class="mr-2"> 
+                    <span class="lang lang-en">Dailies / Weeklies</span>
+                    <span class="lang lang-tw">每日 / 每周任務</span>
                 </h2>
             </div>
             <div class="pill-section-content font-form d-flex flex-wrap justify-content-start px-3 pt-3">
@@ -14,15 +16,21 @@
                         </div>
                         <div class="content-details" data-name="<%= content.name %>" data-min-level="<%= content.recMinLevel %>" data-raw-exp="<%= content.dailyRawEXP %>" <% if(content.hasWeekly) { %>data-weekly-raw-exp="<%= content.weeklyRawEXP %>"<% } %>>
                             <p class="mb-0">
-                                <span class="font-weight-bold"><%= content.name %></span>
+                                <span class="font-weight-bold">
+                                    <span class="lang lang-en"><%= content.name %></span>
+                                    <span class="lang lang-tw"><%= content.nameTw %></span>
+                                </span>
                             </p>
                             <p class="mb-0">
                                 <%= content.dailyRawEXP.toLocaleString('en-SG') %> EXP / <span class="text-custom percent-exp font-weight-bold">0.000%</span>
-                                <% if(content.hasWeekly) { %>(Daily Quest)<% } %>
+                                <% if(content.hasWeekly) { %><span class="lang lang-en">(Daily Quest)</span><span class="lang lang-tw">(每日任務)</span><% } %>
                             </p>
                             <% if(content.hasWeekly) { %>
                                 <p class="mb-0">
-                                    <%= content.weeklyRawEXP.toLocaleString('en-SG') %> EXP / <span class="text-custom weekly-percent-exp font-weight-bold">0.000%</span> (<%= content.weeklyName %>)</p>
+                                    <%= content.weeklyRawEXP.toLocaleString('en-SG') %> EXP / <span class="text-custom weekly-percent-exp font-weight-bold">0.000%</span> 
+                                    <span class="lang lang-en">(<%= content.weeklyName %>)</span>
+                                    <span class="lang lang-tw">(<%= content.weeklyNameTw %>)</span>
+                                </p>
                             <% } %>
                         </div>
                     </div>
@@ -34,7 +42,9 @@
             <div class="pill-section-subheader text-center">
                 <div id="monster-park-default-display">
                     <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                        <img src="<%= icons['map-monster-park'].imgUrl %>" class="mr-2"> Monster Park
+                        <img src="<%= icons['map-monster-park'].imgUrl %>" class="mr-2"> 
+                        <span class="lang lang-en">Monster Park</span>
+                        <span class="lang lang-tw">怪物公園</span>
                     </h2>
                     <p class="mb-0 pb-2">
                         Select a dungeon below
@@ -88,7 +98,9 @@
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                    <img src="<%= icons['map-monster-park'].imgUrl %>" class="mr-2"> Monster Park Extreme
+                    <img src="<%= icons['map-monster-park'].imgUrl %>" class="mr-2"> 
+                    <span class="lang lang-en">Monster Park Extreme</span>
+                    <span class="lang lang-tw">极限怪物公園</span>
                 </h2>
                 <p class="mb-0 pb-2">
                     Available for level 260+ players

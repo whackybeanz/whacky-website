@@ -7,25 +7,37 @@
                         <div class="col-12 px-0 d-flex justify-content-center align-items-center">
                             <div class="d-flex flex-column align-items-center">
                                 <p class="font-small mb-2" id="calc-start-date"></p>
-                                <p class="font-weight-bold mb-0">Level</p>
+                                <p class="font-weight-bold mb-0">
+                                    <span class="lang lang-en">Level</span>
+                                    <span class="lang lang-tw">等級</span>
+                                </p>
                                 <p class="font-mega font-weight-bold mb-0" id="calc-start-level"></p>
                                 <p class="mb-0 font-weight-bold" id="calc-start-percent"></p>
                                 <p class="mb-md-3 font-small text-center" id="calc-start-raw"></p>
                             </div>
                             <div class="text-center mx-4">
                                 <p class="font-mega mb-0">&raquo;</p>
-                                <p class="font-small d-none mb-0" id="hyper-text">Hyper Burn</p>
+                                <p class="font-small d-none mb-0" id="hyper-text">
+                                    <span class="lang lang-en">Hyper Burn</span>
+                                    <span class="lang lang-tw">燃燒角色</span>
+                                </p>
                             </div>
                             <div class="d-flex flex-column align-items-center text-custom">
                                 <p class="font-small mb-2" id="calc-end-date"></p>
-                                <p class="font-weight-bold mb-0">Level</p>
+                                <p class="font-weight-bold mb-0">
+                                    <span class="lang lang-en">Level</span>
+                                    <span class="lang lang-tw">等級</span>
+                                </p>
                                 <p class="font-mega font-weight-bold mb-0" id="calc-end-level"></p>
                                 <p class="mb-0 font-weight-bold" id="calc-end-percent"></p>
                                 <p class="mb-md-3 font-small text-center" id="calc-end-raw"></p>
                             </div>
                         </div>
                         <div class="col-12 d-none px-0" id="level-milestones-div">
-                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Level Milestones -</p>
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">
+                                <span class="lang lang-en">- Level Milestones -</span>
+                                <span class="lang lang-tw">- 等級里程碑 -</span>
+                            </p>
                             <div class="d-flex flex-wrap px-3" id="milestones-summary"></div>
                         </div>
                     </div>
@@ -35,19 +47,31 @@
                             <div class="d-flex justify-content-center flex-wrap px-3 mb-2" id="special-notes-summary"></div>
                         </div>-->
                         <div class="col-12 d-none mb-3 px-0" id="dailies-summary-div">
-                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Dailies -</p>
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">
+                                <span class="lang lang-en">- Dailies -</span>
+                                <span class="lang lang-tw">每日任務</span>
+                            </p>
                             <div class="d-flex justify-content-center flex-wrap px-3 mb-2" id="dailies-summary"></div>
                         </div>
                         <div class="col-12 d-none mb-3 px-0" id="weeklies-summary-div">
-                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Weeklies (<span id="which-day"></span>) - </p>
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">
+                                - <span class="lang lang-en">Weeklies</span>
+                                <span class="lang lang-tw">每周任務</span> (<span id="which-day"></span>) - 
+                            </p>
                             <div class="d-flex justify-content-center flex-wrap px-3" id="weeklies-summary"></div>
                         </div>
                         <div class="col-12 d-none mb-3 px-0" id="monster-park-summary-div">
-                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Monster Park - </p>
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">
+                                <span class="lang lang-en">- Monster Park -</span>
+                                <span class="lang lang-tw">- 怪物公園 -</span>
+                            </p>
                             <div class="px-3" id="monster-park-summary"></div>
                         </div>
                         <div class="col-12 d-none mb-3 px-0" id="others-summary-div">
-                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Others -</p>
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">
+                                <span class="lang lang-en">- Others -</span>
+                                <span class="lang lang-tw">其他</span>
+                            </p>
                             <div class="px-3" id="others-summary"></div>
                         </div>
                     </div>
@@ -62,18 +86,21 @@
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center pb-2">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                    <img src="<%= icons['map-maple-live'].imgUrl %>" class="mr-2"> Calculator
+                    <img src="<%= icons['map-maple-live'].imgUrl %>" class="mr-2"> <span class="lang lang-en">Calculator</span> <span class="lang lang-tw">經驗計算器</span>
                 </h2>
-                <p class="mb-0">
-                    With consistent effort, what level will you end up at?
-                </p>
             </div>
             <div class="pill-section-content table-responsive font-form d-flex flex-column align-items-center py-3" id="calc-exp-contents">
                 <div class="col-12 d-flex flex-wrap justify-content-xl-center px-2">
                     <div class="col-12 d-flex flex-wrap px-0 mb-5" id="symbol-dailies">
                         <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
-                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">1) Dailies</p>
-                            <p class="font-small text-custom mb-2 px-3">Pick all dailies you intend to do (level restrictions automatically factored)</p>
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">
+                                1) <span class="lang lang-en">Dailies</span>
+                                <span class="lang lang-tw">每日任務</span>
+                            </p>
+                            <p class="font-small text-custom mb-2 px-3">
+                                <span class="lang lang-en">Pick all dailies you intend to do (level restrictions automatically factored)</span>
+                                <span class="lang lang-tw">選擇你要做的所有每日任務 (自動考慮級別限制)</span>
+                            </p>
                         </div>
                         <div class="col-12 col-sm-8 col-xl-7 d-flex justify-content-center justify-content-sm-start align-items-start flex-wrap">
                             <% expContents.symbolContent.forEach((content, index) => { %>
@@ -92,8 +119,13 @@
 
                     <div class="col-12 d-flex flex-wrap px-0 mb-5" id="symbol-weeklies">
                         <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
-                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">2) Weeklies</p>
-                            <p class="font-small text-custom mb-2 px-3">Pick all weeklies you intend to do (level restrictions automatically factored)</p>
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">
+                                2) <span class="lang lang-en">Weeklies</span> <span class="lang lang-tw">每周任務</span>
+                            </p>
+                            <p class="font-small text-custom mb-2 px-3">
+                                <span class="lang lang-en">Pick all weeklies you intend to do (level restrictions automatically factored)</span>
+                                <span class="lang lang-tw">選擇你要做的所有每周任務 (自動考慮級別限制)</span>
+                            </p>
                         </div>
                         <form class="col-12 col-sm-8 col-xl-7 px-0">
                             <div class="col-12 mb-2 px-3">
@@ -113,13 +145,16 @@
                                 <% expContents.symbolContent.forEach((content, index) => { %>
                                     <% if(content.hasWeekly) { %>
                                         <div class="col-12 col-sm-6 form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2 px-0">
-                                            <select class="col-4 calc-weekly-quest form-control text-center mr-2" id="calc-weekly-<%= content.iconId %>" data-region="<%= content.iconId %>" data-weekly-name="<%= content.weeklyName %>" data-weekly-raw-exp="<%= content.weeklyRawEXP %>" data-min-level="<%= content.recMinLevel %>">
+                                            <select class="col-4 calc-weekly-quest form-control text-center mr-2" id="calc-weekly-<%= content.iconId %>" data-region="<%= content.iconId %>" data-weekly-name="<%= content.weeklyName %>" data-weekly-name-tw="<%= content.weeklyNameTw %>" data-weekly-raw-exp="<%= content.weeklyRawEXP %>" data-min-level="<%= content.recMinLevel %>">
                                                 <option value="0" selected>0</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                             </select>
-                                            <p class="col-4 col-sm-6 mb-0 px-0"><%= content.weeklyName %></p>
+                                            <p class="col-4 col-sm-6 mb-0 px-0">
+                                                <span class="lang lang-en"><%= content.weeklyName %></span>
+                                                <span class="lang lang-tw"><%= content.weeklyNameTw %></span>
+                                            </p>
                                         </div>
                                     <% } %>
                                 <% }) %>
@@ -129,8 +164,13 @@
 
                     <div class="col-12 d-flex flex-wrap px-0 mb-5" id="exp-minigames">
                         <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
-                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">3) EXP Tickets / Minigames / Punch King</p>
-                            <p class="font-small text-left text-custom mb-2 px-3">A <a href="https://bit.ly/ms-exp-table" target="_blank">quick reference chart</a> is available. EXP Tickets / Points are assumed to be used on the last day. EXP Punch King is assumed to be done on Sunday (regardless of number of runs).</p>
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">
+                                3) <span class="lang lang-en">EXP Tickets / Minigames / Punch King</span> <span class="lang lang-tw">經驗兌換券/小遊戲/拳擊機</span>
+                            </p>
+                            <p class="font-small text-left text-custom mb-2 px-3">
+                                <span class="lang lang-en">A <a href="https://bit.ly/ms-exp-table" target="_blank">quick reference chart</a> is available. EXP Tickets / Points are assumed to be used on the last day. EXP Punch King is assumed to be done on Sunday (regardless of number of runs).</span>
+                                <span class="lang lang-tw">提供<a href="https://bit.ly/ms-exp-table" target="_blank">快速參考圖表</a>。 經驗兌換券/積分假定在最後一天使用。 拳擊機假定在周日完成(無論幾次)。 </span>
+                            </p>
                         </div>
                         <form class="col-12 col-sm-8 col-xl-7 px-0">
                             <div class="form-group w-100 mb-2">
@@ -166,11 +206,17 @@
                                 <p class="d-inline font-weight-bold mb-0">OR</p>-->
                                 <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
                                     <input type="number" id="num-exp-tickets" class="form-control col-3 px-2 text-center mr-2" placeholder="Qty">
-                                    <p class="col-4 col-sm-6 mb-0 d-inline px-0">EXP Tickets / Points</p>
+                                    <p class="col-4 col-sm-6 mb-0 d-inline px-0">
+                                        <span class="lang lang-en">EXP Tickets / Points</span>
+                                        <span class="lang lang-tw">經驗兌換券/積分</span>
+                                    </p>
                                 </div>
                                 <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
                                     <input type="number" id="exp-pk-points" class="form-control col-3 px-2 text-center mr-2" placeholder="Score">
-                                    <p class="col-4 col-sm-6 mb-0 d-inline px-0">Punch King Score</p>
+                                    <p class="col-4 col-sm-6 mb-0 d-inline px-0">
+                                        <span class="lang lang-en">Punch King Score</span>
+                                        <span class="lang lang-tw">拳擊機積分</span>
+                                    </p>
                                 </div>
                             </div>
                         </form>
@@ -178,8 +224,13 @@
 
                     <div class="col-12 d-flex flex-wrap px-0 mb-5" id="monster-park">
                         <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
-                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">4) Monster Park</p>
-                            <p class="font-small text-left text-custom mb-2 px-3">Automatically selects the highest dungeon as you level up; bonus EXP on Sundays automatically factored in (Sunday Maple benefits not applied).</p>
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">
+                                4) <span class="lang lang-en">Monster Park</span> <span class="lang lang-tw">怪物公園</span>
+                            </p>
+                            <p class="font-small text-left text-custom mb-2 px-3">
+                                <span class="lang lang-en">Automatically selects the highest dungeon as you level up; bonus EXP on Sundays automatically factored in (Sunday Maple benefits not applied).</span>
+                                <span class="lang lang-tw">升級時自動選擇最高的副本地圖； 周日的經驗+50%會自動計算在內(其他特殊活動經驗增加不適用)</span>
+                            </p>
                         </div>
                         <form class="col-12 col-sm-8 col-xl-7 px-0">
                             <div class="col-12">
@@ -194,14 +245,20 @@
                                         <option value="6">6</option>
                                         <option value="7">7</option>
                                     </select>
-                                    <p class="col-4 col-sm-6 mb-0 px-0">Monster Park (Regular)</p>
+                                    <p class="col-4 col-sm-6 mb-0 px-0">
+                                        <span class="lang lang-en">Monster Park (Regular)</span>
+                                        <span class="lang lang-tw">怪物公園(普通)</span>
+                                    </p>
                                 </div>
                                 <div class="form-group d-flex justify-content-center justify-content-sm-start align-items-center mb-2">
                                     <select class="col-3 form-control text-center mr-2" id="num-monster-park-extreme-select">
                                         <option value="0">0</option>
                                         <option value="1" selected>1</option>
                                     </select>
-                                    <p class="col-4 col-sm-6 mb-0 px-0">Monster Park Extreme</p>
+                                    <p class="col-4 col-sm-6 mb-0 px-0">
+                                        <span class="lang lang-en">Monster Park Extreme</span>
+                                        <span class="lang lang-tw">极限怪物公園</span>
+                                    </p>
                                 </div>
                             </div>
                         </form>
@@ -209,7 +266,9 @@
 
                     <div class="col-12 d-flex flex-wrap px-0 mb-5" id="hunting-exp">
                         <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
-                            <p class="font-subsubheader font-weight-bold mb-2 px-md-3">5) Daily grinding EXP</p>
+                            <p class="font-subsubheader font-weight-bold mb-2 px-md-3">
+                                5) <span class="lang lang-en">Daily grinding EXP</span> <span class="lang lang-tw">每日經驗值</span>
+                            </p>
                         </div>
                         <form class="col-12 col-sm-8 col-xl-7 px-0">
                             <div class="col-12">
@@ -237,30 +296,45 @@
 
                     <div class="col-12 d-flex flex-wrap px-0 mb-5" id="start-level">
                         <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
-                            <p class="font-subsubheader font-weight-bold mb-2 px-md-3">6) Starting Level</p>
+                            <p class="font-subsubheader font-weight-bold mb-2 px-md-3">
+                                6) <span class="lang lang-en">Starting Level</span> <span class="lang lang-tw">起始等級</span>
+                            </p>
                         </div>
                         <form class="col-12 col-sm-8 col-xl-7 px-0">
                             <div class="col-12 mb-2 px-3">
                                 <select class="col-12 col-md-6 col-lg-6 col-xl-6 form-control text-center text-md-left px-3" id="burning-select">
                                     <option value="" selected>No Hyper Burn</option>
-                                    <option value="hyper" data-max-level="260">Hyper Burning (to 260)</option>
-                                    <option value="hyper" data-max-level="250">Hyper Burning (to 250)</option>
+                                    <option value="hyper" data-max-level="260">Hyper Burning</option>
+                                    <!--<option value="hyper" data-max-level="250">Hyper Burning (to 250)</option>-->
                                 </select>
                             </div>
                             <div class="col-12 text-center">
                                 <div class="form-group d-flex align-items-center mb-2">
-                                    <label for="start-calc-dailies-char-level" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">Start Level</label>
+                                    <label for="start-calc-dailies-char-level" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">
+                                        <span class="lang lang-en">Start Level</span>
+                                        <span class="lang lang-tw">起始等级</span>
+                                    </label>
                                     <input type="number" id="start-calc-dailies-char-level" class="form-control col-3 col-md-2 col-lg-3 col-xl-2 py-2" value="200">
                                 </div>
                                 <div class="form-group d-flex align-items-center mb-2">
-                                    <label for="start-calc-dailies-char-exp-percent" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">EXP (%)</label>
+                                    <label for="start-calc-dailies-char-exp-percent" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">
+                                        <span class="lang lang-en">EXP (%)</span>
+                                        <span class="lang lang-tw">經驗 (%)</span>
+                                    </label>
                                     <input type="number" id="start-calc-dailies-char-exp-percent" class="form-control col-3 col-md-2 col-lg-3 col-xl-2 py-2" value="0.000">
                                 </div>
                                 <div class="form-group d-flex align-items-center mb-2">
-                                    <label for="start-calc-dailies-char-exp-raw" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">EXP (Value)</label>
-                                    <div class="col-8 px-0">
+                                    <label for="start-calc-dailies-char-exp-raw" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">
+                                        <span class="lang lang-en">EXP (Value)</span>
+                                        <span class="lang lang-tw">經驗 (值)</span>
+                                    </label>
+                                    <div class="col-8 px-0 text-left">
                                         <input type="text" id="start-calc-dailies-char-exp-raw" class="form-control col-9 col-md-7 col-lg-9 col-xl-7 py-2" value="0">
-                                        <small class="text-danger d-none" id="calc-dailies-exp-raw-input-error">Input exceeds level's EXP to level up (<span id="calc-dailies-err-max-exp-tnl"></span> EXP)</small>
+                                        <small class="text-danger d-none" id="calc-dailies-exp-raw-input-error">
+                                            <span class="lang lang-en">Input exceeds level's EXP to level up</span>
+                                            <span class="lang lang-tw">输入已超越等级所需的经验值</span>
+                                            (<span id="calc-dailies-err-max-exp-tnl"></span> EXP)</span>
+                                        </small>
                                     </div>
                                 </div>
                             </div>
@@ -269,13 +343,21 @@
 
                     <div class="col-12 d-flex flex-wrap px-0 mb-5" id="target-level">
                         <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
-                            <p class="font-subsubheader font-weight-bold mb-2 px-md-3">7) Target Level</p>
-                            <p class="font-small text-left text-custom mb-2 px-3">If you have a specific target level you wish to achieve, indicate it here.</p>
+                            <p class="font-subsubheader font-weight-bold mb-2 px-md-3">
+                                7) <span class="lang lang-en">Target Level</span> <span class="lang lang-tw">目標等級</span>
+                            </p>
+                            <p class="font-small text-left text-custom mb-2 px-3">
+                                <span class="lang lang-en">If you have a specific target level you wish to achieve, indicate it here.</span>
+                                <span class="lang lang-tw">如果您有希望達到的指定等級，請在此處注明</span>
+                            </p>
                         </div>
                         <form class="col-12 col-sm-8 col-xl-7 px-0">
                             <div class="col-12">
                                 <div class="form-group d-flex align-items-center mb-2">
-                                    <label for="start-calc-dailies-target-level" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">Target Level</label>
+                                    <label for="start-calc-dailies-target-level" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">
+                                        <span class="lang lang-en">Target Level</span>
+                                        <span class="lang lang-tw">目標等級</span>
+                                    </label>
                                     <input type="number" id="start-calc-dailies-target-level" class="form-control col-3 col-md-2 col-lg-3 col-xl-2 py-2" value="200">
                                 </div>
                             </div>
@@ -284,17 +366,28 @@
 
                     <div class="col-12 d-flex flex-wrap px-0 mb-5" id="date-range">
                         <div class="col-12 col-sm-4 offset-xl-1 col-xl-3 px-2">
-                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">8) Start/End Date</p>
-                            <p class="font-small text-left text-custom mb-2 px-3">If you have a specific date range in mind, indicate it here. Both dates are inclusive (i.e. 01 May to 04 May will include both of these dates in the calculation)</p>
+                            <p class="font-subsubheader font-weight-bold mb-0 px-md-3">
+                                8) <span class="lang lang-en">Start/End Date</span> <span class="lang lang-tw">開始/結束日期</span>
+                            </p>
+                            <p class="font-small text-left text-custom mb-2 px-3">
+                                <span class="lang lang-en">If you have a specific date range in mind, indicate it here. Both dates are inclusive (i.e. 01 May to 04 May will include both of these dates in the calculation)</span>
+                                <span class="lang lang-tw">如果您有指定的日期範圍，請在此處注明。 這兩個日期均包含在內(即5月1日至5月4日將在計算中包括這兩個日期)</span>
+                            </p>
                         </div>
                         <form class="col-12 col-sm-8 col-xl-7 px-0">
                             <div class="col-12">
                                 <div class="form-group d-flex align-items-center mb-2">
-                                    <label for="dailies-start-date" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">Start Date</label>
+                                    <label for="dailies-start-date" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">
+                                        <span class="lang lang-en">Start Date</span>
+                                        <span class="lang lang-tw">開始日期</span>
+                                    </label>
                                     <input type="date" id="dailies-start-date" class="form-control col-6 col-md-4 col-lg-6 col-xl-4 text-center px-2" value="<%= dateNow.getFullYear() %>-<%= ("0" + (dateNow.getUTCMonth() + 1)).slice(-2) %>-<%= ("0" + dateNow.getUTCDate()).slice(-2) %>">
                                 </div>
                                 <div class="form-group d-flex align-items-center mb-2">
-                                    <label for="dailies-end-date" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">End Date</label>
+                                    <label for="dailies-end-date" class="col-4 col-md-3 col-lg-4 col-xl-2 font-weight-bold text-right text-sm-left col-form-label px-0 mr-2">
+                                        <span class="lang lang-en">End Date</span>
+                                        <span class="lang lang-tw">結束日期</span>
+                                    </label>
                                     <input type="date" id="dailies-end-date" class="form-control col-6 col-md-4 col-lg-6 col-xl-4 text-center px-2" value="<%= dateNow.getFullYear() %>-<%= ("0" + (dateNow.getUTCMonth() + 1)).slice(-2) %>-<%= ("0" + dateNow.getUTCDate()).slice(-2) %>">
                                 </div>
                             </div>
@@ -306,7 +399,9 @@
                 <button type="button" class="table-cols-125 btn btn-outline-custom d-flex align-items-center text-center justify-content-center" id="btn-calc-dailies-exp-result">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
                       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                    </svg>&nbsp;(Re)Calculate
+                    </svg>&nbsp;
+                    <span class="lang lang-en">(Re)Calculate</span>
+                    <span class="lang lang-tw">(重新)計算</span>
                 </button>
             </div>
         </div>

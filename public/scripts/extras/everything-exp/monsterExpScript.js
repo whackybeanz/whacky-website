@@ -31,11 +31,16 @@ function retrieveMonsterData() {
         .then(response => response.json())
         .then(data => {
             let expMultiplier = parseFloat(document.getElementById("total-exp-mult").textContent);
+            let selectedLang = document.getElementById("lang-select").value;
+            const text = {
+                "lang-en": "Current EXP Buffs Multiplier",
+                "lang-tw": "现有經驗倍率"
+            }
             
             if(data.err) {
                 container.insertAdjacentHTML('beforeend', `<p class="text-danger text-center">An error occurred while retrieving data [${data.err}]</p>`);
             } else {
-                container.insertAdjacentHTML('beforeend', `<p class="font-subsubheader font-weight-bold mt-4 mb-3" id="monster-list-exp-mult" data-exp-mult="${expMultiplier}">Current EXP Buffs Multiplier: <span class="text-custom">x${expMultiplier.toFixed(2)}</span></p>`)
+                container.insertAdjacentHTML('beforeend', `<p class="font-subsubheader font-weight-bold mt-4 mb-3" id="monster-list-exp-mult" data-exp-mult="${expMultiplier}">${text[selectedLang]}: <span class="text-custom">x${expMultiplier.toFixed(2)}</span></p>`)
 
                 Object.keys(data.monsterListByMap).forEach((mapId, mapIndex) => {
                     container.insertAdjacentHTML('beforeend', createRegionHeader(mapId, data.monsterListByMap[mapId]))
@@ -77,32 +82,47 @@ function createRegionHeader(mapId, mapData) {
 function populateMonsterList(charLevel, mapIndex, monster, monsterIndex, expMultiplier) {
     let levelDiffModifier = getModifier(charLevel, monster.monsterLevel);
     let expTNL = getExpTNL(charLevel);
+    let selectedLang = document.getElementById("lang-select").value;
+    const text = {
+        "lang-en": ["Monster HP", "Base EXP Bonus", "Base EXP", "After Base Bonus", "After EXP Buffs", "kill(s)"],
+        "lang-tw": ["怪物血量", "基础经验奖励", "基础经验值", "基础经验奖励后", "经验BUFF后", "怪物"]
+    }
 
     return `<div class="single-monster-container ${monster.isBoss ? "text-custom font-weight-bold" : "" } align-middle position-relative py-2 mb-4">
         <div class="monster-list-img w-100 h-100 position-absolute py-2 pr-3" style="background-image: url('${monster.imgUrl}');"></div>
         <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center align-items-sm-start">
             <div class="monster-list-details col-12 col-sm-6 mb-4 pl-3">
                 <p class="font-weight-bold mb-0">[Lv. ${monster.monsterLevel}] ${monster.monsterName}</p>
-                <p class="mb-0">Monster HP: ${monster.monsterHP.toLocaleString('en-SG')}</p>
-                <p class="mb-0">Base EXP Bonus: <span id="map-${mapIndex}-monster-${monsterIndex}-level-diff-mod" data-level-diff-mod="${levelDiffModifier}">x${levelDiffModifier}</span></p>
+                <p class="mb-0">
+                    ${text[selectedLang][0]}: ${monster.monsterHP.toLocaleString('en-SG')}
+                </p>
+                <p class="mb-0">
+                    ${text[selectedLang][1]}: <span id="map-${mapIndex}-monster-${monsterIndex}-level-diff-mod" data-level-diff-mod="${levelDiffModifier}">x${levelDiffModifier}</span>
+                </p>
             </div>
             <div class="col-12 col-sm-6 d-flex flex-column px-sm-0">
                 <div class="d-flex">
-                    <div class="col-6 col-sm-5 px-2 px-sm-1 text-right">Base EXP</div>
+                    <div class="col-6 col-sm-5 px-2 px-sm-1 text-right">
+                        ${text[selectedLang][2]}
+                    </div>
                     <div class="col-6 col-sm-7 px-2 text-left" id="map-${mapIndex}-monster-${monsterIndex}-base-exp" data-base-exp=${monster.monsterEXP}>${monster.monsterEXP.toLocaleString("en-SG")} EXP</div>
                 </div>
                 <div class="d-flex">
-                    <div class="col-6 col-sm-5 px-2 px-sm-1 text-right">After Base Bonus</div>
+                    <div class="col-6 col-sm-5 px-2 px-sm-1 text-right">
+                        ${text[selectedLang][3]}
+                    </div>
                     <div class="col-6 col-sm-7 px-2 text-left">${Math.round(monster.monsterEXP * levelDiffModifier).toLocaleString("en-SG")} EXP</div>
                 </div>
                 <div class="d-flex">
-                    <div class="col-6 col-sm-5 px-2 px-sm-1 text-right">After EXP Buffs</div>
+                    <div class="col-6 col-sm-5 px-2 px-sm-1 text-right">
+                        ${text[selectedLang][4]}
+                    </div>
                     <div class="col-6 col-sm-7 px-2 text-left">${Math.round(Math.round(monster.monsterEXP * levelDiffModifier) * expMultiplier).toLocaleString("en-SG")} EXP</div>
                 </div>
                 <div class="d-flex font-weight-bold">
                     <div class="col-6 col-sm-5 px-2 px-sm-1 text-right">
                         <div class="d-flex align-items-center justify-content-end form-group mb-0">
-                            <input type="number" class="single-num-kills-input form-control text-center py-1 px-1 mr-2" value="1000" id="map-${mapIndex}-monster-${monsterIndex}-num-kills-input" data-map-index="${mapIndex}" data-monster-index="${monsterIndex}"> kill(s)
+                            <input type="number" class="single-num-kills-input form-control text-center py-1 px-1 mr-2" value="1000" id="map-${mapIndex}-monster-${monsterIndex}-num-kills-input" data-map-index="${mapIndex}" data-monster-index="${monsterIndex}"> ${text[selectedLang][5]}
                         </div>
                     </div>
                     <div class="col-6 col-sm-7 px-2 text-left">

@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+    setLanguage();
+    languageSelectListener();
+
     loadEXPTableHistory();
     loadCurrentEXPTable();
 

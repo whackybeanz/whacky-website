@@ -504,6 +504,8 @@ function adjustLevelAndExp(timestamp, charData, expGainValue) {
 // Create a summary window (appears as a modal) that displays overall progress within a provided timeframe
 // At the end, use Bootstrap's in-built function to trigger modal appearance
 function displaySummary(perDayExp, perWeekExp, milestones) {
+    let selectedLang = document.getElementById("lang-select").value;
+
     // Burning text display
     if(document.getElementById("burning-select").value === "hyper") {
         document.getElementById("hyper-text").classList.remove("d-none");
@@ -516,12 +518,17 @@ function displaySummary(perDayExp, perWeekExp, milestones) {
     milestonesSummary.textContent = "";
 
     if(milestones.length > 0) {
-        milestonesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 mb-1 font-small text-custom text-center">Estimated; may be off by several days</p>`)
+        const text = {
+            "lang-en": ["Estimated; may be off by several days", "- Over 5,000 days required for next level -", "Level"],
+            "lang-tw": ["估计;可能相差几天", "下一等级需超过5,000天", "等级"],
+        }
+
+        milestonesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 mb-1 font-small text-custom text-center">${text[selectedLang][0]}</p>`)
         milestones.forEach(data => {
             if(data.date === -1 || data.level === -1) {
-                milestonesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 mb-1 text-center text-danger">- Over 5,000 days required for next level -</p>`);
+                milestonesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 mb-1 text-center text-danger">${text[selectedLang][1]}</p>`);
             } else { 
-                milestonesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 mb-1 text-center">(${new Date(data.date).toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" })}) Level ${data.level}</p>`)
+                milestonesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 mb-1 text-center">(${new Date(data.date).toLocaleDateString('en-SG', { day: "2-digit", month: "short", year: "numeric" })}) ${text[selectedLang][2]} ${data.level}</p>`)
             }
         })
         document.getElementById("level-milestones-div").classList.remove("d-none");
@@ -546,17 +553,25 @@ function displaySummary(perDayExp, perWeekExp, milestones) {
     // Weeklies Summary
     let weekliesSummaryDiv = document.getElementById("weeklies-summary-div");
     let weekliesSummary = document.getElementById("weeklies-summary");
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const days = {
+        "lang-en": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        "lang-tw": ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+    };
 
     if(Object.keys(perWeekExp).length === 0) {
         weekliesSummaryDiv.classList.add("d-none");
     } else {
-        document.getElementById("which-day").textContent = days[perWeekExp.weekliesWhen];
+        document.getElementById("which-day").textContent = days[selectedLang][perWeekExp.weekliesWhen];
 
         if(perWeekExp.activeWeeklies && perWeekExp.activeWeeklies.length > 0) {
             weekliesSummaryDiv.classList.remove("d-none");
             weekliesSummary.textContent = "";
-            perWeekExp.activeWeeklies.map(weekly => weekliesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 col-sm-6 text-center mb-2 px-0">${weekly.value} x ${weekly.dataset.weeklyName}</p>`));
+
+            const datasetType = {
+                "lang-en": "weeklyName",
+                "lang-tw": "weeklyNameTw",
+            }
+            perWeekExp.activeWeeklies.map(weekly => weekliesSummary.insertAdjacentHTML('beforeend', `<p class="col-12 col-sm-6 text-center mb-2 px-0">${weekly.value} x ${weekly.dataset[datasetType[selectedLang]]}</p>`));
         } else {
             weekliesSummaryDiv.classList.add("d-none");
         }
@@ -569,13 +584,18 @@ function displaySummary(perDayExp, perWeekExp, milestones) {
         let mpSummary = document.getElementById("monster-park-summary")
         document.getElementById("monster-park-summary-div").classList.remove("d-none");
         mpSummary.textContent = "";
+
+        const text = {
+            "lang-en": ["Monster Park (Regular)", "Monster Park Extreme"],
+            "lang-tw": ["怪物公園(普通)", "极限怪物公園"],
+        }
         
         if(perDayExp.numMonsterPark > 0) {
-            mpSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">${perDayExp.numMonsterPark} x Monster Park (Regular)</p>`);
+            mpSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">${perDayExp.numMonsterPark} x ${text[selectedLang][0]}</p>`);
         }
         
         if(perDayExp.numMonsterParkExtreme > 0) {
-            mpSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">${perDayExp.numMonsterParkExtreme} x Monster Park Extreme</p>`);
+            mpSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">${perDayExp.numMonsterParkExtreme} x ${text[selectedLang][1]}</p>`);
         }
     }
 
@@ -587,9 +607,14 @@ function displaySummary(perDayExp, perWeekExp, milestones) {
         document.getElementById("others-summary-div").classList.remove("d-none");
         othersSummary.textContent = "";
 
+        const text = {
+            "lang-en": ["EXP from grinding / day", "EXP Points / Tickets used", "EXP Punch King Points"],
+            "lang-tw": ["每日打怪经验值", "經驗兌換券/積分", "拳擊機積分"],
+        }
+
         if(perDayExp.monsterHunting > 0) {
             othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">
-                ${perDayExp.monsterHunting.toLocaleString("en-SG")} EXP from grinding / day
+                ${perDayExp.monsterHunting.toLocaleString("en-SG")} ${text[selectedLang][0]}
             </p>`);
         }
 
@@ -602,7 +627,7 @@ function displaySummary(perDayExp, perWeekExp, milestones) {
             othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-puzzle-fill" viewBox="0 0 16 16">
                   <path d="M3.112 3.645A1.5 1.5 0 0 1 4.605 2H7a.5.5 0 0 1 .5.5v.382c0 .696-.497 1.182-.872 1.469a.459.459 0 0 0-.115.118.113.113 0 0 0-.012.025L6.5 4.5v.003l.003.01c.004.01.014.028.036.053a.86.86 0 0 0 .27.194C7.09 4.9 7.51 5 8 5c.492 0 .912-.1 1.19-.24a.86.86 0 0 0 .271-.194.213.213 0 0 0 .036-.054l.003-.01v-.008a.112.112 0 0 0-.012-.025.459.459 0 0 0-.115-.118c-.375-.287-.872-.773-.872-1.469V2.5A.5.5 0 0 1 9 2h2.395a1.5 1.5 0 0 1 1.493 1.645L12.645 6.5h.237c.195 0 .42-.147.675-.48.21-.274.528-.52.943-.52.568 0 .947.447 1.154.862C15.877 6.807 16 7.387 16 8s-.123 1.193-.346 1.638c-.207.415-.586.862-1.154.862-.415 0-.733-.246-.943-.52-.255-.333-.48-.48-.675-.48h-.237l.243 2.855A1.5 1.5 0 0 1 11.395 14H9a.5.5 0 0 1-.5-.5v-.382c0-.696.497-1.182.872-1.469a.459.459 0 0 0 .115-.118.113.113 0 0 0 .012-.025L9.5 11.5v-.003l-.003-.01a.214.214 0 0 0-.036-.053.859.859 0 0 0-.27-.194C8.91 11.1 8.49 11 8 11c-.491 0-.912.1-1.19.24a.859.859 0 0 0-.271.194.214.214 0 0 0-.036.054l-.003.01v.002l.001.006a.113.113 0 0 0 .012.025c.016.027.05.068.115.118.375.287.872.773.872 1.469v.382a.5.5 0 0 1-.5.5H4.605a1.5 1.5 0 0 1-1.493-1.645L3.356 9.5h-.238c-.195 0-.42.147-.675.48-.21.274-.528.52-.943.52-.568 0-.947-.447-1.154-.862C.123 9.193 0 8.613 0 8s.123-1.193.346-1.638C.553 5.947.932 5.5 1.5 5.5c.415 0 .733.246.943.52.255.333.48.48.675.48h.238l-.244-2.855z"/>
-                </svg> ${getNumRuns("num-exp-tickets").toLocaleString("en-SG")} EXP Points / Tickets used
+                </svg> ${getNumRuns("num-exp-tickets").toLocaleString("en-SG")} ${text[selectedLang][1]}
             </p>`);
         }
 
@@ -610,7 +635,7 @@ function displaySummary(perDayExp, perWeekExp, milestones) {
             othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-crosshair2" viewBox="0 0 16 16">
                   <path d="M8 0a.5.5 0 0 1 .5.5v.518A7.001 7.001 0 0 1 14.982 7.5h.518a.5.5 0 0 1 0 1h-.518A7.001 7.001 0 0 1 8.5 14.982v.518a.5.5 0 0 1-1 0v-.518A7.001 7.001 0 0 1 1.018 8.5H.5a.5.5 0 0 1 0-1h.518A7.001 7.001 0 0 1 7.5 1.018V.5A.5.5 0 0 1 8 0Zm-.5 2.02A6.001 6.001 0 0 0 2.02 7.5h1.005A5.002 5.002 0 0 1 7.5 3.025V2.02Zm1 1.005A5.002 5.002 0 0 1 12.975 7.5h1.005A6.001 6.001 0 0 0 8.5 2.02v1.005ZM12.975 8.5A5.002 5.002 0 0 1 8.5 12.975v1.005a6.002 6.002 0 0 0 5.48-5.48h-1.005ZM7.5 12.975A5.002 5.002 0 0 1 3.025 8.5H2.02a6.001 6.001 0 0 0 5.48 5.48v-1.005ZM10 8a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"/>
-                </svg> ${perWeekExp.expPunchKingPoints.toLocaleString("en-SG")} EXP Punch King Points
+                </svg> ${perWeekExp.expPunchKingPoints.toLocaleString("en-SG")} ${text[selectedLang][2]}
             </p>`);
         }
     }

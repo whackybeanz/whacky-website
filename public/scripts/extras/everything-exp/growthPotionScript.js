@@ -120,6 +120,12 @@ function calcNewExpBtnListener() {
             document.getElementById("calc-start-potion-percent").textContent = `${(currExp / getExpTNL(currLevel) * 100).toFixed(3)} %`;
             document.getElementById("calc-start-potion-raw").textContent = `${currExp.toLocaleString("en-SG")} EXP`;
 
+            const selectedLang = document.getElementById("lang-select").value;
+            const potionNameType = {
+                "lang-en": "potionName",
+                "lang-tw": "potionNameTw",
+            }
+
             allPotionInputs.forEach(input => {
                 let potionType = input.dataset.potionType;
                 let numPotionsUsed = parseInt(input.value);
@@ -127,7 +133,7 @@ function calcNewExpBtnListener() {
                 [finalLevel, finalExp] = calcPotionsNewExp(finalLevel, finalExp, potionType, numPotionsUsed);
                 [newAgeFinalLevel, newAgeFinalExp] = calcPotionsNewExp(newAgeFinalLevel, newAgeFinalExp, potionType, numPotionsUsed, "newage");
 
-                potionSummary.insertAdjacentHTML('beforeend', `<div class="d-flex align-items-center"><img class="item-square mr-2" src='${input.dataset.imgSrc}'> ${numPotionsUsed} x ${input.dataset.potionName}</div>`);
+                potionSummary.insertAdjacentHTML('beforeend', `<div class="d-flex align-items-center"><img class="item-square mr-2" src='${input.dataset.imgSrc}'> ${numPotionsUsed} x ${input.dataset[potionNameType[selectedLang]]}</div>`);
             })
 
             document.getElementById("end-potion-char-level").textContent = finalLevel;
@@ -176,18 +182,21 @@ function calcPotionsNewExp(currLevel, currExp, potionType, numPotionsUsed, patch
  * **************/
 function addExpTable(potionType, minLevel, maxLevel) {
     let levelRange = [
-        { name: "Level 200 to 250", startLevel: 200, endLevel: 250 },
-        { name: "Level 250 to 300", startLevel: 250, endLevel: 300 },
+        { name: "Level 200 to 250", nameTw: "等级 200-250", startLevel: 200, endLevel: 250 },
+        { name: "Level 250 to 300", nameTw: "等级 250-300", startLevel: 250, endLevel: 300 },
     ]
 
     levelRange.forEach((levelRange, index) => {
-        let html = `<div class="w-100 col-12 col-sm-6 col-xl-4 d-flex flex-column align-items-center mb-4"><h2 class="font-subsubheader font-weight-bold text-underline mb-2">${levelRange.name}</h2>
+        let html = `<div class="w-100 col-12 col-sm-6 col-xl-4 d-flex flex-column align-items-center mb-4"><h2 class="font-subsubheader font-weight-bold text-underline mb-2"><span class="lang lang-en">${levelRange.name}</span><span class="lang lang-tw">${levelRange.nameTw}</span></h2>
 
         <table class='font-table size-350 table table-sm table-bordered table-hover' id='potion-${potionType}-table-${index}'>
                 <thead>
                     <tr>
-                        <th scope="col" class="text-center">Level</th>
-                        <th scope="col" class="text-center">% From Potion</th>
+                        <th scope="col" class="text-center">
+                            <span class="lang lang-en">Level</span>
+                            <span class="lang lang-tw">等级</span>
+                        </th>
+                        <th scope="col" class="text-center">%</th>
                     </tr>
                 </thead>
                 <tbody id='potion-${potionType}-table-${index}-details'>

@@ -3,26 +3,42 @@
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center pb-2">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                    <img src="<%= icons['exp-coupon'].imgUrl %>" class="mr-2"> EXP Multipliers
+                    <img src="<%= icons['exp-coupon'].imgUrl %>" class="mr-2"> 
+                    <span class="lang lang-en">EXP Multipliers</span>
+                    <span class="lang lang-tw">EXP經驗倍率</span>
                 </h2>
                 <div class="mb-0">
-                    Total EXP Multiplier = <div class="d-inline font-weight-bold text-custom">x<span id="total-exp-mult">1</span> EXP</div>
+                    <span class="lang lang-en">Total EXP Multiplier</span>
+                    <span class="lang lang-tw">總經驗倍率</span>
+                     = <div class="d-inline font-weight-bold text-custom">x<span id="total-exp-mult">1</span> EXP</div>
                 </div>
             </div>
             <div class="pill-section-content font-form d-flex flex-wrap justify-content-center py-2">
                 <div class="size-720 col-12">
-                    <p class="text-center mb-1">Select any EXP coupons/items/buffs you use during training.</p>
-                    <p class="text-center mb-4">Most class-specific skills and buffs lasting for a very short duration (e.g. V Matrix special core) are not available.</p>
+                    <p class="text-center mb-1">
+                        <span class="lang lang-en">Select any EXP coupons/items/buffs you use during training.</span>
+                        <span class="lang lang-tw">選擇你在練等期間使用的任何經驗券/物品/buff。 </span>
+                    </p>
+                    <p class="text-center mb-4">
+                        <span class="lang lang-en">Most class-specific skills and buffs lasting for a very short duration (e.g. V Matrix special core) are not available.</span>
+                        <span class="lang lang-tw">大多數職業特定技能和增益持續時間很短（例如V矩陣特殊覈心）不可用。</span>
+                    </p>
 
                     <div class="mult-container col-12 d-flex flex-column mb-5 px-0">
                         <div class="category-subheader text-center mb-1 py-1">
-                            <p class="mb-1 font-weight-bold">- Category 1 (Cash Shop coupons) -</p>
+                            <p class="mb-1 font-weight-bold">
+                                <span class="lang lang-en">- Category 1 (Cash Shop coupons) -</span>
+                                <span class="lang lang-tw">- 類別1 (現金商城) -</span>
+                            </p>
                             <p class="mb-0 font-weight-bold text-custom">
                                 <span id="category-1-symbol">x</span><span class="single-category-exp-buff-value" id="category-1-value">1</span><span class="d-none" id="category-1-percent">%</span> EXP
                             </p>
                         </div>
                         <div class="d-flex flex-column justify-content-center align-items-center px-3">
-                            <p class="text-center mb-1">Select <span class="text-underline">one</span></p>
+                            <p class="text-center mb-1">
+                                <span class="lang lang-en">Select one</span>
+                                <span class="lang lang-tw">選擇一項</span>
+                            </p>
                             <div class="d-flex justify-content-center flex-wrap">
                                 <div class="single-exp-stack category-1 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="1" data-is-premium="true" data-value="20" id="premium-coupon">
                                     <img class="item-square" src="<%= icons['premium-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Premium Cafe / Premium Service Coupon (+20% EXP)">
@@ -42,13 +58,19 @@
 
                     <div class="mult-container col-12 d-flex flex-column mb-5 px-0">
                         <div class="category-subheader text-center mb-1 py-1">
-                            <p class="mb-1 font-weight-bold">- Category 2 (Use coupons) -</p>
+                            <p class="mb-1 font-weight-bold">
+                                <span class="lang lang-en">- Category 2 (Use coupons) -</span>
+                                <span class="lang lang-tw">- 類別2 (使用優惠券) -</span>
+                            </p>
                             <p class="mb-0 font-weight-bold text-custom">
                                 x<span class="single-category-exp-buff-value" id="category-2-value">1</span> EXP
                             </p>
                         </div>
                         <div class="d-flex flex-column justify-content-center align-items-center px-3">
-                            <p class="text-center mb-1">Stacks with Category 3 (only for GMS). Select <span class="text-underline">one</span> (if applicable)</p>
+                            <p class="text-center mb-1">
+                                <span class="lang lang-en">Stacks with Category 3 (only for GMS). Select one (if applicable)</span>
+                                <span class="lang lang-tw">與類別3重叠（僅適用於GMS）。 選擇一項（如果適用）</span>
+                            </p>
                             <div class="d-flex flex-wrap justify-content-center">
                                 <div class="single-exp-stack category-2 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="2" data-value="1.2" id="happy-winter">
                                     <img class="item-square" src="<%= icons['happy-winter'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="Happy Winter (x1.2 EXP)">
@@ -71,13 +93,19 @@
 
                     <div class="mult-container col-12 d-flex flex-column mb-5 px-0">
                         <div class="category-subheader text-center mb-1 py-1">
-                            <p class="mb-1 font-weight-bold">- Category 3 (Server events) -</p>
+                            <p class="mb-1 font-weight-bold">
+                                <span class="lang lang-en">- Category 3 (Server events) -</span>
+                                <span class="lang lang-tw">- 類別3 (服務器事件) -</span>
+                            </p>
                             <p class="mb-0 font-weight-bold text-custom">
                                 x<span class="single-category-exp-buff-value" id="category-3-value">1</span> EXP
                             </p>
                         </div>
                         <div class="d-flex flex-column justify-content-center align-items-center px-3">
-                            <p class="text-center mb-1">Stacks with Category 2 (only for GMS). Select <span class="text-underline">one</span> (if applicable)</p>
+                            <p class="text-center mb-1">
+                                <span class="lang lang-en">Stacks with Category 2 (only for GMS). Select one (if applicable)</span>
+                                <span class="lang lang-tw">與類別2重叠（僅適用於GMS）。 選擇一項（如果適用）</span>
+                            </p>
                             <div class="d-flex flex-wrap justify-content-center">
                                 <div class="single-exp-stack category-3 rounded-sm mx-1 my-1 cursor-pointer" data-category-num="3" data-value="1.5" id="server-1-5x">
                                     <img class="item-square" src="<%= icons['1.5x-exp-coupon'].imgUrl %>" data-toggle="tooltip" data-placement="bottom" title="1.5x EXP server event (x1.5 EXP)">
@@ -94,7 +122,10 @@
 
                     <div class="mult-container col-12 d-flex flex-column mb-5 px-0">
                         <div class="category-subheader text-center mb-1 py-1">
-                            <p class="mb-1 font-weight-bold">- Category 4 (Penance Ring) -</p>
+                            <p class="mb-1 font-weight-bold">
+                                <span class="lang lang-en">- Category 4 (Penance Ring) -</span>
+                                <span class="lang lang-tw">- 類別4 (苦行戒指) -</span>
+                            </p>
                             <p class="mb-0 font-weight-bold text-custom">
                                 x<span class="single-category-exp-buff-value" id="category-4-value">1</span> EXP
                             </p>
@@ -108,7 +139,10 @@
 
                     <div class="mult-container col-12 d-flex flex-column align-items-center mb-3 px-0">
                         <div class="w-100 category-subheader text-center mb-1 py-1">
-                            <p class="mb-1 font-weight-bold">- Category 5 (Additive Buffs) -</p>
+                            <p class="mb-1 font-weight-bold">
+                                <span class="lang lang-en">- Category 5 (Additive Buffs) -</span>
+                                <span class="lang lang-tw">- 類別5 (附加增益) -</span>
+                            </p>
                             <p class="mb-0 font-weight-bold text-custom">
                                 +<span class="single-category-exp-buff-value" id="category-5-value">0.00</span>% EXP
                             </p>
@@ -167,7 +201,10 @@
                             <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
                                 <img class="item-square" src="<%= icons['elven-blessing'].imgUrl %>">
                                 <div class="col-10 px-2">
-                                    <p class="mb-1">Elven Blessing</p>
+                                    <p class="mb-1">
+                                        <span class="lang lang-en">Elven Blessing</span>
+                                        <span class="lang lang-tw">精靈的祝福</span>
+                                    </p>
                                     <select class="single-exp-stack-select font-table form-control px-2" id="elven-blessing" data-category-num="5" data-select-type="elvenBlessing">
                                         <option value="0" selected>N/A</option>
                                         <option value="10">+10% EXP (Level 1)</option>
@@ -179,7 +216,10 @@
                             <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
                                 <img class="item-square" src="<%= icons['rhinne-blessing'].imgUrl %>">
                                 <div class="col-10 px-2">
-                                    <p class="mb-1">Zero Union Attacker</p>
+                                    <p class="mb-1">
+                                        <span class="lang lang-en">Zero Union Attacker</span>
+                                        <span class="lang lang-tw">聯盟角色卡</span>
+                                    </p>
                                     <select class="single-exp-stack-select font-table form-control px-2" id="zero-union" data-category-num="5" data-select-type="zeroUnion">
                                         <option value="0" selected>N/A</option>
                                         <option value="4">+4% EXP (B-rank)</option>
@@ -193,7 +233,10 @@
                             <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
                                 <img class="item-square" src="<%= icons['spirit-pendant'].imgUrl %>">
                                 <div class="col-10 px-2">
-                                    <p class="mb-1">Spirit Pendant</p>
+                                    <p class="mb-1">
+                                        <span class="lang lang-en">Spirit Pendant</span>
+                                        <span class="lang lang-tw">精靈項鏈</span>
+                                    </p>
                                     <select class="single-exp-stack-select font-table form-control px-2" id="spirit-pendant" data-category-num="5" data-select-type="spiritPendant">
                                         <option value="0" selected>N/A</option>
                                         <option value="10">+10% EXP</option>
@@ -205,7 +248,10 @@
                             <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
                                 <img class="item-square" src="<%= icons['burning-field'].imgUrl %>">
                                 <div class="col-10 px-2">
-                                    <p class="mb-1">Burning Field</p>
+                                    <p class="mb-1">
+                                        <span class="lang lang-en">Burning Field</span>
+                                        <span class="lang lang-tw">燃燒地圖</span>
+                                    </p>
                                     <select class="single-exp-stack-select font-table form-control px-2" id="burning-field" data-category-num="5" data-select-type="burningField">
                                         <option value="0" selected>N/A</option>
                                         <option value="10">+10% EXP (Stage 1)</option>
@@ -224,7 +270,15 @@
                             <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
                                 <img class="item-square" src="<%= icons['rune-buff'].imgUrl %>">
                                 <div class="col-10 px-2">
-                                    <p class="mb-1">Liberated Rune</p>
+                                    <p class="mb-1">
+                                        <span class="lang lang-en">Liberated Rune</span>
+                                        <span class="lang lang-tw">解放符文</span>
+                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" title="By default, select options within the first category. The other categories are for specific situations (e.g. +100% rune EXP on Sunday Maple, Haste event, or for a never-ending rune effect)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
+                                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                                            </svg>
+                                        </span>
+                                    </p>
                                     <select class="single-exp-stack-select font-table form-control px-2" id="rune-exp" data-category-num="5" data-select-type="runeBuff">
                                         <option value="0" selected>N/A</option>
                                         <option class="font-weight-bold" value="" disabled>Averaged across up/downtime</option>
@@ -249,7 +303,10 @@
                             <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
                                 <img class="item-square" src="<%= icons['caretaker-buff-exp'].imgUrl %>">
                                 <div class="col-10 px-2">
-                                    <p class="mb-1">Caretaker's Buff</p>
+                                    <p class="mb-1">
+                                        <span class="lang lang-en">Caretaker's Buff</span>
+                                        <span class="lang lang-tw">我的小屋Buff</span>
+                                    </p>
                                     <select class="single-exp-stack-select font-table form-control px-2" id="caretaker-buff-exp" data-category-num="5" data-select-type="caretakerBuff">
                                         <option value="0" selected>N/A</option>
                                         <option value="5">+5% EXP (Level 1)</option>
@@ -265,8 +322,9 @@
                                 <img class="item-square" src="<%= icons['ring-of-clan'].imgUrl %>">
                                 <div class="col-10 px-2">
                                     <p class="mb-1">
-                                        Ring of Clan
-                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" title="Player MUST be wearing the Ring of Clan for the EXP buff to take effect at all">
+                                        <span class="lang lang-en">Ring of Clan</span>
+                                        <span class="lang lang-tw">血盟之戒</span>
+                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" id="ring-of-clan-tooltip" title="Player MUST be wearing the Ring of Clan for the EXP buff to take effect at all">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
                                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
                                             </svg>
@@ -285,7 +343,10 @@
                             <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
                                 <img class="item-square" src="<%= icons['lucky-dice'].imgUrl %>">
                                 <div class="col-10 px-2">
-                                    <p class="mb-1">Lucky Dice</p>
+                                    <p class="mb-1">
+                                        <span class="lang lang-en">Lucky Dice</span>
+                                        <span class="lang lang-tw">幸運骰子</span>
+                                    </p>
                                     <select class="single-exp-stack-select font-table form-control px-2" id="lucky-dice" data-category-num="5" data-select-type="luckyDice">
                                         <option value="0" selected>N/A</option>
                                         <option value="30">+30% EXP</option>
@@ -297,7 +358,10 @@
                             <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
                                 <img class="item-square" src="<%= icons['eluna-buff'].imgUrl %>">
                                 <div class="col-10 px-2">
-                                    <p class="mb-1">Eluna Earrings / Pendant</p>
+                                    <p class="mb-1">
+                                        <span class="lang lang-en">Eluna Earrings / Pendant</span>
+                                        <span class="lang lang-tw">艾露娜耳環/吊墜</span>
+                                    </p>
                                     <select class="single-exp-stack-select font-table form-control px-2" id="eluna-buff" data-category-num="5" data-select-type="elunaBuff">
                                         <option value="0" selected>N/A</option>
                                         <option value="2">+2% EXP</option>
@@ -312,8 +376,9 @@
                                 <img class="item-square" src="<%= icons['coin-union'].imgUrl %>">
                                 <div class="col-10 px-2">
                                     <p class="mb-1">
-                                        Union Board EXP tiles
-                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" title="+0.25% per square / Max +10.00%">
+                                        <span class="lang lang-en">Union Board EXP tiles</span>
+                                        <span class="lang lang-tw">聯盟戰地經驗</span>
+                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" id="union-board-tooltip" title="+0.25% per square / Max +10.00%">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
                                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
                                             </svg>
@@ -327,7 +392,10 @@
                             <div class="col-12 col-sm-6 d-flex align-items-center mb-4 px-0 px-sm-3">
                                 <img class="item-square" src="<%= icons['swan-dream'].imgUrl %>">
                                 <div class="col-10 px-2">
-                                    <p class="mb-1">Events / Event Titles</p>
+                                    <p class="mb-1">
+                                        <span class="lang lang-en">Events / Event Titles</span>
+                                        <span class="lang lang-tw">活動</span>
+                                    </p>
                                     <div class="d-flex align-items-center">
                                         <input type="number" class="single-exp-stack-input font-table col-4 text-center form-control mr-2" id="event-titles" value="0" data-category-num="5" data-input-type="eventTitle" data-max-value="100">%
                                     </div>
@@ -337,8 +405,9 @@
                                 <img class="item-square" src="<%= icons['hyper-stats'].imgUrl %>">
                                 <div class="col-10 px-2">
                                     <p class="mb-1">
-                                        Hyper Stats
-                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" title="+0.50% to +10% depending on level">
+                                        <span class="lang lang-en">Hyper Stats</span>
+                                        <span class="lang lang-tw">超級屬性</span>
+                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" id="hyper-stats-tooltip" title="+0.50% to +10% depending on level">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
                                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
                                             </svg>
@@ -353,8 +422,9 @@
                                 <img class="item-square" src="<%= icons['holy-symbol'].imgUrl %>">
                                 <div class="col-10 px-2">
                                     <p class="mb-1">
-                                        (Decent) Holy Symbol
-                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" title="(Decent Holy Symbol) +20% to +35% based on skill level / (Holy Symbol) +25% to +70%">
+                                        <span class="lang lang-en">(Decent) Holy Symbol</span>
+                                        <span class="lang lang-tw">實用的祈禱</span>
+                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" id="holy-symbol-tooltip" title="(Decent Holy Symbol) +20% to +35% based on skill level / (Holy Symbol) +25% to +70%">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
                                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
                                             </svg>
@@ -369,8 +439,9 @@
                                 <img class="item-square" src="<%= icons['sol-janus'].imgUrl %>">
                                 <div class="col-10 px-2">
                                     <p class="mb-1">
-                                        Sol Janus
-                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" title="+10% to 100% depending on level">
+                                        <span class="lang lang-en">Sol Janus</span>
+                                        <span class="lang lang-tw">Sol Janus</span>
+                                        <span class="d-inline" data-toggle="tooltip" data-placement="bottom" id="sol-janus-tooltip" title="+10% to 100% depending on level">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
                                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
                                             </svg>

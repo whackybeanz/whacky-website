@@ -5,7 +5,10 @@
                 <div class="summary-div col-12 size-720 d-flex flex-column flex-md-row align-items-center justify-content-center rounded-lg pt-4 pb-2">
                     <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-3 mb-md-0">
                         <div class="d-flex flex-column align-items-center">
-                            <p class="font-weight-bold mb-0">Level</p>
+                            <p class="font-weight-bold mb-0">
+                                <span class="lang lang-en">Level</span>
+                                <span class="lang lang-tw">等級</span>
+                            </p>
                             <p class="font-mega font-weight-bold mb-0" id="calc-start-potion-level"></p>
                             <p class="mb-0 font-weight-bold" id="calc-start-potion-percent"></p>
                             <p class="mb-md-3 font-small text-center" id="calc-start-potion-raw"></p>
@@ -14,7 +17,10 @@
                             <p class="font-mega mb-0">&raquo;</p>
                         </div>
                         <div class="d-flex flex-column align-items-center text-custom">
-                            <p class="font-weight-bold mb-0">Level</p>
+                            <p class="font-weight-bold mb-0">
+                                <span class="lang lang-en">Level</span>
+                                <span class="lang lang-tw">等級</span>
+                            </p>
                             <p class="font-mega font-weight-bold mb-0" id="end-potion-char-level"></p>
                             <p class="mb-0 font-weight-bold" id="end-potion-char-exp-percent"></p>
                             <p class="mb-md-3 font-small text-center" id="end-potion-char-exp-raw"></p>
@@ -29,7 +35,10 @@
                             </div>
                         </div>-->
                         <div class="col-12 mb-3 px-0">
-                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">- Potions Used -</p>
+                            <p class="summary-subheader font-weight-bold text-center mb-1 py-1">
+                                <span class="lang lang-en">- Potions Used -</span>
+                                <span class="lang lang-tw">- 使用藥水-</span>
+                            </p>
                             <div class="d-flex flex-column justify-content-center align-items-center px-3 mb-2" id="potion-summary"></div>
                         </div>
                     </div>
@@ -44,7 +53,9 @@
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                    <img src="<%= icons['growth-potion'].imgUrl %>" class="mr-2"> Summary
+                    <img src="<%= icons['growth-potion'].imgUrl %>" class="mr-2"> 
+                    <span class="lang lang-en">Summary</span>
+                    <span class="lang lang-tw">概括</span>
                 </h2>
             </div>
             <div class="pill-section-content font-form d-flex flex-wrap justify-content-start pt-4 px-3">
@@ -53,7 +64,8 @@
                         <img class="item-square" src="<%= icons[potionList[potion].id].imgUrl %>">
                         <div class="col-10 px-2">
                             <p class="mb-0 font-weight-bold">
-                                <%= potionList[potion].name %>
+                                <span class="lang lang-en"><%= potionList[potion].name %></span>
+                                <span class="lang lang-tw"><%= potionList[potion].nameTw %></span>
                                 <% if(potion === "potion1" || potion === "potion2" || potion === "potion3") { %>
                                     (<%= potionList[potion].minLevel %> - <%= potionList[potion].maxLevel %>)
                                 <% } %>
@@ -71,39 +83,76 @@
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                    <img src="<%= icons['growth-potion'].imgUrl %>" class="mr-2"> Calculator
+                    <img src="<%= icons['growth-potion'].imgUrl %>" class="mr-2"> 
+                    <span class="lang lang-en">Calculator</span>
+                    <span class="lang lang-tw">计算机</span>
                 </h2>
                 <p class="mb-0 pb-2">
-                    Potion EXP calculator for level 200+ characters
+                    <span class="lang lang-en">Potion EXP calculator for level 200+ characters</span>
+                    <span class="lang lang-tw">適用於200級以上角色的升級藥水計算</span>
                 </p>
             </div>
             <div class="pill-section-content d-flex flex-column align-items-center justify-content-center py-4 px-3" id="potion-exp-calc">
-                <p class="w-100 mb-1">Notes:</p>
+                <p class="w-100 mb-1">
+                    <span class="lang lang-en">Notes:</span>
+                    <span class="lang lang-tw">注:</span>
+                </p>
                 <ul class="w-100 mb-4">
-                    <li>The calculator will add potions sequentially from the weakest to the strongest (i.e. Extreme first, Maximum last)</li>
-                    <li>You can add up to 1000 of <em>each potion type</em></li>
-                    <li>At level 210 to 212 (inclusive), it is more efficient to use 8 x Potion 1 than 4 x Potion 2.</li>
-                    <li>At level 220 to 224 (inclusive), it is more efficient to use 4 x Potion 2 than 2 x Potion 3.</li>
-                    <li>At level 230 to 236 (inclusive), it is more efficient to use 2 x Potion 3 than 1 x Typhoon Growth Potion.</li>
+                    <li>
+                        <span class="lang lang-en">The calculator will add potions sequentially from the weakest to the strongest (i.e. Extreme first, Transcendent last)</span>
+                        <span class="lang lang-tw">計算器將按從最弱到最强的順序添加藥水 (即首先是極限，最後是超凡)</span>
+                    </li>
+                    <li>
+                        <span class="lang lang-en">You can add up to 1000 of <em>each potion type</em></span>
+                        <span class="lang lang-tw">每種藥水類型最多可添加1000個</span>
+                    </li>
+                    <li>
+                        <span class="lang lang-en">At level 210 to 212 (inclusive), it is more efficient to use 8 x Potion 1 than 4 x Potion 2.</span>
+                        <span class="lang lang-tw">在210級到212級（含）時，使用8 x藥水1比使用4 x藥水2更有效。</span>
+                    </li>
+                    <li>
+                        <span class="lang lang-en">At level 220 to 224 (inclusive), it is more efficient to use 4 x Potion 2 than 2 x Potion 3.</span>
+                        <span class="lang lang-tw">在220級到224級（含）時，使用4 x藥水2比使用2 x藥水3更有效。</span>
+                    </li>
+                    <li>
+                        <span class="lang lang-en">At level 230 to 236 (inclusive), it is more efficient to use 2 x Potion 3 than 1 x Typhoon Growth Potion.</span>
+                        <span class="lang lang-tw">在230級到236級（含）時，使用2 x 3號藥水比1 x颱風成長藥水效率更高。</span>
+                    </li>
                 </ul>
                 <form class="w-100 d-flex flex-column align-items-center mb-3">
                     <div class="size-720 w-100 d-flex justify-content-center align-items-center flex-wrap mb-4">
                         <div class="form-group row col-6 col-sm-4 d-flex flex-column align-items-center mb-2 pr-1 pl-0 px-sm-0 mx-0">
-                            <label for="start-potion-char-level" class="font-weight-bold col-form-label py-1">Start Level</label>
+                            <label for="start-potion-char-level" class="font-weight-bold col-form-label py-1">
+                                <span class="lang lang-en">Start Level</span>
+                                <span class="lang lang-tw">起始等級</span>
+                            </label>
                             <input type="number" id="start-potion-char-level" class="form-control col-12 col-sm-10 px-2 py-2 text-center mx-0" value="200">
                         </div>
                         <div class="form-group row col-6 col-sm-4 d-flex flex-column align-items-center mb-2 pl-1 pr-0 px-sm-0 mx-0">
-                            <label for="start-potion-char-exp-percent" class="font-weight-bold col-form-label py-1">EXP (%)</label>
+                            <label for="start-potion-char-exp-percent" class="font-weight-bold col-form-label py-1">
+                                <span class="lang lang-en">EXP (%)</span>
+                                <span class="lang lang-tw">經驗 (%)</span>
+                            </label>
                             <div class="w-100 d-flex flex-column align-items-center">
                                 <input type="number" id="start-potion-char-exp-percent" class="form-control col-12 col-sm-10 text-center px-2 py-2 mx-0" value="0.000">
-                                <small class="text-danger d-none mr-3" id="exp-percent-input-error">Input should be below 100.000%</small>
+                                <small class="text-danger d-none mr-3" id="exp-percent-input-error">
+                                    <span class="lang lang-en">Input should be below 100.000%</span>
+                                    <span class="lang lang-tw">输入不能超越100.000%</span>
+                                </small>
                             </div>
                         </div>
                         <div class="form-group row col-12 col-sm-4 d-flex flex-column align-items-center mb-2 px-0 mx-0">
-                            <label for="start-potion-char-exp-raw" class="font-weight-bold col-form-label py-1">EXP (Value)</label>
+                            <label for="start-potion-char-exp-raw" class="font-weight-bold col-form-label py-1">
+                                <span class="lang lang-en">EXP (Value)</span>
+                                <span class="lang lang-tw">經驗 (值)</span>
+                            </label>
                             <div class="w-100 d-flex flex-column align-items-center">
                                 <input type="text" id="start-potion-char-exp-raw" class="form-control col-12 col-sm-10 text-center px-2 py-2 mx-0" value="0">
-                                <small class="text-danger text-center d-none" id="exp-raw-input-error">Input exceeds level's EXP to level up (<span id="potion-calc-err-max-exp-tnl"></span> EXP)</small>
+                                <small class="text-danger text-center d-none" id="exp-raw-input-error">
+                                    <span class="lang lang-en">Input exceeds level's EXP to level up</span>
+                                    <span class="lang lang-tw">输入已超越等级所需的经验值</span>
+                                    (<span id="potion-calc-err-max-exp-tnl"></span> EXP)
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -113,13 +162,14 @@
                                 <img class="item-square" src="<%= icons[potionList[potion].id].imgUrl %>">
                                 <div class="col-10 px-2">
                                     <p class="mb-1 font-weight-bold">
-                                        <%= potionList[potion].name %>
+                                        <span class="lang lang-en"><%= potionList[potion].name %></span>
+                                        <span class="lang lang-tw"><%= potionList[potion].nameTw %></span>
                                         <% if(potion === "potion1" || potion === "potion2" || potion === "potion3") { %>
                                             (<%= potionList[potion].minLevel %> - <%= potionList[potion].maxLevel %>)
                                         <% } %>
                                     </p>
                                     <div class="d-flex align-items-center">
-                                        <input type="number" class="single-potion-add-input font-table col-4 text-center form-control mr-2 px-0" id="add-<%= potion %>-input" value="" data-potion-type="<%= potion %>" data-potion-name="<%= potionList[potion].name %>" data-img-src="<%= icons[potionList[potion].id].imgUrl %>" placeholder="Qty">
+                                        <input type="number" class="single-potion-add-input font-table col-4 text-center form-control mr-2 px-0" id="add-<%= potion %>-input" value="" data-potion-type="<%= potion %>" data-potion-name="<%= potionList[potion].name %>" data-potion-name-tw="<%= potionList[potion].nameTw %>" data-img-src="<%= icons[potionList[potion].id].imgUrl %>" placeholder="Qty">
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +180,9 @@
                 <button type="button" class="table-cols-125 btn btn-sm btn-outline-custom d-flex align-items-center text-center justify-content-center" id="btn-calc-pot-result">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
                       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                    </svg>&nbsp;(Re)Calculate
+                    </svg>&nbsp;
+                    <span class="lang lang-en">(Re)Calculate</span>
+                    <span class="lang lang-tw">(重新)計算</span>
                 </button>
             </div>
         </div>
@@ -138,13 +190,18 @@
         <div class="pill-section rounded-sm mb-5">
             <div class="pill-section-subheader text-center">
                 <h2 class="font-subsubheader font-weight-bold d-flex justify-content-center align-items-center py-1 mb-0">
-                    <img src="<%= icons['growth-potion'].imgUrl %>" class="mr-2"> EXP Tables
+                    <img src="<%= icons['growth-potion'].imgUrl %>" class="mr-2"> 
+                    <span class="lang lang-en">EXP Tables</span>
+                    <span class="lang lang-tw">經驗表</span>
                 </h2>
             </div>
             <div class="pill-section-content font-form d-flex flex-wrap justify-content-center pt-3">
                 <form class="w-100 d-flex flex-column align-items-center">
                     <div class="form-group row w-100 d-flex justify-content-center align-items-center mb-2">
-                        <label for="potion-exp-table-select" class="font-weight-bold col-form-label">Select Potion</label>
+                        <label for="potion-exp-table-select" class="font-weight-bold col-form-label">
+                            <span class="lang lang-en">Select Potion</span>
+                            <span class="lang lang-tw">選擇藥水</span>
+                        </label>
                         <div class="col-sm-6 col-md-4">
                             <select class="form-control" id="potion-exp-table-select">
                                 <option value="extreme">Extreme Growth Potion</option>
@@ -158,7 +215,10 @@
                         </div>
                     </div>
                 </form>
-                <p class="mb-4 px-3" id="egp-chart-msg">To see the probabilities of X level ups at level Y when using an Extreme Growth Potion, <a href='https://whacky-website.s3.ap-southeast-1.amazonaws.com/images/guide/egp-chart.jpg' target='_blank'>click here</a>.</p>
+                <p class="mb-4 px-3" id="egp-chart-msg">
+                    <span class="lang lang-en">To see the probabilities of X level ups at level Y when using an Extreme Growth Potion, <a href='https://whacky-website.s3.ap-southeast-1.amazonaws.com/images/guide/egp-chart.jpg' target='_blank'>click here</a>.</span>
+                    <span class="lang lang-tw">要查看使用極限成長藥水時在Y級升級X級的概率，<a href='https://whacky-website.s3.ap-southeast-1.amazonaws.com/images/guide/egp-chart.jpg' target='_blank'>請點擊這裡</a>。</span>
+                </p>
 
                 <div class="table-responsive d-flex flex-wrap justify-content-center" id="potion-exp-table-details"></div>
             </div>

@@ -34,21 +34,21 @@ function getEXPContentsValues() {
             { iconId: "map-limen", name: "Limen", baseMinLevel: 255, recMinLevel: 255, recMaxLevel: 260, isEnforceMinLevel: true, rawEXP: 7776278700 },
         ],
         symbolContent: [
-            { iconId: "symbol-rte", name: "Road to Extinction", recMinLevel: 200, isEnforceMinLevel: true, dailyRawEXP: 732132258, hasWeekly: true, weeklyName: "Erda Spectrum", weeklyRawEXP: 187726220 },
-            { iconId: "symbol-cci", name: "Chew Chew Island", recMinLevel: 210, isEnforceMinLevel: true, dailyRawEXP: 2141658246, hasWeekly: true, weeklyName: "Hungry Muto", weeklyRawEXP: 549143140 },
-            { iconId: "symbol-lacheln", name: "Lacheln", recMinLevel: 220, isEnforceMinLevel: true, dailyRawEXP: 3189098250, hasWeekly: true, weeklyName: "Midnight Chaser", weeklyRawEXP: 817717500 },
-            { iconId: "symbol-arcana", name: "Arcana", recMinLevel: 225, isEnforceMinLevel: true, dailyRawEXP: 3305187639, hasWeekly: true, weeklyName: "Spirit Savior", weeklyRawEXP: 847484010 },
-            { iconId: "symbol-moras", name: "Moras", recMinLevel: 230, isEnforceMinLevel: true, dailyRawEXP: 4398266165, hasWeekly: true, weeklyName: "Enheim Defense", weeklyRawEXP: 1127760555 },
-            { iconId: "symbol-esfera", name: "Esfera", recMinLevel: 235, isEnforceMinLevel: true, dailyRawEXP: 4530843954, hasWeekly: true, weeklyName: "Protect Esfera", weeklyRawEXP: 1161754860 },
-            { iconId: "map-moonbridge", name: "Moonbridge", recMinLevel: 245, isEnforceMinLevel: true, dailyRawEXP: 8397548775 },
-            { iconId: "map-labyrinth", name: "Labyrinth of Suffering", recMinLevel: 250, isEnforceMinLevel: true, dailyRawEXP: 9057690000 },
-            { iconId: "map-limen", name: "Limen", recMinLevel: 255, isEnforceMinLevel: true, dailyRawEXP: 10225741680 },
-            { iconId: "symbol-cernium", name: "Cernium", recMinLevel: 260, isEnforceMinLevel: true, dailyRawEXP: 16455682080 },
-            { iconId: "symbol-hotel-arcs", name: "Hotel Arcs", recMinLevel: 265, isEnforceMinLevel: true, dailyRawEXP: 19372782409 },
-            { iconId: "symbol-odium", name: "Odium", recMinLevel: 270, isEnforceMinLevel: true, dailyRawEXP: 23246151120 },
-            { iconId: "symbol-dwk", name: "Shangri-La", recMinLevel: 275, isEnforceMinLevel: true, dailyRawEXP: 32127015480 },
-            { iconId: "symbol-arteria", name: "Arteria", recMinLevel: 280, isEnforceMinLevel: true, dailyRawEXP: 38593455264 },
-            { iconId: "symbol-carcion", name: "Carcion", recMinLevel: 285, isEnforceMinLevel: true, dailyRawEXP: 45635222880 },
+            { iconId: "symbol-rte", name: "Road to Extinction", nameTw: "消逝的旅途", recMinLevel: 200, isEnforceMinLevel: true, dailyRawEXP: 732132258, hasWeekly: true, weeklyName: "Erda Spectrum", weeklyNameTw: "艾爾達斯光譜", weeklyRawEXP: 187726220 },
+            { iconId: "symbol-cci", name: "Chew Chew Island", nameTw: "啾啾愛爾蘭", recMinLevel: 210, isEnforceMinLevel: true, dailyRawEXP: 2141658246, hasWeekly: true, weeklyName: "Hungry Muto", weeklyNameTw: "肚子餓的武藤", weeklyRawEXP: 549143140 },
+            { iconId: "symbol-lacheln", name: "Lacheln", nameTw: "拉契爾恩", recMinLevel: 220, isEnforceMinLevel: true, dailyRawEXP: 3189098250, hasWeekly: true, weeklyName: "Midnight Chaser", weeklyNameTw: "午夜追擊者", weeklyRawEXP: 817717500 },
+            { iconId: "symbol-arcana", name: "Arcana", nameTw: "阿爾卡", recMinLevel: 225, isEnforceMinLevel: true, dailyRawEXP: 3305187639, hasWeekly: true, weeklyName: "Spirit Savior", weeklyNameTw: "精靈救助者", weeklyRawEXP: 847484010 },
+            { iconId: "symbol-moras", name: "Moras", nameTw: "魔菈斯", recMinLevel: 230, isEnforceMinLevel: true, dailyRawEXP: 4398266165, hasWeekly: true, weeklyName: "Enheim Defense", weeklyNameTw: "防禦安哈林", weeklyRawEXP: 1127760555 },
+            { iconId: "symbol-esfera", name: "Esfera", nameTw: "埃斯佩拉", recMinLevel: 235, isEnforceMinLevel: true, dailyRawEXP: 4530843954, hasWeekly: true, weeklyName: "Protect Esfera", weeklyNameTw: "保護艾斯佩拉", weeklyRawEXP: 1161754860 },
+            { iconId: "map-moonbridge", name: "Moonbridge", nameTw: "月之橋", recMinLevel: 245, isEnforceMinLevel: true, dailyRawEXP: 8397548775 },
+            { iconId: "map-labyrinth", name: "Labyrinth of Suffering", nameTw: "苦痛迷宮", recMinLevel: 250, isEnforceMinLevel: true, dailyRawEXP: 9057690000 },
+            { iconId: "map-limen", name: "Limen", nameTw: "利曼", recMinLevel: 255, isEnforceMinLevel: true, dailyRawEXP: 10225741680 },
+            { iconId: "symbol-cernium", name: "Cernium", nameTw: "賽爾尼溫", recMinLevel: 260, isEnforceMinLevel: true, dailyRawEXP: 16455682080 },
+            { iconId: "symbol-hotel-arcs", name: "Hotel Arcs", nameTw: "阿爾克斯", recMinLevel: 265, isEnforceMinLevel: true, dailyRawEXP: 19372782409 },
+            { iconId: "symbol-odium", name: "Odium", nameTw: "奧迪溫", recMinLevel: 270, isEnforceMinLevel: true, dailyRawEXP: 23246151120 },
+            { iconId: "symbol-dwk", name: "Shangri-La", nameTw: "桃園境", recMinLevel: 275, isEnforceMinLevel: true, dailyRawEXP: 32127015480 },
+            { iconId: "symbol-arteria", name: "Arteria", nameTw: "阿爾特利亞", recMinLevel: 280, isEnforceMinLevel: true, dailyRawEXP: 38593455264 },
+            { iconId: "symbol-carcion", name: "Carcion", nameTw: "卡爾西溫", recMinLevel: 285, isEnforceMinLevel: true, dailyRawEXP: 45635222880 },
         ],
     }
 
@@ -57,13 +57,13 @@ function getEXPContentsValues() {
 
 function getPotionList() {
     let potionList = {
-        extreme: { id: "extreme-growth-potion", name: "Extreme Growth Potion", minLevel: 141, maxLevel: 199 },
-        potion1: { id: "growth-potion-1", name: "Growth Potion 1", minLevel: 200, maxLevel: 209 },
-        potion2: { id: "growth-potion-2", name: "Growth Potion 2", minLevel: 200, maxLevel: 219 },
-        potion3: { id: "growth-potion-3", name: "Growth Potion 3", minLevel: 200, maxLevel: 229 },
-        typhoon: { id: "typhoon-growth-potion", name: "Typhoon Growth Potion", minLevel: 200, maxLevel: 239 },
-        maximum: { id: "maximum-growth-potion", name: "Maximum Growth Potion", minLevel: 200, maxLevel: 249 },
-        transcendent: { id: "transcendent-growth-potion", name: "Transcendent Growth Potion", minLevel: 200, maxLevel: 269 },
+        extreme: { id: "extreme-growth-potion", name: "Extreme Growth Potion", nameTw: "終極成長秘藥", minLevel: 141, maxLevel: 199 },
+        potion1: { id: "growth-potion-1", name: "Growth Potion 1", nameTw: "成長秘藥1", minLevel: 200, maxLevel: 209 },
+        potion2: { id: "growth-potion-2", name: "Growth Potion 2", nameTw: "成長秘藥2", minLevel: 200, maxLevel: 219 },
+        potion3: { id: "growth-potion-3", name: "Growth Potion 3", nameTw: "成長秘藥3", minLevel: 200, maxLevel: 229 },
+        typhoon: { id: "typhoon-growth-potion", name: "Typhoon Growth Potion", nameTw: "颱風成長秘藥", minLevel: 200, maxLevel: 239 },
+        maximum: { id: "maximum-growth-potion", name: "Maximum Growth Potion", nameTw: "最大成長秘藥", minLevel: 200, maxLevel: 249 },
+        transcendent: { id: "transcendent-growth-potion", name: "Transcendent Growth Potion", nameTw: "超凡成長秘藥", minLevel: 200, maxLevel: 269 },
     }
 
     return potionList;
