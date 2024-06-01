@@ -191,11 +191,15 @@ function compilePerDayExp() {
 
 function compilePerWeekExp() {
     let weekliesWhen = parseInt(document.getElementById("weeklies-when-select").value);
+    let epicDungeon = parseInt(document.getElementById("num-high-mountain").value);
     let expPunchKingPoints = parseInt(document.getElementById("exp-pk-points").value) || -1;
 
     // Day ranges from 0 (Sunday) till 6 (Saturday); do a validity check
     if(isNaN(weekliesWhen) || weekliesWhen < 0 || weekliesWhen > 6) {
-        return { expPunchKingPoints: expPunchKingPoints };
+        return { 
+            expPunchKingPoints: expPunchKingPoints,
+            epicDungeon: epicDungeon,
+        };
     } else {
         let allWeeklyQuests = Array.from(document.querySelectorAll(".calc-weekly-quest"));
         let activeWeeklies = allWeeklyQuests.filter(weekly => parseInt(weekly.value) > 0);
@@ -213,6 +217,7 @@ function compilePerWeekExp() {
                 } 
             }),
             expPunchKingPoints: expPunchKingPoints,
+            epicDungeon: epicDungeon,
         }
 
         return weeklies;
@@ -332,9 +337,14 @@ function addExpComponents(i, charData, perDayExp, perWeekExp, weekliesWhen, mpDu
     if(charData.currLevel >= 260) {
         contentExp = getMonsterParkExtremeExp(i, charData, perDayExp.numMonsterParkExtreme);
         charData = adjustLevelAndExp(i, charData, contentExp);
+
+        if((new Date(i)).getDay() === 4) {
+            contentExp = getEpicDungeonExp(charData, perWeekExp.epicDungeon);
+            charData = adjustLevelAndExp(i, charData, contentExp);
+        }
     }
 
-    if(perWeekExp.expPunchKingPoints > 0 && (new Date(i)).getDay() === 2) {
+    if(perWeekExp.expPunchKingPoints > 0 && (new Date(i)).getDay() === 0) {
         contentExp = getPunchKingEXP(charData, perWeekExp.expPunchKingPoints);
         charData = adjustLevelAndExp(i, charData, contentExp);
     }
@@ -402,6 +412,14 @@ function getMonsterParkExtremeExp(timestamp, charData, numRuns) {
         } else {
             return numRuns * charData.currLevel * MONSTER_PARK_EXTREME_TABLE[charData.currLevel - 260] * 100000000;
         }
+    } else {
+        return 0;
+    }
+}
+
+function getEpicDungeonExp(charData, rewardMult) {
+    if(rewardMult > 0) {
+        return EPIC_DUNGEON_EXP_TABLE[charData.currLevel - 260] * rewardMult;    
     } else {
         return 0;
     }
@@ -600,7 +618,7 @@ function displaySummary(perDayExp, perWeekExp, milestones) {
     }
 
     // Others (hunting + EXP minigames)
-    if(perDayExp.monsterHunting <= 0 && (perDayExp.expMinigameId === "" || getNumRuns("num-exp-tickets") <= 0) && perWeekExp.expPunchKingPoints <= 0) {
+    if(perDayExp.monsterHunting <= 0 && (perDayExp.expMinigameId === "" || getNumRuns("num-exp-tickets") <= 0) && perWeekExp.expPunchKingPoints <= 0 && perWeekExp.epicDungeon <= 0) {
         document.getElementById("others-summary-div").classList.add("d-none");
     } else {
         let othersSummary = document.getElementById("others-summary");
@@ -622,6 +640,12 @@ function displaySummary(perDayExp, perWeekExp, milestones) {
         if(perDayExp.numExpMinigame > 0) {
             othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0"><i class="fas fa-puzzle-piece mr-2"></i> ${perDayExp.numExpMinigame} minigames / day</p>`);
         }*/
+
+        if(perWeekExp.epicDungeon > 0) {
+            othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">
+                ${perWeekExp.epicDungeon}x rewards (High Mountain)
+            </p>`);
+        }
 
         if(getNumRuns("num-exp-tickets") > 0) {
             othersSummary.insertAdjacentHTML('beforeend', `<p class="col-12 text-center mb-2 px-0">

@@ -62,7 +62,7 @@ function getPotionList() {
         potion2: { id: "growth-potion-2", name: "Growth Potion 2", nameTw: "成長秘藥2", minLevel: 200, maxLevel: 219 },
         potion3: { id: "growth-potion-3", name: "Growth Potion 3", nameTw: "成長秘藥3", minLevel: 200, maxLevel: 229 },
         typhoon: { id: "typhoon-growth-potion", name: "Typhoon Growth Potion", nameTw: "颱風成長秘藥", minLevel: 200, maxLevel: 239 },
-        maximum: { id: "maximum-growth-potion", name: "Maximum Growth Potion", nameTw: "最大成長秘藥", minLevel: 200, maxLevel: 249 },
+        maximum: { id: "maximum-growth-potion", name: "Maximum Growth Potion", nameTw: "極限成長秘藥", minLevel: 200, maxLevel: 249 },
         transcendent: { id: "transcendent-growth-potion", name: "Transcendent Growth Potion", nameTw: "超凡成長秘藥", minLevel: 200, maxLevel: 269 },
     }
 
