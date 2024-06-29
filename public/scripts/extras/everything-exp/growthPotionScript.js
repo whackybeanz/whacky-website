@@ -187,14 +187,14 @@ function addExpTable(potionType, minLevel, maxLevel) {
     ]
 
     levelRange.forEach((levelRange, index) => {
-        let html = `<div class="w-100 col-12 col-sm-6 col-xl-4 d-flex flex-column align-items-center mb-4"><h2 class="font-subsubheader font-weight-bold text-underline mb-2"><span class="lang lang-en">${levelRange.name}</span><span class="lang lang-tw">${levelRange.nameTw}</span></h2>
+        let html = `<div class="w-100 col-12 col-sm-6 col-xl-4 d-flex flex-column align-items-center mb-4"><h2 class="font-subsubheader font-weight-bold text-underline mb-2"><span class="lang lang-en">${levelRange.name}</span><span class="lang lang-tw d-none">${levelRange.nameTw}</span></h2>
 
         <table class='font-table size-350 table table-sm table-bordered table-hover' id='potion-${potionType}-table-${index}'>
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">
                             <span class="lang lang-en">Level</span>
-                            <span class="lang lang-tw">等级</span>
+                            <span class="lang lang-tw d-none">等级</span>
                         </th>
                         <th scope="col" class="text-center">%</th>
                     </tr>
