@@ -34,18 +34,23 @@
   transition: all 0.3s;
 }
 .sidebar .vert-ad {
+  text-decoration: none;
   display: none;
 }
 @media (min-width: 992px) {
   .sidebar .vert-ad {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-width: 233px;
     width: 100%;
   }
 }
 @media (min-width: 1200px) {
   .sidebar .vert-ad {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-width: 170px;
     width: 100%;
   }

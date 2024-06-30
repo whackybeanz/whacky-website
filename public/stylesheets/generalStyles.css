@@ -186,6 +186,10 @@ input[type=radio], input[type=checkbox] {
   max-width: 1200px;
 }
 .main-content-div .square-ad {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: 200px;
   max-width: 250px;
   min-height: 200px;
@@ -224,6 +228,10 @@ input[type=radio], input[type=checkbox] {
   }
 }
 .main-content-div .horz-ad {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 320px;
   height: 100px;
 }
@@ -241,13 +249,13 @@ input[type=radio], input[type=checkbox] {
 }
 @media (min-width: 992px) {
   .main-content-div .horz-ad {
-    width: 728px;
+    width: 650px;
     height: 90px;
   }
 }
 @media (min-width: 1200px) {
   .main-content-div .horz-ad {
-    width: 728px;
+    width: 650px;
     height: 90px;
   }
 }

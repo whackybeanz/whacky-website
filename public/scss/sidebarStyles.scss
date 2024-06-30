@@ -40,9 +40,10 @@
     }
 
     .vert-ad {
+        text-decoration: none;
         display: none;
 
-        @include globals.for-size(lg) { display: block; min-width: 233px; width: 100% }
-        @include globals.for-size(xl) { display: block; min-width: 170px; width: 100% }
+        @include globals.for-size(lg) { display: flex; justify-content: center; align-items: center; min-width: 233px; width: 100% }
+        @include globals.for-size(xl) { display: flex; justify-content: center; align-items: center; min-width: 170px; width: 100% }
     }
 }

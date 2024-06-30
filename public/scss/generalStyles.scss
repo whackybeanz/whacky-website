@@ -156,6 +156,10 @@ input[type="radio"], input[type="checkbox"] {
     max-width: 1200px;
 
     .square-ad {
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         min-width: 200px;
         max-width: 250px;
         min-height: 200px;
@@ -168,13 +172,17 @@ input[type="radio"], input[type="checkbox"] {
     }
 
     .horz-ad {
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 320px;
         height: 100px;
 
         @include globals.for-size(sm) { width: 468px; height: 60px; }
         @include globals.for-size(md) { width: 468px; height: 60px; }
-        @include globals.for-size(lg) { width: 728px; height: 90px; }
-        @include globals.for-size(xl) { width: 728px; height: 90px; }
+        @include globals.for-size(lg) { width: 650px; height: 90px; }
+        @include globals.for-size(xl) { width: 650px; height: 90px; }
     }
 }
 

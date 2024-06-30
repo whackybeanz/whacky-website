@@ -19,6 +19,15 @@ body.dark-mode {
         }
     }
 
+    .ad-space {
+        background-color: rgba(52, 58, 64, 0.3);
+        border: 1px solid rgba(52, 58, 64, 0.8);
+
+        .ad-space-text {
+            color: rgba(255, 255, 255, 0.4);
+        }
+    }
+
     // Navbar 
     .navbar {
         border-bottom: 1px solid globals.$dark-mode-grey;
