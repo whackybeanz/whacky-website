@@ -14,13 +14,6 @@ body.dark-mode .btn-outline-custom:hover, body.dark-mode .btn-outline-custom.act
   background-color: #ffc107;
   border-color: #ffc107;
 }
-body.dark-mode .ad-space {
-  background-color: rgba(52, 58, 64, 0.3);
-  border: 1px solid rgba(52, 58, 64, 0.8);
-}
-body.dark-mode .ad-space .ad-space-text {
-  color: rgba(255, 255, 255, 0.4);
-}
 body.dark-mode .navbar {
   border-bottom: 1px solid #454d55;
 }
