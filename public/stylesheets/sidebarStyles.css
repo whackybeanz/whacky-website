@@ -10,7 +10,8 @@
   .sidebar {
     max-height: initial;
     position: sticky;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     height: calc(100vh - 3rem);
     background-color: transparent;
   }
