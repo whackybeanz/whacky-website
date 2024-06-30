@@ -185,6 +185,76 @@ input[type=radio], input[type=checkbox] {
 .main-content-div {
   max-width: 1200px;
 }
+.main-content-div .square-ad {
+  min-width: 200px;
+  max-width: 250px;
+  min-height: 200px;
+  max-height: 250px;
+}
+@media (min-width: 576px) {
+  .main-content-div .square-ad {
+    min-width: 250px;
+    max-width: 300px;
+    min-height: 250px;
+    max-height: 300px;
+  }
+}
+@media (min-width: 768px) {
+  .main-content-div .square-ad {
+    min-width: 250px;
+    max-width: 300px;
+    min-height: 250px;
+    max-height: 300px;
+  }
+}
+@media (min-width: 992px) {
+  .main-content-div .square-ad {
+    min-width: 250px;
+    max-width: 300px;
+    min-height: 250px;
+    max-height: 300px;
+  }
+}
+@media (min-width: 1200px) {
+  .main-content-div .square-ad {
+    min-width: 250px;
+    max-width: 300px;
+    min-height: 250px;
+    max-height: 300px;
+  }
+}
+.main-content-div .horz-ad {
+  width: 320px;
+  height: 100px;
+}
+@media (min-width: 576px) {
+  .main-content-div .horz-ad {
+    width: 468px;
+    height: 60px;
+  }
+}
+@media (min-width: 768px) {
+  .main-content-div .horz-ad {
+    width: 468px;
+    height: 60px;
+  }
+}
+@media (min-width: 992px) {
+  .main-content-div .horz-ad {
+    width: 728px;
+    height: 90px;
+  }
+}
+@media (min-width: 1200px) {
+  .main-content-div .horz-ad {
+    width: 728px;
+    height: 90px;
+  }
+}
+
+ins.adsbygoogle[data-ad-status=unfilled] {
+  display: none !important;
+}
 
 /**********************
 

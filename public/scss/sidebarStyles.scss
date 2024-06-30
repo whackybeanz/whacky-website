@@ -38,4 +38,11 @@
             transition: all 0.3s;
         }
     }
+
+    .vert-ad {
+        display: none;
+
+        @include globals.for-size(lg) { display: block; min-width: 233px; width: 100% }
+        @include globals.for-size(xl) { display: block; min-width: 170px; width: 100% }
+    }
 }

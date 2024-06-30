@@ -154,6 +154,32 @@ input[type="radio"], input[type="checkbox"] {
 
 .main-content-div {
     max-width: 1200px;
+
+    .square-ad {
+        min-width: 200px;
+        max-width: 250px;
+        min-height: 200px;
+        max-height: 250px;
+
+       @include globals.for-size(sm) { min-width: 250px; max-width: 300px; min-height: 250px; max-height: 300px; }
+       @include globals.for-size(md) { min-width: 250px; max-width: 300px; min-height: 250px; max-height: 300px; }
+       @include globals.for-size(lg) { min-width: 250px; max-width: 300px; min-height: 250px; max-height: 300px; }
+       @include globals.for-size(xl) { min-width: 250px; max-width: 300px; min-height: 250px; max-height: 300px; }
+    }
+
+    .horz-ad {
+        width: 320px;
+        height: 100px;
+
+        @include globals.for-size(sm) { width: 468px; height: 60px; }
+        @include globals.for-size(md) { width: 468px; height: 60px; }
+        @include globals.for-size(lg) { width: 728px; height: 90px; }
+        @include globals.for-size(xl) { width: 728px; height: 90px; }
+    }
+}
+
+ins.adsbygoogle[data-ad-status="unfilled"] {
+    display: none !important;
 }
 
 /**********************

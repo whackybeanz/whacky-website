@@ -33,5 +33,22 @@
 .sidebar .sidebar-btn:hover, .sidebar .sidebar-btn.active {
   transition: all 0.3s;
 }
+.sidebar .vert-ad {
+  display: none;
+}
+@media (min-width: 992px) {
+  .sidebar .vert-ad {
+    display: block;
+    min-width: 233px;
+    width: 100%;
+  }
+}
+@media (min-width: 1200px) {
+  .sidebar .vert-ad {
+    display: block;
+    min-width: 170px;
+    width: 100%;
+  }
+}
 
 /*# sourceMappingURL=sidebarStyles.css.map */
