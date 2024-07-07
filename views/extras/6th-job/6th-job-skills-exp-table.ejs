@@ -40,28 +40,36 @@
                                             <%= index === 0 ? "To Unlock" : `${index} > ${index+1}`%>
                                         </td>
                                         <td class="origin-sol-erda text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.origin.solErda %>">
-                                            <%= row.origin.solErda %>
+                                            <%= row.origin.solErda %><br/>
+                                            <span style="opacity: 0.7">(<%= tables.hexaSkill.slice(0, index+1).reduce((sum, curr) => sum + curr.origin.solErda, 0) %>)</span>
                                         </td>
                                         <td class="origin-frags text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.origin.frags %>">
-                                            <%= row.origin.frags %>
+                                            <%= row.origin.frags %><br/>
+                                            <span style="opacity: 0.7">(<%= tables.hexaSkill.slice(0, index+1).reduce((sum, curr) => sum + curr.origin.frags, 0).toLocaleString("en-SG") %>)</span>
                                         </td>
                                         <td class="enhance-sol-erda text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.enhance.solErda %>">
-                                            <%= row.enhance.solErda %>
+                                            <%= row.enhance.solErda %><br/>
+                                            <span style="opacity: 0.7">(<%= tables.hexaSkill.slice(0, index+1).reduce((sum, curr) => sum + curr.enhance.solErda, 0) %>)</span>
                                         </td>
                                         <td class="enhance-frags text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.enhance.frags %>">
-                                            <%= row.enhance.frags %>
+                                            <%= row.enhance.frags %><br/>
+                                            <span style="opacity: 0.7">(<%= tables.hexaSkill.slice(0, index+1).reduce((sum, curr) => sum + curr.enhance.frags, 0).toLocaleString("en-SG") %>)</span>
                                         </td>
                                         <td class="mastery-sol-erda text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.mastery.solErda %>">
-                                            <%= row.mastery.solErda %>
+                                            <%= row.mastery.solErda %><br/>
+                                            <span style="opacity: 0.7">(<%= tables.hexaSkill.slice(0, index+1).reduce((sum, curr) => sum + curr.mastery.solErda, 0) %>)</span>
                                         </td>
                                         <td class="mastery-frags text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.mastery.frags %>">
-                                            <%= row.mastery.frags %>
+                                            <%= row.mastery.frags %><br/>
+                                            <span style="opacity: 0.7">(<%= tables.hexaSkill.slice(0, index+1).reduce((sum, curr) => sum + curr.mastery.frags, 0).toLocaleString("en-SG") %>)</span>
                                         </td>
                                         <td class="common-sol-erda text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.common.solErda %>">
-                                            <%= row.common.solErda %>
+                                            <%= row.common.solErda %><br/>
+                                            <span style="opacity: 0.7">(<%= tables.hexaSkill.slice(0, index+1).reduce((sum, curr) => sum + curr.common.solErda, 0) %>)</span>
                                         </td>
                                         <td class="common-frags text-center align-middle <% if(index === 0 || (index+1) % 10 === 0) { %>text-custom<% } %>" data-qty="<%= row.common.frags %>">
-                                            <%= row.common.frags %>
+                                            <%= row.common.frags %><br/>
+                                            <span style="opacity: 0.7">(<%= tables.hexaSkill.slice(0, index+1).reduce((sum, curr) => sum + curr.common.frags, 0).toLocaleString("en-SG") %>)</span>
                                         </td>
                                     </tr>
                                 <% }) %>

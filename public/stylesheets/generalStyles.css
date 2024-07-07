@@ -225,35 +225,30 @@ input[type=radio], input[type=checkbox] {
   align-items: center;
   min-width: 320px;
   width: 100%;
-  min-height: 100px;
-  max-height: 150px;
+  height: 100px;
 }
 @media (min-width: 576px) {
   .main-content-div .horz-ad {
     min-width: 468px;
-    min-height: 60px;
-    max-height: 120px;
+    height: 60px;
   }
 }
 @media (min-width: 768px) {
   .main-content-div .horz-ad {
     min-width: 468px;
-    min-height: 60px;
-    max-height: 120px;
+    height: 60px;
   }
 }
 @media (min-width: 992px) {
   .main-content-div .horz-ad {
     min-width: 650px;
-    min-height: 90px;
-    max-height: 150px;
+    height: 90px;
   }
 }
 @media (min-width: 1200px) {
   .main-content-div .horz-ad {
     min-width: 650px;
-    min-height: 90px;
-    max-height: 150px;
+    height: 90px;
   }
 }
 

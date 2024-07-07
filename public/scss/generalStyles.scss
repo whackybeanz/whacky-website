@@ -177,13 +177,12 @@ input[type="radio"], input[type="checkbox"] {
         align-items: center;
         min-width: 320px;
         width: 100%;
-        min-height: 100px;
-        max-height: 150px;
+        height: 100px;
 
-        @include globals.for-size(sm) { min-width: 468px; min-height: 60px; max-height: 120px; }
-        @include globals.for-size(md) { min-width: 468px; min-height: 60px; max-height: 120px; }
-        @include globals.for-size(lg) { min-width: 650px; min-height: 90px; max-height: 150px; }
-        @include globals.for-size(xl) { min-width: 650px; min-height: 90px; max-height: 150px; }
+        @include globals.for-size(sm) { min-width: 468px; height: 60px; }
+        @include globals.for-size(md) { min-width: 468px; height: 60px; }
+        @include globals.for-size(lg) { min-width: 650px; height: 90px; }
+        @include globals.for-size(xl) { min-width: 650px; height: 90px; }
     }
 }
 
