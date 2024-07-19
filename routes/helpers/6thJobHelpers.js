@@ -33,7 +33,7 @@ function getTables() {
         { origin: { solErda: 6, frags: 220 }, enhance: { solErda: 5, frags: 165 }, mastery: { solErda: 3, frags: 110 }, common: { solErda: 9, frags: 303 } },
         { origin: { solErda: 6, frags: 230 }, enhance: { solErda: 5, frags: 173 }, mastery: { solErda: 3, frags: 115 }, common: { solErda: 9, frags: 317 } },
         { origin: { solErda: 6, frags: 240 }, enhance: { solErda: 5, frags: 180 }, mastery: { solErda: 3, frags: 120 }, common: { solErda: 9, frags: 330 } },
-        { origin: { solErda: 7, frags: 250 }, enhance: { solErda: 6, frags: 188 }, mastery: { solErda: 3, frags: 125 }, common: { solErda: 10, frags: 344 } },
+        { origin: { solErda: 7, frags: 250 }, enhance: { solErda: 6, frags: 188 }, mastery: { solErda: 4, frags: 125 }, common: { solErda: 10, frags: 344 } },
         { origin: { solErda: 20, frags: 500 }, enhance: { solErda: 15, frags: 375 }, mastery: { solErda: 10, frags: 250 }, common: { solErda: 20, frags: 750 } },
     ];
 
