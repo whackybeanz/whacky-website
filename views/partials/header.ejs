@@ -54,11 +54,10 @@
 </head>
 <body class="hidden dark-mode">
     <%- include('navbar') %>
-    <% if(locals.host.includes("herokuapp")) { %>
-        <div class="container">
-            <div class="col-12 alert alert-danger" role="alert" style="margin-top: 4rem;">
-                <p class="font-table">The URL <span class="font-weight-bold">https://whacky-test.herokuapp.com</span> will no longer be available from 15 November 2023.</p>
-                <p class="mb-0">Please bookmark <a href="https://whackybeanz.com" class="font-weight-bold font-subheader">https://whackybeanz.com</a> instead!</p>
-            </div>
+    
+    <div class="container">
+        <div class="col-12 info alert-info" role="alert" style="margin-top: 4rem; padding: 1rem">
+            <p>Version 2 of the website is scheduled for release in mid-December 2024. More details will come soon!</p>
+            <p class="mb-0">Monster Park's EXP has been adjusted to the new values (this will be the final adjustment before the v2 release)</p>
         </div>
-    <% } %>
+    </div>
