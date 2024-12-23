@@ -41,9 +41,9 @@ router.get("/", function(req, res) {
             res.redirect("back");
         })
 })
-    .use("/guides", beginnerRoutes)
+    //.use("/guides", beginnerRoutes)
     .use("/calc", calcRoutes)
-    .use("/calc", eventRoutes)
+    //.use("/calc", eventRoutes)
     .use("/info", infoSheetRoutes)
     .use("/fun", funRoutes)
 
